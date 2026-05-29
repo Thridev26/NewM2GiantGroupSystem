@@ -33,5 +33,16 @@ namespace M2GiantGroupSystem.Properties {
                 return ((string)(this["GroupWst1ConnString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=146.230.177.46;Initial Catalog=GroupWst1;User ID=GroupWst1;Password=d" +
+            "tf39;TrustServerCertificate=True")]
+        public string GroupWst1ConnectionString {
+            get {
+                return ((string)(this["GroupWst1ConnectionString"]));
+            }
+        }
     }
 }

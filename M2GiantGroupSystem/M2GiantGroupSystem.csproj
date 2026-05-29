@@ -52,6 +52,9 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="GroupWst1DataSet.cs">
+      <DependentUpon>GroupWst1DataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="GroupWst1DataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -64,6 +67,12 @@
     </Compile>
     <Compile Include="Quotation.Designer.cs">
       <DependentUpon>Quotation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View_Clients_A.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View_Clients_A.Designer.cs">
+      <DependentUpon>View_Clients_A.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -79,6 +88,9 @@
     </Compile>
     <EmbeddedResource Include="Quotation.resx">
       <DependentUpon>Quotation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View_Clients_A.resx">
+      <DependentUpon>View_Clients_A.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="GroupWst1DataSet.xsc">
       <DependentUpon>GroupWst1DataSet.xsd</DependentUpon>
