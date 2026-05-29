@@ -77,6 +77,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Quotation.resx">
+      <DependentUpon>Quotation.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="GroupWst1DataSet.xsc">
       <DependentUpon>GroupWst1DataSet.xsd</DependentUpon>
     </None>
