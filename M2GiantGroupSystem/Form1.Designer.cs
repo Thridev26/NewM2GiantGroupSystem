@@ -38,27 +38,27 @@
             this.editInquiryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addValuesForRequestedItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewAllInquiriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.createQuoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.allocateAssetsToJobsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.allocateStaffToJobsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewAllAllocationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.addEditJobDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewJobProgressToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editJobProgressToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.createAnInvoiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.trackPaymentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
             this.addEditAssetRecordsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.recordMaintenanceLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
             this.addEditStaffDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem11 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
@@ -81,8 +81,8 @@
             this.toolStripMenuItem6,
             this.toolStripMenuItem7,
             this.toolStripMenuItem8,
-            this.toolStripMenuItem10,
-            this.toolStripMenuItem11});
+            this.toolStripMenuItem11,
+            this.toolStripMenuItem10});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(17, 5, 0, 5);
@@ -148,6 +148,12 @@
             this.viewAllInquiriesToolStripMenuItem.Size = new System.Drawing.Size(482, 40);
             this.viewAllInquiriesToolStripMenuItem.Text = "View All Inquiries";
             // 
+            // toolStripMenuItem9
+            // 
+            this.toolStripMenuItem9.Name = "toolStripMenuItem9";
+            this.toolStripMenuItem9.Size = new System.Drawing.Size(180, 36);
+            this.toolStripMenuItem9.Text = "Job Requests";
+            // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -155,6 +161,12 @@
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(157, 36);
             this.toolStripMenuItem1.Text = "Quotations";
+            // 
+            // createQuoteToolStripMenuItem
+            // 
+            this.createQuoteToolStripMenuItem.Name = "createQuoteToolStripMenuItem";
+            this.createQuoteToolStripMenuItem.Size = new System.Drawing.Size(346, 40);
+            this.createQuoteToolStripMenuItem.Text = "Quote Management";
             // 
             // toolStripMenuItem2
             // 
@@ -165,31 +177,6 @@
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(156, 36);
             this.toolStripMenuItem2.Text = "Scheduling";
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addEditJobDetailsToolStripMenuItem,
-            this.viewJobProgressToolStripMenuItem,
-            this.editJobProgressToolStripMenuItem});
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(82, 36);
-            this.toolStripMenuItem3.Text = "Jobs";
-            // 
-            // toolStripMenuItem4
-            // 
-            this.toolStripMenuItem4.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.createAnInvoiceToolStripMenuItem,
-            this.trackPaymentsToolStripMenuItem});
-            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(244, 36);
-            this.toolStripMenuItem4.Text = "Billing && Invoicing";
-            // 
-            // createQuoteToolStripMenuItem
-            // 
-            this.createQuoteToolStripMenuItem.Name = "createQuoteToolStripMenuItem";
-            this.createQuoteToolStripMenuItem.Size = new System.Drawing.Size(346, 40);
-            this.createQuoteToolStripMenuItem.Text = "Quote Management";
             // 
             // allocateAssetsToJobsToolStripMenuItem
             // 
@@ -209,6 +196,16 @@
             this.viewAllAllocationsToolStripMenuItem.Size = new System.Drawing.Size(380, 40);
             this.viewAllAllocationsToolStripMenuItem.Text = "View All Allocations";
             // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addEditJobDetailsToolStripMenuItem,
+            this.viewJobProgressToolStripMenuItem,
+            this.editJobProgressToolStripMenuItem});
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(82, 36);
+            this.toolStripMenuItem3.Text = "Jobs";
+            // 
             // addEditJobDetailsToolStripMenuItem
             // 
             this.addEditJobDetailsToolStripMenuItem.Name = "addEditJobDetailsToolStripMenuItem";
@@ -226,6 +223,15 @@
             this.editJobProgressToolStripMenuItem.Name = "editJobProgressToolStripMenuItem";
             this.editJobProgressToolStripMenuItem.Size = new System.Drawing.Size(367, 40);
             this.editJobProgressToolStripMenuItem.Text = "Edit Job Progress";
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.createAnInvoiceToolStripMenuItem,
+            this.trackPaymentsToolStripMenuItem});
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(244, 36);
+            this.toolStripMenuItem4.Text = "Billing && Invoicing";
             // 
             // createAnInvoiceToolStripMenuItem
             // 
@@ -247,6 +253,12 @@
             this.toolStripMenuItem5.Size = new System.Drawing.Size(102, 36);
             this.toolStripMenuItem5.Text = "Assets";
             // 
+            // addEditAssetRecordsToolStripMenuItem
+            // 
+            this.addEditAssetRecordsToolStripMenuItem.Name = "addEditAssetRecordsToolStripMenuItem";
+            this.addEditAssetRecordsToolStripMenuItem.Size = new System.Drawing.Size(400, 40);
+            this.addEditAssetRecordsToolStripMenuItem.Text = "Add / Edit Asset Records";
+            // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -254,6 +266,12 @@
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
             this.toolStripMenuItem6.Size = new System.Drawing.Size(185, 36);
             this.toolStripMenuItem6.Text = "Maintenance ";
+            // 
+            // recordMaintenanceLogToolStripMenuItem
+            // 
+            this.recordMaintenanceLogToolStripMenuItem.Name = "recordMaintenanceLogToolStripMenuItem";
+            this.recordMaintenanceLogToolStripMenuItem.Size = new System.Drawing.Size(402, 40);
+            this.recordMaintenanceLogToolStripMenuItem.Text = "Record Maintenance Log";
             // 
             // toolStripMenuItem7
             // 
@@ -263,35 +281,17 @@
             this.toolStripMenuItem7.Size = new System.Drawing.Size(82, 36);
             this.toolStripMenuItem7.Text = "Staff";
             // 
-            // toolStripMenuItem8
-            // 
-            this.toolStripMenuItem8.Name = "toolStripMenuItem8";
-            this.toolStripMenuItem8.Size = new System.Drawing.Size(119, 36);
-            this.toolStripMenuItem8.Text = "Reports";
-            // 
-            // addEditAssetRecordsToolStripMenuItem
-            // 
-            this.addEditAssetRecordsToolStripMenuItem.Name = "addEditAssetRecordsToolStripMenuItem";
-            this.addEditAssetRecordsToolStripMenuItem.Size = new System.Drawing.Size(400, 40);
-            this.addEditAssetRecordsToolStripMenuItem.Text = "Add / Edit Asset Records";
-            // 
-            // recordMaintenanceLogToolStripMenuItem
-            // 
-            this.recordMaintenanceLogToolStripMenuItem.Name = "recordMaintenanceLogToolStripMenuItem";
-            this.recordMaintenanceLogToolStripMenuItem.Size = new System.Drawing.Size(402, 40);
-            this.recordMaintenanceLogToolStripMenuItem.Text = "Record Maintenance Log";
-            // 
             // addEditStaffDetailsToolStripMenuItem
             // 
             this.addEditStaffDetailsToolStripMenuItem.Name = "addEditStaffDetailsToolStripMenuItem";
             this.addEditStaffDetailsToolStripMenuItem.Size = new System.Drawing.Size(378, 40);
             this.addEditStaffDetailsToolStripMenuItem.Text = "Add / Edit Staff Details";
             // 
-            // toolStripMenuItem9
+            // toolStripMenuItem8
             // 
-            this.toolStripMenuItem9.Name = "toolStripMenuItem9";
-            this.toolStripMenuItem9.Size = new System.Drawing.Size(180, 36);
-            this.toolStripMenuItem9.Text = "Job Requests";
+            this.toolStripMenuItem8.Name = "toolStripMenuItem8";
+            this.toolStripMenuItem8.Size = new System.Drawing.Size(119, 36);
+            this.toolStripMenuItem8.Text = "Reports";
             // 
             // toolStripMenuItem10
             // 
