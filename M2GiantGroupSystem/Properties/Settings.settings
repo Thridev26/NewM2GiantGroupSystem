@@ -5,10 +5,10 @@
     <Setting Name="GroupWst1ConnString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
-  &lt;ConnectionString&gt;Data Source=146.230.177.46;Initial Catalog=GroupWst1;Persist Security Info=True;User ID=GroupWst1;Encrypt=True;TrustServerCertificate=True&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Data Source=146.230.177.46;Initial Catalog=GroupWst1;Persist Security Info=True;ID=GroupWst1;Password=dtf39;Encrypt=True;TrustServerCertificate=True&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=146.230.177.46;Initial Catalog=GroupWst1;Persist Security Info=True;User ID=GroupWst1;Encrypt=True;TrustServerCertificate=True</Value>
+      <Value Profile="(Default)">Data Source=146.230.177.46;Initial Catalog=GroupWst1;Persist Security Info=True;ID=GroupWst1;Password=dtf39;Encrypt=True;TrustServerCertificate=True</Value>
     </Setting>
   </Settings>
 </SettingsFile>
