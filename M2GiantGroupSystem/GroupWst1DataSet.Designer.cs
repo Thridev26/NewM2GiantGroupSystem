@@ -12901,7 +12901,7 @@ SELECT clientID, clientName, clientSurname, clientType, emailAddress, status, da
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[4];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT Client.*\r\nFROM     Client";
@@ -12922,6 +12922,19 @@ WHERE  (clientName LIKE @name + '%') AND (clientSurname LIKE @surname + '%') AND
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@surname", global::System.Data.SqlDbType.VarChar, 40, global::System.Data.ParameterDirection.Input, 0, 0, "clientSurname", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@email", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "emailAddress", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@phoneNum", global::System.Data.SqlDbType.VarChar, 15, global::System.Data.ParameterDirection.Input, 0, 0, "phoneNumber", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[3].Connection = this.Connection;
+            this._commandCollection[3].CommandText = @"INSERT INTO Client
+                  (clientType, emailAddress, status, clientName, clientSurname, phoneNumber)
+VALUES (@clientType,@emailAddress,@status,@clientName,@clientSurname,@phoneNumber); 
+SELECT clientID, clientType, emailAddress, status, clientName, clientSurname, dateAdded, phoneNumber FROM Client WHERE (clientID = SCOPE_IDENTITY())";
+            this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@clientType", global::System.Data.SqlDbType.VarChar, 30, global::System.Data.ParameterDirection.Input, 0, 0, "clientType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@emailAddress", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "emailAddress", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@status", global::System.Data.SqlDbType.VarChar, 10, global::System.Data.ParameterDirection.Input, 0, 0, "status", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@clientName", global::System.Data.SqlDbType.VarChar, 40, global::System.Data.ParameterDirection.Input, 0, 0, "clientName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@clientSurname", global::System.Data.SqlDbType.VarChar, 40, global::System.Data.ParameterDirection.Input, 0, 0, "clientSurname", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@phoneNumber", global::System.Data.SqlDbType.VarChar, 15, global::System.Data.ParameterDirection.Input, 0, 0, "phoneNumber", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -13311,6 +13324,65 @@ WHERE  (clientName LIKE @name + '%') AND (clientSurname LIKE @surname + '%') AND
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
         public virtual int Update(string clientName, string clientSurname, string clientType, string emailAddress, string status, System.DateTime dateAdded, string phoneNumber, int Original_clientID, string Original_clientName, string Original_clientSurname, string Original_clientType, string Original_emailAddress, string Original_status, System.DateTime Original_dateAdded, string Original_phoneNumber) {
             return this.Update(clientName, clientSurname, clientType, emailAddress, status, dateAdded, phoneNumber, Original_clientID, Original_clientName, Original_clientSurname, Original_clientType, Original_emailAddress, Original_status, Original_dateAdded, Original_phoneNumber, Original_clientID);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
+        public virtual int InsertQuery(string clientType, string emailAddress, string status, string clientName, string clientSurname, string phoneNumber) {
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[3];
+            if ((clientType == null)) {
+                throw new global::System.ArgumentNullException("clientType");
+            }
+            else {
+                command.Parameters[0].Value = ((string)(clientType));
+            }
+            if ((emailAddress == null)) {
+                throw new global::System.ArgumentNullException("emailAddress");
+            }
+            else {
+                command.Parameters[1].Value = ((string)(emailAddress));
+            }
+            if ((status == null)) {
+                throw new global::System.ArgumentNullException("status");
+            }
+            else {
+                command.Parameters[2].Value = ((string)(status));
+            }
+            if ((clientName == null)) {
+                throw new global::System.ArgumentNullException("clientName");
+            }
+            else {
+                command.Parameters[3].Value = ((string)(clientName));
+            }
+            if ((clientSurname == null)) {
+                throw new global::System.ArgumentNullException("clientSurname");
+            }
+            else {
+                command.Parameters[4].Value = ((string)(clientSurname));
+            }
+            if ((phoneNumber == null)) {
+                throw new global::System.ArgumentNullException("phoneNumber");
+            }
+            else {
+                command.Parameters[5].Value = ((string)(phoneNumber));
+            }
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
         }
     }
     
