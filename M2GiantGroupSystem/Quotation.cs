@@ -929,5 +929,155 @@ namespace M2GiantGroupSystem
                                 "Deletion Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void cmbSearchColumn_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtSearchRequests.Clear();
+            jobRequestBindingSource.Filter = "";
+
+            string selectedText = cmbSearchColumn.SelectedItem != null ?
+                                 cmbSearchColumn.SelectedItem.ToString() :
+                                 cmbSearchColumn.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(selectedText) || selectedText == "No Filter")
+            {
+                txtSearchRequests.Enabled = false;
+                txtSearchRequests.Visible = true;
+                dtpSearchDate.Enabled = false;
+                dtpSearchDate.Visible = false;
+                return;
+            }
+
+            string dbColumn = GetRealDatabaseColumnName(selectedText);
+
+            // FIXED CONDITIONS: Matching the exact casing returned by our helper method above
+            if (dbColumn == "dateRecieved" || dbColumn == "siteEvaluationDate")
+            {
+                dtpSearchDate.Enabled = true;
+                dtpSearchDate.Visible = true;  // This will now execute perfectly!
+                txtSearchRequests.Enabled = false;
+                txtSearchRequests.Visible = false;
+
+                ApplyDateFilter(dbColumn, dtpSearchDate.Value);
+            }
+            else if (!string.IsNullOrEmpty(dbColumn))
+            {
+                txtSearchRequests.Enabled = true;
+                txtSearchRequests.Visible = true;
+                dtpSearchDate.Enabled = false;
+                dtpSearchDate.Visible = false;
+            }
+        }
+
+        // Reusable translation helper to keep column lookups completely safe from translation errors
+        private string GetRealDatabaseColumnName(string uiName)
+        {
+            switch (uiName)
+            {
+                case "JobRequestID": return "jobRequestID";        // MATCHES DESIGNER CASE
+                case "ClientID": return "clientID";            // MATCHES DESIGNER CASE
+                case "Address": return "siteAddress";         // MATCHES DESIGNER CASE
+                case "RequestSource": return "requestSource";       // MATCHES DESIGNER CASE
+                case "Urgency": return "urgencyLevel";        // MATCHES DESIGNER CASE
+                case "Status": return "status";              // MATCHES DESIGNER CASE
+                case "DateRecieved": return "dateRecieved";        // MATCHES DESIGNER CASE
+                case "EvaluationDate": return "siteEvaluationDate";  // MATCHES DESIGNER CASE
+                default: return null;
+            }
+        }
+
+
+        // Reusable helper method to keep your background compilation logic clean
+        private void ApplyDateFilter(string columnName, DateTime selectedDate)
+        {
+            // Formats calendar selections cleanly to match standard database storage metrics (YYYY/MM/DD)
+            string formattedDate = selectedDate.ToString("yyyy/MM/dd");
+
+            try
+            {
+                // Parse date values explicitly down to raw string conversions on the dataset layout cache layer
+                jobRequestBindingSource.Filter = string.Format("CONVERT({0}, 'System.String') LIKE '%{1}%'", columnName, formattedDate);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Date expression processing exception: " + ex.Message);
+            }
+        }
+
+        private void dtpSearchDate_ValueChanged(object sender, EventArgs e)
+        {
+            string currentComboText = cmbSearchColumn.SelectedItem != null ?
+                            cmbSearchColumn.SelectedItem.ToString() :
+                            cmbSearchColumn.Text.Trim();
+
+            string dbColumn = GetRealDatabaseColumnName(currentComboText);
+
+            // FIXED CONDITIONS: Ensures ongoing calendar changes register correctly
+            if (dbColumn == "dateRecieved" || dbColumn == "siteEvaluationDate")
+            {
+                ApplyDateFilter(dbColumn, dtpSearchDate.Value);
+            }
+        }
+
+        private void txtSearchRequests_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            string currentComboText = cmbSearchColumn.Text.Trim();
+            string dbColumn = GetRealDatabaseColumnName(currentComboText);
+
+            // If numeric columns are selected, block text characters immediately
+            if (dbColumn == "JobRequestID" || dbColumn == "ClientID")
+            {
+                if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+                {
+                    e.Handled = true; // Drop key stroke input
+                }
+            }
+        }
+
+        private void txtSearchRequests_TextChanged(object sender, EventArgs e)
+        {
+            string currentComboText = cmbSearchColumn.SelectedItem != null ?
+                            cmbSearchColumn.SelectedItem.ToString() :
+                            cmbSearchColumn.Text.Trim();
+
+            string userInput = txtSearchRequests.Text.Trim().Replace("'", "''");
+
+            if (string.IsNullOrWhiteSpace(userInput))
+            {
+                jobRequestBindingSource.Filter = "";
+                return;
+            }
+
+            string dbColumn = GetRealDatabaseColumnName(currentComboText);
+
+            // FIXED CONDITIONS: Blocks typing rules if either date string is active
+            if (string.IsNullOrEmpty(dbColumn) || dbColumn == "dateRecieved" || dbColumn == "siteEvaluationDate")
+            {
+                return;
+            }
+
+            try
+            {
+                if (dbColumn == "jobRequestID" || dbColumn == "clientID")
+                {
+                    if (int.TryParse(userInput, out int numericValue))
+                    {
+                        jobRequestBindingSource.Filter = string.Format("{0} = {1}", dbColumn, numericValue);
+                    }
+                    else
+                    {
+                        jobRequestBindingSource.Filter = "1 = 0";
+                    }
+                }
+                else
+                {
+                    jobRequestBindingSource.Filter = string.Format("{0} LIKE '%{1}%'", dbColumn, userInput);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Text filter exception: " + ex.Message);
+            }
+        }
     }
 }
