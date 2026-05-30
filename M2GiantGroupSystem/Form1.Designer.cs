@@ -182,6 +182,7 @@
             this.allocateAssetsToJobsToolStripMenuItem.Name = "allocateAssetsToJobsToolStripMenuItem";
             this.allocateAssetsToJobsToolStripMenuItem.Size = new System.Drawing.Size(466, 40);
             this.allocateAssetsToJobsToolStripMenuItem.Text = "Allocate Assets && Staff to Jobs";
+            this.allocateAssetsToJobsToolStripMenuItem.Click += new System.EventHandler(this.allocateAssetsToJobsToolStripMenuItem_Click);
             // 
             // viewAllAllocationsToolStripMenuItem
             // 
