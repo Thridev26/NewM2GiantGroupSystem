@@ -366,5 +366,87 @@ namespace M2GiantGroupSystem
             txtVAT.Text = vatAccumulator.ToString("F2");
             txtTotalwithVAT.Text = grandTotalAccumulator.ToString("F2");
         }
+
+        private void jobTypeDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow selectedRow = jobTypeDataGridView.Rows[e.RowIndex];
+
+                string jobName = selectedRow.Cells["jobTypeName"].Value?.ToString();
+                string jobRate = selectedRow.Cells["jobRate"].Value?.ToString();
+                string unitDescription = selectedRow.Cells[3].Value?.ToString() ?? "Per Unit";
+
+                decimal baseRate = Convert.ToDecimal(jobRate);
+
+                // 1. Automatically seed the baseline Travel Fee item first if the grid is empty
+                if (selectedJobsGridView.Rows.Count == 0 && currentTravelFee > 0)
+                {
+                    // Maps exactly to your designer columns: Job Type, Base Rate, Unit Type, Quantity, Total
+                    selectedJobsGridView.Rows.Add("Transport & Travel Call-out", currentTravelFee, "Flat Rate", 1.0, currentTravelFee);
+                }
+
+                // 2. Add the selected item directly to the UI columns collection
+                selectedJobsGridView.Rows.Add(jobName, baseRate, unitDescription, 1.0, baseRate);
+
+                // 3. Update the grand total box
+                RecalculateGrandTotalFromUI();
+            }
+        }
+
+        private void selectedJobsGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        { // 1.Ensure we are looking at a valid data row, not the column header
+            if (e.RowIndex >= 0)
+            {
+                // 2. Target the 'Quantity' column directly by its physical slot position index (Index 3)
+                if (e.ColumnIndex == 3)
+                {
+                    DataGridViewRow currentRow = selectedJobsGridView.Rows[e.RowIndex];
+
+                    // 3. Extract the updated Quantity entered by the user safely
+                    double quantityInput = 0;
+                    if (currentRow.Cells[3].Value != null)
+                    {
+                        // Safely convert the object cell value to a double-precision number
+                        double.TryParse(currentRow.Cells[3].Value.ToString(), out quantityInput);
+                    }
+
+                    // 4. CRITERIA RULE CHECK: Prevent negative inputs from corrupting your financial records
+                    if (quantityInput < 0)
+                    {
+                        MessageBox.Show("Quantity cannot be a negative amount. Resetting line item input to 0.",
+                                        "Validation Notice", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        quantityInput = 0;
+                        currentRow.Cells[3].Value = 0; // Force the cell to reflect the fallback correction visually
+                    }
+
+                    // 5. Extract the unchangeable Base Rate column value (Index 1)
+                    decimal baseRateValue = 0;
+                    if (currentRow.Cells[1].Value != null)
+                    {
+                        decimal.TryParse(currentRow.Cells[1].Value.ToString(), out baseRateValue);
+                    }
+
+                    // 6. RUN THE MATHEMATICAL MULTIPLICATION
+                    // Round nicely to 2 decimal places for South African Rand currency standards
+                    decimal recalculatedLineTotal = Math.Round(baseRateValue * (decimal)quantityInput, 2);
+
+                    // 7. Write the output value back to your visual 'Total' column cell (Index 4)
+                    currentRow.Cells[4].Value = recalculatedLineTotal;
+
+                    // 8. Force the entire system to tally up all items and refresh your txtAmount display
+                    RecalculateGrandTotalFromUI();
+                }
+            }
+        }
+
+        private void selectedJobsGridView_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            // Forces the cell to commit its changes the instant the user hits Enter or clicks away
+            if (selectedJobsGridView.IsCurrentCellDirty)
+            {
+                selectedJobsGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+        }
     }
 }
