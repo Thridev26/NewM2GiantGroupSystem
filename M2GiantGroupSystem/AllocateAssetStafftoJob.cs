@@ -27,6 +27,8 @@ namespace M2GiantGroupSystem
 
         private void AllocateAssetStafftoJob_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'groupWst1DataSet.DataTable1' table. You can move, or remove it, as needed.
+            this.dataTable1TableAdapter.Fill(this.groupWst1DataSet.DataTable1);
             // Force this to true in code if you can't find the designer property
             dataGridView1.AutoGenerateColumns = true;
             try
@@ -56,6 +58,23 @@ namespace M2GiantGroupSystem
             {
                 // This will tell you EXACTLY why it is crashing
                 MessageBox.Show("Error loading data: " + ex.Message + "\n\nStack Trace: " + ex.StackTrace);
+            }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            // Create your adapter instance
+            GroupWst1DataSetTableAdapters.DataTable1TableAdapter adapter = new GroupWst1DataSetTableAdapters.DataTable1TableAdapter();
+
+            // Check if the box is empty (if so, show all, otherwise filter)
+            if (string.IsNullOrWhiteSpace(txtSearch.Text))
+            {
+                dataGridView1.DataSource = adapter.GetDataByInProgress();
+            }
+            else
+            {
+                // Pass the textbox text as the parameter to your SQL query
+                dataGridView1.DataSource = adapter.GetDataBySearch(txtSearch.Text);
             }
         }
     }

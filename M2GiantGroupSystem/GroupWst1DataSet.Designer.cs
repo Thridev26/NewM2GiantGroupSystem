@@ -19420,16 +19420,31 @@ SELECT roleID, roleName, accessLevel FROM Role WHERE (roleID = @roleID)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT Client.clientName, Client.clientSurname, JobRequest.siteAddress, Job.jobID, Job.jobStatus
+            this._commandCollection[0].CommandText = @"SELECT Job.jobID, Client.clientName, Client.clientSurname, JobRequest.siteAddress, Job.jobStatus
 FROM   Job INNER JOIN
              Quote ON Job.quoteID = Quote.QuoteID INNER JOIN
              JobRequest ON Quote.jobRequestID = JobRequest.jobRequestID INNER JOIN
              Client ON JobRequest.clientID = Client.clientID
 WHERE (Job.jobStatus LIKE 'In Progress%')";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = @"SELECT clientName, clientSurname, siteAddress, jobID, jobStatus
+FROM Job
+INNER JOIN Quote ON Job.quoteID = Quote.QuoteID
+INNER JOIN JobRequest ON Quote.jobRequestID = JobRequest.jobRequestID
+INNER JOIN Client ON JobRequest.clientID = Client.clientID
+WHERE Job.jobStatus LIKE 'In Progress%'
+AND (
+    (Client.clientName LIKE @SearchText + '%')
+    OR (Client.clientSurname LIKE @SearchText + '%')
+    OR (JobRequest.siteAddress LIKE @SearchText + '%')
+)";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SearchText", global::System.Data.SqlDbType.VarChar, 40, global::System.Data.ParameterDirection.Input, 0, 0, "clientName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -19451,6 +19466,42 @@ WHERE (Job.jobStatus LIKE 'In Progress%')";
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual GroupWst1DataSet.DataTable1DataTable GetDataByInProgress() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            GroupWst1DataSet.DataTable1DataTable dataTable = new GroupWst1DataSet.DataTable1DataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillBy(GroupWst1DataSet.DataTable1DataTable dataTable, string SearchText) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((SearchText == null)) {
+                throw new global::System.ArgumentNullException("SearchText");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(SearchText));
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual GroupWst1DataSet.DataTable1DataTable GetDataBySearch(string SearchText) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((SearchText == null)) {
+                throw new global::System.ArgumentNullException("SearchText");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(SearchText));
+            }
             GroupWst1DataSet.DataTable1DataTable dataTable = new GroupWst1DataSet.DataTable1DataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
