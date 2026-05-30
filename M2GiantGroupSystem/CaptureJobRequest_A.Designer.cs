@@ -34,6 +34,8 @@
             this.lblSelectCriteria_A = new System.Windows.Forms.Label();
             this.lbSearchResults = new System.Windows.Forms.ListBox();
             this.tbName_A = new System.Windows.Forms.TextBox();
+            this.clientBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.groupWst1DataSet1 = new M2GiantGroupSystem.GroupWst1DataSet();
             this.tbSearchValue_A = new System.Windows.Forms.TextBox();
             this.lblSearchBy_A = new System.Windows.Forms.Label();
             this.lblSearchResults_A = new System.Windows.Forms.Label();
@@ -49,8 +51,6 @@
             this.clbItems = new System.Windows.Forms.CheckedListBox();
             this.lblSelectItems = new System.Windows.Forms.Label();
             this.btnCapture = new System.Windows.Forms.Button();
-            this.clientBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.groupWst1DataSet1 = new M2GiantGroupSystem.GroupWst1DataSet();
             this.clientTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.ClientTableAdapter();
             this.jobRequestTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobRequestTableAdapter();
             this.jobTypeTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobTypeTableAdapter();
@@ -108,6 +108,7 @@
             this.lbSearchResults.ItemHeight = 16;
             this.lbSearchResults.Location = new System.Drawing.Point(842, 235);
             this.lbSearchResults.Name = "lbSearchResults";
+            this.lbSearchResults.ScrollAlwaysVisible = true;
             this.lbSearchResults.Size = new System.Drawing.Size(479, 52);
             this.lbSearchResults.TabIndex = 4;
             this.lbSearchResults.SelectedIndexChanged += new System.EventHandler(this.lbSearchResults_SelectedIndexChanged);
@@ -120,6 +121,16 @@
             this.tbName_A.Name = "tbName_A";
             this.tbName_A.Size = new System.Drawing.Size(532, 43);
             this.tbName_A.TabIndex = 5;
+            // 
+            // clientBindingSource
+            // 
+            this.clientBindingSource.DataMember = "Client";
+            this.clientBindingSource.DataSource = this.groupWst1DataSet1;
+            // 
+            // groupWst1DataSet1
+            // 
+            this.groupWst1DataSet1.DataSetName = "GroupWst1DataSet";
+            this.groupWst1DataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // tbSearchValue_A
             // 
@@ -288,16 +299,6 @@
             this.btnCapture.Text = "Capture";
             this.btnCapture.UseVisualStyleBackColor = false;
             this.btnCapture.Click += new System.EventHandler(this.btnCapture_Click);
-            // 
-            // clientBindingSource
-            // 
-            this.clientBindingSource.DataMember = "Client";
-            this.clientBindingSource.DataSource = this.groupWst1DataSet1;
-            // 
-            // groupWst1DataSet1
-            // 
-            this.groupWst1DataSet1.DataSetName = "GroupWst1DataSet";
-            this.groupWst1DataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // clientTableAdapter1
             // 
