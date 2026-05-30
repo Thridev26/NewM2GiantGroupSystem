@@ -37,7 +37,7 @@ namespace M2GiantGroupSystem
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            /*if (comboBox2.SelectedItem.ToString() == "No Filter")
+            if (comboBox2.SelectedItem.ToString() == "No Filter")
             {
                 this.quoteTableAdapter.Fill(this.groupWst1DataSet.Quote);
                 UpdateQuoteCount();
@@ -47,7 +47,7 @@ namespace M2GiantGroupSystem
             {
                 quoteTableAdapter.FillByQuoteStatus(this.groupWst1DataSet.Quote, comboBox2.SelectedItem.ToString());
                 UpdateQuoteCount();
-            }*/
+            }
         }
 
         private void UpdateQuoteCount()
@@ -59,7 +59,7 @@ namespace M2GiantGroupSystem
         }
 
         private void button3_Click(object sender, EventArgs e)
-        {/*
+        {
             // 1. VALIDATION: Ensure the user selected a status
             if (cboQuoteStatus.SelectedItem == null)
             {
@@ -112,7 +112,7 @@ namespace M2GiantGroupSystem
             {
                 // Catch database constraint violations or type-casting issues safely
                 MessageBox.Show("An error occurred while saving the quote: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }*/
+            }
         }
     }
 }

@@ -13905,11 +13905,47 @@ SELECT QuoteID, jobRequestID, dateIssued, expiryDate, dateGenerated, amount, quo
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT Quote.*\r\nFROM     Quote";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT QuoteID, amount, dateGenerated, dateIssued, expiryDate, filePath, jobReque" +
+                "stID, quoteStatus FROM Quote WHERE (quoteStatus = @quoteStatus)";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@quoteStatus", global::System.Data.SqlDbType.VarChar, 30, global::System.Data.ParameterDirection.Input, 0, 0, "quoteStatus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = @"INSERT INTO Quote 
+(
+    jobRequestID, 
+    dateIssued, 
+    expiryDate, 
+    dateGenerated, 
+    amount, 
+    quoteStatus, 
+    filePath
+)
+VALUES 
+(
+    @jobRequestID, 
+    @dateIssued, 
+    @expiryDate, 
+    @dateGenerated, 
+    @amount, 
+    @quoteStatus, 
+    @filePath
+);";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@jobRequestID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "jobRequestID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dateIssued", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 0, 0, "dateIssued", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@expiryDate", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 0, 0, "expiryDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dateGenerated", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 0, 0, "dateGenerated", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@amount", global::System.Data.SqlDbType.Decimal, 5, global::System.Data.ParameterDirection.Input, 9, 2, "amount", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@quoteStatus", global::System.Data.SqlDbType.VarChar, 30, global::System.Data.ParameterDirection.Input, 0, 0, "quoteStatus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@filePath", global::System.Data.SqlDbType.VarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, "filePath", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -13931,6 +13967,42 @@ SELECT QuoteID, jobRequestID, dateIssued, expiryDate, dateGenerated, amount, quo
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual GroupWst1DataSet.QuoteDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            GroupWst1DataSet.QuoteDataTable dataTable = new GroupWst1DataSet.QuoteDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByQuoteStatus(GroupWst1DataSet.QuoteDataTable dataTable, string quoteStatus) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((quoteStatus == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(quoteStatus));
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual GroupWst1DataSet.QuoteDataTable GetDataBy(string quoteStatus) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((quoteStatus == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(quoteStatus));
+            }
             GroupWst1DataSet.QuoteDataTable dataTable = new GroupWst1DataSet.QuoteDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -14153,6 +14225,61 @@ SELECT QuoteID, jobRequestID, dateIssued, expiryDate, dateGenerated, amount, quo
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
         public virtual int Update(int jobRequestID, global::System.Nullable<global::System.DateTime> dateIssued, System.DateTime expiryDate, System.DateTime dateGenerated, decimal amount, string quoteStatus, string filePath, int Original_QuoteID, int Original_jobRequestID, global::System.Nullable<global::System.DateTime> Original_dateIssued, System.DateTime Original_expiryDate, System.DateTime Original_dateGenerated, decimal Original_amount, string Original_quoteStatus, string Original_filePath) {
             return this.Update(jobRequestID, dateIssued, expiryDate, dateGenerated, amount, quoteStatus, filePath, Original_QuoteID, Original_jobRequestID, Original_dateIssued, Original_expiryDate, Original_dateGenerated, Original_amount, Original_quoteStatus, Original_filePath, Original_QuoteID);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
+        public virtual int InsertNewQuote(int jobRequestID, string dateIssued, string expiryDate, string dateGenerated, decimal amount, string quoteStatus, string filePath) {
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[2];
+            command.Parameters[0].Value = ((int)(jobRequestID));
+            if ((dateIssued == null)) {
+                command.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[1].Value = ((string)(dateIssued));
+            }
+            if ((expiryDate == null)) {
+                throw new global::System.ArgumentNullException("expiryDate");
+            }
+            else {
+                command.Parameters[2].Value = ((string)(expiryDate));
+            }
+            if ((dateGenerated == null)) {
+                throw new global::System.ArgumentNullException("dateGenerated");
+            }
+            else {
+                command.Parameters[3].Value = ((string)(dateGenerated));
+            }
+            command.Parameters[4].Value = ((decimal)(amount));
+            if ((quoteStatus == null)) {
+                command.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[5].Value = ((string)(quoteStatus));
+            }
+            if ((filePath == null)) {
+                command.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[6].Value = ((string)(filePath));
+            }
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
         }
     }
     
