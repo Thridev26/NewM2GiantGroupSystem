@@ -142,12 +142,12 @@
             this.quoteTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.QuoteTableAdapter();
             this.QuoteID_T = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QuoteJobRequestID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateIssuedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.expiryDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateGeneratedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quoteStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.filePathDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateIssued = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.expiryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateGenerated = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QouteAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QuoteQuoteStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QuoteFilePath = new System.Windows.Forms.DataGridViewTextBoxColumn();
             filePathLabel = new System.Windows.Forms.Label();
             urgencyLevelLabel = new System.Windows.Forms.Label();
             latitudeLabel = new System.Windows.Forms.Label();
@@ -1280,12 +1280,12 @@
             this.quoteDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.QuoteID_T,
             this.QuoteJobRequestID,
-            this.dateIssuedDataGridViewTextBoxColumn,
-            this.expiryDateDataGridViewTextBoxColumn,
-            this.dateGeneratedDataGridViewTextBoxColumn,
-            this.amountDataGridViewTextBoxColumn,
-            this.quoteStatusDataGridViewTextBoxColumn,
-            this.filePathDataGridViewTextBoxColumn});
+            this.dateIssued,
+            this.expiryDate,
+            this.dateGenerated,
+            this.QouteAmount,
+            this.QuoteQuoteStatus,
+            this.QuoteFilePath});
             this.quoteDataGridView.DataSource = this.quoteBindingSource;
             this.quoteDataGridView.Location = new System.Drawing.Point(170, 98);
             this.quoteDataGridView.Name = "quoteDataGridView";
@@ -1337,47 +1337,47 @@
             this.QuoteJobRequestID.MinimumWidth = 8;
             this.QuoteJobRequestID.Name = "QuoteJobRequestID";
             // 
-            // dateIssuedDataGridViewTextBoxColumn
+            // dateIssued
             // 
-            this.dateIssuedDataGridViewTextBoxColumn.DataPropertyName = "dateIssued";
-            this.dateIssuedDataGridViewTextBoxColumn.HeaderText = "dateIssued";
-            this.dateIssuedDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.dateIssuedDataGridViewTextBoxColumn.Name = "dateIssuedDataGridViewTextBoxColumn";
+            this.dateIssued.DataPropertyName = "dateIssued";
+            this.dateIssued.HeaderText = "dateIssued";
+            this.dateIssued.MinimumWidth = 8;
+            this.dateIssued.Name = "dateIssued";
             // 
-            // expiryDateDataGridViewTextBoxColumn
+            // expiryDate
             // 
-            this.expiryDateDataGridViewTextBoxColumn.DataPropertyName = "expiryDate";
-            this.expiryDateDataGridViewTextBoxColumn.HeaderText = "expiryDate";
-            this.expiryDateDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.expiryDateDataGridViewTextBoxColumn.Name = "expiryDateDataGridViewTextBoxColumn";
+            this.expiryDate.DataPropertyName = "expiryDate";
+            this.expiryDate.HeaderText = "expiryDate";
+            this.expiryDate.MinimumWidth = 8;
+            this.expiryDate.Name = "expiryDate";
             // 
-            // dateGeneratedDataGridViewTextBoxColumn
+            // dateGenerated
             // 
-            this.dateGeneratedDataGridViewTextBoxColumn.DataPropertyName = "dateGenerated";
-            this.dateGeneratedDataGridViewTextBoxColumn.HeaderText = "dateGenerated";
-            this.dateGeneratedDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.dateGeneratedDataGridViewTextBoxColumn.Name = "dateGeneratedDataGridViewTextBoxColumn";
+            this.dateGenerated.DataPropertyName = "dateGenerated";
+            this.dateGenerated.HeaderText = "dateGenerated";
+            this.dateGenerated.MinimumWidth = 8;
+            this.dateGenerated.Name = "dateGenerated";
             // 
-            // amountDataGridViewTextBoxColumn
+            // QouteAmount
             // 
-            this.amountDataGridViewTextBoxColumn.DataPropertyName = "amount";
-            this.amountDataGridViewTextBoxColumn.HeaderText = "amount";
-            this.amountDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.amountDataGridViewTextBoxColumn.Name = "amountDataGridViewTextBoxColumn";
+            this.QouteAmount.DataPropertyName = "amount";
+            this.QouteAmount.HeaderText = "amount";
+            this.QouteAmount.MinimumWidth = 8;
+            this.QouteAmount.Name = "QouteAmount";
             // 
-            // quoteStatusDataGridViewTextBoxColumn
+            // QuoteQuoteStatus
             // 
-            this.quoteStatusDataGridViewTextBoxColumn.DataPropertyName = "quoteStatus";
-            this.quoteStatusDataGridViewTextBoxColumn.HeaderText = "quoteStatus";
-            this.quoteStatusDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.quoteStatusDataGridViewTextBoxColumn.Name = "quoteStatusDataGridViewTextBoxColumn";
+            this.QuoteQuoteStatus.DataPropertyName = "quoteStatus";
+            this.QuoteQuoteStatus.HeaderText = "quoteStatus";
+            this.QuoteQuoteStatus.MinimumWidth = 8;
+            this.QuoteQuoteStatus.Name = "QuoteQuoteStatus";
             // 
-            // filePathDataGridViewTextBoxColumn
+            // QuoteFilePath
             // 
-            this.filePathDataGridViewTextBoxColumn.DataPropertyName = "filePath";
-            this.filePathDataGridViewTextBoxColumn.HeaderText = "filePath";
-            this.filePathDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.filePathDataGridViewTextBoxColumn.Name = "filePathDataGridViewTextBoxColumn";
+            this.QuoteFilePath.DataPropertyName = "filePath";
+            this.QuoteFilePath.HeaderText = "filePath";
+            this.QuoteFilePath.MinimumWidth = 8;
+            this.QuoteFilePath.Name = "QuoteFilePath";
             // 
             // Quotation
             // 
@@ -1508,11 +1508,11 @@
         private GroupWst1DataSetTableAdapters.QuoteTableAdapter quoteTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn QuoteID_T;
         private System.Windows.Forms.DataGridViewTextBoxColumn QuoteJobRequestID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dateIssuedDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn expiryDateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dateGeneratedDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn amountDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn quoteStatusDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn filePathDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dateIssued;
+        private System.Windows.Forms.DataGridViewTextBoxColumn expiryDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dateGenerated;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QouteAmount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QuoteQuoteStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QuoteFilePath;
     }
 }
