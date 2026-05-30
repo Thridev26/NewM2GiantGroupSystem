@@ -855,7 +855,7 @@ namespace M2GiantGroupSystem
             DataGridViewRow selectedRow = quoteDataGridView.CurrentRow;
 
             // 2. Read primary key (Quote ID) and the related JobRequest ID (if present) so we can acknowledge it
-            string quoteIdStr = selectedRow.Cells["QuoteQuoteID"].Value?.ToString();
+            string quoteIdStr = selectedRow.Cells["QuoteID_T"].Value?.ToString();
             string jobRequestIdStr = selectedRow.Cells["QuoteJobRequestID"].Value?.ToString() ?? "N/A";
 
             if (string.IsNullOrWhiteSpace(quoteIdStr) || quoteIdStr == "0")

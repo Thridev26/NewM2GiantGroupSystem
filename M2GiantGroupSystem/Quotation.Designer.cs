@@ -74,16 +74,6 @@
             this.longitudeTextBox = new System.Windows.Forms.TextBox();
             this.jobRequestIDTextBox = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.jobRequestIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clientIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.siteAddressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.longitudeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.latitudeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.requestSourceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.urgencyLevelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.statusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateRecievedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.siteEvaluationDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.jobRequestBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupWst1DataSet = new M2GiantGroupSystem.GroupWst1DataSet();
             this.selectedJobsGridView = new System.Windows.Forms.DataGridView();
@@ -93,10 +83,6 @@
             this.colQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.jobTypeDataGridView = new System.Windows.Forms.DataGridView();
-            this.jobTypeIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.jobTypeNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.jobRateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rateDescriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.jobTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -135,6 +121,11 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.quoteDataGridView = new System.Windows.Forms.DataGridView();
+            this.quoteBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label3 = new System.Windows.Forms.Label();
+            this.jobRequestTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobRequestTableAdapter();
+            this.jobTypeTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobTypeTableAdapter();
+            this.quoteTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.QuoteTableAdapter();
             this.QuoteID_T = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QuoteJobRequestID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateIssued = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -143,11 +134,20 @@
             this.QuoteAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QuoteQuoteStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QuoteFilePath = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quoteBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.label3 = new System.Windows.Forms.Label();
-            this.jobRequestTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobRequestTableAdapter();
-            this.jobTypeTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobTypeTableAdapter();
-            this.quoteTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.QuoteTableAdapter();
+            this.jobRequestID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clientIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.siteAddressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.longitude = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.latitude = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.requestSourceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.urgencyLevelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateRecievedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.siteEvaluationDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.jobTypeIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.jobTypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.jobRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rateDescriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             filePathLabel = new System.Windows.Forms.Label();
             urgencyLevelLabel = new System.Windows.Forms.Label();
             latitudeLabel = new System.Windows.Forms.Label();
@@ -369,20 +369,20 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1924, 986);
+            this.tabControl1.Size = new System.Drawing.Size(1411, 986);
             this.tabControl1.TabIndex = 4;
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.panel1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 29);
+            this.tabPage1.Location = new System.Drawing.Point(4, 31);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1916, 953);
+            this.tabPage1.Size = new System.Drawing.Size(1403, 951);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Create New Quote";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -439,7 +439,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1910, 947);
+            this.panel1.Size = new System.Drawing.Size(1397, 945);
             this.panel1.TabIndex = 0;
             // 
             // button1
@@ -457,16 +457,16 @@
             // 
             this.txtFilePath.Location = new System.Drawing.Point(2525, 940);
             this.txtFilePath.Name = "txtFilePath";
-            this.txtFilePath.Size = new System.Drawing.Size(469, 30);
+            this.txtFilePath.Size = new System.Drawing.Size(469, 28);
             this.txtFilePath.TabIndex = 50;
             this.txtFilePath.Visible = false;
             // 
             // dtpSearchDate
             // 
             this.dtpSearchDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpSearchDate.Location = new System.Drawing.Point(1054, 39);
+            this.dtpSearchDate.Location = new System.Drawing.Point(991, 42);
             this.dtpSearchDate.Name = "dtpSearchDate";
-            this.dtpSearchDate.Size = new System.Drawing.Size(200, 30);
+            this.dtpSearchDate.Size = new System.Drawing.Size(200, 28);
             this.dtpSearchDate.TabIndex = 48;
             this.dtpSearchDate.ValueChanged += new System.EventHandler(this.dtpSearchDate_ValueChanged);
             // 
@@ -474,7 +474,7 @@
             // 
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(581, 43);
+            this.label24.Location = new System.Drawing.Point(538, 42);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(144, 20);
             this.label24.TabIndex = 47;
@@ -492,9 +492,9 @@
             // 
             // txtSearchRequests
             // 
-            this.txtSearchRequests.Location = new System.Drawing.Point(740, 37);
+            this.txtSearchRequests.Location = new System.Drawing.Point(688, 41);
             this.txtSearchRequests.Name = "txtSearchRequests";
-            this.txtSearchRequests.Size = new System.Drawing.Size(272, 30);
+            this.txtSearchRequests.Size = new System.Drawing.Size(272, 28);
             this.txtSearchRequests.TabIndex = 45;
             this.txtSearchRequests.TextChanged += new System.EventHandler(this.txtSearchRequests_TextChanged);
             this.txtSearchRequests.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearchRequests_KeyPress);
@@ -522,7 +522,7 @@
             "EvaluationDate"});
             this.cmbSearchColumn.Location = new System.Drawing.Point(285, 37);
             this.cmbSearchColumn.Name = "cmbSearchColumn";
-            this.cmbSearchColumn.Size = new System.Drawing.Size(267, 33);
+            this.cmbSearchColumn.Size = new System.Drawing.Size(232, 30);
             this.cmbSearchColumn.TabIndex = 44;
             this.cmbSearchColumn.SelectedIndexChanged += new System.EventHandler(this.cmbSearchColumn_SelectedIndexChanged);
             // 
@@ -561,7 +561,7 @@
             this.txtTotalwithVAT.Location = new System.Drawing.Point(447, 810);
             this.txtTotalwithVAT.Name = "txtTotalwithVAT";
             this.txtTotalwithVAT.ReadOnly = true;
-            this.txtTotalwithVAT.Size = new System.Drawing.Size(288, 30);
+            this.txtTotalwithVAT.Size = new System.Drawing.Size(288, 28);
             this.txtTotalwithVAT.TabIndex = 40;
             // 
             // txtVAT
@@ -569,21 +569,21 @@
             this.txtVAT.Location = new System.Drawing.Point(448, 775);
             this.txtVAT.Name = "txtVAT";
             this.txtVAT.ReadOnly = true;
-            this.txtVAT.Size = new System.Drawing.Size(286, 30);
+            this.txtVAT.Size = new System.Drawing.Size(286, 28);
             this.txtVAT.TabIndex = 39;
             // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(2629, 940);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(287, 30);
+            this.textBox1.Size = new System.Drawing.Size(287, 28);
             this.textBox1.TabIndex = 38;
             // 
             // button9
             // 
             this.button9.BackColor = System.Drawing.Color.White;
             this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button9.Location = new System.Drawing.Point(1133, 880);
+            this.button9.Location = new System.Drawing.Point(1049, 881);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(244, 42);
             this.button9.TabIndex = 37;
@@ -619,7 +619,7 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(13, 459);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(762, 25);
+            this.label9.Size = new System.Drawing.Size(712, 22);
             this.label9.TabIndex = 33;
             this.label9.Text = "Note to User: Double click the Job Type(s) to confirm its addition to this quote." +
     "";
@@ -629,7 +629,7 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(17, 85);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(944, 25);
+            this.label8.Size = new System.Drawing.Size(883, 22);
             this.label8.TabIndex = 32;
             this.label8.Text = "Note to User: Double click the Job Request you are creating a quote for. Complete" +
     " the info below.";
@@ -638,21 +638,21 @@
             // 
             this.urgencyLevelTextBox.Location = new System.Drawing.Point(961, 276);
             this.urgencyLevelTextBox.Name = "urgencyLevelTextBox";
-            this.urgencyLevelTextBox.Size = new System.Drawing.Size(100, 30);
+            this.urgencyLevelTextBox.Size = new System.Drawing.Size(100, 28);
             this.urgencyLevelTextBox.TabIndex = 31;
             // 
             // latitudeTextBox
             // 
             this.latitudeTextBox.Location = new System.Drawing.Point(564, 277);
             this.latitudeTextBox.Name = "latitudeTextBox";
-            this.latitudeTextBox.Size = new System.Drawing.Size(100, 30);
+            this.latitudeTextBox.Size = new System.Drawing.Size(100, 28);
             this.latitudeTextBox.TabIndex = 29;
             // 
             // longitudeTextBox
             // 
             this.longitudeTextBox.Location = new System.Drawing.Point(158, 278);
             this.longitudeTextBox.Name = "longitudeTextBox";
-            this.longitudeTextBox.Size = new System.Drawing.Size(100, 30);
+            this.longitudeTextBox.Size = new System.Drawing.Size(100, 28);
             this.longitudeTextBox.TabIndex = 28;
             // 
             // jobRequestIDTextBox
@@ -660,7 +660,7 @@
             this.jobRequestIDTextBox.Location = new System.Drawing.Point(448, 311);
             this.jobRequestIDTextBox.Name = "jobRequestIDTextBox";
             this.jobRequestIDTextBox.ReadOnly = true;
-            this.jobRequestIDTextBox.Size = new System.Drawing.Size(287, 30);
+            this.jobRequestIDTextBox.Size = new System.Drawing.Size(287, 28);
             this.jobRequestIDTextBox.TabIndex = 27;
             // 
             // dataGridView1
@@ -670,11 +670,11 @@
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.jobRequestIDDataGridViewTextBoxColumn,
+            this.jobRequestID,
             this.clientIDDataGridViewTextBoxColumn,
             this.siteAddressDataGridViewTextBoxColumn,
-            this.longitudeDataGridViewTextBoxColumn,
-            this.latitudeDataGridViewTextBoxColumn,
+            this.longitude,
+            this.latitude,
             this.requestSourceDataGridViewTextBoxColumn,
             this.urgencyLevelDataGridViewTextBoxColumn,
             this.statusDataGridViewTextBoxColumn,
@@ -685,81 +685,10 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(1356, 162);
+            this.dataGridView1.Size = new System.Drawing.Size(1272, 162);
             this.dataGridView1.TabIndex = 26;
             this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
-            // 
-            // jobRequestIDDataGridViewTextBoxColumn
-            // 
-            this.jobRequestIDDataGridViewTextBoxColumn.DataPropertyName = "jobRequestID";
-            this.jobRequestIDDataGridViewTextBoxColumn.HeaderText = "jobRequestID";
-            this.jobRequestIDDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.jobRequestIDDataGridViewTextBoxColumn.Name = "jobRequestIDDataGridViewTextBoxColumn";
-            this.jobRequestIDDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // clientIDDataGridViewTextBoxColumn
-            // 
-            this.clientIDDataGridViewTextBoxColumn.DataPropertyName = "clientID";
-            this.clientIDDataGridViewTextBoxColumn.HeaderText = "clientID";
-            this.clientIDDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.clientIDDataGridViewTextBoxColumn.Name = "clientIDDataGridViewTextBoxColumn";
-            // 
-            // siteAddressDataGridViewTextBoxColumn
-            // 
-            this.siteAddressDataGridViewTextBoxColumn.DataPropertyName = "siteAddress";
-            this.siteAddressDataGridViewTextBoxColumn.HeaderText = "siteAddress";
-            this.siteAddressDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.siteAddressDataGridViewTextBoxColumn.Name = "siteAddressDataGridViewTextBoxColumn";
-            // 
-            // longitudeDataGridViewTextBoxColumn
-            // 
-            this.longitudeDataGridViewTextBoxColumn.DataPropertyName = "longitude";
-            this.longitudeDataGridViewTextBoxColumn.HeaderText = "longitude";
-            this.longitudeDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.longitudeDataGridViewTextBoxColumn.Name = "longitudeDataGridViewTextBoxColumn";
-            // 
-            // latitudeDataGridViewTextBoxColumn
-            // 
-            this.latitudeDataGridViewTextBoxColumn.DataPropertyName = "latitude";
-            this.latitudeDataGridViewTextBoxColumn.HeaderText = "latitude";
-            this.latitudeDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.latitudeDataGridViewTextBoxColumn.Name = "latitudeDataGridViewTextBoxColumn";
-            // 
-            // requestSourceDataGridViewTextBoxColumn
-            // 
-            this.requestSourceDataGridViewTextBoxColumn.DataPropertyName = "requestSource";
-            this.requestSourceDataGridViewTextBoxColumn.HeaderText = "requestSource";
-            this.requestSourceDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.requestSourceDataGridViewTextBoxColumn.Name = "requestSourceDataGridViewTextBoxColumn";
-            // 
-            // urgencyLevelDataGridViewTextBoxColumn
-            // 
-            this.urgencyLevelDataGridViewTextBoxColumn.DataPropertyName = "urgencyLevel";
-            this.urgencyLevelDataGridViewTextBoxColumn.HeaderText = "urgencyLevel";
-            this.urgencyLevelDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.urgencyLevelDataGridViewTextBoxColumn.Name = "urgencyLevelDataGridViewTextBoxColumn";
-            // 
-            // statusDataGridViewTextBoxColumn
-            // 
-            this.statusDataGridViewTextBoxColumn.DataPropertyName = "status";
-            this.statusDataGridViewTextBoxColumn.HeaderText = "status";
-            this.statusDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.statusDataGridViewTextBoxColumn.Name = "statusDataGridViewTextBoxColumn";
-            // 
-            // dateRecievedDataGridViewTextBoxColumn
-            // 
-            this.dateRecievedDataGridViewTextBoxColumn.DataPropertyName = "dateRecieved";
-            this.dateRecievedDataGridViewTextBoxColumn.HeaderText = "dateRecieved";
-            this.dateRecievedDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.dateRecievedDataGridViewTextBoxColumn.Name = "dateRecievedDataGridViewTextBoxColumn";
-            // 
-            // siteEvaluationDateDataGridViewTextBoxColumn
-            // 
-            this.siteEvaluationDateDataGridViewTextBoxColumn.DataPropertyName = "siteEvaluationDate";
-            this.siteEvaluationDateDataGridViewTextBoxColumn.HeaderText = "siteEvaluationDate";
-            this.siteEvaluationDateDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.siteEvaluationDateDataGridViewTextBoxColumn.Name = "siteEvaluationDateDataGridViewTextBoxColumn";
             // 
             // jobRequestBindingSource
             // 
@@ -840,8 +769,8 @@
             this.jobTypeDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.jobTypeDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.jobTypeIDDataGridViewTextBoxColumn,
-            this.jobTypeNameDataGridViewTextBoxColumn,
-            this.jobRateDataGridViewTextBoxColumn,
+            this.jobTypeName,
+            this.jobRate,
             this.rateDescriptionDataGridViewTextBoxColumn});
             this.jobTypeDataGridView.DataSource = this.jobTypeBindingSource;
             this.jobTypeDataGridView.Location = new System.Drawing.Point(18, 482);
@@ -852,40 +781,6 @@
             this.jobTypeDataGridView.Size = new System.Drawing.Size(717, 113);
             this.jobTypeDataGridView.TabIndex = 22;
             this.jobTypeDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.jobTypeDataGridView_CellDoubleClick);
-            // 
-            // jobTypeIDDataGridViewTextBoxColumn
-            // 
-            this.jobTypeIDDataGridViewTextBoxColumn.DataPropertyName = "jobTypeID";
-            this.jobTypeIDDataGridViewTextBoxColumn.HeaderText = "jobTypeID";
-            this.jobTypeIDDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.jobTypeIDDataGridViewTextBoxColumn.Name = "jobTypeIDDataGridViewTextBoxColumn";
-            this.jobTypeIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.jobTypeIDDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // jobTypeNameDataGridViewTextBoxColumn
-            // 
-            this.jobTypeNameDataGridViewTextBoxColumn.DataPropertyName = "jobTypeName";
-            this.jobTypeNameDataGridViewTextBoxColumn.HeaderText = "Job Type";
-            this.jobTypeNameDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.jobTypeNameDataGridViewTextBoxColumn.Name = "jobTypeNameDataGridViewTextBoxColumn";
-            this.jobTypeNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // jobRateDataGridViewTextBoxColumn
-            // 
-            this.jobRateDataGridViewTextBoxColumn.DataPropertyName = "jobRate";
-            this.jobRateDataGridViewTextBoxColumn.HeaderText = "Job Rate";
-            this.jobRateDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.jobRateDataGridViewTextBoxColumn.Name = "jobRateDataGridViewTextBoxColumn";
-            this.jobRateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // rateDescriptionDataGridViewTextBoxColumn
-            // 
-            this.rateDescriptionDataGridViewTextBoxColumn.DataPropertyName = "rateDescription";
-            this.rateDescriptionDataGridViewTextBoxColumn.HeaderText = "rateDescription";
-            this.rateDescriptionDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.rateDescriptionDataGridViewTextBoxColumn.Name = "rateDescriptionDataGridViewTextBoxColumn";
-            this.rateDescriptionDataGridViewTextBoxColumn.ReadOnly = true;
-            this.rateDescriptionDataGridViewTextBoxColumn.Visible = false;
             // 
             // jobTypeBindingSource
             // 
@@ -924,7 +819,7 @@
             "Rejected"});
             this.cboQuoteStatus.Location = new System.Drawing.Point(448, 847);
             this.cboQuoteStatus.Name = "cboQuoteStatus";
-            this.cboQuoteStatus.Size = new System.Drawing.Size(287, 33);
+            this.cboQuoteStatus.Size = new System.Drawing.Size(287, 30);
             this.cboQuoteStatus.TabIndex = 17;
             // 
             // dateIssuedDateTimePicker
@@ -932,7 +827,7 @@
             this.dateIssuedDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateIssuedDateTimePicker.Location = new System.Drawing.Point(448, 343);
             this.dateIssuedDateTimePicker.Name = "dateIssuedDateTimePicker";
-            this.dateIssuedDateTimePicker.Size = new System.Drawing.Size(287, 30);
+            this.dateIssuedDateTimePicker.Size = new System.Drawing.Size(287, 28);
             this.dateIssuedDateTimePicker.TabIndex = 6;
             // 
             // expiryDateDateTimePicker
@@ -940,7 +835,7 @@
             this.expiryDateDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.expiryDateDateTimePicker.Location = new System.Drawing.Point(448, 375);
             this.expiryDateDateTimePicker.Name = "expiryDateDateTimePicker";
-            this.expiryDateDateTimePicker.Size = new System.Drawing.Size(287, 30);
+            this.expiryDateDateTimePicker.Size = new System.Drawing.Size(287, 28);
             this.expiryDateDateTimePicker.TabIndex = 8;
             // 
             // dateGeneratedDateTimePicker
@@ -948,14 +843,14 @@
             this.dateGeneratedDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateGeneratedDateTimePicker.Location = new System.Drawing.Point(448, 407);
             this.dateGeneratedDateTimePicker.Name = "dateGeneratedDateTimePicker";
-            this.dateGeneratedDateTimePicker.Size = new System.Drawing.Size(287, 30);
+            this.dateGeneratedDateTimePicker.Size = new System.Drawing.Size(287, 28);
             this.dateGeneratedDateTimePicker.TabIndex = 10;
             // 
             // txtAmount
             // 
             this.txtAmount.Location = new System.Drawing.Point(448, 741);
             this.txtAmount.Name = "txtAmount";
-            this.txtAmount.Size = new System.Drawing.Size(287, 30);
+            this.txtAmount.Size = new System.Drawing.Size(287, 28);
             this.txtAmount.TabIndex = 12;
             // 
             // label2
@@ -972,10 +867,10 @@
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.panel2);
-            this.tabPage2.Location = new System.Drawing.Point(4, 34);
+            this.tabPage2.Location = new System.Drawing.Point(4, 31);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1916, 948);
+            this.tabPage2.Size = new System.Drawing.Size(1403, 951);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "View All / Edit Quote";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -998,7 +893,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1910, 942);
+            this.panel2.Size = new System.Drawing.Size(1397, 945);
             this.panel2.TabIndex = 1;
             // 
             // button11
@@ -1245,7 +1140,7 @@
             "Rejected"});
             this.comboBox2.Location = new System.Drawing.Point(271, 42);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(234, 33);
+            this.comboBox2.Size = new System.Drawing.Size(234, 30);
             this.comboBox2.TabIndex = 28;
             this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
@@ -1264,7 +1159,7 @@
             // 
             this.textBox3.Location = new System.Drawing.Point(968, 382);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(120, 30);
+            this.textBox3.Size = new System.Drawing.Size(120, 28);
             this.textBox3.TabIndex = 26;
             // 
             // label5
@@ -1302,63 +1197,6 @@
             this.quoteDataGridView.Size = new System.Drawing.Size(1070, 220);
             this.quoteDataGridView.TabIndex = 24;
             // 
-            // QuoteID_T
-            // 
-            this.QuoteID_T.DataPropertyName = "QuoteID";
-            this.QuoteID_T.HeaderText = "QuoteID";
-            this.QuoteID_T.MinimumWidth = 8;
-            this.QuoteID_T.Name = "QuoteID_T";
-            this.QuoteID_T.ReadOnly = true;
-            // 
-            // QuoteJobRequestID
-            // 
-            this.QuoteJobRequestID.DataPropertyName = "jobRequestID";
-            this.QuoteJobRequestID.HeaderText = "jobRequestID";
-            this.QuoteJobRequestID.MinimumWidth = 8;
-            this.QuoteJobRequestID.Name = "QuoteJobRequestID";
-            // 
-            // dateIssued
-            // 
-            this.dateIssued.DataPropertyName = "dateIssued";
-            this.dateIssued.HeaderText = "dateIssued";
-            this.dateIssued.MinimumWidth = 8;
-            this.dateIssued.Name = "dateIssued";
-            // 
-            // expiryDate
-            // 
-            this.expiryDate.DataPropertyName = "expiryDate";
-            this.expiryDate.HeaderText = "expiryDate";
-            this.expiryDate.MinimumWidth = 8;
-            this.expiryDate.Name = "expiryDate";
-            // 
-            // dateGenerated
-            // 
-            this.dateGenerated.DataPropertyName = "dateGenerated";
-            this.dateGenerated.HeaderText = "dateGenerated";
-            this.dateGenerated.MinimumWidth = 8;
-            this.dateGenerated.Name = "dateGenerated";
-            // 
-            // QuoteAmount
-            // 
-            this.QuoteAmount.DataPropertyName = "amount";
-            this.QuoteAmount.HeaderText = "amount";
-            this.QuoteAmount.MinimumWidth = 8;
-            this.QuoteAmount.Name = "QuoteAmount";
-            // 
-            // QuoteQuoteStatus
-            // 
-            this.QuoteQuoteStatus.DataPropertyName = "quoteStatus";
-            this.QuoteQuoteStatus.HeaderText = "quoteStatus";
-            this.QuoteQuoteStatus.MinimumWidth = 8;
-            this.QuoteQuoteStatus.Name = "QuoteQuoteStatus";
-            // 
-            // QuoteFilePath
-            // 
-            this.QuoteFilePath.DataPropertyName = "filePath";
-            this.QuoteFilePath.HeaderText = "filePath";
-            this.QuoteFilePath.MinimumWidth = 8;
-            this.QuoteFilePath.Name = "QuoteFilePath";
-            // 
             // quoteBindingSource
             // 
             this.quoteBindingSource.DataMember = "Quote";
@@ -1387,15 +1225,180 @@
             // 
             this.quoteTableAdapter.ClearBeforeFill = true;
             // 
+            // QuoteID_T
+            // 
+            this.QuoteID_T.DataPropertyName = "QuoteID";
+            this.QuoteID_T.HeaderText = "QuoteID";
+            this.QuoteID_T.MinimumWidth = 8;
+            this.QuoteID_T.Name = "QuoteID_T";
+            this.QuoteID_T.ReadOnly = true;
+            // 
+            // QuoteJobRequestID
+            // 
+            this.QuoteJobRequestID.DataPropertyName = "jobRequestID";
+            this.QuoteJobRequestID.HeaderText = "JobRequestID";
+            this.QuoteJobRequestID.MinimumWidth = 8;
+            this.QuoteJobRequestID.Name = "QuoteJobRequestID";
+            // 
+            // dateIssued
+            // 
+            this.dateIssued.DataPropertyName = "dateIssued";
+            this.dateIssued.HeaderText = "DateIssued";
+            this.dateIssued.MinimumWidth = 8;
+            this.dateIssued.Name = "dateIssued";
+            // 
+            // expiryDate
+            // 
+            this.expiryDate.DataPropertyName = "expiryDate";
+            this.expiryDate.HeaderText = "ExpiryDate";
+            this.expiryDate.MinimumWidth = 8;
+            this.expiryDate.Name = "expiryDate";
+            // 
+            // dateGenerated
+            // 
+            this.dateGenerated.DataPropertyName = "dateGenerated";
+            this.dateGenerated.HeaderText = "DateGenerated";
+            this.dateGenerated.MinimumWidth = 8;
+            this.dateGenerated.Name = "dateGenerated";
+            // 
+            // QuoteAmount
+            // 
+            this.QuoteAmount.DataPropertyName = "amount";
+            this.QuoteAmount.HeaderText = "Amount";
+            this.QuoteAmount.MinimumWidth = 8;
+            this.QuoteAmount.Name = "QuoteAmount";
+            // 
+            // QuoteQuoteStatus
+            // 
+            this.QuoteQuoteStatus.DataPropertyName = "quoteStatus";
+            this.QuoteQuoteStatus.HeaderText = "Status";
+            this.QuoteQuoteStatus.MinimumWidth = 8;
+            this.QuoteQuoteStatus.Name = "QuoteQuoteStatus";
+            // 
+            // QuoteFilePath
+            // 
+            this.QuoteFilePath.DataPropertyName = "filePath";
+            this.QuoteFilePath.HeaderText = "FilePath";
+            this.QuoteFilePath.MinimumWidth = 8;
+            this.QuoteFilePath.Name = "QuoteFilePath";
+            // 
+            // jobRequestID
+            // 
+            this.jobRequestID.DataPropertyName = "jobRequestID";
+            this.jobRequestID.HeaderText = "JobRequestID";
+            this.jobRequestID.MinimumWidth = 8;
+            this.jobRequestID.Name = "jobRequestID";
+            this.jobRequestID.ReadOnly = true;
+            // 
+            // clientIDDataGridViewTextBoxColumn
+            // 
+            this.clientIDDataGridViewTextBoxColumn.DataPropertyName = "clientID";
+            this.clientIDDataGridViewTextBoxColumn.HeaderText = "ClientID";
+            this.clientIDDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.clientIDDataGridViewTextBoxColumn.Name = "clientIDDataGridViewTextBoxColumn";
+            // 
+            // siteAddressDataGridViewTextBoxColumn
+            // 
+            this.siteAddressDataGridViewTextBoxColumn.DataPropertyName = "siteAddress";
+            this.siteAddressDataGridViewTextBoxColumn.HeaderText = "SiteAddress";
+            this.siteAddressDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.siteAddressDataGridViewTextBoxColumn.Name = "siteAddressDataGridViewTextBoxColumn";
+            // 
+            // longitude
+            // 
+            this.longitude.DataPropertyName = "longitude";
+            this.longitude.HeaderText = "Long";
+            this.longitude.MinimumWidth = 8;
+            this.longitude.Name = "longitude";
+            // 
+            // latitude
+            // 
+            this.latitude.DataPropertyName = "latitude";
+            this.latitude.HeaderText = "Lat";
+            this.latitude.MinimumWidth = 8;
+            this.latitude.Name = "latitude";
+            // 
+            // requestSourceDataGridViewTextBoxColumn
+            // 
+            this.requestSourceDataGridViewTextBoxColumn.DataPropertyName = "requestSource";
+            this.requestSourceDataGridViewTextBoxColumn.HeaderText = "RequestSource";
+            this.requestSourceDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.requestSourceDataGridViewTextBoxColumn.Name = "requestSourceDataGridViewTextBoxColumn";
+            // 
+            // urgencyLevelDataGridViewTextBoxColumn
+            // 
+            this.urgencyLevelDataGridViewTextBoxColumn.DataPropertyName = "urgencyLevel";
+            this.urgencyLevelDataGridViewTextBoxColumn.HeaderText = "UrgencyLevel";
+            this.urgencyLevelDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.urgencyLevelDataGridViewTextBoxColumn.Name = "urgencyLevelDataGridViewTextBoxColumn";
+            // 
+            // statusDataGridViewTextBoxColumn
+            // 
+            this.statusDataGridViewTextBoxColumn.DataPropertyName = "status";
+            this.statusDataGridViewTextBoxColumn.HeaderText = "Status";
+            this.statusDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.statusDataGridViewTextBoxColumn.Name = "statusDataGridViewTextBoxColumn";
+            // 
+            // dateRecievedDataGridViewTextBoxColumn
+            // 
+            this.dateRecievedDataGridViewTextBoxColumn.DataPropertyName = "dateRecieved";
+            this.dateRecievedDataGridViewTextBoxColumn.HeaderText = "DateRecieved";
+            this.dateRecievedDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.dateRecievedDataGridViewTextBoxColumn.Name = "dateRecievedDataGridViewTextBoxColumn";
+            // 
+            // siteEvaluationDateDataGridViewTextBoxColumn
+            // 
+            this.siteEvaluationDateDataGridViewTextBoxColumn.DataPropertyName = "siteEvaluationDate";
+            this.siteEvaluationDateDataGridViewTextBoxColumn.HeaderText = "SiteEvalDate";
+            this.siteEvaluationDateDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.siteEvaluationDateDataGridViewTextBoxColumn.Name = "siteEvaluationDateDataGridViewTextBoxColumn";
+            // 
+            // jobTypeIDDataGridViewTextBoxColumn
+            // 
+            this.jobTypeIDDataGridViewTextBoxColumn.DataPropertyName = "jobTypeID";
+            this.jobTypeIDDataGridViewTextBoxColumn.HeaderText = "jobTypeID";
+            this.jobTypeIDDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.jobTypeIDDataGridViewTextBoxColumn.Name = "jobTypeIDDataGridViewTextBoxColumn";
+            this.jobTypeIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.jobTypeIDDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // jobTypeName
+            // 
+            this.jobTypeName.DataPropertyName = "jobTypeName";
+            this.jobTypeName.HeaderText = "Job Type";
+            this.jobTypeName.MinimumWidth = 8;
+            this.jobTypeName.Name = "jobTypeName";
+            this.jobTypeName.ReadOnly = true;
+            // 
+            // jobRate
+            // 
+            this.jobRate.DataPropertyName = "jobRate";
+            this.jobRate.HeaderText = "Job Rate";
+            this.jobRate.MinimumWidth = 8;
+            this.jobRate.Name = "jobRate";
+            this.jobRate.ReadOnly = true;
+            // 
+            // rateDescriptionDataGridViewTextBoxColumn
+            // 
+            this.rateDescriptionDataGridViewTextBoxColumn.DataPropertyName = "rateDescription";
+            this.rateDescriptionDataGridViewTextBoxColumn.HeaderText = "rateDescription";
+            this.rateDescriptionDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.rateDescriptionDataGridViewTextBoxColumn.Name = "rateDescriptionDataGridViewTextBoxColumn";
+            this.rateDescriptionDataGridViewTextBoxColumn.ReadOnly = true;
+            this.rateDescriptionDataGridViewTextBoxColumn.Visible = false;
+            // 
             // Quotation
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1924, 1001);
+            this.ClientSize = new System.Drawing.Size(1411, 1001);
             this.Controls.Add(this.tabControl1);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "Quotation";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quotation";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Quotation_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -1497,22 +1500,8 @@
         private GroupWst1DataSet groupWst1DataSet;
         private System.Windows.Forms.BindingSource jobRequestBindingSource;
         private GroupWst1DataSetTableAdapters.JobRequestTableAdapter jobRequestTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn jobRequestIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clientIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn siteAddressDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn longitudeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn latitudeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn requestSourceDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn urgencyLevelDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dateRecievedDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn siteEvaluationDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource jobTypeBindingSource;
         private GroupWst1DataSetTableAdapters.JobTypeTableAdapter jobTypeTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn jobTypeIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn jobTypeNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn jobRateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn rateDescriptionDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource quoteBindingSource;
         private GroupWst1DataSetTableAdapters.QuoteTableAdapter quoteTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn QuoteID_T;
@@ -1523,5 +1512,19 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn QuoteAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn QuoteQuoteStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn QuoteFilePath;
+        private System.Windows.Forms.DataGridViewTextBoxColumn jobRequestID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clientIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn siteAddressDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn longitude;
+        private System.Windows.Forms.DataGridViewTextBoxColumn latitude;
+        private System.Windows.Forms.DataGridViewTextBoxColumn requestSourceDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn urgencyLevelDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dateRecievedDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn siteEvaluationDateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn jobTypeIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn jobTypeName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn jobRate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn rateDescriptionDataGridViewTextBoxColumn;
     }
 }
