@@ -135,19 +135,19 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.quoteDataGridView = new System.Windows.Forms.DataGridView();
+            this.quoteBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label3 = new System.Windows.Forms.Label();
+            this.jobRequestTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobRequestTableAdapter();
+            this.jobTypeTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobTypeTableAdapter();
+            this.quoteTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.QuoteTableAdapter();
             this.QuoteID_T = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.jobRequestIDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QuoteJobRequestID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateIssuedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.expiryDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateGeneratedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quoteStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.filePathDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quoteBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.label3 = new System.Windows.Forms.Label();
-            this.jobRequestTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobRequestTableAdapter();
-            this.jobTypeTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobTypeTableAdapter();
-            this.quoteTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.QuoteTableAdapter();
             filePathLabel = new System.Windows.Forms.Label();
             urgencyLevelLabel = new System.Windows.Forms.Label();
             latitudeLabel = new System.Windows.Forms.Label();
@@ -1279,7 +1279,7 @@
             this.quoteDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.quoteDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.QuoteID_T,
-            this.jobRequestIDDataGridViewTextBoxColumn1,
+            this.QuoteJobRequestID,
             this.dateIssuedDataGridViewTextBoxColumn,
             this.expiryDateDataGridViewTextBoxColumn,
             this.dateGeneratedDataGridViewTextBoxColumn,
@@ -1294,6 +1294,34 @@
             this.quoteDataGridView.Size = new System.Drawing.Size(1070, 220);
             this.quoteDataGridView.TabIndex = 24;
             // 
+            // quoteBindingSource
+            // 
+            this.quoteBindingSource.DataMember = "Quote";
+            this.quoteBindingSource.DataSource = this.groupWst1DataSet;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(3, 11);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(238, 22);
+            this.label3.TabIndex = 23;
+            this.label3.Text = "Historical System Archive";
+            // 
+            // jobRequestTableAdapter
+            // 
+            this.jobRequestTableAdapter.ClearBeforeFill = true;
+            // 
+            // jobTypeTableAdapter
+            // 
+            this.jobTypeTableAdapter.ClearBeforeFill = true;
+            // 
+            // quoteTableAdapter
+            // 
+            this.quoteTableAdapter.ClearBeforeFill = true;
+            // 
             // QuoteID_T
             // 
             this.QuoteID_T.DataPropertyName = "QuoteID";
@@ -1302,12 +1330,12 @@
             this.QuoteID_T.Name = "QuoteID_T";
             this.QuoteID_T.ReadOnly = true;
             // 
-            // jobRequestIDDataGridViewTextBoxColumn1
+            // QuoteJobRequestID
             // 
-            this.jobRequestIDDataGridViewTextBoxColumn1.DataPropertyName = "jobRequestID";
-            this.jobRequestIDDataGridViewTextBoxColumn1.HeaderText = "jobRequestID";
-            this.jobRequestIDDataGridViewTextBoxColumn1.MinimumWidth = 8;
-            this.jobRequestIDDataGridViewTextBoxColumn1.Name = "jobRequestIDDataGridViewTextBoxColumn1";
+            this.QuoteJobRequestID.DataPropertyName = "jobRequestID";
+            this.QuoteJobRequestID.HeaderText = "jobRequestID";
+            this.QuoteJobRequestID.MinimumWidth = 8;
+            this.QuoteJobRequestID.Name = "QuoteJobRequestID";
             // 
             // dateIssuedDataGridViewTextBoxColumn
             // 
@@ -1350,34 +1378,6 @@
             this.filePathDataGridViewTextBoxColumn.HeaderText = "filePath";
             this.filePathDataGridViewTextBoxColumn.MinimumWidth = 8;
             this.filePathDataGridViewTextBoxColumn.Name = "filePathDataGridViewTextBoxColumn";
-            // 
-            // quoteBindingSource
-            // 
-            this.quoteBindingSource.DataMember = "Quote";
-            this.quoteBindingSource.DataSource = this.groupWst1DataSet;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(3, 11);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(238, 22);
-            this.label3.TabIndex = 23;
-            this.label3.Text = "Historical System Archive";
-            // 
-            // jobRequestTableAdapter
-            // 
-            this.jobRequestTableAdapter.ClearBeforeFill = true;
-            // 
-            // jobTypeTableAdapter
-            // 
-            this.jobTypeTableAdapter.ClearBeforeFill = true;
-            // 
-            // quoteTableAdapter
-            // 
-            this.quoteTableAdapter.ClearBeforeFill = true;
             // 
             // Quotation
             // 
@@ -1507,7 +1507,7 @@
         private System.Windows.Forms.BindingSource quoteBindingSource;
         private GroupWst1DataSetTableAdapters.QuoteTableAdapter quoteTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn QuoteID_T;
-        private System.Windows.Forms.DataGridViewTextBoxColumn jobRequestIDDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QuoteJobRequestID;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateIssuedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn expiryDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateGeneratedDataGridViewTextBoxColumn;

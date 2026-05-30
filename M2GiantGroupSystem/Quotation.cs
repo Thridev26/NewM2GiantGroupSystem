@@ -162,7 +162,7 @@ namespace M2GiantGroupSystem
 
                 // 2. Map available visible columns directly from the selected grid row layout
                 txtEditJobRequestID.Text = selectedRow.Cells["QuoteJobRequestID"].Value?.ToString() ?? "";
-                txtEditQuoteID.Text = selectedRow.Cells["QuoteQuoteID"].Value.ToString();
+                txtEditQuoteID.Text = selectedRow.Cells["QuoteID_T"].Value.ToString();
                 cmbEditStatus.SelectedItem = selectedRow.Cells["QuoteQuoteStatus"].Value?.ToString();
                 txtEditFilePath.Text = checkPath ?? "";
 
@@ -541,7 +541,7 @@ namespace M2GiantGroupSystem
             {
                 DataGridViewRow selectedRow = quoteDataGridView.CurrentRow;
 
-                string uniqueQuoteId = selectedRow.Cells["QuoteQuoteID"].Value?.ToString() ?? "0";
+                string uniqueQuoteId = selectedRow.Cells["QuoteID_T"].Value?.ToString() ?? "0";
                 string jobRequestIdStr = selectedRow.Cells["QuoteJobRequestID"].Value?.ToString() ?? "0";
 
                 string dateIssuedStr = "Pending";
