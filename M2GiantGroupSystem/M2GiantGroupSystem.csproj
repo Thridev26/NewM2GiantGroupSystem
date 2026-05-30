@@ -62,6 +62,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Add_Client_A.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add_Client_A.Designer.cs">
+      <DependentUpon>Add_Client_A.cs</DependentUpon>
+    </Compile>
     <Compile Include="Add_Details_to_R_Items.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,6 +114,12 @@
     <Compile Include="Quotation.Designer.cs">
       <DependentUpon>Quotation.cs</DependentUpon>
     </Compile>
+    <Compile Include="UpdateClient_A.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdateClient_A.Designer.cs">
+      <DependentUpon>UpdateClient_A.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewJobRequests.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,6 +132,9 @@
     <Compile Include="View_Clients_A.Designer.cs">
       <DependentUpon>View_Clients_A.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Add_Client_A.resx">
+      <DependentUpon>Add_Client_A.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Add_Details_to_R_Items.resx">
       <DependentUpon>Add_Details_to_R_Items.cs</DependentUpon>
     </EmbeddedResource>
@@ -146,6 +161,9 @@
     </Compile>
     <EmbeddedResource Include="Quotation.resx">
       <DependentUpon>Quotation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateClient_A.resx">
+      <DependentUpon>UpdateClient_A.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewJobRequests.resx">
       <DependentUpon>ViewJobRequests.cs</DependentUpon>
