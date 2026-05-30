@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Label filePathLabel;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Quotation));
             System.Windows.Forms.Label urgencyLevelLabel;
             System.Windows.Forms.Label latitudeLabel;
             System.Windows.Forms.Label longitudeLabel;
@@ -48,6 +47,7 @@
             System.Windows.Forms.Label label12;
             System.Windows.Forms.Label label16;
             System.Windows.Forms.Label label13;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Quotation));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -74,6 +74,18 @@
             this.longitudeTextBox = new System.Windows.Forms.TextBox();
             this.jobRequestIDTextBox = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.jobRequestIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clientIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.siteAddressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.longitudeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.latitudeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.requestSourceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.urgencyLevelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateRecievedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.siteEvaluationDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.jobRequestBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.groupWst1DataSet = new M2GiantGroupSystem.GroupWst1DataSet();
             this.selectedJobsGridView = new System.Windows.Forms.DataGridView();
             this.colJobType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colBaseRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -81,6 +93,11 @@
             this.colQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.jobTypeDataGridView = new System.Windows.Forms.DataGridView();
+            this.jobTypeIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.jobTypeNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.jobRateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rateDescriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.jobTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.cboQuoteStatus = new System.Windows.Forms.ComboBox();
@@ -118,28 +135,6 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.quoteDataGridView = new System.Windows.Forms.DataGridView();
-            this.label3 = new System.Windows.Forms.Label();
-            this.groupWst1DataSet = new M2GiantGroupSystem.GroupWst1DataSet();
-            this.jobRequestBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.jobRequestTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobRequestTableAdapter();
-            this.jobRequestIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clientIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.siteAddressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.longitudeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.latitudeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.requestSourceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.urgencyLevelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.statusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateRecievedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.siteEvaluationDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.jobTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.jobTypeTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobTypeTableAdapter();
-            this.jobTypeIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.jobTypeNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.jobRateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rateDescriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quoteBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.quoteTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.QuoteTableAdapter();
             this.QuoteID_T = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.jobRequestIDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateIssuedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -148,6 +143,11 @@
             this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quoteStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.filePathDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quoteBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label3 = new System.Windows.Forms.Label();
+            this.jobRequestTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobRequestTableAdapter();
+            this.jobTypeTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobTypeTableAdapter();
+            this.quoteTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.QuoteTableAdapter();
             filePathLabel = new System.Windows.Forms.Label();
             urgencyLevelLabel = new System.Windows.Forms.Label();
             latitudeLabel = new System.Windows.Forms.Label();
@@ -171,17 +171,198 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.giantGroupLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.jobRequestBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupWst1DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.selectedJobsGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.jobTypeDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.jobTypeBindingSource)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.quoteDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupWst1DataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.jobRequestBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.jobTypeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.quoteBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // filePathLabel
+            // 
+            filePathLabel.AutoSize = true;
+            filePathLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            filePathLabel.Location = new System.Drawing.Point(2412, 941);
+            filePathLabel.Name = "filePathLabel";
+            filePathLabel.Size = new System.Drawing.Size(90, 22);
+            filePathLabel.TabIndex = 49;
+            filePathLabel.Text = "file Path:";
+            filePathLabel.Visible = false;
+            // 
+            // urgencyLevelLabel
+            // 
+            urgencyLevelLabel.AutoSize = true;
+            urgencyLevelLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            urgencyLevelLabel.Location = new System.Drawing.Point(798, 279);
+            urgencyLevelLabel.Name = "urgencyLevelLabel";
+            urgencyLevelLabel.Size = new System.Drawing.Size(144, 22);
+            urgencyLevelLabel.TabIndex = 30;
+            urgencyLevelLabel.Text = "Urgency Level:";
+            // 
+            // latitudeLabel
+            // 
+            latitudeLabel.AutoSize = true;
+            latitudeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            latitudeLabel.Location = new System.Drawing.Point(444, 280);
+            latitudeLabel.Name = "latitudeLabel";
+            latitudeLabel.Size = new System.Drawing.Size(88, 22);
+            latitudeLabel.TabIndex = 28;
+            latitudeLabel.Text = "Latitude:";
+            // 
+            // longitudeLabel
+            // 
+            longitudeLabel.AutoSize = true;
+            longitudeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            longitudeLabel.Location = new System.Drawing.Point(17, 281);
+            longitudeLabel.Name = "longitudeLabel";
+            longitudeLabel.Size = new System.Drawing.Size(104, 22);
+            longitudeLabel.TabIndex = 27;
+            longitudeLabel.Text = "Longitude:";
+            // 
+            // jobRequestIDLabel
+            // 
+            jobRequestIDLabel.AutoSize = true;
+            jobRequestIDLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            jobRequestIDLabel.Location = new System.Drawing.Point(14, 310);
+            jobRequestIDLabel.Name = "jobRequestIDLabel";
+            jobRequestIDLabel.Size = new System.Drawing.Size(153, 22);
+            jobRequestIDLabel.TabIndex = 26;
+            jobRequestIDLabel.Text = "Job Request ID:";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label7.Location = new System.Drawing.Point(13, 598);
+            label7.Name = "label7";
+            label7.Size = new System.Drawing.Size(321, 22);
+            label7.TabIndex = 25;
+            label7.Text = "Job Types Selected for this Quote:";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label6.Location = new System.Drawing.Point(14, 433);
+            label6.Name = "label6";
+            label6.Size = new System.Drawing.Size(296, 22);
+            label6.TabIndex = 24;
+            label6.Text = "Job Types Requested by Client:";
+            // 
+            // dateIssuedLabel
+            // 
+            dateIssuedLabel.AutoSize = true;
+            dateIssuedLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dateIssuedLabel.Location = new System.Drawing.Point(14, 347);
+            dateIssuedLabel.Name = "dateIssuedLabel";
+            dateIssuedLabel.Size = new System.Drawing.Size(122, 22);
+            dateIssuedLabel.TabIndex = 5;
+            dateIssuedLabel.Text = "Date Issued:";
+            // 
+            // expiryDateLabel
+            // 
+            expiryDateLabel.AutoSize = true;
+            expiryDateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            expiryDateLabel.Location = new System.Drawing.Point(14, 379);
+            expiryDateLabel.Name = "expiryDateLabel";
+            expiryDateLabel.Size = new System.Drawing.Size(120, 22);
+            expiryDateLabel.TabIndex = 7;
+            expiryDateLabel.Text = "Expiry Date:";
+            // 
+            // dateGeneratedLabel
+            // 
+            dateGeneratedLabel.AutoSize = true;
+            dateGeneratedLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dateGeneratedLabel.Location = new System.Drawing.Point(14, 411);
+            dateGeneratedLabel.Name = "dateGeneratedLabel";
+            dateGeneratedLabel.Size = new System.Drawing.Size(158, 22);
+            dateGeneratedLabel.TabIndex = 9;
+            dateGeneratedLabel.Text = "Date Generated:";
+            // 
+            // amountLabel
+            // 
+            amountLabel.AutoSize = true;
+            amountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            amountLabel.Location = new System.Drawing.Point(14, 743);
+            amountLabel.Name = "amountLabel";
+            amountLabel.Size = new System.Drawing.Size(187, 22);
+            amountLabel.TabIndex = 11;
+            amountLabel.Text = "Subtotal(Excl. VAT)\r\n";
+            // 
+            // quoteStatusLabel
+            // 
+            quoteStatusLabel.AutoSize = true;
+            quoteStatusLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            quoteStatusLabel.Location = new System.Drawing.Point(14, 853);
+            quoteStatusLabel.Name = "quoteStatusLabel";
+            quoteStatusLabel.Size = new System.Drawing.Size(133, 22);
+            quoteStatusLabel.TabIndex = 13;
+            quoteStatusLabel.Text = "Quote Status:";
+            // 
+            // label22
+            // 
+            label22.AutoSize = true;
+            label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label22.Location = new System.Drawing.Point(197, 189);
+            label22.Name = "label22";
+            label22.Size = new System.Drawing.Size(187, 22);
+            label22.TabIndex = 51;
+            label22.Text = "Subtotal(Excl. VAT)\r\n";
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label17.Location = new System.Drawing.Point(198, 52);
+            label17.Name = "label17";
+            label17.Size = new System.Drawing.Size(95, 22);
+            label17.TabIndex = 47;
+            label17.Text = "Quote ID:";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label10.Location = new System.Drawing.Point(198, 17);
+            label10.Name = "label10";
+            label10.Size = new System.Drawing.Size(153, 22);
+            label10.TabIndex = 38;
+            label10.Text = "Job Request ID:";
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label12.Location = new System.Drawing.Point(197, 295);
+            label12.Name = "label12";
+            label12.Size = new System.Drawing.Size(133, 22);
+            label12.TabIndex = 42;
+            label12.Text = "Quote Status:";
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label16.Location = new System.Drawing.Point(197, 332);
+            label16.Name = "label16";
+            label16.Size = new System.Drawing.Size(90, 22);
+            label16.TabIndex = 43;
+            label16.Text = "file Path:";
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label13.Location = new System.Drawing.Point(198, 83);
+            label13.Name = "label13";
+            label13.Size = new System.Drawing.Size(122, 22);
+            label13.TabIndex = 32;
+            label13.Text = "Date Issued:";
             // 
             // tabControl1
             // 
@@ -271,17 +452,6 @@
             this.button1.Text = "Browse";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Visible = false;
-            // 
-            // filePathLabel
-            // 
-            filePathLabel.AutoSize = true;
-            filePathLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            filePathLabel.Location = new System.Drawing.Point(2412, 941);
-            filePathLabel.Name = "filePathLabel";
-            filePathLabel.Size = new System.Drawing.Size(90, 22);
-            filePathLabel.TabIndex = 49;
-            filePathLabel.Text = "file Path:";
-            filePathLabel.Visible = false;
             // 
             // txtFilePath
             // 
@@ -460,32 +630,12 @@
             this.label8.Text = "Note to User: Double click the Job Request you are creating a quote for. Complete" +
     " the info below.";
             // 
-            // urgencyLevelLabel
-            // 
-            urgencyLevelLabel.AutoSize = true;
-            urgencyLevelLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            urgencyLevelLabel.Location = new System.Drawing.Point(798, 279);
-            urgencyLevelLabel.Name = "urgencyLevelLabel";
-            urgencyLevelLabel.Size = new System.Drawing.Size(144, 22);
-            urgencyLevelLabel.TabIndex = 30;
-            urgencyLevelLabel.Text = "Urgency Level:";
-            // 
             // urgencyLevelTextBox
             // 
             this.urgencyLevelTextBox.Location = new System.Drawing.Point(961, 276);
             this.urgencyLevelTextBox.Name = "urgencyLevelTextBox";
             this.urgencyLevelTextBox.Size = new System.Drawing.Size(100, 26);
             this.urgencyLevelTextBox.TabIndex = 31;
-            // 
-            // latitudeLabel
-            // 
-            latitudeLabel.AutoSize = true;
-            latitudeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            latitudeLabel.Location = new System.Drawing.Point(444, 280);
-            latitudeLabel.Name = "latitudeLabel";
-            latitudeLabel.Size = new System.Drawing.Size(88, 22);
-            latitudeLabel.TabIndex = 28;
-            latitudeLabel.Text = "Latitude:";
             // 
             // latitudeTextBox
             // 
@@ -494,32 +644,12 @@
             this.latitudeTextBox.Size = new System.Drawing.Size(100, 26);
             this.latitudeTextBox.TabIndex = 29;
             // 
-            // longitudeLabel
-            // 
-            longitudeLabel.AutoSize = true;
-            longitudeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            longitudeLabel.Location = new System.Drawing.Point(17, 281);
-            longitudeLabel.Name = "longitudeLabel";
-            longitudeLabel.Size = new System.Drawing.Size(104, 22);
-            longitudeLabel.TabIndex = 27;
-            longitudeLabel.Text = "Longitude:";
-            // 
             // longitudeTextBox
             // 
             this.longitudeTextBox.Location = new System.Drawing.Point(158, 278);
             this.longitudeTextBox.Name = "longitudeTextBox";
             this.longitudeTextBox.Size = new System.Drawing.Size(100, 26);
             this.longitudeTextBox.TabIndex = 28;
-            // 
-            // jobRequestIDLabel
-            // 
-            jobRequestIDLabel.AutoSize = true;
-            jobRequestIDLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            jobRequestIDLabel.Location = new System.Drawing.Point(14, 310);
-            jobRequestIDLabel.Name = "jobRequestIDLabel";
-            jobRequestIDLabel.Size = new System.Drawing.Size(153, 22);
-            jobRequestIDLabel.TabIndex = 26;
-            jobRequestIDLabel.Text = "Job Request ID:";
             // 
             // jobRequestIDTextBox
             // 
@@ -554,25 +684,86 @@
             this.dataGridView1.Size = new System.Drawing.Size(1554, 162);
             this.dataGridView1.TabIndex = 26;
             // 
-            // label7
+            // jobRequestIDDataGridViewTextBoxColumn
             // 
-            label7.AutoSize = true;
-            label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label7.Location = new System.Drawing.Point(13, 598);
-            label7.Name = "label7";
-            label7.Size = new System.Drawing.Size(321, 22);
-            label7.TabIndex = 25;
-            label7.Text = "Job Types Selected for this Quote:";
+            this.jobRequestIDDataGridViewTextBoxColumn.DataPropertyName = "jobRequestID";
+            this.jobRequestIDDataGridViewTextBoxColumn.HeaderText = "jobRequestID";
+            this.jobRequestIDDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.jobRequestIDDataGridViewTextBoxColumn.Name = "jobRequestIDDataGridViewTextBoxColumn";
+            this.jobRequestIDDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // label6
+            // clientIDDataGridViewTextBoxColumn
             // 
-            label6.AutoSize = true;
-            label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label6.Location = new System.Drawing.Point(14, 433);
-            label6.Name = "label6";
-            label6.Size = new System.Drawing.Size(296, 22);
-            label6.TabIndex = 24;
-            label6.Text = "Job Types Requested by Client:";
+            this.clientIDDataGridViewTextBoxColumn.DataPropertyName = "clientID";
+            this.clientIDDataGridViewTextBoxColumn.HeaderText = "clientID";
+            this.clientIDDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.clientIDDataGridViewTextBoxColumn.Name = "clientIDDataGridViewTextBoxColumn";
+            // 
+            // siteAddressDataGridViewTextBoxColumn
+            // 
+            this.siteAddressDataGridViewTextBoxColumn.DataPropertyName = "siteAddress";
+            this.siteAddressDataGridViewTextBoxColumn.HeaderText = "siteAddress";
+            this.siteAddressDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.siteAddressDataGridViewTextBoxColumn.Name = "siteAddressDataGridViewTextBoxColumn";
+            // 
+            // longitudeDataGridViewTextBoxColumn
+            // 
+            this.longitudeDataGridViewTextBoxColumn.DataPropertyName = "longitude";
+            this.longitudeDataGridViewTextBoxColumn.HeaderText = "longitude";
+            this.longitudeDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.longitudeDataGridViewTextBoxColumn.Name = "longitudeDataGridViewTextBoxColumn";
+            // 
+            // latitudeDataGridViewTextBoxColumn
+            // 
+            this.latitudeDataGridViewTextBoxColumn.DataPropertyName = "latitude";
+            this.latitudeDataGridViewTextBoxColumn.HeaderText = "latitude";
+            this.latitudeDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.latitudeDataGridViewTextBoxColumn.Name = "latitudeDataGridViewTextBoxColumn";
+            // 
+            // requestSourceDataGridViewTextBoxColumn
+            // 
+            this.requestSourceDataGridViewTextBoxColumn.DataPropertyName = "requestSource";
+            this.requestSourceDataGridViewTextBoxColumn.HeaderText = "requestSource";
+            this.requestSourceDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.requestSourceDataGridViewTextBoxColumn.Name = "requestSourceDataGridViewTextBoxColumn";
+            // 
+            // urgencyLevelDataGridViewTextBoxColumn
+            // 
+            this.urgencyLevelDataGridViewTextBoxColumn.DataPropertyName = "urgencyLevel";
+            this.urgencyLevelDataGridViewTextBoxColumn.HeaderText = "urgencyLevel";
+            this.urgencyLevelDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.urgencyLevelDataGridViewTextBoxColumn.Name = "urgencyLevelDataGridViewTextBoxColumn";
+            // 
+            // statusDataGridViewTextBoxColumn
+            // 
+            this.statusDataGridViewTextBoxColumn.DataPropertyName = "status";
+            this.statusDataGridViewTextBoxColumn.HeaderText = "status";
+            this.statusDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.statusDataGridViewTextBoxColumn.Name = "statusDataGridViewTextBoxColumn";
+            // 
+            // dateRecievedDataGridViewTextBoxColumn
+            // 
+            this.dateRecievedDataGridViewTextBoxColumn.DataPropertyName = "dateRecieved";
+            this.dateRecievedDataGridViewTextBoxColumn.HeaderText = "dateRecieved";
+            this.dateRecievedDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.dateRecievedDataGridViewTextBoxColumn.Name = "dateRecievedDataGridViewTextBoxColumn";
+            // 
+            // siteEvaluationDateDataGridViewTextBoxColumn
+            // 
+            this.siteEvaluationDateDataGridViewTextBoxColumn.DataPropertyName = "siteEvaluationDate";
+            this.siteEvaluationDateDataGridViewTextBoxColumn.HeaderText = "siteEvaluationDate";
+            this.siteEvaluationDateDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.siteEvaluationDateDataGridViewTextBoxColumn.Name = "siteEvaluationDateDataGridViewTextBoxColumn";
+            // 
+            // jobRequestBindingSource
+            // 
+            this.jobRequestBindingSource.DataMember = "JobRequest";
+            this.jobRequestBindingSource.DataSource = this.groupWst1DataSet;
+            // 
+            // groupWst1DataSet
+            // 
+            this.groupWst1DataSet.DataSetName = "GroupWst1DataSet";
+            this.groupWst1DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // selectedJobsGridView
             // 
@@ -653,6 +844,45 @@
             this.jobTypeDataGridView.Size = new System.Drawing.Size(717, 113);
             this.jobTypeDataGridView.TabIndex = 22;
             // 
+            // jobTypeIDDataGridViewTextBoxColumn
+            // 
+            this.jobTypeIDDataGridViewTextBoxColumn.DataPropertyName = "jobTypeID";
+            this.jobTypeIDDataGridViewTextBoxColumn.HeaderText = "jobTypeID";
+            this.jobTypeIDDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.jobTypeIDDataGridViewTextBoxColumn.Name = "jobTypeIDDataGridViewTextBoxColumn";
+            this.jobTypeIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.jobTypeIDDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // jobTypeNameDataGridViewTextBoxColumn
+            // 
+            this.jobTypeNameDataGridViewTextBoxColumn.DataPropertyName = "jobTypeName";
+            this.jobTypeNameDataGridViewTextBoxColumn.HeaderText = "Job Type";
+            this.jobTypeNameDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.jobTypeNameDataGridViewTextBoxColumn.Name = "jobTypeNameDataGridViewTextBoxColumn";
+            this.jobTypeNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // jobRateDataGridViewTextBoxColumn
+            // 
+            this.jobRateDataGridViewTextBoxColumn.DataPropertyName = "jobRate";
+            this.jobRateDataGridViewTextBoxColumn.HeaderText = "Job Rate";
+            this.jobRateDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.jobRateDataGridViewTextBoxColumn.Name = "jobRateDataGridViewTextBoxColumn";
+            this.jobRateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // rateDescriptionDataGridViewTextBoxColumn
+            // 
+            this.rateDescriptionDataGridViewTextBoxColumn.DataPropertyName = "rateDescription";
+            this.rateDescriptionDataGridViewTextBoxColumn.HeaderText = "rateDescription";
+            this.rateDescriptionDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.rateDescriptionDataGridViewTextBoxColumn.Name = "rateDescriptionDataGridViewTextBoxColumn";
+            this.rateDescriptionDataGridViewTextBoxColumn.ReadOnly = true;
+            this.rateDescriptionDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // jobTypeBindingSource
+            // 
+            this.jobTypeBindingSource.DataMember = "JobType";
+            this.jobTypeBindingSource.DataSource = this.groupWst1DataSet;
+            // 
             // button3
             // 
             this.button3.BackColor = System.Drawing.Color.White;
@@ -673,6 +903,7 @@
             this.button2.TabIndex = 20;
             this.button2.Text = "Clear";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // cboQuoteStatus
             // 
@@ -687,16 +918,6 @@
             this.cboQuoteStatus.Size = new System.Drawing.Size(287, 28);
             this.cboQuoteStatus.TabIndex = 17;
             // 
-            // dateIssuedLabel
-            // 
-            dateIssuedLabel.AutoSize = true;
-            dateIssuedLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dateIssuedLabel.Location = new System.Drawing.Point(14, 347);
-            dateIssuedLabel.Name = "dateIssuedLabel";
-            dateIssuedLabel.Size = new System.Drawing.Size(122, 22);
-            dateIssuedLabel.TabIndex = 5;
-            dateIssuedLabel.Text = "Date Issued:";
-            // 
             // dateIssuedDateTimePicker
             // 
             this.dateIssuedDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
@@ -704,16 +925,6 @@
             this.dateIssuedDateTimePicker.Name = "dateIssuedDateTimePicker";
             this.dateIssuedDateTimePicker.Size = new System.Drawing.Size(287, 26);
             this.dateIssuedDateTimePicker.TabIndex = 6;
-            // 
-            // expiryDateLabel
-            // 
-            expiryDateLabel.AutoSize = true;
-            expiryDateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            expiryDateLabel.Location = new System.Drawing.Point(14, 379);
-            expiryDateLabel.Name = "expiryDateLabel";
-            expiryDateLabel.Size = new System.Drawing.Size(120, 22);
-            expiryDateLabel.TabIndex = 7;
-            expiryDateLabel.Text = "Expiry Date:";
             // 
             // expiryDateDateTimePicker
             // 
@@ -723,16 +934,6 @@
             this.expiryDateDateTimePicker.Size = new System.Drawing.Size(287, 26);
             this.expiryDateDateTimePicker.TabIndex = 8;
             // 
-            // dateGeneratedLabel
-            // 
-            dateGeneratedLabel.AutoSize = true;
-            dateGeneratedLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dateGeneratedLabel.Location = new System.Drawing.Point(14, 411);
-            dateGeneratedLabel.Name = "dateGeneratedLabel";
-            dateGeneratedLabel.Size = new System.Drawing.Size(158, 22);
-            dateGeneratedLabel.TabIndex = 9;
-            dateGeneratedLabel.Text = "Date Generated:";
-            // 
             // dateGeneratedDateTimePicker
             // 
             this.dateGeneratedDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
@@ -741,32 +942,12 @@
             this.dateGeneratedDateTimePicker.Size = new System.Drawing.Size(287, 26);
             this.dateGeneratedDateTimePicker.TabIndex = 10;
             // 
-            // amountLabel
-            // 
-            amountLabel.AutoSize = true;
-            amountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            amountLabel.Location = new System.Drawing.Point(14, 743);
-            amountLabel.Name = "amountLabel";
-            amountLabel.Size = new System.Drawing.Size(187, 22);
-            amountLabel.TabIndex = 11;
-            amountLabel.Text = "Subtotal(Excl. VAT)\r\n";
-            // 
             // txtAmount
             // 
             this.txtAmount.Location = new System.Drawing.Point(448, 741);
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.Size = new System.Drawing.Size(287, 26);
             this.txtAmount.TabIndex = 12;
-            // 
-            // quoteStatusLabel
-            // 
-            quoteStatusLabel.AutoSize = true;
-            quoteStatusLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            quoteStatusLabel.Location = new System.Drawing.Point(14, 853);
-            quoteStatusLabel.Name = "quoteStatusLabel";
-            quoteStatusLabel.Size = new System.Drawing.Size(133, 22);
-            quoteStatusLabel.TabIndex = 13;
-            quoteStatusLabel.Text = "Quote Status:";
             // 
             // label2
             // 
@@ -945,16 +1126,6 @@
             this.txtEditAmount.Size = new System.Drawing.Size(287, 28);
             this.txtEditAmount.TabIndex = 52;
             // 
-            // label22
-            // 
-            label22.AutoSize = true;
-            label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label22.Location = new System.Drawing.Point(197, 189);
-            label22.Name = "label22";
-            label22.Size = new System.Drawing.Size(187, 22);
-            label22.TabIndex = 51;
-            label22.Text = "Subtotal(Excl. VAT)\r\n";
-            // 
             // label20
             // 
             this.label20.AutoSize = true;
@@ -991,26 +1162,6 @@
             this.txtEditQuoteID.Size = new System.Drawing.Size(287, 28);
             this.txtEditQuoteID.TabIndex = 48;
             // 
-            // label17
-            // 
-            label17.AutoSize = true;
-            label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label17.Location = new System.Drawing.Point(198, 52);
-            label17.Name = "label17";
-            label17.Size = new System.Drawing.Size(95, 22);
-            label17.TabIndex = 47;
-            label17.Text = "Quote ID:";
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label10.Location = new System.Drawing.Point(198, 17);
-            label10.Name = "label10";
-            label10.Size = new System.Drawing.Size(153, 22);
-            label10.TabIndex = 38;
-            label10.Text = "Job Request ID:";
-            // 
             // button4
             // 
             this.button4.BackColor = System.Drawing.Color.White;
@@ -1034,16 +1185,6 @@
             this.cmbEditStatus.Size = new System.Drawing.Size(287, 30);
             this.cmbEditStatus.TabIndex = 45;
             // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label12.Location = new System.Drawing.Point(197, 295);
-            label12.Name = "label12";
-            label12.Size = new System.Drawing.Size(133, 22);
-            label12.TabIndex = 42;
-            label12.Text = "Quote Status:";
-            // 
             // dtpEditIssued
             // 
             this.dtpEditIssued.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
@@ -1051,26 +1192,6 @@
             this.dtpEditIssued.Name = "dtpEditIssued";
             this.dtpEditIssued.Size = new System.Drawing.Size(287, 28);
             this.dtpEditIssued.TabIndex = 33;
-            // 
-            // label16
-            // 
-            label16.AutoSize = true;
-            label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label16.Location = new System.Drawing.Point(197, 332);
-            label16.Name = "label16";
-            label16.Size = new System.Drawing.Size(90, 22);
-            label16.TabIndex = 43;
-            label16.Text = "file Path:";
-            // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label13.Location = new System.Drawing.Point(198, 83);
-            label13.Name = "label13";
-            label13.Size = new System.Drawing.Size(122, 22);
-            label13.TabIndex = 32;
-            label13.Text = "Date Issued:";
             // 
             // txtEditFilePath
             // 
@@ -1096,6 +1217,7 @@
             this.button5.TabIndex = 26;
             this.button5.Text = "Edit Quote Details";
             this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // comboBox2
             // 
@@ -1165,154 +1287,6 @@
             this.quoteDataGridView.Size = new System.Drawing.Size(1070, 220);
             this.quoteDataGridView.TabIndex = 24;
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(3, 11);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(238, 22);
-            this.label3.TabIndex = 23;
-            this.label3.Text = "Historical System Archive";
-            // 
-            // groupWst1DataSet
-            // 
-            this.groupWst1DataSet.DataSetName = "GroupWst1DataSet";
-            this.groupWst1DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // jobRequestBindingSource
-            // 
-            this.jobRequestBindingSource.DataMember = "JobRequest";
-            this.jobRequestBindingSource.DataSource = this.groupWst1DataSet;
-            // 
-            // jobRequestTableAdapter
-            // 
-            this.jobRequestTableAdapter.ClearBeforeFill = true;
-            // 
-            // jobRequestIDDataGridViewTextBoxColumn
-            // 
-            this.jobRequestIDDataGridViewTextBoxColumn.DataPropertyName = "jobRequestID";
-            this.jobRequestIDDataGridViewTextBoxColumn.HeaderText = "jobRequestID";
-            this.jobRequestIDDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.jobRequestIDDataGridViewTextBoxColumn.Name = "jobRequestIDDataGridViewTextBoxColumn";
-            this.jobRequestIDDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // clientIDDataGridViewTextBoxColumn
-            // 
-            this.clientIDDataGridViewTextBoxColumn.DataPropertyName = "clientID";
-            this.clientIDDataGridViewTextBoxColumn.HeaderText = "clientID";
-            this.clientIDDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.clientIDDataGridViewTextBoxColumn.Name = "clientIDDataGridViewTextBoxColumn";
-            // 
-            // siteAddressDataGridViewTextBoxColumn
-            // 
-            this.siteAddressDataGridViewTextBoxColumn.DataPropertyName = "siteAddress";
-            this.siteAddressDataGridViewTextBoxColumn.HeaderText = "siteAddress";
-            this.siteAddressDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.siteAddressDataGridViewTextBoxColumn.Name = "siteAddressDataGridViewTextBoxColumn";
-            // 
-            // longitudeDataGridViewTextBoxColumn
-            // 
-            this.longitudeDataGridViewTextBoxColumn.DataPropertyName = "longitude";
-            this.longitudeDataGridViewTextBoxColumn.HeaderText = "longitude";
-            this.longitudeDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.longitudeDataGridViewTextBoxColumn.Name = "longitudeDataGridViewTextBoxColumn";
-            // 
-            // latitudeDataGridViewTextBoxColumn
-            // 
-            this.latitudeDataGridViewTextBoxColumn.DataPropertyName = "latitude";
-            this.latitudeDataGridViewTextBoxColumn.HeaderText = "latitude";
-            this.latitudeDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.latitudeDataGridViewTextBoxColumn.Name = "latitudeDataGridViewTextBoxColumn";
-            // 
-            // requestSourceDataGridViewTextBoxColumn
-            // 
-            this.requestSourceDataGridViewTextBoxColumn.DataPropertyName = "requestSource";
-            this.requestSourceDataGridViewTextBoxColumn.HeaderText = "requestSource";
-            this.requestSourceDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.requestSourceDataGridViewTextBoxColumn.Name = "requestSourceDataGridViewTextBoxColumn";
-            // 
-            // urgencyLevelDataGridViewTextBoxColumn
-            // 
-            this.urgencyLevelDataGridViewTextBoxColumn.DataPropertyName = "urgencyLevel";
-            this.urgencyLevelDataGridViewTextBoxColumn.HeaderText = "urgencyLevel";
-            this.urgencyLevelDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.urgencyLevelDataGridViewTextBoxColumn.Name = "urgencyLevelDataGridViewTextBoxColumn";
-            // 
-            // statusDataGridViewTextBoxColumn
-            // 
-            this.statusDataGridViewTextBoxColumn.DataPropertyName = "status";
-            this.statusDataGridViewTextBoxColumn.HeaderText = "status";
-            this.statusDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.statusDataGridViewTextBoxColumn.Name = "statusDataGridViewTextBoxColumn";
-            // 
-            // dateRecievedDataGridViewTextBoxColumn
-            // 
-            this.dateRecievedDataGridViewTextBoxColumn.DataPropertyName = "dateRecieved";
-            this.dateRecievedDataGridViewTextBoxColumn.HeaderText = "dateRecieved";
-            this.dateRecievedDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.dateRecievedDataGridViewTextBoxColumn.Name = "dateRecievedDataGridViewTextBoxColumn";
-            // 
-            // siteEvaluationDateDataGridViewTextBoxColumn
-            // 
-            this.siteEvaluationDateDataGridViewTextBoxColumn.DataPropertyName = "siteEvaluationDate";
-            this.siteEvaluationDateDataGridViewTextBoxColumn.HeaderText = "siteEvaluationDate";
-            this.siteEvaluationDateDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.siteEvaluationDateDataGridViewTextBoxColumn.Name = "siteEvaluationDateDataGridViewTextBoxColumn";
-            // 
-            // jobTypeBindingSource
-            // 
-            this.jobTypeBindingSource.DataMember = "JobType";
-            this.jobTypeBindingSource.DataSource = this.groupWst1DataSet;
-            // 
-            // jobTypeTableAdapter
-            // 
-            this.jobTypeTableAdapter.ClearBeforeFill = true;
-            // 
-            // jobTypeIDDataGridViewTextBoxColumn
-            // 
-            this.jobTypeIDDataGridViewTextBoxColumn.DataPropertyName = "jobTypeID";
-            this.jobTypeIDDataGridViewTextBoxColumn.HeaderText = "jobTypeID";
-            this.jobTypeIDDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.jobTypeIDDataGridViewTextBoxColumn.Name = "jobTypeIDDataGridViewTextBoxColumn";
-            this.jobTypeIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.jobTypeIDDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // jobTypeNameDataGridViewTextBoxColumn
-            // 
-            this.jobTypeNameDataGridViewTextBoxColumn.DataPropertyName = "jobTypeName";
-            this.jobTypeNameDataGridViewTextBoxColumn.HeaderText = "Job Type";
-            this.jobTypeNameDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.jobTypeNameDataGridViewTextBoxColumn.Name = "jobTypeNameDataGridViewTextBoxColumn";
-            this.jobTypeNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // jobRateDataGridViewTextBoxColumn
-            // 
-            this.jobRateDataGridViewTextBoxColumn.DataPropertyName = "jobRate";
-            this.jobRateDataGridViewTextBoxColumn.HeaderText = "Job Rate";
-            this.jobRateDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.jobRateDataGridViewTextBoxColumn.Name = "jobRateDataGridViewTextBoxColumn";
-            this.jobRateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // rateDescriptionDataGridViewTextBoxColumn
-            // 
-            this.rateDescriptionDataGridViewTextBoxColumn.DataPropertyName = "rateDescription";
-            this.rateDescriptionDataGridViewTextBoxColumn.HeaderText = "rateDescription";
-            this.rateDescriptionDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.rateDescriptionDataGridViewTextBoxColumn.Name = "rateDescriptionDataGridViewTextBoxColumn";
-            this.rateDescriptionDataGridViewTextBoxColumn.ReadOnly = true;
-            this.rateDescriptionDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // quoteBindingSource
-            // 
-            this.quoteBindingSource.DataMember = "Quote";
-            this.quoteBindingSource.DataSource = this.groupWst1DataSet;
-            // 
-            // quoteTableAdapter
-            // 
-            this.quoteTableAdapter.ClearBeforeFill = true;
-            // 
             // QuoteID_T
             // 
             this.QuoteID_T.DataPropertyName = "QuoteID";
@@ -1370,6 +1344,34 @@
             this.filePathDataGridViewTextBoxColumn.MinimumWidth = 8;
             this.filePathDataGridViewTextBoxColumn.Name = "filePathDataGridViewTextBoxColumn";
             // 
+            // quoteBindingSource
+            // 
+            this.quoteBindingSource.DataMember = "Quote";
+            this.quoteBindingSource.DataSource = this.groupWst1DataSet;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(3, 11);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(238, 22);
+            this.label3.TabIndex = 23;
+            this.label3.Text = "Historical System Archive";
+            // 
+            // jobRequestTableAdapter
+            // 
+            this.jobRequestTableAdapter.ClearBeforeFill = true;
+            // 
+            // jobTypeTableAdapter
+            // 
+            this.jobTypeTableAdapter.ClearBeforeFill = true;
+            // 
+            // quoteTableAdapter
+            // 
+            this.quoteTableAdapter.ClearBeforeFill = true;
+            // 
             // Quotation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -1386,8 +1388,11 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.giantGroupLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.jobRequestBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupWst1DataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.selectedJobsGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.jobTypeDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.jobTypeBindingSource)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -1395,9 +1400,6 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.quoteDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupWst1DataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.jobRequestBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.jobTypeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.quoteBindingSource)).EndInit();
             this.ResumeLayout(false);
 
