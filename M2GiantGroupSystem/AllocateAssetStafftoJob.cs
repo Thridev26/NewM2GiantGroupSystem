@@ -31,6 +31,10 @@ namespace M2GiantGroupSystem
             this.dataTable1TableAdapter.Fill(this.groupWst1DataSet.DataTable1);
             // Force this to true in code if you can't find the designer property
             dataGridView1.AutoGenerateColumns = true;
+
+            // Clear the selection so no row is highlighted automatically
+            ownedAssetDataGridView.ClearSelection();
+            hiredAssetDataGridView.ClearSelection();
             try
             {
                 // TODO: This line of code loads data into the 'groupWst1DataSet.JobStaffAssignment' table. You can move, or remove it, as needed.
@@ -97,6 +101,88 @@ namespace M2GiantGroupSystem
                 // Fill the Address and Status
                 addressBox.Text = row.Cells["siteAddress"].Value.ToString();
                 statusBox.Text = row.Cells["jobStatus"].Value.ToString();
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // Check if a job is selected
+            if (string.IsNullOrEmpty(jobIDBox.Text)) { MessageBox.Show("Select a job first!"); return; }
+
+            // Logic for Owned Asset
+            if (ownedAssetDataGridView.SelectedRows.Count > 0)
+            {
+                var row = ownedAssetDataGridView.SelectedRows[0];
+                string assetName = row.Cells["type"].Value.ToString();
+
+                var confirm = MessageBox.Show($"Assign {assetName} to this job?", "Confirm", MessageBoxButtons.YesNo);
+                if (confirm == DialogResult.Yes)
+                {
+                    int ownedId = (int)row.Cells["assetID"].Value;
+                    jobAssetAssignmentTableAdapter.Insert1(int.Parse(jobIDBox.Text), ownedId, null, DateTime.Now.ToString());
+                    RefreshAllGrids();
+                }
+            }
+            // Logic for Hired Asset
+            else if (hiredAssetDataGridView.SelectedRows.Count > 0)
+            {
+                var row = hiredAssetDataGridView.SelectedRows[0];
+                string assetName = row.Cells["equipmentType"].Value.ToString();
+
+                var confirm = MessageBox.Show($"Assign {assetName} to this job?", "Confirm", MessageBoxButtons.YesNo);
+                if (confirm == DialogResult.Yes)
+                {
+                    int hiredId = (int)row.Cells["hiredAssetID"].Value;
+                    jobAssetAssignmentTableAdapter.Insert1(int.Parse(jobIDBox.Text), null, hiredId, DateTime.Now.ToString());
+                    RefreshAllGrids();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select an asset from either the Owned or Hired grid.");
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (jobAssetAssignmentDataGridView.SelectedRows.Count > 0)
+            {
+                var row = jobAssetAssignmentDataGridView.SelectedRows[0];
+
+                // Use the EXACT name you found in the Edit Columns dialog
+                var cellValue = row.Cells["assignmentID"].Value;
+
+                if (cellValue != null && cellValue != DBNull.Value)
+                {
+                    var confirm = MessageBox.Show("Are you sure?", "Confirm", MessageBoxButtons.YesNo);
+                    if (confirm == DialogResult.Yes)
+                    {
+                        int assignmentId = Convert.ToInt32(cellValue);
+                        jobAssetAssignmentTableAdapter.Delete1(assignmentId);
+                        RefreshAllGrids();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("The selected row does not have a valid ID.");
+                }
+            }
+        }
+
+        private void RefreshAllGrids()
+        {
+            try
+            {
+                // 1. Refresh the Assignment list first
+                this.jobAssetAssignmentTableAdapter.Fill(this.groupWst1DataSet.JobAssetAssignment);
+
+                // 2. Then refresh the available assets (the query will re-run)
+                this.ownedAssetTableAdapter.FillByAvailableOwned(this.groupWst1DataSet.OwnedAsset);
+                this.hiredAssetTableAdapter.FillByAvailableHired(this.groupWst1DataSet.HiredAsset);
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show("Error refreshing data: " + ex.Message);
             }
         }
     }
