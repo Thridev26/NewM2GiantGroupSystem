@@ -43,7 +43,6 @@
             this.createQuoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.allocateAssetsToJobsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.allocateStaffToJobsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewAllAllocationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.addEditJobDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -173,7 +172,6 @@
             // 
             this.toolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.allocateAssetsToJobsToolStripMenuItem,
-            this.allocateStaffToJobsToolStripMenuItem,
             this.viewAllAllocationsToolStripMenuItem});
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(156, 36);
@@ -182,19 +180,13 @@
             // allocateAssetsToJobsToolStripMenuItem
             // 
             this.allocateAssetsToJobsToolStripMenuItem.Name = "allocateAssetsToJobsToolStripMenuItem";
-            this.allocateAssetsToJobsToolStripMenuItem.Size = new System.Drawing.Size(380, 40);
-            this.allocateAssetsToJobsToolStripMenuItem.Text = "Allocate Assets to Jobs";
-            // 
-            // allocateStaffToJobsToolStripMenuItem
-            // 
-            this.allocateStaffToJobsToolStripMenuItem.Name = "allocateStaffToJobsToolStripMenuItem";
-            this.allocateStaffToJobsToolStripMenuItem.Size = new System.Drawing.Size(380, 40);
-            this.allocateStaffToJobsToolStripMenuItem.Text = "Allocate Staff to Jobs";
+            this.allocateAssetsToJobsToolStripMenuItem.Size = new System.Drawing.Size(466, 40);
+            this.allocateAssetsToJobsToolStripMenuItem.Text = "Allocate Assets && Staff to Jobs";
             // 
             // viewAllAllocationsToolStripMenuItem
             // 
             this.viewAllAllocationsToolStripMenuItem.Name = "viewAllAllocationsToolStripMenuItem";
-            this.viewAllAllocationsToolStripMenuItem.Size = new System.Drawing.Size(380, 40);
+            this.viewAllAllocationsToolStripMenuItem.Size = new System.Drawing.Size(466, 40);
             this.viewAllAllocationsToolStripMenuItem.Text = "View All Allocations";
             // 
             // toolStripMenuItem3
@@ -343,7 +335,6 @@
         private System.Windows.Forms.ToolStripMenuItem createQuoteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem allocateAssetsToJobsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem allocateStaffToJobsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewAllAllocationsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem addEditJobDetailsToolStripMenuItem;
