@@ -42,12 +42,20 @@
             this.button3 = new System.Windows.Forms.Button();
             this.staffDataGridView = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.addressBox = new System.Windows.Forms.TextBox();
             this.clientNameBox = new System.Windows.Forms.TextBox();
             this.jobIDBox = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.jobIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clientNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clientSurnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.siteAddressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.jobStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataTable1BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.groupWst1DataSet = new M2GiantGroupSystem.GroupWst1DataSet();
             this.dataGridViewTextBoxColumn23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,7 +63,6 @@
             this.dataGridViewTextBoxColumn27 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn28 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.jobAssetAssignmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.groupWst1DataSet = new M2GiantGroupSystem.GroupWst1DataSet();
             this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -95,7 +102,7 @@
             this.jobStaffAssignmentTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobStaffAssignmentTableAdapter();
             this.ownedAssetTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.OwnedAssetTableAdapter();
             this.staffTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.StaffTableAdapter();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataTable1TableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.DataTable1TableAdapter();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.jobAssetAssignmentDataGridView)).BeginInit();
@@ -105,14 +112,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.jobStaffAssignmentDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.staffDataGridView)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.jobAssetAssignmentBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTable1BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupWst1DataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.jobAssetAssignmentBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hiredAssetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ownedAssetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.jobStaffAssignmentBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.staffBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.jobBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -307,7 +315,7 @@
             this.groupBox1.Controls.Add(this.addressBox);
             this.groupBox1.Controls.Add(this.clientNameBox);
             this.groupBox1.Controls.Add(this.jobIDBox);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.txtSearch);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
@@ -316,6 +324,26 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Job Information";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AutoGenerateColumns = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.jobIDDataGridViewTextBoxColumn,
+            this.clientNameDataGridViewTextBoxColumn,
+            this.clientSurnameDataGridViewTextBoxColumn,
+            this.siteAddressDataGridViewTextBoxColumn,
+            this.jobStatusDataGridViewTextBoxColumn});
+            this.dataGridView1.DataSource = this.dataTable1BindingSource;
+            this.dataGridView1.Location = new System.Drawing.Point(10, 63);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 62;
+            this.dataGridView1.RowTemplate.Height = 28;
+            this.dataGridView1.Size = new System.Drawing.Size(1390, 127);
+            this.dataGridView1.TabIndex = 7;
             // 
             // textBox2
             // 
@@ -345,21 +373,68 @@
             this.jobIDBox.Size = new System.Drawing.Size(63, 26);
             this.jobIDBox.TabIndex = 3;
             // 
-            // textBox1
+            // txtSearch
             // 
-            this.textBox1.Location = new System.Drawing.Point(205, 31);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(245, 26);
-            this.textBox1.TabIndex = 2;
+            this.txtSearch.Location = new System.Drawing.Point(320, 31);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(245, 26);
+            this.txtSearch.TabIndex = 2;
+            this.txtSearch.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(8, 37);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(135, 20);
+            this.label1.Size = new System.Drawing.Size(284, 20);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Search by Status:";
+            this.label1.Text = "Search by Name, Surname or Address:";
+            // 
+            // jobIDDataGridViewTextBoxColumn
+            // 
+            this.jobIDDataGridViewTextBoxColumn.DataPropertyName = "jobID";
+            this.jobIDDataGridViewTextBoxColumn.HeaderText = "JobID";
+            this.jobIDDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.jobIDDataGridViewTextBoxColumn.Name = "jobIDDataGridViewTextBoxColumn";
+            this.jobIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // clientNameDataGridViewTextBoxColumn
+            // 
+            this.clientNameDataGridViewTextBoxColumn.DataPropertyName = "clientName";
+            this.clientNameDataGridViewTextBoxColumn.HeaderText = "ClientName";
+            this.clientNameDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.clientNameDataGridViewTextBoxColumn.Name = "clientNameDataGridViewTextBoxColumn";
+            // 
+            // clientSurnameDataGridViewTextBoxColumn
+            // 
+            this.clientSurnameDataGridViewTextBoxColumn.DataPropertyName = "clientSurname";
+            this.clientSurnameDataGridViewTextBoxColumn.HeaderText = "ClientSurname";
+            this.clientSurnameDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.clientSurnameDataGridViewTextBoxColumn.Name = "clientSurnameDataGridViewTextBoxColumn";
+            // 
+            // siteAddressDataGridViewTextBoxColumn
+            // 
+            this.siteAddressDataGridViewTextBoxColumn.DataPropertyName = "siteAddress";
+            this.siteAddressDataGridViewTextBoxColumn.HeaderText = "SiteAddress";
+            this.siteAddressDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.siteAddressDataGridViewTextBoxColumn.Name = "siteAddressDataGridViewTextBoxColumn";
+            // 
+            // jobStatusDataGridViewTextBoxColumn
+            // 
+            this.jobStatusDataGridViewTextBoxColumn.DataPropertyName = "jobStatus";
+            this.jobStatusDataGridViewTextBoxColumn.HeaderText = "JobStatus";
+            this.jobStatusDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.jobStatusDataGridViewTextBoxColumn.Name = "jobStatusDataGridViewTextBoxColumn";
+            // 
+            // dataTable1BindingSource
+            // 
+            this.dataTable1BindingSource.DataMember = "DataTable1";
+            this.dataTable1BindingSource.DataSource = this.groupWst1DataSet;
+            // 
+            // groupWst1DataSet
+            // 
+            this.groupWst1DataSet.DataSetName = "GroupWst1DataSet";
+            this.groupWst1DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // dataGridViewTextBoxColumn23
             // 
@@ -410,11 +485,6 @@
             // 
             this.jobAssetAssignmentBindingSource.DataMember = "JobAssetAssignment";
             this.jobAssetAssignmentBindingSource.DataSource = this.groupWst1DataSet;
-            // 
-            // groupWst1DataSet
-            // 
-            this.groupWst1DataSet.DataSetName = "GroupWst1DataSet";
-            this.groupWst1DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // dataGridViewTextBoxColumn16
             // 
@@ -689,17 +759,9 @@
             // 
             this.staffTableAdapter.ClearBeforeFill = true;
             // 
-            // dataGridView1
+            // dataTable1TableAdapter
             // 
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(10, 63);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 62;
-            this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(1390, 127);
-            this.dataGridView1.TabIndex = 7;
+            this.dataTable1TableAdapter.ClearBeforeFill = true;
             // 
             // AllocateAssetStafftoJob
             // 
@@ -721,14 +783,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.staffDataGridView)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.jobAssetAssignmentBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTable1BindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupWst1DataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.jobAssetAssignmentBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.hiredAssetBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ownedAssetBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.jobStaffAssignmentBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.staffBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.jobBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -743,7 +806,7 @@
         private System.Windows.Forms.BindingSource jobBindingSource;
         private GroupWst1DataSetTableAdapters.JobTableAdapter jobTableAdapter;
         private GroupWst1DataSetTableAdapters.TableAdapterManager tableAdapterManager;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label label1;
         private GroupWst1DataSetTableAdapters.OwnedAssetTableAdapter ownedAssetTableAdapter;
         private System.Windows.Forms.BindingSource ownedAssetBindingSource;
@@ -802,5 +865,12 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox addressBox;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.BindingSource dataTable1BindingSource;
+        private GroupWst1DataSetTableAdapters.DataTable1TableAdapter dataTable1TableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn jobIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clientNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clientSurnameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn siteAddressDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn jobStatusDataGridViewTextBoxColumn;
     }
 }
