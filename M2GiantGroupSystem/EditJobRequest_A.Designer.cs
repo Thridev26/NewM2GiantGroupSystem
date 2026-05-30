@@ -32,6 +32,7 @@
             this.tbSearchValue_A = new System.Windows.Forms.TextBox();
             this.dgv_clientJoinJobRequest = new System.Windows.Forms.DataGridView();
             this.tbSiteAddress = new System.Windows.Forms.TextBox();
+            this.groupWst1DataSet1 = new M2GiantGroupSystem.GroupWst1DataSet();
             this.tbLong = new System.Windows.Forms.TextBox();
             this.tbLat = new System.Windows.Forms.TextBox();
             this.tbDateRecieved = new System.Windows.Forms.TextBox();
@@ -46,7 +47,6 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
-            this.groupWst1DataSet1 = new M2GiantGroupSystem.GroupWst1DataSet();
             this.jobRequestTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobRequestTableAdapter();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.lblStatus = new System.Windows.Forms.Label();
@@ -87,6 +87,7 @@
             this.dgv_clientJoinJobRequest.Size = new System.Drawing.Size(1150, 150);
             this.dgv_clientJoinJobRequest.TabIndex = 2;
             this.dgv_clientJoinJobRequest.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_clientJoinJobRequest_CellClick);
+            this.dgv_clientJoinJobRequest.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_clientJoinJobRequest_CellContentClick);
             // 
             // tbSiteAddress
             // 
@@ -97,6 +98,11 @@
             this.tbSiteAddress.Name = "tbSiteAddress";
             this.tbSiteAddress.Size = new System.Drawing.Size(479, 43);
             this.tbSiteAddress.TabIndex = 3;
+            // 
+            // groupWst1DataSet1
+            // 
+            this.groupWst1DataSet1.DataSetName = "GroupWst1DataSet";
+            this.groupWst1DataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // tbLong
             // 
@@ -252,11 +258,6 @@
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // groupWst1DataSet1
-            // 
-            this.groupWst1DataSet1.DataSetName = "GroupWst1DataSet";
-            this.groupWst1DataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // jobRequestTableAdapter1
             // 
             this.jobRequestTableAdapter1.ClearBeforeFill = true;
@@ -273,8 +274,7 @@
             "Site Evaluated",
             "Quote sent",
             "Quote Accepted",
-            "Cancelled,    ",
-            "    "});
+            "Cancelled"});
             this.cmbStatus.Location = new System.Drawing.Point(385, 671);
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(479, 45);

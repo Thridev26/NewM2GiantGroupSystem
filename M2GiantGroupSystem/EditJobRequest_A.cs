@@ -19,7 +19,7 @@ namespace M2GiantGroupSystem
         {
             InitializeComponent();
         }
-        public void runQuery()
+        public  void runQuery()
         {
             string connStr = "Data Source=146.230.177.46;Initial Catalog=GroupWst1;Persist Security Info=True;User ID=GroupWst1;Password=dtf39;Encrypt=True;TrustServerCertificate=True";
             using (SqlConnection conn = new SqlConnection(connStr))
@@ -114,6 +114,11 @@ namespace M2GiantGroupSystem
                                     "Capture Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
+        }
+
+        private void dgv_clientJoinJobRequest_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
