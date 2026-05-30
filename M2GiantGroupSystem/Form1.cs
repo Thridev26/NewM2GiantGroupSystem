@@ -51,5 +51,11 @@ namespace M2GiantGroupSystem
             // 3. Route it through your dynamic MDI layout manager
             FormSetup(quotation);
         }
+
+        private void allocateAssetsToJobsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AllocateAssetStafftoJob allocateAssetStafftoJob = new AllocateAssetStafftoJob();
+            FormSetup(allocateAssetStafftoJob);
+        }
     }
 }
