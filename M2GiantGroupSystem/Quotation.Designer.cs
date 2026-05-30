@@ -785,6 +785,8 @@
             this.selectedJobsGridView.RowTemplate.Height = 28;
             this.selectedJobsGridView.Size = new System.Drawing.Size(717, 110);
             this.selectedJobsGridView.TabIndex = 23;
+            this.selectedJobsGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.selectedJobsGridView_CellValueChanged);
+            this.selectedJobsGridView.CurrentCellDirtyStateChanged += new System.EventHandler(this.selectedJobsGridView_CurrentCellDirtyStateChanged);
             // 
             // colJobType
             // 
@@ -845,6 +847,7 @@
             this.jobTypeDataGridView.RowTemplate.Height = 28;
             this.jobTypeDataGridView.Size = new System.Drawing.Size(717, 113);
             this.jobTypeDataGridView.TabIndex = 22;
+            this.jobTypeDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.jobTypeDataGridView_CellDoubleClick);
             // 
             // jobTypeIDDataGridViewTextBoxColumn
             // 
