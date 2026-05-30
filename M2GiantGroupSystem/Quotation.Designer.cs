@@ -1028,6 +1028,7 @@
             this.btnExportPDF.TabIndex = 50;
             this.btnExportPDF.Text = "Generate and Export as PDF";
             this.btnExportPDF.UseVisualStyleBackColor = false;
+            this.btnExportPDF.Click += new System.EventHandler(this.btnExportPDF_Click);
             // 
             // button7
             // 

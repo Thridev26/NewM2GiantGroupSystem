@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 
 namespace M2GiantGroupSystem
 {
@@ -518,5 +523,227 @@ namespace M2GiantGroupSystem
                                 "Database Configuration Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void btnExportPDF_Click(object sender, EventArgs e)
+        {
+            // ==========================================================
+            // 1. THE MAIN BUTTON CLICK HANDLER (ORIGINAL STRUCTURE)
+            // ==========================================================
+
+            if (quoteDataGridView.CurrentRow == null || quoteDataGridView.CurrentRow.IsNewRow)
+            {
+                MessageBox.Show("Please select a valid historical quote row from the archive grid.",
+                                "No Selection Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                DataGridViewRow selectedRow = quoteDataGridView.CurrentRow;
+
+                string uniqueQuoteId = selectedRow.Cells["QuoteQuoteID"].Value?.ToString() ?? "0";
+                string jobRequestIdStr = selectedRow.Cells["QuoteJobRequestID"].Value?.ToString() ?? "0";
+
+                string dateIssuedStr = "Pending";
+                if (selectedRow.Cells["DateIssued"].Value != null && selectedRow.Cells["DateIssued"].Value != DBNull.Value)
+                {
+                    if (DateTime.TryParse(selectedRow.Cells["DateIssued"].Value.ToString(), out DateTime parsedDate))
+                    {
+                        dateIssuedStr = parsedDate.ToString("dd MMMM yyyy");
+                    }
+                }
+
+                decimal grandTotalAmount = 0.00m;
+                if (selectedRow.Cells["QuoteAmount"].Value != null && selectedRow.Cells["QuoteAmount"].Value != DBNull.Value)
+                {
+                    decimal.TryParse(selectedRow.Cells["QuoteAmount"].Value.ToString(), out grandTotalAmount);
+                }
+
+                string fetchedAddress = "No Address Profile Found";
+
+                if (int.TryParse(jobRequestIdStr, out int parsedJobID))
+                {
+                    var jobRequestTable = this.jobRequestTableAdapter.GetSiteAddress(parsedJobID);
+
+                    if (jobRequestTable != null && jobRequestTable.Rows.Count > 0)
+                    {
+                        var matchedRow = jobRequestTable[0];
+
+                        if (!matchedRow.IsNull("siteAddress") && !string.IsNullOrWhiteSpace(matchedRow.siteAddress))
+                        {
+                            fetchedAddress = matchedRow.siteAddress;
+                        }
+                    }
+                    else
+                    {
+                        fetchedAddress = $"Job Request Reference #{parsedJobID}\nField Site Evaluation Pending";
+                    }
+
+                    SaveFileDialog saveFileDialog = new SaveFileDialog();
+                    saveFileDialog.Filter = "PDF Documents (*.pdf)|*.pdf";
+                    saveFileDialog.FileName = $"Quotation_GT_{uniqueQuoteId}.pdf";
+
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        string chosenFilePath = saveFileDialog.FileName;
+
+                        BuildArchiveQuotePDF(chosenFilePath, uniqueQuoteId, jobRequestIdStr, dateIssuedStr, grandTotalAmount, fetchedAddress);
+
+                        if (int.TryParse(uniqueQuoteId, out int parsedQuoteID))
+                        {
+                            this.quoteTableAdapter.UpdateQuoteFilePath(chosenFilePath, parsedQuoteID);
+                            selectedRow.Cells["QuoteFilePath"].Value = chosenFilePath;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error reading quote parameters, compiling PDF, or updating database row record: {ex.Message}",
+                                "System Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BuildArchiveQuotePDF(string outputPath, string quoteId, string jobId, string dateIssued, decimal subTotal, string recipientInfo)
+        {
+            iTextSharp.text.Document document = new iTextSharp.text.Document(iTextSharp.text.PageSize.A4, 36f, 36f, 36f, 36f);
+
+            try
+            {
+                PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(outputPath, FileMode.Create));
+                document.Open();
+
+                BaseColor customBlack = new BaseColor(15, 15, 15);
+                BaseColor customGreen = new BaseColor(10, 75, 20);
+                BaseColor lightGray = new BaseColor(235, 235, 235);
+                BaseColor tableHeaderBg = new BaseColor(10, 10, 10);
+
+                iTextSharp.text.Font titleFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 28f, customGreen);
+                iTextSharp.text.Font headerWhiteFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 12f, BaseColor.WHITE);
+                iTextSharp.text.Font bodyWhiteFont = FontFactory.GetFont(FontFactory.HELVETICA, 10f, BaseColor.WHITE);
+                iTextSharp.text.Font bodyBlackFont = FontFactory.GetFont(FontFactory.HELVETICA, 10f, BaseColor.BLACK);
+                iTextSharp.text.Font boldBlackFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 10f, BaseColor.BLACK);
+                iTextSharp.text.Font headerWhiteFontSmall = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 10f, BaseColor.WHITE);
+
+                decimal grandTotal = subTotal;
+                subTotal = grandTotal / 1.15m;
+                decimal vatValue = grandTotal - subTotal;
+
+                PdfPTable headerTable = new PdfPTable(2);
+                headerTable.WidthPercentage = 100f;
+                headerTable.SetWidths(new float[] { 35f, 65f });
+
+                PdfPCell leftHeaderCell = new PdfPCell { BackgroundColor = customBlack, Padding = 20f, Border = PdfPCell.NO_BORDER };
+                leftHeaderCell.AddElement(new Paragraph("THE GIANT GROUP\n\n", FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 14f, BaseColor.WHITE)));
+                leftHeaderCell.AddElement(new Paragraph("7 Baumann rd, Head Office\nDurban, Queensburgh Industrial\ninfo@gianttreefelling.co.za\n084 833 1373", bodyWhiteFont));
+                headerTable.AddCell(leftHeaderCell);
+
+                PdfPCell rightHeaderCell = new PdfPCell { Border = PdfPCell.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT, PaddingTop = 30f };
+                Paragraph mainTitle = new Paragraph("— QUOTATION —\n\n\n", titleFont);
+                mainTitle.Alignment = Element.ALIGN_CENTER;
+                rightHeaderCell.AddElement(mainTitle);
+
+                Paragraph quoteMeta = new Paragraph($"Date: {dateIssued}\n", boldBlackFont);
+                Paragraph quoteNo = new Paragraph($"Quotation NO. GT – {quoteId}\n", FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 10f, customGreen));
+                quoteMeta.Alignment = Element.ALIGN_RIGHT;
+                quoteNo.Alignment = Element.ALIGN_RIGHT;
+                rightHeaderCell.AddElement(quoteMeta);
+                rightHeaderCell.AddElement(quoteNo);
+                headerTable.AddCell(rightHeaderCell);
+
+                document.Add(headerTable);
+
+                // ADJUSTMENT 1: Increased separation gap between the header and the data panel
+                document.Add(new Chunk("\n\n\n"));
+
+                PdfPTable bodyTable = new PdfPTable(2);
+                bodyTable.WidthPercentage = 100f;
+                bodyTable.SetWidths(new float[] { 35f, 65f });
+
+                PdfPCell recipientCell = new PdfPCell { BackgroundColor = customBlack, Padding = 20f, Border = PdfPCell.NO_BORDER };
+                recipientCell.AddElement(new Paragraph("R E C I P I E N T\n\n", FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 12f, BaseColor.WHITE)));
+                recipientCell.AddElement(new Paragraph(recipientInfo, bodyWhiteFont));
+                bodyTable.AddCell(recipientCell);
+
+                PdfPCell itemsGridCell = new PdfPCell { Border = PdfPCell.NO_BORDER, PaddingLeft = 15f };
+                PdfPTable innerItemsTable = new PdfPTable(2);
+                innerItemsTable.WidthPercentage = 100f;
+                innerItemsTable.SetWidths(new float[] { 75f, 25f });
+
+                innerItemsTable.AddCell(new PdfPCell(new Phrase("Description", headerWhiteFont)) { BackgroundColor = tableHeaderBg, Padding = 8f });
+                innerItemsTable.AddCell(new PdfPCell(new Phrase("Price", headerWhiteFont)) { BackgroundColor = tableHeaderBg, Padding = 8f, HorizontalAlignment = Element.ALIGN_RIGHT });
+
+                string itemString = $"Tree Felling Services Rendered (Job Request Reference #{jobId})";
+
+                // ADJUSTMENT 2: Added internal padding directly to original cell definitions to increase vertical footprint
+                innerItemsTable.AddCell(new PdfPCell(new Phrase(itemString, bodyBlackFont)) { PaddingTop = 14f, PaddingBottom = 14f, PaddingLeft = 8f, PaddingRight = 8f, BackgroundColor = lightGray });
+                innerItemsTable.AddCell(new PdfPCell(new Phrase($"R {subTotal:N2}", bodyBlackFont)) { PaddingTop = 14f, PaddingBottom = 14f, PaddingLeft = 8f, PaddingRight = 8f, HorizontalAlignment = Element.ALIGN_RIGHT, BackgroundColor = lightGray });
+
+                innerItemsTable.AddCell(new PdfPCell(new Phrase("All cuttings to be removed to nearest municipal dump site", bodyBlackFont)) { PaddingTop = 14f, PaddingBottom = 14f, PaddingLeft = 8f, PaddingRight = 8f });
+                innerItemsTable.AddCell(new PdfPCell(new Phrase("", bodyBlackFont)) { PaddingTop = 14f, PaddingBottom = 14f, PaddingLeft = 8f, PaddingRight = 8f });
+
+                itemsGridCell.AddElement(innerItemsTable);
+
+                PdfPTable totalsTable = new PdfPTable(2);
+                totalsTable.WidthPercentage = 65f;
+                totalsTable.HorizontalAlignment = Element.ALIGN_RIGHT;
+                totalsTable.SpacingBefore = 15f;
+
+                totalsTable.AddCell(new PdfPCell(new Phrase("Sub Total", boldBlackFont)) { Border = PdfPCell.NO_BORDER, Padding = 5f });
+                totalsTable.AddCell(new PdfPCell(new Phrase($"R {subTotal:N2}", bodyBlackFont)) { Border = PdfPCell.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT, Padding = 5f });
+
+                totalsTable.AddCell(new PdfPCell(new Phrase("VAT (15%)", boldBlackFont)) { Border = PdfPCell.NO_BORDER, Padding = 5f });
+                totalsTable.AddCell(new PdfPCell(new Phrase($"R {vatValue:N2}", bodyBlackFont)) { Border = PdfPCell.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT, Padding = 5f });
+
+                totalsTable.AddCell(new PdfPCell(new Phrase("TOTAL", headerWhiteFontSmall)) { BackgroundColor = customGreen, Padding = 6f });
+                totalsTable.AddCell(new PdfPCell(new Phrase($"R {grandTotal:N2}", headerWhiteFontSmall)) { BackgroundColor = customGreen, HorizontalAlignment = Element.ALIGN_RIGHT, Padding = 6f });
+
+                itemsGridCell.AddElement(totalsTable);
+                bodyTable.AddCell(itemsGridCell);
+
+                document.Add(bodyTable);
+
+                // ADJUSTMENT 3: Increased structural breaks to push corporate summary down near the page bounds
+                document.Add(new Chunk("\n\n\n\n\n"));
+
+                PdfPTable footerPanel = new PdfPTable(1);
+                footerPanel.WidthPercentage = 100f;
+                PdfPCell footerCell = new PdfPCell { BackgroundColor = lightGray, Padding = 12f, Border = PdfPCell.NO_BORDER };
+
+                footerCell.AddElement(new Paragraph("BANKING DETAILS\n", boldBlackFont));
+                footerCell.AddElement(new Paragraph(
+                    "Account Holder: Emmans Transport cc t/a TheGiantGroup | Account No: 250898500\n" +
+                    "Standard Bank, Cheque account.\n" +
+                    "Reg No: 2008/169586/23. Vat No: 4200259861.\n" +
+                    "TheGiantGroup, CK No: 2008/169586/23.", bodyBlackFont));
+
+                footerPanel.AddCell(footerCell);
+                document.Add(footerPanel);
+
+                // ADJUSTMENT 4: Final minor separation spacing before sign-off block execution
+                document.Add(new Chunk("\n\n"));
+
+                PdfPTable signOffTable = new PdfPTable(2);
+                signOffTable.WidthPercentage = 100f;
+
+                PdfPCell thanksCell = new PdfPCell(new Paragraph("\"Pursuing excellence in every endeavor.\"", FontFactory.GetFont(FontFactory.TIMES_ITALIC, 11f, customGreen))) { Border = PdfPCell.NO_BORDER, VerticalAlignment = Element.ALIGN_BOTTOM };
+                PdfPCell execCell = new PdfPCell(new Paragraph("Shaphan Pillay\nThe Giant Group\nCEO", boldBlackFont)) { Border = PdfPCell.NO_BORDER, HorizontalAlignment = Element.ALIGN_RIGHT };
+
+                signOffTable.AddCell(thanksCell);
+                signOffTable.AddCell(execCell);
+                document.Add(signOffTable);
+
+                MessageBox.Show($"Quotation PDF for Document GT-{quoteId} has been successfully saved to your device!", "Export Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while compiling the PDF payload: {ex.Message}", "PDF Rendering Defect", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                document.Close();
+            }
+        }
+
     }
 }
