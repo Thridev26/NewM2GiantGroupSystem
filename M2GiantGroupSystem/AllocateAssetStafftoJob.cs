@@ -175,14 +175,74 @@ namespace M2GiantGroupSystem
             {
                 // 1. Refresh the Assignment list first
                 this.jobAssetAssignmentTableAdapter.Fill(this.groupWst1DataSet.JobAssetAssignment);
+                this.jobStaffAssignmentTableAdapter.Fill(this.groupWst1DataSet.JobStaffAssignment);
 
                 // 2. Then refresh the available assets (the query will re-run)
                 this.ownedAssetTableAdapter.FillByAvailableOwned(this.groupWst1DataSet.OwnedAsset);
                 this.hiredAssetTableAdapter.FillByAvailableHired(this.groupWst1DataSet.HiredAsset);
+
+                // 3. Refresh "Available" Staff Grid
+                // Use the new method we just created in the .xsd
+                this.staffTableAdapter.FillByAvailableStaff(this.groupWst1DataSet.Staff);
             }
             catch (System.Exception ex)
             {
                 MessageBox.Show("Error refreshing data: " + ex.Message);
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            // 1. Safety Check: Ensure a job and a staff member are selected
+            if (string.IsNullOrEmpty(jobIDBox.Text) || staffDataGridView.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a Job and a Staff member.");
+                return;
+            }
+
+            // 2. Confirmation
+            var row = staffDataGridView.SelectedRows[0];
+            string name = row.Cells["firstName"].Value.ToString();
+            var confirm = MessageBox.Show($"Assign {name} to this job?", "Confirm", MessageBoxButtons.YesNo);
+
+            if (confirm == DialogResult.Yes)
+            {
+                int staffId = (int)row.Cells["staffID"].Value;
+                int jobId = int.Parse(jobIDBox.Text);
+
+                // 3. Execute Insert
+                jobStaffAssignmentTableAdapter.InsertStaff(staffId, jobId, DateTime.Now.ToString());
+
+                // 4. Update UI
+                RefreshAllGrids();
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            // 1. Check if a row is selected in the ASSIGNMENT grid (the one on the right)
+            if (jobStaffAssignmentDataGridView.SelectedRows.Count > 0)
+            {
+                // 2. Get data from the Assignment grid
+                var row = jobStaffAssignmentDataGridView.SelectedRows[0];
+                int staffId = (int)row.Cells["staffID_T"].Value;
+                int jobId = (int)row.Cells["jobID_T"].Value;
+
+                // 3. Confirmation
+                var confirm = MessageBox.Show("Remove this staff member from the job?", "Confirm Removal", MessageBoxButtons.YesNo);
+
+                if (confirm == DialogResult.Yes)
+                {
+                    // 4. Execute Delete using the query created in the XSD
+                    jobStaffAssignmentTableAdapter.DeleteStaff(staffId, jobId);
+
+                    // 5. Update UI
+                    RefreshAllGrids();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select an assignment row from the right-hand grid to remove.");
             }
         }
     }
