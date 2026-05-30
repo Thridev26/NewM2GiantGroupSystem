@@ -77,5 +77,27 @@ namespace M2GiantGroupSystem
                 dataGridView1.DataSource = adapter.GetDataBySearch(txtSearch.Text);
             }
         }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Ensure the user didn't double-click the header row
+            if (e.RowIndex >= 0)
+            {
+                // Get the specific row that was double-clicked
+                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+
+                // Fill the Job ID
+                jobIDBox.Text = row.Cells["jobID"].Value.ToString();
+
+                // Combine Name and Surname for the name box
+                string fullName = row.Cells["clientName"].Value.ToString() + " " +
+                                  row.Cells["clientSurname"].Value.ToString();
+                clientNameBox.Text = fullName;
+
+                // Fill the Address and Status
+                addressBox.Text = row.Cells["siteAddress"].Value.ToString();
+                statusBox.Text = row.Cells["jobStatus"].Value.ToString();
+            }
+        }
     }
 }
