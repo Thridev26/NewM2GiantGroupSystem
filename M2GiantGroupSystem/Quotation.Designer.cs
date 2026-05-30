@@ -468,6 +468,7 @@
             this.dtpSearchDate.Name = "dtpSearchDate";
             this.dtpSearchDate.Size = new System.Drawing.Size(200, 26);
             this.dtpSearchDate.TabIndex = 48;
+            this.dtpSearchDate.ValueChanged += new System.EventHandler(this.dtpSearchDate_ValueChanged);
             // 
             // label24
             // 
@@ -495,6 +496,8 @@
             this.txtSearchRequests.Name = "txtSearchRequests";
             this.txtSearchRequests.Size = new System.Drawing.Size(272, 26);
             this.txtSearchRequests.TabIndex = 45;
+            this.txtSearchRequests.TextChanged += new System.EventHandler(this.txtSearchRequests_TextChanged);
+            this.txtSearchRequests.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearchRequests_KeyPress);
             // 
             // cmbSearchColumn
             // 
@@ -521,6 +524,7 @@
             this.cmbSearchColumn.Name = "cmbSearchColumn";
             this.cmbSearchColumn.Size = new System.Drawing.Size(267, 28);
             this.cmbSearchColumn.TabIndex = 44;
+            this.cmbSearchColumn.SelectedIndexChanged += new System.EventHandler(this.cmbSearchColumn_SelectedIndexChanged);
             // 
             // label15
             // 
