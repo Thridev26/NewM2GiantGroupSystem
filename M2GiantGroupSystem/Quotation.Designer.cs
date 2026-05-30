@@ -135,19 +135,19 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.quoteDataGridView = new System.Windows.Forms.DataGridView();
-            this.QuoteID_T = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.QuoteJobRequestID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateIssued = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.expiryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateGenerated = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.QouteAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.QuoteQuoteStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.QuoteFilePath = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quoteBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label3 = new System.Windows.Forms.Label();
             this.jobRequestTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobRequestTableAdapter();
             this.jobTypeTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobTypeTableAdapter();
             this.quoteTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.QuoteTableAdapter();
+            this.QuoteID_T = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QuoteJobRequestID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateIssued = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.expiryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateGenerated = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QuoteAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QuoteQuoteStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QuoteFilePath = new System.Windows.Forms.DataGridViewTextBoxColumn();
             filePathLabel = new System.Windows.Forms.Label();
             urgencyLevelLabel = new System.Windows.Forms.Label();
             latitudeLabel = new System.Windows.Forms.Label();
@@ -583,7 +583,7 @@
             // 
             this.button9.BackColor = System.Drawing.Color.White;
             this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button9.Location = new System.Drawing.Point(1324, 880);
+            this.button9.Location = new System.Drawing.Point(1241, 871);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(244, 42);
             this.button9.TabIndex = 37;
@@ -606,7 +606,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.giantGroupLogo.BackColor = System.Drawing.Color.White;
             this.giantGroupLogo.Image = ((System.Drawing.Image)(resources.GetObject("giantGroupLogo.Image")));
-            this.giantGroupLogo.Location = new System.Drawing.Point(917, 311);
+            this.giantGroupLogo.Location = new System.Drawing.Point(827, 311);
             this.giantGroupLogo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.giantGroupLogo.Name = "giantGroupLogo";
             this.giantGroupLogo.Size = new System.Drawing.Size(658, 495);
@@ -685,7 +685,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(1554, 162);
+            this.dataGridView1.Size = new System.Drawing.Size(1464, 162);
             this.dataGridView1.TabIndex = 26;
             this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
@@ -1291,7 +1291,7 @@
             this.dateIssued,
             this.expiryDate,
             this.dateGenerated,
-            this.QouteAmount,
+            this.QuoteAmount,
             this.QuoteQuoteStatus,
             this.QuoteFilePath});
             this.quoteDataGridView.DataSource = this.quoteBindingSource;
@@ -1301,6 +1301,34 @@
             this.quoteDataGridView.RowTemplate.Height = 28;
             this.quoteDataGridView.Size = new System.Drawing.Size(1070, 220);
             this.quoteDataGridView.TabIndex = 24;
+            // 
+            // quoteBindingSource
+            // 
+            this.quoteBindingSource.DataMember = "Quote";
+            this.quoteBindingSource.DataSource = this.groupWst1DataSet;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(3, 11);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(238, 22);
+            this.label3.TabIndex = 23;
+            this.label3.Text = "Historical System Archive";
+            // 
+            // jobRequestTableAdapter
+            // 
+            this.jobRequestTableAdapter.ClearBeforeFill = true;
+            // 
+            // jobTypeTableAdapter
+            // 
+            this.jobTypeTableAdapter.ClearBeforeFill = true;
+            // 
+            // quoteTableAdapter
+            // 
+            this.quoteTableAdapter.ClearBeforeFill = true;
             // 
             // QuoteID_T
             // 
@@ -1338,12 +1366,12 @@
             this.dateGenerated.MinimumWidth = 8;
             this.dateGenerated.Name = "dateGenerated";
             // 
-            // QouteAmount
+            // QuoteAmount
             // 
-            this.QouteAmount.DataPropertyName = "amount";
-            this.QouteAmount.HeaderText = "amount";
-            this.QouteAmount.MinimumWidth = 8;
-            this.QouteAmount.Name = "QouteAmount";
+            this.QuoteAmount.DataPropertyName = "amount";
+            this.QuoteAmount.HeaderText = "amount";
+            this.QuoteAmount.MinimumWidth = 8;
+            this.QuoteAmount.Name = "QuoteAmount";
             // 
             // QuoteQuoteStatus
             // 
@@ -1359,38 +1387,11 @@
             this.QuoteFilePath.MinimumWidth = 8;
             this.QuoteFilePath.Name = "QuoteFilePath";
             // 
-            // quoteBindingSource
-            // 
-            this.quoteBindingSource.DataMember = "Quote";
-            this.quoteBindingSource.DataSource = this.groupWst1DataSet;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(3, 11);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(238, 22);
-            this.label3.TabIndex = 23;
-            this.label3.Text = "Historical System Archive";
-            // 
-            // jobRequestTableAdapter
-            // 
-            this.jobRequestTableAdapter.ClearBeforeFill = true;
-            // 
-            // jobTypeTableAdapter
-            // 
-            this.jobTypeTableAdapter.ClearBeforeFill = true;
-            // 
-            // quoteTableAdapter
-            // 
-            this.quoteTableAdapter.ClearBeforeFill = true;
-            // 
             // Quotation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1609, 1001);
             this.Controls.Add(this.tabControl1);
             this.Name = "Quotation";
@@ -1519,7 +1520,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dateIssued;
         private System.Windows.Forms.DataGridViewTextBoxColumn expiryDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateGenerated;
-        private System.Windows.Forms.DataGridViewTextBoxColumn QouteAmount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QuoteAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn QuoteQuoteStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn QuoteFilePath;
     }
