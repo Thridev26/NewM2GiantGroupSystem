@@ -1,7 +1,10 @@
-﻿using System;
+﻿using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -10,8 +13,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
 
 namespace M2GiantGroupSystem
 {
@@ -745,5 +746,188 @@ namespace M2GiantGroupSystem
             }
         }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+            // 1. Initialize the file dialog component
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                // Set the initial directory to the user's Documents folder
+                openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+                // Allow all file extensions as requested
+                openFileDialog.Filter = "All files (*.*)|*.*";
+                openFileDialog.FilterIndex = 1;
+                openFileDialog.RestoreDirectory = true;
+                openFileDialog.Title = "Select Quote Document File";
+
+                // 2. Show the dialog window and check if the user actually selected a file
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // 3. Grab the full file path chosen by the user
+                    string selectedFilePath = openFileDialog.FileName;
+
+                    // 4. Assign the string path directly into your UI TextBox
+                    txtFilePath.Text = selectedFilePath;
+                }
+            }
+        }
+
+        private void txtEditAmount_TextChanged(object sender, EventArgs e)
+        {
+            // 1. Check if the subtotal box has valid numeric input
+            if (decimal.TryParse(txtEditAmount.Text, out decimal subTotal))
+            {
+                // 2. Perform live calculations (15% VAT rate)
+                decimal vatValue = subTotal * 0.15m;
+                decimal grandTotal = subTotal + vatValue;
+
+                // 3. Update the display boxes live, formatted cleanly to 2 decimal places
+                textBox4.Text = vatValue.ToString("F2");
+                textBox2.Text = grandTotal.ToString("F2"); // Replace with your grand total textbox name
+            }
+            else
+            {
+                // 4. Fallback: Clear or set fields to 0.00 if the subtotal textbox is empty or invalid
+                textBox4.Text = "0.00";
+                textBox2.Text = "0.00"; // Replace with your grand total textbox name
+            }
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            // 1. Ensure a row is actually selected in your grid
+            if (quoteDataGridView.CurrentRow == null)
+            {
+                MessageBox.Show("Please select a quotation from the list first.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                DataGridViewRow selectedRow = quoteDataGridView.CurrentRow;
+
+                // 2. STRICT CHECK: Reject the operation if the file path column is empty or null
+                if (selectedRow.Cells["QuoteFilePath"].Value == null || string.IsNullOrWhiteSpace(selectedRow.Cells["QuoteFilePath"].Value.ToString()))
+                {
+                    MessageBox.Show("You cannot print this quote because the PDF has not been generated yet.\n\n" +
+                                    "Please click the 'Generate and Export as PDF' button first to save the document.",
+                                    "Friendly Reminder", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return; // Stops the click method execution completely right here!
+                }
+
+                // 3. Since the path is guaranteed to exist now, grab it safely
+                string targetPdfPath = selectedRow.Cells["QuoteFilePath"].Value.ToString();
+
+                // 4. Open the existing file directly using the system default viewer
+                if (File.Exists(targetPdfPath))
+                {
+                    ProcessStartInfo openPdfShell = new ProcessStartInfo
+                    {
+                        FileName = targetPdfPath,
+                        UseShellExecute = true
+                    };
+                    Process.Start(openPdfShell);
+                }
+                else
+                {
+                    // Catch if the database has a path string, but someone deleted the file off the hard drive
+                    MessageBox.Show($"The PDF file path is registered, but the file could not be found on your device at:\n{targetPdfPath}\n\nPlease re-generate the PDF.",
+                                    "File Missing", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An unexpected error occurred while trying to view the quote: " + ex.Message,
+                                "System Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            // 1. Safety: ensure a quote row is selected
+            if (quoteDataGridView.CurrentRow == null || quoteDataGridView.CurrentRow.IsNewRow)
+            {
+                MessageBox.Show("Please select a valid quotation record from the table list to delete.",
+                                "No Record Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DataGridViewRow selectedRow = quoteDataGridView.CurrentRow;
+
+            // 2. Read primary key (Quote ID) and the related JobRequest ID (if present) so we can acknowledge it
+            string quoteIdStr = selectedRow.Cells["QuoteQuoteID"].Value?.ToString();
+            string jobRequestIdStr = selectedRow.Cells["QuoteJobRequestID"].Value?.ToString() ?? "N/A";
+
+            if (string.IsNullOrWhiteSpace(quoteIdStr) || quoteIdStr == "0")
+            {
+                MessageBox.Show("The selected row does not contain a valid unique primary key sequence ID.",
+                                "Data Integrity Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // 3. Ask the user to confirm deletion and explicitly acknowledge the linked JobRequest
+            DialogResult userChoice = MessageBox.Show(
+                $"Are you absolutely certain you want to permanently delete Quote ID #{quoteIdStr}?\n\n" +
+                $"Linked Job Request ID: {jobRequestIdStr}\n\n" +
+                "Important: The Job Request record will remain in the JobRequest table — only the quote entry will be removed.",
+                "Confirm Quote Deletion",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning,
+                MessageBoxDefaultButton.Button2
+            );
+
+            if (userChoice != DialogResult.Yes)
+            {
+                return;
+            }
+
+            try
+            {
+                int parsedQuoteID = Convert.ToInt32(quoteIdStr);
+
+                // 4. Use the TableAdapter's underlying connection to run a safe parameterized delete.
+                //    This avoids relying on designer-generated Delete methods and keeps the operation explicit.
+                var sqlConn = (System.Data.SqlClient.SqlConnection)this.quoteTableAdapter.Connection;
+                bool openedHere = false;
+                if (sqlConn.State != System.Data.ConnectionState.Open)
+                {
+                    sqlConn.Open();
+                    openedHere = true;
+                }
+
+                using (var cmd = sqlConn.CreateCommand())
+                {
+                    cmd.CommandText = "DELETE FROM [Quote] WHERE quoteID = @QuoteID";
+                    cmd.Parameters.AddWithValue("@QuoteID", parsedQuoteID);
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected == 0)
+                    {
+                        MessageBox.Show($"No quote row was deleted. Quote ID #{parsedQuoteID} may not exist anymore.",
+                                        "Delete Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+
+                if (openedHere)
+                {
+                    sqlConn.Close();
+                }
+
+                // 5. Refresh UI / dataset so the grid stays in sync
+                this.quoteTableAdapter.Fill(this.groupWst1DataSet.Quote);
+                UpdateQuoteCount();
+
+                // 6. Friendly, explicit feedback for lecturer / user showing we acknowledged the JobRequest link
+                MessageBox.Show($"Quote #{parsedQuoteID} has been removed from the Quote table.\n\n" +
+                                $"Linked Job Request #{jobRequestIdStr} remains in the JobRequest table and is unaffected by this operation.\n\n" +
+                                "If you want to re-create a quote for that Job Request, open the Job Request and generate a new quote.",
+                                "Deletion Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while deleting the quote: {ex.Message}",
+                                "Deletion Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

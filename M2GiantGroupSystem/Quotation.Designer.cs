@@ -135,11 +135,6 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.quoteDataGridView = new System.Windows.Forms.DataGridView();
-            this.quoteBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.label3 = new System.Windows.Forms.Label();
-            this.jobRequestTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobRequestTableAdapter();
-            this.jobTypeTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobTypeTableAdapter();
-            this.quoteTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.QuoteTableAdapter();
             this.QuoteID_T = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QuoteJobRequestID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateIssued = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -148,6 +143,11 @@
             this.QouteAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QuoteQuoteStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QuoteFilePath = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quoteBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label3 = new System.Windows.Forms.Label();
+            this.jobRequestTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobRequestTableAdapter();
+            this.jobTypeTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobTypeTableAdapter();
+            this.quoteTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.QuoteTableAdapter();
             filePathLabel = new System.Windows.Forms.Label();
             urgencyLevelLabel = new System.Windows.Forms.Label();
             latitudeLabel = new System.Windows.Forms.Label();
@@ -1002,27 +1002,29 @@
             // button11
             // 
             this.button11.BackColor = System.Drawing.Color.White;
-            this.button11.Location = new System.Drawing.Point(1000, 341);
+            this.button11.Location = new System.Drawing.Point(850, 337);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(238, 42);
             this.button11.TabIndex = 52;
             this.button11.Text = "Delete Quote";
             this.button11.UseVisualStyleBackColor = false;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
             // button10
             // 
             this.button10.BackColor = System.Drawing.Color.White;
-            this.button10.Location = new System.Drawing.Point(724, 341);
+            this.button10.Location = new System.Drawing.Point(574, 337);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(238, 42);
             this.button10.TabIndex = 51;
             this.button10.Text = "Generate and Print";
             this.button10.UseVisualStyleBackColor = false;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
             // btnExportPDF
             // 
             this.btnExportPDF.BackColor = System.Drawing.Color.White;
-            this.btnExportPDF.Location = new System.Drawing.Point(447, 341);
+            this.btnExportPDF.Location = new System.Drawing.Point(297, 337);
             this.btnExportPDF.Name = "btnExportPDF";
             this.btnExportPDF.Size = new System.Drawing.Size(238, 42);
             this.btnExportPDF.TabIndex = 50;
@@ -1034,7 +1036,7 @@
             // 
             this.button7.BackColor = System.Drawing.Color.White;
             this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button7.Location = new System.Drawing.Point(1027, 888);
+            this.button7.Location = new System.Drawing.Point(878, 874);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(211, 42);
             this.button7.TabIndex = 49;
@@ -1066,7 +1068,7 @@
             this.groupBox1.Controls.Add(this.txtEditFilePath);
             this.groupBox1.Controls.Add(this.txtEditJobRequestID);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(170, 444);
+            this.groupBox1.Location = new System.Drawing.Point(21, 430);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1068, 438);
             this.groupBox1.TabIndex = 47;
@@ -1131,6 +1133,7 @@
             this.txtEditAmount.Name = "txtEditAmount";
             this.txtEditAmount.Size = new System.Drawing.Size(287, 28);
             this.txtEditAmount.TabIndex = 52;
+            this.txtEditAmount.TextChanged += new System.EventHandler(this.txtEditAmount_TextChanged);
             // 
             // label20
             // 
@@ -1178,6 +1181,7 @@
             this.button4.TabIndex = 46;
             this.button4.Text = "Browse";
             this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // cmbEditStatus
             // 
@@ -1218,7 +1222,7 @@
             // button5
             // 
             this.button5.BackColor = System.Drawing.Color.White;
-            this.button5.Location = new System.Drawing.Point(170, 341);
+            this.button5.Location = new System.Drawing.Point(20, 337);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(238, 42);
             this.button5.TabIndex = 26;
@@ -1235,7 +1239,7 @@
             "Not Sent",
             "Accepted",
             "Rejected"});
-            this.comboBox2.Location = new System.Drawing.Point(422, 43);
+            this.comboBox2.Location = new System.Drawing.Point(271, 42);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(234, 28);
             this.comboBox2.TabIndex = 28;
@@ -1246,7 +1250,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(166, 50);
+            this.label4.Location = new System.Drawing.Point(15, 49);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(171, 22);
             this.label4.TabIndex = 27;
@@ -1254,7 +1258,7 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(1118, 412);
+            this.textBox3.Location = new System.Drawing.Point(968, 398);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(120, 26);
             this.textBox3.TabIndex = 26;
@@ -1264,7 +1268,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(896, 413);
+            this.label5.Location = new System.Drawing.Point(746, 399);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(193, 22);
             this.label5.TabIndex = 25;
@@ -1287,40 +1291,12 @@
             this.QuoteQuoteStatus,
             this.QuoteFilePath});
             this.quoteDataGridView.DataSource = this.quoteBindingSource;
-            this.quoteDataGridView.Location = new System.Drawing.Point(170, 98);
+            this.quoteDataGridView.Location = new System.Drawing.Point(19, 97);
             this.quoteDataGridView.Name = "quoteDataGridView";
             this.quoteDataGridView.RowHeadersWidth = 62;
             this.quoteDataGridView.RowTemplate.Height = 28;
             this.quoteDataGridView.Size = new System.Drawing.Size(1070, 220);
             this.quoteDataGridView.TabIndex = 24;
-            // 
-            // quoteBindingSource
-            // 
-            this.quoteBindingSource.DataMember = "Quote";
-            this.quoteBindingSource.DataSource = this.groupWst1DataSet;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(3, 11);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(238, 22);
-            this.label3.TabIndex = 23;
-            this.label3.Text = "Historical System Archive";
-            // 
-            // jobRequestTableAdapter
-            // 
-            this.jobRequestTableAdapter.ClearBeforeFill = true;
-            // 
-            // jobTypeTableAdapter
-            // 
-            this.jobTypeTableAdapter.ClearBeforeFill = true;
-            // 
-            // quoteTableAdapter
-            // 
-            this.quoteTableAdapter.ClearBeforeFill = true;
             // 
             // QuoteID_T
             // 
@@ -1378,6 +1354,34 @@
             this.QuoteFilePath.HeaderText = "filePath";
             this.QuoteFilePath.MinimumWidth = 8;
             this.QuoteFilePath.Name = "QuoteFilePath";
+            // 
+            // quoteBindingSource
+            // 
+            this.quoteBindingSource.DataMember = "Quote";
+            this.quoteBindingSource.DataSource = this.groupWst1DataSet;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(3, 11);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(238, 22);
+            this.label3.TabIndex = 23;
+            this.label3.Text = "Historical System Archive";
+            // 
+            // jobRequestTableAdapter
+            // 
+            this.jobRequestTableAdapter.ClearBeforeFill = true;
+            // 
+            // jobTypeTableAdapter
+            // 
+            this.jobTypeTableAdapter.ClearBeforeFill = true;
+            // 
+            // quoteTableAdapter
+            // 
+            this.quoteTableAdapter.ClearBeforeFill = true;
             // 
             // Quotation
             // 
