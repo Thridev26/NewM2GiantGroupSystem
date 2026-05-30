@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Select Location</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        #search-container {
+            position: absolute;
+            top: 10px;
+            left: 50px;
+            z-index: 1000;
+            background: white;
+            padding: 8px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        #map {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        input, button {
+            padding: 6px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="search-container">
+        <input type="text" id="addressInput" placeholder="Enter address (e.g., 12 Palm Grove, Durban)" style="width: 250px;">
+        <button onclick="searchAddress()">Search</button>
+    </div>
+
+    <div id="map"></div>
+
+    <script>
+        // Initialize map centered around South Africa default view
+        var map = L.map('map').setView([-29.8587, 31.0218], 11);
+        L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png?api_key=4392d4d2-af70-4b5a-8de9-d773318cb9c2', {
+            maxZoom: 20,
+            attribution: '&copy; Stadia Maps &copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        var marker;
+
+        // Function to handle map clicks / pin drops
+        function onMapClick(lat, lng) {
+            if (marker) {
+                marker.setLatLng([lat, lng]);
+            } else {
+                marker = L.marker([lat, lng], { draggable: true }).addTo(map);
+                marker.on('dragend', function (e) {
+                    var position = marker.getLatLng();
+                    sendCoordsToCSharp(position.lat, position.lng);
+                });
+            }
+            sendCoordsToCSharp(lat, lng);
+        }
+
+        map.on('click', function (e) {
+            onMapClick(e.latlng.lat, e.latlng.lng);
+        });
+
+        // Free address lookup search (Geocoding via Nominatim)
+        function searchAddress() {
+            var address = document.getElementById('addressInput').value;
+            if (!address) return;
+
+            // Adding a small delay/timeout header to be polite to the free service
+            fetch('https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(address))
+                .then(response => response.json())
+                .then(data => {
+                    if (data.length > 0) {
+                        var lat = parseFloat(data[0].lat);
+                        var lng = parseFloat(data[0].lon);
+                        map.setView([lat, lng], 16);
+                        onMapClick(lat, lng);
+                    } else {
+                        alert("Address not found. Please try typing a different search term.");
+                    }
+                });
+        }
+
+        // Send coordinates back safely to WinForms C# via WebView2 message channel
+        function sendCoordsToCSharp(lat, lng) {
+            if (window.chrome && window.chrome.webview) {
+                var coordData = { latitude: lat, longitude: lng };
+                window.chrome.webview.postMessage(coordData);
+            }
+        }
+    </script>
+</body>
+</html>
