@@ -135,11 +135,6 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.quoteDataGridView = new System.Windows.Forms.DataGridView();
-            this.quoteBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.label3 = new System.Windows.Forms.Label();
-            this.jobRequestTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobRequestTableAdapter();
-            this.jobTypeTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobTypeTableAdapter();
-            this.quoteTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.QuoteTableAdapter();
             this.QuoteID_T = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QuoteJobRequestID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateIssued = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -148,6 +143,11 @@
             this.QuoteAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QuoteQuoteStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QuoteFilePath = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quoteBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label3 = new System.Windows.Forms.Label();
+            this.jobRequestTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobRequestTableAdapter();
+            this.jobTypeTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobTypeTableAdapter();
+            this.quoteTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.QuoteTableAdapter();
             filePathLabel = new System.Windows.Forms.Label();
             urgencyLevelLabel = new System.Windows.Forms.Label();
             latitudeLabel = new System.Windows.Forms.Label();
@@ -307,60 +307,60 @@
             // label22
             // 
             label22.AutoSize = true;
-            label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             label22.Location = new System.Drawing.Point(197, 189);
             label22.Name = "label22";
-            label22.Size = new System.Drawing.Size(187, 22);
+            label22.Size = new System.Drawing.Size(221, 26);
             label22.TabIndex = 51;
             label22.Text = "Subtotal(Excl. VAT)\r\n";
             // 
             // label17
             // 
             label17.AutoSize = true;
-            label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             label17.Location = new System.Drawing.Point(198, 52);
             label17.Name = "label17";
-            label17.Size = new System.Drawing.Size(95, 22);
+            label17.Size = new System.Drawing.Size(114, 26);
             label17.TabIndex = 47;
             label17.Text = "Quote ID:";
             // 
             // label10
             // 
             label10.AutoSize = true;
-            label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             label10.Location = new System.Drawing.Point(198, 17);
             label10.Name = "label10";
-            label10.Size = new System.Drawing.Size(153, 22);
+            label10.Size = new System.Drawing.Size(183, 26);
             label10.TabIndex = 38;
             label10.Text = "Job Request ID:";
             // 
             // label12
             // 
             label12.AutoSize = true;
-            label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             label12.Location = new System.Drawing.Point(197, 295);
             label12.Name = "label12";
-            label12.Size = new System.Drawing.Size(133, 22);
+            label12.Size = new System.Drawing.Size(158, 26);
             label12.TabIndex = 42;
             label12.Text = "Quote Status:";
             // 
             // label16
             // 
             label16.AutoSize = true;
-            label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             label16.Location = new System.Drawing.Point(197, 332);
             label16.Name = "label16";
-            label16.Size = new System.Drawing.Size(90, 22);
+            label16.Size = new System.Drawing.Size(107, 26);
             label16.TabIndex = 43;
             label16.Text = "file Path:";
             // 
             // label13
             // 
             label13.AutoSize = true;
-            label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             label13.Location = new System.Drawing.Point(198, 83);
             label13.Name = "label13";
-            label13.Size = new System.Drawing.Size(122, 22);
+            label13.Size = new System.Drawing.Size(146, 26);
             label13.TabIndex = 32;
             label13.Text = "Date Issued:";
             // 
@@ -369,10 +369,11 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1609, 986);
+            this.tabControl1.Size = new System.Drawing.Size(1924, 986);
             this.tabControl1.TabIndex = 4;
             // 
             // tabPage1
@@ -381,15 +382,13 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1601, 953);
+            this.tabPage1.Size = new System.Drawing.Size(1916, 953);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Create New Quote";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.AutoSize = true;
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.Controls.Add(this.button1);
@@ -437,9 +436,10 @@
             this.panel1.Controls.Add(this.txtAmount);
             this.panel1.Controls.Add(quoteStatusLabel);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Location = new System.Drawing.Point(6, 11);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(5545, 1843);
+            this.panel1.Size = new System.Drawing.Size(1910, 947);
             this.panel1.TabIndex = 0;
             // 
             // button1
@@ -457,7 +457,7 @@
             // 
             this.txtFilePath.Location = new System.Drawing.Point(2525, 940);
             this.txtFilePath.Name = "txtFilePath";
-            this.txtFilePath.Size = new System.Drawing.Size(469, 26);
+            this.txtFilePath.Size = new System.Drawing.Size(469, 30);
             this.txtFilePath.TabIndex = 50;
             this.txtFilePath.Visible = false;
             // 
@@ -466,7 +466,7 @@
             this.dtpSearchDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpSearchDate.Location = new System.Drawing.Point(1054, 39);
             this.dtpSearchDate.Name = "dtpSearchDate";
-            this.dtpSearchDate.Size = new System.Drawing.Size(200, 26);
+            this.dtpSearchDate.Size = new System.Drawing.Size(200, 30);
             this.dtpSearchDate.TabIndex = 48;
             this.dtpSearchDate.ValueChanged += new System.EventHandler(this.dtpSearchDate_ValueChanged);
             // 
@@ -494,7 +494,7 @@
             // 
             this.txtSearchRequests.Location = new System.Drawing.Point(740, 37);
             this.txtSearchRequests.Name = "txtSearchRequests";
-            this.txtSearchRequests.Size = new System.Drawing.Size(272, 26);
+            this.txtSearchRequests.Size = new System.Drawing.Size(272, 30);
             this.txtSearchRequests.TabIndex = 45;
             this.txtSearchRequests.TextChanged += new System.EventHandler(this.txtSearchRequests_TextChanged);
             this.txtSearchRequests.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearchRequests_KeyPress);
@@ -522,7 +522,7 @@
             "EvaluationDate"});
             this.cmbSearchColumn.Location = new System.Drawing.Point(285, 37);
             this.cmbSearchColumn.Name = "cmbSearchColumn";
-            this.cmbSearchColumn.Size = new System.Drawing.Size(267, 28);
+            this.cmbSearchColumn.Size = new System.Drawing.Size(267, 33);
             this.cmbSearchColumn.TabIndex = 44;
             this.cmbSearchColumn.SelectedIndexChanged += new System.EventHandler(this.cmbSearchColumn_SelectedIndexChanged);
             // 
@@ -561,7 +561,7 @@
             this.txtTotalwithVAT.Location = new System.Drawing.Point(447, 810);
             this.txtTotalwithVAT.Name = "txtTotalwithVAT";
             this.txtTotalwithVAT.ReadOnly = true;
-            this.txtTotalwithVAT.Size = new System.Drawing.Size(288, 26);
+            this.txtTotalwithVAT.Size = new System.Drawing.Size(288, 30);
             this.txtTotalwithVAT.TabIndex = 40;
             // 
             // txtVAT
@@ -569,21 +569,21 @@
             this.txtVAT.Location = new System.Drawing.Point(448, 775);
             this.txtVAT.Name = "txtVAT";
             this.txtVAT.ReadOnly = true;
-            this.txtVAT.Size = new System.Drawing.Size(286, 26);
+            this.txtVAT.Size = new System.Drawing.Size(286, 30);
             this.txtVAT.TabIndex = 39;
             // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(2629, 940);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(287, 26);
+            this.textBox1.Size = new System.Drawing.Size(287, 30);
             this.textBox1.TabIndex = 38;
             // 
             // button9
             // 
             this.button9.BackColor = System.Drawing.Color.White;
             this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button9.Location = new System.Drawing.Point(1241, 871);
+            this.button9.Location = new System.Drawing.Point(1133, 880);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(244, 42);
             this.button9.TabIndex = 37;
@@ -609,7 +609,7 @@
             this.giantGroupLogo.Location = new System.Drawing.Point(827, 311);
             this.giantGroupLogo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.giantGroupLogo.Name = "giantGroupLogo";
-            this.giantGroupLogo.Size = new System.Drawing.Size(658, 495);
+            this.giantGroupLogo.Size = new System.Drawing.Size(0, 495);
             this.giantGroupLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.giantGroupLogo.TabIndex = 35;
             this.giantGroupLogo.TabStop = false;
@@ -619,7 +619,7 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(13, 459);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(555, 20);
+            this.label9.Size = new System.Drawing.Size(762, 25);
             this.label9.TabIndex = 33;
             this.label9.Text = "Note to User: Double click the Job Type(s) to confirm its addition to this quote." +
     "";
@@ -629,7 +629,7 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(17, 85);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(694, 20);
+            this.label8.Size = new System.Drawing.Size(944, 25);
             this.label8.TabIndex = 32;
             this.label8.Text = "Note to User: Double click the Job Request you are creating a quote for. Complete" +
     " the info below.";
@@ -638,21 +638,21 @@
             // 
             this.urgencyLevelTextBox.Location = new System.Drawing.Point(961, 276);
             this.urgencyLevelTextBox.Name = "urgencyLevelTextBox";
-            this.urgencyLevelTextBox.Size = new System.Drawing.Size(100, 26);
+            this.urgencyLevelTextBox.Size = new System.Drawing.Size(100, 30);
             this.urgencyLevelTextBox.TabIndex = 31;
             // 
             // latitudeTextBox
             // 
             this.latitudeTextBox.Location = new System.Drawing.Point(564, 277);
             this.latitudeTextBox.Name = "latitudeTextBox";
-            this.latitudeTextBox.Size = new System.Drawing.Size(100, 26);
+            this.latitudeTextBox.Size = new System.Drawing.Size(100, 30);
             this.latitudeTextBox.TabIndex = 29;
             // 
             // longitudeTextBox
             // 
             this.longitudeTextBox.Location = new System.Drawing.Point(158, 278);
             this.longitudeTextBox.Name = "longitudeTextBox";
-            this.longitudeTextBox.Size = new System.Drawing.Size(100, 26);
+            this.longitudeTextBox.Size = new System.Drawing.Size(100, 30);
             this.longitudeTextBox.TabIndex = 28;
             // 
             // jobRequestIDTextBox
@@ -660,7 +660,7 @@
             this.jobRequestIDTextBox.Location = new System.Drawing.Point(448, 311);
             this.jobRequestIDTextBox.Name = "jobRequestIDTextBox";
             this.jobRequestIDTextBox.ReadOnly = true;
-            this.jobRequestIDTextBox.Size = new System.Drawing.Size(287, 26);
+            this.jobRequestIDTextBox.Size = new System.Drawing.Size(287, 30);
             this.jobRequestIDTextBox.TabIndex = 27;
             // 
             // dataGridView1
@@ -685,7 +685,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(1464, 162);
+            this.dataGridView1.Size = new System.Drawing.Size(1356, 162);
             this.dataGridView1.TabIndex = 26;
             this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
@@ -924,7 +924,7 @@
             "Rejected"});
             this.cboQuoteStatus.Location = new System.Drawing.Point(448, 847);
             this.cboQuoteStatus.Name = "cboQuoteStatus";
-            this.cboQuoteStatus.Size = new System.Drawing.Size(287, 28);
+            this.cboQuoteStatus.Size = new System.Drawing.Size(287, 33);
             this.cboQuoteStatus.TabIndex = 17;
             // 
             // dateIssuedDateTimePicker
@@ -932,7 +932,7 @@
             this.dateIssuedDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateIssuedDateTimePicker.Location = new System.Drawing.Point(448, 343);
             this.dateIssuedDateTimePicker.Name = "dateIssuedDateTimePicker";
-            this.dateIssuedDateTimePicker.Size = new System.Drawing.Size(287, 26);
+            this.dateIssuedDateTimePicker.Size = new System.Drawing.Size(287, 30);
             this.dateIssuedDateTimePicker.TabIndex = 6;
             // 
             // expiryDateDateTimePicker
@@ -940,7 +940,7 @@
             this.expiryDateDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.expiryDateDateTimePicker.Location = new System.Drawing.Point(448, 375);
             this.expiryDateDateTimePicker.Name = "expiryDateDateTimePicker";
-            this.expiryDateDateTimePicker.Size = new System.Drawing.Size(287, 26);
+            this.expiryDateDateTimePicker.Size = new System.Drawing.Size(287, 30);
             this.expiryDateDateTimePicker.TabIndex = 8;
             // 
             // dateGeneratedDateTimePicker
@@ -948,14 +948,14 @@
             this.dateGeneratedDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateGeneratedDateTimePicker.Location = new System.Drawing.Point(448, 407);
             this.dateGeneratedDateTimePicker.Name = "dateGeneratedDateTimePicker";
-            this.dateGeneratedDateTimePicker.Size = new System.Drawing.Size(287, 26);
+            this.dateGeneratedDateTimePicker.Size = new System.Drawing.Size(287, 30);
             this.dateGeneratedDateTimePicker.TabIndex = 10;
             // 
             // txtAmount
             // 
             this.txtAmount.Location = new System.Drawing.Point(448, 741);
             this.txtAmount.Name = "txtAmount";
-            this.txtAmount.Size = new System.Drawing.Size(287, 26);
+            this.txtAmount.Size = new System.Drawing.Size(287, 30);
             this.txtAmount.TabIndex = 12;
             // 
             // label2
@@ -972,19 +972,16 @@
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.panel2);
-            this.tabPage2.Location = new System.Drawing.Point(4, 29);
+            this.tabPage2.Location = new System.Drawing.Point(4, 34);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1601, 953);
+            this.tabPage2.Size = new System.Drawing.Size(1916, 948);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "View All / Edit Quote";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // panel2
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.AutoSize = true;
             this.panel2.Controls.Add(this.button11);
             this.panel2.Controls.Add(this.button10);
@@ -998,15 +995,16 @@
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.quoteDataGridView);
             this.panel2.Controls.Add(this.label3);
-            this.panel2.Location = new System.Drawing.Point(21, 23);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(2914, 1615);
+            this.panel2.Size = new System.Drawing.Size(1910, 942);
             this.panel2.TabIndex = 1;
             // 
             // button11
             // 
             this.button11.BackColor = System.Drawing.Color.White;
-            this.button11.Location = new System.Drawing.Point(850, 337);
+            this.button11.Location = new System.Drawing.Point(850, 324);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(238, 42);
             this.button11.TabIndex = 52;
@@ -1017,7 +1015,7 @@
             // button10
             // 
             this.button10.BackColor = System.Drawing.Color.White;
-            this.button10.Location = new System.Drawing.Point(574, 337);
+            this.button10.Location = new System.Drawing.Point(574, 324);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(238, 42);
             this.button10.TabIndex = 51;
@@ -1028,7 +1026,7 @@
             // btnExportPDF
             // 
             this.btnExportPDF.BackColor = System.Drawing.Color.White;
-            this.btnExportPDF.Location = new System.Drawing.Point(297, 337);
+            this.btnExportPDF.Location = new System.Drawing.Point(297, 324);
             this.btnExportPDF.Name = "btnExportPDF";
             this.btnExportPDF.Size = new System.Drawing.Size(238, 42);
             this.btnExportPDF.TabIndex = 50;
@@ -1040,7 +1038,7 @@
             // 
             this.button7.BackColor = System.Drawing.Color.White;
             this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button7.Location = new System.Drawing.Point(878, 874);
+            this.button7.Location = new System.Drawing.Point(878, 849);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(211, 42);
             this.button7.TabIndex = 49;
@@ -1072,7 +1070,7 @@
             this.groupBox1.Controls.Add(this.txtEditFilePath);
             this.groupBox1.Controls.Add(this.txtEditJobRequestID);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(21, 430);
+            this.groupBox1.Location = new System.Drawing.Point(21, 414);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1068, 438);
             this.groupBox1.TabIndex = 47;
@@ -1098,18 +1096,20 @@
             // label14
             // 
             this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.Location = new System.Drawing.Point(198, 155);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(158, 22);
+            this.label14.Size = new System.Drawing.Size(187, 26);
             this.label14.TabIndex = 58;
             this.label14.Text = "Date Generated:";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.Location = new System.Drawing.Point(198, 123);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(120, 22);
+            this.label11.Size = new System.Drawing.Size(143, 26);
             this.label11.TabIndex = 57;
             this.label11.Text = "Expiry Date:";
             // 
@@ -1124,10 +1124,10 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.Location = new System.Drawing.Point(197, 225);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(102, 22);
+            this.label21.Size = new System.Drawing.Size(120, 26);
             this.label21.TabIndex = 55;
             this.label21.Text = "VAT(15%)";
             // 
@@ -1142,10 +1142,10 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.Location = new System.Drawing.Point(197, 259);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(164, 22);
+            this.label20.Size = new System.Drawing.Size(196, 26);
             this.label20.TabIndex = 56;
             this.label20.Text = "Amount with VAT";
             // 
@@ -1226,7 +1226,7 @@
             // button5
             // 
             this.button5.BackColor = System.Drawing.Color.White;
-            this.button5.Location = new System.Drawing.Point(20, 337);
+            this.button5.Location = new System.Drawing.Point(20, 324);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(238, 42);
             this.button5.TabIndex = 26;
@@ -1245,7 +1245,7 @@
             "Rejected"});
             this.comboBox2.Location = new System.Drawing.Point(271, 42);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(234, 28);
+            this.comboBox2.Size = new System.Drawing.Size(234, 33);
             this.comboBox2.TabIndex = 28;
             this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
@@ -1262,9 +1262,9 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(968, 398);
+            this.textBox3.Location = new System.Drawing.Point(968, 382);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(120, 26);
+            this.textBox3.Size = new System.Drawing.Size(120, 30);
             this.textBox3.TabIndex = 26;
             // 
             // label5
@@ -1272,7 +1272,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(746, 399);
+            this.label5.Location = new System.Drawing.Point(746, 383);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(193, 22);
             this.label5.TabIndex = 25;
@@ -1295,40 +1295,12 @@
             this.QuoteQuoteStatus,
             this.QuoteFilePath});
             this.quoteDataGridView.DataSource = this.quoteBindingSource;
-            this.quoteDataGridView.Location = new System.Drawing.Point(19, 97);
+            this.quoteDataGridView.Location = new System.Drawing.Point(18, 87);
             this.quoteDataGridView.Name = "quoteDataGridView";
             this.quoteDataGridView.RowHeadersWidth = 62;
             this.quoteDataGridView.RowTemplate.Height = 28;
             this.quoteDataGridView.Size = new System.Drawing.Size(1070, 220);
             this.quoteDataGridView.TabIndex = 24;
-            // 
-            // quoteBindingSource
-            // 
-            this.quoteBindingSource.DataMember = "Quote";
-            this.quoteBindingSource.DataSource = this.groupWst1DataSet;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(3, 11);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(238, 22);
-            this.label3.TabIndex = 23;
-            this.label3.Text = "Historical System Archive";
-            // 
-            // jobRequestTableAdapter
-            // 
-            this.jobRequestTableAdapter.ClearBeforeFill = true;
-            // 
-            // jobTypeTableAdapter
-            // 
-            this.jobTypeTableAdapter.ClearBeforeFill = true;
-            // 
-            // quoteTableAdapter
-            // 
-            this.quoteTableAdapter.ClearBeforeFill = true;
             // 
             // QuoteID_T
             // 
@@ -1387,12 +1359,40 @@
             this.QuoteFilePath.MinimumWidth = 8;
             this.QuoteFilePath.Name = "QuoteFilePath";
             // 
+            // quoteBindingSource
+            // 
+            this.quoteBindingSource.DataMember = "Quote";
+            this.quoteBindingSource.DataSource = this.groupWst1DataSet;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(3, 11);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(238, 22);
+            this.label3.TabIndex = 23;
+            this.label3.Text = "Historical System Archive";
+            // 
+            // jobRequestTableAdapter
+            // 
+            this.jobRequestTableAdapter.ClearBeforeFill = true;
+            // 
+            // jobTypeTableAdapter
+            // 
+            this.jobTypeTableAdapter.ClearBeforeFill = true;
+            // 
+            // quoteTableAdapter
+            // 
+            this.quoteTableAdapter.ClearBeforeFill = true;
+            // 
             // Quotation
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1609, 1001);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(1924, 1001);
             this.Controls.Add(this.tabControl1);
             this.Name = "Quotation";
             this.Text = "Quotation";
