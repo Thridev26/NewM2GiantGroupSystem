@@ -448,5 +448,75 @@ namespace M2GiantGroupSystem
                 selectedJobsGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
             }
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            // 1. VALIDATION: Ensure an active Quote row has actually been loaded from the grid
+            if (string.IsNullOrWhiteSpace(txtEditQuoteID.Text))
+            {
+                MessageBox.Show("No active quote record is currently loaded for modification. Please select a row from the archive deck above and click Edit first.",
+                                "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // 2. VALIDATION: Check that the status combo box has a value selected
+            if (cmbEditStatus.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a valid Quote Status before saving changes.",
+                                "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // 3. LOGICAL TIMELINE VALIDATION: Prevent human error by ensuring expiry date isn't set back before issue date
+            if (dtpEditExpiry.Value.Date < dtpEditIssued.Value.Date)
+            {
+                MessageBox.Show("The Expiry Date cannot be earlier than the Date Issued. Please review your date selections.",
+                                "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                // 4. Extract and parse your UI values into clean data types
+                int targetQuoteID = Convert.ToInt32(txtEditQuoteID.Text);
+
+                // Extract short date strings directly from your three UI date picker elements
+                string updatedIssued = dtpEditIssued.Value.ToShortDateString();
+                string updatedExpiry = dtpEditExpiry.Value.ToShortDateString();
+                string updatedGenerated = dtpEditGenerated.Value.ToShortDateString();
+
+                // Pull the total gross value (Inclusive of VAT) back out of your final summary field (textBox2)
+                decimal updatedAmount = Convert.ToDecimal(textBox2.Text);
+
+                string updatedStatus = cmbEditStatus.SelectedItem.ToString();
+                string updatedPath = string.IsNullOrWhiteSpace(txtEditFilePath.Text) ? null : txtEditFilePath.Text;
+
+                // 5. EXECUTE THE TABLEADAPTER QUERY
+                // This perfectly matches the positional sequence defined in your query configuration wizard!
+                this.quoteTableAdapter.UpdateQuote(
+                    updatedIssued,       // @dateIssued (string)
+                    updatedExpiry,       // @expiryDate (string) -> Now successfully gathered from your UI control
+                    updatedGenerated,    // @dateGenerated (string) -> Now successfully gathered from your UI control
+                    updatedAmount,       // @amount (decimal)
+                    updatedStatus,       // @quoteStatus (string)
+                    updatedPath,         // @filePath (string)
+                    targetQuoteID        // @QuoteID (int - conditional WHERE constraint identifier)
+                );
+
+                // 6. DATABASE RE-SYNC AND UI REFRESH
+                // Pull down a pristine snapshot to update the local DataTable layout cache
+                this.quoteTableAdapter.Fill(this.groupWst1DataSet.Quote);
+                UpdateQuoteCount();
+
+                // 7. SUCCESS FEEDBACK
+                MessageBox.Show($"Quote record #{targetQuoteID} has been successfully updated.",
+                                "System Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An unexpected error occurred while compiling your changes to the Quote: " + ex.Message,
+                                "Database Configuration Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
