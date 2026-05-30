@@ -231,5 +231,140 @@ namespace M2GiantGroupSystem
                 MessageBox.Show("Please select a quote row from the grid first.", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+        private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                // 1. Grab the ID from the selected grid row
+                int clickedID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["jobRequestID"].Value);
+
+                // 2. USE THE QUERY BUILDER to fetch the exact row data safely from the DB
+                var jobRequestTable = this.jobRequestTableAdapter.GetDataBy2(clickedID);
+
+                if (jobRequestTable.Rows.Count > 0)
+                {
+                    // Grab the specific typed row from our dataset
+                    var selectedJob = jobRequestTable[0];
+
+                    // 3. Populate your UI elements cleanly using the database values
+                    jobRequestIDTextBox.Text = selectedJob.jobRequestID.ToString();
+                    urgencyLevelTextBox.Text = selectedJob.urgencyLevel;
+
+                    //  NEW ADJUSTED NULL-SAFE VERSION:
+                    // 3. Populate your UI elements cleanly using database values (checking for DBNull)
+                    jobRequestIDTextBox.Text = selectedJob.jobRequestID.ToString();
+                    urgencyLevelTextBox.Text = selectedJob.urgencyLevel;
+
+                    // Check if longitude is NULL in database
+                    if (selectedJob["longitude"] == DBNull.Value || string.IsNullOrWhiteSpace(selectedJob["longitude"].ToString()))
+                    {
+                        longitudeTextBox.Text = "N/A";
+                    }
+                    else
+                    {
+                        longitudeTextBox.Text = Convert.ToDouble(selectedJob.longitude).ToString();
+                    }
+
+                    // Check if latitude is NULL in database
+                    if (selectedJob["latitude"] == DBNull.Value || string.IsNullOrWhiteSpace(selectedJob["latitude"].ToString()))
+                    {
+                        latitudeTextBox.Text = "N/A";
+                    }
+                    else
+                    {
+                        latitudeTextBox.Text = Convert.ToDouble(selectedJob.latitude).ToString();
+                    }
+
+                    // 4. Extract coordinates safely. If NULL, pass placeholder coordinates (like 0, 0) to flag fallback behavior.
+                    double clientLat = (selectedJob["latitude"] != DBNull.Value) ? Convert.ToDouble(selectedJob.latitude) : 0.0;
+                    double clientLng = (selectedJob["longitude"] != DBNull.Value) ? Convert.ToDouble(selectedJob.longitude) : 0.0;
+
+                    currentTravelFee = CalculateTravelFee(clientLat, clientLng);
+
+                    // 5. Update the UI Amount box
+                    txtAmount.Text = currentTravelFee.ToString("F2");
+
+                    MessageBox.Show($" You have selected Job Request #{clickedID} \nCalculated Travel Fee: R{currentTravelFee}",
+                                    "System Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // 1. Wipe out any old job listings in the grid if switching to a new client request
+                    selectedJobsGridView.Rows.Clear();
+
+                    // 2. Add the calculated Travel Fee as the foundational first row item in the grid
+                    // This maps exactly to your designer layout slots: Job Type, Base Rate, Unit Type, Quantity, Total
+                    selectedJobsGridView.Rows.Add("Transport & Travel Call-out", currentTravelFee, "Flat Rate", 1.0, currentTravelFee);
+
+                    // 3. Force the DataGridView to completely finish registering the new row layout internally
+                    selectedJobsGridView.Refresh();
+
+                    // 4.Run the calculation engine! It sees the travel fee row and locks R255,56 into txtAmount
+                    RecalculateGrandTotalFromUI();
+
+                    // ===================================================================================
+                    // STEP 4: Filter the middle grid view to show ONLY the services requested by this client
+                    // ===================================================================================
+                    this.jobTypeTableAdapter.FillByID(this.groupWst1DataSet.JobType, clickedID);
+                }
+            }
+        }
+
+        // 1. Hardcoded Business Location Constants 
+        private const double BaseLatitude = -29.890840081918007;
+        private const double BaseLongitude = 30.905937134956915;
+        private const decimal CostPerKilometer = 4.50m; // R4.50 per km for fuel/transport
+        private const decimal BaseCallOutFee = 150.00m; // Flat base fee just to drive out
+
+        private decimal CalculateTravelFee(double clientLat, double clientLng)
+        {
+            // If coordinates are missing or set to our null-flag (0,0), charge a flat fallback fee
+            if (clientLat == 0.0 || clientLng == 0.0)
+            {
+                decimal flatFallbackFee = 250.00m; // Adjust this amount to whatever your group requires!
+                return flatFallbackFee;
+            }
+
+            // Otherwise, execute your normal mathematical distance logic
+            double dLat = (clientLat - BaseLatitude) * (Math.PI / 180.0);
+            double dLng = (clientLng - BaseLongitude) * (Math.PI / 180.0);
+
+            double a = Math.Sin(dLat / 2) * Math.Sin(dLat / 2) +
+                       Math.Cos(BaseLatitude * (Math.PI / 180.0)) * Math.Cos(clientLat * (Math.PI / 180.0)) *
+                       Math.Sin(dLng / 2) * Math.Sin(dLng / 2);
+
+            double c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
+            double distanceInKm = 6371.0 * c;
+
+            decimal transportCost = BaseCallOutFee + (Convert.ToDecimal(distanceInKm) * 2 * CostPerKilometer);
+
+            return Math.Round(transportCost, 2);
+        }
+
+        private void RecalculateGrandTotalFromUI()
+        {
+            decimal subTotalAccumulator = 0.00m;
+
+            foreach (DataGridViewRow row in selectedJobsGridView.Rows)
+            {
+                if (!row.IsNewRow && row.Cells[4].Value != null)
+                {
+                    subTotalAccumulator += Convert.ToDecimal(row.Cells[4].Value);
+                }
+            }
+
+            // 1. Calculate tax and grand totals using strict decimal precision
+            decimal vatAccumulator = subTotalAccumulator * 0.15m;
+            decimal grandTotalAccumulator = subTotalAccumulator + vatAccumulator;
+
+            // 2. Output formatted strings back to your group box controls
+            txtAmount.Text = subTotalAccumulator.ToString("F2");
+            txtVAT.Text = vatAccumulator.ToString("F2");
+            txtTotalwithVAT.Text = grandTotalAccumulator.ToString("F2");
+        }
     }
 }
