@@ -654,7 +654,7 @@ namespace M2GiantGroupSystem
                 document.Add(headerTable);
 
                 // ADJUSTMENT 1: Increased separation gap between the header and the data panel
-                document.Add(new Chunk("\n\n\n"));
+                document.Add(new iTextSharp.text.Chunk("\n\n\n"));
 
                 PdfPTable bodyTable = new PdfPTable(2);
                 bodyTable.WidthPercentage = 100f;
@@ -704,7 +704,7 @@ namespace M2GiantGroupSystem
                 document.Add(bodyTable);
 
                 // ADJUSTMENT 3: Increased structural breaks to push corporate summary down near the page bounds
-                document.Add(new Chunk("\n\n\n\n\n"));
+                document.Add(new iTextSharp.text.Chunk("\n\n\n\n\n"));
 
                 PdfPTable footerPanel = new PdfPTable(1);
                 footerPanel.WidthPercentage = 100f;
@@ -721,7 +721,7 @@ namespace M2GiantGroupSystem
                 document.Add(footerPanel);
 
                 // ADJUSTMENT 4: Final minor separation spacing before sign-off block execution
-                document.Add(new Chunk("\n\n"));
+                document.Add(new iTextSharp.text.Chunk("\n\n"));
 
                 PdfPTable signOffTable = new PdfPTable(2);
                 signOffTable.WidthPercentage = 100f;
