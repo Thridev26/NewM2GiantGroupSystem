@@ -66,6 +66,12 @@
     <Compile Include="CaptureJobRequest_A.Designer.cs">
       <DependentUpon>CaptureJobRequest_A.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditJobRequest_A.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditJobRequest_A.Designer.cs">
+      <DependentUpon>EditJobRequest_A.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +108,9 @@
     </Compile>
     <EmbeddedResource Include="CaptureJobRequest_A.resx">
       <DependentUpon>CaptureJobRequest_A.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditJobRequest_A.resx">
+      <DependentUpon>EditJobRequest_A.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
