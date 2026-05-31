@@ -35,6 +35,10 @@
             this.updateClientTSItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem12 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripMenuItem();
+            this.captureJobRequestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateJobRequestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.captureDetailsForRequestedItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewJobRequestsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.createQuoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,10 +60,6 @@
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem11 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripMenuItem();
-            this.captureJobRequestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.updateJobRequestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.captureDetailsForRequestedItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewJobRequestsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -129,6 +129,34 @@
             this.toolStripMenuItem9.Name = "toolStripMenuItem9";
             this.toolStripMenuItem9.Size = new System.Drawing.Size(150, 32);
             this.toolStripMenuItem9.Text = "Job Requests";
+            // 
+            // captureJobRequestToolStripMenuItem
+            // 
+            this.captureJobRequestToolStripMenuItem.Name = "captureJobRequestToolStripMenuItem";
+            this.captureJobRequestToolStripMenuItem.Size = new System.Drawing.Size(433, 32);
+            this.captureJobRequestToolStripMenuItem.Text = "Capture job request";
+            this.captureJobRequestToolStripMenuItem.Click += new System.EventHandler(this.captureJobRequestToolStripMenuItem_Click);
+            // 
+            // updateJobRequestToolStripMenuItem
+            // 
+            this.updateJobRequestToolStripMenuItem.Name = "updateJobRequestToolStripMenuItem";
+            this.updateJobRequestToolStripMenuItem.Size = new System.Drawing.Size(433, 32);
+            this.updateJobRequestToolStripMenuItem.Text = "Update job request";
+            this.updateJobRequestToolStripMenuItem.Click += new System.EventHandler(this.updateJobRequestToolStripMenuItem_Click);
+            // 
+            // captureDetailsForRequestedItemsToolStripMenuItem
+            // 
+            this.captureDetailsForRequestedItemsToolStripMenuItem.Name = "captureDetailsForRequestedItemsToolStripMenuItem";
+            this.captureDetailsForRequestedItemsToolStripMenuItem.Size = new System.Drawing.Size(433, 32);
+            this.captureDetailsForRequestedItemsToolStripMenuItem.Text = "Capture details for requested items";
+            this.captureDetailsForRequestedItemsToolStripMenuItem.Click += new System.EventHandler(this.captureDetailsForRequestedItemsToolStripMenuItem_Click);
+            // 
+            // viewJobRequestsToolStripMenuItem
+            // 
+            this.viewJobRequestsToolStripMenuItem.Name = "viewJobRequestsToolStripMenuItem";
+            this.viewJobRequestsToolStripMenuItem.Size = new System.Drawing.Size(433, 32);
+            this.viewJobRequestsToolStripMenuItem.Text = "View job requests";
+            this.viewJobRequestsToolStripMenuItem.Click += new System.EventHandler(this.viewJobRequestsToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -230,6 +258,7 @@
             this.addEditAssetRecordsToolStripMenuItem.Name = "addEditAssetRecordsToolStripMenuItem";
             this.addEditAssetRecordsToolStripMenuItem.Size = new System.Drawing.Size(332, 32);
             this.addEditAssetRecordsToolStripMenuItem.Text = "Add / Edit Asset Records";
+            this.addEditAssetRecordsToolStripMenuItem.Click += new System.EventHandler(this.addEditAssetRecordsToolStripMenuItem_Click);
             // 
             // toolStripMenuItem6
             // 
@@ -279,34 +308,6 @@
             this.toolStripMenuItem10.Name = "toolStripMenuItem10";
             this.toolStripMenuItem10.Size = new System.Drawing.Size(70, 32);
             this.toolStripMenuItem10.Text = "Help";
-            // 
-            // captureJobRequestToolStripMenuItem
-            // 
-            this.captureJobRequestToolStripMenuItem.Name = "captureJobRequestToolStripMenuItem";
-            this.captureJobRequestToolStripMenuItem.Size = new System.Drawing.Size(433, 32);
-            this.captureJobRequestToolStripMenuItem.Text = "Capture job request";
-            this.captureJobRequestToolStripMenuItem.Click += new System.EventHandler(this.captureJobRequestToolStripMenuItem_Click);
-            // 
-            // updateJobRequestToolStripMenuItem
-            // 
-            this.updateJobRequestToolStripMenuItem.Name = "updateJobRequestToolStripMenuItem";
-            this.updateJobRequestToolStripMenuItem.Size = new System.Drawing.Size(433, 32);
-            this.updateJobRequestToolStripMenuItem.Text = "Update job request";
-            this.updateJobRequestToolStripMenuItem.Click += new System.EventHandler(this.updateJobRequestToolStripMenuItem_Click);
-            // 
-            // captureDetailsForRequestedItemsToolStripMenuItem
-            // 
-            this.captureDetailsForRequestedItemsToolStripMenuItem.Name = "captureDetailsForRequestedItemsToolStripMenuItem";
-            this.captureDetailsForRequestedItemsToolStripMenuItem.Size = new System.Drawing.Size(433, 32);
-            this.captureDetailsForRequestedItemsToolStripMenuItem.Text = "Capture details for requested items";
-            this.captureDetailsForRequestedItemsToolStripMenuItem.Click += new System.EventHandler(this.captureDetailsForRequestedItemsToolStripMenuItem_Click);
-            // 
-            // viewJobRequestsToolStripMenuItem
-            // 
-            this.viewJobRequestsToolStripMenuItem.Name = "viewJobRequestsToolStripMenuItem";
-            this.viewJobRequestsToolStripMenuItem.Size = new System.Drawing.Size(433, 32);
-            this.viewJobRequestsToolStripMenuItem.Text = "View job requests";
-            this.viewJobRequestsToolStripMenuItem.Click += new System.EventHandler(this.viewJobRequestsToolStripMenuItem_Click);
             // 
             // Form1
             // 

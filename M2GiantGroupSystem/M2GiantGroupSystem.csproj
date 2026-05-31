@@ -208,6 +208,12 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MachineRecords_D.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MachineRecords_D.Designer.cs">
+      <DependentUpon>MachineRecords_D.cs</DependentUpon>
+    </Compile>
     <Compile Include="MapPopupForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -237,6 +243,9 @@
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MachineRecords_D.resx">
+      <DependentUpon>MachineRecords_D.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MapPopupForm.resx">
       <DependentUpon>MapPopupForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -262,6 +271,10 @@
     </None>
     <None Include="GroupWst1DataSet.xss">
       <DependentUpon>GroupWst1DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Machine.Designer.Recordscs" />
+    <None Include="Machine.Recordscs">
+      <SubType>Form</SubType>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
