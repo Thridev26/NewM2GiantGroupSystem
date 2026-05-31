@@ -107,5 +107,11 @@ namespace M2GiantGroupSystem
         {
             FormSetup(new jobRequestMain_A(3));
         }
+
+        private void addEditAssetRecordsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MachineRecords_D asset = new MachineRecords_D();
+            asset.Show();
+        }
     }
 }
