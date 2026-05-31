@@ -30,7 +30,13 @@ namespace M2GiantGroupSystem
 
         private void button2_Click(object sender, EventArgs e)
         {
+            //go through all forms in the application and close them
+            foreach (Form form in Application.OpenForms)
+            {
+                form.Close();
+            }
             Application.Exit();
+
         }
 
         private void checkPasswordBox_CheckedChanged(object sender, EventArgs e)

@@ -57,5 +57,55 @@ namespace M2GiantGroupSystem
             AllocateAssetStafftoJob allocateAssetStafftoJob = new AllocateAssetStafftoJob();
             FormSetup(allocateAssetStafftoJob);
         }
+
+        private void clientsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addNewClientToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormSetup(new client_MainForm(0));
+        }
+
+        private void toolStripMenuItem11_Click(object sender, EventArgs e)
+        {
+           //close this form and all it's childre
+            this.Close();
+
+            //show the login form again
+            LoginForm login = new LoginForm();
+            login.Show();
+        }
+
+        private void updateClientTSItem_Click(object sender, EventArgs e)
+        {
+            FormSetup(new client_MainForm(1));
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void captureJobRequestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormSetup(new jobRequestMain_A(0));
+        }
+
+        private void updateJobRequestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormSetup(new jobRequestMain_A(1));
+        }
+
+        private void captureDetailsForRequestedItemsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormSetup(new jobRequestMain_A(2));
+        }
+
+        private void viewJobRequestsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormSetup(new jobRequestMain_A(3));
+        }
     }
 }
