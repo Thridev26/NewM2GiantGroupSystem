@@ -16,5 +16,10 @@ namespace M2GiantGroupSystem
         {
             InitializeComponent();
         }
+
+        private void UpdateClient_A_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
