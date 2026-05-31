@@ -161,10 +161,10 @@
             this.tabPage1.Controls.Add(this.cmbCriteria_A);
             this.tabPage1.Controls.Add(this.lblFindClient_A);
             this.tabPage1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.tabPage1.Location = new System.Drawing.Point(4, 29);
+            this.tabPage1.Location = new System.Drawing.Point(4, 34);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1916, 1022);
+            this.tabPage1.Size = new System.Drawing.Size(1916, 1017);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Capture job request";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -739,9 +739,9 @@
             this.tabPage3.Controls.Add(this.dataGridView1);
             this.tabPage3.Controls.Add(this.textBox2);
             this.tabPage3.Controls.Add(this.label4);
-            this.tabPage3.Location = new System.Drawing.Point(4, 29);
+            this.tabPage3.Location = new System.Drawing.Point(4, 34);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1916, 1022);
+            this.tabPage3.Size = new System.Drawing.Size(1916, 1017);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Capture details for requested items";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -812,9 +812,9 @@
             this.tabPage4.Controls.Add(this.cmbFilter_A);
             this.tabPage4.Controls.Add(this.lblFilter_A);
             this.tabPage4.Controls.Add(this.dgvJoin);
-            this.tabPage4.Location = new System.Drawing.Point(4, 29);
+            this.tabPage4.Location = new System.Drawing.Point(4, 34);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1916, 1022);
+            this.tabPage4.Size = new System.Drawing.Size(1916, 1017);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "View job requests";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -925,7 +925,7 @@
             this.dgvJoin.Name = "dgvJoin";
             this.dgvJoin.RowHeadersWidth = 51;
             this.dgvJoin.RowTemplate.Height = 24;
-            this.dgvJoin.Size = new System.Drawing.Size(1479, 415);
+            this.dgvJoin.Size = new System.Drawing.Size(984, 415);
             this.dgvJoin.TabIndex = 10;
             // 
             // clientTableAdapter1
