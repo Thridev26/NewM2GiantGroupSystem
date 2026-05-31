@@ -1,4 +1,4 @@
-﻿//using M2GiantGroupSystem.GroupWst1DataSetTableAdapters;
+﻿using M2GiantGroupSystem.GroupWst1DataSetTableAdapters;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,23 +11,26 @@ using System.Windows.Forms;
 
 namespace M2GiantGroupSystem
 {
-    public partial class Add_Client_A : Form
+    public partial class client_MainForm : Form
     {
-        public Add_Client_A()
+        int tabIndex;
+        public client_MainForm(int tab_index)
         {
             InitializeComponent();
+            tabIndex = tab_index;
         }
 
-        private void Add_Client_A_Load(object sender, EventArgs e)
+        private void client_MainForm_Load(object sender, EventArgs e)
         {
-            cmb_status.SelectedIndex = 0;
+            tabControl1.SelectedIndex = tabIndex;
         }
 
-        
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
 
-        
+        }
 
-        private void btn_addClient_Click_1(object sender, EventArgs e)
+        private void btn_addClient_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show(
             "Are you sure you want to add this client?",
@@ -53,7 +56,6 @@ namespace M2GiantGroupSystem
             {
                 MessageBox.Show("Client was not added.");
             }
-
         }
     }
 }
