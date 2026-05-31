@@ -140,6 +140,10 @@ WHERE
         {
             //set tab control index to the one passed in the constructor
             tabControl1.SelectedIndex = tabIndex;
+            tabControl1.DrawMode = TabDrawMode.OwnerDrawFixed;
+            tabControl1.DrawItem += tabControl1_DrawItem;
+            tabControl1.ItemSize = new Size(300, 30);
+            tabControl1.SizeMode = TabSizeMode.Fixed;
 
             //edit job request----------------------------------------------------------------------------------------------
             this.jobRequestTableAdapter1.Fill(this.groupWst1DataSet1.JobRequest);
@@ -600,6 +604,49 @@ WHERE
                     break;
 
             }
+        }
+
+        private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            TabPage page = tabControl1.TabPages[e.Index];
+            Rectangle tabRect = tabControl1.GetTabRect(e.Index);
+
+            Font tabFont = new Font("Segoe UI", 10, FontStyle.Bold);
+
+            //Base colours (non-selected tabs)
+            Color backColor = Color.Honeydew;
+               
+
+            //Highlight ONLY selected tab
+            if (e.Index == tabControl1.SelectedIndex)
+            {
+                backColor = Color.LightGreen;
+            }
+
+            // Text always forest green (or you can change for selected if needed)
+            Color textColor = Color.Black;
+
+            // Fill background
+            using (Brush b = new SolidBrush(backColor))
+            {
+                e.Graphics.FillRectangle(b, tabRect);
+            }
+
+            //BORDER 
+            using (Pen p = new Pen(Color.DarkGreen, 1))
+            {
+                e.Graphics.DrawRectangle(p, tabRect);
+            }
+
+            // Draw text
+            TextRenderer.DrawText(
+                e.Graphics,
+                page.Text,
+                tabFont,
+                tabRect,
+                textColor,
+                TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
+            );
         }
     }
 }

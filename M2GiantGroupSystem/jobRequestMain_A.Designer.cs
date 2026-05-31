@@ -48,6 +48,8 @@
             this.lblName_A = new System.Windows.Forms.Label();
             this.tbAddress_A = new System.Windows.Forms.TextBox();
             this.tbEmail_A = new System.Windows.Forms.TextBox();
+            this.clientBS = new System.Windows.Forms.BindingSource(this.components);
+            this.groupWst1DataSet1 = new M2GiantGroupSystem.GroupWst1DataSet();
             this.lblSearchResults_A = new System.Windows.Forms.Label();
             this.lblSearchBy_A = new System.Windows.Forms.Label();
             this.tbSearchValue_A = new System.Windows.Forms.TextBox();
@@ -61,7 +63,6 @@
             this.btnMap = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
-            this.groupWst1DataSet1 = new M2GiantGroupSystem.GroupWst1DataSet();
             this.btnSave = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -81,36 +82,35 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.lblSearchCriteria_A = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.clientTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.ClientTableAdapter();
-            this.jobRequestTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobRequestTableAdapter();
-            this.jobTypeTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobTypeTableAdapter();
-            this.requestItemTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.RequestItemTableAdapter();
-            this.clientBS = new System.Windows.Forms.BindingSource(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.jobDetailTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobDetailTableAdapter();
-            this.itemDetailTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.ItemDetailTableAdapter();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.lblJobType = new System.Windows.Forms.Label();
+            this.cmbJobType = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.btnFilter_A = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.cmbStatus_A = new System.Windows.Forms.ComboBox();
             this.cmbFilter_A = new System.Windows.Forms.ComboBox();
             this.lblFilter_A = new System.Windows.Forms.Label();
             this.dgvJoin = new System.Windows.Forms.DataGridView();
-            this.lblJobType = new System.Windows.Forms.Label();
-            this.cmbJobType = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.clientTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.ClientTableAdapter();
+            this.jobRequestTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobRequestTableAdapter();
+            this.jobTypeTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobTypeTableAdapter();
+            this.requestItemTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.RequestItemTableAdapter();
+            this.jobDetailTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobDetailTableAdapter();
+            this.itemDetailTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.ItemDetailTableAdapter();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.clientBS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupWst1DataSet1)).BeginInit();
+            this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_clientJoinJobRequest)).BeginInit();
             this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.clientBS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvJoin)).BeginInit();
@@ -123,6 +123,8 @@
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControl1.ItemSize = new System.Drawing.Size(300, 30);
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -158,10 +160,11 @@
             this.tabPage1.Controls.Add(this.lblSelectCriteria_A);
             this.tabPage1.Controls.Add(this.cmbCriteria_A);
             this.tabPage1.Controls.Add(this.lblFindClient_A);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1916, 1026);
+            this.tabPage1.Size = new System.Drawing.Size(1916, 1022);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Capture job request";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -354,6 +357,16 @@
             this.tbEmail_A.Size = new System.Drawing.Size(532, 43);
             this.tbEmail_A.TabIndex = 35;
             // 
+            // clientBS
+            // 
+            this.clientBS.DataMember = "Client";
+            this.clientBS.DataSource = this.groupWst1DataSet1;
+            // 
+            // groupWst1DataSet1
+            // 
+            this.groupWst1DataSet1.DataSetName = "GroupWst1DataSet";
+            this.groupWst1DataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // lblSearchResults_A
             // 
             this.lblSearchResults_A.AutoSize = true;
@@ -395,11 +408,11 @@
             // lbSearchResults
             // 
             this.lbSearchResults.FormattingEnabled = true;
-            this.lbSearchResults.ItemHeight = 16;
+            this.lbSearchResults.ItemHeight = 20;
             this.lbSearchResults.Location = new System.Drawing.Point(498, 136);
             this.lbSearchResults.Name = "lbSearchResults";
             this.lbSearchResults.ScrollAlwaysVisible = true;
-            this.lbSearchResults.Size = new System.Drawing.Size(278, 52);
+            this.lbSearchResults.Size = new System.Drawing.Size(278, 44);
             this.lbSearchResults.TabIndex = 30;
             this.lbSearchResults.SelectedIndexChanged += new System.EventHandler(this.lbSearchResults_SelectedIndexChanged);
             // 
@@ -465,10 +478,11 @@
             this.tabPage2.Controls.Add(this.dgv_clientJoinJobRequest);
             this.tabPage2.Controls.Add(this.textBox1);
             this.tabPage2.Controls.Add(this.lblSearchCriteria_A);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.tabPage2.Location = new System.Drawing.Point(4, 34);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1916, 1026);
+            this.tabPage2.Size = new System.Drawing.Size(1916, 1017);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Update job request";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -521,11 +535,6 @@
             this.cmbStatus.Name = "cmbStatus";
             this.cmbStatus.Size = new System.Drawing.Size(322, 45);
             this.cmbStatus.TabIndex = 62;
-            // 
-            // groupWst1DataSet1
-            // 
-            this.groupWst1DataSet1.DataSetName = "GroupWst1DataSet";
-            this.groupWst1DataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // btnSave
             // 
@@ -730,34 +739,13 @@
             this.tabPage3.Controls.Add(this.dataGridView1);
             this.tabPage3.Controls.Add(this.textBox2);
             this.tabPage3.Controls.Add(this.label4);
-            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Location = new System.Drawing.Point(4, 29);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1916, 1026);
+            this.tabPage3.Size = new System.Drawing.Size(1916, 1022);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Capture details for requested items";
             this.tabPage3.UseVisualStyleBackColor = true;
             this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
-            // 
-            // clientTableAdapter1
-            // 
-            this.clientTableAdapter1.ClearBeforeFill = true;
-            // 
-            // jobRequestTableAdapter1
-            // 
-            this.jobRequestTableAdapter1.ClearBeforeFill = true;
-            // 
-            // jobTypeTableAdapter1
-            // 
-            this.jobTypeTableAdapter1.ClearBeforeFill = true;
-            // 
-            // requestItemTableAdapter1
-            // 
-            this.requestItemTableAdapter1.ClearBeforeFill = true;
-            // 
-            // clientBS
-            // 
-            this.clientBS.DataMember = "Client";
-            this.clientBS.DataSource = this.groupWst1DataSet1;
             // 
             // button1
             // 
@@ -811,14 +799,6 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "Search by name,email or site address";
             // 
-            // jobDetailTableAdapter1
-            // 
-            this.jobDetailTableAdapter1.ClearBeforeFill = true;
-            // 
-            // itemDetailTableAdapter1
-            // 
-            this.itemDetailTableAdapter1.ClearBeforeFill = true;
-            // 
             // tabPage4
             // 
             this.tabPage4.AutoScroll = true;
@@ -832,13 +812,52 @@
             this.tabPage4.Controls.Add(this.cmbFilter_A);
             this.tabPage4.Controls.Add(this.lblFilter_A);
             this.tabPage4.Controls.Add(this.dgvJoin);
-            this.tabPage4.Location = new System.Drawing.Point(4, 25);
+            this.tabPage4.Location = new System.Drawing.Point(4, 29);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1916, 1026);
+            this.tabPage4.Size = new System.Drawing.Size(1916, 1022);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "View job requests";
             this.tabPage4.UseVisualStyleBackColor = true;
             this.tabPage4.Click += new System.EventHandler(this.tabPage4_Click);
+            // 
+            // lblJobType
+            // 
+            this.lblJobType.AutoSize = true;
+            this.lblJobType.Location = new System.Drawing.Point(849, 92);
+            this.lblJobType.Name = "lblJobType";
+            this.lblJobType.Size = new System.Drawing.Size(119, 20);
+            this.lblJobType.TabIndex = 19;
+            this.lblJobType.Text = "Select job type";
+            // 
+            // cmbJobType
+            // 
+            this.cmbJobType.FormattingEnabled = true;
+            this.cmbJobType.Items.AddRange(new object[] {
+            "Tree Felling",
+            "Grass Cutting",
+            "Tree Planting",
+            "Vegetation Clearance",
+            "Hedge Trimming"});
+            this.cmbJobType.Location = new System.Drawing.Point(843, 120);
+            this.cmbJobType.Name = "cmbJobType";
+            this.cmbJobType.Size = new System.Drawing.Size(244, 28);
+            this.cmbJobType.TabIndex = 18;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(529, 92);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(161, 20);
+            this.label6.TabIndex = 17;
+            this.label6.Text = "Select date recieved";
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Location = new System.Drawing.Point(532, 120);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(200, 27);
+            this.dateTimePicker2.TabIndex = 16;
             // 
             // btnFilter_A
             // 
@@ -855,7 +874,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(541, 10);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(83, 16);
+            this.label5.Size = new System.Drawing.Size(107, 20);
             this.label5.TabIndex = 14;
             this.label5.Text = "Select status";
             // 
@@ -871,7 +890,7 @@
             "Cancelled"});
             this.cmbStatus_A.Location = new System.Drawing.Point(544, 38);
             this.cmbStatus_A.Name = "cmbStatus_A";
-            this.cmbStatus_A.Size = new System.Drawing.Size(298, 24);
+            this.cmbStatus_A.Size = new System.Drawing.Size(298, 28);
             this.cmbStatus_A.TabIndex = 13;
             // 
             // cmbFilter_A
@@ -883,7 +902,7 @@
             "Date recieved"});
             this.cmbFilter_A.Location = new System.Drawing.Point(257, 39);
             this.cmbFilter_A.Name = "cmbFilter_A";
-            this.cmbFilter_A.Size = new System.Drawing.Size(201, 24);
+            this.cmbFilter_A.Size = new System.Drawing.Size(201, 28);
             this.cmbFilter_A.TabIndex = 12;
             this.cmbFilter_A.SelectedIndexChanged += new System.EventHandler(this.cmbFilter_A_SelectedIndexChanged);
             // 
@@ -909,44 +928,29 @@
             this.dgvJoin.Size = new System.Drawing.Size(1479, 415);
             this.dgvJoin.TabIndex = 10;
             // 
-            // lblJobType
+            // clientTableAdapter1
             // 
-            this.lblJobType.AutoSize = true;
-            this.lblJobType.Location = new System.Drawing.Point(849, 92);
-            this.lblJobType.Name = "lblJobType";
-            this.lblJobType.Size = new System.Drawing.Size(96, 16);
-            this.lblJobType.TabIndex = 19;
-            this.lblJobType.Text = "Select job type";
+            this.clientTableAdapter1.ClearBeforeFill = true;
             // 
-            // cmbJobType
+            // jobRequestTableAdapter1
             // 
-            this.cmbJobType.FormattingEnabled = true;
-            this.cmbJobType.Items.AddRange(new object[] {
-            "Tree Felling",
-            "Grass Cutting",
-            "Tree Planting",
-            "Vegetation Clearance",
-            "Hedge Trimming"});
-            this.cmbJobType.Location = new System.Drawing.Point(843, 120);
-            this.cmbJobType.Name = "cmbJobType";
-            this.cmbJobType.Size = new System.Drawing.Size(244, 24);
-            this.cmbJobType.TabIndex = 18;
+            this.jobRequestTableAdapter1.ClearBeforeFill = true;
             // 
-            // label6
+            // jobTypeTableAdapter1
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(529, 92);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(131, 16);
-            this.label6.TabIndex = 17;
-            this.label6.Text = "Select date recieved";
+            this.jobTypeTableAdapter1.ClearBeforeFill = true;
             // 
-            // dateTimePicker2
+            // requestItemTableAdapter1
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(532, 120);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(200, 22);
-            this.dateTimePicker2.TabIndex = 16;
+            this.requestItemTableAdapter1.ClearBeforeFill = true;
+            // 
+            // jobDetailTableAdapter1
+            // 
+            this.jobDetailTableAdapter1.ClearBeforeFill = true;
+            // 
+            // itemDetailTableAdapter1
+            // 
+            this.itemDetailTableAdapter1.ClearBeforeFill = true;
             // 
             // jobRequestMain_A
             // 
@@ -960,13 +964,13 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.clientBS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupWst1DataSet1)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.groupWst1DataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_clientJoinJobRequest)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.clientBS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
