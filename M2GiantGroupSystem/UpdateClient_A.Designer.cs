@@ -185,6 +185,7 @@
             this.Controls.Add(this.tb_name);
             this.Name = "UpdateClient_A";
             this.Text = "UpdateClient_A";
+            this.Load += new System.EventHandler(this.UpdateClient_A_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

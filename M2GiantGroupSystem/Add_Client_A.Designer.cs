@@ -43,6 +43,8 @@
             this.tb_surname = new System.Windows.Forms.TextBox();
             this.tb_name = new System.Windows.Forms.TextBox();
             this.clientTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.ClientTableAdapter();
+            this.groupWst1DataSet1 = new M2GiantGroupSystem.GroupWst1DataSet();
+            ((System.ComponentModel.ISupportInitialize)(this.groupWst1DataSet1)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_addClient
@@ -196,6 +198,11 @@
             // 
             this.clientTableAdapter1.ClearBeforeFill = true;
             // 
+            // groupWst1DataSet1
+            // 
+            this.groupWst1DataSet1.DataSetName = "GroupWst1DataSet";
+            this.groupWst1DataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // Add_Client_A
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -218,6 +225,7 @@
             this.Name = "Add_Client_A";
             this.Text = "Add_Client_A";
             this.Load += new System.EventHandler(this.Add_Client_A_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.groupWst1DataSet1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -238,7 +246,9 @@
         private System.Windows.Forms.TextBox tb_phone;
         private System.Windows.Forms.TextBox tb_email;
         private System.Windows.Forms.TextBox tb_surname;
-        private System.Windows.Forms.TextBox tb_name;
         private GroupWst1DataSetTableAdapters.ClientTableAdapter clientTableAdapter1;
-    }
+        private GroupWst1DataSet groupWst1DataSet1;
+        private System.Windows.Forms.TextBox tb_name;
+
+        }
 }

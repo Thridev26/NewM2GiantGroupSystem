@@ -12,7 +12,7 @@ namespace M2GiantGroupSystem
 {
     public partial class AllocateAssetStafftoJob : Form
     {
-        public AllocateAssetStafftoJob()
+        public  AllocateAssetStafftoJob()
         {
             InitializeComponent();
         }
