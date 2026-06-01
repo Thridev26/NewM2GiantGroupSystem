@@ -79,6 +79,9 @@
             this.dailyRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.roleID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.staffBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tab3 = new System.Windows.Forms.TabPage();
+            this.button5 = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -104,9 +107,7 @@
             this.ownedAssetTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.OwnedAssetTableAdapter();
             this.staffTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.StaffTableAdapter();
             this.dataTable1TableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.DataTable1TableAdapter();
-            this.tab3 = new System.Windows.Forms.TabPage();
-            this.label4 = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             this.tabViewAllocations.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.jobAssetAssignmentDataGridView)).BeginInit();
@@ -121,11 +122,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.jobStaffAssignmentBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.staffDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.staffBindingSource)).BeginInit();
+            this.tab3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTable1BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.jobBindingSource)).BeginInit();
-            this.tab3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabViewAllocations
@@ -149,10 +150,10 @@
             this.tabPage1.Controls.Add(this.jobAssetAssignmentDataGridView);
             this.tabPage1.Controls.Add(this.hiredAssetDataGridView);
             this.tabPage1.Controls.Add(this.ownedAssetDataGridView);
-            this.tabPage1.Location = new System.Drawing.Point(4, 29);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1510, 413);
+            this.tabPage1.Size = new System.Drawing.Size(1510, 417);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Assets";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -204,7 +205,7 @@
             this.jobID_Bridge.HeaderText = "jobID";
             this.jobID_Bridge.MinimumWidth = 8;
             this.jobID_Bridge.Name = "jobID_Bridge";
-            this.jobID_Bridge.Width = 88;
+            this.jobID_Bridge.Width = 74;
             // 
             // ownedAssetID
             // 
@@ -212,7 +213,7 @@
             this.ownedAssetID.HeaderText = "ownedAssetID";
             this.ownedAssetID.MinimumWidth = 8;
             this.ownedAssetID.Name = "ownedAssetID";
-            this.ownedAssetID.Width = 162;
+            this.ownedAssetID.Width = 138;
             // 
             // hiredAssetID_Bridge
             // 
@@ -220,7 +221,7 @@
             this.hiredAssetID_Bridge.HeaderText = "hiredAssetID";
             this.hiredAssetID_Bridge.MinimumWidth = 8;
             this.hiredAssetID_Bridge.Name = "hiredAssetID_Bridge";
-            this.hiredAssetID_Bridge.Width = 150;
+            this.hiredAssetID_Bridge.Width = 129;
             // 
             // dataGridViewTextBoxColumn27
             // 
@@ -229,7 +230,7 @@
             this.dataGridViewTextBoxColumn27.MinimumWidth = 8;
             this.dataGridViewTextBoxColumn27.Name = "dataGridViewTextBoxColumn27";
             this.dataGridViewTextBoxColumn27.Visible = false;
-            this.dataGridViewTextBoxColumn27.Width = 117;
+            this.dataGridViewTextBoxColumn27.Width = 90;
             // 
             // assignmentDate
             // 
@@ -237,7 +238,7 @@
             this.assignmentDate.HeaderText = "assignmentDate";
             this.assignmentDate.MinimumWidth = 8;
             this.assignmentDate.Name = "assignmentDate";
-            this.assignmentDate.Width = 176;
+            this.assignmentDate.Width = 153;
             // 
             // jobAssetAssignmentBindingSource
             // 
@@ -278,7 +279,7 @@
             this.hiredAssetID.MinimumWidth = 8;
             this.hiredAssetID.Name = "hiredAssetID";
             this.hiredAssetID.ReadOnly = true;
-            this.hiredAssetID.Width = 150;
+            this.hiredAssetID.Width = 129;
             // 
             // dataGridViewTextBoxColumn17
             // 
@@ -287,7 +288,7 @@
             this.dataGridViewTextBoxColumn17.MinimumWidth = 8;
             this.dataGridViewTextBoxColumn17.Name = "dataGridViewTextBoxColumn17";
             this.dataGridViewTextBoxColumn17.Visible = false;
-            this.dataGridViewTextBoxColumn17.Width = 142;
+            this.dataGridViewTextBoxColumn17.Width = 121;
             // 
             // hireDate
             // 
@@ -295,7 +296,7 @@
             this.hireDate.HeaderText = "hireDate";
             this.hireDate.MinimumWidth = 8;
             this.hireDate.Name = "hireDate";
-            this.hireDate.Width = 114;
+            this.hireDate.Width = 99;
             // 
             // returnDate
             // 
@@ -303,7 +304,7 @@
             this.returnDate.HeaderText = "returnDate";
             this.returnDate.MinimumWidth = 8;
             this.returnDate.Name = "returnDate";
-            this.returnDate.Width = 132;
+            this.returnDate.Width = 115;
             // 
             // hireCost
             // 
@@ -312,7 +313,7 @@
             this.hireCost.MinimumWidth = 8;
             this.hireCost.Name = "hireCost";
             this.hireCost.Visible = false;
-            this.hireCost.Width = 104;
+            this.hireCost.Width = 85;
             // 
             // equipmentType
             // 
@@ -320,7 +321,7 @@
             this.equipmentType.HeaderText = "equipmentType";
             this.equipmentType.MinimumWidth = 8;
             this.equipmentType.Name = "equipmentType";
-            this.equipmentType.Width = 167;
+            this.equipmentType.Width = 148;
             // 
             // hiredAssetStatus
             // 
@@ -328,7 +329,7 @@
             this.hiredAssetStatus.HeaderText = "hiredAssetStatus";
             this.hiredAssetStatus.MinimumWidth = 8;
             this.hiredAssetStatus.Name = "hiredAssetStatus";
-            this.hiredAssetStatus.Width = 184;
+            this.hiredAssetStatus.Width = 160;
             // 
             // hiredAssetBindingSource
             // 
@@ -364,7 +365,7 @@
             this.assetID.MinimumWidth = 8;
             this.assetID.Name = "assetID";
             this.assetID.ReadOnly = true;
-            this.assetID.Width = 108;
+            this.assetID.Width = 91;
             // 
             // serialNumber
             // 
@@ -373,7 +374,7 @@
             this.serialNumber.MinimumWidth = 8;
             this.serialNumber.Name = "serialNumber";
             this.serialNumber.Visible = false;
-            this.serialNumber.Width = 138;
+            this.serialNumber.Width = 117;
             // 
             // type
             // 
@@ -381,7 +382,7 @@
             this.type.HeaderText = "type";
             this.type.MinimumWidth = 8;
             this.type.Name = "type";
-            this.type.Width = 79;
+            this.type.Width = 68;
             // 
             // dataGridViewTextBoxColumn12
             // 
@@ -390,7 +391,7 @@
             this.dataGridViewTextBoxColumn12.MinimumWidth = 8;
             this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
             this.dataGridViewTextBoxColumn12.Visible = false;
-            this.dataGridViewTextBoxColumn12.Width = 146;
+            this.dataGridViewTextBoxColumn12.Width = 121;
             // 
             // currentCondition
             // 
@@ -398,7 +399,7 @@
             this.currentCondition.HeaderText = "currentCondition";
             this.currentCondition.MinimumWidth = 8;
             this.currentCondition.Name = "currentCondition";
-            this.currentCondition.Width = 178;
+            this.currentCondition.Width = 157;
             // 
             // dataGridViewTextBoxColumn14
             // 
@@ -407,7 +408,7 @@
             this.dataGridViewTextBoxColumn14.MinimumWidth = 8;
             this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
             this.dataGridViewTextBoxColumn14.Visible = false;
-            this.dataGridViewTextBoxColumn14.Width = 162;
+            this.dataGridViewTextBoxColumn14.Width = 135;
             // 
             // assetStatus
             // 
@@ -415,7 +416,7 @@
             this.assetStatus.HeaderText = "assetStatus";
             this.assetStatus.MinimumWidth = 8;
             this.assetStatus.Name = "assetStatus";
-            this.assetStatus.Width = 142;
+            this.assetStatus.Width = 122;
             // 
             // ownedAssetBindingSource
             // 
@@ -428,10 +429,10 @@
             this.tabPage2.Controls.Add(this.jobStaffAssignmentDataGridView);
             this.tabPage2.Controls.Add(this.button3);
             this.tabPage2.Controls.Add(this.staffDataGridView);
-            this.tabPage2.Location = new System.Drawing.Point(4, 29);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1510, 413);
+            this.tabPage2.Size = new System.Drawing.Size(1510, 417);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Staff";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -471,7 +472,7 @@
             this.staffID_T.HeaderText = "staffID";
             this.staffID_T.MinimumWidth = 8;
             this.staffID_T.Name = "staffID_T";
-            this.staffID_T.Width = 101;
+            this.staffID_T.Width = 84;
             // 
             // jobID_T
             // 
@@ -479,7 +480,7 @@
             this.jobID_T.HeaderText = "jobID";
             this.jobID_T.MinimumWidth = 8;
             this.jobID_T.Name = "jobID_T";
-            this.jobID_T.Width = 88;
+            this.jobID_T.Width = 74;
             // 
             // hoursWorked
             // 
@@ -488,7 +489,7 @@
             this.hoursWorked.MinimumWidth = 8;
             this.hoursWorked.Name = "hoursWorked";
             this.hoursWorked.Visible = false;
-            this.hoursWorked.Width = 151;
+            this.hoursWorked.Width = 117;
             // 
             // dataGridViewTextBoxColumn41
             // 
@@ -496,7 +497,7 @@
             this.dataGridViewTextBoxColumn41.HeaderText = "assignmentDate";
             this.dataGridViewTextBoxColumn41.MinimumWidth = 8;
             this.dataGridViewTextBoxColumn41.Name = "dataGridViewTextBoxColumn41";
-            this.dataGridViewTextBoxColumn41.Width = 176;
+            this.dataGridViewTextBoxColumn41.Width = 153;
             // 
             // jobStaffAssignmentBindingSource
             // 
@@ -608,9 +609,42 @@
             this.staffBindingSource.DataMember = "Staff";
             this.staffBindingSource.DataSource = this.groupWst1DataSet;
             // 
+            // tab3
+            // 
+            this.tab3.Controls.Add(this.button5);
+            this.tab3.Controls.Add(this.label4);
+            this.tab3.Location = new System.Drawing.Point(4, 25);
+            this.tab3.Name = "tab3";
+            this.tab3.Padding = new System.Windows.Forms.Padding(3);
+            this.tab3.Size = new System.Drawing.Size(1510, 417);
+            this.tab3.TabIndex = 2;
+            this.tab3.Text = "View All Allocations";
+            this.tab3.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(314, 116);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(611, 96);
+            this.button5.TabIndex = 1;
+            this.button5.Text = "View Calendar";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(239, 69);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(694, 17);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Click the following button to display a live calendar to see all Jobs that have b" +
+    "een assigned to!";
+            // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.Controls.Add(this.button6);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.dataGridView1);
@@ -633,16 +667,17 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(588, 235);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(162, 20);
+            this.label3.Size = new System.Drawing.Size(147, 17);
             this.label3.TabIndex = 9;
             this.label3.Text = "You have selected:";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 62);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(477, 20);
+            this.label2.Size = new System.Drawing.Size(433, 17);
             this.label2.TabIndex = 8;
             this.label2.Text = "Note to User: Double Click the Job you want to allocate to.";
             // 
@@ -713,7 +748,7 @@
             this.statusBox.Location = new System.Drawing.Point(987, 268);
             this.statusBox.Name = "statusBox";
             this.statusBox.ReadOnly = true;
-            this.statusBox.Size = new System.Drawing.Size(153, 26);
+            this.statusBox.Size = new System.Drawing.Size(153, 23);
             this.statusBox.TabIndex = 6;
             // 
             // clientNameBox
@@ -721,7 +756,7 @@
             this.clientNameBox.Location = new System.Drawing.Point(380, 268);
             this.clientNameBox.Name = "clientNameBox";
             this.clientNameBox.ReadOnly = true;
-            this.clientNameBox.Size = new System.Drawing.Size(258, 26);
+            this.clientNameBox.Size = new System.Drawing.Size(258, 23);
             this.clientNameBox.TabIndex = 4;
             // 
             // addressBox
@@ -729,7 +764,7 @@
             this.addressBox.Location = new System.Drawing.Point(654, 268);
             this.addressBox.Name = "addressBox";
             this.addressBox.ReadOnly = true;
-            this.addressBox.Size = new System.Drawing.Size(309, 26);
+            this.addressBox.Size = new System.Drawing.Size(309, 23);
             this.addressBox.TabIndex = 5;
             // 
             // jobIDBox
@@ -737,14 +772,14 @@
             this.jobIDBox.Location = new System.Drawing.Point(211, 268);
             this.jobIDBox.Name = "jobIDBox";
             this.jobIDBox.ReadOnly = true;
-            this.jobIDBox.Size = new System.Drawing.Size(154, 26);
+            this.jobIDBox.Size = new System.Drawing.Size(154, 23);
             this.jobIDBox.TabIndex = 3;
             // 
             // txtSearch
             // 
             this.txtSearch.Location = new System.Drawing.Point(632, 31);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(245, 26);
+            this.txtSearch.Size = new System.Drawing.Size(245, 23);
             this.txtSearch.TabIndex = 2;
             this.txtSearch.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -753,7 +788,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 31);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(319, 20);
+            this.label1.Size = new System.Drawing.Size(290, 17);
             this.label1.TabIndex = 1;
             this.label1.Text = "Search by Name, Surname or Address:";
             // 
@@ -814,37 +849,15 @@
             // 
             this.dataTable1TableAdapter.ClearBeforeFill = true;
             // 
-            // tab3
+            // button6
             // 
-            this.tab3.Controls.Add(this.button5);
-            this.tab3.Controls.Add(this.label4);
-            this.tab3.Location = new System.Drawing.Point(4, 29);
-            this.tab3.Name = "tab3";
-            this.tab3.Padding = new System.Windows.Forms.Padding(3);
-            this.tab3.Size = new System.Drawing.Size(1510, 413);
-            this.tab3.TabIndex = 2;
-            this.tab3.Text = "View All Allocations";
-            this.tab3.UseVisualStyleBackColor = true;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(239, 69);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(760, 20);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Click the following button to display a live calendar to see all Jobs that have b" +
-    "een assigned to!";
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(314, 116);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(611, 96);
-            this.button5.TabIndex = 1;
-            this.button5.Text = "View Calendar";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.button6.Location = new System.Drawing.Point(1012, 31);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(305, 35);
+            this.button6.TabIndex = 10;
+            this.button6.Text = "Load jobs that are \"In progress\"";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // AllocateAssetStafftoJob
             // 
@@ -858,6 +871,7 @@
             this.Name = "AllocateAssetStafftoJob";
             this.Text = "Allocation Hub";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AllocateAssetStafftoJob_FormClosed);
             this.Load += new System.EventHandler(this.AllocateAssetStafftoJob_Load);
             this.tabViewAllocations.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -873,13 +887,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.jobStaffAssignmentBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.staffDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.staffBindingSource)).EndInit();
+            this.tab3.ResumeLayout(false);
+            this.tab3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTable1BindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.jobBindingSource)).EndInit();
-            this.tab3.ResumeLayout(false);
-            this.tab3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -966,5 +980,6 @@
         private System.Windows.Forms.TabPage tab3;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button6;
     }
 }

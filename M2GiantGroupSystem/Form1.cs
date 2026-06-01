@@ -40,14 +40,16 @@ namespace M2GiantGroupSystem
             myForm.FormBorderStyle = FormBorderStyle.None;
             
             myForm.Dock = DockStyle.Fill;
-            myForm.WindowState = FormWindowState.Maximized;
+          //  myForm.WindowState = FormWindowState.Maximized;
             myForm.Show();  // display the child window
+            AppState.selectedIdCalendar = -8;
         }
 
         private void createQuoteToolStripMenuItem_Click(object sender, EventArgs e)
         {          
             
             FormSetup(new Quotation(0));
+            
         }
 
         private void allocateAssetsToJobsToolStripMenuItem_Click(object sender, EventArgs e)

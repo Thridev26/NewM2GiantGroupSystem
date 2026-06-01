@@ -20,7 +20,7 @@ namespace M2GiantGroupSystem
             //Application.Run(new Add_Client_A());
             //Application.Run(new CaptureJobRequest_A());
             // Application.Run(new EditJobRequest_A());
-            //Application.Run(new Calendar());
+           // Application.Run(new Calendar());
           Application.Run(new LoginForm());
         }
     }
