@@ -61,6 +61,10 @@
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem11 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewAllQuotesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editQuotesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.svaeQuoteAsPDFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.printQuoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -163,7 +167,11 @@
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.createQuoteToolStripMenuItem});
+            this.createQuoteToolStripMenuItem,
+            this.viewAllQuotesToolStripMenuItem,
+            this.editQuotesToolStripMenuItem,
+            this.svaeQuoteAsPDFToolStripMenuItem,
+            this.printQuoteToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(157, 36);
             this.toolStripMenuItem1.Text = "Quotations";
@@ -172,8 +180,8 @@
             // createQuoteToolStripMenuItem
             // 
             this.createQuoteToolStripMenuItem.Name = "createQuoteToolStripMenuItem";
-            this.createQuoteToolStripMenuItem.Size = new System.Drawing.Size(346, 40);
-            this.createQuoteToolStripMenuItem.Text = "Quote Management";
+            this.createQuoteToolStripMenuItem.Size = new System.Drawing.Size(330, 40);
+            this.createQuoteToolStripMenuItem.Text = "Create New Quote";
             this.createQuoteToolStripMenuItem.Click += new System.EventHandler(this.createQuoteToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
@@ -320,6 +328,30 @@
             this.toolStripMenuItem10.Size = new System.Drawing.Size(83, 36);
             this.toolStripMenuItem10.Text = "Help";
             // 
+            // viewAllQuotesToolStripMenuItem
+            // 
+            this.viewAllQuotesToolStripMenuItem.Name = "viewAllQuotesToolStripMenuItem";
+            this.viewAllQuotesToolStripMenuItem.Size = new System.Drawing.Size(330, 40);
+            this.viewAllQuotesToolStripMenuItem.Text = "View All Quotes";
+            // 
+            // editQuotesToolStripMenuItem
+            // 
+            this.editQuotesToolStripMenuItem.Name = "editQuotesToolStripMenuItem";
+            this.editQuotesToolStripMenuItem.Size = new System.Drawing.Size(330, 40);
+            this.editQuotesToolStripMenuItem.Text = "Edit Quotes";
+            // 
+            // svaeQuoteAsPDFToolStripMenuItem
+            // 
+            this.svaeQuoteAsPDFToolStripMenuItem.Name = "svaeQuoteAsPDFToolStripMenuItem";
+            this.svaeQuoteAsPDFToolStripMenuItem.Size = new System.Drawing.Size(330, 40);
+            this.svaeQuoteAsPDFToolStripMenuItem.Text = "Save Quote as PDF";
+            // 
+            // printQuoteToolStripMenuItem
+            // 
+            this.printQuoteToolStripMenuItem.Name = "printQuoteToolStripMenuItem";
+            this.printQuoteToolStripMenuItem.Size = new System.Drawing.Size(330, 40);
+            this.printQuoteToolStripMenuItem.Text = "Print Quote";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(17F, 32F);
@@ -374,6 +406,10 @@
         private System.Windows.Forms.ToolStripMenuItem captureDetailsForRequestedItemsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewJobRequestsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewAllAllocationsToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem viewAllQuotesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editQuotesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem svaeQuoteAsPDFToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem printQuoteToolStripMenuItem;
     }
 }
 
