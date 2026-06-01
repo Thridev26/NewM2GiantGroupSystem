@@ -245,5 +245,21 @@ namespace M2GiantGroupSystem
                 MessageBox.Show("Please select an assignment row from the right-hand grid to remove.");
             }
         }
+
+        private void tabControl1_MouseClick(object sender, MouseEventArgs e)
+        {
+            
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            // Check if the currently selected tab is the one you want
+            // Replace "tabViewAllocations" with the actual (Name) property of your tab
+            if (tabViewAllocations.SelectedTab.Name == "tab3")
+            {
+                Calendar calendarForm = new Calendar();
+                calendarForm.ShowDialog();
+            }
+        }
     }
 }
