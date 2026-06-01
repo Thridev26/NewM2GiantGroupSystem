@@ -38,9 +38,9 @@ namespace M2GiantGroupSystem
             myForm.MdiParent = this;
 
             myForm.FormBorderStyle = FormBorderStyle.None;
-            myForm.WindowState = FormWindowState.Maximized;
+            
             myForm.Dock = DockStyle.Fill;
-
+            myForm.WindowState = FormWindowState.Maximized;
             myForm.Show();  // display the child window
         }
 
@@ -54,8 +54,8 @@ namespace M2GiantGroupSystem
 
         private void allocateAssetsToJobsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AllocateAssetStafftoJob allocateAssetStafftoJob = new AllocateAssetStafftoJob();
-            FormSetup(allocateAssetStafftoJob);
+            
+            FormSetup(new AllocateAssetStafftoJob(0));
         }
 
         private void clientsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -112,6 +112,17 @@ namespace M2GiantGroupSystem
         {
             MachineRecords_D asset = new MachineRecords_D();
             asset.Show();
+        }
+
+        private void viewAllAllocationsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormSetup(new AllocateAssetStafftoJob(1));
+        }
+
+        private void viewAllAllocationsToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Calendar calendarform = new Calendar();
+            FormSetup(calendarform);
         }
     }
 }
