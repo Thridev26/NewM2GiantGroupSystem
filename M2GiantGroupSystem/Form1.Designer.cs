@@ -41,6 +41,10 @@
             this.viewJobRequestsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.createQuoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewAllQuotesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editQuotesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.svaeQuoteAsPDFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.printQuoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.allocateAssetsToJobsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewAllAllocationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,10 +65,6 @@
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem11 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewAllQuotesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editQuotesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.svaeQuoteAsPDFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.printQuoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -183,6 +183,34 @@
             this.createQuoteToolStripMenuItem.Size = new System.Drawing.Size(330, 40);
             this.createQuoteToolStripMenuItem.Text = "Create New Quote";
             this.createQuoteToolStripMenuItem.Click += new System.EventHandler(this.createQuoteToolStripMenuItem_Click);
+            // 
+            // viewAllQuotesToolStripMenuItem
+            // 
+            this.viewAllQuotesToolStripMenuItem.Name = "viewAllQuotesToolStripMenuItem";
+            this.viewAllQuotesToolStripMenuItem.Size = new System.Drawing.Size(330, 40);
+            this.viewAllQuotesToolStripMenuItem.Text = "View All Quotes";
+            this.viewAllQuotesToolStripMenuItem.Click += new System.EventHandler(this.viewAllQuotesToolStripMenuItem_Click);
+            // 
+            // editQuotesToolStripMenuItem
+            // 
+            this.editQuotesToolStripMenuItem.Name = "editQuotesToolStripMenuItem";
+            this.editQuotesToolStripMenuItem.Size = new System.Drawing.Size(330, 40);
+            this.editQuotesToolStripMenuItem.Text = "Edit Quotes";
+            this.editQuotesToolStripMenuItem.Click += new System.EventHandler(this.editQuotesToolStripMenuItem_Click);
+            // 
+            // svaeQuoteAsPDFToolStripMenuItem
+            // 
+            this.svaeQuoteAsPDFToolStripMenuItem.Name = "svaeQuoteAsPDFToolStripMenuItem";
+            this.svaeQuoteAsPDFToolStripMenuItem.Size = new System.Drawing.Size(330, 40);
+            this.svaeQuoteAsPDFToolStripMenuItem.Text = "Save Quote as PDF";
+            this.svaeQuoteAsPDFToolStripMenuItem.Click += new System.EventHandler(this.svaeQuoteAsPDFToolStripMenuItem_Click);
+            // 
+            // printQuoteToolStripMenuItem
+            // 
+            this.printQuoteToolStripMenuItem.Name = "printQuoteToolStripMenuItem";
+            this.printQuoteToolStripMenuItem.Size = new System.Drawing.Size(330, 40);
+            this.printQuoteToolStripMenuItem.Text = "Print Quote";
+            this.printQuoteToolStripMenuItem.Click += new System.EventHandler(this.printQuoteToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
@@ -327,30 +355,6 @@
             this.toolStripMenuItem10.Name = "toolStripMenuItem10";
             this.toolStripMenuItem10.Size = new System.Drawing.Size(83, 36);
             this.toolStripMenuItem10.Text = "Help";
-            // 
-            // viewAllQuotesToolStripMenuItem
-            // 
-            this.viewAllQuotesToolStripMenuItem.Name = "viewAllQuotesToolStripMenuItem";
-            this.viewAllQuotesToolStripMenuItem.Size = new System.Drawing.Size(330, 40);
-            this.viewAllQuotesToolStripMenuItem.Text = "View All Quotes";
-            // 
-            // editQuotesToolStripMenuItem
-            // 
-            this.editQuotesToolStripMenuItem.Name = "editQuotesToolStripMenuItem";
-            this.editQuotesToolStripMenuItem.Size = new System.Drawing.Size(330, 40);
-            this.editQuotesToolStripMenuItem.Text = "Edit Quotes";
-            // 
-            // svaeQuoteAsPDFToolStripMenuItem
-            // 
-            this.svaeQuoteAsPDFToolStripMenuItem.Name = "svaeQuoteAsPDFToolStripMenuItem";
-            this.svaeQuoteAsPDFToolStripMenuItem.Size = new System.Drawing.Size(330, 40);
-            this.svaeQuoteAsPDFToolStripMenuItem.Text = "Save Quote as PDF";
-            // 
-            // printQuoteToolStripMenuItem
-            // 
-            this.printQuoteToolStripMenuItem.Name = "printQuoteToolStripMenuItem";
-            this.printQuoteToolStripMenuItem.Size = new System.Drawing.Size(330, 40);
-            this.printQuoteToolStripMenuItem.Text = "Print Quote";
             // 
             // Form1
             // 

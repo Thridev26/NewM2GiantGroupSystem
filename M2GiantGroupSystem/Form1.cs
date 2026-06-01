@@ -45,11 +45,9 @@ namespace M2GiantGroupSystem
         }
 
         private void createQuoteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            // 2. Instantiate your child object form
-            Quotation quotation = new Quotation();
-            // 3. Route it through your dynamic MDI layout manager
-            FormSetup(quotation);
+        {          
+            
+            FormSetup(new Quotation(0));
         }
 
         private void allocateAssetsToJobsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -123,6 +121,26 @@ namespace M2GiantGroupSystem
         {
             Calendar calendarform = new Calendar();
             FormSetup(calendarform);
+        }
+
+        private void viewAllQuotesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormSetup(new Quotation(1));
+        }
+
+        private void editQuotesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormSetup(new Quotation(1));
+        }
+
+        private void svaeQuoteAsPDFToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormSetup(new Quotation(1));
+        }
+
+        private void printQuoteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormSetup(new Quotation(1));
         }
     }
 }
