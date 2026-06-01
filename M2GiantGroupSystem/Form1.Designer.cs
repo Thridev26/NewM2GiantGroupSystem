@@ -60,6 +60,7 @@
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem11 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewAllAllocationsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,6 +68,7 @@
             // 
             this.menuStrip1.BackColor = System.Drawing.Color.LimeGreen;
             this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.clientsToolStripMenuItem,
@@ -84,7 +86,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(17, 5, 0, 5);
-            this.menuStrip1.Size = new System.Drawing.Size(1924, 42);
+            this.menuStrip1.Size = new System.Drawing.Size(1924, 46);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -95,28 +97,28 @@
             this.updateClientTSItem,
             this.toolStripMenuItem12});
             this.clientsToolStripMenuItem.Name = "clientsToolStripMenuItem";
-            this.clientsToolStripMenuItem.Size = new System.Drawing.Size(90, 32);
+            this.clientsToolStripMenuItem.Size = new System.Drawing.Size(107, 36);
             this.clientsToolStripMenuItem.Text = "Clients";
             this.clientsToolStripMenuItem.Click += new System.EventHandler(this.clientsToolStripMenuItem_Click);
             // 
             // addNewClientToolStripMenuItem
             // 
             this.addNewClientToolStripMenuItem.Name = "addNewClientToolStripMenuItem";
-            this.addNewClientToolStripMenuItem.Size = new System.Drawing.Size(344, 32);
+            this.addNewClientToolStripMenuItem.Size = new System.Drawing.Size(414, 40);
             this.addNewClientToolStripMenuItem.Text = "Add New Client";
             this.addNewClientToolStripMenuItem.Click += new System.EventHandler(this.addNewClientToolStripMenuItem_Click);
             // 
             // updateClientTSItem
             // 
             this.updateClientTSItem.Name = "updateClientTSItem";
-            this.updateClientTSItem.Size = new System.Drawing.Size(344, 32);
+            this.updateClientTSItem.Size = new System.Drawing.Size(414, 40);
             this.updateClientTSItem.Text = "Update client information";
             this.updateClientTSItem.Click += new System.EventHandler(this.updateClientTSItem_Click);
             // 
             // toolStripMenuItem12
             // 
             this.toolStripMenuItem12.Name = "toolStripMenuItem12";
-            this.toolStripMenuItem12.Size = new System.Drawing.Size(344, 32);
+            this.toolStripMenuItem12.Size = new System.Drawing.Size(414, 40);
             this.toolStripMenuItem12.Text = "View clients";
             // 
             // toolStripMenuItem9
@@ -127,34 +129,34 @@
             this.captureDetailsForRequestedItemsToolStripMenuItem,
             this.viewJobRequestsToolStripMenuItem});
             this.toolStripMenuItem9.Name = "toolStripMenuItem9";
-            this.toolStripMenuItem9.Size = new System.Drawing.Size(150, 32);
+            this.toolStripMenuItem9.Size = new System.Drawing.Size(180, 36);
             this.toolStripMenuItem9.Text = "Job Requests";
             // 
             // captureJobRequestToolStripMenuItem
             // 
             this.captureJobRequestToolStripMenuItem.Name = "captureJobRequestToolStripMenuItem";
-            this.captureJobRequestToolStripMenuItem.Size = new System.Drawing.Size(433, 32);
+            this.captureJobRequestToolStripMenuItem.Size = new System.Drawing.Size(521, 40);
             this.captureJobRequestToolStripMenuItem.Text = "Capture job request";
             this.captureJobRequestToolStripMenuItem.Click += new System.EventHandler(this.captureJobRequestToolStripMenuItem_Click);
             // 
             // updateJobRequestToolStripMenuItem
             // 
             this.updateJobRequestToolStripMenuItem.Name = "updateJobRequestToolStripMenuItem";
-            this.updateJobRequestToolStripMenuItem.Size = new System.Drawing.Size(433, 32);
+            this.updateJobRequestToolStripMenuItem.Size = new System.Drawing.Size(521, 40);
             this.updateJobRequestToolStripMenuItem.Text = "Update job request";
             this.updateJobRequestToolStripMenuItem.Click += new System.EventHandler(this.updateJobRequestToolStripMenuItem_Click);
             // 
             // captureDetailsForRequestedItemsToolStripMenuItem
             // 
             this.captureDetailsForRequestedItemsToolStripMenuItem.Name = "captureDetailsForRequestedItemsToolStripMenuItem";
-            this.captureDetailsForRequestedItemsToolStripMenuItem.Size = new System.Drawing.Size(433, 32);
+            this.captureDetailsForRequestedItemsToolStripMenuItem.Size = new System.Drawing.Size(521, 40);
             this.captureDetailsForRequestedItemsToolStripMenuItem.Text = "Capture details for requested items";
             this.captureDetailsForRequestedItemsToolStripMenuItem.Click += new System.EventHandler(this.captureDetailsForRequestedItemsToolStripMenuItem_Click);
             // 
             // viewJobRequestsToolStripMenuItem
             // 
             this.viewJobRequestsToolStripMenuItem.Name = "viewJobRequestsToolStripMenuItem";
-            this.viewJobRequestsToolStripMenuItem.Size = new System.Drawing.Size(433, 32);
+            this.viewJobRequestsToolStripMenuItem.Size = new System.Drawing.Size(521, 40);
             this.viewJobRequestsToolStripMenuItem.Text = "View job requests";
             this.viewJobRequestsToolStripMenuItem.Click += new System.EventHandler(this.viewJobRequestsToolStripMenuItem_Click);
             // 
@@ -163,14 +165,14 @@
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createQuoteToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(131, 32);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(157, 36);
             this.toolStripMenuItem1.Text = "Quotations";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // createQuoteToolStripMenuItem
             // 
             this.createQuoteToolStripMenuItem.Name = "createQuoteToolStripMenuItem";
-            this.createQuoteToolStripMenuItem.Size = new System.Drawing.Size(287, 32);
+            this.createQuoteToolStripMenuItem.Size = new System.Drawing.Size(346, 40);
             this.createQuoteToolStripMenuItem.Text = "Quote Management";
             this.createQuoteToolStripMenuItem.Click += new System.EventHandler(this.createQuoteToolStripMenuItem_Click);
             // 
@@ -178,23 +180,24 @@
             // 
             this.toolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.allocateAssetsToJobsToolStripMenuItem,
-            this.viewAllAllocationsToolStripMenuItem});
+            this.viewAllAllocationsToolStripMenuItem,
+            this.viewAllAllocationsToolStripMenuItem1});
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(130, 32);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(156, 36);
             this.toolStripMenuItem2.Text = "Scheduling";
             // 
             // allocateAssetsToJobsToolStripMenuItem
             // 
             this.allocateAssetsToJobsToolStripMenuItem.Name = "allocateAssetsToJobsToolStripMenuItem";
-            this.allocateAssetsToJobsToolStripMenuItem.Size = new System.Drawing.Size(391, 32);
-            this.allocateAssetsToJobsToolStripMenuItem.Text = "Allocate Assets && Staff to Jobs";
+            this.allocateAssetsToJobsToolStripMenuItem.Size = new System.Drawing.Size(380, 40);
+            this.allocateAssetsToJobsToolStripMenuItem.Text = "Allocate Assets to Jobs";
             this.allocateAssetsToJobsToolStripMenuItem.Click += new System.EventHandler(this.allocateAssetsToJobsToolStripMenuItem_Click);
             // 
             // viewAllAllocationsToolStripMenuItem
             // 
             this.viewAllAllocationsToolStripMenuItem.Name = "viewAllAllocationsToolStripMenuItem";
-            this.viewAllAllocationsToolStripMenuItem.Size = new System.Drawing.Size(391, 32);
-            this.viewAllAllocationsToolStripMenuItem.Text = "View All Allocations";
+            this.viewAllAllocationsToolStripMenuItem.Size = new System.Drawing.Size(380, 40);
+            this.viewAllAllocationsToolStripMenuItem.Text = "Allocate Staff to Jobs";
             // 
             // toolStripMenuItem3
             // 
@@ -203,25 +206,25 @@
             this.viewJobProgressToolStripMenuItem,
             this.editJobProgressToolStripMenuItem});
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(68, 32);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(82, 36);
             this.toolStripMenuItem3.Text = "Jobs";
             // 
             // addEditJobDetailsToolStripMenuItem
             // 
             this.addEditJobDetailsToolStripMenuItem.Name = "addEditJobDetailsToolStripMenuItem";
-            this.addEditJobDetailsToolStripMenuItem.Size = new System.Drawing.Size(305, 32);
+            this.addEditJobDetailsToolStripMenuItem.Size = new System.Drawing.Size(367, 40);
             this.addEditJobDetailsToolStripMenuItem.Text = "Add / Edit Job Details";
             // 
             // viewJobProgressToolStripMenuItem
             // 
             this.viewJobProgressToolStripMenuItem.Name = "viewJobProgressToolStripMenuItem";
-            this.viewJobProgressToolStripMenuItem.Size = new System.Drawing.Size(305, 32);
+            this.viewJobProgressToolStripMenuItem.Size = new System.Drawing.Size(367, 40);
             this.viewJobProgressToolStripMenuItem.Text = "View Job Progress";
             // 
             // editJobProgressToolStripMenuItem
             // 
             this.editJobProgressToolStripMenuItem.Name = "editJobProgressToolStripMenuItem";
-            this.editJobProgressToolStripMenuItem.Size = new System.Drawing.Size(305, 32);
+            this.editJobProgressToolStripMenuItem.Size = new System.Drawing.Size(367, 40);
             this.editJobProgressToolStripMenuItem.Text = "Edit Job Progress";
             // 
             // toolStripMenuItem4
@@ -230,19 +233,19 @@
             this.createAnInvoiceToolStripMenuItem,
             this.trackPaymentsToolStripMenuItem});
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(203, 32);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(244, 36);
             this.toolStripMenuItem4.Text = "Billing && Invoicing";
             // 
             // createAnInvoiceToolStripMenuItem
             // 
             this.createAnInvoiceToolStripMenuItem.Name = "createAnInvoiceToolStripMenuItem";
-            this.createAnInvoiceToolStripMenuItem.Size = new System.Drawing.Size(262, 32);
+            this.createAnInvoiceToolStripMenuItem.Size = new System.Drawing.Size(316, 40);
             this.createAnInvoiceToolStripMenuItem.Text = "Create an Invoice";
             // 
             // trackPaymentsToolStripMenuItem
             // 
             this.trackPaymentsToolStripMenuItem.Name = "trackPaymentsToolStripMenuItem";
-            this.trackPaymentsToolStripMenuItem.Size = new System.Drawing.Size(262, 32);
+            this.trackPaymentsToolStripMenuItem.Size = new System.Drawing.Size(316, 40);
             this.trackPaymentsToolStripMenuItem.Text = "Track Payments";
             // 
             // toolStripMenuItem5
@@ -250,13 +253,13 @@
             this.toolStripMenuItem5.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addEditAssetRecordsToolStripMenuItem});
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(86, 32);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(102, 36);
             this.toolStripMenuItem5.Text = "Assets";
             // 
             // addEditAssetRecordsToolStripMenuItem
             // 
             this.addEditAssetRecordsToolStripMenuItem.Name = "addEditAssetRecordsToolStripMenuItem";
-            this.addEditAssetRecordsToolStripMenuItem.Size = new System.Drawing.Size(332, 32);
+            this.addEditAssetRecordsToolStripMenuItem.Size = new System.Drawing.Size(400, 40);
             this.addEditAssetRecordsToolStripMenuItem.Text = "Add / Edit Asset Records";
             this.addEditAssetRecordsToolStripMenuItem.Click += new System.EventHandler(this.addEditAssetRecordsToolStripMenuItem_Click);
             // 
@@ -265,13 +268,13 @@
             this.toolStripMenuItem6.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.recordMaintenanceLogToolStripMenuItem});
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(155, 32);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(185, 36);
             this.toolStripMenuItem6.Text = "Maintenance ";
             // 
             // recordMaintenanceLogToolStripMenuItem
             // 
             this.recordMaintenanceLogToolStripMenuItem.Name = "recordMaintenanceLogToolStripMenuItem";
-            this.recordMaintenanceLogToolStripMenuItem.Size = new System.Drawing.Size(333, 32);
+            this.recordMaintenanceLogToolStripMenuItem.Size = new System.Drawing.Size(402, 40);
             this.recordMaintenanceLogToolStripMenuItem.Text = "Record Maintenance Log";
             // 
             // toolStripMenuItem7
@@ -279,26 +282,26 @@
             this.toolStripMenuItem7.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addEditStaffDetailsToolStripMenuItem});
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(72, 32);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(82, 36);
             this.toolStripMenuItem7.Text = "Staff";
             // 
             // addEditStaffDetailsToolStripMenuItem
             // 
             this.addEditStaffDetailsToolStripMenuItem.Name = "addEditStaffDetailsToolStripMenuItem";
-            this.addEditStaffDetailsToolStripMenuItem.Size = new System.Drawing.Size(318, 32);
+            this.addEditStaffDetailsToolStripMenuItem.Size = new System.Drawing.Size(378, 40);
             this.addEditStaffDetailsToolStripMenuItem.Text = "Add / Edit Staff Details";
             // 
             // toolStripMenuItem8
             // 
             this.toolStripMenuItem8.Name = "toolStripMenuItem8";
-            this.toolStripMenuItem8.Size = new System.Drawing.Size(100, 32);
+            this.toolStripMenuItem8.Size = new System.Drawing.Size(119, 36);
             this.toolStripMenuItem8.Text = "Reports";
             // 
             // toolStripMenuItem11
             // 
             this.toolStripMenuItem11.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripMenuItem11.Name = "toolStripMenuItem11";
-            this.toolStripMenuItem11.Size = new System.Drawing.Size(92, 32);
+            this.toolStripMenuItem11.Size = new System.Drawing.Size(111, 36);
             this.toolStripMenuItem11.Text = "Logout";
             this.toolStripMenuItem11.Click += new System.EventHandler(this.toolStripMenuItem11_Click);
             // 
@@ -306,12 +309,18 @@
             // 
             this.toolStripMenuItem10.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripMenuItem10.Name = "toolStripMenuItem10";
-            this.toolStripMenuItem10.Size = new System.Drawing.Size(70, 32);
+            this.toolStripMenuItem10.Size = new System.Drawing.Size(83, 36);
             this.toolStripMenuItem10.Text = "Help";
+            // 
+            // viewAllAllocationsToolStripMenuItem1
+            // 
+            this.viewAllAllocationsToolStripMenuItem1.Name = "viewAllAllocationsToolStripMenuItem1";
+            this.viewAllAllocationsToolStripMenuItem1.Size = new System.Drawing.Size(380, 40);
+            this.viewAllAllocationsToolStripMenuItem1.Text = "View All Allocations";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 29F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(17F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1924, 906);
             this.Controls.Add(this.menuStrip1);
@@ -362,6 +371,7 @@
         private System.Windows.Forms.ToolStripMenuItem updateJobRequestToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem captureDetailsForRequestedItemsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewJobRequestsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem viewAllAllocationsToolStripMenuItem1;
     }
 }
 
