@@ -44,6 +44,7 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.allocateAssetsToJobsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewAllAllocationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewAllAllocationsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.addEditJobDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewJobProgressToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,7 +61,6 @@
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem11 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewAllAllocationsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -86,7 +86,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(17, 5, 0, 5);
-            this.menuStrip1.Size = new System.Drawing.Size(1924, 46);
+            this.menuStrip1.Size = new System.Drawing.Size(1672, 46);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -198,6 +198,14 @@
             this.viewAllAllocationsToolStripMenuItem.Name = "viewAllAllocationsToolStripMenuItem";
             this.viewAllAllocationsToolStripMenuItem.Size = new System.Drawing.Size(380, 40);
             this.viewAllAllocationsToolStripMenuItem.Text = "Allocate Staff to Jobs";
+            this.viewAllAllocationsToolStripMenuItem.Click += new System.EventHandler(this.viewAllAllocationsToolStripMenuItem_Click);
+            // 
+            // viewAllAllocationsToolStripMenuItem1
+            // 
+            this.viewAllAllocationsToolStripMenuItem1.Name = "viewAllAllocationsToolStripMenuItem1";
+            this.viewAllAllocationsToolStripMenuItem1.Size = new System.Drawing.Size(380, 40);
+            this.viewAllAllocationsToolStripMenuItem1.Text = "View All Allocations";
+            this.viewAllAllocationsToolStripMenuItem1.Click += new System.EventHandler(this.viewAllAllocationsToolStripMenuItem1_Click);
             // 
             // toolStripMenuItem3
             // 
@@ -312,17 +320,11 @@
             this.toolStripMenuItem10.Size = new System.Drawing.Size(83, 36);
             this.toolStripMenuItem10.Text = "Help";
             // 
-            // viewAllAllocationsToolStripMenuItem1
-            // 
-            this.viewAllAllocationsToolStripMenuItem1.Name = "viewAllAllocationsToolStripMenuItem1";
-            this.viewAllAllocationsToolStripMenuItem1.Size = new System.Drawing.Size(380, 40);
-            this.viewAllAllocationsToolStripMenuItem1.Text = "View All Allocations";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(17F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1924, 906);
+            this.ClientSize = new System.Drawing.Size(1672, 594);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
