@@ -12,9 +12,11 @@ namespace M2GiantGroupSystem
 {
     public partial class AllocateAssetStafftoJob : Form
     {
-        public  AllocateAssetStafftoJob()
+        int tabIndex;
+        public  AllocateAssetStafftoJob(int tab_index)
         {
             InitializeComponent();
+            tabIndex = tab_index;
         }
 
         private void jobBindingNavigatorSaveItem_Click(object sender, EventArgs e)
@@ -27,6 +29,7 @@ namespace M2GiantGroupSystem
 
         private void AllocateAssetStafftoJob_Load(object sender, EventArgs e)
         {
+            tabViewAllocations.SelectedIndex = tabIndex; // Set the selected tab based on the passed index
             // TODO: This line of code loads data into the 'groupWst1DataSet.DataTable1' table. You can move, or remove it, as needed.
             this.dataTable1TableAdapter.Fill(this.groupWst1DataSet.DataTable1);
             // Force this to true in code if you can't find the designer property
