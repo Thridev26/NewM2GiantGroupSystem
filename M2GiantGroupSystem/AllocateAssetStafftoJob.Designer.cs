@@ -62,9 +62,22 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.button4 = new System.Windows.Forms.Button();
             this.jobStaffAssignmentDataGridView = new System.Windows.Forms.DataGridView();
+            this.staffID_T = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.jobID_T = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hoursWorked = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn41 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.jobStaffAssignmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.button3 = new System.Windows.Forms.Button();
             this.staffDataGridView = new System.Windows.Forms.DataGridView();
+            this.staffID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.firstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn32 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn33 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contactNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.staffStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dailyRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.roleID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.staffBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -91,19 +104,6 @@
             this.ownedAssetTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.OwnedAssetTableAdapter();
             this.staffTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.StaffTableAdapter();
             this.dataTable1TableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.DataTable1TableAdapter();
-            this.staffID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.firstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn32 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn33 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contactNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.staffStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dailyRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.roleID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.staffID_T = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.jobID_T = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hoursWorked = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn41 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.jobAssetAssignmentDataGridView)).BeginInit();
@@ -459,6 +459,39 @@
             this.jobStaffAssignmentDataGridView.Size = new System.Drawing.Size(433, 194);
             this.jobStaffAssignmentDataGridView.TabIndex = 2;
             // 
+            // staffID_T
+            // 
+            this.staffID_T.DataPropertyName = "staffID";
+            this.staffID_T.HeaderText = "staffID";
+            this.staffID_T.MinimumWidth = 8;
+            this.staffID_T.Name = "staffID_T";
+            this.staffID_T.Width = 101;
+            // 
+            // jobID_T
+            // 
+            this.jobID_T.DataPropertyName = "jobID";
+            this.jobID_T.HeaderText = "jobID";
+            this.jobID_T.MinimumWidth = 8;
+            this.jobID_T.Name = "jobID_T";
+            this.jobID_T.Width = 88;
+            // 
+            // hoursWorked
+            // 
+            this.hoursWorked.DataPropertyName = "hoursWorked";
+            this.hoursWorked.HeaderText = "hoursWorked";
+            this.hoursWorked.MinimumWidth = 8;
+            this.hoursWorked.Name = "hoursWorked";
+            this.hoursWorked.Visible = false;
+            this.hoursWorked.Width = 151;
+            // 
+            // dataGridViewTextBoxColumn41
+            // 
+            this.dataGridViewTextBoxColumn41.DataPropertyName = "assignmentDate";
+            this.dataGridViewTextBoxColumn41.HeaderText = "assignmentDate";
+            this.dataGridViewTextBoxColumn41.MinimumWidth = 8;
+            this.dataGridViewTextBoxColumn41.Name = "dataGridViewTextBoxColumn41";
+            this.dataGridViewTextBoxColumn41.Width = 176;
+            // 
             // jobStaffAssignmentBindingSource
             // 
             this.jobStaffAssignmentBindingSource.DataMember = "JobStaffAssignment";
@@ -498,6 +531,72 @@
             this.staffDataGridView.Size = new System.Drawing.Size(691, 194);
             this.staffDataGridView.TabIndex = 0;
             // 
+            // staffID
+            // 
+            this.staffID.DataPropertyName = "staffID";
+            this.staffID.HeaderText = "staffID";
+            this.staffID.MinimumWidth = 8;
+            this.staffID.Name = "staffID";
+            this.staffID.ReadOnly = true;
+            // 
+            // firstName
+            // 
+            this.firstName.DataPropertyName = "firstName";
+            this.firstName.HeaderText = "firstName";
+            this.firstName.MinimumWidth = 8;
+            this.firstName.Name = "firstName";
+            // 
+            // lastName
+            // 
+            this.lastName.DataPropertyName = "lastName";
+            this.lastName.HeaderText = "lastName";
+            this.lastName.MinimumWidth = 8;
+            this.lastName.Name = "lastName";
+            // 
+            // dataGridViewTextBoxColumn32
+            // 
+            this.dataGridViewTextBoxColumn32.DataPropertyName = "userName";
+            this.dataGridViewTextBoxColumn32.HeaderText = "userName";
+            this.dataGridViewTextBoxColumn32.MinimumWidth = 8;
+            this.dataGridViewTextBoxColumn32.Name = "dataGridViewTextBoxColumn32";
+            this.dataGridViewTextBoxColumn32.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn33
+            // 
+            this.dataGridViewTextBoxColumn33.DataPropertyName = "passwordHash";
+            this.dataGridViewTextBoxColumn33.HeaderText = "passwordHash";
+            this.dataGridViewTextBoxColumn33.MinimumWidth = 8;
+            this.dataGridViewTextBoxColumn33.Name = "dataGridViewTextBoxColumn33";
+            this.dataGridViewTextBoxColumn33.Visible = false;
+            // 
+            // contactNumber
+            // 
+            this.contactNumber.DataPropertyName = "contactNumber";
+            this.contactNumber.HeaderText = "contactNumber";
+            this.contactNumber.MinimumWidth = 8;
+            this.contactNumber.Name = "contactNumber";
+            // 
+            // staffStatus
+            // 
+            this.staffStatus.DataPropertyName = "staffStatus";
+            this.staffStatus.HeaderText = "staffStatus";
+            this.staffStatus.MinimumWidth = 8;
+            this.staffStatus.Name = "staffStatus";
+            // 
+            // dailyRate
+            // 
+            this.dailyRate.DataPropertyName = "dailyRate";
+            this.dailyRate.HeaderText = "dailyRate";
+            this.dailyRate.MinimumWidth = 8;
+            this.dailyRate.Name = "dailyRate";
+            // 
+            // roleID
+            // 
+            this.roleID.DataPropertyName = "roleID";
+            this.roleID.HeaderText = "roleID";
+            this.roleID.MinimumWidth = 8;
+            this.roleID.Name = "roleID";
+            // 
             // staffBindingSource
             // 
             this.staffBindingSource.DataMember = "Staff";
@@ -505,6 +604,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.Color.Transparent;
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.dataGridView1);
@@ -707,105 +807,6 @@
             // dataTable1TableAdapter
             // 
             this.dataTable1TableAdapter.ClearBeforeFill = true;
-            // 
-            // staffID
-            // 
-            this.staffID.DataPropertyName = "staffID";
-            this.staffID.HeaderText = "staffID";
-            this.staffID.MinimumWidth = 8;
-            this.staffID.Name = "staffID";
-            this.staffID.ReadOnly = true;
-            // 
-            // firstName
-            // 
-            this.firstName.DataPropertyName = "firstName";
-            this.firstName.HeaderText = "firstName";
-            this.firstName.MinimumWidth = 8;
-            this.firstName.Name = "firstName";
-            // 
-            // lastName
-            // 
-            this.lastName.DataPropertyName = "lastName";
-            this.lastName.HeaderText = "lastName";
-            this.lastName.MinimumWidth = 8;
-            this.lastName.Name = "lastName";
-            // 
-            // dataGridViewTextBoxColumn32
-            // 
-            this.dataGridViewTextBoxColumn32.DataPropertyName = "userName";
-            this.dataGridViewTextBoxColumn32.HeaderText = "userName";
-            this.dataGridViewTextBoxColumn32.MinimumWidth = 8;
-            this.dataGridViewTextBoxColumn32.Name = "dataGridViewTextBoxColumn32";
-            this.dataGridViewTextBoxColumn32.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn33
-            // 
-            this.dataGridViewTextBoxColumn33.DataPropertyName = "passwordHash";
-            this.dataGridViewTextBoxColumn33.HeaderText = "passwordHash";
-            this.dataGridViewTextBoxColumn33.MinimumWidth = 8;
-            this.dataGridViewTextBoxColumn33.Name = "dataGridViewTextBoxColumn33";
-            this.dataGridViewTextBoxColumn33.Visible = false;
-            // 
-            // contactNumber
-            // 
-            this.contactNumber.DataPropertyName = "contactNumber";
-            this.contactNumber.HeaderText = "contactNumber";
-            this.contactNumber.MinimumWidth = 8;
-            this.contactNumber.Name = "contactNumber";
-            // 
-            // staffStatus
-            // 
-            this.staffStatus.DataPropertyName = "staffStatus";
-            this.staffStatus.HeaderText = "staffStatus";
-            this.staffStatus.MinimumWidth = 8;
-            this.staffStatus.Name = "staffStatus";
-            // 
-            // dailyRate
-            // 
-            this.dailyRate.DataPropertyName = "dailyRate";
-            this.dailyRate.HeaderText = "dailyRate";
-            this.dailyRate.MinimumWidth = 8;
-            this.dailyRate.Name = "dailyRate";
-            // 
-            // roleID
-            // 
-            this.roleID.DataPropertyName = "roleID";
-            this.roleID.HeaderText = "roleID";
-            this.roleID.MinimumWidth = 8;
-            this.roleID.Name = "roleID";
-            // 
-            // staffID_T
-            // 
-            this.staffID_T.DataPropertyName = "staffID";
-            this.staffID_T.HeaderText = "staffID";
-            this.staffID_T.MinimumWidth = 8;
-            this.staffID_T.Name = "staffID_T";
-            this.staffID_T.Width = 101;
-            // 
-            // jobID_T
-            // 
-            this.jobID_T.DataPropertyName = "jobID";
-            this.jobID_T.HeaderText = "jobID";
-            this.jobID_T.MinimumWidth = 8;
-            this.jobID_T.Name = "jobID_T";
-            this.jobID_T.Width = 88;
-            // 
-            // hoursWorked
-            // 
-            this.hoursWorked.DataPropertyName = "hoursWorked";
-            this.hoursWorked.HeaderText = "hoursWorked";
-            this.hoursWorked.MinimumWidth = 8;
-            this.hoursWorked.Name = "hoursWorked";
-            this.hoursWorked.Visible = false;
-            this.hoursWorked.Width = 151;
-            // 
-            // dataGridViewTextBoxColumn41
-            // 
-            this.dataGridViewTextBoxColumn41.DataPropertyName = "assignmentDate";
-            this.dataGridViewTextBoxColumn41.HeaderText = "assignmentDate";
-            this.dataGridViewTextBoxColumn41.MinimumWidth = 8;
-            this.dataGridViewTextBoxColumn41.Name = "dataGridViewTextBoxColumn41";
-            this.dataGridViewTextBoxColumn41.Width = 176;
             // 
             // AllocateAssetStafftoJob
             // 
