@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabViewAllocations = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -104,7 +104,10 @@
             this.ownedAssetTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.OwnedAssetTableAdapter();
             this.staffTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.StaffTableAdapter();
             this.dataTable1TableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.DataTable1TableAdapter();
-            this.tabControl1.SuspendLayout();
+            this.tab3 = new System.Windows.Forms.TabPage();
+            this.label4 = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
+            this.tabViewAllocations.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.jobAssetAssignmentDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.jobAssetAssignmentBindingSource)).BeginInit();
@@ -122,18 +125,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTable1BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.jobBindingSource)).BeginInit();
+            this.tab3.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tabControl1
+            // tabViewAllocations
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tabControl1.Location = new System.Drawing.Point(0, 306);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1518, 446);
-            this.tabControl1.TabIndex = 0;
+            this.tabViewAllocations.Controls.Add(this.tabPage1);
+            this.tabViewAllocations.Controls.Add(this.tabPage2);
+            this.tabViewAllocations.Controls.Add(this.tab3);
+            this.tabViewAllocations.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tabViewAllocations.Location = new System.Drawing.Point(0, 306);
+            this.tabViewAllocations.Name = "tabViewAllocations";
+            this.tabViewAllocations.SelectedIndex = 0;
+            this.tabViewAllocations.Size = new System.Drawing.Size(1518, 446);
+            this.tabViewAllocations.TabIndex = 0;
+            this.tabViewAllocations.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tabControl1_MouseClick);
             // 
             // tabPage1
             // 
@@ -808,6 +814,38 @@
             // 
             this.dataTable1TableAdapter.ClearBeforeFill = true;
             // 
+            // tab3
+            // 
+            this.tab3.Controls.Add(this.button5);
+            this.tab3.Controls.Add(this.label4);
+            this.tab3.Location = new System.Drawing.Point(4, 29);
+            this.tab3.Name = "tab3";
+            this.tab3.Padding = new System.Windows.Forms.Padding(3);
+            this.tab3.Size = new System.Drawing.Size(1510, 413);
+            this.tab3.TabIndex = 2;
+            this.tab3.Text = "View All Allocations";
+            this.tab3.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(239, 69);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(760, 20);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Click the following button to display a live calendar to see all Jobs that have b" +
+    "een assigned to!";
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(314, 116);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(611, 96);
+            this.button5.TabIndex = 1;
+            this.button5.Text = "View Calendar";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // AllocateAssetStafftoJob
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -815,13 +853,13 @@
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1518, 752);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.tabViewAllocations);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "AllocateAssetStafftoJob";
             this.Text = "Allocation Hub";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.AllocateAssetStafftoJob_Load);
-            this.tabControl1.ResumeLayout(false);
+            this.tabViewAllocations.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.jobAssetAssignmentDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.jobAssetAssignmentBindingSource)).EndInit();
@@ -840,13 +878,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTable1BindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.jobBindingSource)).EndInit();
+            this.tab3.ResumeLayout(false);
+            this.tab3.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl tabViewAllocations;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -923,5 +963,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn jobID_T;
         private System.Windows.Forms.DataGridViewTextBoxColumn hoursWorked;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn41;
+        private System.Windows.Forms.TabPage tab3;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Label label4;
     }
 }
