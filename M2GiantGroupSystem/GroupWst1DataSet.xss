@@ -20,7 +20,7 @@
     <Shape ID="DesignTable:JobTimeSlot" ZOrder="22" X="1700" Y="353" Height="182" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="115" />
     <Shape ID="DesignTable:JobStaffAssignment" ZOrder="3" X="1611" Y="558" Height="263" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="142" />
     <Shape ID="DesignTable:JobAssetAssignment" ZOrder="6" X="1580" Y="791" Height="317" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="196" />
-    <Shape ID="DesignTable:OwnedAsset" ZOrder="5" X="1581" Y="1100" Height="317" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="223" />
+    <Shape ID="DesignTable:OwnedAsset" ZOrder="5" X="1581" Y="1100" Height="328" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="223" />
     <Shape ID="DesignTable:MaintenanceLog" ZOrder="8" X="1251" Y="1352" Height="263" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="196" />
     <Shape ID="DesignTable:HiredAsset" ZOrder="4" X="1913" Y="1099" Height="317" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="223" />
     <Shape ID="DesignTable:Staff" ZOrder="15" X="2001" Y="583" Height="371" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="277" />
