@@ -144,5 +144,10 @@ namespace M2GiantGroupSystem
         {
             FormSetup(new Quotation(1));
         }
+
+        private void toolStripMenuItem12_Click(object sender, EventArgs e)
+        {
+            FormSetup(new client_MainForm(2));
+        }
     }
 }
