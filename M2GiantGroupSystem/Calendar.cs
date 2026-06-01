@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -17,6 +18,7 @@ namespace M2GiantGroupSystem
         {
             InitializeComponent();
         }
+        int jobID;
         DateTime currentMonth = DateTime.Now;
         DateTime? selectedDate = null;
 
@@ -25,7 +27,7 @@ namespace M2GiantGroupSystem
 
         private void Calendar_Load(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Maximized;
+            //this.WindowState = FormWindowState.Maximized;
             for (int y = 2024; y <= 2030; y++)
                 comboBoxYear.Items.Add(y.ToString());
 
@@ -371,11 +373,38 @@ namespace M2GiantGroupSystem
             if (e.RowIndex < 0) return;
 
 
-            int jobID = Convert.ToInt32(dgvJobs.Rows[e.RowIndex].Cells["jobID"].Value);
+            jobID = Convert.ToInt32(dgvJobs.Rows[e.RowIndex].Cells["jobID"].Value);
             lblDetails.Text = "Workers assigned to job id: " + jobID.ToString();
             //MessageBox
             //   .Show("Job ID: " + jobID); 
             LoadWorkersForJob(jobID);
+        }
+
+        private void label14_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            AppState.selectedIdCalendar = jobID;
+
+            MessageBox.Show(
+                "Calendar set ID to: " +
+                AppState.selectedIdCalendar);
+
+            // Find the main form
+            Form1 mdi = Application.OpenForms.OfType<Form1>().FirstOrDefault();
+            if (mdi != null)
+            {
+                mdi.FormSetup(new AllocateAssetStafftoJob(0));
+            }
+            this.Close();
         }
     }
 }

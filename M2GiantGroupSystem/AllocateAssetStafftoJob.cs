@@ -29,9 +29,11 @@ namespace M2GiantGroupSystem
 
         private void AllocateAssetStafftoJob_Load(object sender, EventArgs e)
         {
+          
             tabViewAllocations.SelectedIndex = tabIndex; // Set the selected tab based on the passed index
             // TODO: This line of code loads data into the 'groupWst1DataSet.DataTable1' table. You can move, or remove it, as needed.
             this.dataTable1TableAdapter.Fill(this.groupWst1DataSet.DataTable1);
+            this.dataTable1TableAdapter.FillByID(this.groupWst1DataSet.DataTable1, AppState.selectedIdCalendar);
             // Force this to true in code if you can't find the designer property
             dataGridView1.AutoGenerateColumns = true;
 
@@ -55,11 +57,62 @@ namespace M2GiantGroupSystem
                 GroupWst1DataSetTableAdapters.DataTable1TableAdapter customAdapter = new GroupWst1DataSetTableAdapters.DataTable1TableAdapter();
 
                 // 3. Fetch the data
-                var data = customAdapter.GetDataByInProgress();
-
+                // var data = customAdapter.GetDataByInProgress();
+               // MessageBox.Show("Selected Job ID: " + AppState.selectedIdCalendar);
+                //var data = customAdapter.FillByID(this.groupWst1DataSet.DataTable1,1); // Example: Fetch data for jobID = 1. Adjust as needed.
                 // 4. Bind the data
                 dataGridView1.AutoGenerateColumns = true;
-                dataGridView1.DataSource = data;
+                //dataGridView1.DataSource = data;
+                try
+                {
+
+                    int jobId = AppState.selectedIdCalendar;
+                    if (jobId > 0)
+                        MessageBox.Show("Opening allocation form for job ID: " + AppState.selectedIdCalendar);
+                   
+
+                    if (jobId <= 0)
+                    {
+                        // MessageBox.Show("No job selected from calendar.");
+                        loadJobs();
+                        return;
+                    }
+
+                    GroupWst1DataSetTableAdapters.DataTable1TableAdapter adapter =
+                        new GroupWst1DataSetTableAdapters.DataTable1TableAdapter();
+
+                    //  var data = adapter.FillByID(this.groupWst1DataSet.DataTable1,jobId);
+
+                    // dataGridView1.AutoGenerateColumns = true;
+                    // dataGridView1.DataSource = data;
+                    adapter.FillByID(this.groupWst1DataSet.DataTable1, jobId);
+
+                    dataGridView1.AutoGenerateColumns = true;
+                    dataGridView1.DataSource = this.groupWst1DataSet.DataTable1;
+                    adapter.FillByID(this.groupWst1DataSet.DataTable1, jobId);
+
+                    dataGridView1.DataSource = this.groupWst1DataSet.DataTable1;
+
+                    if (this.groupWst1DataSet.DataTable1.Rows.Count > 0)
+                    {
+                        DataRow row = this.groupWst1DataSet.DataTable1.Rows[0];
+
+                        jobIDBox.Text = row["jobID"].ToString();
+
+                        clientNameBox.Text =
+                            row["clientName"].ToString() + " " +
+                            row["clientSurname"].ToString();
+
+                        addressBox.Text = row["siteAddress"].ToString();
+
+                        statusBox.Text = row["jobStatus"].ToString();
+                    }
+                   
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
             catch (Exception ex)
             {
@@ -258,11 +311,74 @@ namespace M2GiantGroupSystem
         {
             // Check if the currently selected tab is the one you want
             // Replace "tabViewAllocations" with the actual (Name) property of your tab
-            if (tabViewAllocations.SelectedTab.Name == "tab3")
+            Calendar calendarForm = new Calendar();
+
+            calendarForm.StartPosition = FormStartPosition.CenterScreen;
+            calendarForm.Size = new Size(1000, 700);
+
+            calendarForm.ShowDialog();
+
+            if (AppState.selectedIdCalendar > 0)
             {
-                Calendar calendarForm = new Calendar();
-                calendarForm.ShowDialog();
+                ReloadSelectedJob();
             }
         }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            loadJobs();
+        }
+
+        private void loadJobs()
+        {
+            GroupWst1DataSetTableAdapters.DataTable1TableAdapter adapter =
+    new GroupWst1DataSetTableAdapters.DataTable1TableAdapter();
+
+            dataGridView1.AutoGenerateColumns = true;
+            dataGridView1.DataSource = adapter.GetDataByInProgress();
+
+            // Optional: clear the job details boxes
+            jobIDBox.Clear();
+            clientNameBox.Clear();
+            addressBox.Clear();
+            statusBox.Clear();
+
+        }
+
+        private void AllocateAssetStafftoJob_FormClosed(object sender, FormClosedEventArgs e)
+        {
+           /// MessageBox.Show("Allocation form closing. Setting ID to -8");
+          //  AppState.selectedIdCalendar = -8;
+        }
+
+        private void ReloadSelectedJob()
+        {
+            int jobId = AppState.selectedIdCalendar;
+
+            dataTable1TableAdapter.FillByID(
+                this.groupWst1DataSet.DataTable1,
+                jobId);
+
+            dataGridView1.DataSource = this.groupWst1DataSet.DataTable1;
+
+            if (this.groupWst1DataSet.DataTable1.Rows.Count > 0)
+            {
+                DataRow row = this.groupWst1DataSet.DataTable1.Rows[0];
+
+                jobIDBox.Text = row["jobID"].ToString();
+                clientNameBox.Text =
+                    row["clientName"].ToString() + " " +
+                    row["clientSurname"].ToString();
+
+                addressBox.Text = row["siteAddress"].ToString();
+                statusBox.Text = row["jobStatus"].ToString();
+            }
+        }
+
     }
 }

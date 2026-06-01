@@ -66,12 +66,12 @@
             this.dgvJobs.AllowUserToDeleteRows = false;
             this.dgvJobs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvJobs.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvJobs.Location = new System.Drawing.Point(1117, 194);
+            this.dgvJobs.Location = new System.Drawing.Point(1057, 190);
             this.dgvJobs.Name = "dgvJobs";
             this.dgvJobs.ReadOnly = true;
             this.dgvJobs.RowHeadersWidth = 51;
             this.dgvJobs.RowTemplate.Height = 24;
-            this.dgvJobs.Size = new System.Drawing.Size(794, 170);
+            this.dgvJobs.Size = new System.Drawing.Size(775, 170);
             this.dgvJobs.TabIndex = 0;
             this.dgvJobs.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvJobs_CellClick);
             this.dgvJobs.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvJobs_CellContentClick);
@@ -99,7 +99,7 @@
             // 
             this.lblSelectedDate.AutoSize = true;
             this.lblSelectedDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSelectedDate.Location = new System.Drawing.Point(1121, 149);
+            this.lblSelectedDate.Location = new System.Drawing.Point(1052, 149);
             this.lblSelectedDate.Name = "lblSelectedDate";
             this.lblSelectedDate.Size = new System.Drawing.Size(277, 29);
             this.lblSelectedDate.TabIndex = 3;
@@ -107,6 +107,7 @@
             // 
             // tlpCalendar
             // 
+            this.tlpCalendar.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tlpCalendar.ColumnCount = 7;
             this.tlpCalendar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpCalendar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -133,7 +134,7 @@
             this.lblMonth.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMonth.Location = new System.Drawing.Point(492, 34);
             this.lblMonth.Name = "lblMonth";
-            this.lblMonth.Size = new System.Drawing.Size(115, 39);
+            this.lblMonth.Size = new System.Drawing.Size(109, 38);
             this.lblMonth.TabIndex = 5;
             this.lblMonth.Text = "label1";
             // 
@@ -227,7 +228,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(1351, 390);
+            this.label11.Location = new System.Drawing.Point(1264, 380);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(134, 16);
             this.label11.TabIndex = 28;
@@ -236,7 +237,7 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.Silver;
-            this.panel4.Location = new System.Drawing.Point(1302, 387);
+            this.panel4.Location = new System.Drawing.Point(1212, 380);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(32, 23);
             this.panel4.TabIndex = 27;
@@ -244,7 +245,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.panel3.Location = new System.Drawing.Point(1517, 387);
+            this.panel3.Location = new System.Drawing.Point(1494, 380);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(32, 23);
             this.panel3.TabIndex = 26;
@@ -252,16 +253,17 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(1564, 387);
+            this.label10.Location = new System.Drawing.Point(1558, 380);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(74, 16);
             this.label10.TabIndex = 25;
             this.label10.Text = "In progress";
+            this.label10.Click += new System.EventHandler(this.label10_Click);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(1740, 389);
+            this.label9.Location = new System.Drawing.Point(1759, 380);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(73, 16);
             this.label9.TabIndex = 24;
@@ -270,7 +272,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.panel2.Location = new System.Drawing.Point(1690, 385);
+            this.panel2.Location = new System.Drawing.Point(1721, 380);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(32, 25);
             this.panel2.TabIndex = 23;
@@ -308,7 +310,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(1172, 394);
+            this.label12.Location = new System.Drawing.Point(1095, 380);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(72, 16);
             this.label12.TabIndex = 30;
@@ -317,7 +319,7 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.LightBlue;
-            this.panel5.Location = new System.Drawing.Point(1117, 390);
+            this.panel5.Location = new System.Drawing.Point(1057, 380);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(32, 23);
             this.panel5.TabIndex = 29;
@@ -331,6 +333,7 @@
             this.button2.TabIndex = 32;
             this.button2.Text = "Assign workers to selected job";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label13
             // 
@@ -346,16 +349,18 @@
             // 
             this.label14.AutoSize = true;
             this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.label14.Location = new System.Drawing.Point(1536, 485);
+            this.label14.Location = new System.Drawing.Point(1146, 468);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(380, 16);
             this.label14.TabIndex = 34;
             this.label14.Text = "Double click a job in the above table for details to be displayed";
+            this.label14.Click += new System.EventHandler(this.label14_Click);
             // 
             // Calendar
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1924, 1055);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label13);
