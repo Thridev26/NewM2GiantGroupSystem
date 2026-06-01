@@ -19,14 +19,17 @@ namespace M2GiantGroupSystem
     public partial class Quotation : Form
     {
         private decimal currentTravelFee = 0.00m;
-        public Quotation()
+        int tabIndex;
+        public Quotation(int tab_index)
         {
             InitializeComponent();
+            tabIndex = tab_index;
 
         }
 
         private void Quotation_Load(object sender, EventArgs e)
         {
+            tabControl1.SelectedIndex = tabIndex;
             // TODO: This line of code loads data into the 'groupWst1DataSet.Quote' table. You can move, or remove it, as needed.
             this.quoteTableAdapter.Fill(this.groupWst1DataSet.Quote);
             // TODO: This line of code loads data into the 'groupWst1DataSet.JobType' table. You can move, or remove it, as needed.
