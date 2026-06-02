@@ -338,6 +338,12 @@
     <Compile Include="reportsMainForm.Designer.cs">
       <DependentUpon>reportsMainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Staff.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Staff.Designer.cs">
+      <DependentUpon>Staff.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserSession.cs" />
     <Compile Include="WeeklyExpenseDetails.cs" />
     <Compile Include="WeeklyExpensesReportForm.cs">
@@ -397,6 +403,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="reportsMainForm.resx">
       <DependentUpon>reportsMainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Staff.resx">
+      <DependentUpon>Staff.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WeeklyExpensesReportForm.resx">
       <DependentUpon>WeeklyExpensesReportForm.cs</DependentUpon>
