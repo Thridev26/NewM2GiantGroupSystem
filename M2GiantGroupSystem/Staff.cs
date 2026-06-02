@@ -16,5 +16,17 @@ namespace M2GiantGroupSystem
         {
             InitializeComponent();
         }
+
+        private void Staff_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'groupWst1DataSet.Staff' table. You can move, or remove it, as needed.
+            this.staffTableAdapter.Fill(this.groupWst1DataSet.Staff);
+
+        }
+
+        private void gbAddStaff_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }
