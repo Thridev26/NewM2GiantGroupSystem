@@ -61,7 +61,7 @@ namespace M2GiantGroupSystem
 
         private void UpdateQuoteCount()
         {
-            // bindingSource1 is the data source bound to your DataGridView
+            // bindingSource1 is the data source bound to the DataGridView
             int activeQuotesCount = quoteBindingSource.Count;
 
             textBox3.Text = activeQuotesCount.ToString();
@@ -69,14 +69,14 @@ namespace M2GiantGroupSystem
 
         private void button3_Click(object sender, EventArgs e)
         {
-            // 1. VALIDATION: Ensure the user selected a status
+            // Ensure the user selected a status
             if (cboQuoteStatus.SelectedItem == null)
             {
-                MessageBox.Show("Please add valid data to create a new quote.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please select a Quote status before proceeding.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // 2. THE JOB REQUEST ID:
+            // THE JOB REQUEST ID:
             int currentJobRequestID = 0;
             if (!int.TryParse(jobRequestIDTextBox.Text, out currentJobRequestID))
             {
@@ -87,7 +87,7 @@ namespace M2GiantGroupSystem
 
             try
             {
-                // 3. EXECUTE THE INSERT
+                // EXECUTE THE INSERT
                 // This maps exactly to the (int, string, string, string, decimal, string, string) parameters
                 this.quoteTableAdapter.InsertNewQuote(
                     currentJobRequestID,                                    // @jobRequestID (int)
@@ -101,7 +101,7 @@ namespace M2GiantGroupSystem
 
                 quoteTableAdapter.Fill(this.groupWst1DataSet.Quote);
                 // Success Feedback
-                MessageBox.Show("Quote records saved to the database successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Your Quote has been successfully created and saved in your database. Go to Edit Quotes to save it as a PDF or Print.!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 dateIssuedDateTimePicker.Value = DateTime.Now;
                 expiryDateDateTimePicker.Value = DateTime.Now.AddDays(30);
@@ -120,7 +120,7 @@ namespace M2GiantGroupSystem
             catch (Exception ex)
             {
                 // Catch database constraint violations or type-casting issues safely
-                MessageBox.Show("An error occurred while saving the quote: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Unfortunately an error occurred while saving the quote: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -142,7 +142,7 @@ namespace M2GiantGroupSystem
             {
                 DataGridViewRow selectedRow = quoteDataGridView.CurrentRow;
 
-                // 1. GENTLE USER REMINDER & UI LOCKING: Check if the file path is missing from the grid
+                // GENTLE USER REMINDER & UI LOCKING: Check if the file path is missing from the grid
                 string checkPath = selectedRow.Cells["QuoteFilePath"].Value?.ToString();
 
                 if (string.IsNullOrWhiteSpace(checkPath))
@@ -164,34 +164,34 @@ namespace M2GiantGroupSystem
                     button4.Enabled = true;
                 }
 
-                // 2. Map available visible columns directly from the selected grid row layout
+                // Map available visible columns directly from the selected grid row layout
                 txtEditJobRequestID.Text = selectedRow.Cells["QuoteJobRequestID"].Value?.ToString() ?? "";
                 txtEditQuoteID.Text = selectedRow.Cells["QuoteID_T"].Value.ToString();
                 cmbEditStatus.SelectedItem = selectedRow.Cells["QuoteQuoteStatus"].Value?.ToString();
                 txtEditFilePath.Text = checkPath ?? "";
 
-                // 3. Safely parse the total gross amount from the data grid row
+                // Safely parse the total gross amount from the data grid row
                 decimal totalFromDatabase = 0;
                 if (selectedRow.Cells["QuoteAmount"].Value != null)
                 {
                     totalFromDatabase = Convert.ToDecimal(selectedRow.Cells["QuoteAmount"].Value);
                 }
 
-                // 4. Reverse-engineer the pricing stack back to split fields (15% VAT rate)
+                // Reverse-engineer the pricing stack back to split fields (15% VAT rate)
                 decimal calculatedSubtotal = totalFromDatabase / 1.15m;
                 decimal calculatedVat = totalFromDatabase - calculatedSubtotal;
 
-                // 5. Pre-fill your split UI Textboxes formatted cleanly to two decimal places
+                // Pre-fill the split UI Textboxes formatted cleanly to two decimal places
                 txtEditAmount.Text = calculatedSubtotal.ToString("F2");
                 textBox4.Text = calculatedVat.ToString("F2");
                 textBox2.Text = totalFromDatabase.ToString("F2"); // Amount with VAT
 
-                // 6. Handle Date Issued safely from the visible grid row layout
+                // Handle Date Issued safely from the visible grid row layout
                 dtpEditIssued.Value = selectedRow.Cells["dateIssued"].Value != DBNull.Value
                     ? Convert.ToDateTime(selectedRow.Cells["dateIssued"].Value)
                     : DateTime.Now;
 
-                // 7. HIDDEN DATASET BYPASS: Pull hidden date values directly from memory cache
+                // Pull hidden date values directly from memory cache
                 try
                 {
                     int targetQuoteID = Convert.ToInt32(txtEditQuoteID.Text);
@@ -250,10 +250,10 @@ namespace M2GiantGroupSystem
         {
             if (e.RowIndex >= 0)
             {
-                // 1. Grab the ID from the selected grid row
+                // Grab the ID from the selected grid row
                 int clickedID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["jobRequestID"].Value);
-
-                // 2. USE THE QUERY BUILDER to fetch the exact row data safely from the DB
+                
+                // USE THE QUERY BUILDER to fetch the exact row data safely from the DB
                 var jobRequestTable = this.jobRequestTableAdapter.GetDataBy2(clickedID);
 
                 if (jobRequestTable.Rows.Count > 0)
@@ -261,12 +261,12 @@ namespace M2GiantGroupSystem
                     // Grab the specific typed row from our dataset
                     var selectedJob = jobRequestTable[0];
 
-                    // 3. Populate your UI elements cleanly using the database values
+                    //Populate your UI elements cleanly using the database values
                     jobRequestIDTextBox.Text = selectedJob.jobRequestID.ToString();
                     urgencyLevelTextBox.Text = selectedJob.urgencyLevel;
 
                     //  NEW ADJUSTED NULL-SAFE VERSION:
-                    // 3. Populate your UI elements cleanly using database values (checking for DBNull)
+                    // Populate your UI elements cleanly using database values (checking for DBNull)
                     jobRequestIDTextBox.Text = selectedJob.jobRequestID.ToString();
                     urgencyLevelTextBox.Text = selectedJob.urgencyLevel;
 
@@ -307,7 +307,7 @@ namespace M2GiantGroupSystem
 
                     // 2. Add the calculated Travel Fee as the foundational first row item in the grid
                     // This maps exactly to your designer layout slots: Job Type, Base Rate, Unit Type, Quantity, Total
-                    selectedJobsGridView.Rows.Add("Transport & Travel Call-out", currentTravelFee, "Flat Rate", 1.0, currentTravelFee);
+                    selectedJobsGridView.Rows.Add("Travel Call-out", currentTravelFee, "Flat Rate", 1.0, currentTravelFee);
 
                     // 3. Force the DataGridView to completely finish registering the new row layout internally
                     selectedJobsGridView.Refresh();
@@ -315,26 +315,25 @@ namespace M2GiantGroupSystem
                     // 4.Run the calculation engine! It sees the travel fee row and locks R255,56 into txtAmount
                     RecalculateGrandTotalFromUI();
 
-                    // ===================================================================================
-                    // STEP 4: Filter the middle grid view to show ONLY the services requested by this client
-                    // ===================================================================================
+                    
+                    // Filter the middle grid view to show ONLY the services requested by this client
                     this.jobTypeTableAdapter.FillByID(this.groupWst1DataSet.JobType, clickedID);
                 }
             }
         }
 
-        // 1. Hardcoded Business Location Constants 
+        // Hardcoded Business Location Constants 
         private const double BaseLatitude = -29.890840081918007;
         private const double BaseLongitude = 30.905937134956915;
-        private const decimal CostPerKilometer = 4.50m; // R4.50 per km for fuel/transport
-        private const decimal BaseCallOutFee = 150.00m; // Flat base fee just to drive out
+        private const decimal CostPerKilometer = 6.50m; // R6.50 per km for fuel/transport
+        private const decimal BaseCallOutFee = 450.00m; // Flat base fee just to drive out
 
         private decimal CalculateTravelFee(double clientLat, double clientLng)
         {
             // If coordinates are missing or set to our null-flag (0,0), charge a flat fallback fee
             if (clientLat == 0.0 || clientLng == 0.0)
             {
-                decimal flatFallbackFee = 250.00m; // Adjust this amount to whatever your group requires!
+                decimal flatFallbackFee = 850.00m; // Adjust this amount to whatever your group requires!
                 return flatFallbackFee;
             }
 
@@ -366,11 +365,11 @@ namespace M2GiantGroupSystem
                 }
             }
 
-            // 1. Calculate tax and grand totals using strict decimal precision
+            // Calculate tax and grand totals using strict decimal precision
             decimal vatAccumulator = subTotalAccumulator * 0.15m;
             decimal grandTotalAccumulator = subTotalAccumulator + vatAccumulator;
 
-            // 2. Output formatted strings back to your group box controls
+            // Output formatted strings back to your group box controls
             txtAmount.Text = subTotalAccumulator.ToString("F2");
             txtVAT.Text = vatAccumulator.ToString("F2");
             txtTotalwithVAT.Text = grandTotalAccumulator.ToString("F2");
@@ -388,31 +387,31 @@ namespace M2GiantGroupSystem
 
                 decimal baseRate = Convert.ToDecimal(jobRate);
 
-                // 1. Automatically seed the baseline Travel Fee item first if the grid is empty
+                // Automatically seed the baseline Travel Fee item first if the grid is empty
                 if (selectedJobsGridView.Rows.Count == 0 && currentTravelFee > 0)
                 {
                     // Maps exactly to your designer columns: Job Type, Base Rate, Unit Type, Quantity, Total
-                    selectedJobsGridView.Rows.Add("Transport & Travel Call-out", currentTravelFee, "Flat Rate", 1.0, currentTravelFee);
+                    selectedJobsGridView.Rows.Add("Travel Call-out", currentTravelFee, "Flat Rate", 1.0, currentTravelFee);
                 }
 
-                // 2. Add the selected item directly to the UI columns collection
+                // Add the selected item directly to the UI columns collection
                 selectedJobsGridView.Rows.Add(jobName, baseRate, unitDescription, 1.0, baseRate);
 
-                // 3. Update the grand total box
+                // Update the grand total box
                 RecalculateGrandTotalFromUI();
             }
         }
 
         private void selectedJobsGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        { // 1.Ensure we are looking at a valid data row, not the column header
+        { // Ensure we are looking at a valid data row, not the column header
             if (e.RowIndex >= 0)
             {
-                // 2. Target the 'Quantity' column directly by its physical slot position index (Index 3)
+                //Target the 'Quantity' column directly by its physical slot position index (Index 3)
                 if (e.ColumnIndex == 3)
                 {
                     DataGridViewRow currentRow = selectedJobsGridView.Rows[e.RowIndex];
 
-                    // 3. Extract the updated Quantity entered by the user safely
+                    //Extract the updated Quantity entered by the user safely
                     double quantityInput = 0;
                     if (currentRow.Cells[3].Value != null)
                     {
@@ -420,10 +419,10 @@ namespace M2GiantGroupSystem
                         double.TryParse(currentRow.Cells[3].Value.ToString(), out quantityInput);
                     }
 
-                    // 4. CRITERIA RULE CHECK: Prevent negative inputs from corrupting your financial records
+                    // Prevent negative inputs from corrupting your financial records
                     if (quantityInput < 0)
                     {
-                        MessageBox.Show("Quantity cannot be a negative amount. Resetting line item input to 0.",
+                        MessageBox.Show("The quantity cannot be a negative amount. Resetting line item input to 0.",
                                         "Validation Notice", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         quantityInput = 0;
                         currentRow.Cells[3].Value = 0; // Force the cell to reflect the fallback correction visually
@@ -463,7 +462,7 @@ namespace M2GiantGroupSystem
             // 1. VALIDATION: Ensure an active Quote row has actually been loaded from the grid
             if (string.IsNullOrWhiteSpace(txtEditQuoteID.Text))
             {
-                MessageBox.Show("No active quote record is currently loaded for modification. Please select a row from the archive deck above and click Edit first.",
+                MessageBox.Show("No active quote record has been selected or loaded or editing. Please select a row from the table above and click Edit first.",
                                 "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -530,13 +529,13 @@ namespace M2GiantGroupSystem
 
         private void btnExportPDF_Click(object sender, EventArgs e)
         {
-            // ==========================================================
-            // 1. THE MAIN BUTTON CLICK HANDLER (ORIGINAL STRUCTURE)
-            // ==========================================================
+            
+            //THE MAIN BUTTON CLICK HANDLER 
+            
 
             if (quoteDataGridView.CurrentRow == null || quoteDataGridView.CurrentRow.IsNewRow)
             {
-                MessageBox.Show("Please select a valid historical quote row from the archive grid.",
+                MessageBox.Show("Please select a valid historical quote row from the table.",
                                 "No Selection Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -863,7 +862,7 @@ namespace M2GiantGroupSystem
 
             if (string.IsNullOrWhiteSpace(quoteIdStr) || quoteIdStr == "0")
             {
-                MessageBox.Show("The selected row does not contain a valid unique primary key sequence ID.",
+                MessageBox.Show("The selected row does not contain a valid unique primary key ID.",
                                 "Data Integrity Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
