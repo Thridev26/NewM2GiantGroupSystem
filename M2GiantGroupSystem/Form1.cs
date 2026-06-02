@@ -149,5 +149,10 @@ namespace M2GiantGroupSystem
         {
             FormSetup(new client_MainForm(2));
         }
+
+        private void toolStripMenuItem8_Click(object sender, EventArgs e)
+        {
+            FormSetup(new reportsMainForm());
+        }
     }
 }
