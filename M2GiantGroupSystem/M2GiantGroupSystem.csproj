@@ -38,6 +38,10 @@
     <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
       <HintPath>..\packages\BouncyCastle.Cryptography.2.6.2\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
     </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="itext.barcodes, Version=9.6.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <HintPath>..\packages\itext.9.6.0\lib\net461\itext.barcodes.dll</HintPath>
     </Reference>
@@ -122,6 +126,7 @@
     <Reference Include="System.Collections.Immutable, Version=10.0.0.8, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Collections.Immutable.10.0.8\lib\net462\System.Collections.Immutable.dll</HintPath>
     </Reference>
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Diagnostics.DiagnosticSource.5.0.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
@@ -159,6 +164,8 @@
       <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.ValueTuple" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -189,6 +196,13 @@
     <Compile Include="client_MainForm.Designer.cs">
       <DependentUpon>client_MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DBConnect.cs" />
+    <Compile Include="expensesReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>expensesReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -202,6 +216,18 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GroupWst1DataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="incomeReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>incomeReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="incomeReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="incomeReportForm.Designer.cs">
+      <DependentUpon>incomeReportForm.cs</DependentUpon>
     </Compile>
     <Compile Include="jobRequestMain_A.cs">
       <SubType>Form</SubType>
@@ -235,6 +261,20 @@
     <Compile Include="Quotation.Designer.cs">
       <DependentUpon>Quotation.cs</DependentUpon>
     </Compile>
+    <Compile Include="reportsMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="reportsMainForm.Designer.cs">
+      <DependentUpon>reportsMainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WeeklyExpenseDetails.cs" />
+    <Compile Include="WeeklyExpensesReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WeeklyExpensesReportForm.Designer.cs">
+      <DependentUpon>WeeklyExpensesReportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WeeklyIncomeDetails.cs" />
     <EmbeddedResource Include="AllocateAssetStafftoJob.resx">
       <DependentUpon>AllocateAssetStafftoJob.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -245,8 +285,19 @@
     <EmbeddedResource Include="client_MainForm.resx">
       <DependentUpon>client_MainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="expensesReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>expensesReport.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="incomeReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>incomeReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="incomeReportForm.resx">
+      <DependentUpon>incomeReportForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="jobRequestMain_A.resx">
       <DependentUpon>jobRequestMain_A.cs</DependentUpon>
@@ -271,6 +322,13 @@
     </Compile>
     <EmbeddedResource Include="Quotation.resx">
       <DependentUpon>Quotation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="reportsMainForm.resx">
+      <DependentUpon>reportsMainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WeeklyExpensesReportForm.resx">
+      <DependentUpon>WeeklyExpensesReportForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="GroupWst1DataSet.xsc">
       <DependentUpon>GroupWst1DataSet.xsd</DependentUpon>
@@ -305,6 +363,9 @@
     <Content Include="map_A.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Web.WebView2.1.0.3967.48\build\Microsoft.Web.WebView2.targets" Condition="Exists('..\packages\Microsoft.Web.WebView2.1.0.3967.48\build\Microsoft.Web.WebView2.targets')" />
