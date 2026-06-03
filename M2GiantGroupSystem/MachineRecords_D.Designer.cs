@@ -33,6 +33,15 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dgvOwnedAsset_D = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ownedAssetBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.groupWst1DataSet1 = new M2GiantGroupSystem.GroupWst1DataSet();
             this.label1 = new System.Windows.Forms.Label();
             this.txtSearchOA_D = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -46,59 +55,52 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.txtAssetID2_D = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
             this.dtService2_D = new System.Windows.Forms.DateTimePicker();
             this.dtPurchaseD2_D = new System.Windows.Forms.DateTimePicker();
             this.cmbType2_D = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.grpboxOwnAsset_D = new System.Windows.Forms.GroupBox();
             this.btnClear_d = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.btnUpdateAass_D = new System.Windows.Forms.Button();
-            this.txtAsSnumber_d = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.cmbStatus_D = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.dtServiceDate_D = new System.Windows.Forms.DateTimePicker();
             this.cmbCondit_D = new System.Windows.Forms.ComboBox();
             this.txtAssetID_D = new System.Windows.Forms.TextBox();
-            this.dtServiceDate_D = new System.Windows.Forms.DateTimePicker();
-            this.dtPurchaseDate_D = new System.Windows.Forms.DateTimePicker();
+            this.txtAsSnumber_d = new System.Windows.Forms.TextBox();
             this.cmbType_D = new System.Windows.Forms.ComboBox();
+            this.dtPurchaseDate_D = new System.Windows.Forms.DateTimePicker();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.groupWst1DataSet = new M2GiantGroupSystem.GroupWst1DataSet();
-            this.ownedAssetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.ownedAssetTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.OwnedAssetTableAdapter();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hiredAssetBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.ownedAssetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.hiredAssetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.hiredAssetTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.HiredAssetTableAdapter();
-            this.hiredAssetIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.supplierNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hireDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.returnDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hireCostDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.equipmentTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hiredAssetStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.assetIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.serialNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.purchaseDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.currentConditionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nextServiceDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.assetStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
+            this.hiredAssetTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.HiredAssetTableAdapter();
+            this.ownedAssetTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.OwnedAssetTableAdapter();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOwnedAsset_D)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ownedAssetBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupWst1DataSet1)).BeginInit();
             this.panel1.SuspendLayout();
             this.grpboxOwnAsset_D.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.groupWst1DataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ownedAssetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.hiredAssetBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ownedAssetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hiredAssetBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -134,14 +136,14 @@
             this.dgvOwnedAsset_D.AutoGenerateColumns = false;
             this.dgvOwnedAsset_D.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvOwnedAsset_D.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.assetIDDataGridViewTextBoxColumn,
-            this.serialNumberDataGridViewTextBoxColumn,
-            this.typeDataGridViewTextBoxColumn,
-            this.purchaseDateDataGridViewTextBoxColumn,
-            this.currentConditionDataGridViewTextBoxColumn,
-            this.nextServiceDateDataGridViewTextBoxColumn,
-            this.assetStatusDataGridViewTextBoxColumn});
-            this.dgvOwnedAsset_D.DataSource = this.ownedAssetBindingSource;
+            this.dataGridViewTextBoxColumn8,
+            this.dataGridViewTextBoxColumn9,
+            this.dataGridViewTextBoxColumn10,
+            this.dataGridViewTextBoxColumn11,
+            this.dataGridViewTextBoxColumn12,
+            this.dataGridViewTextBoxColumn13,
+            this.dataGridViewTextBoxColumn14});
+            this.dgvOwnedAsset_D.DataSource = this.ownedAssetBindingSource1;
             this.dgvOwnedAsset_D.Location = new System.Drawing.Point(76, 505);
             this.dgvOwnedAsset_D.Name = "dgvOwnedAsset_D";
             this.dgvOwnedAsset_D.RowHeadersWidth = 51;
@@ -150,6 +152,73 @@
             this.dgvOwnedAsset_D.TabIndex = 4;
             this.dgvOwnedAsset_D.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dgvOwnedAsset_D.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dataGridView1_RowPrePaint);
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.DataPropertyName = "assetID";
+            this.dataGridViewTextBoxColumn8.HeaderText = "Asset ID";
+            this.dataGridViewTextBoxColumn8.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            this.dataGridViewTextBoxColumn8.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            this.dataGridViewTextBoxColumn9.DataPropertyName = "serialNumber";
+            this.dataGridViewTextBoxColumn9.HeaderText = "Serial Number";
+            this.dataGridViewTextBoxColumn9.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn10
+            // 
+            this.dataGridViewTextBoxColumn10.DataPropertyName = "type";
+            this.dataGridViewTextBoxColumn10.HeaderText = "Type";
+            this.dataGridViewTextBoxColumn10.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            this.dataGridViewTextBoxColumn10.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn11
+            // 
+            this.dataGridViewTextBoxColumn11.DataPropertyName = "purchaseDate";
+            this.dataGridViewTextBoxColumn11.HeaderText = "Purchase Date";
+            this.dataGridViewTextBoxColumn11.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
+            this.dataGridViewTextBoxColumn11.Width = 200;
+            // 
+            // dataGridViewTextBoxColumn12
+            // 
+            this.dataGridViewTextBoxColumn12.DataPropertyName = "currentCondition";
+            this.dataGridViewTextBoxColumn12.HeaderText = "Current Condition";
+            this.dataGridViewTextBoxColumn12.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
+            this.dataGridViewTextBoxColumn12.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn13
+            // 
+            this.dataGridViewTextBoxColumn13.DataPropertyName = "nextServiceDate";
+            this.dataGridViewTextBoxColumn13.HeaderText = "Next Service Date";
+            this.dataGridViewTextBoxColumn13.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
+            this.dataGridViewTextBoxColumn13.Width = 200;
+            // 
+            // dataGridViewTextBoxColumn14
+            // 
+            this.dataGridViewTextBoxColumn14.DataPropertyName = "assetStatus";
+            this.dataGridViewTextBoxColumn14.HeaderText = "Status";
+            this.dataGridViewTextBoxColumn14.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
+            this.dataGridViewTextBoxColumn14.Width = 125;
+            // 
+            // ownedAssetBindingSource1
+            // 
+            this.ownedAssetBindingSource1.DataMember = "OwnedAsset";
+            this.ownedAssetBindingSource1.DataSource = this.groupWst1DataSet1;
+            // 
+            // groupWst1DataSet1
+            // 
+            this.groupWst1DataSet1.DataSetName = "GroupWst1DataSet";
+            this.groupWst1DataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label1
             // 
@@ -181,15 +250,13 @@
             this.panel1.Controls.Add(this.label13);
             this.panel1.Controls.Add(this.label14);
             this.panel1.Controls.Add(this.label15);
-            this.panel1.Controls.Add(this.txtAssetID2_D);
-            this.panel1.Controls.Add(this.label16);
             this.panel1.Controls.Add(this.dtService2_D);
             this.panel1.Controls.Add(this.dtPurchaseD2_D);
             this.panel1.Controls.Add(this.cmbType2_D);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Location = new System.Drawing.Point(885, 118);
+            this.panel1.Location = new System.Drawing.Point(775, 109);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(423, 321);
+            this.panel1.Size = new System.Drawing.Size(468, 321);
             this.panel1.TabIndex = 1;
             // 
             // btnAddAsset_D
@@ -200,26 +267,37 @@
             this.btnAddAsset_D.TabIndex = 27;
             this.btnAddAsset_D.Text = "Add Asset";
             this.btnAddAsset_D.UseVisualStyleBackColor = true;
+            this.btnAddAsset_D.Click += new System.EventHandler(this.btnAddAsset_D_Click);
             // 
             // txtSerialno2_D
             // 
-            this.txtSerialno2_D.Location = new System.Drawing.Point(176, 72);
+            this.txtSerialno2_D.Location = new System.Drawing.Point(175, 45);
             this.txtSerialno2_D.Name = "txtSerialno2_D";
             this.txtSerialno2_D.Size = new System.Drawing.Size(129, 22);
             this.txtSerialno2_D.TabIndex = 16;
             // 
             // cmbStatus2_D
             // 
+            this.cmbStatus2_D.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbStatus2_D.FormattingEnabled = true;
-            this.cmbStatus2_D.Location = new System.Drawing.Point(176, 236);
+            this.cmbStatus2_D.Items.AddRange(new object[] {
+            "Available ",
+            "In Use"});
+            this.cmbStatus2_D.Location = new System.Drawing.Point(175, 209);
             this.cmbStatus2_D.Name = "cmbStatus2_D";
             this.cmbStatus2_D.Size = new System.Drawing.Size(121, 24);
             this.cmbStatus2_D.TabIndex = 26;
             // 
             // cmbCondition2_D
             // 
+            this.cmbCondition2_D.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCondition2_D.FormattingEnabled = true;
-            this.cmbCondition2_D.Location = new System.Drawing.Point(176, 170);
+            this.cmbCondition2_D.Items.AddRange(new object[] {
+            "Excellent ",
+            "Good",
+            "Fair",
+            "Poor"});
+            this.cmbCondition2_D.Location = new System.Drawing.Point(175, 143);
             this.cmbCondition2_D.Name = "cmbCondition2_D";
             this.cmbCondition2_D.Size = new System.Drawing.Size(121, 24);
             this.cmbCondition2_D.TabIndex = 25;
@@ -227,7 +305,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(4, 232);
+            this.label10.Location = new System.Drawing.Point(3, 205);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(50, 16);
             this.label10.TabIndex = 17;
@@ -236,7 +314,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(4, 201);
+            this.label11.Location = new System.Drawing.Point(3, 174);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(121, 16);
             this.label11.TabIndex = 20;
@@ -245,7 +323,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(4, 170);
+            this.label12.Location = new System.Drawing.Point(3, 143);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(114, 16);
             this.label12.TabIndex = 21;
@@ -254,7 +332,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(4, 139);
+            this.label13.Location = new System.Drawing.Point(3, 112);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(102, 16);
             this.label13.TabIndex = 22;
@@ -263,7 +341,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(4, 108);
+            this.label14.Location = new System.Drawing.Point(3, 81);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(82, 16);
             this.label14.TabIndex = 23;
@@ -272,45 +350,37 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(4, 77);
+            this.label15.Location = new System.Drawing.Point(3, 50);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(99, 16);
             this.label15.TabIndex = 24;
             this.label15.Text = "Serial Number :";
             // 
-            // txtAssetID2_D
-            // 
-            this.txtAssetID2_D.Location = new System.Drawing.Point(176, 40);
-            this.txtAssetID2_D.Name = "txtAssetID2_D";
-            this.txtAssetID2_D.Size = new System.Drawing.Size(100, 22);
-            this.txtAssetID2_D.TabIndex = 18;
-            // 
-            // label16
-            // 
-            this.label16.Location = new System.Drawing.Point(4, 46);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(120, 16);
-            this.label16.TabIndex = 19;
-            this.label16.Text = "Asset ID :";
-            // 
             // dtService2_D
             // 
-            this.dtService2_D.Location = new System.Drawing.Point(176, 204);
+            this.dtService2_D.Location = new System.Drawing.Point(175, 177);
             this.dtService2_D.Name = "dtService2_D";
-            this.dtService2_D.Size = new System.Drawing.Size(227, 22);
+            this.dtService2_D.Size = new System.Drawing.Size(248, 22);
             this.dtService2_D.TabIndex = 15;
             // 
             // dtPurchaseD2_D
             // 
-            this.dtPurchaseD2_D.Location = new System.Drawing.Point(176, 138);
+            this.dtPurchaseD2_D.Location = new System.Drawing.Point(175, 111);
             this.dtPurchaseD2_D.Name = "dtPurchaseD2_D";
-            this.dtPurchaseD2_D.Size = new System.Drawing.Size(227, 22);
+            this.dtPurchaseD2_D.Size = new System.Drawing.Size(248, 22);
             this.dtPurchaseD2_D.TabIndex = 14;
             // 
             // cmbType2_D
             // 
             this.cmbType2_D.FormattingEnabled = true;
-            this.cmbType2_D.Location = new System.Drawing.Point(176, 104);
+            this.cmbType2_D.Items.AddRange(new object[] {
+            "Chainsaw",
+            "Wood Chipper",
+            "Lawnmower",
+            "Hedge Trimmer",
+            "Trailer ",
+            "Ford Ranger LWB"});
+            this.cmbType2_D.Location = new System.Drawing.Point(175, 77);
             this.cmbType2_D.Name = "cmbType2_D";
             this.cmbType2_D.Size = new System.Drawing.Size(121, 24);
             this.cmbType2_D.TabIndex = 13;
@@ -360,6 +430,22 @@
             this.btnClear_d.UseVisualStyleBackColor = true;
             this.btnClear_d.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label9
+            // 
+            this.label9.Location = new System.Drawing.Point(6, 79);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(120, 16);
+            this.label9.TabIndex = 6;
+            this.label9.Text = "Serial Number :";
+            // 
+            // label8
+            // 
+            this.label8.Location = new System.Drawing.Point(6, 117);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(120, 16);
+            this.label8.TabIndex = 5;
+            this.label8.Text = "Asset Type :";
+            // 
             // btnUpdateAass_D
             // 
             this.btnUpdateAass_D.Location = new System.Drawing.Point(75, 320);
@@ -368,13 +454,23 @@
             this.btnUpdateAass_D.TabIndex = 13;
             this.btnUpdateAass_D.Text = "Update Asset";
             this.btnUpdateAass_D.UseVisualStyleBackColor = true;
+            this.btnUpdateAass_D.Click += new System.EventHandler(this.btnUpdateAsset_Click);
             // 
-            // txtAsSnumber_d
+            // label7
             // 
-            this.txtAsSnumber_d.Location = new System.Drawing.Point(168, 73);
-            this.txtAsSnumber_d.Name = "txtAsSnumber_d";
-            this.txtAsSnumber_d.Size = new System.Drawing.Size(150, 22);
-            this.txtAsSnumber_d.TabIndex = 5;
+            this.label7.Location = new System.Drawing.Point(6, 155);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(120, 16);
+            this.label7.TabIndex = 4;
+            this.label7.Text = "Purchase Date :";
+            // 
+            // label6
+            // 
+            this.label6.Location = new System.Drawing.Point(6, 193);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(120, 16);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "Current Condition :";
             // 
             // cmbStatus_D
             // 
@@ -383,6 +479,37 @@
             this.cmbStatus_D.Name = "cmbStatus_D";
             this.cmbStatus_D.Size = new System.Drawing.Size(121, 24);
             this.cmbStatus_D.TabIndex = 12;
+            // 
+            // label5
+            // 
+            this.label5.Location = new System.Drawing.Point(6, 269);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(120, 16);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "Status :";
+            // 
+            // label4
+            // 
+            this.label4.Location = new System.Drawing.Point(6, 231);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(120, 16);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Next Service Date :";
+            // 
+            // label3
+            // 
+            this.label3.Location = new System.Drawing.Point(6, 41);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(120, 16);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Asset ID :";
+            // 
+            // dtServiceDate_D
+            // 
+            this.dtServiceDate_D.Location = new System.Drawing.Point(168, 229);
+            this.dtServiceDate_D.Name = "dtServiceDate_D";
+            this.dtServiceDate_D.Size = new System.Drawing.Size(268, 22);
+            this.dtServiceDate_D.TabIndex = 2;
             // 
             // cmbCondit_D
             // 
@@ -401,19 +528,12 @@
             this.txtAssetID_D.TabIndex = 5;
             this.txtAssetID_D.TextChanged += new System.EventHandler(this.txtAssetID_D_TextChanged);
             // 
-            // dtServiceDate_D
+            // txtAsSnumber_d
             // 
-            this.dtServiceDate_D.Location = new System.Drawing.Point(168, 229);
-            this.dtServiceDate_D.Name = "dtServiceDate_D";
-            this.dtServiceDate_D.Size = new System.Drawing.Size(232, 22);
-            this.dtServiceDate_D.TabIndex = 2;
-            // 
-            // dtPurchaseDate_D
-            // 
-            this.dtPurchaseDate_D.Location = new System.Drawing.Point(168, 151);
-            this.dtPurchaseDate_D.Name = "dtPurchaseDate_D";
-            this.dtPurchaseDate_D.Size = new System.Drawing.Size(250, 22);
-            this.dtPurchaseDate_D.TabIndex = 1;
+            this.txtAsSnumber_d.Location = new System.Drawing.Point(168, 73);
+            this.txtAsSnumber_d.Name = "txtAsSnumber_d";
+            this.txtAsSnumber_d.Size = new System.Drawing.Size(150, 22);
+            this.txtAsSnumber_d.TabIndex = 5;
             // 
             // cmbType_D
             // 
@@ -423,229 +543,121 @@
             this.cmbType_D.Size = new System.Drawing.Size(121, 24);
             this.cmbType_D.TabIndex = 0;
             // 
+            // dtPurchaseDate_D
+            // 
+            this.dtPurchaseDate_D.Location = new System.Drawing.Point(168, 151);
+            this.dtPurchaseDate_D.Name = "dtPurchaseDate_D";
+            this.dtPurchaseDate_D.Size = new System.Drawing.Size(268, 22);
+            this.dtPurchaseDate_D.TabIndex = 1;
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.dataGridView1);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1621, 771);
+            this.tabPage2.Size = new System.Drawing.Size(1801, 771);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "HIRED ASSETS";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // groupWst1DataSet
-            // 
-            this.groupWst1DataSet.DataSetName = "GroupWst1DataSet";
-            this.groupWst1DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // ownedAssetBindingSource
-            // 
-            this.ownedAssetBindingSource.DataMember = "OwnedAsset";
-            this.ownedAssetBindingSource.DataSource = this.groupWst1DataSet;
-            // 
-            // ownedAssetTableAdapter
-            // 
-            this.ownedAssetTableAdapter.ClearBeforeFill = true;
             // 
             // dataGridView1
             // 
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.hiredAssetIDDataGridViewTextBoxColumn,
-            this.supplierNameDataGridViewTextBoxColumn,
-            this.hireDateDataGridViewTextBoxColumn,
-            this.returnDateDataGridViewTextBoxColumn,
-            this.hireCostDataGridViewTextBoxColumn,
-            this.equipmentTypeDataGridViewTextBoxColumn,
-            this.hiredAssetStatusDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.hiredAssetBindingSource;
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn6,
+            this.dataGridViewTextBoxColumn7});
+            this.dataGridView1.DataSource = this.hiredAssetBindingSource1;
             this.dataGridView1.Location = new System.Drawing.Point(291, 119);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(968, 150);
+            this.dataGridView1.Size = new System.Drawing.Size(968, 300);
             this.dataGridView1.TabIndex = 0;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "hiredAssetID";
+            this.dataGridViewTextBoxColumn1.HeaderText = "hiredAssetID";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "supplierName";
+            this.dataGridViewTextBoxColumn2.HeaderText = "supplierName";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "hireDate";
+            this.dataGridViewTextBoxColumn3.HeaderText = "hireDate";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "returnDate";
+            this.dataGridViewTextBoxColumn4.HeaderText = "returnDate";
+            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "hireCost";
+            this.dataGridViewTextBoxColumn5.HeaderText = "hireCost";
+            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "equipmentType";
+            this.dataGridViewTextBoxColumn6.HeaderText = "equipmentType";
+            this.dataGridViewTextBoxColumn6.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.DataPropertyName = "hiredAssetStatus";
+            this.dataGridViewTextBoxColumn7.HeaderText = "hiredAssetStatus";
+            this.dataGridViewTextBoxColumn7.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.Width = 125;
+            // 
+            // hiredAssetBindingSource1
+            // 
+            this.hiredAssetBindingSource1.DataMember = "HiredAsset";
+            this.hiredAssetBindingSource1.DataSource = this.groupWst1DataSet1;
+            // 
+            // ownedAssetBindingSource
+            // 
+            this.ownedAssetBindingSource.DataMember = "OwnedAsset";
             // 
             // hiredAssetBindingSource
             // 
             this.hiredAssetBindingSource.DataMember = "HiredAsset";
-            this.hiredAssetBindingSource.DataSource = this.groupWst1DataSet;
             // 
-            // hiredAssetTableAdapter
+            // hiredAssetTableAdapter1
             // 
-            this.hiredAssetTableAdapter.ClearBeforeFill = true;
+            this.hiredAssetTableAdapter1.ClearBeforeFill = true;
             // 
-            // hiredAssetIDDataGridViewTextBoxColumn
+            // ownedAssetTableAdapter1
             // 
-            this.hiredAssetIDDataGridViewTextBoxColumn.DataPropertyName = "hiredAssetID";
-            this.hiredAssetIDDataGridViewTextBoxColumn.HeaderText = "hiredAssetID";
-            this.hiredAssetIDDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.hiredAssetIDDataGridViewTextBoxColumn.Name = "hiredAssetIDDataGridViewTextBoxColumn";
-            this.hiredAssetIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.hiredAssetIDDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // supplierNameDataGridViewTextBoxColumn
-            // 
-            this.supplierNameDataGridViewTextBoxColumn.DataPropertyName = "supplierName";
-            this.supplierNameDataGridViewTextBoxColumn.HeaderText = "supplierName";
-            this.supplierNameDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.supplierNameDataGridViewTextBoxColumn.Name = "supplierNameDataGridViewTextBoxColumn";
-            this.supplierNameDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // hireDateDataGridViewTextBoxColumn
-            // 
-            this.hireDateDataGridViewTextBoxColumn.DataPropertyName = "hireDate";
-            this.hireDateDataGridViewTextBoxColumn.HeaderText = "hireDate";
-            this.hireDateDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.hireDateDataGridViewTextBoxColumn.Name = "hireDateDataGridViewTextBoxColumn";
-            this.hireDateDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // returnDateDataGridViewTextBoxColumn
-            // 
-            this.returnDateDataGridViewTextBoxColumn.DataPropertyName = "returnDate";
-            this.returnDateDataGridViewTextBoxColumn.HeaderText = "returnDate";
-            this.returnDateDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.returnDateDataGridViewTextBoxColumn.Name = "returnDateDataGridViewTextBoxColumn";
-            this.returnDateDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // hireCostDataGridViewTextBoxColumn
-            // 
-            this.hireCostDataGridViewTextBoxColumn.DataPropertyName = "hireCost";
-            this.hireCostDataGridViewTextBoxColumn.HeaderText = "hireCost";
-            this.hireCostDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.hireCostDataGridViewTextBoxColumn.Name = "hireCostDataGridViewTextBoxColumn";
-            this.hireCostDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // equipmentTypeDataGridViewTextBoxColumn
-            // 
-            this.equipmentTypeDataGridViewTextBoxColumn.DataPropertyName = "equipmentType";
-            this.equipmentTypeDataGridViewTextBoxColumn.HeaderText = "equipmentType";
-            this.equipmentTypeDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.equipmentTypeDataGridViewTextBoxColumn.Name = "equipmentTypeDataGridViewTextBoxColumn";
-            this.equipmentTypeDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // hiredAssetStatusDataGridViewTextBoxColumn
-            // 
-            this.hiredAssetStatusDataGridViewTextBoxColumn.DataPropertyName = "hiredAssetStatus";
-            this.hiredAssetStatusDataGridViewTextBoxColumn.HeaderText = "hiredAssetStatus";
-            this.hiredAssetStatusDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.hiredAssetStatusDataGridViewTextBoxColumn.Name = "hiredAssetStatusDataGridViewTextBoxColumn";
-            this.hiredAssetStatusDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // assetIDDataGridViewTextBoxColumn
-            // 
-            this.assetIDDataGridViewTextBoxColumn.DataPropertyName = "assetID";
-            this.assetIDDataGridViewTextBoxColumn.HeaderText = "Asset ID";
-            this.assetIDDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.assetIDDataGridViewTextBoxColumn.Name = "assetIDDataGridViewTextBoxColumn";
-            this.assetIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.assetIDDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // serialNumberDataGridViewTextBoxColumn
-            // 
-            this.serialNumberDataGridViewTextBoxColumn.DataPropertyName = "serialNumber";
-            this.serialNumberDataGridViewTextBoxColumn.HeaderText = "Serial Number";
-            this.serialNumberDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.serialNumberDataGridViewTextBoxColumn.Name = "serialNumberDataGridViewTextBoxColumn";
-            this.serialNumberDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // typeDataGridViewTextBoxColumn
-            // 
-            this.typeDataGridViewTextBoxColumn.DataPropertyName = "type";
-            this.typeDataGridViewTextBoxColumn.HeaderText = "Type";
-            this.typeDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.typeDataGridViewTextBoxColumn.Name = "typeDataGridViewTextBoxColumn";
-            this.typeDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // purchaseDateDataGridViewTextBoxColumn
-            // 
-            this.purchaseDateDataGridViewTextBoxColumn.DataPropertyName = "purchaseDate";
-            this.purchaseDateDataGridViewTextBoxColumn.HeaderText = "Purchase Date";
-            this.purchaseDateDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.purchaseDateDataGridViewTextBoxColumn.Name = "purchaseDateDataGridViewTextBoxColumn";
-            this.purchaseDateDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // currentConditionDataGridViewTextBoxColumn
-            // 
-            this.currentConditionDataGridViewTextBoxColumn.DataPropertyName = "currentCondition";
-            this.currentConditionDataGridViewTextBoxColumn.HeaderText = "Current Condition";
-            this.currentConditionDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.currentConditionDataGridViewTextBoxColumn.Name = "currentConditionDataGridViewTextBoxColumn";
-            this.currentConditionDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // nextServiceDateDataGridViewTextBoxColumn
-            // 
-            this.nextServiceDateDataGridViewTextBoxColumn.DataPropertyName = "nextServiceDate";
-            this.nextServiceDateDataGridViewTextBoxColumn.HeaderText = "Service Date";
-            this.nextServiceDateDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.nextServiceDateDataGridViewTextBoxColumn.Name = "nextServiceDateDataGridViewTextBoxColumn";
-            this.nextServiceDateDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // assetStatusDataGridViewTextBoxColumn
-            // 
-            this.assetStatusDataGridViewTextBoxColumn.DataPropertyName = "assetStatus";
-            this.assetStatusDataGridViewTextBoxColumn.HeaderText = "Status";
-            this.assetStatusDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.assetStatusDataGridViewTextBoxColumn.Name = "assetStatusDataGridViewTextBoxColumn";
-            this.assetStatusDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // label3
-            // 
-            this.label3.Location = new System.Drawing.Point(6, 41);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(120, 16);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Asset ID :";
-            // 
-            // label4
-            // 
-            this.label4.Location = new System.Drawing.Point(6, 231);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(120, 16);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Next Service Date :";
-            // 
-            // label5
-            // 
-            this.label5.Location = new System.Drawing.Point(6, 269);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(120, 16);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "Status :";
-            // 
-            // label6
-            // 
-            this.label6.Location = new System.Drawing.Point(6, 193);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(120, 16);
-            this.label6.TabIndex = 3;
-            this.label6.Text = "Current Condition :";
-            // 
-            // label7
-            // 
-            this.label7.Location = new System.Drawing.Point(6, 155);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(120, 16);
-            this.label7.TabIndex = 4;
-            this.label7.Text = "Purchase Date :";
-            // 
-            // label8
-            // 
-            this.label8.Location = new System.Drawing.Point(6, 117);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(120, 16);
-            this.label8.TabIndex = 5;
-            this.label8.Text = "Asset Type :";
-            // 
-            // label9
-            // 
-            this.label9.Location = new System.Drawing.Point(6, 79);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(120, 16);
-            this.label9.TabIndex = 6;
-            this.label9.Text = "Serial Number :";
+            this.ownedAssetTableAdapter1.ClearBeforeFill = true;
             // 
             // MachineRecords_D
             // 
@@ -655,21 +667,24 @@
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MachineRecords_D";
-            this.Text = "MachineRecords_D";
+            this.Text = "Asset  Records ";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.MachineRecords_D_Load);
+            this.Shown += new System.EventHandler(this.MachineRecords_D_Shown);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOwnedAsset_D)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ownedAssetBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupWst1DataSet1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.grpboxOwnAsset_D.ResumeLayout(false);
             this.grpboxOwnAsset_D.PerformLayout();
             this.tabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.groupWst1DataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ownedAssetBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.hiredAssetBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ownedAssetBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.hiredAssetBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -704,8 +719,6 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox txtAssetID2_D;
-        private System.Windows.Forms.Label label16;
         private System.Windows.Forms.DateTimePicker dtService2_D;
         private System.Windows.Forms.DateTimePicker dtPurchaseD2_D;
         private System.Windows.Forms.ComboBox cmbType2_D;
@@ -737,5 +750,24 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
+        private GroupWst1DataSet groupWst1DataSet1;
+        private System.Windows.Forms.BindingSource hiredAssetBindingSource1;
+        private GroupWst1DataSetTableAdapters.HiredAssetTableAdapter hiredAssetTableAdapter1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.BindingSource ownedAssetBindingSource1;
+        private GroupWst1DataSetTableAdapters.OwnedAssetTableAdapter ownedAssetTableAdapter1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
     }
 }
