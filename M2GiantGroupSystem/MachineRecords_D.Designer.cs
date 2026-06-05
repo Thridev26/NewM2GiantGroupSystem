@@ -90,6 +90,24 @@
             this.hiredAssetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.hiredAssetTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.HiredAssetTableAdapter();
             this.ownedAssetTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.OwnedAssetTableAdapter();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.btnDeleteRcd = new System.Windows.Forms.Button();
+            this.txtDeleteSN = new System.Windows.Forms.TextBox();
+            this.cmbDeleteST = new System.Windows.Forms.ComboBox();
+            this.cmbDeleteCond = new System.Windows.Forms.ComboBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.dtDeleteNS = new System.Windows.Forms.DateTimePicker();
+            this.dtDeletP = new System.Windows.Forms.DateTimePicker();
+            this.cmbDeleteAT = new System.Windows.Forms.ComboBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.btnClearNewAsset_d = new System.Windows.Forms.Button();
+            this.btncleareDel = new System.Windows.Forms.Button();
+            this.txtAssetID2 = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOwnedAsset_D)).BeginInit();
@@ -102,6 +120,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.hiredAssetBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ownedAssetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hiredAssetBindingSource)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -118,6 +137,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.panel2);
             this.tabPage1.Controls.Add(this.dgvOwnedAsset_D);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.txtSearchOA_D);
@@ -144,7 +164,7 @@
             this.dataGridViewTextBoxColumn13,
             this.dataGridViewTextBoxColumn14});
             this.dgvOwnedAsset_D.DataSource = this.ownedAssetBindingSource1;
-            this.dgvOwnedAsset_D.Location = new System.Drawing.Point(76, 505);
+            this.dgvOwnedAsset_D.Location = new System.Drawing.Point(8, 474);
             this.dgvOwnedAsset_D.Name = "dgvOwnedAsset_D";
             this.dgvOwnedAsset_D.RowHeadersWidth = 51;
             this.dgvOwnedAsset_D.RowTemplate.Height = 24;
@@ -240,6 +260,8 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.txtAssetID2);
+            this.panel1.Controls.Add(this.btnClearNewAsset_d);
             this.panel1.Controls.Add(this.btnAddAsset_D);
             this.panel1.Controls.Add(this.txtSerialno2_D);
             this.panel1.Controls.Add(this.cmbStatus2_D);
@@ -254,7 +276,7 @@
             this.panel1.Controls.Add(this.dtPurchaseD2_D);
             this.panel1.Controls.Add(this.cmbType2_D);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Location = new System.Drawing.Point(775, 109);
+            this.panel1.Location = new System.Drawing.Point(549, 74);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(468, 321);
             this.panel1.TabIndex = 1;
@@ -389,7 +411,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(121, 10);
+            this.label2.Location = new System.Drawing.Point(172, 12);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(111, 16);
             this.label2.TabIndex = 5;
@@ -413,7 +435,7 @@
             this.grpboxOwnAsset_D.Controls.Add(this.txtAsSnumber_d);
             this.grpboxOwnAsset_D.Controls.Add(this.cmbType_D);
             this.grpboxOwnAsset_D.Controls.Add(this.dtPurchaseDate_D);
-            this.grpboxOwnAsset_D.Location = new System.Drawing.Point(23, 96);
+            this.grpboxOwnAsset_D.Location = new System.Drawing.Point(23, 74);
             this.grpboxOwnAsset_D.Name = "grpboxOwnAsset_D";
             this.grpboxOwnAsset_D.Size = new System.Drawing.Size(458, 356);
             this.grpboxOwnAsset_D.TabIndex = 0;
@@ -474,7 +496,11 @@
             // 
             // cmbStatus_D
             // 
+            this.cmbStatus_D.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbStatus_D.FormattingEnabled = true;
+            this.cmbStatus_D.Items.AddRange(new object[] {
+            "Available ",
+            "In Use"});
             this.cmbStatus_D.Location = new System.Drawing.Point(168, 267);
             this.cmbStatus_D.Name = "cmbStatus_D";
             this.cmbStatus_D.Size = new System.Drawing.Size(121, 24);
@@ -513,7 +539,13 @@
             // 
             // cmbCondit_D
             // 
+            this.cmbCondit_D.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCondit_D.FormattingEnabled = true;
+            this.cmbCondit_D.Items.AddRange(new object[] {
+            "Excellent ",
+            "Good",
+            "Fair",
+            "Poor"});
             this.cmbCondit_D.Location = new System.Drawing.Point(168, 189);
             this.cmbCondit_D.Name = "cmbCondit_D";
             this.cmbCondit_D.Size = new System.Drawing.Size(121, 24);
@@ -538,6 +570,13 @@
             // cmbType_D
             // 
             this.cmbType_D.FormattingEnabled = true;
+            this.cmbType_D.Items.AddRange(new object[] {
+            "Chainsaw",
+            "Wood Chipper",
+            "Lawnmower",
+            "Hedge Trimmer",
+            "Trailer ",
+            "Ford Ranger LWB"});
             this.cmbType_D.Location = new System.Drawing.Point(168, 111);
             this.cmbType_D.Name = "cmbType_D";
             this.cmbType_D.Size = new System.Drawing.Size(121, 24);
@@ -574,7 +613,7 @@
             this.dataGridViewTextBoxColumn6,
             this.dataGridViewTextBoxColumn7});
             this.dataGridView1.DataSource = this.hiredAssetBindingSource1;
-            this.dataGridView1.Location = new System.Drawing.Point(291, 119);
+            this.dataGridView1.Location = new System.Drawing.Point(77, 294);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
@@ -659,10 +698,201 @@
             // 
             this.ownedAssetTableAdapter1.ClearBeforeFill = true;
             // 
+            // panel2
+            // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.btncleareDel);
+            this.panel2.Controls.Add(this.btnDeleteRcd);
+            this.panel2.Controls.Add(this.txtDeleteSN);
+            this.panel2.Controls.Add(this.cmbDeleteST);
+            this.panel2.Controls.Add(this.cmbDeleteCond);
+            this.panel2.Controls.Add(this.label16);
+            this.panel2.Controls.Add(this.label17);
+            this.panel2.Controls.Add(this.label18);
+            this.panel2.Controls.Add(this.label19);
+            this.panel2.Controls.Add(this.label20);
+            this.panel2.Controls.Add(this.label21);
+            this.panel2.Controls.Add(this.dtDeleteNS);
+            this.panel2.Controls.Add(this.dtDeletP);
+            this.panel2.Controls.Add(this.cmbDeleteAT);
+            this.panel2.Controls.Add(this.label22);
+            this.panel2.Location = new System.Drawing.Point(1116, 74);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(468, 321);
+            this.panel2.TabIndex = 5;
+            // 
+            // btnDeleteRcd
+            // 
+            this.btnDeleteRcd.Location = new System.Drawing.Point(53, 280);
+            this.btnDeleteRcd.Name = "btnDeleteRcd";
+            this.btnDeleteRcd.Size = new System.Drawing.Size(127, 23);
+            this.btnDeleteRcd.TabIndex = 27;
+            this.btnDeleteRcd.Text = "Delete Asset";
+            this.btnDeleteRcd.UseVisualStyleBackColor = true;
+            this.btnDeleteRcd.Click += new System.EventHandler(this.btnDeleteRcd_Click);
+            // 
+            // txtDeleteSN
+            // 
+            this.txtDeleteSN.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtDeleteSN.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtDeleteSN.Location = new System.Drawing.Point(175, 45);
+            this.txtDeleteSN.Name = "txtDeleteSN";
+            this.txtDeleteSN.Size = new System.Drawing.Size(129, 22);
+            this.txtDeleteSN.TabIndex = 16;
+            this.txtDeleteSN.TextChanged += new System.EventHandler(this.txtDeleteSN_TextChanged);
+            // 
+            // cmbDeleteST
+            // 
+            this.cmbDeleteST.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDeleteST.FormattingEnabled = true;
+            this.cmbDeleteST.Items.AddRange(new object[] {
+            "Available ",
+            "In Use"});
+            this.cmbDeleteST.Location = new System.Drawing.Point(175, 209);
+            this.cmbDeleteST.Name = "cmbDeleteST";
+            this.cmbDeleteST.Size = new System.Drawing.Size(121, 24);
+            this.cmbDeleteST.TabIndex = 26;
+            // 
+            // cmbDeleteCond
+            // 
+            this.cmbDeleteCond.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDeleteCond.FormattingEnabled = true;
+            this.cmbDeleteCond.Items.AddRange(new object[] {
+            "Excellent ",
+            "Good",
+            "Fair",
+            "Poor"});
+            this.cmbDeleteCond.Location = new System.Drawing.Point(175, 143);
+            this.cmbDeleteCond.Name = "cmbDeleteCond";
+            this.cmbDeleteCond.Size = new System.Drawing.Size(121, 24);
+            this.cmbDeleteCond.TabIndex = 25;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(3, 205);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(50, 16);
+            this.label16.TabIndex = 17;
+            this.label16.Text = "Status :";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(3, 174);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(121, 16);
+            this.label17.TabIndex = 20;
+            this.label17.Text = "Next Service Date :";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(3, 143);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(114, 16);
+            this.label18.TabIndex = 21;
+            this.label18.Text = "Current Condition :";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(3, 112);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(102, 16);
+            this.label19.TabIndex = 22;
+            this.label19.Text = "Purchase Date :";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(3, 81);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(82, 16);
+            this.label20.TabIndex = 23;
+            this.label20.Text = "Asset Type :";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(3, 50);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(99, 16);
+            this.label21.TabIndex = 24;
+            this.label21.Text = "Serial Number :";
+            // 
+            // dtDeleteNS
+            // 
+            this.dtDeleteNS.Location = new System.Drawing.Point(175, 177);
+            this.dtDeleteNS.Name = "dtDeleteNS";
+            this.dtDeleteNS.Size = new System.Drawing.Size(248, 22);
+            this.dtDeleteNS.TabIndex = 15;
+            // 
+            // dtDeletP
+            // 
+            this.dtDeletP.Location = new System.Drawing.Point(175, 111);
+            this.dtDeletP.Name = "dtDeletP";
+            this.dtDeletP.Size = new System.Drawing.Size(248, 22);
+            this.dtDeletP.TabIndex = 14;
+            // 
+            // cmbDeleteAT
+            // 
+            this.cmbDeleteAT.FormattingEnabled = true;
+            this.cmbDeleteAT.Items.AddRange(new object[] {
+            "Chainsaw",
+            "Wood Chipper",
+            "Lawnmower",
+            "Hedge Trimmer",
+            "Trailer ",
+            "Ford Ranger LWB"});
+            this.cmbDeleteAT.Location = new System.Drawing.Point(175, 77);
+            this.cmbDeleteAT.Name = "cmbDeleteAT";
+            this.cmbDeleteAT.Size = new System.Drawing.Size(121, 24);
+            this.cmbDeleteAT.TabIndex = 13;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(172, 12);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(135, 16);
+            this.label22.TabIndex = 5;
+            this.label22.Text = "Delete  Asset Record";
+            // 
+            // btnClearNewAsset_d
+            // 
+            this.btnClearNewAsset_d.Location = new System.Drawing.Point(221, 280);
+            this.btnClearNewAsset_d.Name = "btnClearNewAsset_d";
+            this.btnClearNewAsset_d.Size = new System.Drawing.Size(75, 23);
+            this.btnClearNewAsset_d.TabIndex = 28;
+            this.btnClearNewAsset_d.Text = "Clear";
+            this.btnClearNewAsset_d.UseVisualStyleBackColor = true;
+            this.btnClearNewAsset_d.Click += new System.EventHandler(this.btnClearNewAsset_d_Click);
+            // 
+            // btncleareDel
+            // 
+            this.btncleareDel.Location = new System.Drawing.Point(249, 280);
+            this.btncleareDel.Name = "btncleareDel";
+            this.btncleareDel.Size = new System.Drawing.Size(75, 23);
+            this.btncleareDel.TabIndex = 29;
+            this.btncleareDel.Text = "Clear";
+            this.btncleareDel.UseVisualStyleBackColor = true;
+            this.btncleareDel.Click += new System.EventHandler(this.btncleareDel_Click);
+            // 
+            // txtAssetID2
+            // 
+            this.txtAssetID2.Location = new System.Drawing.Point(95, 246);
+            this.txtAssetID2.Name = "txtAssetID2";
+            this.txtAssetID2.Size = new System.Drawing.Size(10, 22);
+            this.txtAssetID2.TabIndex = 29;
+            this.txtAssetID2.Visible = false;
+            // 
             // MachineRecords_D
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1809, 800);
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -686,6 +916,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.hiredAssetBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ownedAssetBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.hiredAssetBindingSource)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -769,5 +1001,23 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button btnDeleteRcd;
+        private System.Windows.Forms.TextBox txtDeleteSN;
+        private System.Windows.Forms.ComboBox cmbDeleteST;
+        private System.Windows.Forms.ComboBox cmbDeleteCond;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.DateTimePicker dtDeleteNS;
+        private System.Windows.Forms.DateTimePicker dtDeletP;
+        private System.Windows.Forms.ComboBox cmbDeleteAT;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Button btnClearNewAsset_d;
+        private System.Windows.Forms.Button btncleareDel;
+        private System.Windows.Forms.TextBox txtAssetID2;
     }
 }
