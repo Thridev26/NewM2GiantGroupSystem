@@ -1,5 +1,6 @@
 ﻿using iTextSharp.text;
 using iTextSharp.text.pdf;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -290,102 +291,220 @@ namespace M2GiantGroupSystem
         {
             decimal subTotalAccumulator = 0.00m;
 
+            // Loop through every active row in your grid
             foreach (DataGridViewRow row in selectedJobsGridView.Rows)
             {
-                if (!row.IsNewRow && row.Cells[4].Value != null)
+                if (row.IsNewRow) continue; // Ignore the blank line at the bottom
+
+                // Find the SUBTOTAL cell for this row and add it to our running total
+                foreach (DataGridViewCell cell in row.Cells)
                 {
-                    subTotalAccumulator += Convert.ToDecimal(row.Cells[4].Value);
+                    if (selectedJobsGridView.Columns[cell.ColumnIndex].HeaderText == "Total")
+                    {
+                        if (cell.Value != null && cell.Value != DBNull.Value)
+                        {
+                            subTotalAccumulator += Convert.ToDecimal(cell.Value);
+                        }
+                        break;
+                    }
                 }
             }
 
-            // Calculate tax and grand totals using strict decimal precision
+            // Standard South African 15% statutory calculations
             decimal vatAccumulator = subTotalAccumulator * 0.15m;
             decimal grandTotalAccumulator = subTotalAccumulator + vatAccumulator;
 
-            // Output formatted strings back to your group box controls
-            txtAmount.Text = subTotalAccumulator.ToString("F2");
-            txtVAT.Text = vatAccumulator.ToString("F2");
-            txtTotalwithVAT.Text = grandTotalAccumulator.ToString("F2");
+            // Push the running live totals straight into your bottom group textboxes
+            txtAmount.Text = subTotalAccumulator.ToString("F2");            // Subtotal text box
+            txtVAT.Text = vatAccumulator.ToString("F2");                  // VAT text box
+            txtTotalwithVAT.Text = grandTotalAccumulator.ToString("F2");   // Grand Total text box
+            //decimal subTotalAccumulator = 0.00m;
+
+            //foreach (DataGridViewRow row in selectedJobsGridView.Rows)
+            //{
+            //    if (!row.IsNewRow && row.Cells[4].Value != null)
+            //    {
+            //        subTotalAccumulator += Convert.ToDecimal(row.Cells[4].Value);
+            //    }
+            //}
+
+            //// Calculate tax and grand totals using strict decimal precision
+            //decimal vatAccumulator = subTotalAccumulator * 0.15m;
+            //decimal grandTotalAccumulator = subTotalAccumulator + vatAccumulator;
+
+            //// Output formatted strings back to your group box controls
+            //txtAmount.Text = subTotalAccumulator.ToString("F2");
+            //txtVAT.Text = vatAccumulator.ToString("F2");
+            //txtTotalwithVAT.Text = grandTotalAccumulator.ToString("F2");
         }
 
         private void jobTypeDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            if (e.RowIndex < 0) return;
+
+            // 1. Get the details of the service they selected
+            string jobName = jobTypeDataGridView.Rows[e.RowIndex].Cells["jobTypeName"].Value.ToString();
+            string unitType = jobTypeDataGridView.Rows[e.RowIndex].Cells["rateDescription"].Value.ToString(); // e.g., "Per tree", "Per square meter"
+            decimal baseRate = Convert.ToDecimal(jobTypeDataGridView.Rows[e.RowIndex].Cells["jobRate"].Value);
+
+            // 2. Prompt the admin lady with a clear question based on the unit type
+            string promptMessage = $"Enter the quantity for {jobName} ({unitType}):";
+            string userInput = Interaction.InputBox(promptMessage, "Enter Quantity", "1");
+
+            // If they cancel or leave it empty, stop the addition
+            if (string.IsNullOrWhiteSpace(userInput)) return;
+
+            if (decimal.TryParse(userInput, out decimal quantity))
             {
-                DataGridViewRow selectedRow = jobTypeDataGridView.Rows[e.RowIndex];
+                // 3. Calculate the line item total right here
+                decimal lineTotal = baseRate * quantity;
 
-                string jobName = selectedRow.Cells["jobTypeName"].Value?.ToString();
-                string jobRate = selectedRow.Cells["jobRate"].Value?.ToString();
-                string unitDescription = selectedRow.Cells[3].Value?.ToString() ?? "Per Unit";
+                // 4. Add the row directly to your bottom grid with all fields filled!
+                int rowIndex = selectedJobsGridView.Rows.Add();
+                DataGridViewRow newRow = selectedJobsGridView.Rows[rowIndex];
 
-                decimal baseRate = Convert.ToDecimal(jobRate);
-
-                // Automatically seed the baseline Travel Fee item first if the grid is empty
-                if (selectedJobsGridView.Rows.Count == 0 && currentTravelFee > 0)
-                {
-                    // Maps exactly to your designer columns: Job Type, Base Rate, Unit Type, Quantity, Total
-                    selectedJobsGridView.Rows.Add("Travel Call-out", currentTravelFee, "Flat Rate", 1.0, currentTravelFee);
-                }
-
-                // Add the selected item directly to the UI columns collection
-                selectedJobsGridView.Rows.Add(jobName, baseRate, unitDescription, 1.0, baseRate);
-
-                // Update the grand total box
+                newRow.Cells["colJobType"].Value = jobName;
+                newRow.Cells["colBaseRate"].Value = baseRate;
+                newRow.Cells["colUnitType"].Value = unitType;
+                newRow.Cells["colQuantity"].Value = quantity; // Populates your QTY column perfectly
+                newRow.Cells["colTotal"].Value = lineTotal;   // Populates your working SUBTOTAL column
+                // 5. Update your bottom group text boxes immediately
                 RecalculateGrandTotalFromUI();
             }
+            else
+            {
+                MessageBox.Show("Please enter a valid numeric quantity.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            //if (e.RowIndex >= 0)
+            //{
+            //    DataGridViewRow selectedRow = jobTypeDataGridView.Rows[e.RowIndex];
+
+            //    string jobName = selectedRow.Cells["jobTypeName"].Value?.ToString();
+            //    string jobRate = selectedRow.Cells["jobRate"].Value?.ToString();
+            //    string unitDescription = selectedRow.Cells[3].Value?.ToString() ?? "Unit Type";
+
+            //    decimal baseRate = Convert.ToDecimal(jobRate);
+
+            //    // Automatically seed the baseline Travel Fee item first if the grid is empty
+            //    if (selectedJobsGridView.Rows.Count == 0 && currentTravelFee > 0)
+            //    {
+            //        // Maps exactly to your designer columns: Job Type, Base Rate, Unit Type, Quantity, Total
+            //        selectedJobsGridView.Rows.Add("Travel Call-out", currentTravelFee, "Flat Rate", 1.0, currentTravelFee);
+            //    }
+
+            //    // Add the selected item directly to the UI columns collection
+            //    selectedJobsGridView.Rows.Add(jobName, baseRate, unitDescription, 1.0, baseRate);
+
+            //    // Update the grand total box
+            //    RecalculateGrandTotalFromUI();
+            //}
         }
 
         private void selectedJobsGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        { // Ensure we are looking at a valid data row, not the column header
-            if (e.RowIndex >= 0)
+        {
+            // Fail-safe: Skip header rows or initialization glitches
+            if (e.RowIndex < 0) return;
+
+            // Get the exact header text of the column that was just changed
+            string columnName = selectedJobsGridView.Columns[e.ColumnIndex].HeaderText;
+
+            // Only run the math if the admin lady edited the QTY column
+            if (columnName == "QTY")
             {
-                //Target the 'Quantity' column directly by its physical slot position index (Index 3)
-                if (e.ColumnIndex == 3)
+                DataGridViewRow row = selectedJobsGridView.Rows[e.RowIndex];
+
+                decimal baseRate = 0;
+                decimal quantity = 1;
+
+                // 1. Locate and read the pre-existing RATE cell value populated from your database
+                foreach (DataGridViewCell cell in row.Cells)
                 {
-                    DataGridViewRow currentRow = selectedJobsGridView.Rows[e.RowIndex];
-
-                    //Extract the updated Quantity entered by the user safely
-                    double quantityInput = 0;
-                    if (currentRow.Cells[3].Value != null)
+                    if (selectedJobsGridView.Columns[cell.ColumnIndex].HeaderText == "RATE")
                     {
-                        // Safely convert the object cell value to a double-precision number
-                        double.TryParse(currentRow.Cells[3].Value.ToString(), out quantityInput);
+                        if (cell.Value != null && cell.Value != DBNull.Value)
+                        {
+                            baseRate = Convert.ToDecimal(cell.Value);
+                        }
+                        break;
                     }
-
-                    // Prevent negative inputs from corrupting your financial records
-                    if (quantityInput < 0)
-                    {
-                        MessageBox.Show("The quantity cannot be a negative amount. Resetting line item input to 0.",
-                                        "Validation Notice", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        quantityInput = 0;
-                        currentRow.Cells[3].Value = 0; // Force the cell to reflect the fallback correction visually
-                    }
-
-                    // 5. Extract the unchangeable Base Rate column value (Index 1)
-                    decimal baseRateValue = 0;
-                    if (currentRow.Cells[1].Value != null)
-                    {
-                        decimal.TryParse(currentRow.Cells[1].Value.ToString(), out baseRateValue);
-                    }
-
-                    // 6. RUN THE MATHEMATICAL MULTIPLICATION
-                    // Round nicely to 2 decimal places for South African Rand currency standards
-                    decimal recalculatedLineTotal = Math.Round(baseRateValue * (decimal)quantityInput, 2);
-
-                    // 7. Write the output value back to your visual 'Total' column cell (Index 4)
-                    currentRow.Cells[4].Value = recalculatedLineTotal;
-
-                    // 8. Force the entire system to tally up all items and refresh your txtAmount display
-                    RecalculateGrandTotalFromUI();
                 }
+
+                // 2. Read what the user just typed into the QTY column safely
+                if (row.Cells[e.ColumnIndex].Value != null && decimal.TryParse(row.Cells[e.ColumnIndex].Value.ToString(), out decimal parsedQty))
+                {
+                    quantity = parsedQty;
+                }
+                else
+                {
+                    row.Cells[e.ColumnIndex].Value = 1; // Default fallback to 1 if empty or typed incorrectly
+                }
+
+                // 3. THE MATHEMATICS: Base Rate x Quantity
+                decimal calculatedLineTotal = baseRate * quantity;
+
+                // 4. Update the visual grid's SUBTOTAL column for this row immediately
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    if (selectedJobsGridView.Columns[cell.ColumnIndex].HeaderText == "SUBTOTAL")
+                    {
+                        cell.Value = calculatedLineTotal;
+                        break;
+                    }
+                }
+
+                // 5. UPDATE THE SUMMARY: Sum up all rows from the SUBTOTAL column live
+                RecalculateGrandTotalFromUI();
             }
+            //// Ensure we are looking at a valid data row, not the column header
+            //if (e.RowIndex >= 0)
+            //{
+            //    //Target the 'Quantity' column directly by its physical slot position index (Index 3)
+            //    if (e.ColumnIndex == 3)
+            //    {
+            //        DataGridViewRow currentRow = selectedJobsGridView.Rows[e.RowIndex];
+
+            //        //Extract the updated Quantity entered by the user safely
+            //        double quantityInput = 0;
+            //        if (currentRow.Cells[3].Value != null)
+            //        {
+            //            // Safely convert the object cell value to a double-precision number
+            //            double.TryParse(currentRow.Cells[3].Value.ToString(), out quantityInput);
+            //        }
+
+            //        // Prevent negative inputs from corrupting your financial records
+            //        if (quantityInput < 0)
+            //        {
+            //            MessageBox.Show("The quantity cannot be a negative amount. Resetting line item input to 0.",
+            //                            "Validation Notice", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //            quantityInput = 0;
+            //            currentRow.Cells[3].Value = 0; // Force the cell to reflect the fallback correction visually
+            //        }
+
+            //        // 5. Extract the unchangeable Base Rate column value (Index 1)
+            //        decimal baseRateValue = 0;
+            //        if (currentRow.Cells[1].Value != null)
+            //        {
+            //            decimal.TryParse(currentRow.Cells[1].Value.ToString(), out baseRateValue);
+            //        }
+
+            //        // 6. RUN THE MATHEMATICAL MULTIPLICATION
+            //        // Round nicely to 2 decimal places for South African Rand currency standards
+            //        decimal recalculatedLineTotal = Math.Round(baseRateValue * (decimal)quantityInput, 2);
+
+            //        // 7. Write the output value back to your visual 'Total' column cell (Index 4)
+            //        currentRow.Cells[4].Value = recalculatedLineTotal;
+
+            //        // 8. Force the entire system to tally up all items and refresh your txtAmount display
+            //        RecalculateGrandTotalFromUI();
+            //    }
+            //}
         }
 
         private void selectedJobsGridView_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
-            // Forces the cell to commit its changes the instant the user hits Enter or clicks away
             if (selectedJobsGridView.IsCurrentCellDirty)
             {
+                // Instantly commits the keystroke changes to data memory raw value layer
                 selectedJobsGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
             }
         }
@@ -1100,6 +1219,16 @@ namespace M2GiantGroupSystem
                     this.jobTypeTableAdapter.FillByID(this.groupWst1DataSet.JobType, clickedID);
                 }
             }
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
