@@ -1,0 +1,1 @@
+﻿DBCC CHECKIDENT ('HiredAsset', RESEED, 4)
