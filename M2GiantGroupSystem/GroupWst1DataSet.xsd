@@ -1370,7 +1370,7 @@ SELECT assetID, serialNumber, type, purchaseDate, currentCondition, nextServiceD
               <Mapping SourceColumn="assetStatus" DataSetColumn="assetStatus" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="GroupWst1ConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteAssetRecord" Modifier="Public" Name="DeleteAssetRecord" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="DeleteAssetRecord">
+              <DbSource ConnectionRef="GroupWst1ConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteAssetRecord" Modifier="Public" Name="DeleteAssetRecord" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="DeleteAssetRecord">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>DELETE FROM OwnedAsset
@@ -1381,7 +1381,7 @@ WHERE  (assetID = @assetID)</CommandText>
                   </DbCommand>
                 </DeleteCommand>
               </DbSource>
-              <DbSource ConnectionRef="GroupWst1ConnectionString (Settings)" DbObjectName="GroupWst1.dbo.OwnedAsset" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByAvailableOwned" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy" GeneratorSourceName="FillByAvailableOwned" GetMethodModifier="Public" GetMethodName="GetDataBy" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillByAvailableOwned">
+              <DbSource ConnectionRef="GroupWst1ConnectionString (Settings)" DbObjectName="GroupWst1.dbo.OwnedAsset" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByAvailableOwned" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy1" GeneratorSourceName="FillByAvailableOwned" GetMethodModifier="Public" GetMethodName="GetDataBy1" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="FillByAvailableOwned">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT * FROM OwnedAsset AS O
@@ -1393,7 +1393,7 @@ WHERE NOT EXISTS (
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="GroupWst1ConnectionString (Settings)" DbObjectName="GroupWst1.dbo.OwnedAsset" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillBySerialNumber" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy1" GeneratorSourceName="FillBySerialNumber" GetMethodModifier="Public" GetMethodName="GetDataBy1" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="FillBySerialNumber">
+              <DbSource ConnectionRef="GroupWst1ConnectionString (Settings)" DbObjectName="GroupWst1.dbo.OwnedAsset" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillBySerialNumber" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy11" GeneratorSourceName="FillBySerialNumber" GetMethodModifier="Public" GetMethodName="GetDataBy11" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy11" UserSourceName="FillBySerialNumber">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT assetID, serialNumber, type, purchaseDate, currentCondition, nextServiceDate, assetStatus
@@ -1582,6 +1582,17 @@ SELECT hiredAssetID, supplierName, hireDate, returnDate, hireCost, equipmentType
               <Mapping SourceColumn="hiredAssetStatus" DataSetColumn="hiredAssetStatus" />
             </Mappings>
             <Sources>
+              <DbSource ConnectionRef="GroupWst1ConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteHiredAsset" Modifier="Public" Name="DeleteHiredAsset" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="DeleteHiredAsset">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>DELETE FROM HiredAsset
+WHERE  (hiredAssetID = @hiredAssetID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="hiredAssetID" ColumnName="hiredAssetID" DataSourceName="GroupWst1.dbo.HiredAsset" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@hiredAssetID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="hiredAssetID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+              </DbSource>
               <DbSource ConnectionRef="GroupWst1ConnectionString (Settings)" DbObjectName="GroupWst1.dbo.HiredAsset" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByAvailableHired" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy" GeneratorSourceName="FillByAvailableHired" GetMethodModifier="Public" GetMethodName="GetDataBy" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillByAvailableHired">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
@@ -1593,6 +1604,53 @@ WHERE NOT EXISTS (
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="GroupWst1ConnectionString (Settings)" DbObjectName="GroupWst1.dbo.HiredAsset" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillBySupplierName" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy1" GeneratorSourceName="FillBySupplierName" GetMethodModifier="Public" GetMethodName="GetDataBy1" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="FillBySupplierName">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT hiredAssetID, supplierName, hireDate, returnDate, hireCost, equipmentType, hiredAssetStatus
+FROM     HiredAsset
+WHERE  (supplierName LIKE @supplierName + '%')</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="supplierName" ColumnName="supplierName" DataSourceName="GroupWst1.dbo.HiredAsset" DataTypeServer="varchar(100)" DbType="AnsiString" Direction="Input" ParameterName="@supplierName" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumn="supplierName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="GroupWst1ConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="InsertHiredAsset" Modifier="Public" Name="InsertHiredAsset" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="InsertHiredAsset">
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>INSERT INTO [HiredAsset] ([supplierName], [hireDate], [returnDate], [hireCost], [equipmentType], [hiredAssetStatus]) VALUES (@supplierName, @hireDate, @returnDate, @hireCost, @equipmentType, @hiredAssetStatus);
+SELECT hiredAssetID, supplierName, hireDate, returnDate, hireCost, equipmentType, hiredAssetStatus FROM HiredAsset WHERE (hiredAssetID = SCOPE_IDENTITY())</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="supplierName" ColumnName="supplierName" DataSourceName="GroupWst1.dbo.HiredAsset" DataTypeServer="varchar(100)" DbType="AnsiString" Direction="Input" ParameterName="@supplierName" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumn="supplierName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="hireDate" ColumnName="hireDate" DataSourceName="GroupWst1.dbo.HiredAsset" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@hireDate" Precision="0" ProviderType="Date" Scale="0" Size="3" SourceColumn="hireDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="returnDate" ColumnName="returnDate" DataSourceName="GroupWst1.dbo.HiredAsset" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@returnDate" Precision="0" ProviderType="Date" Scale="0" Size="3" SourceColumn="returnDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="hireCost" ColumnName="hireCost" DataSourceName="GroupWst1.dbo.HiredAsset" DataTypeServer="decimal(10, 2)" DbType="Decimal" Direction="Input" ParameterName="@hireCost" Precision="10" ProviderType="Decimal" Scale="2" Size="9" SourceColumn="hireCost" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="equipmentType" ColumnName="equipmentType" DataSourceName="GroupWst1.dbo.HiredAsset" DataTypeServer="varchar(100)" DbType="AnsiString" Direction="Input" ParameterName="@equipmentType" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumn="equipmentType" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="hiredAssetStatus" ColumnName="hiredAssetStatus" DataSourceName="GroupWst1.dbo.HiredAsset" DataTypeServer="varchar(50)" DbType="AnsiString" Direction="Input" ParameterName="@hiredAssetStatus" Precision="0" ProviderType="VarChar" Scale="0" Size="50" SourceColumn="hiredAssetStatus" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+              </DbSource>
+              <DbSource ConnectionRef="GroupWst1ConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateHiredAsset" Modifier="Public" Name="UpdateHiredAsset" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="UpdateHiredAsset">
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>UPDATE HiredAsset
+SET          supplierName = @supplierName, hireDate = @hireDate, returnDate = @returnDate, hireCost = @hireCost, equipmentType = @equipmentType, hiredAssetStatus = @hiredAssetStatus
+WHERE  (hiredAssetID = @hiredAssetID); 
+SELECT hiredAssetID, supplierName, hireDate, returnDate, hireCost, equipmentType, hiredAssetStatus FROM HiredAsset WHERE (hiredAssetID = @hiredAssetID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="supplierName" ColumnName="supplierName" DataSourceName="GroupWst1.dbo.HiredAsset" DataTypeServer="varchar(100)" DbType="AnsiString" Direction="Input" ParameterName="@supplierName" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumn="supplierName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="hireDate" ColumnName="hireDate" DataSourceName="GroupWst1.dbo.HiredAsset" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@hireDate" Precision="0" ProviderType="Date" Scale="0" Size="3" SourceColumn="hireDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="returnDate" ColumnName="returnDate" DataSourceName="GroupWst1.dbo.HiredAsset" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@returnDate" Precision="0" ProviderType="Date" Scale="0" Size="3" SourceColumn="returnDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="hireCost" ColumnName="hireCost" DataSourceName="GroupWst1.dbo.HiredAsset" DataTypeServer="decimal(10, 2)" DbType="Decimal" Direction="Input" ParameterName="@hireCost" Precision="10" ProviderType="Decimal" Scale="2" Size="9" SourceColumn="hireCost" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="equipmentType" ColumnName="equipmentType" DataSourceName="GroupWst1.dbo.HiredAsset" DataTypeServer="varchar(100)" DbType="AnsiString" Direction="Input" ParameterName="@equipmentType" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumn="equipmentType" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="hiredAssetStatus" ColumnName="hiredAssetStatus" DataSourceName="GroupWst1.dbo.HiredAsset" DataTypeServer="varchar(50)" DbType="AnsiString" Direction="Input" ParameterName="@hiredAssetStatus" Precision="0" ProviderType="VarChar" Scale="0" Size="50" SourceColumn="hiredAssetStatus" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="hiredAssetID" ColumnName="hiredAssetID" DataSourceName="GroupWst1.dbo.HiredAsset" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@hiredAssetID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="hiredAssetID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
               </DbSource>
             </Sources>
           </TableAdapter>

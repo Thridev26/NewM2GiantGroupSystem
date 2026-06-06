@@ -17685,7 +17685,7 @@ SELECT assetID, serialNumber, type, purchaseDate, currentCondition, nextServiceD
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "18.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual GroupWst1DataSet.OwnedAssetDataTable GetDataBy() {
+        public virtual GroupWst1DataSet.OwnedAssetDataTable GetDataBy1() {
             this.Adapter.SelectCommand = this.CommandCollection[2];
             GroupWst1DataSet.OwnedAssetDataTable dataTable = new GroupWst1DataSet.OwnedAssetDataTable();
             this.Adapter.Fill(dataTable);
@@ -17715,7 +17715,7 @@ SELECT assetID, serialNumber, type, purchaseDate, currentCondition, nextServiceD
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "18.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual GroupWst1DataSet.OwnedAssetDataTable GetDataBy1(string serialNumber) {
+        public virtual GroupWst1DataSet.OwnedAssetDataTable GetDataBy11(string serialNumber) {
             this.Adapter.SelectCommand = this.CommandCollection[3];
             if ((serialNumber == null)) {
                 throw new global::System.ArgumentNullException("serialNumber");
@@ -18647,16 +18647,53 @@ SELECT hiredAssetID, supplierName, hireDate, returnDate, hireCost, equipmentType
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "18.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[6];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT * FROM HiredAsset \r\n";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT * FROM HiredAsset AS H\r\nWHERE NOT EXISTS (\r\n    SELECT 1 FROM JobAssetAssi" +
-                "gnment AS J \r\n    WHERE J.hiredAssetID = H.hiredAssetID\r\n)";
+            this._commandCollection[1].CommandText = "DELETE FROM HiredAsset\r\nWHERE  (hiredAssetID = @hiredAssetID)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@hiredAssetID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "hiredAssetID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = "SELECT * FROM HiredAsset AS H\r\nWHERE NOT EXISTS (\r\n    SELECT 1 FROM JobAssetAssi" +
+                "gnment AS J \r\n    WHERE J.hiredAssetID = H.hiredAssetID\r\n)";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[3].Connection = this.Connection;
+            this._commandCollection[3].CommandText = "SELECT hiredAssetID, supplierName, hireDate, returnDate, hireCost, equipmentType," +
+                " hiredAssetStatus\r\nFROM     HiredAsset\r\nWHERE  (supplierName LIKE @supplierName " +
+                "+ \'%\')";
+            this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@supplierName", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "supplierName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[4].Connection = this.Connection;
+            this._commandCollection[4].CommandText = @"INSERT INTO [HiredAsset] ([supplierName], [hireDate], [returnDate], [hireCost], [equipmentType], [hiredAssetStatus]) VALUES (@supplierName, @hireDate, @returnDate, @hireCost, @equipmentType, @hiredAssetStatus);
+SELECT hiredAssetID, supplierName, hireDate, returnDate, hireCost, equipmentType, hiredAssetStatus FROM HiredAsset WHERE (hiredAssetID = SCOPE_IDENTITY())";
+            this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@supplierName", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "supplierName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@hireDate", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 0, 0, "hireDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@returnDate", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 0, 0, "returnDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@hireCost", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 10, 2, "hireCost", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@equipmentType", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "equipmentType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@hiredAssetStatus", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "hiredAssetStatus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[5] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[5].Connection = this.Connection;
+            this._commandCollection[5].CommandText = @"UPDATE HiredAsset
+SET          supplierName = @supplierName, hireDate = @hireDate, returnDate = @returnDate, hireCost = @hireCost, equipmentType = @equipmentType, hiredAssetStatus = @hiredAssetStatus
+WHERE  (hiredAssetID = @hiredAssetID); 
+SELECT hiredAssetID, supplierName, hireDate, returnDate, hireCost, equipmentType, hiredAssetStatus FROM HiredAsset WHERE (hiredAssetID = @hiredAssetID)";
+            this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@supplierName", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "supplierName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@hireDate", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 0, 0, "hireDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@returnDate", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 0, 0, "returnDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@hireCost", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 10, 2, "hireCost", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@equipmentType", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "equipmentType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@hiredAssetStatus", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "hiredAssetStatus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@hiredAssetID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "hiredAssetID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -18688,7 +18725,7 @@ SELECT hiredAssetID, supplierName, hireDate, returnDate, hireCost, equipmentType
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
         public virtual int FillByAvailableHired(GroupWst1DataSet.HiredAssetDataTable dataTable) {
-            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand = this.CommandCollection[2];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
@@ -18701,7 +18738,43 @@ SELECT hiredAssetID, supplierName, hireDate, returnDate, hireCost, equipmentType
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual GroupWst1DataSet.HiredAssetDataTable GetDataBy() {
-            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            GroupWst1DataSet.HiredAssetDataTable dataTable = new GroupWst1DataSet.HiredAssetDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "18.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillBySupplierName(GroupWst1DataSet.HiredAssetDataTable dataTable, string supplierName) {
+            this.Adapter.SelectCommand = this.CommandCollection[3];
+            if ((supplierName == null)) {
+                throw new global::System.ArgumentNullException("supplierName");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(supplierName));
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "18.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual GroupWst1DataSet.HiredAssetDataTable GetDataBy1(string supplierName) {
+            this.Adapter.SelectCommand = this.CommandCollection[3];
+            if ((supplierName == null)) {
+                throw new global::System.ArgumentNullException("supplierName");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(supplierName));
+            }
             GroupWst1DataSet.HiredAssetDataTable dataTable = new GroupWst1DataSet.HiredAssetDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -18916,6 +18989,139 @@ SELECT hiredAssetID, supplierName, hireDate, returnDate, hireCost, equipmentType
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
         public virtual int Update(string supplierName, System.DateTime hireDate, global::System.Nullable<global::System.DateTime> returnDate, decimal hireCost, string equipmentType, string hiredAssetStatus, int Original_hiredAssetID, string Original_supplierName, System.DateTime Original_hireDate, global::System.Nullable<global::System.DateTime> Original_returnDate, decimal Original_hireCost, string Original_equipmentType, string Original_hiredAssetStatus) {
             return this.Update(supplierName, hireDate, returnDate, hireCost, equipmentType, hiredAssetStatus, Original_hiredAssetID, Original_supplierName, Original_hireDate, Original_returnDate, Original_hireCost, Original_equipmentType, Original_hiredAssetStatus, Original_hiredAssetID);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "18.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, false)]
+        public virtual int DeleteHiredAsset(int hiredAssetID) {
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[1];
+            command.Parameters[0].Value = ((int)(hiredAssetID));
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "18.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
+        public virtual int InsertHiredAsset(string supplierName, string hireDate, string returnDate, decimal hireCost, string equipmentType, string hiredAssetStatus) {
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[4];
+            if ((supplierName == null)) {
+                throw new global::System.ArgumentNullException("supplierName");
+            }
+            else {
+                command.Parameters[0].Value = ((string)(supplierName));
+            }
+            if ((hireDate == null)) {
+                throw new global::System.ArgumentNullException("hireDate");
+            }
+            else {
+                command.Parameters[1].Value = ((string)(hireDate));
+            }
+            if ((returnDate == null)) {
+                command.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[2].Value = ((string)(returnDate));
+            }
+            command.Parameters[3].Value = ((decimal)(hireCost));
+            if ((equipmentType == null)) {
+                throw new global::System.ArgumentNullException("equipmentType");
+            }
+            else {
+                command.Parameters[4].Value = ((string)(equipmentType));
+            }
+            if ((hiredAssetStatus == null)) {
+                throw new global::System.ArgumentNullException("hiredAssetStatus");
+            }
+            else {
+                command.Parameters[5].Value = ((string)(hiredAssetStatus));
+            }
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "18.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
+        public virtual int UpdateHiredAsset(string supplierName, string hireDate, string returnDate, decimal hireCost, string equipmentType, string hiredAssetStatus, int hiredAssetID) {
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[5];
+            if ((supplierName == null)) {
+                throw new global::System.ArgumentNullException("supplierName");
+            }
+            else {
+                command.Parameters[0].Value = ((string)(supplierName));
+            }
+            if ((hireDate == null)) {
+                throw new global::System.ArgumentNullException("hireDate");
+            }
+            else {
+                command.Parameters[1].Value = ((string)(hireDate));
+            }
+            if ((returnDate == null)) {
+                command.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[2].Value = ((string)(returnDate));
+            }
+            command.Parameters[3].Value = ((decimal)(hireCost));
+            if ((equipmentType == null)) {
+                throw new global::System.ArgumentNullException("equipmentType");
+            }
+            else {
+                command.Parameters[4].Value = ((string)(equipmentType));
+            }
+            if ((hiredAssetStatus == null)) {
+                throw new global::System.ArgumentNullException("hiredAssetStatus");
+            }
+            else {
+                command.Parameters[5].Value = ((string)(hiredAssetStatus));
+            }
+            command.Parameters[6].Value = ((int)(hiredAssetID));
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
         }
     }
     
