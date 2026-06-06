@@ -1582,7 +1582,7 @@ SELECT hiredAssetID, supplierName, hireDate, returnDate, hireCost, equipmentType
               <Mapping SourceColumn="hiredAssetStatus" DataSetColumn="hiredAssetStatus" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="GroupWst1ConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteHiredAsset" Modifier="Public" Name="DeleteHiredAsset" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy4" UserSourceName="DeleteHiredAsset">
+              <DbSource ConnectionRef="GroupWst1ConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="DeleteHiredAsset" Modifier="Public" Name="DeleteHiredAsset" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="DeleteHiredAsset">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>DELETE FROM HiredAsset
@@ -1593,7 +1593,7 @@ WHERE  (hiredAssetID = @hiredAssetID)</CommandText>
                   </DbCommand>
                 </DeleteCommand>
               </DbSource>
-              <DbSource ConnectionRef="GroupWst1ConnectionString (Settings)" DbObjectName="GroupWst1.dbo.HiredAsset" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByAvailableHired" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy" GeneratorSourceName="FillByAvailableHired" GetMethodModifier="Public" GetMethodName="GetDataBy" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillByAvailableHired">
+              <DbSource ConnectionRef="GroupWst1ConnectionString (Settings)" DbObjectName="GroupWst1.dbo.HiredAsset" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByAvailableHired" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy1" GeneratorSourceName="FillByAvailableHired" GetMethodModifier="Public" GetMethodName="GetDataBy1" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="FillByAvailableHired">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT * FROM HiredAsset AS H
@@ -1605,7 +1605,7 @@ WHERE NOT EXISTS (
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="GroupWst1ConnectionString (Settings)" DbObjectName="GroupWst1.dbo.HiredAsset" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillBySupplierName" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy1" GeneratorSourceName="FillBySupplierName" GetMethodModifier="Public" GetMethodName="GetDataBy1" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="FillBySupplierName">
+              <DbSource ConnectionRef="GroupWst1ConnectionString (Settings)" DbObjectName="GroupWst1.dbo.HiredAsset" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillBySupplierName" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy11" GeneratorSourceName="FillBySupplierName" GetMethodModifier="Public" GetMethodName="GetDataBy11" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy11" UserSourceName="FillBySupplierName">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT hiredAssetID, supplierName, hireDate, returnDate, hireCost, equipmentType, hiredAssetStatus
@@ -1617,7 +1617,7 @@ WHERE  (supplierName LIKE @supplierName + '%')</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="GroupWst1ConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="InsertHiredAsset" Modifier="Public" Name="InsertHiredAsset" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="InsertHiredAsset">
+              <DbSource ConnectionRef="GroupWst1ConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="InsertHiredAsset" Modifier="Public" Name="InsertHiredAsset" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="InsertHiredAsset">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>INSERT INTO [HiredAsset] ([supplierName], [hireDate], [returnDate], [hireCost], [equipmentType], [hiredAssetStatus]) VALUES (@supplierName, @hireDate, @returnDate, @hireCost, @equipmentType, @hiredAssetStatus);
@@ -1633,7 +1633,7 @@ SELECT hiredAssetID, supplierName, hireDate, returnDate, hireCost, equipmentType
                   </DbCommand>
                 </InsertCommand>
               </DbSource>
-              <DbSource ConnectionRef="GroupWst1ConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateHiredAsset" Modifier="Public" Name="UpdateHiredAsset" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy2" UserSourceName="UpdateHiredAsset">
+              <DbSource ConnectionRef="GroupWst1ConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateHiredAsset" Modifier="Public" Name="UpdateHiredAsset" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy3" UserSourceName="UpdateHiredAsset">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>UPDATE HiredAsset
@@ -1869,6 +1869,37 @@ WHERE  (Job.jobID = @id)</CommandText>
                 </SelectCommand>
               </DbSource>
             </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable2TableAdapter" GeneratorDataComponentClassName="DataTable2TableAdapter" Name="DataTable2" UserDataComponentName="DataTable2TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="GroupWst1ConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT Client.clientName, Client.clientSurname, JobRequest.siteAddress, JobRequest.longitude, JobRequest.latitude, JobRequest.requestSource, JobRequest.urgencyLevel, JobRequest.status, JobRequest.dateRecieved, JobRequest.siteEvaluationDate, Client.clientID, 
+             JobRequest.clientID, JobRequest.jobRequestID
+FROM   Client INNER JOIN
+             JobRequest ON Client.clientID = JobRequest.clientID</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="clientName" DataSetColumn="clientName" />
+              <Mapping SourceColumn="clientSurname" DataSetColumn="clientSurname" />
+              <Mapping SourceColumn="siteAddress" DataSetColumn="siteAddress" />
+              <Mapping SourceColumn="longitude" DataSetColumn="longitude" />
+              <Mapping SourceColumn="latitude" DataSetColumn="latitude" />
+              <Mapping SourceColumn="requestSource" DataSetColumn="requestSource" />
+              <Mapping SourceColumn="urgencyLevel" DataSetColumn="urgencyLevel" />
+              <Mapping SourceColumn="status" DataSetColumn="status" />
+              <Mapping SourceColumn="dateRecieved" DataSetColumn="dateRecieved" />
+              <Mapping SourceColumn="siteEvaluationDate" DataSetColumn="siteEvaluationDate" />
+              <Mapping SourceColumn="clientID" DataSetColumn="clientID" />
+              <Mapping SourceColumn="clientID1" DataSetColumn="clientID1" />
+              <Mapping SourceColumn="jobRequestID" DataSetColumn="jobRequestID" />
+            </Mappings>
+            <Sources />
           </TableAdapter>
         </Tables>
         <Sources />
@@ -2364,6 +2395,61 @@ WHERE  (Job.jobID = @id)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="DataTable2" msprop:Generator_RowEvHandlerName="DataTable2RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable2RowDeleted" msprop:Generator_RowDeletingName="DataTable2RowDeleting" msprop:Generator_RowEvArgName="DataTable2RowChangeEvent" msprop:Generator_TablePropName="DataTable2" msprop:Generator_RowChangedName="DataTable2RowChanged" msprop:Generator_RowChangingName="DataTable2RowChanging" msprop:Generator_TableClassName="DataTable2DataTable" msprop:Generator_RowClassName="DataTable2Row" msprop:Generator_TableVarName="tableDataTable2" msprop:Generator_UserTableName="DataTable2">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="clientName" msprop:Generator_ColumnPropNameInRow="clientName" msprop:Generator_ColumnPropNameInTable="clientNameColumn" msprop:Generator_ColumnVarNameInTable="columnclientName" msprop:Generator_UserColumnName="clientName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="40" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="clientSurname" msprop:Generator_ColumnPropNameInRow="clientSurname" msprop:Generator_ColumnPropNameInTable="clientSurnameColumn" msprop:Generator_ColumnVarNameInTable="columnclientSurname" msprop:Generator_UserColumnName="clientSurname">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="40" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="siteAddress" msprop:Generator_ColumnPropNameInRow="siteAddress" msprop:Generator_ColumnPropNameInTable="siteAddressColumn" msprop:Generator_ColumnVarNameInTable="columnsiteAddress" msprop:Generator_UserColumnName="siteAddress">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="longitude" msprop:Generator_ColumnPropNameInRow="longitude" msprop:Generator_ColumnPropNameInTable="longitudeColumn" msprop:Generator_ColumnVarNameInTable="columnlongitude" msprop:Generator_UserColumnName="longitude" type="xs:decimal" minOccurs="0" />
+              <xs:element name="latitude" msprop:Generator_ColumnPropNameInRow="latitude" msprop:Generator_ColumnPropNameInTable="latitudeColumn" msprop:Generator_ColumnVarNameInTable="columnlatitude" msprop:Generator_UserColumnName="latitude" type="xs:decimal" minOccurs="0" />
+              <xs:element name="requestSource" msprop:Generator_ColumnPropNameInRow="requestSource" msprop:Generator_ColumnPropNameInTable="requestSourceColumn" msprop:Generator_ColumnVarNameInTable="columnrequestSource" msprop:Generator_UserColumnName="requestSource">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="urgencyLevel" msprop:Generator_ColumnPropNameInRow="urgencyLevel" msprop:Generator_ColumnPropNameInTable="urgencyLevelColumn" msprop:Generator_ColumnVarNameInTable="columnurgencyLevel" msprop:Generator_UserColumnName="urgencyLevel">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="status" msprop:Generator_ColumnPropNameInRow="status" msprop:Generator_ColumnPropNameInTable="statusColumn" msprop:Generator_ColumnVarNameInTable="columnstatus" msprop:Generator_UserColumnName="status" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="dateRecieved" msprop:Generator_ColumnPropNameInRow="dateRecieved" msprop:Generator_ColumnPropNameInTable="dateRecievedColumn" msprop:Generator_ColumnVarNameInTable="columndateRecieved" msprop:Generator_UserColumnName="dateRecieved" type="xs:dateTime" />
+              <xs:element name="siteEvaluationDate" msprop:Generator_ColumnPropNameInRow="siteEvaluationDate" msprop:Generator_ColumnPropNameInTable="siteEvaluationDateColumn" msprop:Generator_ColumnVarNameInTable="columnsiteEvaluationDate" msprop:Generator_UserColumnName="siteEvaluationDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="clientID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="clientID" msprop:Generator_ColumnPropNameInTable="clientIDColumn" msprop:Generator_ColumnVarNameInTable="columnclientID" msprop:Generator_UserColumnName="clientID" type="xs:int" />
+              <xs:element name="clientID1" msprop:Generator_ColumnPropNameInRow="clientID1" msprop:Generator_ColumnPropNameInTable="clientID1Column" msprop:Generator_ColumnVarNameInTable="columnclientID1" msprop:Generator_UserColumnName="clientID1" type="xs:int" />
+              <xs:element name="jobRequestID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="jobRequestID" msprop:Generator_ColumnPropNameInTable="jobRequestIDColumn" msprop:Generator_ColumnVarNameInTable="columnjobRequestID" msprop:Generator_UserColumnName="jobRequestID" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
@@ -2447,28 +2533,34 @@ WHERE  (Job.jobID = @id)</CommandText>
       <xs:selector xpath=".//mstns:DataTable1" />
       <xs:field xpath="mstns:jobID" />
     </xs:unique>
+    <xs:unique name="DataTable2_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DataTable2" />
+      <xs:field xpath="mstns:clientID" />
+      <xs:field xpath="mstns:jobRequestID" />
+    </xs:unique>
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="FK_JobDetail_JobType" msdata:parent="JobType" msdata:child="JobDetail" msdata:parentkey="jobTypeID" msdata:childkey="jobTypeID" msprop:Generator_UserParentTable="JobType" msprop:Generator_UserChildTable="JobDetail" msprop:Generator_RelationVarName="relationFK_JobDetail_JobType" msprop:Generator_ChildPropName="GetJobDetailRows" msprop:Generator_ParentPropName="JobTypeRow" msprop:Generator_UserRelationName="FK_JobDetail_JobType" />
-      <msdata:Relationship name="FK_ItemDetail_JobDetail" msdata:parent="JobDetail" msdata:child="ItemDetail" msdata:parentkey="jobDetailID" msdata:childkey="jobDetailID" msprop:Generator_UserParentTable="JobDetail" msprop:Generator_UserChildTable="ItemDetail" msprop:Generator_RelationVarName="relationFK_ItemDetail_JobDetail" msprop:Generator_ChildPropName="GetItemDetailRows" msprop:Generator_ParentPropName="JobDetailRow" msprop:Generator_UserRelationName="FK_ItemDetail_JobDetail" />
-      <msdata:Relationship name="FK_ItemDetail_RequestItem" msdata:parent="RequestItem" msdata:child="ItemDetail" msdata:parentkey="requestItemID" msdata:childkey="requestItemID" msprop:Generator_UserParentTable="RequestItem" msprop:Generator_UserChildTable="ItemDetail" msprop:Generator_RelationVarName="relationFK_ItemDetail_RequestItem" msprop:Generator_ChildPropName="GetItemDetailRows" msprop:Generator_UserRelationName="FK_ItemDetail_RequestItem" msprop:Generator_ParentPropName="RequestItemRow" />
-      <msdata:Relationship name="FK_Item_JobType" msdata:parent="JobType" msdata:child="RequestItem" msdata:parentkey="jobTypeID" msdata:childkey="jobTypeID" msprop:Generator_UserParentTable="JobType" msprop:Generator_UserChildTable="RequestItem" msprop:Generator_RelationVarName="relationFK_Item_JobType" msprop:Generator_ChildPropName="GetRequestItemRows" msprop:Generator_ParentPropName="JobTypeRow" msprop:Generator_UserRelationName="FK_Item_JobType" />
-      <msdata:Relationship name="FK_Item_JobRequest" msdata:parent="JobRequest" msdata:child="RequestItem" msdata:parentkey="jobRequestID" msdata:childkey="jobRequestID" msprop:Generator_UserParentTable="JobRequest" msprop:Generator_UserChildTable="RequestItem" msprop:Generator_RelationVarName="relationFK_Item_JobRequest" msprop:Generator_ChildPropName="GetRequestItemRows" msprop:Generator_UserRelationName="FK_Item_JobRequest" msprop:Generator_ParentPropName="JobRequestRow" />
-      <msdata:Relationship name="FK_Client_Request" msdata:parent="Client" msdata:child="JobRequest" msdata:parentkey="clientID" msdata:childkey="clientID" msprop:Generator_UserParentTable="Client" msprop:Generator_UserChildTable="JobRequest" msprop:Generator_RelationVarName="relationFK_Client_Request" msprop:Generator_ChildPropName="GetJobRequestRows" msprop:Generator_UserRelationName="FK_Client_Request" msprop:Generator_ParentPropName="ClientRow" />
-      <msdata:Relationship name="FK_SitePhoto_JobRequest" msdata:parent="JobRequest" msdata:child="SitePhoto" msdata:parentkey="jobRequestID" msdata:childkey="jobRequestID" msprop:Generator_UserParentTable="JobRequest" msprop:Generator_UserChildTable="SitePhoto" msprop:Generator_RelationVarName="relationFK_SitePhoto_JobRequest" msprop:Generator_ChildPropName="GetSitePhotoRows" msprop:Generator_ParentPropName="JobRequestRow" msprop:Generator_UserRelationName="FK_SitePhoto_JobRequest" />
-      <msdata:Relationship name="FK_Quote_JobRequest" msdata:parent="JobRequest" msdata:child="Quote" msdata:parentkey="jobRequestID" msdata:childkey="jobRequestID" msprop:Generator_UserParentTable="JobRequest" msprop:Generator_UserChildTable="Quote" msprop:Generator_RelationVarName="relationFK_Quote_JobRequest" msprop:Generator_ChildPropName="GetQuoteRows" msprop:Generator_ParentPropName="JobRequestRow" msprop:Generator_UserRelationName="FK_Quote_JobRequest" />
-      <msdata:Relationship name="FK_SitePhoto_Job" msdata:parent="Job" msdata:child="SitePhoto" msdata:parentkey="jobID" msdata:childkey="jobID" msprop:Generator_UserParentTable="Job" msprop:Generator_UserChildTable="SitePhoto" msprop:Generator_RelationVarName="relationFK_SitePhoto_Job" msprop:Generator_ChildPropName="GetSitePhotoRows" msprop:Generator_UserRelationName="FK_SitePhoto_Job" msprop:Generator_ParentPropName="JobRow" />
-      <msdata:Relationship name="FK_Job_Quote" msdata:parent="Quote" msdata:child="Job" msdata:parentkey="QuoteID" msdata:childkey="quoteID" msprop:Generator_UserParentTable="Quote" msprop:Generator_UserChildTable="Job" msprop:Generator_RelationVarName="relationFK_Job_Quote" msprop:Generator_ChildPropName="GetJobRows" msprop:Generator_ParentPropName="QuoteRow" msprop:Generator_UserRelationName="FK_Job_Quote" />
-      <msdata:Relationship name="FK_Job_Payment" msdata:parent="Job" msdata:child="Payment" msdata:parentkey="jobID" msdata:childkey="jobID" msprop:Generator_UserParentTable="Job" msprop:Generator_UserChildTable="Payment" msprop:Generator_RelationVarName="relationFK_Job_Payment" msprop:Generator_ChildPropName="GetPaymentRows" msprop:Generator_ParentPropName="JobRow" msprop:Generator_UserRelationName="FK_Job_Payment" />
-      <msdata:Relationship name="FK_JTS_Job" msdata:parent="Job" msdata:child="JobTimeSlot" msdata:parentkey="jobID" msdata:childkey="jobID" msprop:Generator_UserParentTable="Job" msprop:Generator_UserChildTable="JobTimeSlot" msprop:Generator_RelationVarName="relationFK_JTS_Job" msprop:Generator_ChildPropName="GetJobTimeSlotRows" msprop:Generator_ParentPropName="JobRow" msprop:Generator_UserRelationName="FK_JTS_Job" />
-      <msdata:Relationship name="FK_JTS_TimeSlot" msdata:parent="TimeSlot" msdata:child="JobTimeSlot" msdata:parentkey="timeSlotID" msdata:childkey="timeSlotID" msprop:Generator_UserParentTable="TimeSlot" msprop:Generator_UserChildTable="JobTimeSlot" msprop:Generator_RelationVarName="relationFK_JTS_TimeSlot" msprop:Generator_ChildPropName="GetJobTimeSlotRows" msprop:Generator_ParentPropName="TimeSlotRow" msprop:Generator_UserRelationName="FK_JTS_TimeSlot" />
-      <msdata:Relationship name="FK_Assignment_Job" msdata:parent="Job" msdata:child="JobStaffAssignment" msdata:parentkey="jobID" msdata:childkey="jobID" msprop:Generator_UserParentTable="Job" msprop:Generator_UserChildTable="JobStaffAssignment" msprop:Generator_RelationVarName="relationFK_Assignment_Job" msprop:Generator_ChildPropName="GetJobStaffAssignmentRows" msprop:Generator_ParentPropName="JobRow" msprop:Generator_UserRelationName="FK_Assignment_Job" />
-      <msdata:Relationship name="FK_JobAsset_Job" msdata:parent="Job" msdata:child="JobAssetAssignment" msdata:parentkey="jobID" msdata:childkey="jobID" msprop:Generator_UserParentTable="Job" msprop:Generator_UserChildTable="JobAssetAssignment" msprop:Generator_RelationVarName="relationFK_JobAsset_Job" msprop:Generator_ChildPropName="GetJobAssetAssignmentRows" msprop:Generator_ParentPropName="JobRow" msprop:Generator_UserRelationName="FK_JobAsset_Job" />
-      <msdata:Relationship name="FK_JobAsset_Asset" msdata:parent="OwnedAsset" msdata:child="JobAssetAssignment" msdata:parentkey="assetID" msdata:childkey="ownedAssetID" msprop:Generator_UserParentTable="OwnedAsset" msprop:Generator_UserChildTable="JobAssetAssignment" msprop:Generator_RelationVarName="relationFK_JobAsset_Asset" msprop:Generator_ChildPropName="GetJobAssetAssignmentRows" msprop:Generator_UserRelationName="FK_JobAsset_Asset" msprop:Generator_ParentPropName="OwnedAssetRow" />
-      <msdata:Relationship name="FK_Maintenance_Asset" msdata:parent="OwnedAsset" msdata:child="MaintenanceLog" msdata:parentkey="assetID" msdata:childkey="assetID" msprop:Generator_UserParentTable="OwnedAsset" msprop:Generator_UserChildTable="MaintenanceLog" msprop:Generator_RelationVarName="relationFK_Maintenance_Asset" msprop:Generator_ChildPropName="GetMaintenanceLogRows" msprop:Generator_ParentPropName="OwnedAssetRow" msprop:Generator_UserRelationName="FK_Maintenance_Asset" />
-      <msdata:Relationship name="FK_Assignment_Staff" msdata:parent="Staff" msdata:child="JobStaffAssignment" msdata:parentkey="staffID" msdata:childkey="staffID" msprop:Generator_UserParentTable="Staff" msprop:Generator_UserChildTable="JobStaffAssignment" msprop:Generator_RelationVarName="relationFK_Assignment_Staff" msprop:Generator_ChildPropName="GetJobStaffAssignmentRows" msprop:Generator_UserRelationName="FK_Assignment_Staff" msprop:Generator_ParentPropName="StaffRow" />
-      <msdata:Relationship name="FK_Staff_Role" msdata:parent="Role" msdata:child="Staff" msdata:parentkey="roleID" msdata:childkey="roleID" msprop:Generator_UserParentTable="Role" msprop:Generator_UserChildTable="Staff" msprop:Generator_RelationVarName="relationFK_Staff_Role" msprop:Generator_ChildPropName="GetStaffRows" msprop:Generator_UserRelationName="FK_Staff_Role" msprop:Generator_ParentPropName="RoleRow" />
+      <msdata:Relationship name="FK_JobDetail_JobType" msdata:parent="JobType" msdata:child="JobDetail" msdata:parentkey="jobTypeID" msdata:childkey="jobTypeID" msprop:Generator_UserParentTable="JobType" msprop:Generator_UserChildTable="JobDetail" msprop:Generator_RelationVarName="relationFK_JobDetail_JobType" msprop:Generator_ChildPropName="GetJobDetailRows" msprop:Generator_UserRelationName="FK_JobDetail_JobType" msprop:Generator_ParentPropName="JobTypeRow" />
+      <msdata:Relationship name="FK_ItemDetail_JobDetail" msdata:parent="JobDetail" msdata:child="ItemDetail" msdata:parentkey="jobDetailID" msdata:childkey="jobDetailID" msprop:Generator_UserParentTable="JobDetail" msprop:Generator_UserChildTable="ItemDetail" msprop:Generator_RelationVarName="relationFK_ItemDetail_JobDetail" msprop:Generator_ChildPropName="GetItemDetailRows" msprop:Generator_UserRelationName="FK_ItemDetail_JobDetail" msprop:Generator_ParentPropName="JobDetailRow" />
+      <msdata:Relationship name="FK_ItemDetail_RequestItem" msdata:parent="RequestItem" msdata:child="ItemDetail" msdata:parentkey="requestItemID" msdata:childkey="requestItemID" msprop:Generator_UserParentTable="RequestItem" msprop:Generator_UserChildTable="ItemDetail" msprop:Generator_RelationVarName="relationFK_ItemDetail_RequestItem" msprop:Generator_ChildPropName="GetItemDetailRows" msprop:Generator_ParentPropName="RequestItemRow" msprop:Generator_UserRelationName="FK_ItemDetail_RequestItem" />
+      <msdata:Relationship name="FK_Item_JobType" msdata:parent="JobType" msdata:child="RequestItem" msdata:parentkey="jobTypeID" msdata:childkey="jobTypeID" msprop:Generator_UserParentTable="JobType" msprop:Generator_UserChildTable="RequestItem" msprop:Generator_RelationVarName="relationFK_Item_JobType" msprop:Generator_ChildPropName="GetRequestItemRows" msprop:Generator_UserRelationName="FK_Item_JobType" msprop:Generator_ParentPropName="JobTypeRow" />
+      <msdata:Relationship name="FK_Item_JobRequest" msdata:parent="JobRequest" msdata:child="RequestItem" msdata:parentkey="jobRequestID" msdata:childkey="jobRequestID" msprop:Generator_UserParentTable="JobRequest" msprop:Generator_UserChildTable="RequestItem" msprop:Generator_RelationVarName="relationFK_Item_JobRequest" msprop:Generator_ChildPropName="GetRequestItemRows" msprop:Generator_ParentPropName="JobRequestRow" msprop:Generator_UserRelationName="FK_Item_JobRequest" />
+      <msdata:Relationship name="FK_Client_Request" msdata:parent="Client" msdata:child="JobRequest" msdata:parentkey="clientID" msdata:childkey="clientID" msprop:Generator_UserParentTable="Client" msprop:Generator_UserChildTable="JobRequest" msprop:Generator_RelationVarName="relationFK_Client_Request" msprop:Generator_ChildPropName="GetJobRequestRows" msprop:Generator_ParentPropName="ClientRow" msprop:Generator_UserRelationName="FK_Client_Request" />
+      <msdata:Relationship name="FK_SitePhoto_JobRequest" msdata:parent="JobRequest" msdata:child="SitePhoto" msdata:parentkey="jobRequestID" msdata:childkey="jobRequestID" msprop:Generator_UserParentTable="JobRequest" msprop:Generator_UserChildTable="SitePhoto" msprop:Generator_RelationVarName="relationFK_SitePhoto_JobRequest" msprop:Generator_ChildPropName="GetSitePhotoRows" msprop:Generator_UserRelationName="FK_SitePhoto_JobRequest" msprop:Generator_ParentPropName="JobRequestRow" />
+      <msdata:Relationship name="FK_Quote_JobRequest" msdata:parent="JobRequest" msdata:child="Quote" msdata:parentkey="jobRequestID" msdata:childkey="jobRequestID" msprop:Generator_UserParentTable="JobRequest" msprop:Generator_UserChildTable="Quote" msprop:Generator_RelationVarName="relationFK_Quote_JobRequest" msprop:Generator_ChildPropName="GetQuoteRows" msprop:Generator_UserRelationName="FK_Quote_JobRequest" msprop:Generator_ParentPropName="JobRequestRow" />
+      <msdata:Relationship name="FK_SitePhoto_Job" msdata:parent="Job" msdata:child="SitePhoto" msdata:parentkey="jobID" msdata:childkey="jobID" msprop:Generator_UserParentTable="Job" msprop:Generator_UserChildTable="SitePhoto" msprop:Generator_RelationVarName="relationFK_SitePhoto_Job" msprop:Generator_ChildPropName="GetSitePhotoRows" msprop:Generator_ParentPropName="JobRow" msprop:Generator_UserRelationName="FK_SitePhoto_Job" />
+      <msdata:Relationship name="FK_Job_Quote" msdata:parent="Quote" msdata:child="Job" msdata:parentkey="QuoteID" msdata:childkey="quoteID" msprop:Generator_UserParentTable="Quote" msprop:Generator_UserChildTable="Job" msprop:Generator_RelationVarName="relationFK_Job_Quote" msprop:Generator_ChildPropName="GetJobRows" msprop:Generator_UserRelationName="FK_Job_Quote" msprop:Generator_ParentPropName="QuoteRow" />
+      <msdata:Relationship name="FK_Job_Payment" msdata:parent="Job" msdata:child="Payment" msdata:parentkey="jobID" msdata:childkey="jobID" msprop:Generator_UserParentTable="Job" msprop:Generator_UserChildTable="Payment" msprop:Generator_RelationVarName="relationFK_Job_Payment" msprop:Generator_ChildPropName="GetPaymentRows" msprop:Generator_UserRelationName="FK_Job_Payment" msprop:Generator_ParentPropName="JobRow" />
+      <msdata:Relationship name="FK_JTS_Job" msdata:parent="Job" msdata:child="JobTimeSlot" msdata:parentkey="jobID" msdata:childkey="jobID" msprop:Generator_UserParentTable="Job" msprop:Generator_UserChildTable="JobTimeSlot" msprop:Generator_RelationVarName="relationFK_JTS_Job" msprop:Generator_ChildPropName="GetJobTimeSlotRows" msprop:Generator_UserRelationName="FK_JTS_Job" msprop:Generator_ParentPropName="JobRow" />
+      <msdata:Relationship name="FK_JTS_TimeSlot" msdata:parent="TimeSlot" msdata:child="JobTimeSlot" msdata:parentkey="timeSlotID" msdata:childkey="timeSlotID" msprop:Generator_UserParentTable="TimeSlot" msprop:Generator_UserChildTable="JobTimeSlot" msprop:Generator_RelationVarName="relationFK_JTS_TimeSlot" msprop:Generator_ChildPropName="GetJobTimeSlotRows" msprop:Generator_UserRelationName="FK_JTS_TimeSlot" msprop:Generator_ParentPropName="TimeSlotRow" />
+      <msdata:Relationship name="FK_Assignment_Job" msdata:parent="Job" msdata:child="JobStaffAssignment" msdata:parentkey="jobID" msdata:childkey="jobID" msprop:Generator_UserParentTable="Job" msprop:Generator_UserChildTable="JobStaffAssignment" msprop:Generator_RelationVarName="relationFK_Assignment_Job" msprop:Generator_ChildPropName="GetJobStaffAssignmentRows" msprop:Generator_UserRelationName="FK_Assignment_Job" msprop:Generator_ParentPropName="JobRow" />
+      <msdata:Relationship name="FK_JobAsset_Job" msdata:parent="Job" msdata:child="JobAssetAssignment" msdata:parentkey="jobID" msdata:childkey="jobID" msprop:Generator_UserParentTable="Job" msprop:Generator_UserChildTable="JobAssetAssignment" msprop:Generator_RelationVarName="relationFK_JobAsset_Job" msprop:Generator_ChildPropName="GetJobAssetAssignmentRows" msprop:Generator_UserRelationName="FK_JobAsset_Job" msprop:Generator_ParentPropName="JobRow" />
+      <msdata:Relationship name="FK_JobAsset_Asset" msdata:parent="OwnedAsset" msdata:child="JobAssetAssignment" msdata:parentkey="assetID" msdata:childkey="ownedAssetID" msprop:Generator_UserParentTable="OwnedAsset" msprop:Generator_UserChildTable="JobAssetAssignment" msprop:Generator_RelationVarName="relationFK_JobAsset_Asset" msprop:Generator_ChildPropName="GetJobAssetAssignmentRows" msprop:Generator_ParentPropName="OwnedAssetRow" msprop:Generator_UserRelationName="FK_JobAsset_Asset" />
+      <msdata:Relationship name="FK_Maintenance_Asset" msdata:parent="OwnedAsset" msdata:child="MaintenanceLog" msdata:parentkey="assetID" msdata:childkey="assetID" msprop:Generator_UserParentTable="OwnedAsset" msprop:Generator_UserChildTable="MaintenanceLog" msprop:Generator_RelationVarName="relationFK_Maintenance_Asset" msprop:Generator_ChildPropName="GetMaintenanceLogRows" msprop:Generator_UserRelationName="FK_Maintenance_Asset" msprop:Generator_ParentPropName="OwnedAssetRow" />
+      <msdata:Relationship name="FK_Assignment_Staff" msdata:parent="Staff" msdata:child="JobStaffAssignment" msdata:parentkey="staffID" msdata:childkey="staffID" msprop:Generator_UserParentTable="Staff" msprop:Generator_UserChildTable="JobStaffAssignment" msprop:Generator_RelationVarName="relationFK_Assignment_Staff" msprop:Generator_ChildPropName="GetJobStaffAssignmentRows" msprop:Generator_ParentPropName="StaffRow" msprop:Generator_UserRelationName="FK_Assignment_Staff" />
+      <msdata:Relationship name="FK_Staff_Role" msdata:parent="Role" msdata:child="Staff" msdata:parentkey="roleID" msdata:childkey="roleID" msprop:Generator_UserParentTable="Role" msprop:Generator_UserChildTable="Staff" msprop:Generator_RelationVarName="relationFK_Staff_Role" msprop:Generator_ChildPropName="GetStaffRows" msprop:Generator_ParentPropName="RoleRow" msprop:Generator_UserRelationName="FK_Staff_Role" />
+      <msdata:Relationship name="FK_Client_Request1" msdata:parent="DataTable2" msdata:child="JobRequest" msdata:parentkey="clientID" msdata:childkey="clientID" msprop:Generator_UserParentTable="DataTable2" msprop:Generator_UserChildTable="JobRequest" msprop:Generator_RelationVarName="relationFK_Client_Request1" msprop:Generator_UserRelationName="FK_Client_Request1" msprop:Generator_ChildPropName="GetJobRequestRows" msprop:Generator_ParentPropName="DataTable2Row" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

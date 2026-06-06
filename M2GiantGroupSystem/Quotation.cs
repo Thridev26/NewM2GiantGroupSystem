@@ -29,6 +29,8 @@ namespace M2GiantGroupSystem
 
         private void Quotation_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'groupWst1DataSet.DataTable2' table. You can move, or remove it, as needed.
+            this.dataTable2TableAdapter.Fill(this.groupWst1DataSet.DataTable2);
             tabControl1.SelectedIndex = tabIndex;
             // TODO: This line of code loads data into the 'groupWst1DataSet.Quote' table. You can move, or remove it, as needed.
             this.quoteTableAdapter.Fill(this.groupWst1DataSet.Quote);
@@ -248,78 +250,7 @@ namespace M2GiantGroupSystem
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
-            {
-                // Grab the ID from the selected grid row
-                int clickedID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["jobRequestID"].Value);
-                
-                // USE THE QUERY BUILDER to fetch the exact row data safely from the DB
-                var jobRequestTable = this.jobRequestTableAdapter.GetDataBy2(clickedID);
-
-                if (jobRequestTable.Rows.Count > 0)
-                {
-                    // Grab the specific typed row from our dataset
-                    var selectedJob = jobRequestTable[0];
-
-                    //Populate your UI elements cleanly using the database values
-                    jobRequestIDTextBox.Text = selectedJob.jobRequestID.ToString();
-                    urgencyLevelTextBox.Text = selectedJob.urgencyLevel;
-
-                    //  NEW ADJUSTED NULL-SAFE VERSION:
-                    // Populate your UI elements cleanly using database values (checking for DBNull)
-                    jobRequestIDTextBox.Text = selectedJob.jobRequestID.ToString();
-                    urgencyLevelTextBox.Text = selectedJob.urgencyLevel;
-
-                    // Check if longitude is NULL in database
-                    if (selectedJob["longitude"] == DBNull.Value || string.IsNullOrWhiteSpace(selectedJob["longitude"].ToString()))
-                    {
-                        longitudeTextBox.Text = "N/A";
-                    }
-                    else
-                    {
-                        longitudeTextBox.Text = Convert.ToDouble(selectedJob.longitude).ToString();
-                    }
-
-                    // Check if latitude is NULL in database
-                    if (selectedJob["latitude"] == DBNull.Value || string.IsNullOrWhiteSpace(selectedJob["latitude"].ToString()))
-                    {
-                        latitudeTextBox.Text = "N/A";
-                    }
-                    else
-                    {
-                        latitudeTextBox.Text = Convert.ToDouble(selectedJob.latitude).ToString();
-                    }
-
-                    // 4. Extract coordinates safely. If NULL, pass placeholder coordinates (like 0, 0) to flag fallback behavior.
-                    double clientLat = (selectedJob["latitude"] != DBNull.Value) ? Convert.ToDouble(selectedJob.latitude) : 0.0;
-                    double clientLng = (selectedJob["longitude"] != DBNull.Value) ? Convert.ToDouble(selectedJob.longitude) : 0.0;
-
-                    currentTravelFee = CalculateTravelFee(clientLat, clientLng);
-
-                    // 5. Update the UI Amount box
-                    txtAmount.Text = currentTravelFee.ToString("F2");
-
-                    MessageBox.Show($" You have selected Job Request #{clickedID} \nCalculated Travel Fee: R{currentTravelFee}",
-                                    "System Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    // 1. Wipe out any old job listings in the grid if switching to a new client request
-                    selectedJobsGridView.Rows.Clear();
-
-                    // 2. Add the calculated Travel Fee as the foundational first row item in the grid
-                    // This maps exactly to your designer layout slots: Job Type, Base Rate, Unit Type, Quantity, Total
-                    selectedJobsGridView.Rows.Add("Travel Call-out", currentTravelFee, "Flat Rate", 1.0, currentTravelFee);
-
-                    // 3. Force the DataGridView to completely finish registering the new row layout internally
-                    selectedJobsGridView.Refresh();
-
-                    // 4.Run the calculation engine! It sees the travel fee row and locks R255,56 into txtAmount
-                    RecalculateGrandTotalFromUI();
-
-                    
-                    // Filter the middle grid view to show ONLY the services requested by this client
-                    this.jobTypeTableAdapter.FillByID(this.groupWst1DataSet.JobType, clickedID);
-                }
-            }
+           
         }
 
         // Hardcoded Business Location Constants 
@@ -935,12 +866,15 @@ namespace M2GiantGroupSystem
         private void cmbSearchColumn_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtSearchRequests.Clear();
-            jobRequestBindingSource.Filter = "";
+
+            // UI FOCUS: Swap 'YOUR_NEW_BINDING_SOURCE' with your actual custom view BindingSource variable
+            dataTable2BindingSource.Filter = "";
 
             string selectedText = cmbSearchColumn.SelectedItem != null ?
-                                 cmbSearchColumn.SelectedItem.ToString() :
-                                 cmbSearchColumn.Text.Trim();
+                                  cmbSearchColumn.SelectedItem.ToString() :
+                                  cmbSearchColumn.Text.Trim();
 
+            // UI FOCUS: This string "No Filter" must match the default placeholder option text in your ComboBox items
             if (string.IsNullOrWhiteSpace(selectedText) || selectedText == "No Filter")
             {
                 txtSearchRequests.Enabled = false;
@@ -952,11 +886,11 @@ namespace M2GiantGroupSystem
 
             string dbColumn = GetRealDatabaseColumnName(selectedText);
 
-            // FIXED CONDITIONS: Matching the exact casing returned by our helper method above
+            // DATABASE FOCUS: These strings must perfectly match the database/DataProperty column names returned by your helper method
             if (dbColumn == "dateRecieved" || dbColumn == "siteEvaluationDate")
             {
                 dtpSearchDate.Enabled = true;
-                dtpSearchDate.Visible = true;  // This will now execute perfectly!
+                dtpSearchDate.Visible = true;
                 txtSearchRequests.Enabled = false;
                 txtSearchRequests.Visible = false;
 
@@ -974,18 +908,21 @@ namespace M2GiantGroupSystem
         // Reusable translation helper to keep column lookups completely safe from translation errors
         private string GetRealDatabaseColumnName(string uiName)
         {
+            // UI FOCUS: The values inside these case quotes must exactly match the items typed into your ComboBox collection dropdown
             switch (uiName)
             {
-                case "JobRequestID": return "jobRequestID";        // MATCHES DESIGNER CASE
-                case "ClientID": return "clientID";            // MATCHES DESIGNER CASE
-                case "Address": return "siteAddress";         // MATCHES DESIGNER CASE
-                case "RequestSource": return "requestSource";       // MATCHES DESIGNER CASE
-                case "Urgency": return "urgencyLevel";        // MATCHES DESIGNER CASE
-                case "Status": return "status";              // MATCHES DESIGNER CASE
-                case "DateRecieved": return "dateRecieved";        // MATCHES DESIGNER CASE
-                case "EvaluationDate": return "siteEvaluationDate";  // MATCHES DESIGNER CASE
+                // DATABASE FOCUS: The return string values must exactly match the DataPropertyName / DB Column names from your new table query
+                case "Name": return "clientName";
+                case "Surname": return "clientSurname";
+                case "Address": return "siteAddress";
+                case "Source": return "requestSource";
+                case "Urgency": return "urgencyLevel";
+                case "Status": return "status";
+                case "DateRecieved": return "dateRecieved";
+                case "EvaluationDate": return "siteEvaluationDate";
                 default: return null;
             }
+        
         }
 
 
@@ -998,7 +935,7 @@ namespace M2GiantGroupSystem
             try
             {
                 // Parse date values explicitly down to raw string conversions on the dataset layout cache layer
-                jobRequestBindingSource.Filter = string.Format("CONVERT({0}, 'System.String') LIKE '%{1}%'", columnName, formattedDate);
+                dataTable2BindingSource.Filter = string.Format("CONVERT({0}, 'System.String') LIKE '%{1}%'", columnName, formattedDate);
             }
             catch (Exception ex)
             {
@@ -1046,7 +983,7 @@ namespace M2GiantGroupSystem
 
             if (string.IsNullOrWhiteSpace(userInput))
             {
-                jobRequestBindingSource.Filter = "";
+                dataTable2BindingSource.Filter = "";
                 return;
             }
 
@@ -1064,21 +1001,102 @@ namespace M2GiantGroupSystem
                 {
                     if (int.TryParse(userInput, out int numericValue))
                     {
-                        jobRequestBindingSource.Filter = string.Format("{0} = {1}", dbColumn, numericValue);
+                        dataTable2BindingSource.Filter = string.Format("{0} = {1}", dbColumn, numericValue);
                     }
                     else
                     {
-                        jobRequestBindingSource.Filter = "1 = 0";
+                        dataTable2BindingSource.Filter = "1 = 0";
                     }
                 }
                 else
                 {
-                    jobRequestBindingSource.Filter = string.Format("{0} LIKE '%{1}%'", dbColumn, userInput);
+                    dataTable2BindingSource.Filter = string.Format("{0} LIKE '%{1}%'", dbColumn, userInput);
                 }
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine("Text filter exception: " + ex.Message);
+            }
+        }
+
+        private void dataGridView1_CellContentDoubleClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+
+        private void dataGridView1_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                // Grab the ID from the selected grid row
+                int clickedID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["jobRequestID"].Value);
+
+                // USE THE QUERY BUILDER to fetch the exact row data safely from the DB
+                var jobRequestTable = this.jobRequestTableAdapter.GetDataBy2(clickedID);
+
+                if (jobRequestTable.Rows.Count > 0)
+                {
+                    // Grab the specific typed row from our dataset
+                    var selectedJob = jobRequestTable[0];
+
+                    //Populate your UI elements cleanly using the database values
+                    jobRequestIDTextBox.Text = selectedJob.jobRequestID.ToString();
+                    urgencyLevelTextBox.Text = selectedJob.urgencyLevel;
+
+                    //  NEW ADJUSTED NULL-SAFE VERSION:
+                    // Populate your UI elements cleanly using database values (checking for DBNull)
+                    jobRequestIDTextBox.Text = selectedJob.jobRequestID.ToString();
+                    urgencyLevelTextBox.Text = selectedJob.urgencyLevel;
+
+                    // Check if longitude is NULL in database
+                    if (selectedJob["longitude"] == DBNull.Value || string.IsNullOrWhiteSpace(selectedJob["longitude"].ToString()))
+                    {
+                        longitudeTextBox.Text = "N/A";
+                    }
+                    else
+                    {
+                        longitudeTextBox.Text = Convert.ToDouble(selectedJob.longitude).ToString();
+                    }
+
+                    // Check if latitude is NULL in database
+                    if (selectedJob["latitude"] == DBNull.Value || string.IsNullOrWhiteSpace(selectedJob["latitude"].ToString()))
+                    {
+                        latitudeTextBox.Text = "N/A";
+                    }
+                    else
+                    {
+                        latitudeTextBox.Text = Convert.ToDouble(selectedJob.latitude).ToString();
+                    }
+
+                    // 4. Extract coordinates safely. If NULL, pass placeholder coordinates (like 0, 0) to flag fallback behavior.
+                    double clientLat = (selectedJob["latitude"] != DBNull.Value) ? Convert.ToDouble(selectedJob.latitude) : 0.0;
+                    double clientLng = (selectedJob["longitude"] != DBNull.Value) ? Convert.ToDouble(selectedJob.longitude) : 0.0;
+
+                    currentTravelFee = CalculateTravelFee(clientLat, clientLng);
+
+                    // 5. Update the UI Amount box
+                    txtAmount.Text = currentTravelFee.ToString("F2");
+
+                    MessageBox.Show($" You have selected Job Request #{clickedID} \nCalculated Travel Fee: R{currentTravelFee}",
+                                    "System Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // 1. Wipe out any old job listings in the grid if switching to a new client request
+                    selectedJobsGridView.Rows.Clear();
+
+                    // 2. Add the calculated Travel Fee as the foundational first row item in the grid
+                    // This maps exactly to your designer layout slots: Job Type, Base Rate, Unit Type, Quantity, Total
+                    selectedJobsGridView.Rows.Add("Travel Call-out", currentTravelFee, "Flat Rate", 1.0, currentTravelFee);
+
+                    // 3. Force the DataGridView to completely finish registering the new row layout internally
+                    selectedJobsGridView.Refresh();
+
+                    // 4.Run the calculation engine! It sees the travel fee row and locks R255,56 into txtAmount
+                    RecalculateGrandTotalFromUI();
+
+
+                    // Filter the middle grid view to show ONLY the services requested by this client
+                    this.jobTypeTableAdapter.FillByID(this.groupWst1DataSet.JobType, clickedID);
+                }
             }
         }
     }
