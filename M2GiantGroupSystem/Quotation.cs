@@ -29,6 +29,8 @@ namespace M2GiantGroupSystem
 
         private void Quotation_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'groupWst1DataSet.DataTable3' table. You can move, or remove it, as needed.
+            this.dataTable3TableAdapter.Fill(this.groupWst1DataSet.DataTable3);
             // TODO: This line of code loads data into the 'groupWst1DataSet.DataTable2' table. You can move, or remove it, as needed.
             this.dataTable2TableAdapter.Fill(this.groupWst1DataSet.DataTable2);
             tabControl1.SelectedIndex = tabIndex;
@@ -50,13 +52,13 @@ namespace M2GiantGroupSystem
         {
             if (comboBox2.SelectedItem.ToString() == "No Filter")
             {
-                this.quoteTableAdapter.Fill(this.groupWst1DataSet.Quote);
+                this.dataTable3TableAdapter.Fill(this.groupWst1DataSet.DataTable3);
                 UpdateQuoteCount();
                 return;
             }
             else
             {
-                quoteTableAdapter.FillByQuoteStatus(this.groupWst1DataSet.Quote, comboBox2.SelectedItem.ToString());
+                dataTable3TableAdapter.FillByQuoteStatus(this.groupWst1DataSet.DataTable3, comboBox2.SelectedItem.ToString());
                 UpdateQuoteCount();
             }
         }
