@@ -21,6 +21,7 @@ namespace M2GiantGroupSystem
     {
         private decimal currentTravelFee = 0.00m;
         int tabIndex;
+        // Global flag to temporarily ignore events during form resets        
         public Quotation(int tab_index)
         {
             InitializeComponent();
@@ -92,9 +93,47 @@ namespace M2GiantGroupSystem
                 return;
             }
 
-            // =================================================================
-            // NEW: Guard Rail - Prevent Saving with ONLY a Travel Fee
-            // =================================================================
+            // NEW: Anti-Fraud & Date Validation Guard Rails            
+            DateTime today = DateTime.Today;
+
+            // Guard Rail A: Prevent Backdating the Issued Date (Fraud Prevention)
+            if (dateIssuedDateTimePicker.Value.Date != today)
+            {
+                MessageBox.Show("The Date Issued must be exactly today's date. Backdating or future-dating quotation records is strictly prohibited.",
+                                "Fraud Prevention Security Alert", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                // Auto-correct the value back to today for the user
+                dateIssuedDateTimePicker.Value = today;
+                return;
+            }
+
+            // Guard Rail B: Prevent Backdating the Generated Date (Fraud Prevention)
+            if (dateGeneratedDateTimePicker.Value.Date != today)
+            {
+                MessageBox.Show("The Date Generated must match today's date. System logs must remain accurate.",
+                                "Fraud Prevention Security Alert", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                dateGeneratedDateTimePicker.Value = today;
+                return;
+            }
+
+            // Guard Rail C: Prevent an Expiry Date in the Past
+            if (expiryDateDateTimePicker.Value.Date < today)
+            {
+                MessageBox.Show("The Expiry Date cannot be set to a past date. Please choose a valid future validation timeline.",
+                                "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Guard Rail D: Ensure Expiry is at least today or later than Issued Date
+            if (expiryDateDateTimePicker.Value.Date < dateIssuedDateTimePicker.Value.Date)
+            {
+                MessageBox.Show("The Expiry Date cannot be earlier than the Date Issued.",
+                                "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+
+            // Guard Rail - Prevent Saving with ONLY a Travel Fee
+
             if (selectedJobsGridView.Rows.Count <= 1)
             {
                 MessageBox.Show("You cannot save a quote with only a Travel Call-out fee. Please double-click at least one service item from the requested job types table first.",
@@ -115,26 +154,18 @@ namespace M2GiantGroupSystem
                     Convert.ToDecimal(txtAmount.Text),                     // @amount (decimal)
                     cboQuoteStatus.SelectedItem.ToString(),                // @quoteStatus (string)
                     string.IsNullOrWhiteSpace(txtFilePath.Text) ? null : txtFilePath.Text // @filePath (string)
-                );
-
-                quoteTableAdapter.Fill(this.groupWst1DataSet.Quote);
+                );                
 
                 // Success Feedback
                 MessageBox.Show("Your Quote has been successfully created and saved in your database. Go to Edit Quotes to save it as a PDF or Print!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // =================================================================
-                // ADJUSTED SUCCESS RESET: Safe cleaning to match your Clear button fix
-                // =================================================================
-                dateIssuedDateTimePicker.MinDate = System.Windows.Forms.DateTimePicker.MinDateTime;
-                dateIssuedDateTimePicker.MaxDate = DateTime.MaxValue;
-                dateGeneratedDateTimePicker.MinDate = System.Windows.Forms.DateTimePicker.MinDateTime;
-                dateGeneratedDateTimePicker.MaxDate = DateTime.MaxValue;
-                expiryDateDateTimePicker.MinDate = System.Windows.Forms.DateTimePicker.MinDateTime;
-                expiryDateDateTimePicker.MaxDate = DateTime.MaxValue;
 
-                dateIssuedDateTimePicker.Value = DateTime.Today;
-                expiryDateDateTimePicker.Value = DateTime.Today.AddDays(30);
-                dateGeneratedDateTimePicker.Value = DateTime.Today;
+                // Safe cleaning to match the Clear button fix
+
+                // We just cleanly reset the suggested values without touching Min/Max properties.
+                dateIssuedDateTimePicker.Value = DateTime.Today; //
+                dateGeneratedDateTimePicker.Value = DateTime.Today; //
+                expiryDateDateTimePicker.Value = DateTime.Today.AddDays(30); //
 
                 txtAmount.Text = "0.00";
                 txtFilePath.Text = "";
@@ -147,6 +178,17 @@ namespace M2GiantGroupSystem
                 txtVAT.Text = "0.00";
                 txtTotalwithVAT.Text = "0.00";
 
+                // 1. Refresh the custom data tables that feed your visible UI grids
+                this.dataTable3TableAdapter.Fill(this.groupWst1DataSet.DataTable3);
+                this.dataTable2TableAdapter.Fill(this.groupWst1DataSet.DataTable2);
+                this.quoteTableAdapter.Fill(this.groupWst1DataSet.Quote);
+
+                // 2. Instantly refresh the client list so the SQL 'NOT IN' condition hides the user
+                this.jobRequestTableAdapter.Fill(this.groupWst1DataSet.JobRequest);
+
+                // 3. Force the grid to maintain your custom numerical sort layout
+                quoteDataGridView.Sort(quoteDataGridView.Columns["QuoteID_T"], System.ComponentModel.ListSortDirection.Ascending);
+
                 // Deactivate save button until the next client selection
                 button3.Enabled = false;
             }
@@ -157,19 +199,7 @@ namespace M2GiantGroupSystem
         }
 
         private void button2_Click(object sender, EventArgs e)
-        {
-
-            // Max out the MaxDate first so MinDate can be moved without hitting the current MaxDate boundary
-            dateIssuedDateTimePicker.MaxDate = System.Windows.Forms.DateTimePicker.MaxDateTime;
-            dateIssuedDateTimePicker.MinDate = System.Windows.Forms.DateTimePicker.MinDateTime; // Uses 1753/01/01
-
-            dateGeneratedDateTimePicker.MaxDate = System.Windows.Forms.DateTimePicker.MaxDateTime;
-            dateGeneratedDateTimePicker.MinDate = System.Windows.Forms.DateTimePicker.MinDateTime;
-
-            expiryDateDateTimePicker.MaxDate = System.Windows.Forms.DateTimePicker.MaxDateTime;
-            expiryDateDateTimePicker.MinDate = System.Windows.Forms.DateTimePicker.MinDateTime;
-
-            
+        {        
             // 2. ASSIGN NEW DEFAULT VALUES SAFELY            
             dateIssuedDateTimePicker.Value = DateTime.Today;
             dateGeneratedDateTimePicker.Value = DateTime.Today;
@@ -189,6 +219,8 @@ namespace M2GiantGroupSystem
             txtSearchRequests.Text = "";
             dtpSearchDate.Value = DateTime.Today;
             jobTypeTableAdapter.Fill(this.groupWst1DataSet.JobType); // Refresh the job types in case they were modified
+            // ADD THIS LINE HERE: Refresh the top grid on Clear too!                                                                     
+            this.jobRequestTableAdapter.Fill(this.groupWst1DataSet.JobRequest);
             jobTypeDataGridView.ClearSelection(); // Clear any existing selection to avoid confusion
             selectedJobsGridView.ClearSelection(); // Clear the quote details grid selection as well for a clean slate
             button3.Enabled = false; // Disable the button till the user selects a job request and starts building a quote
@@ -1019,6 +1051,40 @@ namespace M2GiantGroupSystem
                     openedHere = true;
                 }
 
+                // STEP A: Do not allow the user to delete a quote that has already been assigned to an active job
+                
+                using (var checkCmd = sqlConn.CreateCommand())
+                {
+                    // Count how many entries in the Job table rely on this quoteID
+                    checkCmd.CommandText = "SELECT COUNT(*) FROM [Job] WHERE quoteID = @QuoteID";
+                    checkCmd.Parameters.AddWithValue("@QuoteID", parsedQuoteID);
+                    int linkedJobs = (int)checkCmd.ExecuteScalar();
+
+                    if (linkedJobs > 0)
+                    {
+                        // Beautifully formatted, production-grade error message layout
+                        string operationalWarning =
+                            $"You may not delete Quote ID #{parsedQuoteID}.\n\n" +
+                            "This quotation record is linked to an active Job. ";
+
+                        MessageBox.Show(operationalWarning,
+                                        "Quote may not be deleted",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Stop);
+
+                        // Clean up the connection if we opened it in this method
+                        if (openedHere)
+                        {
+                            sqlConn.Close();
+                        }
+
+                        return; // Stop right here! Do not proceed to the delete code below.
+                    }
+                }
+
+                
+                // STEP B: If the quote has not been accepted and converted into an active job, allow them to delete it.
+                
                 using (var cmd = sqlConn.CreateCommand())
                 {
                     cmd.CommandText = "DELETE FROM [Quote] WHERE quoteID = @QuoteID";
@@ -1032,20 +1098,32 @@ namespace M2GiantGroupSystem
                     }
                 }
 
+                
+                // STEP C: CLEANLY CLOSE THE CONNECTION                
                 if (openedHere)
                 {
                     sqlConn.Close();
                 }
 
-                // 5. Refresh UI / dataset so the grid stays in sync
+                // 1. Refresh the custom data tables so the deleted row vanishes live
+                this.dataTable3TableAdapter.Fill(this.groupWst1DataSet.DataTable3);
+                this.dataTable2TableAdapter.Fill(this.groupWst1DataSet.DataTable2);
                 this.quoteTableAdapter.Fill(this.groupWst1DataSet.Quote);
+
+                // 2. Force the grid to sort cleanly after the row drops out
+                quoteDataGridView.Sort(quoteDataGridView.Columns["QuoteID_T"], System.ComponentModel.ListSortDirection.Ascending);
+
+                // 3. Update counter and restore the Job Request table pool immediately
                 UpdateQuoteCount();
+                this.jobRequestTableAdapter.Fill(this.groupWst1DataSet.JobRequest);
 
                 // 6. Friendly, explicit feedback for lecturer / user showing we acknowledged the JobRequest link
                 MessageBox.Show($"Quote #{parsedQuoteID} has been removed from the Quote table.\n\n" +
                                 $"Linked Job Request #{jobRequestIdStr} remains in the JobRequest table and is unaffected by this operation.\n\n" +
                                 "If you want to re-create a quote for that Job Request, open the Job Request and generate a new quote.",
                                 "Deletion Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                
             }
             catch (Exception ex)
             {
@@ -1291,27 +1369,16 @@ namespace M2GiantGroupSystem
                     button3.Enabled = true; // Enable the "Generate Quote" button now that a job request is selected
 
 
-                    // Prevent user from selecting dates outside allowed range (prevent errors and fraud too!)
-                    DateTime today = DateTime.Today;
+                    DateTime today = DateTime.Today; //
 
-                    // 1. Force Date Issued to exactly today and lock it down completely
-                    dateIssuedDateTimePicker.MinDate = DateTime.MinValue; // Clear old constraints first to avoid errors
-                    dateIssuedDateTimePicker.MaxDate = DateTime.MaxValue;
+                    // =================================================================
+                    // RELAXED APPROACH: JUST SET SUGGESTED DEFAULTS
+                    // =================================================================
+                    // Controls stay fully enabled. No MinDate or MaxDate adjustments at all!
+
                     dateIssuedDateTimePicker.Value = today;
-                    dateIssuedDateTimePicker.MinDate = today;              // No earlier than today
-                    dateIssuedDateTimePicker.MaxDate = today;              // No later than today
-
-                    // 2. Force Date Generated to exactly today and lock it down completely
-                    dateGeneratedDateTimePicker.MinDate = DateTime.MinValue;
-                    dateGeneratedDateTimePicker.MaxDate = DateTime.MaxValue;
                     dateGeneratedDateTimePicker.Value = today;
-                    dateGeneratedDateTimePicker.MinDate = today;
-                    dateGeneratedDateTimePicker.MaxDate = today;
-
-                    // 3. Auto-load Expiry Date to 30 days from today, restricted from being in the past
-                    expiryDateDateTimePicker.MinDate = DateTime.MinValue;
-                    expiryDateDateTimePicker.Value = today.AddDays(30);    // Default value set to +30 days
-                    expiryDateDateTimePicker.MinDate = today;              // Prevent selecting any date before today
+                    expiryDateDateTimePicker.Value = today.AddDays(30); // Suggests 30 days, but she can change it!
                 }
             }
         }
