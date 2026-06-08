@@ -155,5 +155,25 @@ namespace M2GiantGroupSystem
         {
             FormSetup(new reportsMainForm());
         }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addEditJobDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormSetup(new JobsForm(0));
+        }
+
+        private void viewJobProgressToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormSetup(new JobsForm(1));
+        }
+
+        private void editJobProgressToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormSetup(new JobsForm(2));
+        }
     }
 }
