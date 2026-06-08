@@ -325,10 +325,10 @@
             this.tabPage2.Controls.Add(this.textBox2);
             this.tabPage2.Controls.Add(this.textBox3);
             this.tabPage2.Controls.Add(this.textBox4);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Location = new System.Drawing.Point(4, 40);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1916, 1026);
+            this.tabPage2.Size = new System.Drawing.Size(1916, 1011);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Update client";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -337,41 +337,42 @@
             // lblSearchResults_A
             // 
             this.lblSearchResults_A.AutoSize = true;
-            this.lblSearchResults_A.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSearchResults_A.Location = new System.Drawing.Point(811, 181);
+            this.lblSearchResults_A.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSearchResults_A.Location = new System.Drawing.Point(1002, 220);
             this.lblSearchResults_A.Name = "lblSearchResults_A";
-            this.lblSearchResults_A.Size = new System.Drawing.Size(203, 32);
+            this.lblSearchResults_A.Size = new System.Drawing.Size(272, 50);
             this.lblSearchResults_A.TabIndex = 58;
             this.lblSearchResults_A.Text = "Search results:";
             // 
             // lblSearchBy_A
             // 
             this.lblSearchBy_A.AutoSize = true;
-            this.lblSearchBy_A.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSearchBy_A.Location = new System.Drawing.Point(1025, 78);
+            this.lblSearchBy_A.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSearchBy_A.Location = new System.Drawing.Point(1317, 71);
             this.lblSearchBy_A.Name = "lblSearchBy_A";
-            this.lblSearchBy_A.Size = new System.Drawing.Size(157, 32);
+            this.lblSearchBy_A.Size = new System.Drawing.Size(209, 50);
             this.lblSearchBy_A.TabIndex = 57;
             this.lblSearchBy_A.Text = "Search by..";
             // 
             // tbSearchValue_A
             // 
             this.tbSearchValue_A.Enabled = false;
-            this.tbSearchValue_A.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbSearchValue_A.Location = new System.Drawing.Point(1031, 118);
+            this.tbSearchValue_A.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbSearchValue_A.Location = new System.Drawing.Point(1315, 143);
             this.tbSearchValue_A.Name = "tbSearchValue_A";
-            this.tbSearchValue_A.Size = new System.Drawing.Size(383, 43);
+            this.tbSearchValue_A.Size = new System.Drawing.Size(383, 50);
             this.tbSearchValue_A.TabIndex = 56;
             this.tbSearchValue_A.TextChanged += new System.EventHandler(this.tbSearchValue_A_TextChanged);
             // 
             // lbSearchResults
             // 
+            this.lbSearchResults.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbSearchResults.FormattingEnabled = true;
-            this.lbSearchResults.ItemHeight = 31;
-            this.lbSearchResults.Location = new System.Drawing.Point(1031, 181);
+            this.lbSearchResults.ItemHeight = 45;
+            this.lbSearchResults.Location = new System.Drawing.Point(1315, 221);
             this.lbSearchResults.Name = "lbSearchResults";
             this.lbSearchResults.ScrollAlwaysVisible = true;
-            this.lbSearchResults.Size = new System.Drawing.Size(383, 66);
+            this.lbSearchResults.Size = new System.Drawing.Size(383, 49);
             this.lbSearchResults.TabIndex = 55;
             this.lbSearchResults.SelectedIndexChanged += new System.EventHandler(this.lbSearchResults_SelectedIndexChanged);
             // 
@@ -379,25 +380,25 @@
             // 
             this.lblSelectCriteria_A.AutoSize = true;
             this.lblSelectCriteria_A.BackColor = System.Drawing.Color.Transparent;
-            this.lblSelectCriteria_A.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSelectCriteria_A.Location = new System.Drawing.Point(360, 116);
+            this.lblSelectCriteria_A.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSelectCriteria_A.Location = new System.Drawing.Point(212, 138);
             this.lblSelectCriteria_A.Name = "lblSelectCriteria_A";
-            this.lblSelectCriteria_A.Size = new System.Drawing.Size(309, 38);
+            this.lblSelectCriteria_A.Size = new System.Drawing.Size(411, 50);
             this.lblSelectCriteria_A.TabIndex = 54;
             this.lblSelectCriteria_A.Text = "Select a search criteria";
             // 
             // cmbCriteria_A
             // 
-            this.cmbCriteria_A.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbCriteria_A.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbCriteria_A.FormattingEnabled = true;
             this.cmbCriteria_A.Items.AddRange(new object[] {
             "Name",
             "Surname",
             "Email",
             "Phone Number"});
-            this.cmbCriteria_A.Location = new System.Drawing.Point(691, 116);
+            this.cmbCriteria_A.Location = new System.Drawing.Point(688, 139);
             this.cmbCriteria_A.Name = "cmbCriteria_A";
-            this.cmbCriteria_A.Size = new System.Drawing.Size(304, 45);
+            this.cmbCriteria_A.Size = new System.Drawing.Size(304, 53);
             this.cmbCriteria_A.TabIndex = 53;
             this.cmbCriteria_A.SelectedIndexChanged += new System.EventHandler(this.cmbCriteria_A_SelectedIndexChanged);
             // 
@@ -405,31 +406,34 @@
             // 
             this.lblFindClient_A.AutoSize = true;
             this.lblFindClient_A.BackColor = System.Drawing.Color.Transparent;
-            this.lblFindClient_A.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFindClient_A.Location = new System.Drawing.Point(941, 19);
+            this.lblFindClient_A.Font = new System.Drawing.Font("Segoe UI", 31.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFindClient_A.Location = new System.Drawing.Point(954, 15);
             this.lblFindClient_A.Name = "lblFindClient_A";
-            this.lblFindClient_A.Size = new System.Drawing.Size(154, 38);
+            this.lblFindClient_A.Size = new System.Drawing.Size(283, 70);
             this.lblFindClient_A.TabIndex = 52;
             this.lblFindClient_A.Text = "Find client";
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(908, 833);
+            this.btnUpdate.BackColor = System.Drawing.Color.DarkGreen;
+            this.btnUpdate.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdate.ForeColor = System.Drawing.Color.White;
+            this.btnUpdate.Location = new System.Drawing.Point(780, 886);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(410, 60);
+            this.btnUpdate.Size = new System.Drawing.Size(494, 78);
             this.btnUpdate.TabIndex = 51;
             this.btnUpdate.Text = "Update client details";
-            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.UseVisualStyleBackColor = false;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(530, 652);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(212, 680);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(163, 38);
+            this.label1.Size = new System.Drawing.Size(216, 50);
             this.label1.TabIndex = 50;
             this.label1.Text = "Client Type";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -438,10 +442,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(530, 745);
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(212, 766);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(98, 38);
+            this.label2.Size = new System.Drawing.Size(128, 50);
             this.label2.TabIndex = 49;
             this.label2.Text = "Status";
             // 
@@ -449,10 +453,10 @@
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(530, 578);
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(212, 594);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(285, 38);
+            this.label3.Size = new System.Drawing.Size(378, 50);
             this.label3.TabIndex = 48;
             this.label3.Text = "Client Email Address";
             this.label3.Click += new System.EventHandler(this.label3_Click);
@@ -461,10 +465,10 @@
             // 
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(530, 500);
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(212, 508);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(300, 38);
+            this.label4.Size = new System.Drawing.Size(396, 50);
             this.label4.TabIndex = 47;
             this.label4.Text = "Client Phone Number";
             // 
@@ -472,10 +476,10 @@
             // 
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(530, 426);
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(212, 422);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(218, 38);
+            this.label5.Size = new System.Drawing.Size(287, 50);
             this.label5.TabIndex = 46;
             this.label5.Text = "Client Surname";
             this.label5.Click += new System.EventHandler(this.label5_Click);
@@ -484,25 +488,26 @@
             // 
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(530, 336);
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(212, 336);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(179, 38);
+            this.label6.Size = new System.Drawing.Size(236, 50);
             this.label6.TabIndex = 45;
             this.label6.Text = "Client Name";
             // 
             // comboBox1
             // 
+            this.comboBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.comboBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.clientBS, "clientType", true));
-            this.comboBox1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox1.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "Residential",
             "Commercial",
             "Government"});
-            this.comboBox1.Location = new System.Drawing.Point(908, 663);
+            this.comboBox1.Location = new System.Drawing.Point(780, 677);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(410, 45);
+            this.comboBox1.Size = new System.Drawing.Size(494, 53);
             this.comboBox1.TabIndex = 44;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
@@ -519,55 +524,60 @@
             // 
             // comboBox2
             // 
+            this.comboBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.comboBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.clientBS, "status", true));
-            this.comboBox2.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox2.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Items.AddRange(new object[] {
             "Active",
             "Archived "});
-            this.comboBox2.Location = new System.Drawing.Point(908, 742);
+            this.comboBox2.Location = new System.Drawing.Point(780, 763);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(410, 45);
+            this.comboBox2.Size = new System.Drawing.Size(494, 53);
             this.comboBox2.TabIndex = 43;
             this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // textBox1
             // 
+            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.clientBS, "phoneNumber", true));
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(908, 500);
+            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(780, 508);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(410, 43);
+            this.textBox1.Size = new System.Drawing.Size(494, 50);
             this.textBox1.TabIndex = 42;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // textBox2
             // 
+            this.textBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.textBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.clientBS, "emailAddress", true));
-            this.textBox2.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(908, 578);
+            this.textBox2.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(780, 594);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(410, 43);
+            this.textBox2.Size = new System.Drawing.Size(494, 50);
             this.textBox2.TabIndex = 41;
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // textBox3
             // 
+            this.textBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.textBox3.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.clientBS, "clientSurname", true));
-            this.textBox3.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(908, 421);
+            this.textBox3.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox3.Location = new System.Drawing.Point(780, 423);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(410, 43);
+            this.textBox3.Size = new System.Drawing.Size(494, 50);
             this.textBox3.TabIndex = 40;
             this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // textBox4
             // 
+            this.textBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.textBox4.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.clientBS, "clientName", true));
-            this.textBox4.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(908, 336);
+            this.textBox4.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox4.Location = new System.Drawing.Point(780, 337);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(410, 43);
+            this.textBox4.Size = new System.Drawing.Size(494, 50);
             this.textBox4.TabIndex = 39;
             this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
