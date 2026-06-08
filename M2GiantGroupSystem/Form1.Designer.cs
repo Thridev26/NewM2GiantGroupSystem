@@ -252,24 +252,28 @@
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             this.toolStripMenuItem3.Size = new System.Drawing.Size(68, 32);
             this.toolStripMenuItem3.Text = "Jobs";
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
             // addEditJobDetailsToolStripMenuItem
             // 
             this.addEditJobDetailsToolStripMenuItem.Name = "addEditJobDetailsToolStripMenuItem";
             this.addEditJobDetailsToolStripMenuItem.Size = new System.Drawing.Size(305, 32);
             this.addEditJobDetailsToolStripMenuItem.Text = "Add / Edit Job Details";
+            this.addEditJobDetailsToolStripMenuItem.Click += new System.EventHandler(this.addEditJobDetailsToolStripMenuItem_Click);
             // 
             // viewJobProgressToolStripMenuItem
             // 
             this.viewJobProgressToolStripMenuItem.Name = "viewJobProgressToolStripMenuItem";
             this.viewJobProgressToolStripMenuItem.Size = new System.Drawing.Size(305, 32);
             this.viewJobProgressToolStripMenuItem.Text = "View Job Progress";
+            this.viewJobProgressToolStripMenuItem.Click += new System.EventHandler(this.viewJobProgressToolStripMenuItem_Click);
             // 
             // editJobProgressToolStripMenuItem
             // 
             this.editJobProgressToolStripMenuItem.Name = "editJobProgressToolStripMenuItem";
             this.editJobProgressToolStripMenuItem.Size = new System.Drawing.Size(305, 32);
             this.editJobProgressToolStripMenuItem.Text = "Edit Job Progress";
+            this.editJobProgressToolStripMenuItem.Click += new System.EventHandler(this.editJobProgressToolStripMenuItem_Click);
             // 
             // toolStripMenuItem4
             // 

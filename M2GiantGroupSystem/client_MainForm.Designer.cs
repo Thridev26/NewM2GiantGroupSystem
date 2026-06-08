@@ -61,19 +61,21 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.clientBS = new System.Windows.Forms.BindingSource(this.components);
-            this.groupWst1DataSet1 = new M2GiantGroupSystem.GroupWst1DataSet();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
             this.cboFilterType = new System.Windows.Forms.ComboBox();
             this.cboFilterStatus = new System.Windows.Forms.ComboBox();
             this.txtSearchV = new System.Windows.Forms.TextBox();
             this.cboSearchColumn = new System.Windows.Forms.ComboBox();
             this.pnlDetailsV = new System.Windows.Forms.Panel();
+            this.lblDetailDate = new System.Windows.Forms.Label();
             this.lblDetailType = new System.Windows.Forms.Label();
             this.lblDetailStatus = new System.Windows.Forms.Label();
             this.lblDetailPhone = new System.Windows.Forms.Label();
@@ -83,19 +85,17 @@
             this.lblDetailID = new System.Windows.Forms.Label();
             this.dgvClients = new System.Windows.Forms.DataGridView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.clientBS = new System.Windows.Forms.BindingSource(this.components);
+            this.groupWst1DataSet1 = new M2GiantGroupSystem.GroupWst1DataSet();
             this.clientTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.ClientTableAdapter();
-            this.lblDetailDate = new System.Windows.Forms.Label();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.clientBS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupWst1DataSet1)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.pnlDetailsV.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClients)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientBS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupWst1DataSet1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -487,17 +487,6 @@
             this.comboBox1.TabIndex = 44;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
-            // clientBS
-            // 
-            this.clientBS.DataMember = "Client";
-            this.clientBS.DataSource = this.groupWst1DataSet1;
-            this.clientBS.CurrentChanged += new System.EventHandler(this.clientBS_CurrentChanged);
-            // 
-            // groupWst1DataSet1
-            // 
-            this.groupWst1DataSet1.DataSetName = "GroupWst1DataSet";
-            this.groupWst1DataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // comboBox2
             // 
             this.comboBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.clientBS, "status", true));
@@ -571,6 +560,35 @@
             this.tabPage3.UseVisualStyleBackColor = true;
             this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
             // 
+            // btnAdd
+            // 
+            this.btnAdd.Location = new System.Drawing.Point(688, 652);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(299, 69);
+            this.btnAdd.TabIndex = 8;
+            this.btnAdd.Text = "Add";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(321, 652);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(318, 69);
+            this.btnDelete.TabIndex = 7;
+            this.btnDelete.Text = "Archive";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.Location = new System.Drawing.Point(67, 652);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(214, 69);
+            this.btnEdit.TabIndex = 6;
+            this.btnEdit.Text = "Edit";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
             // cboFilterType
             // 
             this.cboFilterType.FormattingEnabled = true;
@@ -630,13 +648,23 @@
             this.pnlDetailsV.Size = new System.Drawing.Size(450, 488);
             this.pnlDetailsV.TabIndex = 1;
             // 
+            // lblDetailDate
+            // 
+            this.lblDetailDate.AutoSize = true;
+            this.lblDetailDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDetailDate.Location = new System.Drawing.Point(13, 431);
+            this.lblDetailDate.Name = "lblDetailDate";
+            this.lblDetailDate.Size = new System.Drawing.Size(89, 26);
+            this.lblDetailDate.TabIndex = 13;
+            this.lblDetailDate.Text = "label14";
+            // 
             // lblDetailType
             // 
             this.lblDetailType.AutoSize = true;
             this.lblDetailType.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDetailType.Location = new System.Drawing.Point(13, 368);
             this.lblDetailType.Name = "lblDetailType";
-            this.lblDetailType.Size = new System.Drawing.Size(99, 29);
+            this.lblDetailType.Size = new System.Drawing.Size(89, 26);
             this.lblDetailType.TabIndex = 12;
             this.lblDetailType.Text = "label13";
             // 
@@ -646,7 +674,7 @@
             this.lblDetailStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDetailStatus.Location = new System.Drawing.Point(13, 299);
             this.lblDetailStatus.Name = "lblDetailStatus";
-            this.lblDetailStatus.Size = new System.Drawing.Size(99, 29);
+            this.lblDetailStatus.Size = new System.Drawing.Size(89, 26);
             this.lblDetailStatus.TabIndex = 11;
             this.lblDetailStatus.Text = "label12";
             // 
@@ -656,7 +684,7 @@
             this.lblDetailPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDetailPhone.Location = new System.Drawing.Point(13, 236);
             this.lblDetailPhone.Name = "lblDetailPhone";
-            this.lblDetailPhone.Size = new System.Drawing.Size(99, 29);
+            this.lblDetailPhone.Size = new System.Drawing.Size(89, 26);
             this.lblDetailPhone.TabIndex = 10;
             this.lblDetailPhone.Text = "label11";
             // 
@@ -666,7 +694,7 @@
             this.lblDetailEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDetailEmail.Location = new System.Drawing.Point(13, 173);
             this.lblDetailEmail.Name = "lblDetailEmail";
-            this.lblDetailEmail.Size = new System.Drawing.Size(99, 29);
+            this.lblDetailEmail.Size = new System.Drawing.Size(89, 26);
             this.lblDetailEmail.TabIndex = 9;
             this.lblDetailEmail.Text = "label10";
             // 
@@ -676,7 +704,7 @@
             this.lblDetailSurname.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDetailSurname.Location = new System.Drawing.Point(13, 113);
             this.lblDetailSurname.Name = "lblDetailSurname";
-            this.lblDetailSurname.Size = new System.Drawing.Size(85, 29);
+            this.lblDetailSurname.Size = new System.Drawing.Size(76, 26);
             this.lblDetailSurname.TabIndex = 8;
             this.lblDetailSurname.Text = "label9";
             // 
@@ -686,7 +714,7 @@
             this.lblDetailName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDetailName.Location = new System.Drawing.Point(13, 57);
             this.lblDetailName.Name = "lblDetailName";
-            this.lblDetailName.Size = new System.Drawing.Size(85, 29);
+            this.lblDetailName.Size = new System.Drawing.Size(76, 26);
             this.lblDetailName.TabIndex = 7;
             this.lblDetailName.Text = "label8";
             // 
@@ -696,7 +724,7 @@
             this.lblDetailID.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDetailID.Location = new System.Drawing.Point(13, 10);
             this.lblDetailID.Name = "lblDetailID";
-            this.lblDetailID.Size = new System.Drawing.Size(85, 29);
+            this.lblDetailID.Size = new System.Drawing.Size(76, 26);
             this.lblDetailID.TabIndex = 6;
             this.lblDetailID.Text = "label7";
             // 
@@ -720,48 +748,20 @@
             this.tabPage4.Text = "Archive client";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // clientBS
+            // 
+            this.clientBS.DataMember = "Client";
+            this.clientBS.DataSource = this.groupWst1DataSet1;
+            this.clientBS.CurrentChanged += new System.EventHandler(this.clientBS_CurrentChanged);
+            // 
+            // groupWst1DataSet1
+            // 
+            this.groupWst1DataSet1.DataSetName = "GroupWst1DataSet";
+            this.groupWst1DataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // clientTableAdapter1
             // 
             this.clientTableAdapter1.ClearBeforeFill = true;
-            // 
-            // lblDetailDate
-            // 
-            this.lblDetailDate.AutoSize = true;
-            this.lblDetailDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDetailDate.Location = new System.Drawing.Point(13, 431);
-            this.lblDetailDate.Name = "lblDetailDate";
-            this.lblDetailDate.Size = new System.Drawing.Size(99, 29);
-            this.lblDetailDate.TabIndex = 13;
-            this.lblDetailDate.Text = "label14";
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Location = new System.Drawing.Point(67, 652);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(214, 69);
-            this.btnEdit.TabIndex = 6;
-            this.btnEdit.Text = "Edit";
-            this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Location = new System.Drawing.Point(321, 652);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(318, 69);
-            this.btnDelete.TabIndex = 7;
-            this.btnDelete.Text = "Archive";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Location = new System.Drawing.Point(688, 652);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(299, 69);
-            this.btnAdd.TabIndex = 8;
-            this.btnAdd.Text = "Add";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // client_MainForm
             // 
@@ -777,13 +777,13 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.clientBS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupWst1DataSet1)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.pnlDetailsV.ResumeLayout(false);
             this.pnlDetailsV.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClients)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.clientBS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupWst1DataSet1)).EndInit();
             this.ResumeLayout(false);
 
         }

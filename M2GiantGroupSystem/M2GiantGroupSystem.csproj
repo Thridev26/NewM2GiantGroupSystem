@@ -307,6 +307,12 @@
     <Compile Include="jobRequestMain_A.Designer.cs">
       <DependentUpon>jobRequestMain_A.cs</DependentUpon>
     </Compile>
+    <Compile Include="JobsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JobsForm.Designer.cs">
+      <DependentUpon>JobsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -380,6 +386,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="jobRequestMain_A.resx">
       <DependentUpon>jobRequestMain_A.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JobsForm.resx">
+      <DependentUpon>JobsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
