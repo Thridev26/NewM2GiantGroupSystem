@@ -47,11 +47,27 @@
             System.Windows.Forms.Label label12;
             System.Windows.Forms.Label label16;
             System.Windows.Forms.Label label13;
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Quotation));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.selectedJobsGridView = new System.Windows.Forms.DataGridView();
+            this.colJobType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colBaseRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colUnitType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.jobTypeDataGridView = new System.Windows.Forms.DataGridView();
+            this.jobTypeIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.jobTypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.jobRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rateDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.jobTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.groupWst1DataSet = new M2GiantGroupSystem.GroupWst1DataSet();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.clientName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clientSurname = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,7 +83,6 @@
             this.clientID1DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.jobRequestID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataTable2BindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.groupWst1DataSet = new M2GiantGroupSystem.GroupWst1DataSet();
             this.button1 = new System.Windows.Forms.Button();
             this.txtFilePath = new System.Windows.Forms.TextBox();
             this.dtpSearchDate = new System.Windows.Forms.DateTimePicker();
@@ -84,20 +99,11 @@
             this.button9 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.giantGroupLogo = new System.Windows.Forms.PictureBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.urgencyLevelTextBox = new System.Windows.Forms.TextBox();
             this.latitudeTextBox = new System.Windows.Forms.TextBox();
             this.longitudeTextBox = new System.Windows.Forms.TextBox();
             this.jobRequestIDTextBox = new System.Windows.Forms.TextBox();
-            this.selectedJobsGridView = new System.Windows.Forms.DataGridView();
-            this.colJobType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colBaseRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colUnitType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.jobTypeDataGridView = new System.Windows.Forms.DataGridView();
-            this.jobTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.cboQuoteStatus = new System.Windows.Forms.ComboBox();
@@ -155,12 +161,6 @@
             this.quoteTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.QuoteTableAdapter();
             this.dataTable2TableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.DataTable2TableAdapter();
             this.dataTable3TableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.DataTable3TableAdapter();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.jobTypeIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.jobTypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.jobRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rateDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
             filePathLabel = new System.Windows.Forms.Label();
             urgencyLevelLabel = new System.Windows.Forms.Label();
             latitudeLabel = new System.Windows.Forms.Label();
@@ -182,13 +182,15 @@
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataTable2BindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupWst1DataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.giantGroupLogo)).BeginInit();
+            this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.selectedJobsGridView)).BeginInit();
+            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.jobTypeDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.jobTypeBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupWst1DataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTable2BindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.giantGroupLogo)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.quoteDataGridView)).BeginInit();
@@ -196,8 +198,6 @@
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.quoteBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.jobRequestBindingSource)).BeginInit();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // filePathLabel
@@ -455,6 +455,162 @@
             this.panel1.Size = new System.Drawing.Size(1556, 1009);
             this.panel1.TabIndex = 0;
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.selectedJobsGridView);
+            this.groupBox3.Location = new System.Drawing.Point(100, 634);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(1147, 155);
+            this.groupBox3.TabIndex = 54;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Job Types Selected for this Quote:";
+            // 
+            // selectedJobsGridView
+            // 
+            this.selectedJobsGridView.AllowUserToAddRows = false;
+            this.selectedJobsGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.selectedJobsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.selectedJobsGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colJobType,
+            this.colBaseRate,
+            this.colUnitType,
+            this.colQuantity,
+            this.colTotal});
+            this.selectedJobsGridView.Location = new System.Drawing.Point(378, 10);
+            this.selectedJobsGridView.Name = "selectedJobsGridView";
+            this.selectedJobsGridView.RowHeadersWidth = 62;
+            this.selectedJobsGridView.RowTemplate.Height = 28;
+            this.selectedJobsGridView.Size = new System.Drawing.Size(741, 139);
+            this.selectedJobsGridView.TabIndex = 23;
+            this.selectedJobsGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.selectedJobsGridView_CellValueChanged);
+            this.selectedJobsGridView.CurrentCellDirtyStateChanged += new System.EventHandler(this.selectedJobsGridView_CurrentCellDirtyStateChanged);
+            // 
+            // colJobType
+            // 
+            this.colJobType.DataPropertyName = "Job Type";
+            this.colJobType.HeaderText = "Job Type";
+            this.colJobType.MinimumWidth = 8;
+            this.colJobType.Name = "colJobType";
+            this.colJobType.ReadOnly = true;
+            // 
+            // colBaseRate
+            // 
+            this.colBaseRate.DataPropertyName = "Base Rate";
+            this.colBaseRate.HeaderText = "Base Rate";
+            this.colBaseRate.MinimumWidth = 8;
+            this.colBaseRate.Name = "colBaseRate";
+            this.colBaseRate.ReadOnly = true;
+            // 
+            // colUnitType
+            // 
+            this.colUnitType.DataPropertyName = "Unit Type";
+            this.colUnitType.HeaderText = "Unit Type";
+            this.colUnitType.MinimumWidth = 8;
+            this.colUnitType.Name = "colUnitType";
+            // 
+            // colQuantity
+            // 
+            this.colQuantity.DataPropertyName = "Quantity";
+            dataGridViewCellStyle2.NullValue = "1";
+            this.colQuantity.DefaultCellStyle = dataGridViewCellStyle2;
+            this.colQuantity.HeaderText = "Quantity";
+            this.colQuantity.MinimumWidth = 8;
+            this.colQuantity.Name = "colQuantity";
+            // 
+            // colTotal
+            // 
+            this.colTotal.DataPropertyName = "Total";
+            this.colTotal.HeaderText = "Total";
+            this.colTotal.MinimumWidth = 8;
+            this.colTotal.Name = "colTotal";
+            this.colTotal.ReadOnly = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(label6);
+            this.groupBox2.Controls.Add(this.jobTypeDataGridView);
+            this.groupBox2.Location = new System.Drawing.Point(100, 456);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(1147, 172);
+            this.groupBox2.TabIndex = 53;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Job Types Requested by Client:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(17, 45);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(322, 66);
+            this.label9.TabIndex = 33;
+            this.label9.Text = "Note to User: Double click the Job \r\nType(s) to confirm its addition to \r\nthis qu" +
+    "ote.";
+            // 
+            // jobTypeDataGridView
+            // 
+            this.jobTypeDataGridView.AutoGenerateColumns = false;
+            this.jobTypeDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.jobTypeDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.jobTypeDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.jobTypeDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.jobTypeIDDataGridViewTextBoxColumn,
+            this.jobTypeName,
+            this.jobRate,
+            this.rateDescription});
+            this.jobTypeDataGridView.DataSource = this.jobTypeBindingSource;
+            this.jobTypeDataGridView.Location = new System.Drawing.Point(378, 15);
+            this.jobTypeDataGridView.Name = "jobTypeDataGridView";
+            this.jobTypeDataGridView.ReadOnly = true;
+            this.jobTypeDataGridView.RowHeadersWidth = 62;
+            this.jobTypeDataGridView.RowTemplate.Height = 28;
+            this.jobTypeDataGridView.Size = new System.Drawing.Size(741, 151);
+            this.jobTypeDataGridView.TabIndex = 22;
+            this.jobTypeDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.jobTypeDataGridView_CellDoubleClick);
+            // 
+            // jobTypeIDDataGridViewTextBoxColumn
+            // 
+            this.jobTypeIDDataGridViewTextBoxColumn.DataPropertyName = "jobTypeID";
+            this.jobTypeIDDataGridViewTextBoxColumn.HeaderText = "jobTypeID";
+            this.jobTypeIDDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.jobTypeIDDataGridViewTextBoxColumn.Name = "jobTypeIDDataGridViewTextBoxColumn";
+            this.jobTypeIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.jobTypeIDDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // jobTypeName
+            // 
+            this.jobTypeName.DataPropertyName = "jobTypeName";
+            this.jobTypeName.HeaderText = "Job Type";
+            this.jobTypeName.MinimumWidth = 8;
+            this.jobTypeName.Name = "jobTypeName";
+            this.jobTypeName.ReadOnly = true;
+            // 
+            // jobRate
+            // 
+            this.jobRate.DataPropertyName = "jobRate";
+            this.jobRate.HeaderText = "Job Rate";
+            this.jobRate.MinimumWidth = 8;
+            this.jobRate.Name = "jobRate";
+            this.jobRate.ReadOnly = true;
+            // 
+            // rateDescription
+            // 
+            this.rateDescription.DataPropertyName = "rateDescription";
+            this.rateDescription.HeaderText = "RateDescription";
+            this.rateDescription.MinimumWidth = 8;
+            this.rateDescription.Name = "rateDescription";
+            this.rateDescription.ReadOnly = true;
+            // 
+            // jobTypeBindingSource
+            // 
+            this.jobTypeBindingSource.DataMember = "JobType";
+            this.jobTypeBindingSource.DataSource = this.groupWst1DataSet;
+            // 
+            // groupWst1DataSet
+            // 
+            this.groupWst1DataSet.DataSetName = "GroupWst1DataSet";
+            this.groupWst1DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // dataGridView1
             // 
             this.dataGridView1.AutoGenerateColumns = false;
@@ -585,11 +741,6 @@
             // 
             this.dataTable2BindingSource.DataMember = "DataTable2";
             this.dataTable2BindingSource.DataSource = this.groupWst1DataSet;
-            // 
-            // groupWst1DataSet
-            // 
-            this.groupWst1DataSet.DataSetName = "GroupWst1DataSet";
-            this.groupWst1DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // button1
             // 
@@ -757,16 +908,6 @@
             this.giantGroupLogo.TabIndex = 35;
             this.giantGroupLogo.TabStop = false;
             // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(17, 45);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(322, 66);
-            this.label9.TabIndex = 33;
-            this.label9.Text = "Note to User: Double click the Job \r\nType(s) to confirm its addition to \r\nthis qu" +
-    "ote.";
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -781,21 +922,21 @@
             // 
             this.urgencyLevelTextBox.Location = new System.Drawing.Point(1210, 276);
             this.urgencyLevelTextBox.Name = "urgencyLevelTextBox";
-            this.urgencyLevelTextBox.Size = new System.Drawing.Size(100, 28);
+            this.urgencyLevelTextBox.Size = new System.Drawing.Size(158, 28);
             this.urgencyLevelTextBox.TabIndex = 31;
             // 
             // latitudeTextBox
             // 
             this.latitudeTextBox.Location = new System.Drawing.Point(813, 277);
             this.latitudeTextBox.Name = "latitudeTextBox";
-            this.latitudeTextBox.Size = new System.Drawing.Size(100, 28);
+            this.latitudeTextBox.Size = new System.Drawing.Size(157, 28);
             this.latitudeTextBox.TabIndex = 29;
             // 
             // longitudeTextBox
             // 
             this.longitudeTextBox.Location = new System.Drawing.Point(407, 278);
             this.longitudeTextBox.Name = "longitudeTextBox";
-            this.longitudeTextBox.Size = new System.Drawing.Size(100, 28);
+            this.longitudeTextBox.Size = new System.Drawing.Size(163, 28);
             this.longitudeTextBox.TabIndex = 28;
             // 
             // jobRequestIDTextBox
@@ -806,95 +947,10 @@
             this.jobRequestIDTextBox.Size = new System.Drawing.Size(287, 28);
             this.jobRequestIDTextBox.TabIndex = 27;
             // 
-            // selectedJobsGridView
-            // 
-            this.selectedJobsGridView.AllowUserToAddRows = false;
-            this.selectedJobsGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.selectedJobsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.selectedJobsGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colJobType,
-            this.colBaseRate,
-            this.colUnitType,
-            this.colQuantity,
-            this.colTotal});
-            this.selectedJobsGridView.Location = new System.Drawing.Point(378, 10);
-            this.selectedJobsGridView.Name = "selectedJobsGridView";
-            this.selectedJobsGridView.RowHeadersWidth = 62;
-            this.selectedJobsGridView.RowTemplate.Height = 28;
-            this.selectedJobsGridView.Size = new System.Drawing.Size(741, 139);
-            this.selectedJobsGridView.TabIndex = 23;
-            this.selectedJobsGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.selectedJobsGridView_CellValueChanged);
-            this.selectedJobsGridView.CurrentCellDirtyStateChanged += new System.EventHandler(this.selectedJobsGridView_CurrentCellDirtyStateChanged);
-            // 
-            // colJobType
-            // 
-            this.colJobType.DataPropertyName = "Job Type";
-            this.colJobType.HeaderText = "Job Type";
-            this.colJobType.MinimumWidth = 8;
-            this.colJobType.Name = "colJobType";
-            this.colJobType.ReadOnly = true;
-            // 
-            // colBaseRate
-            // 
-            this.colBaseRate.DataPropertyName = "Base Rate";
-            this.colBaseRate.HeaderText = "Base Rate";
-            this.colBaseRate.MinimumWidth = 8;
-            this.colBaseRate.Name = "colBaseRate";
-            this.colBaseRate.ReadOnly = true;
-            // 
-            // colUnitType
-            // 
-            this.colUnitType.DataPropertyName = "Unit Type";
-            this.colUnitType.HeaderText = "Unit Type";
-            this.colUnitType.MinimumWidth = 8;
-            this.colUnitType.Name = "colUnitType";
-            // 
-            // colQuantity
-            // 
-            this.colQuantity.DataPropertyName = "Quantity";
-            dataGridViewCellStyle1.NullValue = "1";
-            this.colQuantity.DefaultCellStyle = dataGridViewCellStyle1;
-            this.colQuantity.HeaderText = "Quantity";
-            this.colQuantity.MinimumWidth = 8;
-            this.colQuantity.Name = "colQuantity";
-            // 
-            // colTotal
-            // 
-            this.colTotal.DataPropertyName = "Total";
-            this.colTotal.HeaderText = "Total";
-            this.colTotal.MinimumWidth = 8;
-            this.colTotal.Name = "colTotal";
-            this.colTotal.ReadOnly = true;
-            // 
-            // jobTypeDataGridView
-            // 
-            this.jobTypeDataGridView.AutoGenerateColumns = false;
-            this.jobTypeDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.jobTypeDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            this.jobTypeDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.jobTypeDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.jobTypeIDDataGridViewTextBoxColumn,
-            this.jobTypeName,
-            this.jobRate,
-            this.rateDescription});
-            this.jobTypeDataGridView.DataSource = this.jobTypeBindingSource;
-            this.jobTypeDataGridView.Location = new System.Drawing.Point(378, 15);
-            this.jobTypeDataGridView.Name = "jobTypeDataGridView";
-            this.jobTypeDataGridView.ReadOnly = true;
-            this.jobTypeDataGridView.RowHeadersWidth = 62;
-            this.jobTypeDataGridView.RowTemplate.Height = 28;
-            this.jobTypeDataGridView.Size = new System.Drawing.Size(741, 151);
-            this.jobTypeDataGridView.TabIndex = 22;
-            this.jobTypeDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.jobTypeDataGridView_CellDoubleClick);
-            // 
-            // jobTypeBindingSource
-            // 
-            this.jobTypeBindingSource.DataMember = "JobType";
-            this.jobTypeBindingSource.DataSource = this.groupWst1DataSet;
-            // 
             // button3
             // 
             this.button3.BackColor = System.Drawing.Color.White;
+            this.button3.Enabled = false;
             this.button3.Location = new System.Drawing.Point(1059, 951);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(133, 42);
@@ -1446,61 +1502,6 @@
             // 
             this.dataTable3TableAdapter.ClearBeforeFill = true;
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Controls.Add(label6);
-            this.groupBox2.Controls.Add(this.jobTypeDataGridView);
-            this.groupBox2.Location = new System.Drawing.Point(100, 456);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1147, 172);
-            this.groupBox2.TabIndex = 53;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Job Types Requested by Client:";
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.selectedJobsGridView);
-            this.groupBox3.Location = new System.Drawing.Point(100, 634);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(1147, 155);
-            this.groupBox3.TabIndex = 54;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Job Types Selected for this Quote:";
-            // 
-            // jobTypeIDDataGridViewTextBoxColumn
-            // 
-            this.jobTypeIDDataGridViewTextBoxColumn.DataPropertyName = "jobTypeID";
-            this.jobTypeIDDataGridViewTextBoxColumn.HeaderText = "jobTypeID";
-            this.jobTypeIDDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.jobTypeIDDataGridViewTextBoxColumn.Name = "jobTypeIDDataGridViewTextBoxColumn";
-            this.jobTypeIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.jobTypeIDDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // jobTypeName
-            // 
-            this.jobTypeName.DataPropertyName = "jobTypeName";
-            this.jobTypeName.HeaderText = "Job Type";
-            this.jobTypeName.MinimumWidth = 8;
-            this.jobTypeName.Name = "jobTypeName";
-            this.jobTypeName.ReadOnly = true;
-            // 
-            // jobRate
-            // 
-            this.jobRate.DataPropertyName = "jobRate";
-            this.jobRate.HeaderText = "Job Rate";
-            this.jobRate.MinimumWidth = 8;
-            this.jobRate.Name = "jobRate";
-            this.jobRate.ReadOnly = true;
-            // 
-            // rateDescription
-            // 
-            this.rateDescription.DataPropertyName = "rateDescription";
-            this.rateDescription.HeaderText = "RateDescription";
-            this.rateDescription.MinimumWidth = 8;
-            this.rateDescription.Name = "rateDescription";
-            this.rateDescription.ReadOnly = true;
-            // 
             // Quotation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
@@ -1520,13 +1521,16 @@
             this.tabPage1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataTable2BindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupWst1DataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.giantGroupLogo)).EndInit();
+            this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.selectedJobsGridView)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.jobTypeDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.jobTypeBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupWst1DataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataTable2BindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.giantGroupLogo)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -1537,9 +1541,6 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.quoteBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.jobRequestBindingSource)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

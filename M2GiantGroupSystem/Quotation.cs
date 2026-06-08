@@ -76,14 +76,14 @@ namespace M2GiantGroupSystem
 
         private void button3_Click(object sender, EventArgs e)
         {
-            // Ensure the user selected a status
+            // 1. Ensure the user selected a status
             if (cboQuoteStatus.SelectedItem == null)
             {
                 MessageBox.Show("Please select a Quote status before proceeding.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // THE JOB REQUEST ID:
+            // 2. THE JOB REQUEST ID VALIDATION
             int currentJobRequestID = 0;
             if (!int.TryParse(jobRequestIDTextBox.Text, out currentJobRequestID))
             {
@@ -92,27 +92,50 @@ namespace M2GiantGroupSystem
                 return;
             }
 
+            // =================================================================
+            // NEW: Guard Rail - Prevent Saving with ONLY a Travel Fee
+            // =================================================================
+            if (selectedJobsGridView.Rows.Count <= 1)
+            {
+                MessageBox.Show("You cannot save a quote with only a Travel Call-out fee. Please double-click at least one service item from the requested job types table first.",
+                                "Missing Services",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                return; // Stops execution before touching the database!
+            }
+
             try
             {
                 // EXECUTE THE INSERT
-                // This maps exactly to the (int, string, string, string, decimal, string, string) parameters
                 this.quoteTableAdapter.InsertNewQuote(
-                    currentJobRequestID,                                    // @jobRequestID (int)
+                    currentJobRequestID,                                   // @jobRequestID (int)
                     dateIssuedDateTimePicker.Value.ToShortDateString(),    // @dateIssued (string)
                     expiryDateDateTimePicker.Value.ToShortDateString(),    // @expiryDate (string)
                     dateGeneratedDateTimePicker.Value.ToShortDateString(), // @dateGenerated (string)
                     Convert.ToDecimal(txtAmount.Text),                     // @amount (decimal)
                     cboQuoteStatus.SelectedItem.ToString(),                // @quoteStatus (string)
-                    string.IsNullOrWhiteSpace(txtFilePath.Text) ? null : txtFilePath.Text // @filePath (string - handles empty paths nicely)
+                    string.IsNullOrWhiteSpace(txtFilePath.Text) ? null : txtFilePath.Text // @filePath (string)
                 );
 
                 quoteTableAdapter.Fill(this.groupWst1DataSet.Quote);
-                // Success Feedback
-                MessageBox.Show("Your Quote has been successfully created and saved in your database. Go to Edit Quotes to save it as a PDF or Print.!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                dateIssuedDateTimePicker.Value = DateTime.Now;
-                expiryDateDateTimePicker.Value = DateTime.Now.AddDays(30);
-                dateGeneratedDateTimePicker.Value = DateTime.Now;
+                // Success Feedback
+                MessageBox.Show("Your Quote has been successfully created and saved in your database. Go to Edit Quotes to save it as a PDF or Print!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // =================================================================
+                // ADJUSTED SUCCESS RESET: Safe cleaning to match your Clear button fix
+                // =================================================================
+                dateIssuedDateTimePicker.MinDate = System.Windows.Forms.DateTimePicker.MinDateTime;
+                dateIssuedDateTimePicker.MaxDate = DateTime.MaxValue;
+                dateGeneratedDateTimePicker.MinDate = System.Windows.Forms.DateTimePicker.MinDateTime;
+                dateGeneratedDateTimePicker.MaxDate = DateTime.MaxValue;
+                expiryDateDateTimePicker.MinDate = System.Windows.Forms.DateTimePicker.MinDateTime;
+                expiryDateDateTimePicker.MaxDate = DateTime.MaxValue;
+
+                dateIssuedDateTimePicker.Value = DateTime.Today;
+                expiryDateDateTimePicker.Value = DateTime.Today.AddDays(30);
+                dateGeneratedDateTimePicker.Value = DateTime.Today;
+
                 txtAmount.Text = "0.00";
                 txtFilePath.Text = "";
                 cboQuoteStatus.SelectedIndex = -1;
@@ -123,24 +146,52 @@ namespace M2GiantGroupSystem
                 urgencyLevelTextBox.Text = "";
                 txtVAT.Text = "0.00";
                 txtTotalwithVAT.Text = "0.00";
+
+                // Deactivate save button until the next client selection
+                button3.Enabled = false;
             }
             catch (Exception ex)
             {
-                // Catch database constraint violations or type-casting issues safely
                 MessageBox.Show("Unfortunately an error occurred while saving the quote: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            dateIssuedDateTimePicker.Value = DateTime.Now;
-            expiryDateDateTimePicker.Value = DateTime.Now.AddDays(30);
-            dateGeneratedDateTimePicker.Value = DateTime.Now;
+
+            // Max out the MaxDate first so MinDate can be moved without hitting the current MaxDate boundary
+            dateIssuedDateTimePicker.MaxDate = System.Windows.Forms.DateTimePicker.MaxDateTime;
+            dateIssuedDateTimePicker.MinDate = System.Windows.Forms.DateTimePicker.MinDateTime; // Uses 1753/01/01
+
+            dateGeneratedDateTimePicker.MaxDate = System.Windows.Forms.DateTimePicker.MaxDateTime;
+            dateGeneratedDateTimePicker.MinDate = System.Windows.Forms.DateTimePicker.MinDateTime;
+
+            expiryDateDateTimePicker.MaxDate = System.Windows.Forms.DateTimePicker.MaxDateTime;
+            expiryDateDateTimePicker.MinDate = System.Windows.Forms.DateTimePicker.MinDateTime;
+
+            
+            // 2. ASSIGN NEW DEFAULT VALUES SAFELY            
+            dateIssuedDateTimePicker.Value = DateTime.Today;
+            dateGeneratedDateTimePicker.Value = DateTime.Today;
+            expiryDateDateTimePicker.Value = DateTime.Today.AddDays(30);
             txtAmount.Text = "0.00";
+            txtVAT.Text = "0.00";
+            txtTotalwithVAT.Text = "0.00";
             txtFilePath.Text = "";
             cboQuoteStatus.SelectedIndex = -1;
             selectedJobsGridView.Rows.Clear();
             txtEditQuoteID.Text = "";
+            longitudeTextBox.Text = "";
+            latitudeTextBox.Text = "";
+            urgencyLevelTextBox.Text = "";
+            jobRequestIDTextBox.Text = "";
+            cmbSearchColumn.SelectedIndex = -1;
+            txtSearchRequests.Text = "";
+            dtpSearchDate.Value = DateTime.Today;
+            jobTypeTableAdapter.Fill(this.groupWst1DataSet.JobType); // Refresh the job types in case they were modified
+            jobTypeDataGridView.ClearSelection(); // Clear any existing selection to avoid confusion
+            selectedJobsGridView.ClearSelection(); // Clear the quote details grid selection as well for a clean slate
+            button3.Enabled = false; // Disable the button till the user selects a job request and starts building a quote
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -343,6 +394,17 @@ namespace M2GiantGroupSystem
         private void jobTypeDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
+
+            
+            // Guard Rail - Check if a Client is Selected First       
+            if (string.IsNullOrWhiteSpace(jobRequestIDTextBox.Text))
+            {
+                MessageBox.Show("Please select a client's Job Request from the top table before adding specific services.",
+                                "Selection Required",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                return; // Stops execution dead in its tracks! The popup will NOT show.
+            }
 
             // 1. Get the details of the service they selected
             string jobName = jobTypeDataGridView.Rows[e.RowIndex].Cells["jobTypeName"].Value.ToString();
@@ -1225,6 +1287,31 @@ namespace M2GiantGroupSystem
 
                     // Filter the middle grid view to show ONLY the services requested by this client
                     this.jobTypeTableAdapter.FillByID(this.groupWst1DataSet.JobType, clickedID);
+
+                    button3.Enabled = true; // Enable the "Generate Quote" button now that a job request is selected
+
+
+                    // Prevent user from selecting dates outside allowed range (prevent errors and fraud too!)
+                    DateTime today = DateTime.Today;
+
+                    // 1. Force Date Issued to exactly today and lock it down completely
+                    dateIssuedDateTimePicker.MinDate = DateTime.MinValue; // Clear old constraints first to avoid errors
+                    dateIssuedDateTimePicker.MaxDate = DateTime.MaxValue;
+                    dateIssuedDateTimePicker.Value = today;
+                    dateIssuedDateTimePicker.MinDate = today;              // No earlier than today
+                    dateIssuedDateTimePicker.MaxDate = today;              // No later than today
+
+                    // 2. Force Date Generated to exactly today and lock it down completely
+                    dateGeneratedDateTimePicker.MinDate = DateTime.MinValue;
+                    dateGeneratedDateTimePicker.MaxDate = DateTime.MaxValue;
+                    dateGeneratedDateTimePicker.Value = today;
+                    dateGeneratedDateTimePicker.MinDate = today;
+                    dateGeneratedDateTimePicker.MaxDate = today;
+
+                    // 3. Auto-load Expiry Date to 30 days from today, restricted from being in the past
+                    expiryDateDateTimePicker.MinDate = DateTime.MinValue;
+                    expiryDateDateTimePicker.Value = today.AddDays(30);    // Default value set to +30 days
+                    expiryDateDateTimePicker.MinDate = today;              // Prevent selecting any date before today
                 }
             }
         }
