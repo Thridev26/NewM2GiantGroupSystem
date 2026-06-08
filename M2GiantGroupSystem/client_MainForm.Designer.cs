@@ -234,7 +234,7 @@
             // 
             // cmb_type
             // 
-            this.cmb_type.BackColor = System.Drawing.Color.White;
+            this.cmb_type.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.cmb_type.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmb_type.FormattingEnabled = true;
             this.cmb_type.Items.AddRange(new object[] {
@@ -249,7 +249,7 @@
             // 
             // cmb_status
             // 
-            this.cmb_status.BackColor = System.Drawing.Color.White;
+            this.cmb_status.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.cmb_status.Enabled = false;
             this.cmb_status.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmb_status.FormattingEnabled = true;
@@ -264,7 +264,7 @@
             // 
             // tb_phone
             // 
-            this.tb_phone.BackColor = System.Drawing.Color.White;
+            this.tb_phone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.tb_phone.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb_phone.Location = new System.Drawing.Point(758, 382);
             this.tb_phone.Margin = new System.Windows.Forms.Padding(5);
@@ -274,7 +274,7 @@
             // 
             // tb_email
             // 
-            this.tb_email.BackColor = System.Drawing.Color.White;
+            this.tb_email.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.tb_email.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb_email.Location = new System.Drawing.Point(758, 469);
             this.tb_email.Margin = new System.Windows.Forms.Padding(5);
@@ -284,7 +284,7 @@
             // 
             // tb_surname
             // 
-            this.tb_surname.BackColor = System.Drawing.Color.White;
+            this.tb_surname.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.tb_surname.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb_surname.Location = new System.Drawing.Point(758, 296);
             this.tb_surname.Margin = new System.Windows.Forms.Padding(5);
@@ -294,7 +294,7 @@
             // 
             // tb_name
             // 
-            this.tb_name.BackColor = System.Drawing.Color.White;
+            this.tb_name.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.tb_name.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb_name.Location = new System.Drawing.Point(758, 213);
             this.tb_name.Margin = new System.Windows.Forms.Padding(5);
