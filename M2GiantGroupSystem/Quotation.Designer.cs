@@ -97,10 +97,6 @@
             this.colQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.jobTypeDataGridView = new System.Windows.Forms.DataGridView();
-            this.jobTypeIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.jobTypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.jobRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rateDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.jobTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -159,6 +155,12 @@
             this.quoteTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.QuoteTableAdapter();
             this.dataTable2TableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.DataTable2TableAdapter();
             this.dataTable3TableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.DataTable3TableAdapter();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.jobTypeIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.jobTypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.jobRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rateDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
             filePathLabel = new System.Windows.Forms.Label();
             urgencyLevelLabel = new System.Windows.Forms.Label();
             latitudeLabel = new System.Windows.Forms.Label();
@@ -194,6 +196,8 @@
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.quoteBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.jobRequestBindingSource)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // filePathLabel
@@ -211,7 +215,7 @@
             // 
             urgencyLevelLabel.AutoSize = true;
             urgencyLevelLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            urgencyLevelLabel.Location = new System.Drawing.Point(798, 279);
+            urgencyLevelLabel.Location = new System.Drawing.Point(1047, 279);
             urgencyLevelLabel.Name = "urgencyLevelLabel";
             urgencyLevelLabel.Size = new System.Drawing.Size(144, 22);
             urgencyLevelLabel.TabIndex = 30;
@@ -221,7 +225,7 @@
             // 
             latitudeLabel.AutoSize = true;
             latitudeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            latitudeLabel.Location = new System.Drawing.Point(444, 280);
+            latitudeLabel.Location = new System.Drawing.Point(693, 280);
             latitudeLabel.Name = "latitudeLabel";
             latitudeLabel.Size = new System.Drawing.Size(88, 22);
             latitudeLabel.TabIndex = 28;
@@ -231,7 +235,7 @@
             // 
             longitudeLabel.AutoSize = true;
             longitudeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            longitudeLabel.Location = new System.Drawing.Point(17, 281);
+            longitudeLabel.Location = new System.Drawing.Point(266, 281);
             longitudeLabel.Name = "longitudeLabel";
             longitudeLabel.Size = new System.Drawing.Size(104, 22);
             longitudeLabel.TabIndex = 27;
@@ -241,7 +245,7 @@
             // 
             jobRequestIDLabel.AutoSize = true;
             jobRequestIDLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            jobRequestIDLabel.Location = new System.Drawing.Point(14, 310);
+            jobRequestIDLabel.Location = new System.Drawing.Point(468, 325);
             jobRequestIDLabel.Name = "jobRequestIDLabel";
             jobRequestIDLabel.Size = new System.Drawing.Size(153, 22);
             jobRequestIDLabel.TabIndex = 26;
@@ -251,27 +255,25 @@
             // 
             label7.AutoSize = true;
             label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label7.Location = new System.Drawing.Point(13, 598);
+            label7.Location = new System.Drawing.Point(117, 688);
             label7.Name = "label7";
-            label7.Size = new System.Drawing.Size(321, 22);
+            label7.Size = new System.Drawing.Size(0, 22);
             label7.TabIndex = 25;
-            label7.Text = "Job Types Selected for this Quote:";
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label6.Location = new System.Drawing.Point(14, 433);
+            label6.Location = new System.Drawing.Point(17, 30);
             label6.Name = "label6";
-            label6.Size = new System.Drawing.Size(296, 22);
+            label6.Size = new System.Drawing.Size(0, 22);
             label6.TabIndex = 24;
-            label6.Text = "Job Types Requested by Client:";
             // 
             // dateIssuedLabel
             // 
             dateIssuedLabel.AutoSize = true;
             dateIssuedLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dateIssuedLabel.Location = new System.Drawing.Point(14, 347);
+            dateIssuedLabel.Location = new System.Drawing.Point(468, 362);
             dateIssuedLabel.Name = "dateIssuedLabel";
             dateIssuedLabel.Size = new System.Drawing.Size(122, 22);
             dateIssuedLabel.TabIndex = 5;
@@ -281,7 +283,7 @@
             // 
             expiryDateLabel.AutoSize = true;
             expiryDateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            expiryDateLabel.Location = new System.Drawing.Point(14, 379);
+            expiryDateLabel.Location = new System.Drawing.Point(468, 394);
             expiryDateLabel.Name = "expiryDateLabel";
             expiryDateLabel.Size = new System.Drawing.Size(120, 22);
             expiryDateLabel.TabIndex = 7;
@@ -291,7 +293,7 @@
             // 
             dateGeneratedLabel.AutoSize = true;
             dateGeneratedLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dateGeneratedLabel.Location = new System.Drawing.Point(14, 411);
+            dateGeneratedLabel.Location = new System.Drawing.Point(468, 426);
             dateGeneratedLabel.Name = "dateGeneratedLabel";
             dateGeneratedLabel.Size = new System.Drawing.Size(158, 22);
             dateGeneratedLabel.TabIndex = 9;
@@ -301,7 +303,7 @@
             // 
             amountLabel.AutoSize = true;
             amountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            amountLabel.Location = new System.Drawing.Point(14, 743);
+            amountLabel.Location = new System.Drawing.Point(471, 811);
             amountLabel.Name = "amountLabel";
             amountLabel.Size = new System.Drawing.Size(187, 22);
             amountLabel.TabIndex = 11;
@@ -311,7 +313,7 @@
             // 
             quoteStatusLabel.AutoSize = true;
             quoteStatusLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            quoteStatusLabel.Location = new System.Drawing.Point(14, 853);
+            quoteStatusLabel.Location = new System.Drawing.Point(471, 921);
             quoteStatusLabel.Name = "quoteStatusLabel";
             quoteStatusLabel.Size = new System.Drawing.Size(133, 22);
             quoteStatusLabel.TabIndex = 13;
@@ -386,7 +388,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1570, 1031);
+            this.tabControl1.Size = new System.Drawing.Size(1570, 1050);
             this.tabControl1.TabIndex = 4;
             // 
             // tabPage1
@@ -395,7 +397,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 31);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1562, 996);
+            this.tabPage1.Size = new System.Drawing.Size(1562, 1015);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Create New Quote";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -403,7 +405,9 @@
             // panel1
             // 
             this.panel1.AutoSize = true;
-            this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.BackColor = System.Drawing.Color.SeaShell;
+            this.panel1.Controls.Add(this.groupBox3);
+            this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Controls.Add(this.dataGridView1);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(filePathLabel);
@@ -422,7 +426,6 @@
             this.panel1.Controls.Add(this.button9);
             this.panel1.Controls.Add(this.button8);
             this.panel1.Controls.Add(this.giantGroupLogo);
-            this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(urgencyLevelLabel);
             this.panel1.Controls.Add(this.urgencyLevelTextBox);
@@ -433,9 +436,6 @@
             this.panel1.Controls.Add(jobRequestIDLabel);
             this.panel1.Controls.Add(this.jobRequestIDTextBox);
             this.panel1.Controls.Add(label7);
-            this.panel1.Controls.Add(label6);
-            this.panel1.Controls.Add(this.selectedJobsGridView);
-            this.panel1.Controls.Add(this.jobTypeDataGridView);
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.cboQuoteStatus);
@@ -452,13 +452,14 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1556, 990);
+            this.panel1.Size = new System.Drawing.Size(1556, 1009);
             this.panel1.TabIndex = 0;
             // 
             // dataGridView1
             // 
             this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clientName,
@@ -479,7 +480,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(1445, 150);
+            this.dataGridView1.Size = new System.Drawing.Size(1530, 150);
             this.dataGridView1.TabIndex = 52;
             this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick_1);
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick_1);
@@ -490,7 +491,6 @@
             this.clientName.HeaderText = "Name";
             this.clientName.MinimumWidth = 8;
             this.clientName.Name = "clientName";
-            this.clientName.Width = 97;
             // 
             // clientSurname
             // 
@@ -498,7 +498,6 @@
             this.clientSurname.HeaderText = "Surname";
             this.clientSurname.MinimumWidth = 8;
             this.clientSurname.Name = "clientSurname";
-            this.clientSurname.Width = 125;
             // 
             // siteAddress
             // 
@@ -506,7 +505,6 @@
             this.siteAddress.HeaderText = "Address";
             this.siteAddress.MinimumWidth = 8;
             this.siteAddress.Name = "siteAddress";
-            this.siteAddress.Width = 119;
             // 
             // longitude
             // 
@@ -514,7 +512,6 @@
             this.longitude.HeaderText = "Long";
             this.longitude.MinimumWidth = 8;
             this.longitude.Name = "longitude";
-            this.longitude.Width = 90;
             // 
             // latitude
             // 
@@ -522,7 +519,6 @@
             this.latitude.HeaderText = "Lat";
             this.latitude.MinimumWidth = 8;
             this.latitude.Name = "latitude";
-            this.latitude.Width = 74;
             // 
             // requestSourceDataGridViewTextBoxColumn
             // 
@@ -530,7 +526,6 @@
             this.requestSourceDataGridViewTextBoxColumn.HeaderText = "Source";
             this.requestSourceDataGridViewTextBoxColumn.MinimumWidth = 8;
             this.requestSourceDataGridViewTextBoxColumn.Name = "requestSourceDataGridViewTextBoxColumn";
-            this.requestSourceDataGridViewTextBoxColumn.Width = 109;
             // 
             // urgencyLevelDataGridViewTextBoxColumn
             // 
@@ -538,7 +533,6 @@
             this.urgencyLevelDataGridViewTextBoxColumn.HeaderText = "Urgency";
             this.urgencyLevelDataGridViewTextBoxColumn.MinimumWidth = 8;
             this.urgencyLevelDataGridViewTextBoxColumn.Name = "urgencyLevelDataGridViewTextBoxColumn";
-            this.urgencyLevelDataGridViewTextBoxColumn.Width = 120;
             // 
             // statusDataGridViewTextBoxColumn
             // 
@@ -546,7 +540,6 @@
             this.statusDataGridViewTextBoxColumn.HeaderText = "Status";
             this.statusDataGridViewTextBoxColumn.MinimumWidth = 8;
             this.statusDataGridViewTextBoxColumn.Name = "statusDataGridViewTextBoxColumn";
-            this.statusDataGridViewTextBoxColumn.Width = 103;
             // 
             // dateRecievedDataGridViewTextBoxColumn
             // 
@@ -554,7 +547,6 @@
             this.dateRecievedDataGridViewTextBoxColumn.HeaderText = "DateRecieved";
             this.dateRecievedDataGridViewTextBoxColumn.MinimumWidth = 8;
             this.dateRecievedDataGridViewTextBoxColumn.Name = "dateRecievedDataGridViewTextBoxColumn";
-            this.dateRecievedDataGridViewTextBoxColumn.Width = 171;
             // 
             // siteEvaluationDateDataGridViewTextBoxColumn
             // 
@@ -562,7 +554,6 @@
             this.siteEvaluationDateDataGridViewTextBoxColumn.HeaderText = "EvaluationDate";
             this.siteEvaluationDateDataGridViewTextBoxColumn.MinimumWidth = 8;
             this.siteEvaluationDateDataGridViewTextBoxColumn.Name = "siteEvaluationDateDataGridViewTextBoxColumn";
-            this.siteEvaluationDateDataGridViewTextBoxColumn.Width = 182;
             // 
             // clientIDDataGridViewTextBoxColumn
             // 
@@ -572,7 +563,6 @@
             this.clientIDDataGridViewTextBoxColumn.Name = "clientIDDataGridViewTextBoxColumn";
             this.clientIDDataGridViewTextBoxColumn.ReadOnly = true;
             this.clientIDDataGridViewTextBoxColumn.Visible = false;
-            this.clientIDDataGridViewTextBoxColumn.Width = 99;
             // 
             // clientID1DataGridViewTextBoxColumn
             // 
@@ -581,7 +571,6 @@
             this.clientID1DataGridViewTextBoxColumn.MinimumWidth = 8;
             this.clientID1DataGridViewTextBoxColumn.Name = "clientID1DataGridViewTextBoxColumn";
             this.clientID1DataGridViewTextBoxColumn.Visible = false;
-            this.clientID1DataGridViewTextBoxColumn.Width = 108;
             // 
             // jobRequestID
             // 
@@ -591,7 +580,6 @@
             this.jobRequestID.Name = "jobRequestID";
             this.jobRequestID.ReadOnly = true;
             this.jobRequestID.Visible = false;
-            this.jobRequestID.Width = 144;
             // 
             // dataTable2BindingSource
             // 
@@ -694,7 +682,7 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(17, 814);
+            this.label19.Location = new System.Drawing.Point(474, 882);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(164, 22);
             this.label19.TabIndex = 42;
@@ -704,7 +692,7 @@
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(14, 779);
+            this.label18.Location = new System.Drawing.Point(471, 847);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(102, 22);
             this.label18.TabIndex = 41;
@@ -712,7 +700,7 @@
             // 
             // txtTotalwithVAT
             // 
-            this.txtTotalwithVAT.Location = new System.Drawing.Point(447, 810);
+            this.txtTotalwithVAT.Location = new System.Drawing.Point(904, 878);
             this.txtTotalwithVAT.Name = "txtTotalwithVAT";
             this.txtTotalwithVAT.ReadOnly = true;
             this.txtTotalwithVAT.Size = new System.Drawing.Size(288, 28);
@@ -720,7 +708,7 @@
             // 
             // txtVAT
             // 
-            this.txtVAT.Location = new System.Drawing.Point(448, 775);
+            this.txtVAT.Location = new System.Drawing.Point(905, 843);
             this.txtVAT.Name = "txtVAT";
             this.txtVAT.ReadOnly = true;
             this.txtVAT.Size = new System.Drawing.Size(286, 28);
@@ -737,7 +725,7 @@
             // 
             this.button9.BackColor = System.Drawing.Color.White;
             this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button9.Location = new System.Drawing.Point(915, 881);
+            this.button9.Location = new System.Drawing.Point(155, 836);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(244, 42);
             this.button9.TabIndex = 37;
@@ -759,25 +747,25 @@
             // 
             this.giantGroupLogo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.giantGroupLogo.BackColor = System.Drawing.Color.White;
+            this.giantGroupLogo.BackColor = System.Drawing.Color.SeaShell;
             this.giantGroupLogo.Image = ((System.Drawing.Image)(resources.GetObject("giantGroupLogo.Image")));
-            this.giantGroupLogo.Location = new System.Drawing.Point(827, 311);
+            this.giantGroupLogo.Location = new System.Drawing.Point(1228, 809);
             this.giantGroupLogo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.giantGroupLogo.Name = "giantGroupLogo";
-            this.giantGroupLogo.Size = new System.Drawing.Size(625, 495);
-            this.giantGroupLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.giantGroupLogo.Size = new System.Drawing.Size(322, 184);
+            this.giantGroupLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.giantGroupLogo.TabIndex = 35;
             this.giantGroupLogo.TabStop = false;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(13, 459);
+            this.label9.Location = new System.Drawing.Point(17, 45);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(712, 22);
+            this.label9.Size = new System.Drawing.Size(322, 66);
             this.label9.TabIndex = 33;
-            this.label9.Text = "Note to User: Double click the Job Type(s) to confirm its addition to this quote." +
-    "";
+            this.label9.Text = "Note to User: Double click the Job \r\nType(s) to confirm its addition to \r\nthis qu" +
+    "ote.";
             // 
             // label8
             // 
@@ -791,28 +779,28 @@
             // 
             // urgencyLevelTextBox
             // 
-            this.urgencyLevelTextBox.Location = new System.Drawing.Point(961, 276);
+            this.urgencyLevelTextBox.Location = new System.Drawing.Point(1210, 276);
             this.urgencyLevelTextBox.Name = "urgencyLevelTextBox";
             this.urgencyLevelTextBox.Size = new System.Drawing.Size(100, 28);
             this.urgencyLevelTextBox.TabIndex = 31;
             // 
             // latitudeTextBox
             // 
-            this.latitudeTextBox.Location = new System.Drawing.Point(564, 277);
+            this.latitudeTextBox.Location = new System.Drawing.Point(813, 277);
             this.latitudeTextBox.Name = "latitudeTextBox";
             this.latitudeTextBox.Size = new System.Drawing.Size(100, 28);
             this.latitudeTextBox.TabIndex = 29;
             // 
             // longitudeTextBox
             // 
-            this.longitudeTextBox.Location = new System.Drawing.Point(158, 278);
+            this.longitudeTextBox.Location = new System.Drawing.Point(407, 278);
             this.longitudeTextBox.Name = "longitudeTextBox";
             this.longitudeTextBox.Size = new System.Drawing.Size(100, 28);
             this.longitudeTextBox.TabIndex = 28;
             // 
             // jobRequestIDTextBox
             // 
-            this.jobRequestIDTextBox.Location = new System.Drawing.Point(448, 311);
+            this.jobRequestIDTextBox.Location = new System.Drawing.Point(902, 326);
             this.jobRequestIDTextBox.Name = "jobRequestIDTextBox";
             this.jobRequestIDTextBox.ReadOnly = true;
             this.jobRequestIDTextBox.Size = new System.Drawing.Size(287, 28);
@@ -829,11 +817,11 @@
             this.colUnitType,
             this.colQuantity,
             this.colTotal});
-            this.selectedJobsGridView.Location = new System.Drawing.Point(17, 623);
+            this.selectedJobsGridView.Location = new System.Drawing.Point(378, 10);
             this.selectedJobsGridView.Name = "selectedJobsGridView";
             this.selectedJobsGridView.RowHeadersWidth = 62;
             this.selectedJobsGridView.RowTemplate.Height = 28;
-            this.selectedJobsGridView.Size = new System.Drawing.Size(717, 110);
+            this.selectedJobsGridView.Size = new System.Drawing.Size(741, 139);
             this.selectedJobsGridView.TabIndex = 23;
             this.selectedJobsGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.selectedJobsGridView_CellValueChanged);
             this.selectedJobsGridView.CurrentCellDirtyStateChanged += new System.EventHandler(this.selectedJobsGridView_CurrentCellDirtyStateChanged);
@@ -890,47 +878,14 @@
             this.jobRate,
             this.rateDescription});
             this.jobTypeDataGridView.DataSource = this.jobTypeBindingSource;
-            this.jobTypeDataGridView.Location = new System.Drawing.Point(18, 482);
+            this.jobTypeDataGridView.Location = new System.Drawing.Point(378, 15);
             this.jobTypeDataGridView.Name = "jobTypeDataGridView";
             this.jobTypeDataGridView.ReadOnly = true;
             this.jobTypeDataGridView.RowHeadersWidth = 62;
             this.jobTypeDataGridView.RowTemplate.Height = 28;
-            this.jobTypeDataGridView.Size = new System.Drawing.Size(717, 113);
+            this.jobTypeDataGridView.Size = new System.Drawing.Size(741, 151);
             this.jobTypeDataGridView.TabIndex = 22;
             this.jobTypeDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.jobTypeDataGridView_CellDoubleClick);
-            // 
-            // jobTypeIDDataGridViewTextBoxColumn
-            // 
-            this.jobTypeIDDataGridViewTextBoxColumn.DataPropertyName = "jobTypeID";
-            this.jobTypeIDDataGridViewTextBoxColumn.HeaderText = "jobTypeID";
-            this.jobTypeIDDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.jobTypeIDDataGridViewTextBoxColumn.Name = "jobTypeIDDataGridViewTextBoxColumn";
-            this.jobTypeIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.jobTypeIDDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // jobTypeName
-            // 
-            this.jobTypeName.DataPropertyName = "jobTypeName";
-            this.jobTypeName.HeaderText = "Job Type";
-            this.jobTypeName.MinimumWidth = 8;
-            this.jobTypeName.Name = "jobTypeName";
-            this.jobTypeName.ReadOnly = true;
-            // 
-            // jobRate
-            // 
-            this.jobRate.DataPropertyName = "jobRate";
-            this.jobRate.HeaderText = "Job Rate";
-            this.jobRate.MinimumWidth = 8;
-            this.jobRate.Name = "jobRate";
-            this.jobRate.ReadOnly = true;
-            // 
-            // rateDescription
-            // 
-            this.rateDescription.DataPropertyName = "rateDescription";
-            this.rateDescription.HeaderText = "rateDescription";
-            this.rateDescription.MinimumWidth = 8;
-            this.rateDescription.Name = "rateDescription";
-            this.rateDescription.ReadOnly = true;
             // 
             // jobTypeBindingSource
             // 
@@ -940,7 +895,7 @@
             // button3
             // 
             this.button3.BackColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(602, 896);
+            this.button3.Location = new System.Drawing.Point(1059, 951);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(133, 42);
             this.button3.TabIndex = 21;
@@ -951,7 +906,7 @@
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(447, 896);
+            this.button2.Location = new System.Drawing.Point(904, 951);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(133, 42);
             this.button2.TabIndex = 20;
@@ -967,7 +922,7 @@
             "Not Sent",
             "Accepted",
             "Rejected"});
-            this.cboQuoteStatus.Location = new System.Drawing.Point(448, 847);
+            this.cboQuoteStatus.Location = new System.Drawing.Point(905, 915);
             this.cboQuoteStatus.Name = "cboQuoteStatus";
             this.cboQuoteStatus.Size = new System.Drawing.Size(287, 30);
             this.cboQuoteStatus.TabIndex = 17;
@@ -975,7 +930,7 @@
             // dateIssuedDateTimePicker
             // 
             this.dateIssuedDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateIssuedDateTimePicker.Location = new System.Drawing.Point(448, 343);
+            this.dateIssuedDateTimePicker.Location = new System.Drawing.Point(902, 358);
             this.dateIssuedDateTimePicker.Name = "dateIssuedDateTimePicker";
             this.dateIssuedDateTimePicker.Size = new System.Drawing.Size(287, 28);
             this.dateIssuedDateTimePicker.TabIndex = 6;
@@ -983,7 +938,7 @@
             // expiryDateDateTimePicker
             // 
             this.expiryDateDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.expiryDateDateTimePicker.Location = new System.Drawing.Point(448, 375);
+            this.expiryDateDateTimePicker.Location = new System.Drawing.Point(902, 390);
             this.expiryDateDateTimePicker.Name = "expiryDateDateTimePicker";
             this.expiryDateDateTimePicker.Size = new System.Drawing.Size(287, 28);
             this.expiryDateDateTimePicker.TabIndex = 8;
@@ -991,14 +946,14 @@
             // dateGeneratedDateTimePicker
             // 
             this.dateGeneratedDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateGeneratedDateTimePicker.Location = new System.Drawing.Point(448, 407);
+            this.dateGeneratedDateTimePicker.Location = new System.Drawing.Point(902, 422);
             this.dateGeneratedDateTimePicker.Name = "dateGeneratedDateTimePicker";
             this.dateGeneratedDateTimePicker.Size = new System.Drawing.Size(287, 28);
             this.dateGeneratedDateTimePicker.TabIndex = 10;
             // 
             // txtAmount
             // 
-            this.txtAmount.Location = new System.Drawing.Point(448, 741);
+            this.txtAmount.Location = new System.Drawing.Point(905, 809);
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.Size = new System.Drawing.Size(287, 28);
             this.txtAmount.TabIndex = 12;
@@ -1020,7 +975,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 31);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1562, 996);
+            this.tabPage2.Size = new System.Drawing.Size(1562, 1015);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "View All / Edit Quote";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1028,6 +983,7 @@
             // panel2
             // 
             this.panel2.AutoSize = true;
+            this.panel2.BackColor = System.Drawing.Color.SeaShell;
             this.panel2.Controls.Add(this.quoteDataGridView);
             this.panel2.Controls.Add(this.button11);
             this.panel2.Controls.Add(this.button10);
@@ -1043,7 +999,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1556, 990);
+            this.panel2.Size = new System.Drawing.Size(1556, 1009);
             this.panel2.TabIndex = 1;
             // 
             // quoteDataGridView
@@ -1490,13 +1446,68 @@
             // 
             this.dataTable3TableAdapter.ClearBeforeFill = true;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(label6);
+            this.groupBox2.Controls.Add(this.jobTypeDataGridView);
+            this.groupBox2.Location = new System.Drawing.Point(100, 456);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(1147, 172);
+            this.groupBox2.TabIndex = 53;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Job Types Requested by Client:";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.selectedJobsGridView);
+            this.groupBox3.Location = new System.Drawing.Point(100, 634);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(1147, 155);
+            this.groupBox3.TabIndex = 54;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Job Types Selected for this Quote:";
+            // 
+            // jobTypeIDDataGridViewTextBoxColumn
+            // 
+            this.jobTypeIDDataGridViewTextBoxColumn.DataPropertyName = "jobTypeID";
+            this.jobTypeIDDataGridViewTextBoxColumn.HeaderText = "jobTypeID";
+            this.jobTypeIDDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.jobTypeIDDataGridViewTextBoxColumn.Name = "jobTypeIDDataGridViewTextBoxColumn";
+            this.jobTypeIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.jobTypeIDDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // jobTypeName
+            // 
+            this.jobTypeName.DataPropertyName = "jobTypeName";
+            this.jobTypeName.HeaderText = "Job Type";
+            this.jobTypeName.MinimumWidth = 8;
+            this.jobTypeName.Name = "jobTypeName";
+            this.jobTypeName.ReadOnly = true;
+            // 
+            // jobRate
+            // 
+            this.jobRate.DataPropertyName = "jobRate";
+            this.jobRate.HeaderText = "Job Rate";
+            this.jobRate.MinimumWidth = 8;
+            this.jobRate.Name = "jobRate";
+            this.jobRate.ReadOnly = true;
+            // 
+            // rateDescription
+            // 
+            this.rateDescription.DataPropertyName = "rateDescription";
+            this.rateDescription.HeaderText = "RateDescription";
+            this.rateDescription.MinimumWidth = 8;
+            this.rateDescription.Name = "rateDescription";
+            this.rateDescription.ReadOnly = true;
+            // 
             // Quotation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1570, 1043);
+            this.ClientSize = new System.Drawing.Size(1570, 1050);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "Quotation";
@@ -1526,6 +1537,9 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.quoteBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.jobRequestBindingSource)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1633,14 +1647,16 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn QuoteAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn QuoteQuoteStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn QuoteFilePath;
-        private System.Windows.Forms.DataGridViewTextBoxColumn jobTypeIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn jobTypeName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn jobRate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn rateDescription;
         private System.Windows.Forms.DataGridViewTextBoxColumn colJobType;
         private System.Windows.Forms.DataGridViewTextBoxColumn colBaseRate;
         private System.Windows.Forms.DataGridViewTextBoxColumn colUnitType;
         private System.Windows.Forms.DataGridViewTextBoxColumn colQuantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTotal;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn jobTypeIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn jobTypeName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn jobRate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn rateDescription;
     }
 }
