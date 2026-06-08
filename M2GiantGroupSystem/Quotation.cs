@@ -372,6 +372,12 @@ namespace M2GiantGroupSystem
                 newRow.Cells["colTotal"].Value = lineTotal;   // Populates your working SUBTOTAL column
                 // 5. Update your bottom group text boxes immediately
                 RecalculateGrandTotalFromUI();
+
+
+                // 6. Cleanly remove the row from the top view once the quantity has been entered and the item is added to the quote details grid
+
+                System.Data.DataRowView currentRowView = (System.Data.DataRowView)jobTypeDataGridView.CurrentRow.DataBoundItem;
+                currentRowView.Delete();
             }
             else
             {
