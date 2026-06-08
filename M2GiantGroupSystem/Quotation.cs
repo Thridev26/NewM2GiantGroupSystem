@@ -25,6 +25,8 @@ namespace M2GiantGroupSystem
         {
             InitializeComponent();
             tabIndex = tab_index;
+            this.BackColor = Color.SeaShell; // Soft off-white background for a clean, professional appearance
+            tabControl1.BackColor = Color.SeaShell; // Ensure the tab control matches the overall form background
 
         }
 
