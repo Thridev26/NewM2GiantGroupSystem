@@ -39,6 +39,7 @@ namespace M2GiantGroupSystem
 
         private void client_MainForm_Load(object sender, EventArgs e)
         {
+          
             //view clients
 
             cboSearchColumn.Items.AddRange(new string[]
@@ -114,34 +115,25 @@ namespace M2GiantGroupSystem
 
             Font tabFont = new Font("Segoe UI", 10, FontStyle.Bold);
 
-            //Base colours (non-selected tabs)
             Color backColor = Color.Honeydew;
-
-
-            //Highlight ONLY selected tab
-            if (e.Index == tabControl1.SelectedIndex)
-            {
-                backColor = Color.LightGreen;
-                
-
-            }
-
-            // Text always forest green (or you can change for selected if needed)
             Color textColor = Color.Black;
 
-            // Fill background
+            if (e.Index == tabControl1.SelectedIndex)
+            {
+                backColor = Color.DarkGreen;
+                textColor = Color.White;
+            }
+
             using (Brush b = new SolidBrush(backColor))
             {
                 e.Graphics.FillRectangle(b, tabRect);
             }
 
-            //BORDER 
             using (Pen p = new Pen(Color.DarkGreen, 1))
             {
                 e.Graphics.DrawRectangle(p, tabRect);
             }
 
-            // Draw text
             TextRenderer.DrawText(
                 e.Graphics,
                 page.Text,
@@ -644,6 +636,42 @@ namespace M2GiantGroupSystem
         }
 
         private void tabPage3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+      
+
+        private void lbl_status_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbl_type_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbl_email_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbl_phone_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbl_surname_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbl_name_Click(object sender, EventArgs e)
         {
 
         }
