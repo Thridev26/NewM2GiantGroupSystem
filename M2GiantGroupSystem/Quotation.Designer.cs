@@ -47,7 +47,7 @@
             System.Windows.Forms.Label label12;
             System.Windows.Forms.Label label16;
             System.Windows.Forms.Label label13;
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Quotation));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -161,6 +161,8 @@
             this.quoteTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.QuoteTableAdapter();
             this.dataTable2TableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.DataTable2TableAdapter();
             this.dataTable3TableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.DataTable3TableAdapter();
+            this.btnRemoveJobType = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             filePathLabel = new System.Windows.Forms.Label();
             urgencyLevelLabel = new System.Windows.Forms.Label();
             latitudeLabel = new System.Windows.Forms.Label();
@@ -198,6 +200,7 @@
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.quoteBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.jobRequestBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // filePathLabel
@@ -406,6 +409,7 @@
             // 
             this.panel1.AutoSize = true;
             this.panel1.BackColor = System.Drawing.Color.SeaShell;
+            this.panel1.Controls.Add(this.btnRemoveJobType);
             this.panel1.Controls.Add(this.groupBox3);
             this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Controls.Add(this.dataGridView1);
@@ -511,8 +515,8 @@
             // colQuantity
             // 
             this.colQuantity.DataPropertyName = "Quantity";
-            dataGridViewCellStyle2.NullValue = "1";
-            this.colQuantity.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.NullValue = "1";
+            this.colQuantity.DefaultCellStyle = dataGridViewCellStyle1;
             this.colQuantity.HeaderText = "Quantity";
             this.colQuantity.MinimumWidth = 8;
             this.colQuantity.Name = "colQuantity";
@@ -851,7 +855,7 @@
             // 
             // txtTotalwithVAT
             // 
-            this.txtTotalwithVAT.Location = new System.Drawing.Point(904, 878);
+            this.txtTotalwithVAT.Location = new System.Drawing.Point(931, 874);
             this.txtTotalwithVAT.Name = "txtTotalwithVAT";
             this.txtTotalwithVAT.ReadOnly = true;
             this.txtTotalwithVAT.Size = new System.Drawing.Size(288, 28);
@@ -859,7 +863,7 @@
             // 
             // txtVAT
             // 
-            this.txtVAT.Location = new System.Drawing.Point(905, 843);
+            this.txtVAT.Location = new System.Drawing.Point(932, 839);
             this.txtVAT.Name = "txtVAT";
             this.txtVAT.ReadOnly = true;
             this.txtVAT.Size = new System.Drawing.Size(286, 28);
@@ -900,10 +904,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.giantGroupLogo.BackColor = System.Drawing.Color.SeaShell;
             this.giantGroupLogo.Image = ((System.Drawing.Image)(resources.GetObject("giantGroupLogo.Image")));
-            this.giantGroupLogo.Location = new System.Drawing.Point(1228, 809);
+            this.giantGroupLogo.Location = new System.Drawing.Point(1254, 312);
             this.giantGroupLogo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.giantGroupLogo.Name = "giantGroupLogo";
-            this.giantGroupLogo.Size = new System.Drawing.Size(322, 184);
+            this.giantGroupLogo.Size = new System.Drawing.Size(295, 184);
             this.giantGroupLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.giantGroupLogo.TabIndex = 35;
             this.giantGroupLogo.TabStop = false;
@@ -922,6 +926,7 @@
             // 
             this.urgencyLevelTextBox.Location = new System.Drawing.Point(1210, 276);
             this.urgencyLevelTextBox.Name = "urgencyLevelTextBox";
+            this.urgencyLevelTextBox.ReadOnly = true;
             this.urgencyLevelTextBox.Size = new System.Drawing.Size(158, 28);
             this.urgencyLevelTextBox.TabIndex = 31;
             // 
@@ -929,6 +934,7 @@
             // 
             this.latitudeTextBox.Location = new System.Drawing.Point(813, 277);
             this.latitudeTextBox.Name = "latitudeTextBox";
+            this.latitudeTextBox.ReadOnly = true;
             this.latitudeTextBox.Size = new System.Drawing.Size(157, 28);
             this.latitudeTextBox.TabIndex = 29;
             // 
@@ -936,12 +942,13 @@
             // 
             this.longitudeTextBox.Location = new System.Drawing.Point(407, 278);
             this.longitudeTextBox.Name = "longitudeTextBox";
+            this.longitudeTextBox.ReadOnly = true;
             this.longitudeTextBox.Size = new System.Drawing.Size(163, 28);
             this.longitudeTextBox.TabIndex = 28;
             // 
             // jobRequestIDTextBox
             // 
-            this.jobRequestIDTextBox.Location = new System.Drawing.Point(902, 326);
+            this.jobRequestIDTextBox.Location = new System.Drawing.Point(960, 330);
             this.jobRequestIDTextBox.Name = "jobRequestIDTextBox";
             this.jobRequestIDTextBox.ReadOnly = true;
             this.jobRequestIDTextBox.Size = new System.Drawing.Size(287, 28);
@@ -951,7 +958,7 @@
             // 
             this.button3.BackColor = System.Drawing.Color.White;
             this.button3.Enabled = false;
-            this.button3.Location = new System.Drawing.Point(1059, 951);
+            this.button3.Location = new System.Drawing.Point(1086, 947);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(133, 42);
             this.button3.TabIndex = 21;
@@ -962,7 +969,7 @@
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(904, 951);
+            this.button2.Location = new System.Drawing.Point(931, 947);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(133, 42);
             this.button2.TabIndex = 20;
@@ -975,10 +982,8 @@
             this.cboQuoteStatus.FormattingEnabled = true;
             this.cboQuoteStatus.Items.AddRange(new object[] {
             "Sent",
-            "Not Sent",
-            "Accepted",
-            "Rejected"});
-            this.cboQuoteStatus.Location = new System.Drawing.Point(905, 915);
+            "Not Sent"});
+            this.cboQuoteStatus.Location = new System.Drawing.Point(932, 911);
             this.cboQuoteStatus.Name = "cboQuoteStatus";
             this.cboQuoteStatus.Size = new System.Drawing.Size(287, 30);
             this.cboQuoteStatus.TabIndex = 17;
@@ -986,7 +991,7 @@
             // dateIssuedDateTimePicker
             // 
             this.dateIssuedDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateIssuedDateTimePicker.Location = new System.Drawing.Point(902, 358);
+            this.dateIssuedDateTimePicker.Location = new System.Drawing.Point(960, 362);
             this.dateIssuedDateTimePicker.Name = "dateIssuedDateTimePicker";
             this.dateIssuedDateTimePicker.Size = new System.Drawing.Size(287, 28);
             this.dateIssuedDateTimePicker.TabIndex = 6;
@@ -994,7 +999,7 @@
             // expiryDateDateTimePicker
             // 
             this.expiryDateDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.expiryDateDateTimePicker.Location = new System.Drawing.Point(902, 390);
+            this.expiryDateDateTimePicker.Location = new System.Drawing.Point(960, 394);
             this.expiryDateDateTimePicker.Name = "expiryDateDateTimePicker";
             this.expiryDateDateTimePicker.Size = new System.Drawing.Size(287, 28);
             this.expiryDateDateTimePicker.TabIndex = 8;
@@ -1002,15 +1007,16 @@
             // dateGeneratedDateTimePicker
             // 
             this.dateGeneratedDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateGeneratedDateTimePicker.Location = new System.Drawing.Point(902, 422);
+            this.dateGeneratedDateTimePicker.Location = new System.Drawing.Point(960, 426);
             this.dateGeneratedDateTimePicker.Name = "dateGeneratedDateTimePicker";
             this.dateGeneratedDateTimePicker.Size = new System.Drawing.Size(287, 28);
             this.dateGeneratedDateTimePicker.TabIndex = 10;
             // 
             // txtAmount
             // 
-            this.txtAmount.Location = new System.Drawing.Point(905, 809);
+            this.txtAmount.Location = new System.Drawing.Point(932, 805);
             this.txtAmount.Name = "txtAmount";
+            this.txtAmount.ReadOnly = true;
             this.txtAmount.Size = new System.Drawing.Size(287, 28);
             this.txtAmount.TabIndex = 12;
             // 
@@ -1040,6 +1046,7 @@
             // 
             this.panel2.AutoSize = true;
             this.panel2.BackColor = System.Drawing.Color.SeaShell;
+            this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Controls.Add(this.quoteDataGridView);
             this.panel2.Controls.Add(this.button11);
             this.panel2.Controls.Add(this.button10);
@@ -1077,11 +1084,11 @@
             this.QuoteQuoteStatus,
             this.QuoteFilePath});
             this.quoteDataGridView.DataSource = this.dataTable3BindingSource;
-            this.quoteDataGridView.Location = new System.Drawing.Point(250, 125);
+            this.quoteDataGridView.Location = new System.Drawing.Point(39, 126);
             this.quoteDataGridView.Name = "quoteDataGridView";
             this.quoteDataGridView.RowHeadersWidth = 62;
             this.quoteDataGridView.RowTemplate.Height = 28;
-            this.quoteDataGridView.Size = new System.Drawing.Size(1089, 150);
+            this.quoteDataGridView.Size = new System.Drawing.Size(1456, 150);
             this.quoteDataGridView.TabIndex = 53;
             // 
             // clientNameDataGridViewTextBoxColumn
@@ -1502,6 +1509,29 @@
             // 
             this.dataTable3TableAdapter.ClearBeforeFill = true;
             // 
+            // btnRemoveJobType
+            // 
+            this.btnRemoveJobType.BackColor = System.Drawing.Color.White;
+            this.btnRemoveJobType.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemoveJobType.Location = new System.Drawing.Point(1254, 716);
+            this.btnRemoveJobType.Name = "btnRemoveJobType";
+            this.btnRemoveJobType.Size = new System.Drawing.Size(244, 73);
+            this.btnRemoveJobType.TabIndex = 55;
+            this.btnRemoveJobType.Text = "Remove Selected Job Type";
+            this.btnRemoveJobType.UseVisualStyleBackColor = false;
+            this.btnRemoveJobType.Click += new System.EventHandler(this.btnRemoveJobType_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.SeaShell;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(1333, 11);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(218, 109);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 54;
+            this.pictureBox1.TabStop = false;
+            // 
             // Quotation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
@@ -1541,6 +1571,7 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.quoteBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.jobRequestBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1659,5 +1690,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn jobTypeName;
         private System.Windows.Forms.DataGridViewTextBoxColumn jobRate;
         private System.Windows.Forms.DataGridViewTextBoxColumn rateDescription;
+        private System.Windows.Forms.Button btnRemoveJobType;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

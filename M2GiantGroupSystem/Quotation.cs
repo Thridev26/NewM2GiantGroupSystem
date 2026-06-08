@@ -1,4 +1,5 @@
-﻿using iTextSharp.text;
+﻿using iText.Layout.Properties.Grid;
+using iTextSharp.text;
 using iTextSharp.text.pdf;
 using Microsoft.VisualBasic;
 using System;
@@ -1391,6 +1392,95 @@ namespace M2GiantGroupSystem
         private void button7_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnRemoveJobType_Click(object sender, EventArgs e)
+        {
+            // 1. Safety Check: Ensure a row is actually highlighted in the bottom grid
+            if (selectedJobsGridView.CurrentRow == null || selectedJobsGridView.CurrentRow.IsNewRow)
+            {
+                MessageBox.Show("Please select a specific job type row from the lower selection table to remove.",
+                                "No Line Item Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // 2. Safely declare the current selected row
+            DataGridViewRow gridRow = selectedJobsGridView.CurrentRow;
+
+            // 3. HARD BUSINESS RULE: Intercept and block deletion of the Travel Care Fee
+            string jobTypeName = gridRow.Cells["colJobType"].Value?.ToString() ?? "";
+
+            if (jobTypeName.Equals("Travel Cost Fee", StringComparison.OrdinalIgnoreCase) ||
+                jobTypeName.Contains("Travel"))
+            {
+                MessageBox.Show("The Travel Cost Fee cannot be removed.\n\n" +
+                                "The travel logistic charge is automatically computed by the system based on site coordinates.",
+                                "You may not delete the Travel Cost",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Hand);
+                return; // Hard stop! Prevents the rest of the deletion logic from executing.
+            }
+
+            // 4. Extract and parse the active Job Request ID from your textbox control
+            int clickedID = 0;
+            if (jobRequestIDTextBox != null && !string.IsNullOrWhiteSpace(jobRequestIDTextBox.Text))
+            {
+                int.TryParse(jobRequestIDTextBox.Text, out clickedID);
+            }
+
+            // 5. Execute Front-End Deletion and Sync
+            try
+            {
+                // Remove the row directly from the DataGridView's visual collection
+                selectedJobsGridView.Rows.Remove(gridRow);
+
+                // Recalculate your summary textboxes instantly based on remaining items
+                RecalculateGrandTotalFromUI();
+
+                // Re-fetch the original full request pool for this client to populate the top grid
+                if (this.groupWst1DataSet != null && clickedID > 0)
+                {
+                    this.jobTypeTableAdapter.FillByID(this.groupWst1DataSet.JobType, clickedID);
+
+                    // Cross-reference loops: Hide anything in the top grid that is still selected in the bottom grid
+                    foreach (DataGridViewRow bottomRow in selectedJobsGridView.Rows)
+                    {
+                        if (bottomRow.IsNewRow) continue;
+
+                        // Grab the name from the bottom table line item
+                        string selectedJobName = bottomRow.Cells["colJobType"].Value?.ToString();
+
+                        foreach (DataGridViewRow topRow in jobTypeDataGridView.Rows)
+                        {
+                            if (topRow.IsNewRow) continue;
+
+                            // Standardize this to match your design-time column name ("colJobType")
+                            string availableJobName = topRow.Cells["jobTypeName"].Value?.ToString();
+
+                            if (availableJobName == selectedJobName)
+                            {
+                                // Safely suspend binding state to hide the row layout without breaking dataset bindings
+                                CurrencyManager currencyManager = (CurrencyManager)BindingContext[jobTypeDataGridView.DataSource];
+                                currencyManager.SuspendBinding();
+                                topRow.Visible = false;
+                                currencyManager.ResumeBinding();
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                selectedJobsGridView.Refresh();
+            }
+            catch (InvalidOperationException)
+            {
+                // Fallback index-based handling if WinForms processing locks the collection
+                if (selectedJobsGridView.CurrentRow != null)
+                {
+                    selectedJobsGridView.Rows.RemoveAt(selectedJobsGridView.CurrentRow.Index);
+                    RecalculateGrandTotalFromUI();
+                }
+            }
         }
     }
 }
