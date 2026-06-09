@@ -20,8 +20,20 @@ namespace M2GiantGroupSystem
         {
             InitializeComponent();
             tabIndex = tab_index;
+            ApplyPermissions();
         }
 
+        private void ApplyPermissions()
+        {
+            // Example: Only allow Manager (6) or Admin (5) to see the 'Add Staff' button
+            bool canAdd = UserSession.AccessLevel >= 5;
+            btnAddStaff.Visible = canAdd;
+
+            // Example: Disable editing for lower levels
+            bool canEdit = UserSession.AccessLevel >= 6;
+            //txtFirstName.Enabled = canEdit;
+            // ... repeat for other fields
+        }
         private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)
         {
             TabPage page = tabControl1.TabPages[e.Index];
