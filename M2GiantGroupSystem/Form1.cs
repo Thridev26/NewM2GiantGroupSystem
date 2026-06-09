@@ -120,8 +120,8 @@ namespace M2GiantGroupSystem
         private void addEditAssetRecordsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MachineRecords_D asset = new MachineRecords_D();
-            asset.ShowDialog();
-            // FormSetup(asset);
+           // asset.ShowDialog();
+            FormSetup(asset);
         }
 
         private void viewAllAllocationsToolStripMenuItem_Click(object sender, EventArgs e)
