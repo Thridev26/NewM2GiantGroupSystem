@@ -427,3 +427,4 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+/Crystal Reports Backup Files/M2GiantGroupSystem.csproj
