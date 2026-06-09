@@ -48,7 +48,6 @@
             System.Windows.Forms.Label label16;
             System.Windows.Forms.Label label13;
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Quotation));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -129,7 +128,7 @@
             this.QuoteQuoteStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QuoteFilePath = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataTable3BindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.button11 = new System.Windows.Forms.Button();
+            this.btnDeleteQuote = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.btnExportPDF = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
@@ -150,7 +149,7 @@
             this.dtpEditIssued = new System.Windows.Forms.DateTimePicker();
             this.txtEditFilePath = new System.Windows.Forms.TextBox();
             this.txtEditJobRequestID = new System.Windows.Forms.TextBox();
-            this.button5 = new System.Windows.Forms.Button();
+            this.btnEditQuote = new System.Windows.Forms.Button();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -461,8 +460,9 @@
             // 
             // btnRemoveJobType
             // 
-            this.btnRemoveJobType.BackColor = System.Drawing.Color.White;
+            this.btnRemoveJobType.BackColor = System.Drawing.Color.DarkGreen;
             this.btnRemoveJobType.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemoveJobType.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnRemoveJobType.Location = new System.Drawing.Point(1254, 716);
             this.btnRemoveJobType.Name = "btnRemoveJobType";
             this.btnRemoveJobType.Size = new System.Drawing.Size(244, 73);
@@ -492,6 +492,7 @@
             this.colUnitType,
             this.colQuantity,
             this.colTotal});
+            this.selectedJobsGridView.GridColor = System.Drawing.Color.DarkGreen;
             this.selectedJobsGridView.Location = new System.Drawing.Point(378, 10);
             this.selectedJobsGridView.Name = "selectedJobsGridView";
             this.selectedJobsGridView.RowHeadersWidth = 62;
@@ -575,6 +576,7 @@
             this.jobRate,
             this.rateDescription});
             this.jobTypeDataGridView.DataSource = this.jobTypeBindingSource;
+            this.jobTypeDataGridView.GridColor = System.Drawing.Color.DarkGreen;
             this.jobTypeDataGridView.Location = new System.Drawing.Point(378, 15);
             this.jobTypeDataGridView.Name = "jobTypeDataGridView";
             this.jobTypeDataGridView.ReadOnly = true;
@@ -648,6 +650,7 @@
             this.clientID1DataGridViewTextBoxColumn,
             this.jobRequestID});
             this.dataGridView1.DataSource = this.dataTable2BindingSource;
+            this.dataGridView1.GridColor = System.Drawing.Color.DarkGreen;
             this.dataGridView1.Location = new System.Drawing.Point(7, 120);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 62;
@@ -779,6 +782,7 @@
             // 
             // dtpSearchDate
             // 
+            this.dtpSearchDate.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.dtpSearchDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpSearchDate.Location = new System.Drawing.Point(1110, 41);
             this.dtpSearchDate.Name = "dtpSearchDate";
@@ -808,6 +812,7 @@
             // 
             // txtSearchRequests
             // 
+            this.txtSearchRequests.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.txtSearchRequests.Location = new System.Drawing.Point(813, 41);
             this.txtSearchRequests.Name = "txtSearchRequests";
             this.txtSearchRequests.Size = new System.Drawing.Size(272, 28);
@@ -817,6 +822,7 @@
             // 
             // cmbSearchColumn
             // 
+            this.cmbSearchColumn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.cmbSearchColumn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSearchColumn.FormattingEnabled = true;
             this.cmbSearchColumn.Items.AddRange(new object[] {
@@ -867,6 +873,7 @@
             // 
             // txtTotalwithVAT
             // 
+            this.txtTotalwithVAT.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.txtTotalwithVAT.Location = new System.Drawing.Point(931, 874);
             this.txtTotalwithVAT.Name = "txtTotalwithVAT";
             this.txtTotalwithVAT.ReadOnly = true;
@@ -875,6 +882,7 @@
             // 
             // txtVAT
             // 
+            this.txtVAT.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.txtVAT.Location = new System.Drawing.Point(932, 839);
             this.txtVAT.Name = "txtVAT";
             this.txtVAT.ReadOnly = true;
@@ -915,11 +923,11 @@
             this.giantGroupLogo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.giantGroupLogo.BackColor = System.Drawing.Color.SeaShell;
-            this.giantGroupLogo.Image = ((System.Drawing.Image)(resources.GetObject("giantGroupLogo.Image")));
-            this.giantGroupLogo.Location = new System.Drawing.Point(1254, 312);
+            this.giantGroupLogo.Image = global::M2GiantGroupSystem.Properties.Resources.logo__bg_removed__EDITED;
+            this.giantGroupLogo.Location = new System.Drawing.Point(1351, 11);
             this.giantGroupLogo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.giantGroupLogo.Name = "giantGroupLogo";
-            this.giantGroupLogo.Size = new System.Drawing.Size(295, 184);
+            this.giantGroupLogo.Size = new System.Drawing.Size(199, 102);
             this.giantGroupLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.giantGroupLogo.TabIndex = 35;
             this.giantGroupLogo.TabStop = false;
@@ -936,6 +944,7 @@
             // 
             // urgencyLevelTextBox
             // 
+            this.urgencyLevelTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.urgencyLevelTextBox.Location = new System.Drawing.Point(1210, 276);
             this.urgencyLevelTextBox.Name = "urgencyLevelTextBox";
             this.urgencyLevelTextBox.ReadOnly = true;
@@ -944,6 +953,7 @@
             // 
             // latitudeTextBox
             // 
+            this.latitudeTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.latitudeTextBox.Location = new System.Drawing.Point(813, 277);
             this.latitudeTextBox.Name = "latitudeTextBox";
             this.latitudeTextBox.ReadOnly = true;
@@ -952,6 +962,7 @@
             // 
             // longitudeTextBox
             // 
+            this.longitudeTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.longitudeTextBox.Location = new System.Drawing.Point(407, 278);
             this.longitudeTextBox.Name = "longitudeTextBox";
             this.longitudeTextBox.ReadOnly = true;
@@ -960,6 +971,7 @@
             // 
             // jobRequestIDTextBox
             // 
+            this.jobRequestIDTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.jobRequestIDTextBox.Location = new System.Drawing.Point(960, 330);
             this.jobRequestIDTextBox.Name = "jobRequestIDTextBox";
             this.jobRequestIDTextBox.ReadOnly = true;
@@ -968,8 +980,9 @@
             // 
             // button3
             // 
-            this.button3.BackColor = System.Drawing.Color.White;
+            this.button3.BackColor = System.Drawing.Color.DarkGreen;
             this.button3.Enabled = false;
+            this.button3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button3.Location = new System.Drawing.Point(1086, 947);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(133, 42);
@@ -980,7 +993,8 @@
             // 
             // button2
             // 
-            this.button2.BackColor = System.Drawing.Color.White;
+            this.button2.BackColor = System.Drawing.Color.DarkGreen;
+            this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button2.Location = new System.Drawing.Point(931, 947);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(133, 42);
@@ -991,6 +1005,7 @@
             // 
             // cboQuoteStatus
             // 
+            this.cboQuoteStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.cboQuoteStatus.FormattingEnabled = true;
             this.cboQuoteStatus.Items.AddRange(new object[] {
             "Sent",
@@ -1002,6 +1017,7 @@
             // 
             // dateIssuedDateTimePicker
             // 
+            this.dateIssuedDateTimePicker.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.dateIssuedDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateIssuedDateTimePicker.Location = new System.Drawing.Point(960, 362);
             this.dateIssuedDateTimePicker.Name = "dateIssuedDateTimePicker";
@@ -1010,6 +1026,7 @@
             // 
             // expiryDateDateTimePicker
             // 
+            this.expiryDateDateTimePicker.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.expiryDateDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.expiryDateDateTimePicker.Location = new System.Drawing.Point(960, 394);
             this.expiryDateDateTimePicker.Name = "expiryDateDateTimePicker";
@@ -1018,6 +1035,7 @@
             // 
             // dateGeneratedDateTimePicker
             // 
+            this.dateGeneratedDateTimePicker.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.dateGeneratedDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateGeneratedDateTimePicker.Location = new System.Drawing.Point(960, 426);
             this.dateGeneratedDateTimePicker.Name = "dateGeneratedDateTimePicker";
@@ -1026,6 +1044,7 @@
             // 
             // txtAmount
             // 
+            this.txtAmount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.txtAmount.Location = new System.Drawing.Point(932, 805);
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.ReadOnly = true;
@@ -1060,12 +1079,12 @@
             this.panel2.BackColor = System.Drawing.Color.SeaShell;
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Controls.Add(this.quoteDataGridView);
-            this.panel2.Controls.Add(this.button11);
+            this.panel2.Controls.Add(this.btnDeleteQuote);
             this.panel2.Controls.Add(this.button10);
             this.panel2.Controls.Add(this.btnExportPDF);
             this.panel2.Controls.Add(this.button7);
             this.panel2.Controls.Add(this.groupBox1);
-            this.panel2.Controls.Add(this.button5);
+            this.panel2.Controls.Add(this.btnEditQuote);
             this.panel2.Controls.Add(this.comboBox2);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.textBox3);
@@ -1080,10 +1099,10 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.SeaShell;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(1333, 11);
+            this.pictureBox1.Image = global::M2GiantGroupSystem.Properties.Resources.logo__bg_removed__EDITED;
+            this.pictureBox1.Location = new System.Drawing.Point(1352, 11);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(218, 109);
+            this.pictureBox1.Size = new System.Drawing.Size(199, 102);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 54;
             this.pictureBox1.TabStop = false;
@@ -1091,7 +1110,7 @@
             // quoteDataGridView
             // 
             this.quoteDataGridView.AutoGenerateColumns = false;
-            this.quoteDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.quoteDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.quoteDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.quoteDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.quoteDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -1107,6 +1126,7 @@
             this.QuoteQuoteStatus,
             this.QuoteFilePath});
             this.quoteDataGridView.DataSource = this.dataTable3BindingSource;
+            this.quoteDataGridView.GridColor = System.Drawing.Color.DarkGreen;
             this.quoteDataGridView.Location = new System.Drawing.Point(39, 126);
             this.quoteDataGridView.Name = "quoteDataGridView";
             this.quoteDataGridView.RowHeadersWidth = 62;
@@ -1120,7 +1140,6 @@
             this.clientNameDataGridViewTextBoxColumn.HeaderText = "Name";
             this.clientNameDataGridViewTextBoxColumn.MinimumWidth = 8;
             this.clientNameDataGridViewTextBoxColumn.Name = "clientNameDataGridViewTextBoxColumn";
-            this.clientNameDataGridViewTextBoxColumn.Width = 97;
             // 
             // clientSurnameDataGridViewTextBoxColumn
             // 
@@ -1128,7 +1147,6 @@
             this.clientSurnameDataGridViewTextBoxColumn.HeaderText = "Surname";
             this.clientSurnameDataGridViewTextBoxColumn.MinimumWidth = 8;
             this.clientSurnameDataGridViewTextBoxColumn.Name = "clientSurnameDataGridViewTextBoxColumn";
-            this.clientSurnameDataGridViewTextBoxColumn.Width = 125;
             // 
             // clientIDDataGridViewTextBoxColumn1
             // 
@@ -1138,7 +1156,6 @@
             this.clientIDDataGridViewTextBoxColumn1.Name = "clientIDDataGridViewTextBoxColumn1";
             this.clientIDDataGridViewTextBoxColumn1.ReadOnly = true;
             this.clientIDDataGridViewTextBoxColumn1.Visible = false;
-            this.clientIDDataGridViewTextBoxColumn1.Width = 113;
             // 
             // QuoteJobRequestID
             // 
@@ -1148,7 +1165,6 @@
             this.QuoteJobRequestID.Name = "QuoteJobRequestID";
             this.QuoteJobRequestID.ReadOnly = true;
             this.QuoteJobRequestID.Visible = false;
-            this.QuoteJobRequestID.Width = 171;
             // 
             // QuoteID_T
             // 
@@ -1158,7 +1174,6 @@
             this.QuoteID_T.Name = "QuoteID_T";
             this.QuoteID_T.ReadOnly = true;
             this.QuoteID_T.Visible = false;
-            this.QuoteID_T.Width = 119;
             // 
             // dateIssued
             // 
@@ -1166,7 +1181,6 @@
             this.dateIssued.HeaderText = "DateIssued";
             this.dateIssued.MinimumWidth = 8;
             this.dateIssued.Name = "dateIssued";
-            this.dateIssued.Width = 146;
             // 
             // expiryDate
             // 
@@ -1174,7 +1188,6 @@
             this.expiryDate.HeaderText = "ExpiryDate";
             this.expiryDate.MinimumWidth = 8;
             this.expiryDate.Name = "expiryDate";
-            this.expiryDate.Width = 144;
             // 
             // dateGenerated
             // 
@@ -1182,7 +1195,6 @@
             this.dateGenerated.HeaderText = "DateGenerated";
             this.dateGenerated.MinimumWidth = 8;
             this.dateGenerated.Name = "dateGenerated";
-            this.dateGenerated.Width = 182;
             // 
             // QuoteAmount
             // 
@@ -1190,7 +1202,6 @@
             this.QuoteAmount.HeaderText = "Amount";
             this.QuoteAmount.MinimumWidth = 8;
             this.QuoteAmount.Name = "QuoteAmount";
-            this.QuoteAmount.Width = 113;
             // 
             // QuoteQuoteStatus
             // 
@@ -1198,7 +1209,6 @@
             this.QuoteQuoteStatus.HeaderText = "Status";
             this.QuoteQuoteStatus.MinimumWidth = 8;
             this.QuoteQuoteStatus.Name = "QuoteQuoteStatus";
-            this.QuoteQuoteStatus.Width = 103;
             // 
             // QuoteFilePath
             // 
@@ -1206,28 +1216,29 @@
             this.QuoteFilePath.HeaderText = "filePath";
             this.QuoteFilePath.MinimumWidth = 8;
             this.QuoteFilePath.Name = "QuoteFilePath";
-            this.QuoteFilePath.Width = 114;
             // 
             // dataTable3BindingSource
             // 
             this.dataTable3BindingSource.DataMember = "DataTable3";
             this.dataTable3BindingSource.DataSource = this.groupWst1DataSet;
             // 
-            // button11
+            // btnDeleteQuote
             // 
-            this.button11.BackColor = System.Drawing.Color.White;
-            this.button11.Location = new System.Drawing.Point(1079, 334);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(238, 42);
-            this.button11.TabIndex = 52;
-            this.button11.Text = "Delete Quote";
-            this.button11.UseVisualStyleBackColor = false;
-            this.button11.Click += new System.EventHandler(this.button11_Click);
+            this.btnDeleteQuote.BackColor = System.Drawing.Color.DarkGreen;
+            this.btnDeleteQuote.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnDeleteQuote.Location = new System.Drawing.Point(1079, 334);
+            this.btnDeleteQuote.Name = "btnDeleteQuote";
+            this.btnDeleteQuote.Size = new System.Drawing.Size(238, 42);
+            this.btnDeleteQuote.TabIndex = 52;
+            this.btnDeleteQuote.Text = "Delete Quote";
+            this.btnDeleteQuote.UseVisualStyleBackColor = false;
+            this.btnDeleteQuote.Click += new System.EventHandler(this.button11_Click);
             // 
             // button10
             // 
-            this.button10.BackColor = System.Drawing.Color.White;
-            this.button10.Location = new System.Drawing.Point(803, 334);
+            this.button10.BackColor = System.Drawing.Color.DarkGreen;
+            this.button10.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button10.Location = new System.Drawing.Point(826, 334);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(238, 42);
             this.button10.TabIndex = 51;
@@ -1237,10 +1248,11 @@
             // 
             // btnExportPDF
             // 
-            this.btnExportPDF.BackColor = System.Drawing.Color.White;
-            this.btnExportPDF.Location = new System.Drawing.Point(526, 334);
+            this.btnExportPDF.BackColor = System.Drawing.Color.DarkGreen;
+            this.btnExportPDF.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnExportPDF.Location = new System.Drawing.Point(506, 334);
             this.btnExportPDF.Name = "btnExportPDF";
-            this.btnExportPDF.Size = new System.Drawing.Size(238, 42);
+            this.btnExportPDF.Size = new System.Drawing.Size(301, 42);
             this.btnExportPDF.TabIndex = 50;
             this.btnExportPDF.Text = "Generate and Export as PDF";
             this.btnExportPDF.UseVisualStyleBackColor = false;
@@ -1292,6 +1304,7 @@
             // 
             // dtpEditGenerated
             // 
+            this.dtpEditGenerated.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.dtpEditGenerated.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpEditGenerated.Location = new System.Drawing.Point(632, 151);
             this.dtpEditGenerated.Name = "dtpEditGenerated";
@@ -1300,6 +1313,7 @@
             // 
             // dtpEditExpiry
             // 
+            this.dtpEditExpiry.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.dtpEditExpiry.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpEditExpiry.Location = new System.Drawing.Point(631, 117);
             this.dtpEditExpiry.Name = "dtpEditExpiry";
@@ -1328,6 +1342,7 @@
             // 
             // textBox4
             // 
+            this.textBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.textBox4.Location = new System.Drawing.Point(632, 219);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
@@ -1346,6 +1361,7 @@
             // 
             // txtEditAmount
             // 
+            this.txtEditAmount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.txtEditAmount.Location = new System.Drawing.Point(631, 185);
             this.txtEditAmount.Name = "txtEditAmount";
             this.txtEditAmount.Size = new System.Drawing.Size(287, 28);
@@ -1364,6 +1380,7 @@
             // 
             // textBox2
             // 
+            this.textBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.textBox2.Location = new System.Drawing.Point(631, 255);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
@@ -1372,7 +1389,8 @@
             // 
             // button6
             // 
-            this.button6.BackColor = System.Drawing.Color.White;
+            this.button6.BackColor = System.Drawing.Color.DarkGreen;
+            this.button6.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button6.Location = new System.Drawing.Point(708, 375);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(211, 42);
@@ -1383,6 +1401,7 @@
             // 
             // txtEditQuoteID
             // 
+            this.txtEditQuoteID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.txtEditQuoteID.Location = new System.Drawing.Point(632, 45);
             this.txtEditQuoteID.Name = "txtEditQuoteID";
             this.txtEditQuoteID.ReadOnly = true;
@@ -1391,7 +1410,8 @@
             // 
             // button4
             // 
-            this.button4.BackColor = System.Drawing.Color.White;
+            this.button4.BackColor = System.Drawing.Color.DarkGreen;
+            this.button4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button4.Location = new System.Drawing.Point(785, 326);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(133, 46);
@@ -1402,6 +1422,7 @@
             // 
             // cmbEditStatus
             // 
+            this.cmbEditStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.cmbEditStatus.FormattingEnabled = true;
             this.cmbEditStatus.Items.AddRange(new object[] {
             "Sent",
@@ -1415,6 +1436,7 @@
             // 
             // dtpEditIssued
             // 
+            this.dtpEditIssued.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.dtpEditIssued.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpEditIssued.Location = new System.Drawing.Point(632, 79);
             this.dtpEditIssued.Name = "dtpEditIssued";
@@ -1423,6 +1445,7 @@
             // 
             // txtEditFilePath
             // 
+            this.txtEditFilePath.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.txtEditFilePath.Location = new System.Drawing.Point(310, 331);
             this.txtEditFilePath.Name = "txtEditFilePath";
             this.txtEditFilePath.Size = new System.Drawing.Size(469, 28);
@@ -1430,25 +1453,28 @@
             // 
             // txtEditJobRequestID
             // 
+            this.txtEditJobRequestID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.txtEditJobRequestID.Location = new System.Drawing.Point(632, 13);
             this.txtEditJobRequestID.Name = "txtEditJobRequestID";
             this.txtEditJobRequestID.ReadOnly = true;
             this.txtEditJobRequestID.Size = new System.Drawing.Size(287, 28);
             this.txtEditJobRequestID.TabIndex = 39;
             // 
-            // button5
+            // btnEditQuote
             // 
-            this.button5.BackColor = System.Drawing.Color.White;
-            this.button5.Location = new System.Drawing.Point(249, 334);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(238, 42);
-            this.button5.TabIndex = 26;
-            this.button5.Text = "Edit Quote Details";
-            this.button5.UseVisualStyleBackColor = false;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.btnEditQuote.BackColor = System.Drawing.Color.DarkGreen;
+            this.btnEditQuote.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnEditQuote.Location = new System.Drawing.Point(249, 334);
+            this.btnEditQuote.Name = "btnEditQuote";
+            this.btnEditQuote.Size = new System.Drawing.Size(238, 42);
+            this.btnEditQuote.TabIndex = 26;
+            this.btnEditQuote.Text = "Edit Quote Details";
+            this.btnEditQuote.UseVisualStyleBackColor = false;
+            this.btnEditQuote.Click += new System.EventHandler(this.button5_Click);
             // 
             // comboBox2
             // 
+            this.comboBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Items.AddRange(new object[] {
             "No Filter",
@@ -1475,6 +1501,7 @@
             // 
             // textBox3
             // 
+            this.textBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.textBox3.Location = new System.Drawing.Point(1197, 392);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(120, 28);
@@ -1615,7 +1642,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button btnDeleteQuote;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button btnExportPDF;
         private System.Windows.Forms.Button button7;
@@ -1636,7 +1663,7 @@
         private System.Windows.Forms.DateTimePicker dtpEditIssued;
         private System.Windows.Forms.TextBox txtEditFilePath;
         private System.Windows.Forms.TextBox txtEditJobRequestID;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btnEditQuote;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox3;

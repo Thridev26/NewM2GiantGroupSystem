@@ -45,6 +45,15 @@ namespace M2GiantGroupSystem
             AppState.selectedIdCalendar = -8;
         }
 
+        public void CloseActiveChild()
+        {
+            // This closes whatever MDI child is currently focused
+            if (this.ActiveMdiChild != null)
+            {
+                this.ActiveMdiChild.Close();
+            }
+        }
+
         private void createQuoteToolStripMenuItem_Click(object sender, EventArgs e)
         {          
             
@@ -179,6 +188,16 @@ namespace M2GiantGroupSystem
         private void addEditStaffDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormSetup(new Staff(0));
+        }
+
+        private void addStaffDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormSetup(new Staff(1));
+        }
+
+        private void addASitePhotoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormSetup(new jobRequestMain_A(3));
         }
     }
 }
