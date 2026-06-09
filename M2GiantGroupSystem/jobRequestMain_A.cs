@@ -1,10 +1,13 @@
-﻿using M2GiantGroupSystem.GroupWst1DataSetTableAdapters;
+﻿using iText.StyledXmlParser.Jsoup.Select;
+using M2GiantGroupSystem.GroupWst1DataSetTableAdapters;
+using Org.BouncyCastle.Asn1.Ocsp;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +19,8 @@ namespace M2GiantGroupSystem
     public partial class jobRequestMain_A : Form
     {
         int tabIndex;
+        private string selectedPhotoPath = null;
+        private string defaultImagePath = @"C:\Users\ashmi\source\repos\NewM2GiantGroupSystem\M2GiantGroupSystem\images1\no image available icon.jpg";
         public jobRequestMain_A(int tab_index)
         {
             InitializeComponent();
@@ -117,7 +122,7 @@ WHERE
             string connStr = "Data Source=146.230.177.46;Initial Catalog=GroupWst1;Persist Security Info=True;User ID=GroupWst1;Password=dtf39;Encrypt=True;TrustServerCertificate=True";
             using (SqlConnection conn = new SqlConnection(connStr))
             {
-                string sql = @"SELECT Client.clientName, Client.clientSurname, Client.emailAddress, JobRequest.dateRecieved, JobRequest.siteAddress, JobRequest.siteEvaluationDate,jobRequestID " +
+                string sql = @"SELECT jobRequestID,Client.clientName, Client.clientSurname, Client.emailAddress, JobRequest.dateRecieved, JobRequest.siteAddress, JobRequest.siteEvaluationDate " +
 
                  " FROM Client INNER JOIN JobRequest ON Client.clientID = JobRequest.clientID " +
                      " WHERE clientName LIKE " + "'%" + t.Text + "%'" +
@@ -154,6 +159,11 @@ WHERE
             //highlighted 
             dgv_clientJoinJobRequest.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgv_clientJoinJobRequest.DefaultCellStyle.SelectionBackColor = Color.Green;
+            runQuery(textBox3, dgvJoinPictures);
+
+            dgvJoinPictures.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvJoinPictures.DefaultCellStyle.SelectionBackColor = Color.Green;
+            runQuery(textBox3, dgv_clientJoinJobRequest);
 
             //adding details-------------------------------------------------------------------------------------------------
             flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
@@ -661,6 +671,194 @@ WHERE
                     // Change these to match your exact textbox names if they are different (e.g. txtLat)
                     tbLat_A.Text = mapWindow.SelectedLatitude.ToString("F6");
                     tbLong_A.Text = mapWindow.SelectedLongitude.ToString("F6");
+
+                    // 4. Show a friendly notification
+                    MessageBox.Show("Location coordinates successfully captured from the map pin!",
+                                    "Capture Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            runQuery(textBox3, dgvJoinPictures);
+        }
+
+        private void tabPage5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvJoinPictures_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            jobRequestID = Convert.ToInt32(dgvJoinPictures.Rows[e.RowIndex].Cells["jobRequestID"].Value);
+            label11.Text= "Job requestID selected: " +jobRequestID.ToString();
+        }
+
+        private void dgvJoinPictures_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnBrowse_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Image Files|*.jpg;*.jpeg;*.png";
+            ofd.Title = "Select a Site Photo";
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                selectedPhotoPath = ofd.FileName;
+                pbPreview.Image = Image.FromFile(selectedPhotoPath);
+                pbPreview.SizeMode = PictureBoxSizeMode.Zoom;
+            }
+        }
+
+        private void btnUpload_Click(object sender, EventArgs e)
+        {
+            // 1.Check a job request is selected
+            if (jobRequestID == 0)
+            {
+                MessageBox.Show("Please select a Job Request from the table before uploading a photo.",
+                    "No Job Request Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // 2. Check a photo has been browsed
+            if (selectedPhotoPath == null)
+            {
+                MessageBox.Show("Please browse and select a photo first.",
+                    "No Photo Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // 3. Check the selected file still exists on disk
+            if (!File.Exists(selectedPhotoPath))
+            {
+                MessageBox.Show("The selected photo file no longer exists. Please browse and select it again.",
+                    "File Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                selectedPhotoPath = null;
+                pbPreview.Image = Image.FromFile(defaultImagePath);
+                return;
+            }
+
+            // 4. Check a radio button is selected
+            if (!rbBefore.Checked && !rbAfter.Checked)
+            {
+                MessageBox.Show("Please select whether this is a BEFORE or AFTER photo.",
+                    "Photo Type Not Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // 5. Confirm before uploading
+            DialogResult confirm = MessageBox.Show(
+                $"Upload this photo as '{(rbBefore.Checked ? "BEFORE" : "AFTER")}' for Job Request ID {jobRequestID}?",
+                "Confirm Upload", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (confirm != DialogResult.Yes) return;
+
+            try
+            {
+                string photoType = rbBefore.Checked ? "BEFORE" : "AFTER";
+                string folderPath = Path.Combine(Application.StartupPath, "SitePhotos", $"JobRequest_{jobRequestID}");
+                Directory.CreateDirectory(folderPath);
+
+                string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+                string extension = Path.GetExtension(selectedPhotoPath);
+                string newFileName = $"{photoType}_{timestamp}{extension}";
+                string destPath = Path.Combine(folderPath, newFileName);
+
+                File.Copy(selectedPhotoPath, destPath, overwrite: true);
+
+                string connStr = "Data Source=146.230.177.46;Initial Catalog=GroupWst1;Persist Security Info=True;User ID=GroupWst1;Password=dtf39;Encrypt=True;TrustServerCertificate=True";
+
+                using (SqlConnection conn = new SqlConnection(connStr))
+                using (SqlCommand cmd = new SqlCommand(@"
+            INSERT INTO SitePhoto (photoType, filePath, uploadDate, jobRequestID)
+            VALUES (@photoType, @filePath, GETDATE(), @jobRequestID)", conn))
+                {
+                    cmd.Parameters.AddWithValue("@photoType", photoType);
+                    cmd.Parameters.AddWithValue("@filePath", destPath);
+                    cmd.Parameters.AddWithValue("@jobRequestID", jobRequestID);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+
+                MessageBox.Show("Photo uploaded successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Reset controls
+                selectedPhotoPath = null;
+                pbPreview.Image = Image.FromFile(defaultImagePath);
+                pbPreview.SizeMode = PictureBoxSizeMode.Zoom;
+                rbBefore.Checked = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error uploading photo: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnAddSitePhoto_Click(object sender, EventArgs e)
+        {
+            if (jobRequestID == 0)
+            {
+                MessageBox.Show("Please select a Job Request from the table before adding photos.",
+                    "No Job Request Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+           
+            tabControl1.SelectedIndex = 4;
+            label11.Text = "Job requestID selected: " + jobRequestID.ToString();
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblLat_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblLong_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblSAddress_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            // 1. Open the map form as a clean modal popup window
+            using (MapPopupForm mapWindow = new MapPopupForm())
+            {
+                // 2. Display the map window. If the user drops a pin, it returns OK and closes automatically
+                if (mapWindow.ShowDialog() == DialogResult.OK)
+                {
+                    // 3. Instantly fill your main form text boxes with the captured coordinates!
+                    // Change these to match your exact textbox names if they are different (e.g. txtLat)
+                    tbLat.Text = mapWindow.SelectedLatitude.ToString("F6");
+                    tbLong.Text = mapWindow.SelectedLongitude.ToString("F6");
 
                     // 4. Show a friendly notification
                     MessageBox.Show("Location coordinates successfully captured from the map pin!",
