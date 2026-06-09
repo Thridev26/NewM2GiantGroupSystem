@@ -47,8 +47,7 @@
             System.Windows.Forms.Label label12;
             System.Windows.Forms.Label label16;
             System.Windows.Forms.Label label13;
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Quotation));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -529,8 +528,8 @@
             // colQuantity
             // 
             this.colQuantity.DataPropertyName = "Quantity";
-            dataGridViewCellStyle3.NullValue = "1";
-            this.colQuantity.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.NullValue = "1";
+            this.colQuantity.DefaultCellStyle = dataGridViewCellStyle1;
             this.colQuantity.HeaderText = "Quantity";
             this.colQuantity.MinimumWidth = 8;
             this.colQuantity.Name = "colQuantity";
@@ -924,11 +923,11 @@
             this.giantGroupLogo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.giantGroupLogo.BackColor = System.Drawing.Color.SeaShell;
-            this.giantGroupLogo.Image = ((System.Drawing.Image)(resources.GetObject("giantGroupLogo.Image")));
-            this.giantGroupLogo.Location = new System.Drawing.Point(1254, 312);
+            this.giantGroupLogo.Image = global::M2GiantGroupSystem.Properties.Resources.logo__bg_removed__EDITED;
+            this.giantGroupLogo.Location = new System.Drawing.Point(1351, 11);
             this.giantGroupLogo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.giantGroupLogo.Name = "giantGroupLogo";
-            this.giantGroupLogo.Size = new System.Drawing.Size(295, 184);
+            this.giantGroupLogo.Size = new System.Drawing.Size(199, 102);
             this.giantGroupLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.giantGroupLogo.TabIndex = 35;
             this.giantGroupLogo.TabStop = false;
@@ -1100,10 +1099,10 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.SeaShell;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(1333, 11);
+            this.pictureBox1.Image = global::M2GiantGroupSystem.Properties.Resources.logo__bg_removed__EDITED;
+            this.pictureBox1.Location = new System.Drawing.Point(1352, 11);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(218, 109);
+            this.pictureBox1.Size = new System.Drawing.Size(199, 102);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 54;
             this.pictureBox1.TabStop = false;
@@ -1111,7 +1110,7 @@
             // quoteDataGridView
             // 
             this.quoteDataGridView.AutoGenerateColumns = false;
-            this.quoteDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.quoteDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.quoteDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.quoteDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.quoteDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -1141,7 +1140,6 @@
             this.clientNameDataGridViewTextBoxColumn.HeaderText = "Name";
             this.clientNameDataGridViewTextBoxColumn.MinimumWidth = 8;
             this.clientNameDataGridViewTextBoxColumn.Name = "clientNameDataGridViewTextBoxColumn";
-            this.clientNameDataGridViewTextBoxColumn.Width = 97;
             // 
             // clientSurnameDataGridViewTextBoxColumn
             // 
@@ -1149,7 +1147,6 @@
             this.clientSurnameDataGridViewTextBoxColumn.HeaderText = "Surname";
             this.clientSurnameDataGridViewTextBoxColumn.MinimumWidth = 8;
             this.clientSurnameDataGridViewTextBoxColumn.Name = "clientSurnameDataGridViewTextBoxColumn";
-            this.clientSurnameDataGridViewTextBoxColumn.Width = 125;
             // 
             // clientIDDataGridViewTextBoxColumn1
             // 
@@ -1159,7 +1156,6 @@
             this.clientIDDataGridViewTextBoxColumn1.Name = "clientIDDataGridViewTextBoxColumn1";
             this.clientIDDataGridViewTextBoxColumn1.ReadOnly = true;
             this.clientIDDataGridViewTextBoxColumn1.Visible = false;
-            this.clientIDDataGridViewTextBoxColumn1.Width = 113;
             // 
             // QuoteJobRequestID
             // 
@@ -1169,7 +1165,6 @@
             this.QuoteJobRequestID.Name = "QuoteJobRequestID";
             this.QuoteJobRequestID.ReadOnly = true;
             this.QuoteJobRequestID.Visible = false;
-            this.QuoteJobRequestID.Width = 171;
             // 
             // QuoteID_T
             // 
@@ -1179,7 +1174,6 @@
             this.QuoteID_T.Name = "QuoteID_T";
             this.QuoteID_T.ReadOnly = true;
             this.QuoteID_T.Visible = false;
-            this.QuoteID_T.Width = 119;
             // 
             // dateIssued
             // 
@@ -1187,7 +1181,6 @@
             this.dateIssued.HeaderText = "DateIssued";
             this.dateIssued.MinimumWidth = 8;
             this.dateIssued.Name = "dateIssued";
-            this.dateIssued.Width = 146;
             // 
             // expiryDate
             // 
@@ -1195,7 +1188,6 @@
             this.expiryDate.HeaderText = "ExpiryDate";
             this.expiryDate.MinimumWidth = 8;
             this.expiryDate.Name = "expiryDate";
-            this.expiryDate.Width = 144;
             // 
             // dateGenerated
             // 
@@ -1203,7 +1195,6 @@
             this.dateGenerated.HeaderText = "DateGenerated";
             this.dateGenerated.MinimumWidth = 8;
             this.dateGenerated.Name = "dateGenerated";
-            this.dateGenerated.Width = 182;
             // 
             // QuoteAmount
             // 
@@ -1211,7 +1202,6 @@
             this.QuoteAmount.HeaderText = "Amount";
             this.QuoteAmount.MinimumWidth = 8;
             this.QuoteAmount.Name = "QuoteAmount";
-            this.QuoteAmount.Width = 113;
             // 
             // QuoteQuoteStatus
             // 
@@ -1219,7 +1209,6 @@
             this.QuoteQuoteStatus.HeaderText = "Status";
             this.QuoteQuoteStatus.MinimumWidth = 8;
             this.QuoteQuoteStatus.Name = "QuoteQuoteStatus";
-            this.QuoteQuoteStatus.Width = 103;
             // 
             // QuoteFilePath
             // 
@@ -1227,7 +1216,6 @@
             this.QuoteFilePath.HeaderText = "filePath";
             this.QuoteFilePath.MinimumWidth = 8;
             this.QuoteFilePath.Name = "QuoteFilePath";
-            this.QuoteFilePath.Width = 114;
             // 
             // dataTable3BindingSource
             // 
