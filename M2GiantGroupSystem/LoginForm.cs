@@ -64,8 +64,8 @@ namespace M2GiantGroupSystem
                                 if (isValid)
                                 {
                                     // 6. Populate Session Context
-                                    UserSession.StaffID = (int)reader["staffID"];
-                                    UserSession.AccessLevel = (int)reader["accessLevel"];
+                                    UserSession.StaffID = Convert.ToInt32(reader["staffID"]);
+                                    UserSession.AccessLevel = Convert.ToInt32(reader["accessLevel"]);
                                     UserSession.UserName = reader["userName"].ToString();
 
                                     // 7. Success - Navigate to Main Menu
