@@ -197,7 +197,7 @@ namespace M2GiantGroupSystem
 
         private void addASitePhotoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormSetup(new jobRequestMain_A(3));
+            FormSetup(new jobRequestMain_A(4));
         }
     }
 }
