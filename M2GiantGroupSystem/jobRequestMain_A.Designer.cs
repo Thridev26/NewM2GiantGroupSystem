@@ -127,8 +127,6 @@
             this.requestItemTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.RequestItemTableAdapter();
             this.jobDetailTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobDetailTableAdapter();
             this.itemDetailTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.ItemDetailTableAdapter();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -170,8 +168,6 @@
             this.tabPage1.AutoScroll = true;
             this.tabPage1.AutoScrollMargin = new System.Drawing.Size(200, 200);
             this.tabPage1.BackColor = System.Drawing.Color.SeaShell;
-            this.tabPage1.Controls.Add(this.label17);
-            this.tabPage1.Controls.Add(this.label16);
             this.tabPage1.Controls.Add(this.pictureBox2);
             this.tabPage1.Controls.Add(this.label8);
             this.tabPage1.Controls.Add(this.pictureBox1);
@@ -1262,24 +1258,6 @@
             // 
             this.itemDetailTableAdapter1.ClearBeforeFill = true;
             // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(117, 80);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(37, 20);
-            this.label16.TabIndex = 57;
-            this.label16.Text = "test";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(711, 94);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(62, 20);
-            this.label17.TabIndex = 58;
-            this.label17.Text = "label17";
-            // 
             // jobRequestMain_A
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -1417,7 +1395,5 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label16;
     }
 }

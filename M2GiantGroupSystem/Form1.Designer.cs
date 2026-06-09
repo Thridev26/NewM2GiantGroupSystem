@@ -67,6 +67,7 @@
             this.toolStripMenuItem11 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem13 = new System.Windows.Forms.ToolStripMenuItem();
+            this.addASitePhotoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -92,7 +93,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(17, 5, 0, 5);
-            this.menuStrip1.Size = new System.Drawing.Size(1837, 46);
+            this.menuStrip1.Size = new System.Drawing.Size(1837, 42);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -141,7 +142,8 @@
             this.captureJobRequestToolStripMenuItem,
             this.updateJobRequestToolStripMenuItem,
             this.captureDetailsForRequestedItemsToolStripMenuItem,
-            this.viewJobRequestsToolStripMenuItem});
+            this.viewJobRequestsToolStripMenuItem,
+            this.addASitePhotoToolStripMenuItem});
             this.toolStripMenuItem9.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.toolStripMenuItem9.Name = "toolStripMenuItem9";
             this.toolStripMenuItem9.Size = new System.Drawing.Size(150, 32);
@@ -383,7 +385,7 @@
             // 
             this.addStaffDetailsToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(219)))), ((int)(((byte)(117)))));
             this.addStaffDetailsToolStripMenuItem.Name = "addStaffDetailsToolStripMenuItem";
-            this.addStaffDetailsToolStripMenuItem.Size = new System.Drawing.Size(386, 40);
+            this.addStaffDetailsToolStripMenuItem.Size = new System.Drawing.Size(326, 32);
             this.addStaffDetailsToolStripMenuItem.Text = "Add Staff Details";
             this.addStaffDetailsToolStripMenuItem.Click += new System.EventHandler(this.addStaffDetailsToolStripMenuItem_Click);
             // 
@@ -415,8 +417,16 @@
             // toolStripMenuItem13
             // 
             this.toolStripMenuItem13.Name = "toolStripMenuItem13";
-            this.toolStripMenuItem13.Size = new System.Drawing.Size(211, 36);
+            this.toolStripMenuItem13.Size = new System.Drawing.Size(176, 32);
             this.toolStripMenuItem13.Text = "Return to Menu";
+            // 
+            // addASitePhotoToolStripMenuItem
+            // 
+            this.addASitePhotoToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(219)))), ((int)(((byte)(117)))));
+            this.addASitePhotoToolStripMenuItem.Name = "addASitePhotoToolStripMenuItem";
+            this.addASitePhotoToolStripMenuItem.Size = new System.Drawing.Size(433, 32);
+            this.addASitePhotoToolStripMenuItem.Text = "Add a site photo";
+            this.addASitePhotoToolStripMenuItem.Click += new System.EventHandler(this.addASitePhotoToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -479,6 +489,7 @@
         private System.Windows.Forms.ToolStripMenuItem printQuoteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addStaffDetailsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem13;
+        private System.Windows.Forms.ToolStripMenuItem addASitePhotoToolStripMenuItem;
     }
 }
 

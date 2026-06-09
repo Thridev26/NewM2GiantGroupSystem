@@ -174,6 +174,8 @@ WHERE
             //view job requests--------------------------------------------------------------------------------------------------------
             runQuery2(DateTime.Now, "", "");
 
+            label3.Text = "Select site\nevaluation date:";
+
 
         }
 
