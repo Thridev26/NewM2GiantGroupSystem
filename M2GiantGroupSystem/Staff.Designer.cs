@@ -49,6 +49,8 @@
             System.Windows.Forms.Label roleIDLabel1;
             this.gbAddStaff = new System.Windows.Forms.GroupBox();
             this.staffIDTextBox1 = new System.Windows.Forms.TextBox();
+            this.staffBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.groupWst1DataSet = new M2GiantGroupSystem.GroupWst1DataSet();
             this.firstNameTextBox1 = new System.Windows.Forms.TextBox();
             this.lastNameTextBox1 = new System.Windows.Forms.TextBox();
             this.userNameTextBox1 = new System.Windows.Forms.TextBox();
@@ -60,6 +62,15 @@
             this.btnAddStaff = new System.Windows.Forms.Button();
             this.btnDeleteStaff = new System.Windows.Forms.Button();
             this.dgvStaffInfo = new System.Windows.Forms.DataGridView();
+            this.staffIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.passwordHashDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contactNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.staffStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dailyRateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.roleIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtSearchStaff = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -77,17 +88,6 @@
             this.firstNameTextBox = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.staffDataGridView = new System.Windows.Forms.DataGridView();
-            this.staffBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.groupWst1DataSet = new M2GiantGroupSystem.GroupWst1DataSet();
-            this.staffIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.userNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.passwordHashDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contactNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.staffStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dailyRateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.roleIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -118,14 +118,14 @@
             dailyRateLabel1 = new System.Windows.Forms.Label();
             roleIDLabel1 = new System.Windows.Forms.Label();
             this.gbAddStaff.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.staffBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupWst1DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStaffInfo)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.staffDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.staffBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupWst1DataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // staffIDLabel
@@ -348,6 +348,16 @@
             this.staffIDTextBox1.Size = new System.Drawing.Size(218, 30);
             this.staffIDTextBox1.TabIndex = 1;
             // 
+            // staffBindingSource
+            // 
+            this.staffBindingSource.DataMember = "Staff";
+            this.staffBindingSource.DataSource = this.groupWst1DataSet;
+            // 
+            // groupWst1DataSet
+            // 
+            this.groupWst1DataSet.DataSetName = "GroupWst1DataSet";
+            this.groupWst1DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // firstNameTextBox1
             // 
             this.firstNameTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.staffBindingSource, "firstName", true));
@@ -466,6 +476,79 @@
             this.dgvStaffInfo.RowTemplate.Height = 24;
             this.dgvStaffInfo.Size = new System.Drawing.Size(1122, 163);
             this.dgvStaffInfo.TabIndex = 22;
+            // 
+            // staffIDDataGridViewTextBoxColumn
+            // 
+            this.staffIDDataGridViewTextBoxColumn.DataPropertyName = "staffID";
+            this.staffIDDataGridViewTextBoxColumn.HeaderText = "staffID";
+            this.staffIDDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.staffIDDataGridViewTextBoxColumn.Name = "staffIDDataGridViewTextBoxColumn";
+            this.staffIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.staffIDDataGridViewTextBoxColumn.Width = 94;
+            // 
+            // firstNameDataGridViewTextBoxColumn
+            // 
+            this.firstNameDataGridViewTextBoxColumn.DataPropertyName = "firstName";
+            this.firstNameDataGridViewTextBoxColumn.HeaderText = "firstName";
+            this.firstNameDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.firstNameDataGridViewTextBoxColumn.Name = "firstNameDataGridViewTextBoxColumn";
+            this.firstNameDataGridViewTextBoxColumn.Width = 113;
+            // 
+            // lastNameDataGridViewTextBoxColumn
+            // 
+            this.lastNameDataGridViewTextBoxColumn.DataPropertyName = "lastName";
+            this.lastNameDataGridViewTextBoxColumn.HeaderText = "lastName";
+            this.lastNameDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.lastNameDataGridViewTextBoxColumn.Name = "lastNameDataGridViewTextBoxColumn";
+            this.lastNameDataGridViewTextBoxColumn.Width = 112;
+            // 
+            // userNameDataGridViewTextBoxColumn
+            // 
+            this.userNameDataGridViewTextBoxColumn.DataPropertyName = "userName";
+            this.userNameDataGridViewTextBoxColumn.HeaderText = "userName";
+            this.userNameDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.userNameDataGridViewTextBoxColumn.Name = "userNameDataGridViewTextBoxColumn";
+            this.userNameDataGridViewTextBoxColumn.Width = 118;
+            // 
+            // passwordHashDataGridViewTextBoxColumn
+            // 
+            this.passwordHashDataGridViewTextBoxColumn.DataPropertyName = "passwordHash";
+            this.passwordHashDataGridViewTextBoxColumn.HeaderText = "passwordHash";
+            this.passwordHashDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.passwordHashDataGridViewTextBoxColumn.Name = "passwordHashDataGridViewTextBoxColumn";
+            this.passwordHashDataGridViewTextBoxColumn.Width = 151;
+            // 
+            // contactNumberDataGridViewTextBoxColumn
+            // 
+            this.contactNumberDataGridViewTextBoxColumn.DataPropertyName = "contactNumber";
+            this.contactNumberDataGridViewTextBoxColumn.HeaderText = "contactNumber";
+            this.contactNumberDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.contactNumberDataGridViewTextBoxColumn.Name = "contactNumberDataGridViewTextBoxColumn";
+            this.contactNumberDataGridViewTextBoxColumn.Width = 154;
+            // 
+            // staffStatusDataGridViewTextBoxColumn
+            // 
+            this.staffStatusDataGridViewTextBoxColumn.DataPropertyName = "staffStatus";
+            this.staffStatusDataGridViewTextBoxColumn.HeaderText = "staffStatus";
+            this.staffStatusDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.staffStatusDataGridViewTextBoxColumn.Name = "staffStatusDataGridViewTextBoxColumn";
+            this.staffStatusDataGridViewTextBoxColumn.Width = 124;
+            // 
+            // dailyRateDataGridViewTextBoxColumn
+            // 
+            this.dailyRateDataGridViewTextBoxColumn.DataPropertyName = "dailyRate";
+            this.dailyRateDataGridViewTextBoxColumn.HeaderText = "dailyRate";
+            this.dailyRateDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.dailyRateDataGridViewTextBoxColumn.Name = "dailyRateDataGridViewTextBoxColumn";
+            this.dailyRateDataGridViewTextBoxColumn.Width = 111;
+            // 
+            // roleIDDataGridViewTextBoxColumn
+            // 
+            this.roleIDDataGridViewTextBoxColumn.DataPropertyName = "roleID";
+            this.roleIDDataGridViewTextBoxColumn.HeaderText = "roleID";
+            this.roleIDDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.roleIDDataGridViewTextBoxColumn.Name = "roleIDDataGridViewTextBoxColumn";
+            this.roleIDDataGridViewTextBoxColumn.Width = 88;
             // 
             // txtSearchStaff
             // 
@@ -666,89 +749,6 @@
             this.staffDataGridView.Size = new System.Drawing.Size(1431, 220);
             this.staffDataGridView.TabIndex = 28;
             // 
-            // staffBindingSource
-            // 
-            this.staffBindingSource.DataMember = "Staff";
-            this.staffBindingSource.DataSource = this.groupWst1DataSet;
-            // 
-            // groupWst1DataSet
-            // 
-            this.groupWst1DataSet.DataSetName = "GroupWst1DataSet";
-            this.groupWst1DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // staffIDDataGridViewTextBoxColumn
-            // 
-            this.staffIDDataGridViewTextBoxColumn.DataPropertyName = "staffID";
-            this.staffIDDataGridViewTextBoxColumn.HeaderText = "staffID";
-            this.staffIDDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.staffIDDataGridViewTextBoxColumn.Name = "staffIDDataGridViewTextBoxColumn";
-            this.staffIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.staffIDDataGridViewTextBoxColumn.Width = 94;
-            // 
-            // firstNameDataGridViewTextBoxColumn
-            // 
-            this.firstNameDataGridViewTextBoxColumn.DataPropertyName = "firstName";
-            this.firstNameDataGridViewTextBoxColumn.HeaderText = "firstName";
-            this.firstNameDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.firstNameDataGridViewTextBoxColumn.Name = "firstNameDataGridViewTextBoxColumn";
-            this.firstNameDataGridViewTextBoxColumn.Width = 113;
-            // 
-            // lastNameDataGridViewTextBoxColumn
-            // 
-            this.lastNameDataGridViewTextBoxColumn.DataPropertyName = "lastName";
-            this.lastNameDataGridViewTextBoxColumn.HeaderText = "lastName";
-            this.lastNameDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.lastNameDataGridViewTextBoxColumn.Name = "lastNameDataGridViewTextBoxColumn";
-            this.lastNameDataGridViewTextBoxColumn.Width = 112;
-            // 
-            // userNameDataGridViewTextBoxColumn
-            // 
-            this.userNameDataGridViewTextBoxColumn.DataPropertyName = "userName";
-            this.userNameDataGridViewTextBoxColumn.HeaderText = "userName";
-            this.userNameDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.userNameDataGridViewTextBoxColumn.Name = "userNameDataGridViewTextBoxColumn";
-            this.userNameDataGridViewTextBoxColumn.Width = 118;
-            // 
-            // passwordHashDataGridViewTextBoxColumn
-            // 
-            this.passwordHashDataGridViewTextBoxColumn.DataPropertyName = "passwordHash";
-            this.passwordHashDataGridViewTextBoxColumn.HeaderText = "passwordHash";
-            this.passwordHashDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.passwordHashDataGridViewTextBoxColumn.Name = "passwordHashDataGridViewTextBoxColumn";
-            this.passwordHashDataGridViewTextBoxColumn.Width = 151;
-            // 
-            // contactNumberDataGridViewTextBoxColumn
-            // 
-            this.contactNumberDataGridViewTextBoxColumn.DataPropertyName = "contactNumber";
-            this.contactNumberDataGridViewTextBoxColumn.HeaderText = "contactNumber";
-            this.contactNumberDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.contactNumberDataGridViewTextBoxColumn.Name = "contactNumberDataGridViewTextBoxColumn";
-            this.contactNumberDataGridViewTextBoxColumn.Width = 154;
-            // 
-            // staffStatusDataGridViewTextBoxColumn
-            // 
-            this.staffStatusDataGridViewTextBoxColumn.DataPropertyName = "staffStatus";
-            this.staffStatusDataGridViewTextBoxColumn.HeaderText = "staffStatus";
-            this.staffStatusDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.staffStatusDataGridViewTextBoxColumn.Name = "staffStatusDataGridViewTextBoxColumn";
-            this.staffStatusDataGridViewTextBoxColumn.Width = 124;
-            // 
-            // dailyRateDataGridViewTextBoxColumn
-            // 
-            this.dailyRateDataGridViewTextBoxColumn.DataPropertyName = "dailyRate";
-            this.dailyRateDataGridViewTextBoxColumn.HeaderText = "dailyRate";
-            this.dailyRateDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.dailyRateDataGridViewTextBoxColumn.Name = "dailyRateDataGridViewTextBoxColumn";
-            this.dailyRateDataGridViewTextBoxColumn.Width = 111;
-            // 
-            // roleIDDataGridViewTextBoxColumn
-            // 
-            this.roleIDDataGridViewTextBoxColumn.DataPropertyName = "roleID";
-            this.roleIDDataGridViewTextBoxColumn.HeaderText = "roleID";
-            this.roleIDDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.roleIDDataGridViewTextBoxColumn.Name = "roleIDDataGridViewTextBoxColumn";
-            this.roleIDDataGridViewTextBoxColumn.Width = 88;
-            // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.DataPropertyName = "staffID";
@@ -852,8 +852,8 @@
             // 
             // Staff
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.SeaShell;
             this.ClientSize = new System.Drawing.Size(1713, 765);
             this.Controls.Add(this.tabControl1);
@@ -863,6 +863,8 @@
             this.Load += new System.EventHandler(this.Staff_Load);
             this.gbAddStaff.ResumeLayout(false);
             this.gbAddStaff.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.staffBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupWst1DataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStaffInfo)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -871,8 +873,6 @@
             this.groupBox1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.staffDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.staffBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupWst1DataSet)).EndInit();
             this.ResumeLayout(false);
 
         }
