@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(jobRequestMain_A));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btnDisplayMap_A = new System.Windows.Forms.Button();
@@ -104,6 +105,11 @@
             this.requestItemTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.RequestItemTableAdapter();
             this.jobDetailTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobDetailTableAdapter();
             this.itemDetailTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.ItemDetailTableAdapter();
+            this.label7 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clientBS)).BeginInit();
@@ -114,6 +120,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvJoin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -135,6 +143,11 @@
             // 
             this.tabPage1.AutoScroll = true;
             this.tabPage1.AutoScrollMargin = new System.Drawing.Size(200, 200);
+            this.tabPage1.BackColor = System.Drawing.Color.SeaShell;
+            this.tabPage1.Controls.Add(this.pictureBox2);
+            this.tabPage1.Controls.Add(this.label8);
+            this.tabPage1.Controls.Add(this.pictureBox1);
+            this.tabPage1.Controls.Add(this.label7);
             this.tabPage1.Controls.Add(this.btnDisplayMap_A);
             this.tabPage1.Controls.Add(this.lblLong_A);
             this.tabPage1.Controls.Add(this.lblLat_A);
@@ -160,6 +173,7 @@
             this.tabPage1.Controls.Add(this.lblSelectCriteria_A);
             this.tabPage1.Controls.Add(this.cmbCriteria_A);
             this.tabPage1.Controls.Add(this.lblFindClient_A);
+            this.tabPage1.Controls.Add(this.panel1);
             this.tabPage1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.tabPage1.Location = new System.Drawing.Point(4, 34);
             this.tabPage1.Name = "tabPage1";
@@ -167,15 +181,14 @@
             this.tabPage1.Size = new System.Drawing.Size(1916, 1017);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Capture job request";
-            this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
             // btnDisplayMap_A
             // 
             this.btnDisplayMap_A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnDisplayMap_A.Location = new System.Drawing.Point(598, 346);
+            this.btnDisplayMap_A.Location = new System.Drawing.Point(1725, 923);
             this.btnDisplayMap_A.Name = "btnDisplayMap_A";
-            this.btnDisplayMap_A.Size = new System.Drawing.Size(162, 43);
+            this.btnDisplayMap_A.Size = new System.Drawing.Size(141, 50);
             this.btnDisplayMap_A.TabIndex = 51;
             this.btnDisplayMap_A.Text = "Display map";
             this.btnDisplayMap_A.UseVisualStyleBackColor = false;
@@ -185,10 +198,10 @@
             // 
             this.lblLong_A.AutoSize = true;
             this.lblLong_A.BackColor = System.Drawing.Color.Transparent;
-            this.lblLong_A.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLong_A.Location = new System.Drawing.Point(78, 330);
+            this.lblLong_A.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLong_A.Location = new System.Drawing.Point(601, 290);
             this.lblLong_A.Name = "lblLong_A";
-            this.lblLong_A.Size = new System.Drawing.Size(150, 38);
+            this.lblLong_A.Size = new System.Drawing.Size(199, 50);
             this.lblLong_A.TabIndex = 50;
             this.lblLong_A.Text = "Longitude";
             // 
@@ -196,36 +209,39 @@
             // 
             this.lblLat_A.AutoSize = true;
             this.lblLat_A.BackColor = System.Drawing.Color.Transparent;
-            this.lblLat_A.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLat_A.Location = new System.Drawing.Point(90, 394);
+            this.lblLat_A.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLat_A.Location = new System.Drawing.Point(603, 363);
             this.lblLat_A.Name = "lblLat_A";
-            this.lblLat_A.Size = new System.Drawing.Size(125, 38);
+            this.lblLat_A.Size = new System.Drawing.Size(165, 50);
             this.lblLat_A.TabIndex = 49;
             this.lblLat_A.Text = "Latitude";
             // 
             // tbLong_A
             // 
+            this.tbLong_A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.tbLong_A.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbLong_A.Location = new System.Drawing.Point(251, 339);
+            this.tbLong_A.Location = new System.Drawing.Point(1015, 290);
             this.tbLong_A.Name = "tbLong_A";
-            this.tbLong_A.Size = new System.Drawing.Size(274, 43);
+            this.tbLong_A.Size = new System.Drawing.Size(532, 43);
             this.tbLong_A.TabIndex = 48;
             // 
             // tbLat_A
             // 
+            this.tbLat_A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.tbLat_A.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbLat_A.Location = new System.Drawing.Point(251, 394);
+            this.tbLat_A.Location = new System.Drawing.Point(1015, 363);
             this.tbLat_A.Name = "tbLat_A";
-            this.tbLat_A.Size = new System.Drawing.Size(274, 43);
+            this.tbLat_A.Size = new System.Drawing.Size(532, 43);
             this.tbLat_A.TabIndex = 47;
             // 
             // btnCapture
             // 
-            this.btnCapture.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnCapture.BackColor = System.Drawing.Color.DarkGreen;
             this.btnCapture.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCapture.Location = new System.Drawing.Point(205, 765);
+            this.btnCapture.ForeColor = System.Drawing.Color.White;
+            this.btnCapture.Location = new System.Drawing.Point(1014, 808);
             this.btnCapture.Name = "btnCapture";
-            this.btnCapture.Size = new System.Drawing.Size(555, 65);
+            this.btnCapture.Size = new System.Drawing.Size(532, 65);
             this.btnCapture.TabIndex = 46;
             this.btnCapture.Text = "Capture";
             this.btnCapture.UseVisualStyleBackColor = false;
@@ -235,15 +251,16 @@
             // 
             this.lblSelectItems.AutoSize = true;
             this.lblSelectItems.BackColor = System.Drawing.Color.Transparent;
-            this.lblSelectItems.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSelectItems.Location = new System.Drawing.Point(19, 697);
+            this.lblSelectItems.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSelectItems.Location = new System.Drawing.Point(595, 667);
             this.lblSelectItems.Name = "lblSelectItems";
-            this.lblSelectItems.Size = new System.Drawing.Size(313, 38);
+            this.lblSelectItems.Size = new System.Drawing.Size(414, 50);
             this.lblSelectItems.TabIndex = 45;
             this.lblSelectItems.Text = "Select requested items";
             // 
             // clbItems
             // 
+            this.clbItems.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.clbItems.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.clbItems.FormattingEnabled = true;
             this.clbItems.Items.AddRange(new object[] {
@@ -252,19 +269,19 @@
             "Tree Planting",
             "Vegetation Clearance",
             "Hedge Trimming"});
-            this.clbItems.Location = new System.Drawing.Point(338, 679);
+            this.clbItems.Location = new System.Drawing.Point(1015, 667);
             this.clbItems.Name = "clbItems";
-            this.clbItems.Size = new System.Drawing.Size(555, 80);
+            this.clbItems.Size = new System.Drawing.Size(532, 118);
             this.clbItems.TabIndex = 44;
             // 
             // lblUrgencyLevel_A
             // 
             this.lblUrgencyLevel_A.AutoSize = true;
             this.lblUrgencyLevel_A.BackColor = System.Drawing.Color.Transparent;
-            this.lblUrgencyLevel_A.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUrgencyLevel_A.Location = new System.Drawing.Point(38, 624);
+            this.lblUrgencyLevel_A.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUrgencyLevel_A.Location = new System.Drawing.Point(601, 513);
             this.lblUrgencyLevel_A.Name = "lblUrgencyLevel_A";
-            this.lblUrgencyLevel_A.Size = new System.Drawing.Size(194, 38);
+            this.lblUrgencyLevel_A.Size = new System.Drawing.Size(259, 50);
             this.lblUrgencyLevel_A.TabIndex = 43;
             this.lblUrgencyLevel_A.Text = "Urgency level";
             // 
@@ -272,15 +289,16 @@
             // 
             this.lblRequestSource_A.AutoSize = true;
             this.lblRequestSource_A.BackColor = System.Drawing.Color.Transparent;
-            this.lblRequestSource_A.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRequestSource_A.Location = new System.Drawing.Point(38, 556);
+            this.lblRequestSource_A.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRequestSource_A.Location = new System.Drawing.Point(603, 583);
             this.lblRequestSource_A.Name = "lblRequestSource_A";
-            this.lblRequestSource_A.Size = new System.Drawing.Size(214, 38);
+            this.lblRequestSource_A.Size = new System.Drawing.Size(284, 50);
             this.lblRequestSource_A.TabIndex = 42;
             this.lblRequestSource_A.Text = "Request source";
             // 
             // cmbUrgencyLevel_A
             // 
+            this.cmbUrgencyLevel_A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.cmbUrgencyLevel_A.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbUrgencyLevel_A.FormattingEnabled = true;
             this.cmbUrgencyLevel_A.Items.AddRange(new object[] {
@@ -288,13 +306,14 @@
             "Medium",
             "High",
             "Not specified"});
-            this.cmbUrgencyLevel_A.Location = new System.Drawing.Point(296, 624);
+            this.cmbUrgencyLevel_A.Location = new System.Drawing.Point(1015, 513);
             this.cmbUrgencyLevel_A.Name = "cmbUrgencyLevel_A";
             this.cmbUrgencyLevel_A.Size = new System.Drawing.Size(532, 45);
             this.cmbUrgencyLevel_A.TabIndex = 41;
             // 
             // cmbRequestSource_A
             // 
+            this.cmbRequestSource_A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.cmbRequestSource_A.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbRequestSource_A.FormattingEnabled = true;
             this.cmbRequestSource_A.Items.AddRange(new object[] {
@@ -302,7 +321,7 @@
             "Phone call",
             "Walk in",
             "Other"});
-            this.cmbRequestSource_A.Location = new System.Drawing.Point(296, 549);
+            this.cmbRequestSource_A.Location = new System.Drawing.Point(1015, 590);
             this.cmbRequestSource_A.Name = "cmbRequestSource_A";
             this.cmbRequestSource_A.Size = new System.Drawing.Size(532, 45);
             this.cmbRequestSource_A.TabIndex = 40;
@@ -311,10 +330,10 @@
             // 
             this.lblAddress_A.AutoSize = true;
             this.lblAddress_A.BackColor = System.Drawing.Color.Transparent;
-            this.lblAddress_A.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAddress_A.Location = new System.Drawing.Point(90, 500);
+            this.lblAddress_A.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAddress_A.Location = new System.Drawing.Point(603, 436);
             this.lblAddress_A.Name = "lblAddress_A";
-            this.lblAddress_A.Size = new System.Drawing.Size(174, 38);
+            this.lblAddress_A.Size = new System.Drawing.Size(231, 50);
             this.lblAddress_A.TabIndex = 39;
             this.lblAddress_A.Text = "Site address";
             // 
@@ -322,10 +341,10 @@
             // 
             this.lblSurname_A.AutoSize = true;
             this.lblSurname_A.BackColor = System.Drawing.Color.Transparent;
-            this.lblSurname_A.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSurname_A.Location = new System.Drawing.Point(50, 274);
+            this.lblSurname_A.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSurname_A.Location = new System.Drawing.Point(601, 219);
             this.lblSurname_A.Name = "lblSurname_A";
-            this.lblSurname_A.Size = new System.Drawing.Size(173, 38);
+            this.lblSurname_A.Size = new System.Drawing.Size(229, 50);
             this.lblSurname_A.TabIndex = 38;
             this.lblSurname_A.Text = "Client email";
             // 
@@ -333,26 +352,28 @@
             // 
             this.lblName_A.AutoSize = true;
             this.lblName_A.BackColor = System.Drawing.Color.Transparent;
-            this.lblName_A.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblName_A.Location = new System.Drawing.Point(78, 216);
+            this.lblName_A.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblName_A.Location = new System.Drawing.Point(603, 152);
             this.lblName_A.Name = "lblName_A";
-            this.lblName_A.Size = new System.Drawing.Size(174, 38);
+            this.lblName_A.Size = new System.Drawing.Size(229, 50);
             this.lblName_A.TabIndex = 37;
             this.lblName_A.Text = "Client name";
             // 
             // tbAddress_A
             // 
+            this.tbAddress_A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.tbAddress_A.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbAddress_A.Location = new System.Drawing.Point(310, 497);
+            this.tbAddress_A.Location = new System.Drawing.Point(1015, 436);
             this.tbAddress_A.Name = "tbAddress_A";
             this.tbAddress_A.Size = new System.Drawing.Size(532, 43);
             this.tbAddress_A.TabIndex = 36;
             // 
             // tbEmail_A
             // 
+            this.tbEmail_A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.tbEmail_A.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.clientBS, "emailAddress", true));
             this.tbEmail_A.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbEmail_A.Location = new System.Drawing.Point(310, 271);
+            this.tbEmail_A.Location = new System.Drawing.Point(1015, 219);
             this.tbEmail_A.Name = "tbEmail_A";
             this.tbEmail_A.Size = new System.Drawing.Size(532, 43);
             this.tbEmail_A.TabIndex = 35;
@@ -370,37 +391,40 @@
             // lblSearchResults_A
             // 
             this.lblSearchResults_A.AutoSize = true;
-            this.lblSearchResults_A.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSearchResults_A.Location = new System.Drawing.Point(268, 136);
+            this.lblSearchResults_A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.lblSearchResults_A.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSearchResults_A.Location = new System.Drawing.Point(97, 599);
             this.lblSearchResults_A.Name = "lblSearchResults_A";
-            this.lblSearchResults_A.Size = new System.Drawing.Size(203, 32);
+            this.lblSearchResults_A.Size = new System.Drawing.Size(272, 50);
             this.lblSearchResults_A.TabIndex = 34;
             this.lblSearchResults_A.Text = "Search results:";
             // 
             // lblSearchBy_A
             // 
             this.lblSearchBy_A.AutoSize = true;
-            this.lblSearchBy_A.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSearchBy_A.Location = new System.Drawing.Point(526, 32);
+            this.lblSearchBy_A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.lblSearchBy_A.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSearchBy_A.Location = new System.Drawing.Point(97, 455);
             this.lblSearchBy_A.Name = "lblSearchBy_A";
-            this.lblSearchBy_A.Size = new System.Drawing.Size(157, 32);
+            this.lblSearchBy_A.Size = new System.Drawing.Size(209, 50);
             this.lblSearchBy_A.TabIndex = 33;
             this.lblSearchBy_A.Text = "Search by..";
             // 
             // tbSearchValue_A
             // 
             this.tbSearchValue_A.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbSearchValue_A.Location = new System.Drawing.Point(522, 67);
+            this.tbSearchValue_A.Location = new System.Drawing.Point(103, 508);
             this.tbSearchValue_A.Name = "tbSearchValue_A";
-            this.tbSearchValue_A.Size = new System.Drawing.Size(238, 43);
+            this.tbSearchValue_A.Size = new System.Drawing.Size(386, 43);
             this.tbSearchValue_A.TabIndex = 32;
             this.tbSearchValue_A.TextChanged += new System.EventHandler(this.tbSearchValue_A_TextChanged);
             // 
             // tbName_A
             // 
+            this.tbName_A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.tbName_A.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.clientBS, "clientName", true));
             this.tbName_A.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbName_A.Location = new System.Drawing.Point(310, 211);
+            this.tbName_A.Location = new System.Drawing.Point(1015, 152);
             this.tbName_A.Name = "tbName_A";
             this.tbName_A.Size = new System.Drawing.Size(532, 43);
             this.tbName_A.TabIndex = 31;
@@ -409,21 +433,21 @@
             // 
             this.lbSearchResults.FormattingEnabled = true;
             this.lbSearchResults.ItemHeight = 20;
-            this.lbSearchResults.Location = new System.Drawing.Point(498, 136);
+            this.lbSearchResults.Location = new System.Drawing.Point(106, 654);
             this.lbSearchResults.Name = "lbSearchResults";
             this.lbSearchResults.ScrollAlwaysVisible = true;
-            this.lbSearchResults.Size = new System.Drawing.Size(278, 44);
+            this.lbSearchResults.Size = new System.Drawing.Size(383, 144);
             this.lbSearchResults.TabIndex = 30;
             this.lbSearchResults.SelectedIndexChanged += new System.EventHandler(this.lbSearchResults_SelectedIndexChanged);
             // 
             // lblSelectCriteria_A
             // 
             this.lblSelectCriteria_A.AutoSize = true;
-            this.lblSelectCriteria_A.BackColor = System.Drawing.Color.Transparent;
-            this.lblSelectCriteria_A.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSelectCriteria_A.Location = new System.Drawing.Point(8, 67);
+            this.lblSelectCriteria_A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.lblSelectCriteria_A.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSelectCriteria_A.Location = new System.Drawing.Point(94, 326);
             this.lblSelectCriteria_A.Name = "lblSelectCriteria_A";
-            this.lblSelectCriteria_A.Size = new System.Drawing.Size(309, 38);
+            this.lblSelectCriteria_A.Size = new System.Drawing.Size(411, 50);
             this.lblSelectCriteria_A.TabIndex = 29;
             this.lblSelectCriteria_A.Text = "Select a search criteria";
             // 
@@ -436,26 +460,27 @@
             "Surname",
             "Email",
             "Phone Number"});
-            this.cmbCriteria_A.Location = new System.Drawing.Point(323, 64);
+            this.cmbCriteria_A.Location = new System.Drawing.Point(103, 386);
             this.cmbCriteria_A.Name = "cmbCriteria_A";
-            this.cmbCriteria_A.Size = new System.Drawing.Size(169, 45);
+            this.cmbCriteria_A.Size = new System.Drawing.Size(386, 45);
             this.cmbCriteria_A.TabIndex = 28;
             this.cmbCriteria_A.SelectedIndexChanged += new System.EventHandler(this.cmbCriteria_A_SelectedIndexChanged);
             // 
             // lblFindClient_A
             // 
             this.lblFindClient_A.AutoSize = true;
-            this.lblFindClient_A.BackColor = System.Drawing.Color.Transparent;
-            this.lblFindClient_A.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFindClient_A.Location = new System.Drawing.Point(303, 14);
+            this.lblFindClient_A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.lblFindClient_A.Font = new System.Drawing.Font("Segoe UI", 31.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFindClient_A.Location = new System.Drawing.Point(145, 152);
             this.lblFindClient_A.Name = "lblFindClient_A";
-            this.lblFindClient_A.Size = new System.Drawing.Size(154, 38);
+            this.lblFindClient_A.Size = new System.Drawing.Size(283, 70);
             this.lblFindClient_A.TabIndex = 27;
             this.lblFindClient_A.Text = "Find client";
             // 
             // tabPage2
             // 
             this.tabPage2.AutoScroll = true;
+            this.tabPage2.BackColor = System.Drawing.Color.SeaShell;
             this.tabPage2.Controls.Add(this.lbl_ID);
             this.tabPage2.Controls.Add(this.btnMap);
             this.tabPage2.Controls.Add(this.lblStatus);
@@ -485,7 +510,6 @@
             this.tabPage2.Size = new System.Drawing.Size(1916, 1017);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Update job request";
-            this.tabPage2.UseVisualStyleBackColor = true;
             this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
             // 
             // lbl_ID
@@ -734,6 +758,7 @@
             // tabPage3
             // 
             this.tabPage3.AutoScroll = true;
+            this.tabPage3.BackColor = System.Drawing.Color.SeaShell;
             this.tabPage3.Controls.Add(this.button1);
             this.tabPage3.Controls.Add(this.flowLayoutPanel1);
             this.tabPage3.Controls.Add(this.dataGridView1);
@@ -744,7 +769,6 @@
             this.tabPage3.Size = new System.Drawing.Size(1916, 1017);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Capture details for requested items";
-            this.tabPage3.UseVisualStyleBackColor = true;
             this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
             // 
             // button1
@@ -802,6 +826,7 @@
             // tabPage4
             // 
             this.tabPage4.AutoScroll = true;
+            this.tabPage4.BackColor = System.Drawing.Color.SeaShell;
             this.tabPage4.Controls.Add(this.lblJobType);
             this.tabPage4.Controls.Add(this.cmbJobType);
             this.tabPage4.Controls.Add(this.label6);
@@ -817,7 +842,6 @@
             this.tabPage4.Size = new System.Drawing.Size(1916, 1017);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "View job requests";
-            this.tabPage4.UseVisualStyleBackColor = true;
             this.tabPage4.Click += new System.EventHandler(this.tabPage4_Click);
             // 
             // lblJobType
@@ -952,6 +976,55 @@
             // 
             this.itemDetailTableAdapter1.ClearBeforeFill = true;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 31.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(1070, 51);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(397, 70);
+            this.label7.TabIndex = 52;
+            this.label7.Text = "Capture details";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.panel1.Location = new System.Drawing.Point(50, 145);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(513, 686);
+            this.panel1.TabIndex = 53;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(1651, 290);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(112, 99);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 54;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(1633, 403);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(159, 20);
+            this.label8.TabIndex = 55;
+            this.label8.Text = "Click to display map";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(1565, 28);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(324, 93);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 56;
+            this.pictureBox2.TabStop = false;
+            // 
             // jobRequestMain_A
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -975,6 +1048,8 @@
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvJoin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1056,5 +1131,10 @@
         private System.Windows.Forms.ComboBox cmbJobType;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }

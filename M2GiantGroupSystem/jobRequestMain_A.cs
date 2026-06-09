@@ -648,5 +648,25 @@ WHERE
                 TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
             );
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            // 1. Open the map form as a clean modal popup window
+            using (MapPopupForm mapWindow = new MapPopupForm())
+            {
+                // 2. Display the map window. If the user drops a pin, it returns OK and closes automatically
+                if (mapWindow.ShowDialog() == DialogResult.OK)
+                {
+                    // 3. Instantly fill your main form text boxes with the captured coordinates!
+                    // Change these to match your exact textbox names if they are different (e.g. txtLat)
+                    tbLat_A.Text = mapWindow.SelectedLatitude.ToString("F6");
+                    tbLong_A.Text = mapWindow.SelectedLongitude.ToString("F6");
+
+                    // 4. Show a friendly notification
+                    MessageBox.Show("Location coordinates successfully captured from the map pin!",
+                                    "Capture Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
     }
 }
