@@ -25,15 +25,42 @@ namespace M2GiantGroupSystem
 
         private void ApplyPermissions()
         {
-            // Example: Only allow Manager (6) or Admin (5) to see the 'Add Staff' button
-            bool canAdd = UserSession.AccessLevel >= 5;
-            btnAddStaff.Visible = canAdd;
+            int level = UserSession.AccessLevel; // The user Session object is global so this will work
 
-            // Example: Disable editing for lower levels
-            bool canEdit = UserSession.AccessLevel >= 6;
-            //txtFirstName.Enabled = canEdit;
-            // ... repeat for other fields
+            // 1. If Owner (6), they already have full access. 
+            // We just return early and don't change anything!
+            if (level >= 6) return;
+
+            // 2. If we reach this point, the user is NOT an owner.
+            // Now we apply restrictions for everyone else.
+            switch (level)
+            {
+                case 5: // Admin: Some locks
+                    btnAddStaff.Enabled = false; // Admins can edit but not add new staff
+                    dailyRateTextBox.ReadOnly = true; // Admins can edit staff but not change their daily rate
+                    cmbEditStatus.Enabled = false; // Admins can edit staff but not change their active/inactive status
+                    break;
+
+                case 4: // Ops Manager: More locks
+                    btnSave.Enabled = true;
+                    btnAddStaff.Enabled = false;                    
+                    cmbRoleEdit.Enabled = false;
+                    dailyRateTextBox.ReadOnly = true; // Ops Managers can view but not change daily rates
+                    cmbEditStatus.Enabled = false; // Ops Managers can view but not change their active/inactive status
+                    break;
+
+                default: // Level 3 and below: Complete lockdown – lock all controls if you feel they should not have access
+                    btnSave.Enabled = true;
+                    btnAddStaff.Enabled = false;                    
+                    cmbRoleEdit.Enabled = false;
+                    dailyRateTextBox.ReadOnly = true;
+                    cmbEditStatus.Enabled = false; // Regular staff can view but not change their active/inactive status
+                    break;
+            
+            }
+
         }
+        
 
         private void LoadRoles()
         {

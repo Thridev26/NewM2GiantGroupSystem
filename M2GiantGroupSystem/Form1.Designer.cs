@@ -66,6 +66,7 @@
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem11 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem13 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -86,11 +87,12 @@
             this.toolStripMenuItem7,
             this.toolStripMenuItem8,
             this.toolStripMenuItem11,
-            this.toolStripMenuItem10});
+            this.toolStripMenuItem10,
+            this.toolStripMenuItem13});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(14, 4, 0, 4);
-            this.menuStrip1.Size = new System.Drawing.Size(1393, 40);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(17, 5, 0, 5);
+            this.menuStrip1.Size = new System.Drawing.Size(1837, 46);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -381,8 +383,9 @@
             // 
             this.addStaffDetailsToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(219)))), ((int)(((byte)(117)))));
             this.addStaffDetailsToolStripMenuItem.Name = "addStaffDetailsToolStripMenuItem";
-            this.addStaffDetailsToolStripMenuItem.Size = new System.Drawing.Size(326, 32);
+            this.addStaffDetailsToolStripMenuItem.Size = new System.Drawing.Size(386, 40);
             this.addStaffDetailsToolStripMenuItem.Text = "Add Staff Details";
+            this.addStaffDetailsToolStripMenuItem.Click += new System.EventHandler(this.addStaffDetailsToolStripMenuItem_Click);
             // 
             // toolStripMenuItem8
             // 
@@ -409,11 +412,17 @@
             this.toolStripMenuItem10.Size = new System.Drawing.Size(70, 32);
             this.toolStripMenuItem10.Text = "Help";
             // 
+            // toolStripMenuItem13
+            // 
+            this.toolStripMenuItem13.Name = "toolStripMenuItem13";
+            this.toolStripMenuItem13.Size = new System.Drawing.Size(211, 36);
+            this.toolStripMenuItem13.Text = "Return to Menu";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(1393, 495);
+            this.ClientSize = new System.Drawing.Size(1837, 594);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -469,6 +478,7 @@
         private System.Windows.Forms.ToolStripMenuItem svaeQuoteAsPDFToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem printQuoteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addStaffDetailsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem13;
     }
 }
 
