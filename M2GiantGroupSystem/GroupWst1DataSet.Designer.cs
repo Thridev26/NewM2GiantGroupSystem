@@ -17186,11 +17186,23 @@ SELECT paymentID, paymentDate, amountPaid, paymentMethod, paymentStatus, jobID F
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT Payment.*\r\nFROM     Payment";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = @"INSERT INTO Payment
+                  (paymentDate, amountPaid, paymentMethod, paymentStatus, jobID)
+VALUES (@paymentDate,@amountPaid,@paymentMethod,@paymentStatus,@jobID); 
+SELECT paymentID, paymentDate, amountPaid, paymentMethod, paymentStatus, jobID FROM Payment WHERE (paymentID = SCOPE_IDENTITY())";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@paymentDate", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 0, 0, "paymentDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@amountPaid", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 10, 2, "amountPaid", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@paymentMethod", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "paymentMethod", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@paymentStatus", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "paymentStatus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@jobID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "jobID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -17402,6 +17414,49 @@ SELECT paymentID, paymentDate, amountPaid, paymentMethod, paymentStatus, jobID F
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
         public virtual int Update(global::System.Nullable<global::System.DateTime> paymentDate, decimal amountPaid, string paymentMethod, string paymentStatus, int jobID, int Original_paymentID, global::System.Nullable<global::System.DateTime> Original_paymentDate, decimal Original_amountPaid, string Original_paymentMethod, string Original_paymentStatus, int Original_jobID) {
             return this.Update(paymentDate, amountPaid, paymentMethod, paymentStatus, jobID, Original_paymentID, Original_paymentDate, Original_amountPaid, Original_paymentMethod, Original_paymentStatus, Original_jobID, Original_paymentID);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
+        public virtual int InsertQuery(string paymentDate, decimal amountPaid, string paymentMethod, string paymentStatus, int jobID) {
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[1];
+            if ((paymentDate == null)) {
+                command.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[0].Value = ((string)(paymentDate));
+            }
+            command.Parameters[1].Value = ((decimal)(amountPaid));
+            if ((paymentMethod == null)) {
+                throw new global::System.ArgumentNullException("paymentMethod");
+            }
+            else {
+                command.Parameters[2].Value = ((string)(paymentMethod));
+            }
+            if ((paymentStatus == null)) {
+                throw new global::System.ArgumentNullException("paymentStatus");
+            }
+            else {
+                command.Parameters[3].Value = ((string)(paymentStatus));
+            }
+            command.Parameters[4].Value = ((int)(jobID));
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
         }
     }
     

@@ -15,6 +15,8 @@ namespace M2GiantGroupSystem
     public partial class JobsForm : Form
     {
         int tabIndex;
+        DataTable jobTable;
+        int selectedJobID;
 
         // Global variables to store IDs during the capture process
         int selectedQuoteID = 0;
@@ -28,6 +30,19 @@ namespace M2GiantGroupSystem
         {
             InitializeComponent();
             tabIndex = tab_index;
+        }
+        private void ViewJobDetailsForm_Load(object sender, EventArgs e)
+        {
+            // Setup grid visual layouts first...
+            SetupGrid();
+
+            // Populate your filter ComboBox cleanly
+            JobProgressFilter.Items.Clear();
+            JobProgressFilter.Items.AddRange(new string[] { "All", "Not Started", "In Progress", "Completed" });
+            JobProgressFilter.SelectedIndex = 0; // Selects "All" by default
+
+            // Load initial table format
+            LoadJobs("All", "");
         }
 
         // --------------------------------------------------------------------------------------------------------
@@ -66,6 +81,22 @@ namespace M2GiantGroupSystem
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 dgvJoin.DataSource = dt;
+                // --- COPY AND PASTE THIS BLOCK RIGHT AFTER: dgvJoin.DataSource = dt; ---
+
+                // 1. Force the grid to fill the entire width of the layout cleanly
+                dgvJoin.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+                // 2. Set individual proportions so longer text has breathing room
+                dgvJoin.Columns["Client Name"].FillWeight = 60;
+                dgvJoin.Columns["Client Surname"].FillWeight = 60;
+                dgvJoin.Columns["Site Address"].FillWeight = 150; // Double width for long addresses
+                dgvJoin.Columns["Date Received"].FillWeight = 70;
+                dgvJoin.Columns["Quote File"].FillWeight = 120;    // Extra room for the file path
+
+                // 3. Give row text some padding vertically so lines aren't squished together
+                dgvJoin.RowTemplate.Height = 32;
+                dgvJoin.ColumnHeadersHeight = 40;
+                // -----------------------------------------------------------------------
 
                 if (dgvJoin.Columns["QuoteID"] != null)
                 {
@@ -79,9 +110,10 @@ namespace M2GiantGroupSystem
             // Instantly filter the grid as the user types
             loadAcceptedQuotes(txtSearchQuote.Text);
         }
-
+       
         private void JobsForm_Load(object sender, EventArgs e)
         {
+            
             tabControl1.SelectedIndex = tabIndex;
             tabControl1.DrawMode = TabDrawMode.OwnerDrawFixed;
             tabControl1.DrawItem += tabControl1_DrawItem;
@@ -101,6 +133,10 @@ namespace M2GiantGroupSystem
 
             loadAcceptedQuotes();
             LoadTimeSlotsForDate(dtpStartDate.Value);
+            LoadJobs();
+            SetupGrid();
+            ColourJobRows();
+
         }
 
         // --------------------------------------------------------------------------------------------------------
@@ -219,6 +255,7 @@ namespace M2GiantGroupSystem
                 MessageBox.Show("Please ensure a Job Status is selected.");
                 return;
             }
+
             DialogResult confirm = MessageBox.Show("Are you sure you want to schedule this job?", "Confirm Job Scheduling", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (confirm != DialogResult.Yes)
             {
@@ -231,6 +268,7 @@ namespace M2GiantGroupSystem
                 decimal labour = string.IsNullOrWhiteSpace(txtLabourCost.Text) ? 0.00m : Convert.ToDecimal(txtLabourCost.Text);
                 decimal dumping = string.IsNullOrWhiteSpace(txtDumpingCost.Text) ? 0.00m : Convert.ToDecimal(txtDumpingCost.Text);
 
+                // 1. Save the job and grab the generated jobID
                 jobID = Convert.ToInt32(jobTableAdapter1.InsertQuery(
                     dtpStartDate.Value.Date.ToString("yyyy-MM-dd"),
                     dtpEndDate.Value.ToString("yyyy-MM-dd"),
@@ -241,6 +279,7 @@ namespace M2GiantGroupSystem
                     selectedQuoteID
                 ));
 
+                // 2. Save the assigned time slots linked to that jobID
                 foreach (Control control in pnlTimeSlots.Controls)
                 {
                     if (control is CheckBox cb && cb.Checked)
@@ -249,14 +288,32 @@ namespace M2GiantGroupSystem
                         jobTimeSlotTableAdapter1.Insert(jobID, timeSlotID);
                     }
                 }
-               
-                MessageBox.Show("Job Scheduled successfully! Job ID: " + jobID);
+
+                // -----------------------------------------------------------------------------------------
+                // 3. AUTOMATICALLY ADD RECORD TO PAYMENT TABLE
+                // -----------------------------------------------------------------------------------------
+                // Calculate the initial total cost of the job to assign to the payment amount
+                decimal totalAmount = fuel + labour + dumping;
+
+                using (PaymentTableAdapter paymentAdapter = new PaymentTableAdapter())
+                {
+                    paymentAdapter.InsertQuery(
+                        DateTime.Today.ToString("yyyy-MM-dd"), // paymentDate as string in correct format
+                        totalAmount,
+                        "Pending Method",
+                        "Unpaid",
+                        jobID
+                    );
+                }
+                // -----------------------------------------------------------------------------------------
+
+                MessageBox.Show("Job Scheduled and Payment Profile created successfully! Job ID: " + jobID);
 
                 ClearFormLayout();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error saving job: " + ex.Message);
+                MessageBox.Show("Error saving job or generating payment details: " + ex.Message);
             }
         }
 
@@ -289,7 +346,7 @@ namespace M2GiantGroupSystem
             // Refresh slots for today
             LoadTimeSlotsForDate(DateTime.Today);
         }
-
+        
         // --------------------------------------------------------------------------------------------------------
         // CUSTOM TAB DRAWING
         // --------------------------------------------------------------------------------------------------------
@@ -338,17 +395,237 @@ namespace M2GiantGroupSystem
 
         private void txtSearchJobV_TextChanged(object sender, EventArgs e)
         {
-
+            // Pass the selected status item and the typed search string
+            string selectedStatus = JobProgressFilter.SelectedItem?.ToString() ?? "All";
+            LoadJobs(selectedStatus, txtSearchJobV.Text);
         }
 
+        // Assuming your ComboBox is named JobProgressFilter
         private void JobProgressFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            // Pass the newly selected status item and the typed search string
+            string selectedStatus = JobProgressFilter.SelectedItem?.ToString() ?? "All";
+            LoadJobs(selectedStatus, txtSearchJobV.Text);
         }
 
         private void dgvJobs_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            // 1. Prevent crash if they click the header row or an empty row
+            if (e.RowIndex < 0 || dgvJobs.Rows[e.RowIndex].Cells["ID"].Value == DBNull.Value) return;
 
+            DataGridViewRow row = dgvJobs.Rows[e.RowIndex];
+            selectedJobID = Convert.ToInt32(row.Cells["ID"].Value);
+
+            // 2. Core Job Identifiers & Status
+            lbJobID.Text = "Job ID: " + selectedJobID.ToString();
+            jobStatuslb.Text = "Status: " + row.Cells["Status"].Value?.ToString();
+
+            // 3. Client & Location Details
+            lblClientJobName.Text = "Client: " + row.Cells["Client Name"].Value?.ToString() + " " + row.Cells["Client Surname"].Value?.ToString();
+            siteaddresslb.Text = "Site Address: " + row.Cells["Address"].Value?.ToString();
+
+            // 4. Safely format the Start Date
+            if (row.Cells["Start Date"].Value != DBNull.Value && row.Cells["Start Date"].Value != null)
+            {
+                DateTime startDate = Convert.ToDateTime(row.Cells["Start Date"].Value);
+                jobStartDatelb.Text = "Start Date: " + startDate.ToString("yyyy/MM/dd");
+            }
+            else
+            {
+                jobStartDatelb.Text = "Start Date: N/A";
+            }
+
+            // 5. Safely format the End Date
+            if (row.Cells["End Date"].Value != DBNull.Value && row.Cells["End Date"].Value != null)
+            {
+                DateTime endDate = Convert.ToDateTime(row.Cells["End Date"].Value);
+                jobEndDatelb.Text = "End Date: " + endDate.ToString("yyyy/MM/dd");
+            }
+            else
+            {
+                jobEndDatelb.Text = "End Date: N/A";
+            }
+
+            // 6. Financial Costs Formatting (Formats decimal numbers to currency: e.g., R1,250.00)
+            decimal fuel = row.Cells["Fuel Cost"].Value != DBNull.Value ? Convert.ToDecimal(row.Cells["Fuel Cost"].Value) : 0.00m;
+            decimal labour = row.Cells["Labour Cost"].Value != DBNull.Value ? Convert.ToDecimal(row.Cells["Labour Cost"].Value) : 0.00m;
+            decimal dumping = row.Cells["Dumping Cost"].Value != DBNull.Value ? Convert.ToDecimal(row.Cells["Dumping Cost"].Value) : 0.00m;
+
+            lblFuelJobCost.Text = "Total Fuel Cost: " + fuel.ToString("C2");
+            lblJobLabourCost.Text = "Total Labour Cost: " + labour.ToString("C2");
+            lblDumpJobCost.Text = "Dumping Cost: " + dumping.ToString("C2");
+           // lblDetailTotalCost.Text = "Overall Job Cost: " + (fuel + labour + dumping).ToString("C2");
+
+            // 7. System Tracking Keys
+            lblJobQuoteID.Text = "Linked Quote ID: " + row.Cells["Quote ID"].Value?.ToString();
+
+            // 8. Colour code the status text color dynamically
+            string status = row.Cells["Status"].Value?.ToString();
+            if (status == "Completed") jobStatuslb.ForeColor = Color.Green;
+            else if (status == "In Progress") jobStatuslb.ForeColor = Color.Orange;
+            else jobStatuslb.ForeColor = Color.Red; // Not Started
+        }
+        void SetupGrid()
+        {
+            dgvJobs.ReadOnly = true;
+            dgvJobs.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvJobs.MultiSelect = false;
+            dgvJobs.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvJobs.RowHeadersVisible = false;
+            dgvJobs.AllowUserToAddRows = false;
+            dgvJobs.BackgroundColor = Color.FromArgb(155, 198, 138);
+            dgvJobs.DefaultCellStyle.SelectionBackColor = Color.Green;
+            dgvJobs.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 12f, FontStyle.Bold);
+            dgvJobs.EnableHeadersVisualStyles = false;
+        }
+        void LoadJobs(string statusFilter = "All", string searchTerm = "")
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                // Base SQL Query selecting all needed details
+                string sql = @"
+    SELECT 
+        j.jobID           AS [ID],
+        c.clientName      AS [Client Name],
+        c.clientSurname   AS [Client Surname],
+        jr.siteAddress    AS [Address],
+        j.startDate       AS [Start Date],
+        j.endDate         AS [End Date], 
+        j.jobStatus       AS [Status],
+        j.totalFuelCost   AS [Fuel Cost],
+        j.totalLabourCost AS [Labour Cost],
+        j.dumpingCost     AS [Dumping Cost],
+        j.quoteID         AS [Quote ID]
+    FROM Job j
+    INNER JOIN Quote q ON j.quoteID = q.QuoteID
+    INNER JOIN JobRequest jr ON q.jobRequestID = jr.jobRequestID
+    INNER JOIN Client c ON jr.clientID = c.clientID
+    WHERE 1=1"; // 'WHERE 1=1' is a trick that allows us to dynamically append 'AND' conditions safely
+
+                // 1. Handle the ComboBox Status Filter
+                if (statusFilter != "All" && !string.IsNullOrWhiteSpace(statusFilter))
+                {
+                    sql += " AND j.jobStatus = @status";
+                }
+
+                // 2. Handle the TextBox Search Filter
+                if (!string.IsNullOrWhiteSpace(searchTerm))
+                {
+                    sql += " AND (c.clientName LIKE @search OR c.clientSurname LIKE @search OR jr.siteAddress LIKE @search)";
+                }
+
+                sql += " ORDER BY j.startDate DESC";
+
+                SqlDataAdapter da = new SqlDataAdapter(sql, conn);
+
+                // Assign parameters safely to avoid crashes
+                if (statusFilter != "All" && !string.IsNullOrWhiteSpace(statusFilter))
+                {
+                    da.SelectCommand.Parameters.AddWithValue("@status", statusFilter);
+                }
+                if (!string.IsNullOrWhiteSpace(searchTerm))
+                {
+                    da.SelectCommand.Parameters.AddWithValue("@search", "%" + searchTerm + "%");
+                }
+
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dgvJobs.DataSource = dt;
+
+                // Hide structural tracking columns
+                if (dgvJobs.Columns["ID"] != null) dgvJobs.Columns["ID"].Visible = false;
+                if (dgvJobs.Columns["Fuel Cost"] != null) dgvJobs.Columns["Fuel Cost"].Visible = false;
+                if (dgvJobs.Columns["Labour Cost"] != null) dgvJobs.Columns["Labour Cost"].Visible = false;
+                if (dgvJobs.Columns["Dumping Cost"] != null) dgvJobs.Columns["Dumping Cost"].Visible = false;
+                if (dgvJobs.Columns["Quote ID"] != null) dgvJobs.Columns["Quote ID"].Visible = false;
+            }
+            ColourJobRows();
+        }
+
+        void ColourJobRows()
+        {
+            foreach (DataGridViewRow row in dgvJobs.Rows)
+            {
+                string status = row.Cells["Status"].Value?.ToString();
+
+                // Example: Color based on progress
+                if (status == "Completed") row.DefaultCellStyle.BackColor = Color.LightGreen;
+                else if (status == "In Progress") row.DefaultCellStyle.BackColor = Color.LightYellow;
+                else if (status == "Not Started") row.DefaultCellStyle.BackColor = Color.LightCoral;
+                else row.DefaultCellStyle.BackColor = Color.White;
+            }
+        }
+
+        private void JobAddBtn_Click(object sender, EventArgs e)
+        {
+            // Defensive checks
+            if (tabControl1 == null || tabControl1.TabPages == null || tabControl1.TabPages.Count == 0)
+                return;
+
+            // Try to find a TabPage named "tabPage1"
+            TabPage target = null;
+            try
+            {
+                target = tabControl1.TabPages.Cast<TabPage>().FirstOrDefault(tp => tp != null && tp.Name == "tabPage1");
+            }
+            catch
+            {
+                // Ignore LINQ issues and fallback to index selection below
+                target = null;
+            }
+
+            if (target != null)
+            {
+                tabControl1.SelectedTab = target;
+            }
+            else
+            {
+                // Fallback to the first tab
+                tabControl1.SelectedIndex = 0;
+            }
+
+            // Ensure the tab control has focus so the UI updates visibly
+            tabControl1.Focus();
+        }
+
+        private void JobEditBtn_Click(object sender, EventArgs e)
+        {
+            // Defensive checks
+            if (tabControl1 == null || tabControl1.TabPages == null || tabControl1.TabPages.Count < 3)
+                return;
+
+            // Navigate to tabPage3 (index 2)
+            tabControl1.SelectedIndex = 2;
+            tabControl1.Focus();
+        }
+
+        private void ArchiverJobBtn_Click(object sender, EventArgs e)
+        {
+            if (selectedJobID == 0)
+            {
+                MessageBox.Show("Please select a job to archive.", "No Job Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DialogResult confirm = MessageBox.Show(
+                "Are you sure you want to archive this job record? Job ID: " + selectedJobID,
+                "Confirm Job Archive",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (confirm == DialogResult.Yes)
+            {
+                try
+                {
+                    // Archive logic will be implemented here
+                    MessageBox.Show("Job archived successfully!", "Archive Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error archiving job: " + ex.Message, "Archive Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }
