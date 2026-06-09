@@ -281,9 +281,9 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="GroupWst1DataSet.cs">
+    <EmbeddedResource Include="GroupWst1DataSet.cs">
       <DependentUpon>GroupWst1DataSet.xsd</DependentUpon>
-    </Compile>
+    </EmbeddedResource>
     <Compile Include="GroupWst1DataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -424,11 +424,11 @@
     <None Include="GroupWst1DataSet.xsc">
       <DependentUpon>GroupWst1DataSet.xsd</DependentUpon>
     </None>
-    <None Include="GroupWst1DataSet.xsd">
+    <EmbeddedResource Include="GroupWst1DataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>GroupWst1DataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
-    </None>
+    </EmbeddedResource>
     <None Include="GroupWst1DataSet.xss">
       <DependentUpon>GroupWst1DataSet.xsd</DependentUpon>
     </None>

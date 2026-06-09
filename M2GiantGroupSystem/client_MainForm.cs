@@ -17,7 +17,7 @@ namespace M2GiantGroupSystem
     public partial class client_MainForm : Form
     {
         int tabIndex;
-        
+
         public client_MainForm(int tab_index)
         {
             InitializeComponent();
@@ -39,6 +39,13 @@ namespace M2GiantGroupSystem
 
         private void client_MainForm_Load(object sender, EventArgs e)
         {
+            disableInput();
+            userTip.Text = "Updating will be disabled until a \n " +
+                           "client is selected from the results \n" +
+                           "or only one client is found.";
+
+            userTip1.Text = "Select a criteria  \nbefore entering\n a value.";
+
             //view clients
 
             cboSearchColumn.Items.AddRange(new string[]
@@ -46,8 +53,8 @@ namespace M2GiantGroupSystem
                 "Name", "Surname", "Email", "Phone", "Type", "Status", "Date Added"
             });
             cboSearchColumn.SelectedIndex = 0;
-            cboFilterStatus.SelectedIndex= 0;
-            cboFilterType.SelectedIndex= 0;
+            cboFilterStatus.SelectedIndex = 0;
+            cboFilterType.SelectedIndex = 0;
             SetupGrid();
             LoadClients();
             ClearDetailsPanel();
@@ -63,6 +70,9 @@ namespace M2GiantGroupSystem
             this.clientTableAdapter1.Fill(this.groupWst1DataSet1.Client);
 
             ResetOriginalValues();
+            tbSearchValue_A.Enabled = false;
+            tbSearchValue_A.Text = "Disabled";
+            tbSearchValue_A.BackColor = Color.LightGray;
 
             loadingClient = false;
             formLoaded = true;
@@ -175,7 +185,7 @@ namespace M2GiantGroupSystem
 
         private void tbSearchValue_A_TextChanged(object sender, EventArgs e)
         {
-            
+
             int index = cmbCriteria_A.SelectedIndex;
             switch (index)
             {
@@ -247,6 +257,7 @@ namespace M2GiantGroupSystem
                 ResetOriginalValues();
 
                 loadingClient = false;
+                enableInput();
                 return;
             }
 
@@ -259,6 +270,7 @@ namespace M2GiantGroupSystem
                 clientTableAdapter1.FillByID(
                     this.groupWst1DataSet1.Client,
                     id);
+                enableInput();
 
                 ResetOriginalValues();
             }
@@ -280,14 +292,14 @@ namespace M2GiantGroupSystem
         {
             if (!formLoaded || loadingClient)
                 return;
-            checkIfEdited((System.Windows.Forms.TextBox)sender);
+
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
             if (!formLoaded || loadingClient)
                 return;
-            checkIfEdited((System.Windows.Forms.TextBox)sender);
+
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -299,7 +311,7 @@ namespace M2GiantGroupSystem
         {
             if (!formLoaded || loadingClient)
                 return;
-            checkIfEdited((System.Windows.Forms.ComboBox)sender);
+
 
         }
 
@@ -313,7 +325,15 @@ namespace M2GiantGroupSystem
             if (cmbCriteria_A.SelectedIndex > -1)
             {
                 tbSearchValue_A.Enabled = true;
+                tbSearchValue_A.Text = "";
+                //make textbox green to show its enabled
+                tbSearchValue_A.Focus();
+                tbSearchValue_A.BackColor = Color.FromArgb(155, 198, 138);
+
+             
+
             }
+            lblSearchBy_A.Text = "Enter: " + cmbCriteria_A.SelectedItem.ToString();
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
@@ -321,21 +341,21 @@ namespace M2GiantGroupSystem
             //shows it was updated
             if (!formLoaded || loadingClient)
                 return;
-            checkIfEdited((System.Windows.Forms.TextBox)sender);
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             if (!formLoaded || loadingClient)
                 return;
-            checkIfEdited((System.Windows.Forms.TextBox)sender);
+
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!formLoaded || loadingClient)
                 return;
-            checkIfEdited((System.Windows.Forms.ComboBox)sender);
+
         }
 
 
@@ -373,18 +393,12 @@ namespace M2GiantGroupSystem
             comboBox1.Tag = comboBox1.Text;
             comboBox2.Tag = comboBox2.Text;
 
-            textBox1.BackColor = Color.White;
-            textBox2.BackColor = Color.White;
-            textBox3.BackColor = Color.White;
-            textBox4.BackColor = Color.White;
 
-            comboBox1.BackColor = Color.White;
-            comboBox2.BackColor = Color.White;
         }
 
         private void clientBS_CurrentChanged(object sender, EventArgs e)
         {
-          
+
         }
         // -----------------------------
         // GRID SETUP
@@ -397,15 +411,16 @@ namespace M2GiantGroupSystem
             dgvClients.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvClients.RowHeadersVisible = false;
             dgvClients.AllowUserToAddRows = false;
-            dgvClients.BackgroundColor = Color.Honeydew;
-            dgvClients.BorderStyle = BorderStyle.None;
+            dgvClients.BackgroundColor = Color.FromArgb(155,198,138);
+            dgvClients.BorderStyle = BorderStyle.FixedSingle;
             dgvClients.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dgvClients.DefaultCellStyle.SelectionBackColor = Color.Green;
             dgvClients.DefaultCellStyle.SelectionForeColor = Color.White;
-            dgvClients.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGreen;
+            dgvClients.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
             dgvClients.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black;
-            dgvClients.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9f, FontStyle.Bold);
+            dgvClients.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 16f, FontStyle.Regular);
             dgvClients.EnableHeadersVisualStyles = false;
+           
         }
 
         // -----------------------------
@@ -431,16 +446,17 @@ namespace M2GiantGroupSystem
                 SqlDataAdapter da = new SqlDataAdapter(sql, conn);
                 clientTable = new DataTable();
                 da.Fill(clientTable);
-                
+
 
                 dgvClients.DataSource = clientTable;
 
                 // Hide the ID column from view but keep it in the table
                 dgvClients.Columns["ID"].Visible = false;
 
-                ColourRows();
+                
             }
-          
+            ColourRows();
+
         }
 
         // -----------------------------
@@ -450,7 +466,7 @@ namespace M2GiantGroupSystem
         {
             foreach (DataGridViewRow row in dgvClients.Rows)
             {
-                if (row.IsNewRow) continue;
+                //if (row.IsNewRow) continue;
 
                 string status = row.Cells["Status"].Value?.ToString();
                 string type = row.Cells["Type"].Value?.ToString();
@@ -479,6 +495,7 @@ namespace M2GiantGroupSystem
                     row.DefaultCellStyle.ForeColor = Color.Gray;
                 }
             }
+            dgvClients.Refresh();
         }
 
         private void dgvClients_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -500,7 +517,7 @@ namespace M2GiantGroupSystem
 
             // Colour the status label
             string status = row.Cells["Status"].Value?.ToString();
-            lblDetailStatus.ForeColor = status == "Active" ? Color.ForestGreen : Color.Gray;
+            lblDetailStatus.ForeColor = status == "Active" ? Color.LightGreen : Color.Gray;
 
             btnEdit.Enabled = true;
             btnDelete.Enabled = true;
@@ -575,7 +592,7 @@ namespace M2GiantGroupSystem
 
         private void cboSearchColumn_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void txtSearchV_TextChanged(object sender, EventArgs e)
@@ -614,11 +631,11 @@ namespace M2GiantGroupSystem
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            
-                
-                tabControl1.SelectedIndex = 0;
-                LoadClients();
-            
+
+
+            tabControl1.SelectedIndex = 0;
+            LoadClients();
+
         }
         void ClearDetailsPanel()
         {
@@ -641,6 +658,49 @@ namespace M2GiantGroupSystem
         }
 
         private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void disableInput()
+        {
+            textBox1.Enabled = false;
+            textBox2.Enabled = false;
+            textBox3.Enabled = false;
+            textBox4.Enabled = false;
+            comboBox1.Enabled = false;
+            comboBox2.Enabled = false;
+
+            btnUpdate.Enabled = false;
+            btnUpdate.ForeColor = Color.Gray;
+
+
+        }
+
+        private void enableInput()
+        {
+            textBox1.Enabled = true;
+            textBox2.Enabled = true;
+            textBox3.Enabled = true;
+            textBox4.Enabled = true;
+            comboBox1.Enabled = true;
+            comboBox2.Enabled = true;
+            btnUpdate.Enabled = true;
+            btnUpdate.ForeColor = Color.White;
+        }
+
+        private void userTip_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabPage3_Enter(object sender, EventArgs e)
+        {
+            ColourRows();
+            
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
         {
 
         }

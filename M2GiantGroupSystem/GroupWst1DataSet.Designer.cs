@@ -14126,23 +14126,20 @@ SELECT jobRequestID, clientID, siteAddress, longitude, latitude, requestSource, 
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[5];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT jobRequestID, clientID, siteAddress, longitude, latitude, requestSource, u" +
-                "rgencyLevel, status, dateRecieved, siteEvaluationDate\r\nFROM   JobRequest\r\nWHERE " +
-                "(jobRequestID NOT IN\r\n                 (SELECT jobRequestID\r\n                 FR" +
-                "OM    Quote))";
+            this._commandCollection[0].CommandText = "SELECT JobRequest.*\r\nFROM     JobRequest";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT clientID, dateRecieved, jobRequestID, latitude, longitude, requestSource, " +
-                "siteAddress, siteEvaluationDate, status, urgencyLevel FROM JobRequest WHERE (job" +
-                "RequestID = @id)";
+            this._commandCollection[1].CommandText = "SELECT jobRequestID, clientID, siteAddress, longitude, latitude, requestSource, u" +
+                "rgencyLevel, status, dateRecieved, siteEvaluationDate\r\nFROM     JobRequest\r\nWHER" +
+                "E  (jobRequestID = @id)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "jobRequestID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT clientID, dateRecieved, jobRequestID, latitude, longitude, requestSource, " +
-                "siteAddress, siteEvaluationDate, status, urgencyLevel FROM JobRequest WHERE (job" +
-                "RequestID = @jobRequestID)";
+            this._commandCollection[2].CommandText = "SELECT jobRequestID, clientID, siteAddress, longitude, latitude, requestSource, u" +
+                "rgencyLevel, status, dateRecieved, siteEvaluationDate\r\nFROM   JobRequest\r\nWHERE " +
+                "(jobRequestID = @jobRequestID)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@jobRequestID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "jobRequestID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
@@ -21914,8 +21911,7 @@ WHERE  (Job.jobID = @id)";
             this._commandCollection[0].CommandText = @"SELECT Client.clientName, Client.clientSurname, JobRequest.siteAddress, JobRequest.longitude, JobRequest.latitude, JobRequest.requestSource, JobRequest.urgencyLevel, JobRequest.status, JobRequest.dateRecieved, JobRequest.siteEvaluationDate, Client.clientID, 
              JobRequest.clientID, JobRequest.jobRequestID
 FROM   Client INNER JOIN
-             JobRequest ON Client.clientID = JobRequest.clientID
-WHERE JobRequest.jobRequestID NOT IN (SELECT jobRequestID FROM Quote)";
+             JobRequest ON Client.clientID = JobRequest.clientID";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
