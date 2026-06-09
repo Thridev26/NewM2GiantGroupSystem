@@ -27,9 +27,47 @@ namespace M2GiantGroupSystem
 
         }
 
+        private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            TabPage page = tabViewAllocations.TabPages[e.Index];
+            Rectangle tabRect = tabViewAllocations.GetTabRect(e.Index);
+
+            Font tabFont = new Font("Segoe UI", 10, FontStyle.Bold);
+
+            Color backColor = Color.Honeydew;
+            Color textColor = Color.Black;
+
+            if (e.Index == tabViewAllocations.SelectedIndex)
+            {
+                backColor = Color.DarkGreen;
+                textColor = Color.White;
+            }
+
+            using (Brush b = new SolidBrush(backColor))
+            {
+                e.Graphics.FillRectangle(b, tabRect);
+            }
+
+            using (Pen p = new Pen(Color.DarkGreen, 1))
+            {
+                e.Graphics.DrawRectangle(p, tabRect);
+            }
+
+            TextRenderer.DrawText(
+                e.Graphics,
+                page.Text,
+                tabFont,
+                tabRect,
+                textColor,
+                TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
+            );
+        }
         private void AllocateAssetStafftoJob_Load(object sender, EventArgs e)
         {
-          
+            tabViewAllocations.DrawMode = TabDrawMode.OwnerDrawFixed;
+            tabViewAllocations.DrawItem += tabControl1_DrawItem;
+            tabViewAllocations.ItemSize = new Size(300, 30);
+            tabViewAllocations.SizeMode = TabSizeMode.Fixed;
             tabViewAllocations.SelectedIndex = tabIndex; // Set the selected tab based on the passed index
             // TODO: This line of code loads data into the 'groupWst1DataSet.DataTable1' table. You can move, or remove it, as needed.
             this.dataTable1TableAdapter.Fill(this.groupWst1DataSet.DataTable1);
