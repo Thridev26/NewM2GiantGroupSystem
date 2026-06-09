@@ -351,6 +351,7 @@
     <Compile Include="Staff.Designer.cs">
       <DependentUpon>Staff.cs</DependentUpon>
     </Compile>
+    <Compile Include="StaffDB.cs" />
     <Compile Include="UserSession.cs" />
     <Compile Include="WeeklyExpenseDetails.cs" />
     <Compile Include="WeeklyExpensesReportForm.cs">
