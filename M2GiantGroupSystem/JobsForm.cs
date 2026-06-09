@@ -15,6 +15,8 @@ namespace M2GiantGroupSystem
     public partial class JobsForm : Form
     {
         int tabIndex;
+        DataTable jobTable;
+        int selectedJobID;
 
         // Global variables to store IDs during the capture process
         int selectedQuoteID = 0;
@@ -348,7 +350,77 @@ namespace M2GiantGroupSystem
 
         private void dgvJobs_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0) return;
 
+            DataGridViewRow row = dgvJobs.Rows[e.RowIndex];
+            selectedJobID = Convert.ToInt32(row.Cells["ID"].Value);
+
+            // Update your Detail Labels (Ensure these match your actual label names)
+            lbJobID.Text = "Job ID: " + selectedJobID.ToString();
+            jobStartDatelb.Text = "Start Date: " + row.Cells["Start Date"].Value?.ToString();
+            jobEndDatelb.Text = "End Date: " + row.Cells["End Date"].Value?.ToString();
+            jobStatuslb.Text = "Status: " + row.Cells["Status"].Value?.ToString();
+
+            // Format the date for readability
+            DateTime start = Convert.ToDateTime(row.Cells["Start Date"].Value);
+            lblDetailDate.Text = "Start Date: " + start.ToString("dd MMM yyyy");
+
+            // Optional: Visual indicator for status
+            lblDetailStatus.ForeColor = (row.Cells["Status"].Value.ToString() == "Completed") ? Color.Green : Color.Orange;
+        }
+        void SetupGrid()
+        {
+            dgvJobs.ReadOnly = true;
+            dgvJobs.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvJobs.MultiSelect = false;
+            dgvJobs.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvJobs.RowHeadersVisible = false;
+            dgvJobs.AllowUserToAddRows = false;
+            dgvJobs.BackgroundColor = Color.FromArgb(155, 198, 138);
+            dgvJobs.DefaultCellStyle.SelectionBackColor = Color.Green;
+            dgvJobs.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 12f, FontStyle.Bold);
+            dgvJobs.EnableHeadersVisualStyles = false;
+        }
+        void LoadJobs()
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                // JOINING: Job -> Quote -> JobRequest -> Client
+                string sql = @"
+            SELECT 
+                j.jobID AS [ID],
+                c.clientName AS [Name],
+                c.clientSurname AS [Surname],
+                jr.siteAddress AS [Address],
+                j.startDate AS [Start Date],
+                j.jobStatus AS [Status]
+            FROM Job j
+            INNER JOIN Quote q ON j.quoteID = q.QuoteID
+            INNER JOIN JobRequest jr ON q.jobRequestID = jr.jobRequestID
+            INNER JOIN Client c ON jr.clientID = c.clientID
+            ORDER BY j.startDate DESC";
+
+                SqlDataAdapter da = new SqlDataAdapter(sql, conn);
+                jobTable = new DataTable();
+                da.Fill(jobTable);
+                dgvJobs.DataSource = jobTable;
+                dgvJobs.Columns["ID"].Visible = false; // Hide ID column
+            }
+            ColourJobRows();
+        }
+
+        void ColourJobRows()
+        {
+            foreach (DataGridViewRow row in dgvJobs.Rows)
+            {
+                string status = row.Cells["Status"].Value?.ToString();
+
+                // Example: Color based on progress
+                if (status == "Completed") row.DefaultCellStyle.BackColor = Color.LightGreen;
+                else if (status == "In Progress") row.DefaultCellStyle.BackColor = Color.LightYellow;
+                else if (status == "Not Started") row.DefaultCellStyle.BackColor = Color.LightCoral;
+                else row.DefaultCellStyle.BackColor = Color.White;
+            }
         }
     }
 }

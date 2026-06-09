@@ -73,9 +73,9 @@
             this.lblDetailType = new System.Windows.Forms.Label();
             this.lblDetailStatus = new System.Windows.Forms.Label();
             this.lblDetailPhone = new System.Windows.Forms.Label();
-            this.lblDetailEmail = new System.Windows.Forms.Label();
-            this.lblJobDetailSurname = new System.Windows.Forms.Label();
-            this.lblJobDetailName = new System.Windows.Forms.Label();
+            this.jobStatuslb = new System.Windows.Forms.Label();
+            this.jobEndDatelb = new System.Windows.Forms.Label();
+            this.jobStartDatelb = new System.Windows.Forms.Label();
             this.lbJobID = new System.Windows.Forms.Label();
             this.lblSearchResults_A = new System.Windows.Forms.Label();
             this.lblSearchBy_A = new System.Windows.Forms.Label();
@@ -571,9 +571,9 @@
             this.pnlDetailsV.Controls.Add(this.lblDetailType);
             this.pnlDetailsV.Controls.Add(this.lblDetailStatus);
             this.pnlDetailsV.Controls.Add(this.lblDetailPhone);
-            this.pnlDetailsV.Controls.Add(this.lblDetailEmail);
-            this.pnlDetailsV.Controls.Add(this.lblJobDetailSurname);
-            this.pnlDetailsV.Controls.Add(this.lblJobDetailName);
+            this.pnlDetailsV.Controls.Add(this.jobStatuslb);
+            this.pnlDetailsV.Controls.Add(this.jobEndDatelb);
+            this.pnlDetailsV.Controls.Add(this.jobStartDatelb);
             this.pnlDetailsV.Controls.Add(this.lbJobID);
             this.pnlDetailsV.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pnlDetailsV.Location = new System.Drawing.Point(1338, 223);
@@ -621,35 +621,35 @@
             this.lblDetailPhone.TabIndex = 10;
             this.lblDetailPhone.Text = "label11";
             // 
-            // lblDetailEmail
+            // jobStatuslb
             // 
-            this.lblDetailEmail.AutoSize = true;
-            this.lblDetailEmail.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDetailEmail.Location = new System.Drawing.Point(13, 173);
-            this.lblDetailEmail.Name = "lblDetailEmail";
-            this.lblDetailEmail.Size = new System.Drawing.Size(112, 38);
-            this.lblDetailEmail.TabIndex = 9;
-            this.lblDetailEmail.Text = "label10";
+            this.jobStatuslb.AutoSize = true;
+            this.jobStatuslb.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.jobStatuslb.Location = new System.Drawing.Point(13, 173);
+            this.jobStatuslb.Name = "jobStatuslb";
+            this.jobStatuslb.Size = new System.Drawing.Size(96, 38);
+            this.jobStatuslb.TabIndex = 9;
+            this.jobStatuslb.Text = "label4";
             // 
-            // lblJobDetailSurname
+            // jobEndDatelb
             // 
-            this.lblJobDetailSurname.AutoSize = true;
-            this.lblJobDetailSurname.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblJobDetailSurname.Location = new System.Drawing.Point(13, 113);
-            this.lblJobDetailSurname.Name = "lblJobDetailSurname";
-            this.lblJobDetailSurname.Size = new System.Drawing.Size(96, 38);
-            this.lblJobDetailSurname.TabIndex = 8;
-            this.lblJobDetailSurname.Text = "label9";
+            this.jobEndDatelb.AutoSize = true;
+            this.jobEndDatelb.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.jobEndDatelb.Location = new System.Drawing.Point(13, 113);
+            this.jobEndDatelb.Name = "jobEndDatelb";
+            this.jobEndDatelb.Size = new System.Drawing.Size(96, 38);
+            this.jobEndDatelb.TabIndex = 8;
+            this.jobEndDatelb.Text = "label3";
             // 
-            // lblJobDetailName
+            // jobStartDatelb
             // 
-            this.lblJobDetailName.AutoSize = true;
-            this.lblJobDetailName.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblJobDetailName.Location = new System.Drawing.Point(13, 57);
-            this.lblJobDetailName.Name = "lblJobDetailName";
-            this.lblJobDetailName.Size = new System.Drawing.Size(96, 38);
-            this.lblJobDetailName.TabIndex = 7;
-            this.lblJobDetailName.Text = "label8";
+            this.jobStartDatelb.AutoSize = true;
+            this.jobStartDatelb.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.jobStartDatelb.Location = new System.Drawing.Point(13, 57);
+            this.jobStartDatelb.Name = "jobStartDatelb";
+            this.jobStartDatelb.Size = new System.Drawing.Size(96, 38);
+            this.jobStartDatelb.TabIndex = 7;
+            this.jobStartDatelb.Text = "label2";
             // 
             // lbJobID
             // 
@@ -989,9 +989,9 @@
         private System.Windows.Forms.Label lblDetailType;
         private System.Windows.Forms.Label lblDetailStatus;
         private System.Windows.Forms.Label lblDetailPhone;
-        private System.Windows.Forms.Label lblDetailEmail;
-        private System.Windows.Forms.Label lblJobDetailSurname;
-        private System.Windows.Forms.Label lblJobDetailName;
+        private System.Windows.Forms.Label jobStatuslb;
+        private System.Windows.Forms.Label jobEndDatelb;
+        private System.Windows.Forms.Label jobStartDatelb;
         private System.Windows.Forms.Label lbJobID;
         private System.Windows.Forms.Label lblSearchResults_A;
         private System.Windows.Forms.Label lblSearchBy_A;
