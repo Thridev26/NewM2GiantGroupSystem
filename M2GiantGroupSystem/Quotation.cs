@@ -668,6 +668,7 @@ namespace M2GiantGroupSystem
 
                 // 6. DATABASE RE-SYNC AND UI REFRESH
                 // Pull down a pristine snapshot to update the local DataTable layout cache
+                this.dataTable3TableAdapter.Fill(this.groupWst1DataSet.DataTable3);
                 this.quoteTableAdapter.Fill(this.groupWst1DataSet.Quote);
                 UpdateQuoteCount();
 

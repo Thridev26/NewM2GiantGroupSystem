@@ -52,6 +52,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnRemoveJobType = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.selectedJobsGridView = new System.Windows.Forms.DataGridView();
             this.colJobType = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -114,6 +115,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.quoteDataGridView = new System.Windows.Forms.DataGridView();
             this.clientNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clientSurnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -161,8 +163,6 @@
             this.quoteTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.QuoteTableAdapter();
             this.dataTable2TableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.DataTable2TableAdapter();
             this.dataTable3TableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.DataTable3TableAdapter();
-            this.btnRemoveJobType = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             filePathLabel = new System.Windows.Forms.Label();
             urgencyLevelLabel = new System.Windows.Forms.Label();
             latitudeLabel = new System.Windows.Forms.Label();
@@ -195,12 +195,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.giantGroupLogo)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.quoteDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTable3BindingSource)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.quoteBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.jobRequestBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // filePathLabel
@@ -458,6 +458,18 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1556, 1009);
             this.panel1.TabIndex = 0;
+            // 
+            // btnRemoveJobType
+            // 
+            this.btnRemoveJobType.BackColor = System.Drawing.Color.White;
+            this.btnRemoveJobType.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemoveJobType.Location = new System.Drawing.Point(1254, 716);
+            this.btnRemoveJobType.Name = "btnRemoveJobType";
+            this.btnRemoveJobType.Size = new System.Drawing.Size(244, 73);
+            this.btnRemoveJobType.TabIndex = 55;
+            this.btnRemoveJobType.Text = "Remove Selected Job Type";
+            this.btnRemoveJobType.UseVisualStyleBackColor = false;
+            this.btnRemoveJobType.Click += new System.EventHandler(this.btnRemoveJobType_Click);
             // 
             // groupBox3
             // 
@@ -1065,6 +1077,17 @@
             this.panel2.Size = new System.Drawing.Size(1556, 1009);
             this.panel2.TabIndex = 1;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.SeaShell;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(1333, 11);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(218, 109);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 54;
+            this.pictureBox1.TabStop = false;
+            // 
             // quoteDataGridView
             // 
             this.quoteDataGridView.AutoGenerateColumns = false;
@@ -1509,29 +1532,6 @@
             // 
             this.dataTable3TableAdapter.ClearBeforeFill = true;
             // 
-            // btnRemoveJobType
-            // 
-            this.btnRemoveJobType.BackColor = System.Drawing.Color.White;
-            this.btnRemoveJobType.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRemoveJobType.Location = new System.Drawing.Point(1254, 716);
-            this.btnRemoveJobType.Name = "btnRemoveJobType";
-            this.btnRemoveJobType.Size = new System.Drawing.Size(244, 73);
-            this.btnRemoveJobType.TabIndex = 55;
-            this.btnRemoveJobType.Text = "Remove Selected Job Type";
-            this.btnRemoveJobType.UseVisualStyleBackColor = false;
-            this.btnRemoveJobType.Click += new System.EventHandler(this.btnRemoveJobType_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.SeaShell;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(1333, 11);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(218, 109);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 54;
-            this.pictureBox1.TabStop = false;
-            // 
             // Quotation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
@@ -1565,13 +1565,13 @@
             this.tabPage2.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.quoteDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataTable3BindingSource)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.quoteBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.jobRequestBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
