@@ -34,6 +34,22 @@ namespace M2GiantGroupSystem
             //txtFirstName.Enabled = canEdit;
             // ... repeat for other fields
         }
+
+        private void LoadRoles()
+        {
+            string query = "SELECT roleID, roleName FROM Role"; // Adjust if your table/column names differ
+            using (SqlConnection con = new SqlConnection("YourConnectionString")) // Use your actual string
+            {
+                SqlDataAdapter da = new SqlDataAdapter(query, con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                // Bind the ComboBox
+                cmbRole.DisplayMember = "roleName"; // What the user sees
+                cmbRole.ValueMember = "roleID";     // What gets saved to the database
+                cmbRole.DataSource = dt;
+            }
+        }
         private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)
         {
             TabPage page = tabControl1.TabPages[e.Index];
@@ -120,6 +136,96 @@ namespace M2GiantGroupSystem
                         MessageBox.Show("Database error: " + ex.Message);
                     }
                 }
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // 1. Get the Role ID
+            int selectedRoleID = (int)cmbRole.SelectedValue;
+
+            // 2. Decide if we are sending a password or not
+            // We only pass the text if the user actually typed something new
+            string passToSend = string.IsNullOrWhiteSpace(passwordHashTextBox.Text) ? null : passwordHashTextBox.Text;
+
+            // 3. Call SaveStaff
+            StaffDB.SaveStaff(
+                int.Parse(staffIDTextBox.Text),
+                firstNameTextBox.Text,
+                lastNameTextBox.Text,
+                userNameTextBox.Text,
+                passToSend, // Using the new variable that handles empty strings
+                contactNumberTextBox.Text,
+                staffStatusTextBox.Text,
+                decimal.Parse(dailyRateTextBox.Text),
+                selectedRoleID,
+                false
+            );
+
+            MessageBox.Show("Staff updated successfully.");
+
+            // Refresh your GridView
+            dgvStaffInfo.DataSource = StaffDB.GetStaffForUser(UserSession.StaffID, UserSession.AccessLevel);
+        }
+
+        private void ClearFields()
+        {
+            firstNameTextBox1.Clear();
+            lastNameTextBox1.Clear();
+            userNameTextBox1.Clear();
+            passwordHashTextBox1.Clear(); // This will be the NEW password
+            contactNumberTextBox1.Clear();
+            cmbRole.SelectedIndex = -1; // Deselects the combo box
+        }
+
+        private void btnAddStaff_Click(object sender, EventArgs e)
+        {
+            // Basic validation
+            if (string.IsNullOrWhiteSpace(userNameTextBox1.Text) || string.IsNullOrWhiteSpace(passwordHashTextBox1.Text))
+            {
+                MessageBox.Show("Username and Password are required.");
+                return;
+            }
+
+            // Call the same Save method, but pass 'true' for isNew
+            StaffDB.SaveStaff(
+                null, // No ID needed for new records
+                firstNameTextBox1.Text,
+                lastNameTextBox1.Text,
+                userNameTextBox1.Text,
+                passwordHashTextBox1.Text, // The class handles hashing this
+                contactNumberTextBox1.Text,
+                "Active",         // Default status
+                0.00m,            // Default rate
+                (int)cmbRole.SelectedValue,
+                true              // isNew = true tells it to INSERT
+            );
+
+            MessageBox.Show("New staff member added successfully!");
+            ClearFields();
+
+            // Refresh the grid so the user sees the new person immediately
+            dgvStaffInfo.DataSource = StaffDB.GetStaffForUser(UserSession.StaffID, UserSession.AccessLevel);
+        }
+
+        private void dgvStaffInfo_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Check if the user clicked a valid data row (not the header)
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dgvStaffInfo.Rows[e.RowIndex];
+
+                // Fill the Edit textboxes (using your specific naming convention)
+                staffIDTextBox.Text = row.Cells["staffID"].Value.ToString();
+                firstNameTextBox.Text = row.Cells["firstName"].Value.ToString();
+                lastNameTextBox.Text = row.Cells["lastName"].Value.ToString();
+                userNameTextBox.Text = row.Cells["userName"].Value.ToString();
+                contactNumberTextBox.Text = row.Cells["contactNumber"].Value.ToString();
+                staffStatusTextBox.Text = row.Cells["staffStatus"].Value.ToString();
+                dailyRateTextBox.Text = row.Cells["dailyRate"].Value.ToString();
+
+                // Match the role ID in the ComboBox
+                cmbRole.SelectedValue = row.Cells["roleID"].Value;
             }
         }
     }
