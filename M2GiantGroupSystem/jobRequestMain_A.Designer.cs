@@ -32,7 +32,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(jobRequestMain_A));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.btnDisplayMap_A = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.lblLong_A = new System.Windows.Forms.Label();
             this.lblLat_A = new System.Windows.Forms.Label();
             this.tbLong_A = new System.Windows.Forms.TextBox();
@@ -59,9 +62,9 @@
             this.lblSelectCriteria_A = new System.Windows.Forms.Label();
             this.cmbCriteria_A = new System.Windows.Forms.ComboBox();
             this.lblFindClient_A = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.lbl_ID = new System.Windows.Forms.Label();
-            this.btnMap = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.btnSave = new System.Windows.Forms.Button();
@@ -99,19 +102,35 @@
             this.cmbFilter_A = new System.Windows.Forms.ComboBox();
             this.lblFilter_A = new System.Windows.Forms.Label();
             this.dgvJoin = new System.Windows.Forms.DataGridView();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.dgvJoinPictures = new System.Windows.Forms.DataGridView();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.clientTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.ClientTableAdapter();
             this.jobRequestTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobRequestTableAdapter();
             this.jobTypeTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobTypeTableAdapter();
             this.requestItemTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.RequestItemTableAdapter();
             this.jobDetailTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobDetailTableAdapter();
             this.itemDetailTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.ItemDetailTableAdapter();
-            this.label7 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.rbBefore = new System.Windows.Forms.RadioButton();
+            this.rbAfter = new System.Windows.Forms.RadioButton();
+            this.btnBrowse = new System.Windows.Forms.Button();
+            this.pbPreview = new System.Windows.Forms.PictureBox();
+            this.btnUpload = new System.Windows.Forms.Button();
+            this.btnAddSitePhoto = new System.Windows.Forms.Button();
+            this.pnlFind = new System.Windows.Forms.Panel();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientBS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupWst1DataSet1)).BeginInit();
             this.tabPage2.SuspendLayout();
@@ -120,8 +139,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvJoin)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.tabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvJoinPictures)).BeginInit();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPreview)).BeginInit();
+            this.pnlFind.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -130,6 +153,7 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.ItemSize = new System.Drawing.Size(300, 30);
@@ -148,7 +172,6 @@
             this.tabPage1.Controls.Add(this.label8);
             this.tabPage1.Controls.Add(this.pictureBox1);
             this.tabPage1.Controls.Add(this.label7);
-            this.tabPage1.Controls.Add(this.btnDisplayMap_A);
             this.tabPage1.Controls.Add(this.lblLong_A);
             this.tabPage1.Controls.Add(this.lblLat_A);
             this.tabPage1.Controls.Add(this.tbLong_A);
@@ -183,16 +206,46 @@
             this.tabPage1.Text = "Capture job request";
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
-            // btnDisplayMap_A
+            // pictureBox2
             // 
-            this.btnDisplayMap_A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnDisplayMap_A.Location = new System.Drawing.Point(1725, 923);
-            this.btnDisplayMap_A.Name = "btnDisplayMap_A";
-            this.btnDisplayMap_A.Size = new System.Drawing.Size(141, 50);
-            this.btnDisplayMap_A.TabIndex = 51;
-            this.btnDisplayMap_A.Text = "Display map";
-            this.btnDisplayMap_A.UseVisualStyleBackColor = false;
-            this.btnDisplayMap_A.Click += new System.EventHandler(this.btnDisplayMap_A_Click);
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(1565, 28);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(324, 93);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 56;
+            this.pictureBox2.TabStop = false;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(1633, 403);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(159, 20);
+            this.label8.TabIndex = 55;
+            this.label8.Text = "Click to display map";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(1651, 290);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(112, 99);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 54;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 31.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(1070, 51);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(397, 70);
+            this.label7.TabIndex = 52;
+            this.label7.Text = "Capture details";
             // 
             // lblLong_A
             // 
@@ -477,12 +530,21 @@
             this.lblFindClient_A.TabIndex = 27;
             this.lblFindClient_A.Text = "Find client";
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.panel1.Location = new System.Drawing.Point(50, 145);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(513, 686);
+            this.panel1.TabIndex = 53;
+            // 
             // tabPage2
             // 
             this.tabPage2.AutoScroll = true;
             this.tabPage2.BackColor = System.Drawing.Color.SeaShell;
-            this.tabPage2.Controls.Add(this.lbl_ID);
-            this.tabPage2.Controls.Add(this.btnMap);
+            this.tabPage2.Controls.Add(this.label15);
+            this.tabPage2.Controls.Add(this.label14);
+            this.tabPage2.Controls.Add(this.pictureBox3);
             this.tabPage2.Controls.Add(this.lblStatus);
             this.tabPage2.Controls.Add(this.cmbStatus);
             this.tabPage2.Controls.Add(this.btnSave);
@@ -500,9 +562,7 @@
             this.tabPage2.Controls.Add(this.tbLat);
             this.tabPage2.Controls.Add(this.tbLong);
             this.tabPage2.Controls.Add(this.tbSiteAddress);
-            this.tabPage2.Controls.Add(this.dgv_clientJoinJobRequest);
-            this.tabPage2.Controls.Add(this.textBox1);
-            this.tabPage2.Controls.Add(this.lblSearchCriteria_A);
+            this.tabPage2.Controls.Add(this.pnlFind);
             this.tabPage2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.tabPage2.Location = new System.Drawing.Point(4, 34);
             this.tabPage2.Name = "tabPage2";
@@ -516,35 +576,25 @@
             // 
             this.lbl_ID.AutoSize = true;
             this.lbl_ID.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_ID.Location = new System.Drawing.Point(724, 285);
+            this.lbl_ID.Location = new System.Drawing.Point(27, 594);
             this.lbl_ID.Name = "lbl_ID";
             this.lbl_ID.Size = new System.Drawing.Size(176, 32);
             this.lbl_ID.TabIndex = 65;
             this.lbl_ID.Text = "Selected id:";
             // 
-            // btnMap
-            // 
-            this.btnMap.Location = new System.Drawing.Point(730, 353);
-            this.btnMap.Name = "btnMap";
-            this.btnMap.Size = new System.Drawing.Size(141, 60);
-            this.btnMap.TabIndex = 64;
-            this.btnMap.Text = "Display map";
-            this.btnMap.UseVisualStyleBackColor = true;
-            this.btnMap.Click += new System.EventHandler(this.btnMap_Click_1);
-            // 
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.Location = new System.Drawing.Point(21, 422);
+            this.lblStatus.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.Location = new System.Drawing.Point(999, 539);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(91, 38);
+            this.lblStatus.Size = new System.Drawing.Size(98, 38);
             this.lblStatus.TabIndex = 63;
             this.lblStatus.Text = "Status";
             // 
             // cmbStatus
             // 
-            this.cmbStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.cmbStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.cmbStatus.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.groupWst1DataSet1, "JobRequest.status", true));
             this.cmbStatus.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbStatus.FormattingEnabled = true;
@@ -555,17 +605,19 @@
             "Quote sent",
             "Quote Accepted",
             "Cancelled"});
-            this.cmbStatus.Location = new System.Drawing.Point(247, 429);
+            this.cmbStatus.Location = new System.Drawing.Point(1251, 539);
             this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(322, 45);
+            this.cmbStatus.Size = new System.Drawing.Size(459, 45);
             this.cmbStatus.TabIndex = 62;
             // 
             // btnSave
             // 
-            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnSave.Location = new System.Drawing.Point(649, 436);
+            this.btnSave.BackColor = System.Drawing.Color.DarkGreen;
+            this.btnSave.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.ForeColor = System.Drawing.Color.White;
+            this.btnSave.Location = new System.Drawing.Point(1251, 773);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(339, 42);
+            this.btnSave.Size = new System.Drawing.Size(459, 65);
             this.btnSave.TabIndex = 61;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
@@ -574,45 +626,47 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(33, 538);
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(999, 691);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(326, 38);
+            this.label3.Size = new System.Drawing.Size(67, 38);
             this.label3.TabIndex = 60;
-            this.label3.Text = "Set a site evaluation date";
+            this.label3.Text = "Set ";
             // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.groupWst1DataSet1, "JobRequest.siteEvaluationDate", true));
             this.dateTimePicker1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(387, 538);
+            this.dateTimePicker1.Location = new System.Drawing.Point(1251, 691);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(377, 43);
+            this.dateTimePicker1.Size = new System.Drawing.Size(459, 43);
             this.dateTimePicker1.TabIndex = 59;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(21, 375);
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(999, 462);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(185, 38);
+            this.label2.Size = new System.Drawing.Size(194, 38);
             this.label2.TabIndex = 58;
             this.label2.Text = "Urgency level";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(21, 318);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(999, 387);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(206, 38);
+            this.label1.Size = new System.Drawing.Size(214, 38);
             this.label1.TabIndex = 57;
             this.label1.Text = "Request source";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // cmbUL
             // 
-            this.cmbUL.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.cmbUL.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.cmbUL.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.groupWst1DataSet1, "JobRequest.urgencyLevel", true));
             this.cmbUL.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbUL.FormattingEnabled = true;
@@ -621,14 +675,14 @@
             "Medium",
             "High",
             "Not specified"});
-            this.cmbUL.Location = new System.Drawing.Point(247, 372);
+            this.cmbUL.Location = new System.Drawing.Point(1251, 462);
             this.cmbUL.Name = "cmbUL";
-            this.cmbUL.Size = new System.Drawing.Size(297, 45);
+            this.cmbUL.Size = new System.Drawing.Size(459, 45);
             this.cmbUL.TabIndex = 56;
             // 
             // cmbRS
             // 
-            this.cmbRS.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.cmbRS.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.cmbRS.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.groupWst1DataSet1, "JobRequest.requestSource", true));
             this.cmbRS.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbRS.FormattingEnabled = true;
@@ -637,111 +691,114 @@
             "Phone call",
             "Walk in",
             "Other"});
-            this.cmbRS.Location = new System.Drawing.Point(233, 318);
+            this.cmbRS.Location = new System.Drawing.Point(1251, 387);
             this.cmbRS.Name = "cmbRS";
-            this.cmbRS.Size = new System.Drawing.Size(300, 45);
+            this.cmbRS.Size = new System.Drawing.Size(459, 45);
             this.cmbRS.TabIndex = 55;
             // 
             // lblLat
             // 
             this.lblLat.AutoSize = true;
-            this.lblLat.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLat.Location = new System.Drawing.Point(6, 269);
+            this.lblLat.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLat.Location = new System.Drawing.Point(999, 311);
             this.lblLat.Name = "lblLat";
-            this.lblLat.Size = new System.Drawing.Size(116, 38);
+            this.lblLat.Size = new System.Drawing.Size(125, 38);
             this.lblLat.TabIndex = 54;
             this.lblLat.Text = "Latitude";
+            this.lblLat.Click += new System.EventHandler(this.lblLat_Click);
             // 
             // lblLong
             // 
             this.lblLong.AutoSize = true;
-            this.lblLong.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLong.Location = new System.Drawing.Point(8, 218);
+            this.lblLong.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLong.Location = new System.Drawing.Point(999, 235);
             this.lblLong.Name = "lblLong";
-            this.lblLong.Size = new System.Drawing.Size(141, 38);
+            this.lblLong.Size = new System.Drawing.Size(150, 38);
             this.lblLong.TabIndex = 53;
             this.lblLong.Text = "Longitude";
+            this.lblLong.Click += new System.EventHandler(this.lblLong_Click);
             // 
             // lblDateRecieved
             // 
             this.lblDateRecieved.AutoSize = true;
-            this.lblDateRecieved.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDateRecieved.Location = new System.Drawing.Point(21, 476);
+            this.lblDateRecieved.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDateRecieved.Location = new System.Drawing.Point(999, 614);
             this.lblDateRecieved.Name = "lblDateRecieved";
-            this.lblDateRecieved.Size = new System.Drawing.Size(187, 38);
+            this.lblDateRecieved.Size = new System.Drawing.Size(196, 38);
             this.lblDateRecieved.TabIndex = 52;
             this.lblDateRecieved.Text = "Date recieved";
             // 
             // lblSAddress
             // 
             this.lblSAddress.AutoSize = true;
-            this.lblSAddress.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSAddress.Location = new System.Drawing.Point(8, 170);
+            this.lblSAddress.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSAddress.Location = new System.Drawing.Point(999, 154);
             this.lblSAddress.Name = "lblSAddress";
-            this.lblSAddress.Size = new System.Drawing.Size(166, 38);
+            this.lblSAddress.Size = new System.Drawing.Size(174, 38);
             this.lblSAddress.TabIndex = 51;
             this.lblSAddress.Text = "Site address";
+            this.lblSAddress.Click += new System.EventHandler(this.lblSAddress_Click);
             // 
             // tbDateRecieved
             // 
-            this.tbDateRecieved.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.tbDateRecieved.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.tbDateRecieved.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.groupWst1DataSet1, "JobRequest.dateRecieved", true));
             this.tbDateRecieved.Enabled = false;
             this.tbDateRecieved.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbDateRecieved.Location = new System.Drawing.Point(269, 480);
+            this.tbDateRecieved.Location = new System.Drawing.Point(1251, 614);
             this.tbDateRecieved.Name = "tbDateRecieved";
-            this.tbDateRecieved.Size = new System.Drawing.Size(284, 43);
+            this.tbDateRecieved.Size = new System.Drawing.Size(459, 43);
             this.tbDateRecieved.TabIndex = 50;
             // 
             // tbLat
             // 
-            this.tbLat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.tbLat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.tbLat.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.groupWst1DataSet1, "JobRequest.latitude", true));
             this.tbLat.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbLat.Location = new System.Drawing.Point(198, 269);
+            this.tbLat.Location = new System.Drawing.Point(1251, 311);
             this.tbLat.Name = "tbLat";
-            this.tbLat.Size = new System.Drawing.Size(322, 43);
+            this.tbLat.Size = new System.Drawing.Size(459, 43);
             this.tbLat.TabIndex = 49;
             // 
             // tbLong
             // 
-            this.tbLong.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.tbLong.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.tbLong.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.groupWst1DataSet1, "JobRequest.longitude", true));
             this.tbLong.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbLong.Location = new System.Drawing.Point(198, 219);
+            this.tbLong.Location = new System.Drawing.Point(1251, 232);
             this.tbLong.Name = "tbLong";
-            this.tbLong.Size = new System.Drawing.Size(307, 43);
+            this.tbLong.Size = new System.Drawing.Size(459, 43);
             this.tbLong.TabIndex = 48;
             // 
             // tbSiteAddress
             // 
-            this.tbSiteAddress.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.tbSiteAddress.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.tbSiteAddress.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.groupWst1DataSet1, "JobRequest.siteAddress", true));
             this.tbSiteAddress.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbSiteAddress.Location = new System.Drawing.Point(198, 170);
+            this.tbSiteAddress.Location = new System.Drawing.Point(1251, 154);
             this.tbSiteAddress.Name = "tbSiteAddress";
-            this.tbSiteAddress.Size = new System.Drawing.Size(342, 43);
+            this.tbSiteAddress.Size = new System.Drawing.Size(459, 43);
             this.tbSiteAddress.TabIndex = 47;
             // 
             // dgv_clientJoinJobRequest
             // 
             this.dgv_clientJoinJobRequest.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_clientJoinJobRequest.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.dgv_clientJoinJobRequest.Location = new System.Drawing.Point(15, 71);
+            this.dgv_clientJoinJobRequest.Location = new System.Drawing.Point(19, 228);
             this.dgv_clientJoinJobRequest.Name = "dgv_clientJoinJobRequest";
             this.dgv_clientJoinJobRequest.RowHeadersWidth = 51;
             this.dgv_clientJoinJobRequest.RowTemplate.Height = 24;
-            this.dgv_clientJoinJobRequest.Size = new System.Drawing.Size(923, 96);
+            this.dgv_clientJoinJobRequest.Size = new System.Drawing.Size(836, 350);
             this.dgv_clientJoinJobRequest.TabIndex = 46;
             this.dgv_clientJoinJobRequest.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_clientJoinJobRequest_CellClick);
             // 
             // textBox1
             // 
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.textBox1.BackColor = System.Drawing.Color.White;
             this.textBox1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(490, 22);
+            this.textBox1.Location = new System.Drawing.Point(19, 161);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(274, 43);
+            this.textBox1.Size = new System.Drawing.Size(469, 43);
             this.textBox1.TabIndex = 45;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -749,7 +806,7 @@
             // 
             this.lblSearchCriteria_A.AutoSize = true;
             this.lblSearchCriteria_A.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSearchCriteria_A.Location = new System.Drawing.Point(8, 22);
+            this.lblSearchCriteria_A.Location = new System.Drawing.Point(12, 106);
             this.lblSearchCriteria_A.Name = "lblSearchCriteria_A";
             this.lblSearchCriteria_A.Size = new System.Drawing.Size(476, 38);
             this.lblSearchCriteria_A.TabIndex = 44;
@@ -952,6 +1009,93 @@
             this.dgvJoin.Size = new System.Drawing.Size(984, 415);
             this.dgvJoin.TabIndex = 10;
             // 
+            // tabPage5
+            // 
+            this.tabPage5.BackColor = System.Drawing.Color.SeaShell;
+            this.tabPage5.Controls.Add(this.btnUpload);
+            this.tabPage5.Controls.Add(this.pbPreview);
+            this.tabPage5.Controls.Add(this.btnBrowse);
+            this.tabPage5.Controls.Add(this.rbAfter);
+            this.tabPage5.Controls.Add(this.rbBefore);
+            this.tabPage5.Controls.Add(this.label10);
+            this.tabPage5.Controls.Add(this.panel2);
+            this.tabPage5.Location = new System.Drawing.Point(4, 34);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(1916, 1017);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "Add site photo";
+            this.tabPage5.Click += new System.EventHandler(this.tabPage5_Click);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(256, 22);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(248, 41);
+            this.label12.TabIndex = 52;
+            this.label12.Text = "Find job request";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(219)))), ((int)(((byte)(117)))));
+            this.label11.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(26, 588);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(425, 50);
+            this.label11.TabIndex = 51;
+            this.label11.Text = "Job requestID selected:";
+            this.label11.Click += new System.EventHandler(this.label11_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Segoe UI", 31.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(1018, 102);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(753, 70);
+            this.label10.TabIndex = 50;
+            this.label10.Text = "Add a photo for a job request";
+            this.label10.Click += new System.EventHandler(this.label10_Click);
+            // 
+            // dgvJoinPictures
+            // 
+            this.dgvJoinPictures.AllowUserToAddRows = false;
+            this.dgvJoinPictures.AllowUserToDeleteRows = false;
+            this.dgvJoinPictures.AllowUserToResizeRows = false;
+            this.dgvJoinPictures.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvJoinPictures.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.dgvJoinPictures.Location = new System.Drawing.Point(23, 188);
+            this.dgvJoinPictures.Name = "dgvJoinPictures";
+            this.dgvJoinPictures.ReadOnly = true;
+            this.dgvJoinPictures.RowHeadersWidth = 51;
+            this.dgvJoinPictures.RowTemplate.Height = 24;
+            this.dgvJoinPictures.Size = new System.Drawing.Size(836, 350);
+            this.dgvJoinPictures.TabIndex = 49;
+            this.dgvJoinPictures.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvJoinPictures_CellClick);
+            this.dgvJoinPictures.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvJoinPictures_CellContentClick);
+            // 
+            // textBox3
+            // 
+            this.textBox3.BackColor = System.Drawing.Color.White;
+            this.textBox3.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox3.Location = new System.Drawing.Point(25, 130);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(469, 43);
+            this.textBox3.TabIndex = 48;
+            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(28, 74);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(476, 38);
+            this.label9.TabIndex = 47;
+            this.label9.Text = "Search by name,email or site address";
+            // 
             // clientTableAdapter1
             // 
             this.clientTableAdapter1.ClearBeforeFill = true;
@@ -976,54 +1120,143 @@
             // 
             this.itemDetailTableAdapter1.ClearBeforeFill = true;
             // 
-            // label7
+            // panel2
             // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 31.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(1070, 51);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(397, 70);
-            this.label7.TabIndex = 52;
-            this.label7.Text = "Capture details";
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.panel2.Controls.Add(this.label12);
+            this.panel2.Controls.Add(this.label9);
+            this.panel2.Controls.Add(this.label11);
+            this.panel2.Controls.Add(this.textBox3);
+            this.panel2.Controls.Add(this.dgvJoinPictures);
+            this.panel2.Location = new System.Drawing.Point(25, 109);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(882, 728);
+            this.panel2.TabIndex = 54;
             // 
-            // panel1
+            // rbBefore
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.panel1.Location = new System.Drawing.Point(50, 145);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(513, 686);
-            this.panel1.TabIndex = 53;
+            this.rbBefore.AutoSize = true;
+            this.rbBefore.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbBefore.Location = new System.Drawing.Point(1030, 697);
+            this.rbBefore.Name = "rbBefore";
+            this.rbBefore.Size = new System.Drawing.Size(149, 54);
+            this.rbBefore.TabIndex = 55;
+            this.rbBefore.TabStop = true;
+            this.rbBefore.Text = "Before";
+            this.rbBefore.UseVisualStyleBackColor = true;
             // 
-            // pictureBox1
+            // rbAfter
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(1651, 290);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(112, 99);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 54;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.rbAfter.AutoSize = true;
+            this.rbAfter.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbAfter.Location = new System.Drawing.Point(1238, 697);
+            this.rbAfter.Name = "rbAfter";
+            this.rbAfter.Size = new System.Drawing.Size(124, 54);
+            this.rbAfter.TabIndex = 56;
+            this.rbAfter.TabStop = true;
+            this.rbAfter.Text = "After";
+            this.rbAfter.UseVisualStyleBackColor = true;
             // 
-            // label8
+            // btnBrowse
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(1633, 403);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(159, 20);
-            this.label8.TabIndex = 55;
-            this.label8.Text = "Click to display map";
+            this.btnBrowse.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(219)))), ((int)(((byte)(117)))));
+            this.btnBrowse.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBrowse.ForeColor = System.Drawing.Color.White;
+            this.btnBrowse.Location = new System.Drawing.Point(1030, 197);
+            this.btnBrowse.Name = "btnBrowse";
+            this.btnBrowse.Size = new System.Drawing.Size(741, 68);
+            this.btnBrowse.TabIndex = 57;
+            this.btnBrowse.Text = "Browse photos";
+            this.btnBrowse.UseVisualStyleBackColor = false;
+            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
             // 
-            // pictureBox2
+            // pbPreview
             // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(1565, 28);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(324, 93);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 56;
-            this.pictureBox2.TabStop = false;
+            this.pbPreview.Image = ((System.Drawing.Image)(resources.GetObject("pbPreview.Image")));
+            this.pbPreview.Location = new System.Drawing.Point(1030, 297);
+            this.pbPreview.Name = "pbPreview";
+            this.pbPreview.Size = new System.Drawing.Size(741, 401);
+            this.pbPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbPreview.TabIndex = 58;
+            this.pbPreview.TabStop = false;
+            // 
+            // btnUpload
+            // 
+            this.btnUpload.BackColor = System.Drawing.Color.DarkGreen;
+            this.btnUpload.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpload.ForeColor = System.Drawing.Color.White;
+            this.btnUpload.Location = new System.Drawing.Point(1190, 766);
+            this.btnUpload.Name = "btnUpload";
+            this.btnUpload.Size = new System.Drawing.Size(398, 71);
+            this.btnUpload.TabIndex = 59;
+            this.btnUpload.Text = "Upload image";
+            this.btnUpload.UseVisualStyleBackColor = false;
+            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
+            // 
+            // btnAddSitePhoto
+            // 
+            this.btnAddSitePhoto.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddSitePhoto.Location = new System.Drawing.Point(594, 620);
+            this.btnAddSitePhoto.Name = "btnAddSitePhoto";
+            this.btnAddSitePhoto.Size = new System.Drawing.Size(261, 80);
+            this.btnAddSitePhoto.TabIndex = 66;
+            this.btnAddSitePhoto.Text = "Add site photo";
+            this.btnAddSitePhoto.UseVisualStyleBackColor = true;
+            this.btnAddSitePhoto.Click += new System.EventHandler(this.btnAddSitePhoto_Click);
+            // 
+            // pnlFind
+            // 
+            this.pnlFind.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.pnlFind.Controls.Add(this.label13);
+            this.pnlFind.Controls.Add(this.lblSearchCriteria_A);
+            this.pnlFind.Controls.Add(this.btnAddSitePhoto);
+            this.pnlFind.Controls.Add(this.lbl_ID);
+            this.pnlFind.Controls.Add(this.dgv_clientJoinJobRequest);
+            this.pnlFind.Controls.Add(this.textBox1);
+            this.pnlFind.Location = new System.Drawing.Point(25, 109);
+            this.pnlFind.Name = "pnlFind";
+            this.pnlFind.Size = new System.Drawing.Size(882, 728);
+            this.pnlFind.TabIndex = 67;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(327, 34);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(248, 41);
+            this.label13.TabIndex = 68;
+            this.label13.Text = "Find job request";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(1730, 344);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(159, 20);
+            this.label14.TabIndex = 69;
+            this.label14.Text = "Click to display map";
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(1755, 232);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(112, 99);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 68;
+            this.pictureBox3.TabStop = false;
+            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(1338, 48);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(274, 50);
+            this.label15.TabIndex = 70;
+            this.label15.Text = "Update details";
             // 
             // jobRequestMain_A
             // 
@@ -1037,6 +1270,8 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientBS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupWst1DataSet1)).EndInit();
             this.tabPage2.ResumeLayout(false);
@@ -1048,8 +1283,15 @@
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvJoin)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvJoinPictures)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPreview)).EndInit();
+            this.pnlFind.ResumeLayout(false);
+            this.pnlFind.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1060,7 +1302,6 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.Button btnDisplayMap_A;
         private System.Windows.Forms.Label lblLong_A;
         private System.Windows.Forms.Label lblLat_A;
         private System.Windows.Forms.TextBox tbLong_A;
@@ -1091,7 +1332,6 @@
         private GroupWst1DataSetTableAdapters.JobTypeTableAdapter jobTypeTableAdapter1;
         private GroupWst1DataSetTableAdapters.RequestItemTableAdapter requestItemTableAdapter1;
         private System.Windows.Forms.Label lbl_ID;
-        private System.Windows.Forms.Button btnMap;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.ComboBox cmbStatus;
         private System.Windows.Forms.Button btnSave;
@@ -1136,5 +1376,24 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.DataGridView dgvJoinPictures;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.RadioButton rbAfter;
+        private System.Windows.Forms.RadioButton rbBefore;
+        private System.Windows.Forms.Button btnUpload;
+        private System.Windows.Forms.PictureBox pbPreview;
+        private System.Windows.Forms.Button btnBrowse;
+        private System.Windows.Forms.Button btnAddSitePhoto;
+        private System.Windows.Forms.Panel pnlFind;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Label label15;
     }
 }

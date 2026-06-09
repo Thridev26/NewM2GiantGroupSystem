@@ -180,5 +180,10 @@ namespace M2GiantGroupSystem
         {
             FormSetup(new Staff(0));
         }
+
+        private void addSitePhotoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormSetup(new jobRequestMain_A(4));
+        }
     }
 }
