@@ -178,7 +178,12 @@ namespace M2GiantGroupSystem
 
         private void addEditStaffDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormSetup(new Staff());
+            FormSetup(new Staff(0));
+        }
+
+        private void addStaffDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormSetup(new Staff(1));
         }
     }
 }
