@@ -319,6 +319,12 @@
     <Compile Include="JobsForm.Designer.cs">
       <DependentUpon>JobsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="JobSitePhotos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JobSitePhotos.Designer.cs">
+      <DependentUpon>JobSitePhotos.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -350,6 +356,12 @@
     </Compile>
     <Compile Include="reportsMainForm.Designer.cs">
       <DependentUpon>reportsMainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SitePhotosForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SitePhotosForm.Designer.cs">
+      <DependentUpon>SitePhotosForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Staff.cs">
       <SubType>Form</SubType>
@@ -401,6 +413,9 @@
     <EmbeddedResource Include="JobsForm.resx">
       <DependentUpon>JobsForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="JobSitePhotos.resx">
+      <DependentUpon>JobSitePhotos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -425,6 +440,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="reportsMainForm.resx">
       <DependentUpon>reportsMainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SitePhotosForm.resx">
+      <DependentUpon>SitePhotosForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Staff.resx">
       <DependentUpon>Staff.cs</DependentUpon>
