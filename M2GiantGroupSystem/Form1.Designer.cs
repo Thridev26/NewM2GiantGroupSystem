@@ -374,6 +374,7 @@
             this.addEditStaffDetailsToolStripMenuItem.Name = "addEditStaffDetailsToolStripMenuItem";
             this.addEditStaffDetailsToolStripMenuItem.Size = new System.Drawing.Size(378, 40);
             this.addEditStaffDetailsToolStripMenuItem.Text = "Add / Edit Staff Details";
+            this.addEditStaffDetailsToolStripMenuItem.Click += new System.EventHandler(this.addEditStaffDetailsToolStripMenuItem_Click);
             // 
             // toolStripMenuItem8
             // 
@@ -402,8 +403,8 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(17F, 32F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(1672, 594);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -412,6 +413,7 @@
             this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.Name = "Form1";
             this.Text = "The Giant Group Operations and Asset Management System - Main Menu";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
