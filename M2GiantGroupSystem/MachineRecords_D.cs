@@ -22,6 +22,7 @@ namespace M2GiantGroupSystem
         public MachineRecords_D()
         {
             InitializeComponent();
+            
         }
 
         private void MachineRecords_D_Load(object sender, EventArgs e)
@@ -40,7 +41,7 @@ namespace M2GiantGroupSystem
             tabControl1.ItemSize = new Size(300, 30);
             tabControl1.SizeMode = TabSizeMode.Fixed;
 
-
+            
 
         }
 
@@ -972,7 +973,21 @@ namespace M2GiantGroupSystem
                 }
             }
         }
-    }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+      
+
+        
+     
+
+    
+}
+
 }
 
 
