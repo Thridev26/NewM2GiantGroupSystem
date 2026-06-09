@@ -64,7 +64,9 @@
             this.lblFindClient_A = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.lbl_ID = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.lblStatus = new System.Windows.Forms.Label();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.btnSave = new System.Windows.Forms.Button();
@@ -82,9 +84,13 @@
             this.tbLat = new System.Windows.Forms.TextBox();
             this.tbLong = new System.Windows.Forms.TextBox();
             this.tbSiteAddress = new System.Windows.Forms.TextBox();
+            this.pnlFind = new System.Windows.Forms.Panel();
+            this.label13 = new System.Windows.Forms.Label();
+            this.lblSearchCriteria_A = new System.Windows.Forms.Label();
+            this.btnAddSitePhoto = new System.Windows.Forms.Button();
+            this.lbl_ID = new System.Windows.Forms.Label();
             this.dgv_clientJoinJobRequest = new System.Windows.Forms.DataGridView();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.lblSearchCriteria_A = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -103,30 +109,26 @@
             this.lblFilter_A = new System.Windows.Forms.Label();
             this.dgvJoin = new System.Windows.Forms.DataGridView();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
+            this.btnUpload = new System.Windows.Forms.Button();
+            this.pbPreview = new System.Windows.Forms.PictureBox();
+            this.btnBrowse = new System.Windows.Forms.Button();
+            this.rbAfter = new System.Windows.Forms.RadioButton();
+            this.rbBefore = new System.Windows.Forms.RadioButton();
             this.label10 = new System.Windows.Forms.Label();
-            this.dgvJoinPictures = new System.Windows.Forms.DataGridView();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label12 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.dgvJoinPictures = new System.Windows.Forms.DataGridView();
             this.clientTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.ClientTableAdapter();
             this.jobRequestTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobRequestTableAdapter();
             this.jobTypeTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobTypeTableAdapter();
             this.requestItemTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.RequestItemTableAdapter();
             this.jobDetailTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobDetailTableAdapter();
             this.itemDetailTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.ItemDetailTableAdapter();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.rbBefore = new System.Windows.Forms.RadioButton();
-            this.rbAfter = new System.Windows.Forms.RadioButton();
-            this.btnBrowse = new System.Windows.Forms.Button();
-            this.pbPreview = new System.Windows.Forms.PictureBox();
-            this.btnUpload = new System.Windows.Forms.Button();
-            this.btnAddSitePhoto = new System.Windows.Forms.Button();
-            this.pnlFind = new System.Windows.Forms.Panel();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -134,17 +136,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.clientBS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupWst1DataSet1)).BeginInit();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.pnlFind.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_clientJoinJobRequest)).BeginInit();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvJoin)).BeginInit();
             this.tabPage5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvJoinPictures)).BeginInit();
-            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPreview)).BeginInit();
-            this.pnlFind.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvJoinPictures)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -168,6 +170,8 @@
             this.tabPage1.AutoScroll = true;
             this.tabPage1.AutoScrollMargin = new System.Drawing.Size(200, 200);
             this.tabPage1.BackColor = System.Drawing.Color.SeaShell;
+            this.tabPage1.Controls.Add(this.label17);
+            this.tabPage1.Controls.Add(this.label16);
             this.tabPage1.Controls.Add(this.pictureBox2);
             this.tabPage1.Controls.Add(this.label8);
             this.tabPage1.Controls.Add(this.pictureBox1);
@@ -572,15 +576,35 @@
             this.tabPage2.Text = "Update job request";
             this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
             // 
-            // lbl_ID
+            // label15
             // 
-            this.lbl_ID.AutoSize = true;
-            this.lbl_ID.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_ID.Location = new System.Drawing.Point(27, 594);
-            this.lbl_ID.Name = "lbl_ID";
-            this.lbl_ID.Size = new System.Drawing.Size(176, 32);
-            this.lbl_ID.TabIndex = 65;
-            this.lbl_ID.Text = "Selected id:";
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(1338, 48);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(274, 50);
+            this.label15.TabIndex = 70;
+            this.label15.Text = "Update details";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(1730, 344);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(159, 20);
+            this.label14.TabIndex = 69;
+            this.label14.Text = "Click to display map";
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(1755, 232);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(112, 99);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 68;
+            this.pictureBox3.TabStop = false;
+            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
             // 
             // lblStatus
             // 
@@ -780,6 +804,61 @@
             this.tbSiteAddress.Size = new System.Drawing.Size(459, 43);
             this.tbSiteAddress.TabIndex = 47;
             // 
+            // pnlFind
+            // 
+            this.pnlFind.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.pnlFind.Controls.Add(this.label13);
+            this.pnlFind.Controls.Add(this.lblSearchCriteria_A);
+            this.pnlFind.Controls.Add(this.btnAddSitePhoto);
+            this.pnlFind.Controls.Add(this.lbl_ID);
+            this.pnlFind.Controls.Add(this.dgv_clientJoinJobRequest);
+            this.pnlFind.Controls.Add(this.textBox1);
+            this.pnlFind.Location = new System.Drawing.Point(25, 109);
+            this.pnlFind.Name = "pnlFind";
+            this.pnlFind.Size = new System.Drawing.Size(882, 728);
+            this.pnlFind.TabIndex = 67;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(327, 34);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(248, 41);
+            this.label13.TabIndex = 68;
+            this.label13.Text = "Find job request";
+            // 
+            // lblSearchCriteria_A
+            // 
+            this.lblSearchCriteria_A.AutoSize = true;
+            this.lblSearchCriteria_A.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSearchCriteria_A.Location = new System.Drawing.Point(12, 106);
+            this.lblSearchCriteria_A.Name = "lblSearchCriteria_A";
+            this.lblSearchCriteria_A.Size = new System.Drawing.Size(476, 38);
+            this.lblSearchCriteria_A.TabIndex = 44;
+            this.lblSearchCriteria_A.Text = "Search by name,email or site address";
+            // 
+            // btnAddSitePhoto
+            // 
+            this.btnAddSitePhoto.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddSitePhoto.Location = new System.Drawing.Point(594, 620);
+            this.btnAddSitePhoto.Name = "btnAddSitePhoto";
+            this.btnAddSitePhoto.Size = new System.Drawing.Size(261, 80);
+            this.btnAddSitePhoto.TabIndex = 66;
+            this.btnAddSitePhoto.Text = "Add site photo";
+            this.btnAddSitePhoto.UseVisualStyleBackColor = true;
+            this.btnAddSitePhoto.Click += new System.EventHandler(this.btnAddSitePhoto_Click);
+            // 
+            // lbl_ID
+            // 
+            this.lbl_ID.AutoSize = true;
+            this.lbl_ID.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_ID.Location = new System.Drawing.Point(27, 594);
+            this.lbl_ID.Name = "lbl_ID";
+            this.lbl_ID.Size = new System.Drawing.Size(176, 32);
+            this.lbl_ID.TabIndex = 65;
+            this.lbl_ID.Text = "Selected id:";
+            // 
             // dgv_clientJoinJobRequest
             // 
             this.dgv_clientJoinJobRequest.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -801,16 +880,6 @@
             this.textBox1.Size = new System.Drawing.Size(469, 43);
             this.textBox1.TabIndex = 45;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // lblSearchCriteria_A
-            // 
-            this.lblSearchCriteria_A.AutoSize = true;
-            this.lblSearchCriteria_A.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSearchCriteria_A.Location = new System.Drawing.Point(12, 106);
-            this.lblSearchCriteria_A.Name = "lblSearchCriteria_A";
-            this.lblSearchCriteria_A.Size = new System.Drawing.Size(476, 38);
-            this.lblSearchCriteria_A.TabIndex = 44;
-            this.lblSearchCriteria_A.Text = "Search by name,email or site address";
             // 
             // tabPage3
             // 
@@ -1026,6 +1095,90 @@
             this.tabPage5.Text = "Add site photo";
             this.tabPage5.Click += new System.EventHandler(this.tabPage5_Click);
             // 
+            // btnUpload
+            // 
+            this.btnUpload.BackColor = System.Drawing.Color.DarkGreen;
+            this.btnUpload.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpload.ForeColor = System.Drawing.Color.White;
+            this.btnUpload.Location = new System.Drawing.Point(1190, 766);
+            this.btnUpload.Name = "btnUpload";
+            this.btnUpload.Size = new System.Drawing.Size(398, 71);
+            this.btnUpload.TabIndex = 59;
+            this.btnUpload.Text = "Upload image";
+            this.btnUpload.UseVisualStyleBackColor = false;
+            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
+            // 
+            // pbPreview
+            // 
+            this.pbPreview.Image = ((System.Drawing.Image)(resources.GetObject("pbPreview.Image")));
+            this.pbPreview.Location = new System.Drawing.Point(1030, 297);
+            this.pbPreview.Name = "pbPreview";
+            this.pbPreview.Size = new System.Drawing.Size(741, 401);
+            this.pbPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbPreview.TabIndex = 58;
+            this.pbPreview.TabStop = false;
+            // 
+            // btnBrowse
+            // 
+            this.btnBrowse.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(219)))), ((int)(((byte)(117)))));
+            this.btnBrowse.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBrowse.ForeColor = System.Drawing.Color.White;
+            this.btnBrowse.Location = new System.Drawing.Point(1030, 197);
+            this.btnBrowse.Name = "btnBrowse";
+            this.btnBrowse.Size = new System.Drawing.Size(741, 68);
+            this.btnBrowse.TabIndex = 57;
+            this.btnBrowse.Text = "Browse photos";
+            this.btnBrowse.UseVisualStyleBackColor = false;
+            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
+            // 
+            // rbAfter
+            // 
+            this.rbAfter.AutoSize = true;
+            this.rbAfter.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbAfter.Location = new System.Drawing.Point(1238, 697);
+            this.rbAfter.Name = "rbAfter";
+            this.rbAfter.Size = new System.Drawing.Size(124, 54);
+            this.rbAfter.TabIndex = 56;
+            this.rbAfter.TabStop = true;
+            this.rbAfter.Text = "After";
+            this.rbAfter.UseVisualStyleBackColor = true;
+            // 
+            // rbBefore
+            // 
+            this.rbBefore.AutoSize = true;
+            this.rbBefore.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbBefore.Location = new System.Drawing.Point(1030, 697);
+            this.rbBefore.Name = "rbBefore";
+            this.rbBefore.Size = new System.Drawing.Size(149, 54);
+            this.rbBefore.TabIndex = 55;
+            this.rbBefore.TabStop = true;
+            this.rbBefore.Text = "Before";
+            this.rbBefore.UseVisualStyleBackColor = true;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Segoe UI", 31.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(1018, 102);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(753, 70);
+            this.label10.TabIndex = 50;
+            this.label10.Text = "Add a photo for a job request";
+            this.label10.Click += new System.EventHandler(this.label10_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.panel2.Controls.Add(this.label12);
+            this.panel2.Controls.Add(this.label9);
+            this.panel2.Controls.Add(this.label11);
+            this.panel2.Controls.Add(this.textBox3);
+            this.panel2.Controls.Add(this.dgvJoinPictures);
+            this.panel2.Location = new System.Drawing.Point(25, 109);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(882, 728);
+            this.panel2.TabIndex = 54;
+            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -1035,6 +1188,16 @@
             this.label12.Size = new System.Drawing.Size(248, 41);
             this.label12.TabIndex = 52;
             this.label12.Text = "Find job request";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(28, 74);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(476, 38);
+            this.label9.TabIndex = 47;
+            this.label9.Text = "Search by name,email or site address";
             // 
             // label11
             // 
@@ -1048,16 +1211,15 @@
             this.label11.Text = "Job requestID selected:";
             this.label11.Click += new System.EventHandler(this.label11_Click);
             // 
-            // label10
+            // textBox3
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Segoe UI", 31.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(1018, 102);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(753, 70);
-            this.label10.TabIndex = 50;
-            this.label10.Text = "Add a photo for a job request";
-            this.label10.Click += new System.EventHandler(this.label10_Click);
+            this.textBox3.BackColor = System.Drawing.Color.White;
+            this.textBox3.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox3.Location = new System.Drawing.Point(25, 130);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(469, 43);
+            this.textBox3.TabIndex = 48;
+            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // dgvJoinPictures
             // 
@@ -1075,26 +1237,6 @@
             this.dgvJoinPictures.TabIndex = 49;
             this.dgvJoinPictures.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvJoinPictures_CellClick);
             this.dgvJoinPictures.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvJoinPictures_CellContentClick);
-            // 
-            // textBox3
-            // 
-            this.textBox3.BackColor = System.Drawing.Color.White;
-            this.textBox3.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(25, 130);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(469, 43);
-            this.textBox3.TabIndex = 48;
-            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(28, 74);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(476, 38);
-            this.label9.TabIndex = 47;
-            this.label9.Text = "Search by name,email or site address";
             // 
             // clientTableAdapter1
             // 
@@ -1120,143 +1262,23 @@
             // 
             this.itemDetailTableAdapter1.ClearBeforeFill = true;
             // 
-            // panel2
+            // label16
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.panel2.Controls.Add(this.label12);
-            this.panel2.Controls.Add(this.label9);
-            this.panel2.Controls.Add(this.label11);
-            this.panel2.Controls.Add(this.textBox3);
-            this.panel2.Controls.Add(this.dgvJoinPictures);
-            this.panel2.Location = new System.Drawing.Point(25, 109);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(882, 728);
-            this.panel2.TabIndex = 54;
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(117, 80);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(37, 20);
+            this.label16.TabIndex = 57;
+            this.label16.Text = "test";
             // 
-            // rbBefore
+            // label17
             // 
-            this.rbBefore.AutoSize = true;
-            this.rbBefore.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbBefore.Location = new System.Drawing.Point(1030, 697);
-            this.rbBefore.Name = "rbBefore";
-            this.rbBefore.Size = new System.Drawing.Size(149, 54);
-            this.rbBefore.TabIndex = 55;
-            this.rbBefore.TabStop = true;
-            this.rbBefore.Text = "Before";
-            this.rbBefore.UseVisualStyleBackColor = true;
-            // 
-            // rbAfter
-            // 
-            this.rbAfter.AutoSize = true;
-            this.rbAfter.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbAfter.Location = new System.Drawing.Point(1238, 697);
-            this.rbAfter.Name = "rbAfter";
-            this.rbAfter.Size = new System.Drawing.Size(124, 54);
-            this.rbAfter.TabIndex = 56;
-            this.rbAfter.TabStop = true;
-            this.rbAfter.Text = "After";
-            this.rbAfter.UseVisualStyleBackColor = true;
-            // 
-            // btnBrowse
-            // 
-            this.btnBrowse.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(219)))), ((int)(((byte)(117)))));
-            this.btnBrowse.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBrowse.ForeColor = System.Drawing.Color.White;
-            this.btnBrowse.Location = new System.Drawing.Point(1030, 197);
-            this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(741, 68);
-            this.btnBrowse.TabIndex = 57;
-            this.btnBrowse.Text = "Browse photos";
-            this.btnBrowse.UseVisualStyleBackColor = false;
-            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
-            // 
-            // pbPreview
-            // 
-            this.pbPreview.Image = ((System.Drawing.Image)(resources.GetObject("pbPreview.Image")));
-            this.pbPreview.Location = new System.Drawing.Point(1030, 297);
-            this.pbPreview.Name = "pbPreview";
-            this.pbPreview.Size = new System.Drawing.Size(741, 401);
-            this.pbPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbPreview.TabIndex = 58;
-            this.pbPreview.TabStop = false;
-            // 
-            // btnUpload
-            // 
-            this.btnUpload.BackColor = System.Drawing.Color.DarkGreen;
-            this.btnUpload.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpload.ForeColor = System.Drawing.Color.White;
-            this.btnUpload.Location = new System.Drawing.Point(1190, 766);
-            this.btnUpload.Name = "btnUpload";
-            this.btnUpload.Size = new System.Drawing.Size(398, 71);
-            this.btnUpload.TabIndex = 59;
-            this.btnUpload.Text = "Upload image";
-            this.btnUpload.UseVisualStyleBackColor = false;
-            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
-            // 
-            // btnAddSitePhoto
-            // 
-            this.btnAddSitePhoto.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddSitePhoto.Location = new System.Drawing.Point(594, 620);
-            this.btnAddSitePhoto.Name = "btnAddSitePhoto";
-            this.btnAddSitePhoto.Size = new System.Drawing.Size(261, 80);
-            this.btnAddSitePhoto.TabIndex = 66;
-            this.btnAddSitePhoto.Text = "Add site photo";
-            this.btnAddSitePhoto.UseVisualStyleBackColor = true;
-            this.btnAddSitePhoto.Click += new System.EventHandler(this.btnAddSitePhoto_Click);
-            // 
-            // pnlFind
-            // 
-            this.pnlFind.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.pnlFind.Controls.Add(this.label13);
-            this.pnlFind.Controls.Add(this.lblSearchCriteria_A);
-            this.pnlFind.Controls.Add(this.btnAddSitePhoto);
-            this.pnlFind.Controls.Add(this.lbl_ID);
-            this.pnlFind.Controls.Add(this.dgv_clientJoinJobRequest);
-            this.pnlFind.Controls.Add(this.textBox1);
-            this.pnlFind.Location = new System.Drawing.Point(25, 109);
-            this.pnlFind.Name = "pnlFind";
-            this.pnlFind.Size = new System.Drawing.Size(882, 728);
-            this.pnlFind.TabIndex = 67;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(327, 34);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(248, 41);
-            this.label13.TabIndex = 68;
-            this.label13.Text = "Find job request";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(1730, 344);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(159, 20);
-            this.label14.TabIndex = 69;
-            this.label14.Text = "Click to display map";
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(1755, 232);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(112, 99);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 68;
-            this.pictureBox3.TabStop = false;
-            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(1338, 48);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(274, 50);
-            this.label15.TabIndex = 70;
-            this.label15.Text = "Update details";
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(711, 94);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(62, 20);
+            this.label17.TabIndex = 58;
+            this.label17.Text = "label17";
             // 
             // jobRequestMain_A
             // 
@@ -1276,6 +1298,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupWst1DataSet1)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            this.pnlFind.ResumeLayout(false);
+            this.pnlFind.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_clientJoinJobRequest)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
@@ -1285,13 +1310,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvJoin)).EndInit();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvJoinPictures)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPreview)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbPreview)).EndInit();
-            this.pnlFind.ResumeLayout(false);
-            this.pnlFind.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvJoinPictures)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1395,5 +1417,7 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label16;
     }
 }
