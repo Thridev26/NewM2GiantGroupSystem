@@ -48,6 +48,7 @@
             System.Windows.Forms.Label dailyRateLabel1;
             System.Windows.Forms.Label roleIDLabel1;
             this.gbAddStaff = new System.Windows.Forms.GroupBox();
+            this.cmbAddStatus = new System.Windows.Forms.ComboBox();
             this.cmbRoleAdd = new System.Windows.Forms.ComboBox();
             this.staffIDTextBox1 = new System.Windows.Forms.TextBox();
             this.firstNameTextBox1 = new System.Windows.Forms.TextBox();
@@ -72,11 +73,11 @@
             this.roleID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtSearchStaff = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cmbEditStatus = new System.Windows.Forms.ComboBox();
             this.cmbRoleEdit = new System.Windows.Forms.ComboBox();
             this.contactNumberTextBox = new System.Windows.Forms.TextBox();
             this.lastNameTextBox = new System.Windows.Forms.TextBox();
@@ -98,8 +99,6 @@
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.staffTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.StaffTableAdapter();
             this.tableAdapterManager = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.TableAdapterManager();
-            this.cmbAddStatus = new System.Windows.Forms.ComboBox();
-            this.cmbEditStatus = new System.Windows.Forms.ComboBox();
             staffIDLabel = new System.Windows.Forms.Label();
             firstNameLabel = new System.Windows.Forms.Label();
             lastNameLabel = new System.Windows.Forms.Label();
@@ -225,9 +224,9 @@
             staffIDLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             staffIDLabel1.Location = new System.Drawing.Point(76, 43);
             staffIDLabel1.Name = "staffIDLabel1";
-            staffIDLabel1.Size = new System.Drawing.Size(87, 25);
+            staffIDLabel1.Size = new System.Drawing.Size(91, 25);
             staffIDLabel1.TabIndex = 0;
-            staffIDLabel1.Text = "staff ID:";
+            staffIDLabel1.Text = "Staff ID:";
             // 
             // firstNameLabel1
             // 
@@ -235,9 +234,9 @@
             firstNameLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             firstNameLabel1.Location = new System.Drawing.Point(76, 76);
             firstNameLabel1.Name = "firstNameLabel1";
-            firstNameLabel1.Size = new System.Drawing.Size(116, 25);
+            firstNameLabel1.Size = new System.Drawing.Size(123, 25);
             firstNameLabel1.TabIndex = 2;
-            firstNameLabel1.Text = "first Name:";
+            firstNameLabel1.Text = "First Name:";
             // 
             // lastNameLabel1
             // 
@@ -245,9 +244,9 @@
             lastNameLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             lastNameLabel1.Location = new System.Drawing.Point(75, 117);
             lastNameLabel1.Name = "lastNameLabel1";
-            lastNameLabel1.Size = new System.Drawing.Size(115, 25);
+            lastNameLabel1.Size = new System.Drawing.Size(122, 25);
             lastNameLabel1.TabIndex = 4;
-            lastNameLabel1.Text = "last Name:";
+            lastNameLabel1.Text = "Last Name:";
             // 
             // userNameLabel1
             // 
@@ -255,9 +254,9 @@
             userNameLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             userNameLabel1.Location = new System.Drawing.Point(73, 153);
             userNameLabel1.Name = "userNameLabel1";
-            userNameLabel1.Size = new System.Drawing.Size(123, 25);
+            userNameLabel1.Size = new System.Drawing.Size(126, 25);
             userNameLabel1.TabIndex = 6;
-            userNameLabel1.Text = "user Name:";
+            userNameLabel1.Text = "User Name:";
             // 
             // passwordHashLabel1
             // 
@@ -265,9 +264,9 @@
             passwordHashLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             passwordHashLabel1.Location = new System.Drawing.Point(76, 192);
             passwordHashLabel1.Name = "passwordHashLabel1";
-            passwordHashLabel1.Size = new System.Drawing.Size(167, 25);
+            passwordHashLabel1.Size = new System.Drawing.Size(113, 25);
             passwordHashLabel1.TabIndex = 8;
-            passwordHashLabel1.Text = "password Hash:";
+            passwordHashLabel1.Text = "Password:";
             // 
             // contactNumberLabel1
             // 
@@ -275,9 +274,9 @@
             contactNumberLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             contactNumberLabel1.Location = new System.Drawing.Point(73, 230);
             contactNumberLabel1.Name = "contactNumberLabel1";
-            contactNumberLabel1.Size = new System.Drawing.Size(170, 25);
+            contactNumberLabel1.Size = new System.Drawing.Size(175, 25);
             contactNumberLabel1.TabIndex = 10;
-            contactNumberLabel1.Text = "contact Number:";
+            contactNumberLabel1.Text = "Contact Number:";
             // 
             // staffStatusLabel1
             // 
@@ -285,9 +284,9 @@
             staffStatusLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             staffStatusLabel1.Location = new System.Drawing.Point(76, 264);
             staffStatusLabel1.Name = "staffStatusLabel1";
-            staffStatusLabel1.Size = new System.Drawing.Size(128, 25);
+            staffStatusLabel1.Size = new System.Drawing.Size(132, 25);
             staffStatusLabel1.TabIndex = 12;
-            staffStatusLabel1.Text = "staff Status:";
+            staffStatusLabel1.Text = "Staff Status:";
             // 
             // dailyRateLabel1
             // 
@@ -295,9 +294,9 @@
             dailyRateLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dailyRateLabel1.Location = new System.Drawing.Point(76, 297);
             dailyRateLabel1.Name = "dailyRateLabel1";
-            dailyRateLabel1.Size = new System.Drawing.Size(114, 25);
+            dailyRateLabel1.Size = new System.Drawing.Size(117, 25);
             dailyRateLabel1.TabIndex = 14;
-            dailyRateLabel1.Text = "daily Rate:";
+            dailyRateLabel1.Text = "Daily Rate:";
             // 
             // roleIDLabel1
             // 
@@ -305,9 +304,9 @@
             roleIDLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             roleIDLabel1.Location = new System.Drawing.Point(76, 332);
             roleIDLabel1.Name = "roleIDLabel1";
-            roleIDLabel1.Size = new System.Drawing.Size(82, 25);
+            roleIDLabel1.Size = new System.Drawing.Size(89, 25);
             roleIDLabel1.TabIndex = 16;
-            roleIDLabel1.Text = "role ID:";
+            roleIDLabel1.Text = "Role ID:";
             // 
             // gbAddStaff
             // 
@@ -339,16 +338,30 @@
             this.gbAddStaff.Text = "Add New Staff";
             this.gbAddStaff.Enter += new System.EventHandler(this.gbAddStaff_Enter);
             // 
+            // cmbAddStatus
+            // 
+            this.cmbAddStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.cmbAddStatus.FormattingEnabled = true;
+            this.cmbAddStatus.Items.AddRange(new object[] {
+            "Active",
+            "Inactive"});
+            this.cmbAddStatus.Location = new System.Drawing.Point(318, 262);
+            this.cmbAddStatus.Name = "cmbAddStatus";
+            this.cmbAddStatus.Size = new System.Drawing.Size(218, 29);
+            this.cmbAddStatus.TabIndex = 18;
+            // 
             // cmbRoleAdd
             // 
+            this.cmbRoleAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.cmbRoleAdd.FormattingEnabled = true;
             this.cmbRoleAdd.Location = new System.Drawing.Point(318, 333);
             this.cmbRoleAdd.Name = "cmbRoleAdd";
-            this.cmbRoleAdd.Size = new System.Drawing.Size(218, 28);
+            this.cmbRoleAdd.Size = new System.Drawing.Size(218, 29);
             this.cmbRoleAdd.TabIndex = 17;
             // 
             // staffIDTextBox1
             // 
+            this.staffIDTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.staffIDTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.staffIDTextBox1.Location = new System.Drawing.Point(318, 40);
             this.staffIDTextBox1.Name = "staffIDTextBox1";
@@ -358,6 +371,7 @@
             // 
             // firstNameTextBox1
             // 
+            this.firstNameTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.firstNameTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.firstNameTextBox1.Location = new System.Drawing.Point(318, 76);
             this.firstNameTextBox1.Name = "firstNameTextBox1";
@@ -366,6 +380,7 @@
             // 
             // lastNameTextBox1
             // 
+            this.lastNameTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.lastNameTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lastNameTextBox1.Location = new System.Drawing.Point(318, 112);
             this.lastNameTextBox1.Name = "lastNameTextBox1";
@@ -374,6 +389,7 @@
             // 
             // userNameTextBox1
             // 
+            this.userNameTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.userNameTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.userNameTextBox1.Location = new System.Drawing.Point(318, 148);
             this.userNameTextBox1.Name = "userNameTextBox1";
@@ -382,6 +398,7 @@
             // 
             // passwordHashTextBox1
             // 
+            this.passwordHashTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.passwordHashTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.passwordHashTextBox1.Location = new System.Drawing.Point(318, 189);
             this.passwordHashTextBox1.Name = "passwordHashTextBox1";
@@ -390,6 +407,7 @@
             // 
             // contactNumberTextBox1
             // 
+            this.contactNumberTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.contactNumberTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.contactNumberTextBox1.Location = new System.Drawing.Point(318, 225);
             this.contactNumberTextBox1.Name = "contactNumberTextBox1";
@@ -398,6 +416,7 @@
             // 
             // dailyRateTextBox1
             // 
+            this.dailyRateTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.dailyRateTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dailyRateTextBox1.Location = new System.Drawing.Point(318, 297);
             this.dailyRateTextBox1.Name = "dailyRateTextBox1";
@@ -416,14 +435,16 @@
             // 
             // btnAddStaff
             // 
-            this.btnAddStaff.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddStaff.Location = new System.Drawing.Point(763, 664);
+            this.btnAddStaff.BackColor = System.Drawing.Color.DarkGreen;
+            this.btnAddStaff.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddStaff.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnAddStaff.Location = new System.Drawing.Point(824, 664);
             this.btnAddStaff.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAddStaff.Name = "btnAddStaff";
-            this.btnAddStaff.Size = new System.Drawing.Size(307, 52);
+            this.btnAddStaff.Size = new System.Drawing.Size(246, 52);
             this.btnAddStaff.TabIndex = 8;
             this.btnAddStaff.Text = "Add A New Staff";
-            this.btnAddStaff.UseVisualStyleBackColor = true;
+            this.btnAddStaff.UseVisualStyleBackColor = false;
             this.btnAddStaff.Click += new System.EventHandler(this.btnAddStaff_Click);
             // 
             // btnDeleteStaff
@@ -454,12 +475,13 @@
             this.dailyRate,
             this.roleID});
             this.dgvStaffInfo.DataSource = this.staffBindingSource;
-            this.dgvStaffInfo.Location = new System.Drawing.Point(81, 136);
+            this.dgvStaffInfo.GridColor = System.Drawing.Color.DarkGreen;
+            this.dgvStaffInfo.Location = new System.Drawing.Point(81, 97);
             this.dgvStaffInfo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgvStaffInfo.Name = "dgvStaffInfo";
             this.dgvStaffInfo.RowHeadersWidth = 51;
             this.dgvStaffInfo.RowTemplate.Height = 24;
-            this.dgvStaffInfo.Size = new System.Drawing.Size(1373, 163);
+            this.dgvStaffInfo.Size = new System.Drawing.Size(1556, 163);
             this.dgvStaffInfo.TabIndex = 22;
             this.dgvStaffInfo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvStaffInfo_CellClick);
             // 
@@ -530,11 +552,12 @@
             // 
             // txtSearchStaff
             // 
+            this.txtSearchStaff.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.txtSearchStaff.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearchStaff.Location = new System.Drawing.Point(350, 76);
+            this.txtSearchStaff.Location = new System.Drawing.Point(353, 34);
             this.txtSearchStaff.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSearchStaff.Name = "txtSearchStaff";
-            this.txtSearchStaff.Size = new System.Drawing.Size(490, 39);
+            this.txtSearchStaff.Size = new System.Drawing.Size(278, 39);
             this.txtSearchStaff.TabIndex = 17;
             this.txtSearchStaff.TextChanged += new System.EventHandler(this.txtSearchStaff_TextChanged);
             // 
@@ -542,27 +565,18 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(54, 78);
+            this.label2.Location = new System.Drawing.Point(74, 36);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(249, 37);
             this.label2.TabIndex = 16;
             this.label2.Text = "Search for Staff:";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(457, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(206, 46);
-            this.label1.TabIndex = 15;
-            this.label1.Text = "Staff Form";
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -572,28 +586,30 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.SeaShell;
-            this.tabPage1.Controls.Add(this.button1);
+            this.tabPage1.Controls.Add(this.btnSave);
             this.tabPage1.Controls.Add(this.groupBox1);
-            this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.txtSearchStaff);
             this.tabPage1.Controls.Add(this.dgvStaffInfo);
-            this.tabPage1.Location = new System.Drawing.Point(4, 29);
+            this.tabPage1.Location = new System.Drawing.Point(4, 30);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1705, 732);
+            this.tabPage1.Size = new System.Drawing.Size(1705, 731);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "View / Edit Staff";
             // 
-            // button1
+            // btnSave
             // 
-            this.button1.Location = new System.Drawing.Point(964, 654);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(194, 51);
-            this.button1.TabIndex = 41;
-            this.button1.Text = "Update Staff Details";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnSave.BackColor = System.Drawing.Color.DarkGreen;
+            this.btnSave.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnSave.Location = new System.Drawing.Point(865, 674);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(293, 51);
+            this.btnSave.TabIndex = 41;
+            this.btnSave.Text = "Update Staff Details";
+            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.button1_Click);
             // 
             // groupBox1
             // 
@@ -615,23 +631,37 @@
             this.groupBox1.Controls.Add(this.firstNameTextBox);
             this.groupBox1.Controls.Add(dailyRateLabel);
             this.groupBox1.Controls.Add(passwordHashLabel);
-            this.groupBox1.Location = new System.Drawing.Point(365, 320);
+            this.groupBox1.Location = new System.Drawing.Point(579, 267);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(579, 396);
             this.groupBox1.TabIndex = 40;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Edit Staff Details";
             // 
+            // cmbEditStatus
+            // 
+            this.cmbEditStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.cmbEditStatus.FormattingEnabled = true;
+            this.cmbEditStatus.Items.AddRange(new object[] {
+            "Active ",
+            "Inactive"});
+            this.cmbEditStatus.Location = new System.Drawing.Point(262, 254);
+            this.cmbEditStatus.Name = "cmbEditStatus";
+            this.cmbEditStatus.Size = new System.Drawing.Size(199, 29);
+            this.cmbEditStatus.TabIndex = 40;
+            // 
             // cmbRoleEdit
             // 
+            this.cmbRoleEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.cmbRoleEdit.FormattingEnabled = true;
             this.cmbRoleEdit.Location = new System.Drawing.Point(262, 335);
             this.cmbRoleEdit.Name = "cmbRoleEdit";
-            this.cmbRoleEdit.Size = new System.Drawing.Size(199, 28);
+            this.cmbRoleEdit.Size = new System.Drawing.Size(199, 29);
             this.cmbRoleEdit.TabIndex = 39;
             // 
             // contactNumberTextBox
             // 
+            this.contactNumberTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.contactNumberTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.contactNumberTextBox.Location = new System.Drawing.Point(262, 218);
             this.contactNumberTextBox.Name = "contactNumberTextBox";
@@ -640,6 +670,7 @@
             // 
             // lastNameTextBox
             // 
+            this.lastNameTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.lastNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lastNameTextBox.Location = new System.Drawing.Point(262, 109);
             this.lastNameTextBox.Name = "lastNameTextBox";
@@ -648,6 +679,7 @@
             // 
             // staffIDTextBox
             // 
+            this.staffIDTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.staffIDTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.staffIDTextBox.Location = new System.Drawing.Point(262, 37);
             this.staffIDTextBox.Name = "staffIDTextBox";
@@ -657,6 +689,7 @@
             // 
             // dailyRateTextBox
             // 
+            this.dailyRateTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.dailyRateTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dailyRateTextBox.Location = new System.Drawing.Point(262, 297);
             this.dailyRateTextBox.Name = "dailyRateTextBox";
@@ -665,6 +698,7 @@
             // 
             // userNameTextBox
             // 
+            this.userNameTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.userNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.userNameTextBox.Location = new System.Drawing.Point(262, 145);
             this.userNameTextBox.Name = "userNameTextBox";
@@ -673,6 +707,7 @@
             // 
             // passwordHashTextBox
             // 
+            this.passwordHashTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.passwordHashTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.passwordHashTextBox.Location = new System.Drawing.Point(262, 182);
             this.passwordHashTextBox.Name = "passwordHashTextBox";
@@ -681,6 +716,7 @@
             // 
             // firstNameTextBox
             // 
+            this.firstNameTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.firstNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.firstNameTextBox.Location = new System.Drawing.Point(262, 73);
             this.firstNameTextBox.Name = "firstNameTextBox";
@@ -693,10 +729,10 @@
             this.tabPage2.Controls.Add(this.staffDataGridView);
             this.tabPage2.Controls.Add(this.gbAddStaff);
             this.tabPage2.Controls.Add(this.btnAddStaff);
-            this.tabPage2.Location = new System.Drawing.Point(4, 29);
+            this.tabPage2.Location = new System.Drawing.Point(4, 30);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1705, 732);
+            this.tabPage2.Size = new System.Drawing.Size(1705, 731);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Add Staff";
             // 
@@ -717,11 +753,13 @@
             this.dataGridViewTextBoxColumn8,
             this.dataGridViewTextBoxColumn9});
             this.staffDataGridView.DataSource = this.staffBindingSource;
-            this.staffDataGridView.Location = new System.Drawing.Point(92, 6);
+            this.staffDataGridView.GridColor = System.Drawing.Color.DarkGreen;
+            this.staffDataGridView.Location = new System.Drawing.Point(92, 24);
             this.staffDataGridView.Name = "staffDataGridView";
+            this.staffDataGridView.ReadOnly = true;
             this.staffDataGridView.RowHeadersWidth = 62;
             this.staffDataGridView.RowTemplate.Height = 28;
-            this.staffDataGridView.Size = new System.Drawing.Size(1431, 255);
+            this.staffDataGridView.Size = new System.Drawing.Size(1431, 237);
             this.staffDataGridView.TabIndex = 28;
             // 
             // dataGridViewTextBoxColumn1
@@ -738,6 +776,7 @@
             this.dataGridViewTextBoxColumn2.HeaderText = "firstName";
             this.dataGridViewTextBoxColumn2.MinimumWidth = 8;
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn3
             // 
@@ -745,6 +784,7 @@
             this.dataGridViewTextBoxColumn3.HeaderText = "lastName";
             this.dataGridViewTextBoxColumn3.MinimumWidth = 8;
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn4
             // 
@@ -752,6 +792,7 @@
             this.dataGridViewTextBoxColumn4.HeaderText = "userName";
             this.dataGridViewTextBoxColumn4.MinimumWidth = 8;
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn5
             // 
@@ -759,6 +800,7 @@
             this.dataGridViewTextBoxColumn5.HeaderText = "passwordHash";
             this.dataGridViewTextBoxColumn5.MinimumWidth = 8;
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
             this.dataGridViewTextBoxColumn5.Visible = false;
             // 
             // dataGridViewTextBoxColumn6
@@ -767,6 +809,7 @@
             this.dataGridViewTextBoxColumn6.HeaderText = "contactNumber";
             this.dataGridViewTextBoxColumn6.MinimumWidth = 8;
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn7
             // 
@@ -774,6 +817,7 @@
             this.dataGridViewTextBoxColumn7.HeaderText = "staffStatus";
             this.dataGridViewTextBoxColumn7.MinimumWidth = 8;
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn8
             // 
@@ -781,6 +825,7 @@
             this.dataGridViewTextBoxColumn8.HeaderText = "dailyRate";
             this.dataGridViewTextBoxColumn8.MinimumWidth = 8;
             this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn9
             // 
@@ -788,6 +833,7 @@
             this.dataGridViewTextBoxColumn9.HeaderText = "roleID";
             this.dataGridViewTextBoxColumn9.MinimumWidth = 8;
             this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.ReadOnly = true;
             // 
             // staffTableAdapter
             // 
@@ -816,28 +862,6 @@
             this.tableAdapterManager.StaffTableAdapter = this.staffTableAdapter;
             this.tableAdapterManager.TimeSlotTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = M2GiantGroupSystem.GroupWst1DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
-            // cmbAddStatus
-            // 
-            this.cmbAddStatus.FormattingEnabled = true;
-            this.cmbAddStatus.Items.AddRange(new object[] {
-            "Active",
-            "Inactive"});
-            this.cmbAddStatus.Location = new System.Drawing.Point(318, 262);
-            this.cmbAddStatus.Name = "cmbAddStatus";
-            this.cmbAddStatus.Size = new System.Drawing.Size(218, 28);
-            this.cmbAddStatus.TabIndex = 18;
-            // 
-            // cmbEditStatus
-            // 
-            this.cmbEditStatus.FormattingEnabled = true;
-            this.cmbEditStatus.Items.AddRange(new object[] {
-            "Active ",
-            "Inactive"});
-            this.cmbEditStatus.Location = new System.Drawing.Point(262, 254);
-            this.cmbEditStatus.Name = "cmbEditStatus";
-            this.cmbEditStatus.Size = new System.Drawing.Size(199, 28);
-            this.cmbEditStatus.TabIndex = 40;
             // 
             // Staff
             // 
@@ -874,7 +898,6 @@
         private System.Windows.Forms.DataGridView dgvStaffInfo;
         private System.Windows.Forms.TextBox txtSearchStaff;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
@@ -909,7 +932,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
         private System.Windows.Forms.ComboBox cmbRoleAdd;
         private System.Windows.Forms.ComboBox cmbRoleEdit;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.DataGridViewTextBoxColumn staffID;
         private System.Windows.Forms.DataGridViewTextBoxColumn firstName;
         private System.Windows.Forms.DataGridViewTextBoxColumn lastName;
