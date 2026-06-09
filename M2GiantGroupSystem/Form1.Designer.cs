@@ -374,6 +374,7 @@
             this.addEditStaffDetailsToolStripMenuItem.Name = "addEditStaffDetailsToolStripMenuItem";
             this.addEditStaffDetailsToolStripMenuItem.Size = new System.Drawing.Size(378, 40);
             this.addEditStaffDetailsToolStripMenuItem.Text = "Add / Edit Staff Details";
+            this.addEditStaffDetailsToolStripMenuItem.Click += new System.EventHandler(this.addEditStaffDetailsToolStripMenuItem_Click);
             // 
             // toolStripMenuItem8
             // 
