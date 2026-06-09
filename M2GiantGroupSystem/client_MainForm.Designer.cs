@@ -30,8 +30,54 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(client_MainForm));
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.clientBS = new System.Windows.Forms.BindingSource(this.components);
+            this.groupWst1DataSet1 = new M2GiantGroupSystem.GroupWst1DataSet();
+            this.clientTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.ClientTableAdapter();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label8 = new System.Windows.Forms.Label();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.cboFilterType = new System.Windows.Forms.ComboBox();
+            this.cboFilterStatus = new System.Windows.Forms.ComboBox();
+            this.txtSearchV = new System.Windows.Forms.TextBox();
+            this.dgvClients = new System.Windows.Forms.DataGridView();
+            this.cboSearchColumn = new System.Windows.Forms.ComboBox();
+            this.pnlDetailsV = new System.Windows.Forms.Panel();
+            this.lblDetailDate = new System.Windows.Forms.Label();
+            this.lblDetailType = new System.Windows.Forms.Label();
+            this.lblDetailStatus = new System.Windows.Forms.Label();
+            this.lblDetailPhone = new System.Windows.Forms.Label();
+            this.lblDetailEmail = new System.Windows.Forms.Label();
+            this.lblDetailSurname = new System.Windows.Forms.Label();
+            this.lblDetailName = new System.Windows.Forms.Label();
+            this.lblDetailID = new System.Windows.Forms.Label();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.userTip1 = new System.Windows.Forms.Label();
+            this.userTip = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.lblSearchResults_A = new System.Windows.Forms.Label();
+            this.lblSearchBy_A = new System.Windows.Forms.Label();
+            this.tbSearchValue_A = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.lbSearchResults = new System.Windows.Forms.ListBox();
+            this.lblSelectCriteria_A = new System.Windows.Forms.Label();
+            this.cmbCriteria_A = new System.Windows.Forms.ComboBox();
+            this.lblFindClient_A = new System.Windows.Forms.Label();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btn_addClient = new System.Windows.Forms.Button();
             this.lbl_enterDetails = new System.Windows.Forms.Label();
             this.lbl_type = new System.Windows.Forms.Label();
@@ -46,74 +92,572 @@
             this.tb_email = new System.Windows.Forms.TextBox();
             this.tb_surname = new System.Windows.Forms.TextBox();
             this.tb_name = new System.Windows.Forms.TextBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.lblSearchResults_A = new System.Windows.Forms.Label();
-            this.lblSearchBy_A = new System.Windows.Forms.Label();
-            this.tbSearchValue_A = new System.Windows.Forms.TextBox();
-            this.lbSearchResults = new System.Windows.Forms.ListBox();
-            this.lblSelectCriteria_A = new System.Windows.Forms.Label();
-            this.cmbCriteria_A = new System.Windows.Forms.ComboBox();
-            this.lblFindClient_A = new System.Windows.Forms.Label();
-            this.btnUpdate = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.clientBS = new System.Windows.Forms.BindingSource(this.components);
-            this.groupWst1DataSet1 = new M2GiantGroupSystem.GroupWst1DataSet();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.cboFilterType = new System.Windows.Forms.ComboBox();
-            this.cboFilterStatus = new System.Windows.Forms.ComboBox();
-            this.txtSearchV = new System.Windows.Forms.TextBox();
-            this.cboSearchColumn = new System.Windows.Forms.ComboBox();
-            this.pnlDetailsV = new System.Windows.Forms.Panel();
-            this.lblDetailDate = new System.Windows.Forms.Label();
-            this.lblDetailType = new System.Windows.Forms.Label();
-            this.lblDetailStatus = new System.Windows.Forms.Label();
-            this.lblDetailPhone = new System.Windows.Forms.Label();
-            this.lblDetailEmail = new System.Windows.Forms.Label();
-            this.lblDetailSurname = new System.Windows.Forms.Label();
-            this.lblDetailName = new System.Windows.Forms.Label();
-            this.lblDetailID = new System.Windows.Forms.Label();
-            this.dgvClients = new System.Windows.Forms.DataGridView();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.clientTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.ClientTableAdapter();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
             ((System.ComponentModel.ISupportInitialize)(this.clientBS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupWst1DataSet1)).BeginInit();
             this.tabPage3.SuspendLayout();
-            this.pnlDetailsV.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClients)).BeginInit();
+            this.pnlDetailsV.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tabControl1
+            // clientBS
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1924, 1055);
-            this.tabControl1.TabIndex = 0;
+            this.clientBS.DataMember = "Client";
+            this.clientBS.DataSource = this.groupWst1DataSet1;
+            this.clientBS.CurrentChanged += new System.EventHandler(this.clientBS_CurrentChanged);
+            // 
+            // groupWst1DataSet1
+            // 
+            this.groupWst1DataSet1.DataSetName = "GroupWst1DataSet";
+            this.groupWst1DataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // clientTableAdapter1
+            // 
+            this.clientTableAdapter1.ClearBeforeFill = true;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.BackColor = System.Drawing.Color.SeaShell;
+            this.tabPage3.Controls.Add(this.label8);
+            this.tabPage3.Controls.Add(this.btnAdd);
+            this.tabPage3.Controls.Add(this.btnDelete);
+            this.tabPage3.Controls.Add(this.btnEdit);
+            this.tabPage3.Controls.Add(this.cboFilterType);
+            this.tabPage3.Controls.Add(this.cboFilterStatus);
+            this.tabPage3.Controls.Add(this.txtSearchV);
+            this.tabPage3.Controls.Add(this.dgvClients);
+            this.tabPage3.Controls.Add(this.cboSearchColumn);
+            this.tabPage3.Controls.Add(this.pnlDetailsV);
+            this.tabPage3.Location = new System.Drawing.Point(4, 40);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(1916, 1011);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "View clients";
+            this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
+            this.tabPage3.Enter += new System.EventHandler(this.tabPage3_Enter);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.DarkGreen;
+            this.label8.Location = new System.Drawing.Point(1450, 82);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(345, 38);
+            this.label8.TabIndex = 13;
+            this.label8.Text = "Details of selected client:";
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.Color.DarkGreen;
+            this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.ForeColor = System.Drawing.Color.White;
+            this.btnAdd.Location = new System.Drawing.Point(67, 663);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(494, 78);
+            this.btnAdd.TabIndex = 8;
+            this.btnAdd.Text = "Add";
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.BackColor = System.Drawing.Color.DarkGreen;
+            this.btnDelete.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.ForeColor = System.Drawing.Color.White;
+            this.btnDelete.Location = new System.Drawing.Point(67, 773);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(494, 78);
+            this.btnDelete.TabIndex = 7;
+            this.btnDelete.Text = "Archive";
+            this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.BackColor = System.Drawing.Color.DarkGreen;
+            this.btnEdit.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEdit.ForeColor = System.Drawing.Color.White;
+            this.btnEdit.Location = new System.Drawing.Point(586, 663);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(494, 78);
+            this.btnEdit.TabIndex = 6;
+            this.btnEdit.Text = "Edit";
+            this.btnEdit.UseVisualStyleBackColor = false;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // cboFilterType
+            // 
+            this.cboFilterType.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.cboFilterType.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboFilterType.FormattingEnabled = true;
+            this.cboFilterType.Items.AddRange(new object[] {
+            "All Types",
+            "Residential",
+            "Commercial",
+            "Government"});
+            this.cboFilterType.Location = new System.Drawing.Point(1137, 53);
+            this.cboFilterType.Name = "cboFilterType";
+            this.cboFilterType.Size = new System.Drawing.Size(259, 53);
+            this.cboFilterType.TabIndex = 5;
+            this.cboFilterType.SelectedIndexChanged += new System.EventHandler(this.cboFilterType_SelectedIndexChanged);
+            // 
+            // cboFilterStatus
+            // 
+            this.cboFilterStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.cboFilterStatus.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboFilterStatus.FormattingEnabled = true;
+            this.cboFilterStatus.Items.AddRange(new object[] {
+            "Active",
+            "Archived",
+            "All Statuses"});
+            this.cboFilterStatus.Location = new System.Drawing.Point(760, 53);
+            this.cboFilterStatus.Name = "cboFilterStatus";
+            this.cboFilterStatus.Size = new System.Drawing.Size(273, 53);
+            this.cboFilterStatus.TabIndex = 4;
+            this.cboFilterStatus.SelectedIndexChanged += new System.EventHandler(this.cboFilterStatus_SelectedIndexChanged);
+            // 
+            // txtSearchV
+            // 
+            this.txtSearchV.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.txtSearchV.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearchV.Location = new System.Drawing.Point(389, 52);
+            this.txtSearchV.Name = "txtSearchV";
+            this.txtSearchV.Size = new System.Drawing.Size(273, 50);
+            this.txtSearchV.TabIndex = 3;
+            this.txtSearchV.TextChanged += new System.EventHandler(this.txtSearchV_TextChanged);
+            // 
+            // dgvClients
+            // 
+            this.dgvClients.AllowUserToResizeRows = false;
+            this.dgvClients.ColumnHeadersHeight = 40;
+            this.dgvClients.Location = new System.Drawing.Point(67, 138);
+            this.dgvClients.Name = "dgvClients";
+            this.dgvClients.RowHeadersWidth = 51;
+            this.dgvClients.RowTemplate.Height = 24;
+            this.dgvClients.Size = new System.Drawing.Size(1329, 482);
+            this.dgvClients.TabIndex = 0;
+            this.dgvClients.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClients_CellClick);
+            // 
+            // cboSearchColumn
+            // 
+            this.cboSearchColumn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.cboSearchColumn.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboSearchColumn.FormattingEnabled = true;
+            this.cboSearchColumn.Location = new System.Drawing.Point(67, 53);
+            this.cboSearchColumn.Name = "cboSearchColumn";
+            this.cboSearchColumn.Size = new System.Drawing.Size(273, 53);
+            this.cboSearchColumn.TabIndex = 2;
+            this.cboSearchColumn.SelectedIndexChanged += new System.EventHandler(this.cboSearchColumn_SelectedIndexChanged);
+            // 
+            // pnlDetailsV
+            // 
+            this.pnlDetailsV.Controls.Add(this.lblDetailDate);
+            this.pnlDetailsV.Controls.Add(this.lblDetailType);
+            this.pnlDetailsV.Controls.Add(this.lblDetailStatus);
+            this.pnlDetailsV.Controls.Add(this.lblDetailPhone);
+            this.pnlDetailsV.Controls.Add(this.lblDetailEmail);
+            this.pnlDetailsV.Controls.Add(this.lblDetailSurname);
+            this.pnlDetailsV.Controls.Add(this.lblDetailName);
+            this.pnlDetailsV.Controls.Add(this.lblDetailID);
+            this.pnlDetailsV.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pnlDetailsV.Location = new System.Drawing.Point(1437, 138);
+            this.pnlDetailsV.Name = "pnlDetailsV";
+            this.pnlDetailsV.Size = new System.Drawing.Size(450, 482);
+            this.pnlDetailsV.TabIndex = 1;
+            // 
+            // lblDetailDate
+            // 
+            this.lblDetailDate.AutoSize = true;
+            this.lblDetailDate.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDetailDate.Location = new System.Drawing.Point(13, 431);
+            this.lblDetailDate.Name = "lblDetailDate";
+            this.lblDetailDate.Size = new System.Drawing.Size(112, 38);
+            this.lblDetailDate.TabIndex = 13;
+            this.lblDetailDate.Text = "label14";
+            // 
+            // lblDetailType
+            // 
+            this.lblDetailType.AutoSize = true;
+            this.lblDetailType.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDetailType.Location = new System.Drawing.Point(13, 368);
+            this.lblDetailType.Name = "lblDetailType";
+            this.lblDetailType.Size = new System.Drawing.Size(112, 38);
+            this.lblDetailType.TabIndex = 12;
+            this.lblDetailType.Text = "label13";
+            // 
+            // lblDetailStatus
+            // 
+            this.lblDetailStatus.AutoSize = true;
+            this.lblDetailStatus.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDetailStatus.Location = new System.Drawing.Point(13, 299);
+            this.lblDetailStatus.Name = "lblDetailStatus";
+            this.lblDetailStatus.Size = new System.Drawing.Size(112, 38);
+            this.lblDetailStatus.TabIndex = 11;
+            this.lblDetailStatus.Text = "label12";
+            // 
+            // lblDetailPhone
+            // 
+            this.lblDetailPhone.AutoSize = true;
+            this.lblDetailPhone.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDetailPhone.Location = new System.Drawing.Point(13, 236);
+            this.lblDetailPhone.Name = "lblDetailPhone";
+            this.lblDetailPhone.Size = new System.Drawing.Size(112, 38);
+            this.lblDetailPhone.TabIndex = 10;
+            this.lblDetailPhone.Text = "label11";
+            // 
+            // lblDetailEmail
+            // 
+            this.lblDetailEmail.AutoSize = true;
+            this.lblDetailEmail.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDetailEmail.Location = new System.Drawing.Point(13, 173);
+            this.lblDetailEmail.Name = "lblDetailEmail";
+            this.lblDetailEmail.Size = new System.Drawing.Size(112, 38);
+            this.lblDetailEmail.TabIndex = 9;
+            this.lblDetailEmail.Text = "label10";
+            // 
+            // lblDetailSurname
+            // 
+            this.lblDetailSurname.AutoSize = true;
+            this.lblDetailSurname.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDetailSurname.Location = new System.Drawing.Point(13, 113);
+            this.lblDetailSurname.Name = "lblDetailSurname";
+            this.lblDetailSurname.Size = new System.Drawing.Size(96, 38);
+            this.lblDetailSurname.TabIndex = 8;
+            this.lblDetailSurname.Text = "label9";
+            // 
+            // lblDetailName
+            // 
+            this.lblDetailName.AutoSize = true;
+            this.lblDetailName.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDetailName.Location = new System.Drawing.Point(13, 57);
+            this.lblDetailName.Name = "lblDetailName";
+            this.lblDetailName.Size = new System.Drawing.Size(96, 38);
+            this.lblDetailName.TabIndex = 7;
+            this.lblDetailName.Text = "label8";
+            // 
+            // lblDetailID
+            // 
+            this.lblDetailID.AutoSize = true;
+            this.lblDetailID.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDetailID.Location = new System.Drawing.Point(13, 10);
+            this.lblDetailID.Name = "lblDetailID";
+            this.lblDetailID.Size = new System.Drawing.Size(96, 38);
+            this.lblDetailID.TabIndex = 6;
+            this.lblDetailID.Text = "label7";
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.AutoScroll = true;
+            this.tabPage2.BackColor = System.Drawing.Color.SeaShell;
+            this.tabPage2.Controls.Add(this.userTip1);
+            this.tabPage2.Controls.Add(this.userTip);
+            this.tabPage2.Controls.Add(this.label7);
+            this.tabPage2.Controls.Add(this.lblSearchResults_A);
+            this.tabPage2.Controls.Add(this.lblSearchBy_A);
+            this.tabPage2.Controls.Add(this.tbSearchValue_A);
+            this.tabPage2.Controls.Add(this.textBox1);
+            this.tabPage2.Controls.Add(this.textBox2);
+            this.tabPage2.Controls.Add(this.textBox3);
+            this.tabPage2.Controls.Add(this.textBox4);
+            this.tabPage2.Controls.Add(this.lbSearchResults);
+            this.tabPage2.Controls.Add(this.lblSelectCriteria_A);
+            this.tabPage2.Controls.Add(this.cmbCriteria_A);
+            this.tabPage2.Controls.Add(this.lblFindClient_A);
+            this.tabPage2.Controls.Add(this.btnUpdate);
+            this.tabPage2.Controls.Add(this.label1);
+            this.tabPage2.Controls.Add(this.label2);
+            this.tabPage2.Controls.Add(this.label3);
+            this.tabPage2.Controls.Add(this.label4);
+            this.tabPage2.Controls.Add(this.label5);
+            this.tabPage2.Controls.Add(this.label6);
+            this.tabPage2.Controls.Add(this.comboBox1);
+            this.tabPage2.Controls.Add(this.comboBox2);
+            this.tabPage2.Location = new System.Drawing.Point(4, 40);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1916, 1011);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Update client";
+            this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
+            // 
+            // userTip1
+            // 
+            this.userTip1.AutoSize = true;
+            this.userTip1.BackColor = System.Drawing.Color.Transparent;
+            this.userTip1.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.userTip1.ForeColor = System.Drawing.Color.Red;
+            this.userTip1.Location = new System.Drawing.Point(558, 279);
+            this.userTip1.Name = "userTip1";
+            this.userTip1.Size = new System.Drawing.Size(78, 25);
+            this.userTip1.TabIndex = 61;
+            this.userTip1.Text = "User tip";
+            // 
+            // userTip
+            // 
+            this.userTip.AutoSize = true;
+            this.userTip.BackColor = System.Drawing.Color.Transparent;
+            this.userTip.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.userTip.ForeColor = System.Drawing.Color.Red;
+            this.userTip.Location = new System.Drawing.Point(773, 105);
+            this.userTip.Name = "userTip";
+            this.userTip.Size = new System.Drawing.Size(78, 25);
+            this.userTip.TabIndex = 60;
+            this.userTip.Text = "User tip";
+            this.userTip.Click += new System.EventHandler(this.userTip_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 31.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(1123, 79);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(579, 70);
+            this.label7.TabIndex = 59;
+            this.label7.Text = "Update Client\'s Details";
+            // 
+            // lblSearchResults_A
+            // 
+            this.lblSearchResults_A.AutoSize = true;
+            this.lblSearchResults_A.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSearchResults_A.Location = new System.Drawing.Point(99, 492);
+            this.lblSearchResults_A.Name = "lblSearchResults_A";
+            this.lblSearchResults_A.Size = new System.Drawing.Size(272, 50);
+            this.lblSearchResults_A.TabIndex = 58;
+            this.lblSearchResults_A.Text = "Search results:";
+            // 
+            // lblSearchBy_A
+            // 
+            this.lblSearchBy_A.AutoSize = true;
+            this.lblSearchBy_A.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSearchBy_A.Location = new System.Drawing.Point(99, 348);
+            this.lblSearchBy_A.Name = "lblSearchBy_A";
+            this.lblSearchBy_A.Size = new System.Drawing.Size(130, 50);
+            this.lblSearchBy_A.TabIndex = 57;
+            this.lblSearchBy_A.Text = "Enter..";
+            // 
+            // tbSearchValue_A
+            // 
+            this.tbSearchValue_A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.tbSearchValue_A.Enabled = false;
+            this.tbSearchValue_A.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbSearchValue_A.Location = new System.Drawing.Point(105, 401);
+            this.tbSearchValue_A.Name = "tbSearchValue_A";
+            this.tbSearchValue_A.Size = new System.Drawing.Size(428, 50);
+            this.tbSearchValue_A.TabIndex = 56;
+            this.tbSearchValue_A.TextChanged += new System.EventHandler(this.tbSearchValue_A_TextChanged);
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.clientBS, "phoneNumber", true));
+            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(1176, 401);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(494, 50);
+            this.textBox1.TabIndex = 42;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // textBox2
+            // 
+            this.textBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.textBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.clientBS, "emailAddress", true));
+            this.textBox2.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(1176, 493);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(494, 50);
+            this.textBox2.TabIndex = 41;
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            // 
+            // textBox3
+            // 
+            this.textBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.textBox3.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.clientBS, "clientSurname", true));
+            this.textBox3.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox3.Location = new System.Drawing.Point(1176, 308);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(494, 50);
+            this.textBox3.TabIndex = 40;
+            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            // 
+            // textBox4
+            // 
+            this.textBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.textBox4.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.clientBS, "clientName", true));
+            this.textBox4.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox4.Location = new System.Drawing.Point(1176, 219);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(494, 50);
+            this.textBox4.TabIndex = 39;
+            this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
+            // 
+            // lbSearchResults
+            // 
+            this.lbSearchResults.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbSearchResults.FormattingEnabled = true;
+            this.lbSearchResults.ItemHeight = 45;
+            this.lbSearchResults.Location = new System.Drawing.Point(108, 547);
+            this.lbSearchResults.Name = "lbSearchResults";
+            this.lbSearchResults.ScrollAlwaysVisible = true;
+            this.lbSearchResults.Size = new System.Drawing.Size(383, 319);
+            this.lbSearchResults.TabIndex = 55;
+            this.lbSearchResults.SelectedIndexChanged += new System.EventHandler(this.lbSearchResults_SelectedIndexChanged);
+            // 
+            // lblSelectCriteria_A
+            // 
+            this.lblSelectCriteria_A.AutoSize = true;
+            this.lblSelectCriteria_A.BackColor = System.Drawing.Color.Transparent;
+            this.lblSelectCriteria_A.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSelectCriteria_A.Location = new System.Drawing.Point(96, 219);
+            this.lblSelectCriteria_A.Name = "lblSelectCriteria_A";
+            this.lblSelectCriteria_A.Size = new System.Drawing.Size(421, 50);
+            this.lblSelectCriteria_A.TabIndex = 54;
+            this.lblSelectCriteria_A.Text = "Select a search criteria:";
+            // 
+            // cmbCriteria_A
+            // 
+            this.cmbCriteria_A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.cmbCriteria_A.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbCriteria_A.FormattingEnabled = true;
+            this.cmbCriteria_A.Items.AddRange(new object[] {
+            "Name",
+            "Surname",
+            "Email",
+            "Phone Number"});
+            this.cmbCriteria_A.Location = new System.Drawing.Point(105, 279);
+            this.cmbCriteria_A.Name = "cmbCriteria_A";
+            this.cmbCriteria_A.Size = new System.Drawing.Size(428, 53);
+            this.cmbCriteria_A.TabIndex = 53;
+            this.cmbCriteria_A.SelectedIndexChanged += new System.EventHandler(this.cmbCriteria_A_SelectedIndexChanged);
+            // 
+            // lblFindClient_A
+            // 
+            this.lblFindClient_A.AutoSize = true;
+            this.lblFindClient_A.BackColor = System.Drawing.Color.Transparent;
+            this.lblFindClient_A.Font = new System.Drawing.Font("Segoe UI", 31.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFindClient_A.Location = new System.Drawing.Point(145, 79);
+            this.lblFindClient_A.Name = "lblFindClient_A";
+            this.lblFindClient_A.Size = new System.Drawing.Size(283, 70);
+            this.lblFindClient_A.TabIndex = 52;
+            this.lblFindClient_A.Text = "Find client";
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.BackColor = System.Drawing.Color.DarkGreen;
+            this.btnUpdate.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdate.ForeColor = System.Drawing.Color.White;
+            this.btnUpdate.Location = new System.Drawing.Point(1176, 788);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(494, 78);
+            this.btnUpdate.TabIndex = 51;
+            this.btnUpdate.Text = "Update client details";
+            this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(745, 591);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(216, 50);
+            this.label1.TabIndex = 50;
+            this.label1.Text = "Client Type";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(745, 691);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(128, 50);
+            this.label2.TabIndex = 49;
+            this.label2.Text = "Status";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(745, 492);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(378, 50);
+            this.label3.TabIndex = 48;
+            this.label3.Text = "Client Email Address";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(745, 400);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(396, 50);
+            this.label4.TabIndex = 47;
+            this.label4.Text = "Client Phone Number";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(745, 308);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(287, 50);
+            this.label5.TabIndex = 46;
+            this.label5.Text = "Client Surname";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(745, 218);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(236, 50);
+            this.label6.TabIndex = 45;
+            this.label6.Text = "Client Name";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.comboBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.clientBS, "clientType", true));
+            this.comboBox1.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Residential",
+            "Commercial",
+            "Government"});
+            this.comboBox1.Location = new System.Drawing.Point(1176, 592);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(494, 53);
+            this.comboBox1.TabIndex = 44;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.comboBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.clientBS, "status", true));
+            this.comboBox2.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "Active",
+            "Archived "});
+            this.comboBox2.Location = new System.Drawing.Point(1176, 692);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(494, 53);
+            this.comboBox2.TabIndex = 43;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // tabPage1
             // 
@@ -141,6 +685,16 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Add client";
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(1565, 27);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(324, 93);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 43;
+            this.pictureBox1.TabStop = false;
             // 
             // btn_addClient
             // 
@@ -302,505 +856,18 @@
             this.tb_name.Size = new System.Drawing.Size(494, 50);
             this.tb_name.TabIndex = 29;
             // 
-            // tabPage2
-            // 
-            this.tabPage2.AutoScroll = true;
-            this.tabPage2.Controls.Add(this.lblSearchResults_A);
-            this.tabPage2.Controls.Add(this.lblSearchBy_A);
-            this.tabPage2.Controls.Add(this.tbSearchValue_A);
-            this.tabPage2.Controls.Add(this.lbSearchResults);
-            this.tabPage2.Controls.Add(this.lblSelectCriteria_A);
-            this.tabPage2.Controls.Add(this.cmbCriteria_A);
-            this.tabPage2.Controls.Add(this.lblFindClient_A);
-            this.tabPage2.Controls.Add(this.btnUpdate);
-            this.tabPage2.Controls.Add(this.label1);
-            this.tabPage2.Controls.Add(this.label2);
-            this.tabPage2.Controls.Add(this.label3);
-            this.tabPage2.Controls.Add(this.label4);
-            this.tabPage2.Controls.Add(this.label5);
-            this.tabPage2.Controls.Add(this.label6);
-            this.tabPage2.Controls.Add(this.comboBox1);
-            this.tabPage2.Controls.Add(this.comboBox2);
-            this.tabPage2.Controls.Add(this.textBox1);
-            this.tabPage2.Controls.Add(this.textBox2);
-            this.tabPage2.Controls.Add(this.textBox3);
-            this.tabPage2.Controls.Add(this.textBox4);
-            this.tabPage2.Location = new System.Drawing.Point(4, 40);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1916, 1011);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Update client";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
-            // 
-            // lblSearchResults_A
-            // 
-            this.lblSearchResults_A.AutoSize = true;
-            this.lblSearchResults_A.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSearchResults_A.Location = new System.Drawing.Point(1002, 220);
-            this.lblSearchResults_A.Name = "lblSearchResults_A";
-            this.lblSearchResults_A.Size = new System.Drawing.Size(272, 50);
-            this.lblSearchResults_A.TabIndex = 58;
-            this.lblSearchResults_A.Text = "Search results:";
-            // 
-            // lblSearchBy_A
-            // 
-            this.lblSearchBy_A.AutoSize = true;
-            this.lblSearchBy_A.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSearchBy_A.Location = new System.Drawing.Point(1317, 71);
-            this.lblSearchBy_A.Name = "lblSearchBy_A";
-            this.lblSearchBy_A.Size = new System.Drawing.Size(209, 50);
-            this.lblSearchBy_A.TabIndex = 57;
-            this.lblSearchBy_A.Text = "Search by..";
-            // 
-            // tbSearchValue_A
-            // 
-            this.tbSearchValue_A.Enabled = false;
-            this.tbSearchValue_A.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbSearchValue_A.Location = new System.Drawing.Point(1315, 143);
-            this.tbSearchValue_A.Name = "tbSearchValue_A";
-            this.tbSearchValue_A.Size = new System.Drawing.Size(383, 50);
-            this.tbSearchValue_A.TabIndex = 56;
-            this.tbSearchValue_A.TextChanged += new System.EventHandler(this.tbSearchValue_A_TextChanged);
-            // 
-            // lbSearchResults
-            // 
-            this.lbSearchResults.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbSearchResults.FormattingEnabled = true;
-            this.lbSearchResults.ItemHeight = 45;
-            this.lbSearchResults.Location = new System.Drawing.Point(1315, 221);
-            this.lbSearchResults.Name = "lbSearchResults";
-            this.lbSearchResults.ScrollAlwaysVisible = true;
-            this.lbSearchResults.Size = new System.Drawing.Size(383, 49);
-            this.lbSearchResults.TabIndex = 55;
-            this.lbSearchResults.SelectedIndexChanged += new System.EventHandler(this.lbSearchResults_SelectedIndexChanged);
-            // 
-            // lblSelectCriteria_A
-            // 
-            this.lblSelectCriteria_A.AutoSize = true;
-            this.lblSelectCriteria_A.BackColor = System.Drawing.Color.Transparent;
-            this.lblSelectCriteria_A.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSelectCriteria_A.Location = new System.Drawing.Point(212, 138);
-            this.lblSelectCriteria_A.Name = "lblSelectCriteria_A";
-            this.lblSelectCriteria_A.Size = new System.Drawing.Size(411, 50);
-            this.lblSelectCriteria_A.TabIndex = 54;
-            this.lblSelectCriteria_A.Text = "Select a search criteria";
-            // 
-            // cmbCriteria_A
-            // 
-            this.cmbCriteria_A.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbCriteria_A.FormattingEnabled = true;
-            this.cmbCriteria_A.Items.AddRange(new object[] {
-            "Name",
-            "Surname",
-            "Email",
-            "Phone Number"});
-            this.cmbCriteria_A.Location = new System.Drawing.Point(688, 139);
-            this.cmbCriteria_A.Name = "cmbCriteria_A";
-            this.cmbCriteria_A.Size = new System.Drawing.Size(304, 53);
-            this.cmbCriteria_A.TabIndex = 53;
-            this.cmbCriteria_A.SelectedIndexChanged += new System.EventHandler(this.cmbCriteria_A_SelectedIndexChanged);
-            // 
-            // lblFindClient_A
-            // 
-            this.lblFindClient_A.AutoSize = true;
-            this.lblFindClient_A.BackColor = System.Drawing.Color.Transparent;
-            this.lblFindClient_A.Font = new System.Drawing.Font("Segoe UI", 31.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFindClient_A.Location = new System.Drawing.Point(954, 15);
-            this.lblFindClient_A.Name = "lblFindClient_A";
-            this.lblFindClient_A.Size = new System.Drawing.Size(283, 70);
-            this.lblFindClient_A.TabIndex = 52;
-            this.lblFindClient_A.Text = "Find client";
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.BackColor = System.Drawing.Color.DarkGreen;
-            this.btnUpdate.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdate.ForeColor = System.Drawing.Color.White;
-            this.btnUpdate.Location = new System.Drawing.Point(780, 886);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(494, 78);
-            this.btnUpdate.TabIndex = 51;
-            this.btnUpdate.Text = "Update client details";
-            this.btnUpdate.UseVisualStyleBackColor = false;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(212, 680);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(216, 50);
-            this.label1.TabIndex = 50;
-            this.label1.Text = "Client Type";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(212, 766);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(128, 50);
-            this.label2.TabIndex = 49;
-            this.label2.Text = "Status";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(212, 594);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(378, 50);
-            this.label3.TabIndex = 48;
-            this.label3.Text = "Client Email Address";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(212, 508);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(396, 50);
-            this.label4.TabIndex = 47;
-            this.label4.Text = "Client Phone Number";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(212, 422);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(287, 50);
-            this.label5.TabIndex = 46;
-            this.label5.Text = "Client Surname";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(212, 336);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(236, 50);
-            this.label6.TabIndex = 45;
-            this.label6.Text = "Client Name";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.comboBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.clientBS, "clientType", true));
-            this.comboBox1.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Residential",
-            "Commercial",
-            "Government"});
-            this.comboBox1.Location = new System.Drawing.Point(780, 677);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(494, 53);
-            this.comboBox1.TabIndex = 44;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            // 
-            // clientBS
-            // 
-            this.clientBS.DataMember = "Client";
-            this.clientBS.DataSource = this.groupWst1DataSet1;
-            this.clientBS.CurrentChanged += new System.EventHandler(this.clientBS_CurrentChanged);
-            // 
-            // groupWst1DataSet1
-            // 
-            this.groupWst1DataSet1.DataSetName = "GroupWst1DataSet";
-            this.groupWst1DataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.comboBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.clientBS, "status", true));
-            this.comboBox2.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "Active",
-            "Archived "});
-            this.comboBox2.Location = new System.Drawing.Point(780, 763);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(494, 53);
-            this.comboBox2.TabIndex = 43;
-            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
-            // 
-            // textBox1
-            // 
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.clientBS, "phoneNumber", true));
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(780, 508);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(494, 50);
-            this.textBox1.TabIndex = 42;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // textBox2
-            // 
-            this.textBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.textBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.clientBS, "emailAddress", true));
-            this.textBox2.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(780, 594);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(494, 50);
-            this.textBox2.TabIndex = 41;
-            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
-            // 
-            // textBox3
-            // 
-            this.textBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.textBox3.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.clientBS, "clientSurname", true));
-            this.textBox3.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(780, 423);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(494, 50);
-            this.textBox3.TabIndex = 40;
-            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
-            // 
-            // textBox4
-            // 
-            this.textBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.textBox4.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.clientBS, "clientName", true));
-            this.textBox4.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(780, 337);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(494, 50);
-            this.textBox4.TabIndex = 39;
-            this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.btnAdd);
-            this.tabPage3.Controls.Add(this.btnDelete);
-            this.tabPage3.Controls.Add(this.btnEdit);
-            this.tabPage3.Controls.Add(this.cboFilterType);
-            this.tabPage3.Controls.Add(this.cboFilterStatus);
-            this.tabPage3.Controls.Add(this.txtSearchV);
-            this.tabPage3.Controls.Add(this.cboSearchColumn);
-            this.tabPage3.Controls.Add(this.pnlDetailsV);
-            this.tabPage3.Controls.Add(this.dgvClients);
-            this.tabPage3.Location = new System.Drawing.Point(4, 25);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1916, 1026);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "View clients";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Location = new System.Drawing.Point(688, 652);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(299, 69);
-            this.btnAdd.TabIndex = 8;
-            this.btnAdd.Text = "Add";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Location = new System.Drawing.Point(321, 652);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(318, 69);
-            this.btnDelete.TabIndex = 7;
-            this.btnDelete.Text = "Archive";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Location = new System.Drawing.Point(67, 652);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(214, 69);
-            this.btnEdit.TabIndex = 6;
-            this.btnEdit.Text = "Edit";
-            this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-            // 
-            // cboFilterType
-            // 
-            this.cboFilterType.FormattingEnabled = true;
-            this.cboFilterType.Items.AddRange(new object[] {
-            "All Types",
-            "Residential",
-            "Commercial",
-            "Government"});
-            this.cboFilterType.Location = new System.Drawing.Point(989, 51);
-            this.cboFilterType.Name = "cboFilterType";
-            this.cboFilterType.Size = new System.Drawing.Size(202, 39);
-            this.cboFilterType.TabIndex = 5;
-            this.cboFilterType.SelectedIndexChanged += new System.EventHandler(this.cboFilterType_SelectedIndexChanged);
-            // 
-            // cboFilterStatus
-            // 
-            this.cboFilterStatus.FormattingEnabled = true;
-            this.cboFilterStatus.Items.AddRange(new object[] {
-            "Active",
-            "Archived",
-            "All Statuses"});
-            this.cboFilterStatus.Location = new System.Drawing.Point(688, 51);
-            this.cboFilterStatus.Name = "cboFilterStatus";
-            this.cboFilterStatus.Size = new System.Drawing.Size(211, 39);
-            this.cboFilterStatus.TabIndex = 4;
-            this.cboFilterStatus.SelectedIndexChanged += new System.EventHandler(this.cboFilterStatus_SelectedIndexChanged);
-            // 
-            // txtSearchV
-            // 
-            this.txtSearchV.Location = new System.Drawing.Point(382, 53);
-            this.txtSearchV.Name = "txtSearchV";
-            this.txtSearchV.Size = new System.Drawing.Size(244, 38);
-            this.txtSearchV.TabIndex = 3;
-            this.txtSearchV.TextChanged += new System.EventHandler(this.txtSearchV_TextChanged);
-            // 
-            // cboSearchColumn
-            // 
-            this.cboSearchColumn.FormattingEnabled = true;
-            this.cboSearchColumn.Location = new System.Drawing.Point(82, 53);
-            this.cboSearchColumn.Name = "cboSearchColumn";
-            this.cboSearchColumn.Size = new System.Drawing.Size(235, 39);
-            this.cboSearchColumn.TabIndex = 2;
-            this.cboSearchColumn.SelectedIndexChanged += new System.EventHandler(this.cboSearchColumn_SelectedIndexChanged);
-            // 
-            // pnlDetailsV
-            // 
-            this.pnlDetailsV.Controls.Add(this.lblDetailDate);
-            this.pnlDetailsV.Controls.Add(this.lblDetailType);
-            this.pnlDetailsV.Controls.Add(this.lblDetailStatus);
-            this.pnlDetailsV.Controls.Add(this.lblDetailPhone);
-            this.pnlDetailsV.Controls.Add(this.lblDetailEmail);
-            this.pnlDetailsV.Controls.Add(this.lblDetailSurname);
-            this.pnlDetailsV.Controls.Add(this.lblDetailName);
-            this.pnlDetailsV.Controls.Add(this.lblDetailID);
-            this.pnlDetailsV.Location = new System.Drawing.Point(1423, 128);
-            this.pnlDetailsV.Name = "pnlDetailsV";
-            this.pnlDetailsV.Size = new System.Drawing.Size(450, 488);
-            this.pnlDetailsV.TabIndex = 1;
-            // 
-            // lblDetailDate
-            // 
-            this.lblDetailDate.AutoSize = true;
-            this.lblDetailDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDetailDate.Location = new System.Drawing.Point(13, 431);
-            this.lblDetailDate.Name = "lblDetailDate";
-            this.lblDetailDate.Size = new System.Drawing.Size(89, 26);
-            this.lblDetailDate.TabIndex = 13;
-            this.lblDetailDate.Text = "label14";
-            // 
-            // lblDetailType
-            // 
-            this.lblDetailType.AutoSize = true;
-            this.lblDetailType.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDetailType.Location = new System.Drawing.Point(13, 368);
-            this.lblDetailType.Name = "lblDetailType";
-            this.lblDetailType.Size = new System.Drawing.Size(89, 26);
-            this.lblDetailType.TabIndex = 12;
-            this.lblDetailType.Text = "label13";
-            // 
-            // lblDetailStatus
-            // 
-            this.lblDetailStatus.AutoSize = true;
-            this.lblDetailStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDetailStatus.Location = new System.Drawing.Point(13, 299);
-            this.lblDetailStatus.Name = "lblDetailStatus";
-            this.lblDetailStatus.Size = new System.Drawing.Size(89, 26);
-            this.lblDetailStatus.TabIndex = 11;
-            this.lblDetailStatus.Text = "label12";
-            // 
-            // lblDetailPhone
-            // 
-            this.lblDetailPhone.AutoSize = true;
-            this.lblDetailPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDetailPhone.Location = new System.Drawing.Point(13, 236);
-            this.lblDetailPhone.Name = "lblDetailPhone";
-            this.lblDetailPhone.Size = new System.Drawing.Size(89, 26);
-            this.lblDetailPhone.TabIndex = 10;
-            this.lblDetailPhone.Text = "label11";
-            // 
-            // lblDetailEmail
-            // 
-            this.lblDetailEmail.AutoSize = true;
-            this.lblDetailEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDetailEmail.Location = new System.Drawing.Point(13, 173);
-            this.lblDetailEmail.Name = "lblDetailEmail";
-            this.lblDetailEmail.Size = new System.Drawing.Size(89, 26);
-            this.lblDetailEmail.TabIndex = 9;
-            this.lblDetailEmail.Text = "label10";
-            // 
-            // lblDetailSurname
-            // 
-            this.lblDetailSurname.AutoSize = true;
-            this.lblDetailSurname.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDetailSurname.Location = new System.Drawing.Point(13, 113);
-            this.lblDetailSurname.Name = "lblDetailSurname";
-            this.lblDetailSurname.Size = new System.Drawing.Size(76, 26);
-            this.lblDetailSurname.TabIndex = 8;
-            this.lblDetailSurname.Text = "label9";
-            // 
-            // lblDetailName
-            // 
-            this.lblDetailName.AutoSize = true;
-            this.lblDetailName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDetailName.Location = new System.Drawing.Point(13, 57);
-            this.lblDetailName.Name = "lblDetailName";
-            this.lblDetailName.Size = new System.Drawing.Size(76, 26);
-            this.lblDetailName.TabIndex = 7;
-            this.lblDetailName.Text = "label8";
-            // 
-            // lblDetailID
-            // 
-            this.lblDetailID.AutoSize = true;
-            this.lblDetailID.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDetailID.Location = new System.Drawing.Point(13, 10);
-            this.lblDetailID.Name = "lblDetailID";
-            this.lblDetailID.Size = new System.Drawing.Size(76, 26);
-            this.lblDetailID.TabIndex = 6;
-            this.lblDetailID.Text = "label7";
-            // 
-            // dgvClients
-            // 
-            this.dgvClients.ColumnHeadersHeight = 25;
-            this.dgvClients.Location = new System.Drawing.Point(67, 128);
-            this.dgvClients.Name = "dgvClients";
-            this.dgvClients.RowHeadersWidth = 51;
-            this.dgvClients.RowTemplate.Height = 24;
-            this.dgvClients.Size = new System.Drawing.Size(1329, 482);
-            this.dgvClients.TabIndex = 0;
-            this.dgvClients.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClients_CellClick);
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Location = new System.Drawing.Point(4, 25);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1916, 1026);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Archive client";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // clientTableAdapter1
-            // 
-            this.clientTableAdapter1.ClearBeforeFill = true;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(1565, 27);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(324, 93);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 43;
-            this.pictureBox1.TabStop = false;
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(1924, 1055);
+            this.tabControl1.TabIndex = 0;
             // 
             // client_MainForm
             // 
@@ -811,28 +878,71 @@
             this.Name = "client_MainForm";
             this.Text = "client_MainForm";
             this.Load += new System.EventHandler(this.client_MainForm_Load);
-            this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clientBS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupWst1DataSet1)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvClients)).EndInit();
             this.pnlDetailsV.ResumeLayout(false);
             this.pnlDetailsV.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvClients)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
+        private GroupWst1DataSetTableAdapters.ClientTableAdapter clientTableAdapter1;
+        private GroupWst1DataSet groupWst1DataSet1;
+        private System.Windows.Forms.BindingSource clientBS;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.ComboBox cboFilterType;
+        private System.Windows.Forms.ComboBox cboFilterStatus;
+        private System.Windows.Forms.TextBox txtSearchV;
+        private System.Windows.Forms.DataGridView dgvClients;
+        private System.Windows.Forms.ComboBox cboSearchColumn;
+        private System.Windows.Forms.Panel pnlDetailsV;
+        private System.Windows.Forms.Label lblDetailDate;
+        private System.Windows.Forms.Label lblDetailType;
+        private System.Windows.Forms.Label lblDetailStatus;
+        private System.Windows.Forms.Label lblDetailPhone;
+        private System.Windows.Forms.Label lblDetailEmail;
+        private System.Windows.Forms.Label lblDetailSurname;
+        private System.Windows.Forms.Label lblDetailName;
+        private System.Windows.Forms.Label lblDetailID;
         private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.Label userTip1;
+        private System.Windows.Forms.Label userTip;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblSearchResults_A;
+        private System.Windows.Forms.Label lblSearchBy_A;
+        private System.Windows.Forms.TextBox tbSearchValue_A;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.ListBox lbSearchResults;
+        private System.Windows.Forms.Label lblSelectCriteria_A;
+        private System.Windows.Forms.ComboBox cmbCriteria_A;
+        private System.Windows.Forms.Label lblFindClient_A;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btn_addClient;
         private System.Windows.Forms.Label lbl_enterDetails;
         private System.Windows.Forms.Label lbl_type;
@@ -847,48 +957,7 @@
         private System.Windows.Forms.TextBox tb_email;
         private System.Windows.Forms.TextBox tb_surname;
         private System.Windows.Forms.TextBox tb_name;
-        private GroupWst1DataSetTableAdapters.ClientTableAdapter clientTableAdapter1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.Button btnUpdate;
-        private System.Windows.Forms.Label lblSearchResults_A;
-        private System.Windows.Forms.Label lblSearchBy_A;
-        private System.Windows.Forms.TextBox tbSearchValue_A;
-        private System.Windows.Forms.ListBox lbSearchResults;
-        private System.Windows.Forms.Label lblSelectCriteria_A;
-        private System.Windows.Forms.ComboBox cmbCriteria_A;
-        private System.Windows.Forms.Label lblFindClient_A;
-        private GroupWst1DataSet groupWst1DataSet1;
-        private System.Windows.Forms.BindingSource clientBS;
-        private System.Windows.Forms.ComboBox cboFilterType;
-        private System.Windows.Forms.ComboBox cboFilterStatus;
-        private System.Windows.Forms.TextBox txtSearchV;
-        private System.Windows.Forms.ComboBox cboSearchColumn;
-        private System.Windows.Forms.Panel pnlDetailsV;
-        private System.Windows.Forms.DataGridView dgvClients;
-        private System.Windows.Forms.Label lblDetailType;
-        private System.Windows.Forms.Label lblDetailStatus;
-        private System.Windows.Forms.Label lblDetailPhone;
-        private System.Windows.Forms.Label lblDetailEmail;
-        private System.Windows.Forms.Label lblDetailSurname;
-        private System.Windows.Forms.Label lblDetailName;
-        private System.Windows.Forms.Label lblDetailID;
-        private System.Windows.Forms.Label lblDetailDate;
-        private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Button btnEdit;
-        private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.Label label8;
     }
 }
