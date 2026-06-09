@@ -289,6 +289,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GroupWst1DataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="HelpForm_D.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HelpForm_D.Designer.cs">
+      <DependentUpon>HelpForm_D.cs</DependentUpon>
+    </Compile>
     <Compile Include="incomeReport.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -352,6 +358,7 @@
       <DependentUpon>Staff.cs</DependentUpon>
     </Compile>
     <Compile Include="StaffDB.cs" />
+    <Compile Include="ThemeManager.cs" />
     <Compile Include="UserSession.cs" />
     <Compile Include="WeeklyExpenseDetails.cs" />
     <Compile Include="WeeklyExpensesReportForm.cs">
@@ -377,6 +384,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HelpForm_D.resx">
+      <DependentUpon>HelpForm_D.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="incomeReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
