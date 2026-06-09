@@ -66,7 +66,6 @@
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem11 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripMenuItem();
-            this.addSitePhotoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -140,8 +139,7 @@
             this.captureJobRequestToolStripMenuItem,
             this.updateJobRequestToolStripMenuItem,
             this.captureDetailsForRequestedItemsToolStripMenuItem,
-            this.viewJobRequestsToolStripMenuItem,
-            this.addSitePhotoToolStripMenuItem});
+            this.viewJobRequestsToolStripMenuItem});
             this.toolStripMenuItem9.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.toolStripMenuItem9.Name = "toolStripMenuItem9";
             this.toolStripMenuItem9.Size = new System.Drawing.Size(150, 32);
@@ -411,14 +409,6 @@
             this.toolStripMenuItem10.Size = new System.Drawing.Size(70, 32);
             this.toolStripMenuItem10.Text = "Help";
             // 
-            // addSitePhotoToolStripMenuItem
-            // 
-            this.addSitePhotoToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(219)))), ((int)(((byte)(117)))));
-            this.addSitePhotoToolStripMenuItem.Name = "addSitePhotoToolStripMenuItem";
-            this.addSitePhotoToolStripMenuItem.Size = new System.Drawing.Size(433, 32);
-            this.addSitePhotoToolStripMenuItem.Text = "Add site photo";
-            this.addSitePhotoToolStripMenuItem.Click += new System.EventHandler(this.addSitePhotoToolStripMenuItem_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -479,7 +469,6 @@
         private System.Windows.Forms.ToolStripMenuItem svaeQuoteAsPDFToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem printQuoteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addStaffDetailsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem addSitePhotoToolStripMenuItem;
     }
 }
 
