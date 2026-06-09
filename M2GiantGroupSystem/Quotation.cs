@@ -32,8 +32,65 @@ namespace M2GiantGroupSystem
 
         }
 
+        private void ApplyPermissions()
+        {
+            int level = UserSession.AccessLevel; // The user Session object is global so this will work
+
+            // 1. If Owner (6), they already have full access. 
+            // We just return early and don't change anything!
+            if (level >= 6) return;
+
+            // 2. If we reach this point, the user is NOT an owner.
+            // Now we apply restrictions for everyone else.
+            switch (level)
+            {
+                case 5: // Admin: Some locks
+                    btnDeleteQuote.Enabled = false; // Example: Admins can't delete quotes, only edit them
+                    txtEditAmount.ReadOnly = true; // Admins can't edit the quote amount directly, only through adding/removing services
+                    break;
+
+                case 4: // Ops Manager: More locks
+                        // Check if the tab exists, then remove it
+                    if (tabControl1.TabPages.Contains(tabPage1))
+                    {
+                        tabControl1.TabPages.Remove(tabPage1);
+                    }
+                    btnEditQuote.Enabled = false;
+                    btnExportPDF.Enabled = false;
+                    btnDeleteQuote.Enabled = false;
+                    dtpEditIssued.Enabled = false;
+                    dtpEditExpiry.Enabled = false;
+                    dtpEditGenerated.Enabled = false;
+                    cmbEditStatus.Enabled = false;
+                    button4.Enabled = false; // Disable the Browse button for file paths
+                    button6.Enabled = false; // Disable the Save Changes button in the Edit tab
+                    txtEditAmount.ReadOnly = true;
+                    break;
+
+                default: // Level 3 and below: Complete lockdown – lock all controls if you feel they should not have access
+                    // Check if the tab exists, then remove it
+                    if (tabControl1.TabPages.Contains(tabPage1))
+                    {
+                        tabControl1.TabPages.Remove(tabPage1);
+                    }
+                    btnEditQuote.Enabled = false;
+                    btnExportPDF.Enabled = false;
+                    btnDeleteQuote.Enabled = false;
+                    dtpEditIssued.Enabled = false;
+                    dtpEditExpiry.Enabled = false;
+                    dtpEditGenerated.Enabled = false;
+                    cmbEditStatus.Enabled = false;
+                    button4.Enabled = false; // Disable the Browse button for file paths
+                    button6.Enabled = false; // Disable the Save Changes button in the Edit tab
+                    txtEditAmount.ReadOnly = true;
+                    break;
+            }
+        }
+
+
         private void Quotation_Load(object sender, EventArgs e)
         {
+            ApplyPermissions(); // Apply user access level permissions immediately on form load
             // TODO: This line of code loads data into the 'groupWst1DataSet.DataTable3' table. You can move, or remove it, as needed.
             this.dataTable3TableAdapter.Fill(this.groupWst1DataSet.DataTable3);
             // TODO: This line of code loads data into the 'groupWst1DataSet.DataTable2' table. You can move, or remove it, as needed.
