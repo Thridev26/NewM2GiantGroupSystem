@@ -4,24 +4,39 @@ using System.Data.SqlClient;
 
 public static class StaffDB
 {
-    // Use your actual connection string here
-    private static string connString = "Data Source=146.230.177.46;Initial Catalog=GroupWst1;Persist Security Info=True;User ID=YOUR_USER;Password=YOUR_PASSWORD;";
+    private static string connString = "Data Source=146.230.177.46;Initial Catalog=GroupWst1;Persist Security Info=True;User ID=GroupWst1;Password=dtf39;Encrypt=True;TrustServerCertificate=True;";
 
-    // This fetches data based on who is logged in
-    public static DataTable GetStaffForUser(int loggedInStaffID, int accessLevel)
+    // 1. RESTRICTED: Used for dgvStaffInfo
+    // Filters based on AccessLevel. If level <= 5, only their own row shows.
+    public static DataTable GetStaffForUser(int currentStaffID, int accessLevel)
     {
-        string query;
-        if (accessLevel >= 6) // Owner can see everything
-            query = "SELECT staffID, firstName, lastName, userName, contactNumber, staffStatus, dailyRate, roleID FROM Staff";
-        else // Others see only their own row
-            query = "SELECT staffID, firstName, lastName, userName, contactNumber, staffStatus, dailyRate, roleID FROM Staff WHERE staffID = @id";
+        string query = (accessLevel >= 6)
+            ? "SELECT staffID, firstName, lastName, userName, contactNumber, staffStatus, dailyRate, roleID FROM Staff"
+            : "SELECT staffID, firstName, lastName, userName, contactNumber, staffStatus, dailyRate, roleID FROM Staff WHERE staffID = @id";
 
         using (SqlConnection con = new SqlConnection(connString))
         {
             SqlCommand cmd = new SqlCommand(query, con);
-            if (accessLevel < 6) cmd.Parameters.AddWithValue("@id", loggedInStaffID);
+            if (accessLevel < 6)
+            {
+                cmd.Parameters.AddWithValue("@id", currentStaffID);
+            }
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            return dt;
+        }
+    }
+
+    // 2. OPEN: Used for staffDataGridView
+    // Always shows everyone; no filtering needed.
+    public static DataTable GetAllStaff()
+    {
+        string query = "SELECT staffID, firstName, lastName, userName, contactNumber, staffStatus, dailyRate, roleID FROM Staff";
+        using (SqlConnection con = new SqlConnection(connString))
+        {
+            SqlDataAdapter da = new SqlDataAdapter(query, con);
             DataTable dt = new DataTable();
             da.Fill(dt);
             return dt;
@@ -45,7 +60,7 @@ public static class StaffDB
                 : "UPDATE Staff SET firstName=@f, lastName=@l, userName=@u, contactNumber=@c, staffStatus=@s, dailyRate=@r, roleID=@role WHERE staffID=@id";
         }
 
-        using (SqlConnection con = new SqlConnection("YourConnectionString"))
+        using (SqlConnection con = new SqlConnection("Data Source=146.230.177.46;Initial Catalog=GroupWst1;Persist Security Info=True;User ID=GroupWst1;Password=dtf39;Encrypt=True;TrustServerCertificate=True;"))
         {
             SqlCommand cmd = new SqlCommand(query, con);
             cmd.Parameters.AddWithValue("@f", fName);
