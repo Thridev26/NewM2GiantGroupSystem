@@ -7,6 +7,8 @@ using System.Net;
 using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
+using SendGrid;
+using SendGrid.Helpers.Mail;
 
 public static class AuthDB
 {
@@ -72,32 +74,20 @@ public static class AuthDB
         }
     }
 
-    public static void SendEmail(string toEmail, string otp)
+    public static async Task SendEmail(string toEmail, string otp)
     {
-        var fromAddress = new MailAddress("maharajhthridev@gmail.com", "The Giant Group");
-        var toAddress = new MailAddress(toEmail);
-        const string fromPassword = "ihmxfebigcjmjnnb"; // This is the 16-char App Password
-        string subject = "Your Password Reset Code";
-        string body = $"Your verification code is: {otp}. It will expire in 5 minutes.";
+        // Make sure you have the SendGrid NuGet package installed
+        var client = new SendGridClient("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");
 
-        var smtp = new SmtpClient
-        {
-            Host = "smtp.gmail.com",
-            Port = 587,
-            EnableSsl = true,
-            DeliveryMethod = SmtpDeliveryMethod.Network,
-            UseDefaultCredentials = false,
-            Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
-        };
+        var from = new EmailAddress("maharajhthridev@gmail.com", "The Giant Group");
+        var to = new EmailAddress(toEmail);
+        var subject = "Your Password Reset Code";
+        var content = $"Your verification code is: {otp}.";
 
-        using (var message = new MailMessage(fromAddress, toAddress)
-        {
-            Subject = subject,
-            Body = body
-        })
-        {
-            smtp.Send(message); // Pass the message object to the smtp.Send method
-        }
+        var msg = MailHelper.CreateSingleEmail(from, to, subject, content, content);
+
+        // This sends as a web request, bypassing your network blocks
+        await client.SendEmailAsync(msg);
     }
 
     public static void UpdatePassword(string email, string newPassword)

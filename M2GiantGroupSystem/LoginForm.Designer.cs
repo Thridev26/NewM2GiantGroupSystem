@@ -152,7 +152,7 @@
             // passwordBox
             // 
             this.passwordBox.BackColor = System.Drawing.Color.SeaShell;
-            this.passwordBox.Location = new System.Drawing.Point(748, 228);
+            this.passwordBox.Location = new System.Drawing.Point(748, 225);
             this.passwordBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.passwordBox.Name = "passwordBox";
             this.passwordBox.Size = new System.Drawing.Size(176, 26);
