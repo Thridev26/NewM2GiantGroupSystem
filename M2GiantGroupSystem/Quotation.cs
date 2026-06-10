@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
 using Drawing = System.Drawing;
@@ -16,6 +18,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
+
 
 namespace M2GiantGroupSystem
 {
@@ -233,13 +236,12 @@ namespace M2GiantGroupSystem
 
             // Guard Rail - Prevent Saving with ONLY a Travel Fee
 
-            if (selectedJobsGridView.Rows.Count <= 1)
+            if (selectedJobsGridView.DataSource == null ||
+     (selectedJobsGridView.DataSource is DataTable dtCheck && dtCheck.Rows.Count == 0))
             {
-                MessageBox.Show("You cannot save a quote with only a Travel Call-out fee. Please double-click at least one service item from the requested job types table first.",
-                                "Missing Services",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Warning);
-                return; // Stops execution before touching the database!
+                MessageBox.Show("Please double-click at least one service item from the requested job types table first.",
+                                "Missing Services", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
 
             try
@@ -269,7 +271,8 @@ namespace M2GiantGroupSystem
                 txtAmount.Text = "0.00";
                 txtFilePath.Text = "";
                 cboQuoteStatus.SelectedIndex = -1;
-                selectedJobsGridView.Rows.Clear();
+                selectedJobsGridView.DataSource = null;  // ✅ CHANGED
+                jobTypeDataGridView.DataSource = null;   // ✅ ADD THIS: also clear the job types grid
                 jobRequestIDTextBox.Text = "";
                 longitudeTextBox.Text = "";
                 latitudeTextBox.Text = "";
@@ -288,6 +291,8 @@ namespace M2GiantGroupSystem
                 // 3. Force the grid to maintain your custom numerical sort layout
                 quoteDataGridView.Sort(quoteDataGridView.Columns["QuoteID_T"], System.ComponentModel.ListSortDirection.Ascending);
 
+                txtTravelFee.Text = "";
+                currentTravelFee = 0.00m;
                 // Deactivate save button until the next client selection
                 button3.Enabled = false;
             }
@@ -317,9 +322,12 @@ namespace M2GiantGroupSystem
             cmbSearchColumn.SelectedIndex = -1;
             txtSearchRequests.Text = "";
             dtpSearchDate.Value = DateTime.Today;
-            jobTypeTableAdapter.Fill(this.groupWst1DataSet.JobType); // Refresh the job types in case they were modified
+            txtTravelFee.Text = "";
+            currentTravelFee = 0.00m;
+            //jobTypeTableAdapter.Fill(this.groupWst1DataSet.JobType); // Refresh the job types in case they were modified
+            jobTypeDataGridView.DataSource = null;
             // ADD THIS LINE HERE: Refresh the top grid on Clear too!                                                                     
-            this.jobRequestTableAdapter.Fill(this.groupWst1DataSet.JobRequest);
+            
             jobTypeDataGridView.ClearSelection(); // Clear any existing selection to avoid confusion
             selectedJobsGridView.ClearSelection(); // Clear the quote details grid selection as well for a clean slate
             button3.Enabled = false; // Disable the button till the user selects a job request and starts building a quote
@@ -475,130 +483,53 @@ namespace M2GiantGroupSystem
         {
             decimal subTotalAccumulator = 0.00m;
 
-            // Loop through every active row in your grid
-            foreach (DataGridViewRow row in selectedJobsGridView.Rows)
+            // Sum all service line items from the grid
+            if (selectedJobsGridView.DataSource is DataTable dt)
             {
-                if (row.IsNewRow) continue; // Ignore the blank line at the bottom
-
-                // Find the SUBTOTAL cell for this row and add it to our running total
-                foreach (DataGridViewCell cell in row.Cells)
+                foreach (DataRow row in dt.Rows)
                 {
-                    if (selectedJobsGridView.Columns[cell.ColumnIndex].HeaderText == "Total")
+                    if (row.RowState == DataRowState.Deleted) continue;
+                    if (row["LineTotal"] != DBNull.Value)
                     {
-                        if (cell.Value != null && cell.Value != DBNull.Value)
-                        {
-                            subTotalAccumulator += Convert.ToDecimal(cell.Value);
-                        }
-                        break;
+                        subTotalAccumulator += Convert.ToDecimal(row["LineTotal"]);
                     }
                 }
             }
 
-            // Standard South African 15% statutory calculations
+            // ADD THE TRAVEL FEE INTO THE SUBTOTAL
+            subTotalAccumulator += currentTravelFee;
+
             decimal vatAccumulator = subTotalAccumulator * 0.15m;
             decimal grandTotalAccumulator = subTotalAccumulator + vatAccumulator;
 
-            // Push the running live totals straight into your bottom group textboxes
-            txtAmount.Text = subTotalAccumulator.ToString("F2");            // Subtotal text box
-            txtVAT.Text = vatAccumulator.ToString("F2");                  // VAT text box
-            txtTotalwithVAT.Text = grandTotalAccumulator.ToString("F2");   // Grand Total text box
-            //decimal subTotalAccumulator = 0.00m;
-
-            //foreach (DataGridViewRow row in selectedJobsGridView.Rows)
-            //{
-            //    if (!row.IsNewRow && row.Cells[4].Value != null)
-            //    {
-            //        subTotalAccumulator += Convert.ToDecimal(row.Cells[4].Value);
-            //    }
-            //}
-
-            //// Calculate tax and grand totals using strict decimal precision
-            //decimal vatAccumulator = subTotalAccumulator * 0.15m;
-            //decimal grandTotalAccumulator = subTotalAccumulator + vatAccumulator;
-
-            //// Output formatted strings back to your group box controls
-            //txtAmount.Text = subTotalAccumulator.ToString("F2");
-            //txtVAT.Text = vatAccumulator.ToString("F2");
-            //txtTotalwithVAT.Text = grandTotalAccumulator.ToString("F2");
+            txtAmount.Text = subTotalAccumulator.ToString("F2");
+            txtVAT.Text = vatAccumulator.ToString("F2");
+            txtTotalwithVAT.Text = grandTotalAccumulator.ToString("F2");
         }
 
         private void jobTypeDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+
             if (e.RowIndex < 0) return;
 
-            
-            // Guard Rail - Check if a Client is Selected First       
             if (string.IsNullOrWhiteSpace(jobRequestIDTextBox.Text))
             {
                 MessageBox.Show("Please select a client's Job Request from the top table before adding specific services.",
-                                "Selection Required",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Warning);
-                return; // Stops execution dead in its tracks! The popup will NOT show.
+                                "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
 
-            // 1. Get the details of the service they selected
-            string jobName = jobTypeDataGridView.Rows[e.RowIndex].Cells["jobTypeName"].Value.ToString();
-            string unitType = jobTypeDataGridView.Rows[e.RowIndex].Cells["rateDescription"].Value.ToString(); // e.g., "Per tree", "Per square meter"
-            decimal baseRate = Convert.ToDecimal(jobTypeDataGridView.Rows[e.RowIndex].Cells["jobRate"].Value);
+            string jobTypeName = jobTypeDataGridView.Rows[e.RowIndex].Cells["jobTypeName"].Value?.ToString();
+            int jobRequestID = Convert.ToInt32(jobRequestIDTextBox.Text);
 
-            // 2. Prompt the admin lady with a clear question based on the unit type
-            string promptMessage = $"Enter the quantity for {jobName} ({unitType}):";
-            string userInput = Interaction.InputBox(promptMessage, "Enter Quantity", "1");
+            if (string.IsNullOrWhiteSpace(jobTypeName)) return;
 
-            // If they cancel or leave it empty, stop the addition
-            if (string.IsNullOrWhiteSpace(userInput)) return;
+            // Run the query and populate the grid
+            LoadLineItemsForJobType(jobRequestID, jobTypeName);
 
-            if (decimal.TryParse(userInput, out decimal quantity))
-            {
-                // 3. Calculate the line item total right here
-                decimal lineTotal = baseRate * quantity;
-
-                // 4. Add the row directly to your bottom grid with all fields filled!
-                int rowIndex = selectedJobsGridView.Rows.Add();
-                DataGridViewRow newRow = selectedJobsGridView.Rows[rowIndex];
-
-                newRow.Cells["colJobType"].Value = jobName;
-                newRow.Cells["colBaseRate"].Value = baseRate;
-                newRow.Cells["colUnitType"].Value = unitType;
-                newRow.Cells["colQuantity"].Value = quantity; // Populates your QTY column perfectly
-                newRow.Cells["colTotal"].Value = lineTotal;   // Populates your working SUBTOTAL column
-                // 5. Update your bottom group text boxes immediately
-                RecalculateGrandTotalFromUI();
-
-
-                // 6. Cleanly remove the row from the top view once the quantity has been entered and the item is added to the quote details grid
-
-                System.Data.DataRowView currentRowView = (System.Data.DataRowView)jobTypeDataGridView.CurrentRow.DataBoundItem;
-                currentRowView.Delete();
-            }
-            else
-            {
-                MessageBox.Show("Please enter a valid numeric quantity.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            //if (e.RowIndex >= 0)
-            //{
-            //    DataGridViewRow selectedRow = jobTypeDataGridView.Rows[e.RowIndex];
-
-            //    string jobName = selectedRow.Cells["jobTypeName"].Value?.ToString();
-            //    string jobRate = selectedRow.Cells["jobRate"].Value?.ToString();
-            //    string unitDescription = selectedRow.Cells[3].Value?.ToString() ?? "Unit Type";
-
-            //    decimal baseRate = Convert.ToDecimal(jobRate);
-
-            //    // Automatically seed the baseline Travel Fee item first if the grid is empty
-            //    if (selectedJobsGridView.Rows.Count == 0 && currentTravelFee > 0)
-            //    {
-            //        // Maps exactly to your designer columns: Job Type, Base Rate, Unit Type, Quantity, Total
-            //        selectedJobsGridView.Rows.Add("Travel Call-out", currentTravelFee, "Flat Rate", 1.0, currentTravelFee);
-            //    }
-
-            //    // Add the selected item directly to the UI columns collection
-            //    selectedJobsGridView.Rows.Add(jobName, baseRate, unitDescription, 1.0, baseRate);
-
-            //    // Update the grand total box
-            //    RecalculateGrandTotalFromUI();
-            //}
+            // Remove the selected row from jobTypeDataGridView so it can't be added twice
+            System.Data.DataRowView currentRowView = (System.Data.DataRowView)jobTypeDataGridView.CurrentRow.DataBoundItem;
+            currentRowView.Delete();
         }
 
         private void selectedJobsGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -1397,88 +1328,48 @@ namespace M2GiantGroupSystem
         {
             if (e.RowIndex >= 0)
             {
-                // Grab the ID from the selected grid row
+                selectedJobsGridView.DataSource = null;
                 int clickedID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["jobRequestID"].Value);
 
-                // USE THE QUERY BUILDER to fetch the exact row data safely from the DB
                 var jobRequestTable = this.jobRequestTableAdapter.GetDataBy2(clickedID);
 
                 if (jobRequestTable.Rows.Count > 0)
                 {
-                    // Grab the specific typed row from our dataset
                     var selectedJob = jobRequestTable[0];
 
-                    //Populate your UI elements cleanly using the database values
                     jobRequestIDTextBox.Text = selectedJob.jobRequestID.ToString();
                     urgencyLevelTextBox.Text = selectedJob.urgencyLevel;
 
-                    //  NEW ADJUSTED NULL-SAFE VERSION:
-                    // Populate your UI elements cleanly using database values (checking for DBNull)
-                    jobRequestIDTextBox.Text = selectedJob.jobRequestID.ToString();
-                    urgencyLevelTextBox.Text = selectedJob.urgencyLevel;
-
-                    // Check if longitude is NULL in database
                     if (selectedJob["longitude"] == DBNull.Value || string.IsNullOrWhiteSpace(selectedJob["longitude"].ToString()))
-                    {
                         longitudeTextBox.Text = "N/A";
-                    }
                     else
-                    {
                         longitudeTextBox.Text = Convert.ToDouble(selectedJob.longitude).ToString();
-                    }
 
-                    // Check if latitude is NULL in database
                     if (selectedJob["latitude"] == DBNull.Value || string.IsNullOrWhiteSpace(selectedJob["latitude"].ToString()))
-                    {
                         latitudeTextBox.Text = "N/A";
-                    }
                     else
-                    {
                         latitudeTextBox.Text = Convert.ToDouble(selectedJob.latitude).ToString();
-                    }
 
-                    // 4. Extract coordinates safely. If NULL, pass placeholder coordinates (like 0, 0) to flag fallback behavior.
                     double clientLat = (selectedJob["latitude"] != DBNull.Value) ? Convert.ToDouble(selectedJob.latitude) : 0.0;
                     double clientLng = (selectedJob["longitude"] != DBNull.Value) ? Convert.ToDouble(selectedJob.longitude) : 0.0;
 
                     currentTravelFee = CalculateTravelFee(clientLat, clientLng);
+                    txtTravelFee.Text = currentTravelFee.ToString("F2");
 
-                    // 5. Update the UI Amount box
-                    txtAmount.Text = currentTravelFee.ToString("F2");
-
-                    MessageBox.Show($" You have selected Job Request #{clickedID} \nCalculated Travel Fee: R{currentTravelFee}",
+                    MessageBox.Show($"You have selected Job Request #{clickedID}\nCalculated Travel Fee: R{currentTravelFee}",
                                     "System Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // 1. Wipe out any old job listings in the grid if switching to a new client request
-                    selectedJobsGridView.Rows.Clear();
+                  
 
-                    // 2. Add the calculated Travel Fee as the foundational first row item in the grid
-                    // This maps exactly to your designer layout slots: Job Type, Base Rate, Unit Type, Quantity, Total
-                    selectedJobsGridView.Rows.Add("Travel Call-out", currentTravelFee, "Flat Rate", 1.0, currentTravelFee);
+                    // ✅ CHANGED: replaces FillByID with your new raw SQL method
+                    LoadRequestedJobTypes(clickedID);
 
-                    // 3. Force the DataGridView to completely finish registering the new row layout internally
-                    selectedJobsGridView.Refresh();
+                    button3.Enabled = true;
 
-                    // 4.Run the calculation engine! It sees the travel fee row and locks R255,56 into txtAmount
-                    RecalculateGrandTotalFromUI();
-
-
-                    // Filter the middle grid view to show ONLY the services requested by this client
-                    this.jobTypeTableAdapter.FillByID(this.groupWst1DataSet.JobType, clickedID);
-
-                    button3.Enabled = true; // Enable the "Generate Quote" button now that a job request is selected
-
-
-                    DateTime today = DateTime.Today; //
-
-                    // =================================================================
-                    // RELAXED APPROACH: JUST SET SUGGESTED DEFAULTS
-                    // =================================================================
-                    // Controls stay fully enabled. No MinDate or MaxDate adjustments at all!
-
+                    DateTime today = DateTime.Today;
                     dateIssuedDateTimePicker.Value = today;
                     dateGeneratedDateTimePicker.Value = today;
-                    expiryDateDateTimePicker.Value = today.AddDays(30); // Suggests 30 days, but she can change it!
+                    expiryDateDateTimePicker.Value = today.AddDays(30);
                 }
             }
         }
@@ -1531,41 +1422,48 @@ namespace M2GiantGroupSystem
             try
             {
                 // Remove the row directly from the DataGridView's visual collection
-                selectedJobsGridView.Rows.Remove(gridRow);
+                if (selectedJobsGridView.DataSource is DataTable dtRemove)
+                {
+                    string jobToRemove = gridRow.Cells["jobTypeName"].Value?.ToString();
+                    foreach (DataRow dr in dtRemove.Rows)
+                    {
+                        if (dr["jobTypeName"].ToString() == jobToRemove)
+                        {
+                            dr.Delete();
+                            break;
+                        }
+                    }
+                    dtRemove.AcceptChanges();
+                }
 
                 // Recalculate your summary textboxes instantly based on remaining items
                 RecalculateGrandTotalFromUI();
 
-                // Re-fetch the original full request pool for this client to populate the top grid
-                if (this.groupWst1DataSet != null && clickedID > 0)
+                if (clickedID > 0)
                 {
-                    this.jobTypeTableAdapter.FillByID(this.groupWst1DataSet.JobType, clickedID);
+                    LoadRequestedJobTypes(clickedID);
 
-                    // Cross-reference loops: Hide anything in the top grid that is still selected in the bottom grid
-                    foreach (DataGridViewRow bottomRow in selectedJobsGridView.Rows)
+                    // Hide job types already present in selectedJobsGridView
+                    if (jobTypeDataGridView.DataSource is DataTable dtJobTypes)
                     {
-                        if (bottomRow.IsNewRow) continue;
-
-                        // Grab the name from the bottom table line item
-                        string selectedJobName = bottomRow.Cells["colJobType"].Value?.ToString();
-
-                        foreach (DataGridViewRow topRow in jobTypeDataGridView.Rows)
+                        foreach (DataGridViewRow bottomRow in selectedJobsGridView.Rows)
                         {
-                            if (topRow.IsNewRow) continue;
+                            if (bottomRow.IsNewRow) continue;
 
-                            // Standardize this to match your design-time column name ("colJobType")
-                            string availableJobName = topRow.Cells["jobTypeName"].Value?.ToString();
+                            string selectedJobName = bottomRow.Cells["colJobType"].Value?.ToString();
 
-                            if (availableJobName == selectedJobName)
+                            foreach (DataRow dtRow in dtJobTypes.Rows)
                             {
-                                // Safely suspend binding state to hide the row layout without breaking dataset bindings
-                                CurrencyManager currencyManager = (CurrencyManager)BindingContext[jobTypeDataGridView.DataSource];
-                                currencyManager.SuspendBinding();
-                                topRow.Visible = false;
-                                currencyManager.ResumeBinding();
-                                break;
+                                if (dtRow.RowState == DataRowState.Deleted) continue;
+
+                                if (dtRow["jobTypeName"].ToString() == selectedJobName)
+                                {
+                                    dtRow.Delete();
+                                    break;
+                                }
                             }
                         }
+                        dtJobTypes.AcceptChanges();
                     }
                 }
 
@@ -1579,6 +1477,88 @@ namespace M2GiantGroupSystem
                     selectedJobsGridView.Rows.RemoveAt(selectedJobsGridView.CurrentRow.Index);
                     RecalculateGrandTotalFromUI();
                 }
+            }
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+        private void LoadLineItemsForJobType(int jobRequestID, string jobTypeName)
+        {
+            string connStr = "Data Source=146.230.177.46;Initial Catalog=GroupWst1;Persist Security Info=True;User ID=GroupWst1;Password=dtf39;Encrypt=True;TrustServerCertificate=True";
+
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                string sql = @"
+            SELECT jr.jobRequestID, jt.jobTypeName, jt.jobRate,
+                   TRY_CAST(id.detailValue AS DECIMAL(10,2)) AS DetailValue,
+                   TRY_CAST(id.detailValue AS DECIMAL(10,2)) * jt.jobRate AS LineTotal
+            FROM JobRequest jr
+            INNER JOIN Client c ON jr.clientID = c.clientID
+            INNER JOIN RequestItem ri ON jr.jobRequestID = ri.jobRequestID
+            INNER JOIN JobType jt ON ri.jobTypeID = jt.jobTypeID
+            INNER JOIN ItemDetail id ON ri.requestItemID = id.requestItemID
+            WHERE jr.jobRequestID = @jobRequestID
+            AND jt.jobTypeName = @jobTypeName
+            AND (
+                (jt.jobTypeName = 'Tree Felling'          AND id.jobDetailID = 1)  OR
+                (jt.jobTypeName = 'Grass Cutting'         AND id.jobDetailID = 6)  OR
+                (jt.jobTypeName = 'Tree Planting'         AND id.jobDetailID = 10) OR
+                (jt.jobTypeName = 'Vegetation Clearance'  AND id.jobDetailID = 14) OR
+                (jt.jobTypeName = 'Hedge Trimming'        AND id.jobDetailID = 18)
+            )";
+
+                SqlDataAdapter da = new SqlDataAdapter(sql, conn);
+                da.SelectCommand.Parameters.AddWithValue("@jobRequestID", jobRequestID);
+                da.SelectCommand.Parameters.AddWithValue("@jobTypeName", jobTypeName);
+
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                if (dt.Rows.Count == 0)
+                {
+                    MessageBox.Show($"No detail record found for '{jobTypeName}' on Job Request #{jobRequestID}.",
+                                    "No Data Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Append to existing DataTable if one already exists, otherwise set fresh
+                if (selectedJobsGridView.DataSource is DataTable existing)
+                {
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        existing.ImportRow(row);
+                    }
+                }
+                else
+                {
+                    selectedJobsGridView.DataSource = dt;
+                }
+
+                RecalculateGrandTotalFromUI();
+            }
+        }
+
+        private void LoadRequestedJobTypes(int jobRequestID)
+        {
+            string connStr = "Data Source=146.230.177.46;Initial Catalog=GroupWst1;Persist Security Info=True;User ID=GroupWst1;Password=dtf39;Encrypt=True;TrustServerCertificate=True";
+
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                string sql = @"
+            SELECT jt.jobTypeID, jt.jobTypeName, jt.jobRate, jt.rateDescription
+            FROM JobType jt
+            INNER JOIN RequestItem ri ON jt.jobTypeID = ri.jobTypeID
+            WHERE ri.jobRequestID = @jobRequestID";
+
+                SqlDataAdapter da = new SqlDataAdapter(sql, conn);
+                da.SelectCommand.Parameters.AddWithValue("@jobRequestID", jobRequestID);
+
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                jobTypeDataGridView.DataSource = dt;
             }
         }
     }
