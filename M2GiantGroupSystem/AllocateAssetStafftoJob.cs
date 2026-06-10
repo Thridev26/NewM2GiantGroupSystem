@@ -17,6 +17,7 @@ namespace M2GiantGroupSystem
         {
             InitializeComponent();
             tabIndex = tab_index;
+            ThemeManager.ThemeChanged += ApplyTheme;
         }
 
         private void jobBindingNavigatorSaveItem_Click(object sender, EventArgs e)
@@ -64,6 +65,19 @@ namespace M2GiantGroupSystem
         }
         private void AllocateAssetStafftoJob_Load(object sender, EventArgs e)
         {
+            ApplyTheme();
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.Green;
+            ownedAssetDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            ownedAssetDataGridView.DefaultCellStyle.SelectionBackColor = Color.Green;
+            hiredAssetDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            hiredAssetDataGridView.DefaultCellStyle.SelectionBackColor = Color.Green;
+            jobAssetAssignmentDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            jobAssetAssignmentDataGridView.DefaultCellStyle.SelectionBackColor = Color.Green;
+            staffDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            staffDataGridView.DefaultCellStyle.SelectionBackColor = Color.Green;
+            jobStaffAssignmentDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            jobStaffAssignmentDataGridView.DefaultCellStyle.SelectionBackColor = Color.Green;
             // 1. UI Setup (Do this once)
             tabViewAllocations.DrawMode = TabDrawMode.OwnerDrawFixed;
             tabViewAllocations.DrawItem += tabControl1_DrawItem;
@@ -480,6 +494,18 @@ namespace M2GiantGroupSystem
                 statusBox.Text = row["jobStatus"].ToString();
             }
         }
+
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            ThemeManager.ThemeChanged -= ApplyTheme;
+            base.OnFormClosed(e);
+        }
+        private void ApplyTheme()
+        {
+            if (ThemeManager.IsDarkMode)
+                ThemeManager.ApplyTheme(this);
+        }
+
 
     }
 }
