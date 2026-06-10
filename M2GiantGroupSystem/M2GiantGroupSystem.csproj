@@ -307,6 +307,19 @@
     <Compile Include="incomeReportForm.Designer.cs">
       <DependentUpon>incomeReportForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="InvoiceDetails2.cs" />
+    <Compile Include="InvoiceReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InvoiceReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="InvoiceReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InvoiceReportForm.Designer.cs">
+      <DependentUpon>InvoiceReportForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="jobRequestMain_A.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -407,6 +420,13 @@
     <EmbeddedResource Include="incomeReportForm.resx">
       <DependentUpon>incomeReportForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="InvoiceReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>InvoiceReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InvoiceReportForm.resx">
+      <DependentUpon>InvoiceReportForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="jobRequestMain_A.resx">
       <DependentUpon>jobRequestMain_A.cs</DependentUpon>
     </EmbeddedResource>
@@ -482,6 +502,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="images1\logo %28bg removed%29 EDITED.png" />
+    <Content Include="images1\logoWithWhiteBG.png" />
     <Content Include="images1\mapIcon.png" />
     <Content Include="images1\no image available icon.jpg" />
     <Content Include="map_A.html">

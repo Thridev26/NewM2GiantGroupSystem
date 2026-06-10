@@ -199,5 +199,10 @@ namespace M2GiantGroupSystem
         {
             FormSetup(new jobRequestMain_A(4));
         }
+
+        private void createAnInvoiceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormSetup(new InvoiceReportForm(0));
+        }
     }
 }
