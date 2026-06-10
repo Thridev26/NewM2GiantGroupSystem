@@ -16,10 +16,12 @@ namespace M2GiantGroupSystem
         public Form1()
         {
             InitializeComponent();
+            ThemeManager.ThemeChanged += ApplyTheme;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            ApplyTheme();
             // Initially disable the Return to Menu button because no child forms are open
             toolStripMenuItem13.Enabled = false;
             // Explicitly start the clock
@@ -208,6 +210,17 @@ namespace M2GiantGroupSystem
         private void toolStripMenuItem10_Click(object sender, EventArgs e)
         {
             FormSetup(new HelpForm_D());
+        }
+
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            ThemeManager.ThemeChanged -= ApplyTheme;
+            base.OnFormClosed(e);
+        }
+        private void ApplyTheme()
+        {
+            if (ThemeManager.IsDarkMode)
+                ThemeManager.ApplyTheme(this);
         }
     }
 }
