@@ -93,6 +93,13 @@
             this.tb_surname = new System.Windows.Forms.TextBox();
             this.tb_name = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.btnActivate = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.clientBS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupWst1DataSet1)).BeginInit();
             this.tabPage3.SuspendLayout();
@@ -102,6 +109,8 @@
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // clientBS
@@ -122,6 +131,12 @@
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.SeaShell;
+            this.tabPage3.Controls.Add(this.pictureBox2);
+            this.tabPage3.Controls.Add(this.btnActivate);
+            this.tabPage3.Controls.Add(this.label12);
+            this.tabPage3.Controls.Add(this.label11);
+            this.tabPage3.Controls.Add(this.label10);
+            this.tabPage3.Controls.Add(this.label9);
             this.tabPage3.Controls.Add(this.label8);
             this.tabPage3.Controls.Add(this.btnAdd);
             this.tabPage3.Controls.Add(this.btnDelete);
@@ -145,7 +160,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.DarkGreen;
-            this.label8.Location = new System.Drawing.Point(1450, 82);
+            this.label8.Location = new System.Drawing.Point(1449, 153);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(345, 38);
             this.label8.TabIndex = 13;
@@ -156,9 +171,9 @@
             this.btnAdd.BackColor = System.Drawing.Color.DarkGreen;
             this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Location = new System.Drawing.Point(67, 663);
+            this.btnAdd.Location = new System.Drawing.Point(67, 745);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(494, 78);
+            this.btnAdd.Size = new System.Drawing.Size(275, 78);
             this.btnAdd.TabIndex = 8;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = false;
@@ -166,12 +181,12 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.BackColor = System.Drawing.Color.DarkGreen;
+            this.btnDelete.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.btnDelete.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.Location = new System.Drawing.Point(67, 773);
+            this.btnDelete.ForeColor = System.Drawing.Color.Black;
+            this.btnDelete.Location = new System.Drawing.Point(1121, 745);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(494, 78);
+            this.btnDelete.Size = new System.Drawing.Size(275, 78);
             this.btnDelete.TabIndex = 7;
             this.btnDelete.Text = "Archive";
             this.btnDelete.UseVisualStyleBackColor = false;
@@ -182,9 +197,9 @@
             this.btnEdit.BackColor = System.Drawing.Color.DarkGreen;
             this.btnEdit.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEdit.ForeColor = System.Drawing.Color.White;
-            this.btnEdit.Location = new System.Drawing.Point(586, 663);
+            this.btnEdit.Location = new System.Drawing.Point(418, 745);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(494, 78);
+            this.btnEdit.Size = new System.Drawing.Size(275, 78);
             this.btnEdit.TabIndex = 6;
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = false;
@@ -193,41 +208,41 @@
             // cboFilterType
             // 
             this.cboFilterType.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.cboFilterType.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboFilterType.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboFilterType.FormattingEnabled = true;
             this.cboFilterType.Items.AddRange(new object[] {
             "All Types",
             "Residential",
             "Commercial",
             "Government"});
-            this.cboFilterType.Location = new System.Drawing.Point(1137, 53);
+            this.cboFilterType.Location = new System.Drawing.Point(1123, 76);
             this.cboFilterType.Name = "cboFilterType";
-            this.cboFilterType.Size = new System.Drawing.Size(259, 53);
+            this.cboFilterType.Size = new System.Drawing.Size(273, 49);
             this.cboFilterType.TabIndex = 5;
             this.cboFilterType.SelectedIndexChanged += new System.EventHandler(this.cboFilterType_SelectedIndexChanged);
             // 
             // cboFilterStatus
             // 
             this.cboFilterStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.cboFilterStatus.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboFilterStatus.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboFilterStatus.FormattingEnabled = true;
             this.cboFilterStatus.Items.AddRange(new object[] {
             "Active",
             "Archived",
             "All Statuses"});
-            this.cboFilterStatus.Location = new System.Drawing.Point(760, 53);
+            this.cboFilterStatus.Location = new System.Drawing.Point(806, 76);
             this.cboFilterStatus.Name = "cboFilterStatus";
-            this.cboFilterStatus.Size = new System.Drawing.Size(273, 53);
+            this.cboFilterStatus.Size = new System.Drawing.Size(273, 49);
             this.cboFilterStatus.TabIndex = 4;
             this.cboFilterStatus.SelectedIndexChanged += new System.EventHandler(this.cboFilterStatus_SelectedIndexChanged);
             // 
             // txtSearchV
             // 
             this.txtSearchV.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.txtSearchV.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearchV.Location = new System.Drawing.Point(389, 52);
+            this.txtSearchV.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearchV.Location = new System.Drawing.Point(449, 76);
             this.txtSearchV.Name = "txtSearchV";
-            this.txtSearchV.Size = new System.Drawing.Size(273, 50);
+            this.txtSearchV.Size = new System.Drawing.Size(311, 47);
             this.txtSearchV.TabIndex = 3;
             this.txtSearchV.TextChanged += new System.EventHandler(this.txtSearchV_TextChanged);
             // 
@@ -235,22 +250,22 @@
             // 
             this.dgvClients.AllowUserToResizeRows = false;
             this.dgvClients.ColumnHeadersHeight = 40;
-            this.dgvClients.Location = new System.Drawing.Point(67, 138);
+            this.dgvClients.Location = new System.Drawing.Point(67, 158);
             this.dgvClients.Name = "dgvClients";
             this.dgvClients.RowHeadersWidth = 51;
             this.dgvClients.RowTemplate.Height = 24;
-            this.dgvClients.Size = new System.Drawing.Size(1329, 482);
+            this.dgvClients.Size = new System.Drawing.Size(1329, 533);
             this.dgvClients.TabIndex = 0;
             this.dgvClients.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClients_CellClick);
             // 
             // cboSearchColumn
             // 
             this.cboSearchColumn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.cboSearchColumn.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboSearchColumn.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboSearchColumn.FormattingEnabled = true;
-            this.cboSearchColumn.Location = new System.Drawing.Point(67, 53);
+            this.cboSearchColumn.Location = new System.Drawing.Point(70, 76);
             this.cboSearchColumn.Name = "cboSearchColumn";
-            this.cboSearchColumn.Size = new System.Drawing.Size(273, 53);
+            this.cboSearchColumn.Size = new System.Drawing.Size(325, 49);
             this.cboSearchColumn.TabIndex = 2;
             this.cboSearchColumn.SelectedIndexChanged += new System.EventHandler(this.cboSearchColumn_SelectedIndexChanged);
             // 
@@ -265,7 +280,7 @@
             this.pnlDetailsV.Controls.Add(this.lblDetailName);
             this.pnlDetailsV.Controls.Add(this.lblDetailID);
             this.pnlDetailsV.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlDetailsV.Location = new System.Drawing.Point(1437, 138);
+            this.pnlDetailsV.Location = new System.Drawing.Point(1436, 209);
             this.pnlDetailsV.Name = "pnlDetailsV";
             this.pnlDetailsV.Size = new System.Drawing.Size(450, 482);
             this.pnlDetailsV.TabIndex = 1;
@@ -354,6 +369,7 @@
             // 
             this.tabPage2.AutoScroll = true;
             this.tabPage2.BackColor = System.Drawing.Color.SeaShell;
+            this.tabPage2.Controls.Add(this.pictureBox3);
             this.tabPage2.Controls.Add(this.userTip1);
             this.tabPage2.Controls.Add(this.userTip);
             this.tabPage2.Controls.Add(this.label7);
@@ -415,7 +431,7 @@
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 31.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(1123, 79);
+            this.label7.Location = new System.Drawing.Point(1123, 87);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(579, 70);
             this.label7.TabIndex = 59;
@@ -689,9 +705,9 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(1565, 27);
+            this.pictureBox1.Location = new System.Drawing.Point(1678, 9);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(324, 93);
+            this.pictureBox1.Size = new System.Drawing.Size(230, 64);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 43;
             this.pictureBox1.TabStop = false;
@@ -869,6 +885,83 @@
             this.tabControl1.Size = new System.Drawing.Size(1924, 1055);
             this.tabControl1.TabIndex = 0;
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.Color.Transparent;
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(63, 24);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(339, 41);
+            this.label9.TabIndex = 55;
+            this.label9.Text = "Select a search criteria:";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.Color.Transparent;
+            this.label10.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(443, 26);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(106, 41);
+            this.label10.TabIndex = 56;
+            this.label10.Text = "Enter..";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.Color.Transparent;
+            this.label11.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(801, 23);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(235, 41);
+            this.label11.TabIndex = 57;
+            this.label11.Text = "Filter by status:";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.Color.Transparent;
+            this.label12.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(1116, 24);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(300, 41);
+            this.label12.TabIndex = 58;
+            this.label12.Text = "Filter by client type:";
+            // 
+            // btnActivate
+            // 
+            this.btnActivate.BackColor = System.Drawing.Color.DarkGreen;
+            this.btnActivate.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnActivate.ForeColor = System.Drawing.Color.White;
+            this.btnActivate.Location = new System.Drawing.Point(768, 745);
+            this.btnActivate.Name = "btnActivate";
+            this.btnActivate.Size = new System.Drawing.Size(275, 78);
+            this.btnActivate.TabIndex = 59;
+            this.btnActivate.Text = "Activate";
+            this.btnActivate.UseVisualStyleBackColor = false;
+            this.btnActivate.Click += new System.EventHandler(this.btnActivate_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(1678, 9);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(230, 64);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 60;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(1678, 9);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(230, 64);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 62;
+            this.pictureBox3.TabStop = false;
+            // 
             // client_MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -891,6 +984,8 @@
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -959,5 +1054,12 @@
         private System.Windows.Forms.TextBox tb_name;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button btnActivate;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox3;
     }
 }
