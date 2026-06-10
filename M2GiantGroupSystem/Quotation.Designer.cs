@@ -311,12 +311,12 @@
             // 
             amountLabel.AutoSize = true;
             amountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            amountLabel.Location = new System.Drawing.Point(470, 811);
+            amountLabel.Location = new System.Drawing.Point(470, 789);
             amountLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             amountLabel.Name = "amountLabel";
-            amountLabel.Size = new System.Drawing.Size(187, 22);
+            amountLabel.Size = new System.Drawing.Size(193, 44);
             amountLabel.TabIndex = 11;
-            amountLabel.Text = "Subtotal(Excl. VAT)\r\n";
+            amountLabel.Text = "Subtotal(Excl. VAT) \r\n(Incl. Travel Fee)\r\n";
             // 
             // quoteStatusLabel
             // 
@@ -481,7 +481,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(474, 767);
+            this.label1.Location = new System.Drawing.Point(471, 764);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(101, 22);
@@ -492,7 +492,7 @@
             // 
             this.txtTravelFee.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.txtTravelFee.Location = new System.Drawing.Point(932, 764);
-            this.txtTravelFee.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtTravelFee.Margin = new System.Windows.Forms.Padding(4);
             this.txtTravelFee.Name = "txtTravelFee";
             this.txtTravelFee.ReadOnly = true;
             this.txtTravelFee.Size = new System.Drawing.Size(286, 28);
@@ -894,6 +894,7 @@
             this.txtTotalwithVAT.ReadOnly = true;
             this.txtTotalwithVAT.Size = new System.Drawing.Size(288, 28);
             this.txtTotalwithVAT.TabIndex = 40;
+            this.txtTotalwithVAT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtVAT
             // 
