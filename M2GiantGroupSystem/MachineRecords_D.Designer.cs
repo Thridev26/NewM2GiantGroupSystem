@@ -508,19 +508,20 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(311, 31);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(329, 24);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(169, 17);
+            this.label1.Size = new System.Drawing.Size(248, 28);
             this.label1.TabIndex = 3;
             this.label1.Text = "Enter Asset Serial Number  ";
             // 
             // txtSearchOA_D
             // 
-            this.txtSearchOA_D.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearchOA_D.Location = new System.Drawing.Point(500, 28);
+            this.txtSearchOA_D.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.txtSearchOA_D.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearchOA_D.Location = new System.Drawing.Point(635, 21);
             this.txtSearchOA_D.Name = "txtSearchOA_D";
-            this.txtSearchOA_D.Size = new System.Drawing.Size(236, 25);
+            this.txtSearchOA_D.Size = new System.Drawing.Size(236, 34);
             this.txtSearchOA_D.TabIndex = 2;
             this.txtSearchOA_D.TextChanged += new System.EventHandler(this.txtSearchOA_D_TextChanged);
             // 

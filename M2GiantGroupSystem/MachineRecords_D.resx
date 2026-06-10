@@ -121,7 +121,7 @@
   <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAzMAAAEYCAYAAABoX6hqAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAA/7JJREFUeF7snQe0HkXZx2enbX3LvTcJEpKQRkJPTwhJCL33okgRARGQIqJYsICo
+        wAAADsABataJCQAA/7JJREFUeF7snQe0HkXZx2enbX3LvTcJEpKQRkJPTwhJCL33okgRARGQIqJYsICo
         FBUUxYZiLyjqZ0ER6ahILyIqRToqndAh5X7nt8xcN8t7QwIhReZ/znPetu/uzGyZ5z9PEyIgICAgICAg
         ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgYKkj6kcWZ5tXK/X9BiyM/salPo6dJCAgICAgICAg
         IOB/El7hlR1EOfGfvWLst/e/17erS3Ub3UH4vt6GukK+Iirly6p91fHmtfrd4ki9nZ0kICAgICAgICAg
@@ -2254,17 +2254,8 @@
   <metadata name="ownedAssetBindingSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>243, 58</value>
   </metadata>
-  <metadata name="ownedAssetBindingSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>243, 58</value>
-  </metadata>
   <metadata name="groupWst1DataSet1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>893, 17</value>
-  </metadata>
-  <metadata name="groupWst1DataSet1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>893, 17</value>
-  </metadata>
-  <metadata name="hiredAssetBindingSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1087, 17</value>
   </metadata>
   <metadata name="hiredAssetBindingSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>1087, 17</value>
