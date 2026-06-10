@@ -22,8 +22,44 @@ namespace M2GiantGroupSystem
         public MachineRecords_D()
         {
             InitializeComponent();
-            
         }
+            private void ApplyPermissions()
+        {
+            int level = UserSession.AccessLevel; // The user Session object is global so this will work 
+
+            // 1. If Owner (6), they already have full access.  
+            // We just return early and don't change anything! 
+            if (level >= 6) return;
+
+            // 2. If we reach this point, the user is NOT an owner. 
+            // Now we apply restrictions for everyone else. 
+            switch (level)
+            {
+                case 5: // Admin: Some locks 
+                    panel1.Enabled = false;
+                    panel2.Enabled = false;
+                    panel3.Enabled = false;
+                    panel4.Enabled = false;
+
+                    break;
+
+                case 4: // Ops Manager: More locks 
+                    panel1.Enabled = false;
+                    panel2.Enabled = false;
+                    panel3.Enabled = false;
+                    panel4.Enabled = false;
+                    break;
+
+                default: // Level 3 and below: Complete lockdown – lock all controls if you feel they should not have access
+                    panel1.Enabled = false;
+                    panel2.Enabled = false;
+                    panel3.Enabled = false;
+                    panel4.Enabled = false;
+                    break;
+            }
+        } 
+            
+        
 
         private void MachineRecords_D_Load(object sender, EventArgs e)
         {
@@ -40,8 +76,25 @@ namespace M2GiantGroupSystem
             tabControl1.DrawItem += tabControl1_DrawItem;
             tabControl1.ItemSize = new Size(300, 30);
             tabControl1.SizeMode = TabSizeMode.Fixed;
+            ApplyPermissions();
+            dgvOwnedAsset_D.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvOwnedAsset_D.DefaultCellStyle.SelectionBackColor = Color.Green;
+            dgHiredAsset.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgHiredAsset.DefaultCellStyle.SelectionBackColor = Color.Green;
+            cmbCondit_D.BackColor = Color.FromArgb(155, 198, 138);
+            cmbStatus.BackColor = Color.FromArgb(155, 198, 138);
+            cmbCondition2_D.BackColor = Color.FromArgb(143, 188, 143);
+            cmbStatus2_D.BackColor = Color.FromArgb(143, 188, 143);
 
-            
+            // Green ComboBoxes - Hired Asset / Delete panel
+            cmbDeleteCond.BackColor = Color.FromArgb(143, 188, 143);
+            cmbDeleteST.BackColor = Color.FromArgb(143, 188, 143);
+            cmbStatus.BackColor = Color.FromArgb(143, 188, 143);
+            cmbStatus3.BackColor = Color.FromArgb(143, 188, 143);
+            comboBox1.BackColor = Color.FromArgb(143, 188, 143);
+
+
+
 
         }
 
