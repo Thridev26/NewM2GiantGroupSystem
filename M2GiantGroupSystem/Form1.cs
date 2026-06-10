@@ -204,5 +204,10 @@ namespace M2GiantGroupSystem
         {
             FormSetup(new InvoiceReportForm(0));
         }
+
+        private void recordMaintenanceLogToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormSetup(new Maintenance(0));
+        }
     }
 }

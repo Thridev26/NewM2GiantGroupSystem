@@ -19933,11 +19933,22 @@ SELECT logID, serviceType, repairCost, serviceDate, completionDetails, assetID F
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT MaintenanceLog.*\r\nFROM     MaintenanceLog";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "INSERT INTO MaintenanceLog (serviceType, repairCost, serviceDate, completionDetai" +
+                "ls, assetID)\r\nVALUES (@serviceType, @repairCost, @serviceDate, @completionDetail" +
+                "s, @assetID)";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@serviceType", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "serviceType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@repairCost", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 2, "repairCost", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@serviceDate", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 0, 0, "serviceDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@completionDetails", global::System.Data.SqlDbType.VarChar, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, "completionDetails", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@assetID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "assetID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -20113,6 +20124,49 @@ SELECT logID, serviceType, repairCost, serviceDate, completionDetails, assetID F
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
         public virtual int Update(string serviceType, decimal repairCost, System.DateTime serviceDate, string completionDetails, int assetID, int Original_logID, string Original_serviceType, decimal Original_repairCost, System.DateTime Original_serviceDate, int Original_assetID) {
             return this.Update(serviceType, repairCost, serviceDate, completionDetails, assetID, Original_logID, Original_serviceType, Original_repairCost, Original_serviceDate, Original_assetID, Original_logID);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
+        public virtual int InsertQuery(string serviceType, decimal repairCost, string serviceDate, string completionDetails, int assetID) {
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[1];
+            if ((serviceType == null)) {
+                throw new global::System.ArgumentNullException("serviceType");
+            }
+            else {
+                command.Parameters[0].Value = ((string)(serviceType));
+            }
+            command.Parameters[1].Value = ((decimal)(repairCost));
+            if ((serviceDate == null)) {
+                throw new global::System.ArgumentNullException("serviceDate");
+            }
+            else {
+                command.Parameters[2].Value = ((string)(serviceDate));
+            }
+            if ((completionDetails == null)) {
+                command.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[3].Value = ((string)(completionDetails));
+            }
+            command.Parameters[4].Value = ((int)(assetID));
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
         }
     }
     
