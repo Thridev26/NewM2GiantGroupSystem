@@ -14,8 +14,8 @@
     <Shape ID="DesignTable:Client" ZOrder="13" X="838" Y="1083" Height="425" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="250" />
     <Shape ID="DesignTable:SitePhoto" ZOrder="4" X="381" Y="760" Height="263" Width="278" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="196" />
     <Shape ID="DesignTable:Quote" ZOrder="5" X="852" Y="640" Height="425" Width="300" AdapterExpanded="false" DataTableExpanded="true" OldAdapterHeight="169" OldDataTableHeight="0" SplitterPosition="250" />
-    <Shape ID="DesignTable:Job" ZOrder="2" X="1403" Y="318" Height="332" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="250" />
-    <Shape ID="DesignTable:Payment" ZOrder="1" X="1628" Y="97" Height="278" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="196" />
+    <Shape ID="DesignTable:Job" ZOrder="1" X="1403" Y="318" Height="355" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="250" />
+    <Shape ID="DesignTable:Payment" ZOrder="2" X="1628" Y="97" Height="278" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="196" />
     <Shape ID="DesignTable:TimeSlot" ZOrder="31" X="1987" Y="357" Height="182" Width="270" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="115" />
     <Shape ID="DesignTable:JobTimeSlot" ZOrder="3" X="1700" Y="353" Height="182" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="115" />
     <Shape ID="DesignTable:JobStaffAssignment" ZOrder="15" X="1611" Y="558" Height="263" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="142" />
@@ -226,15 +226,15 @@
       <RoutePoints>
         <Point>
           <X>1594</X>
-          <Y>650</Y>
+          <Y>673</Y>
         </Point>
         <Point>
           <X>1594</X>
-          <Y>659</Y>
+          <Y>681</Y>
         </Point>
         <Point>
           <X>1611</X>
-          <Y>659</Y>
+          <Y>681</Y>
         </Point>
       </RoutePoints>
     </Connector>
@@ -242,7 +242,7 @@
       <RoutePoints>
         <Point>
           <X>1533</X>
-          <Y>650</Y>
+          <Y>673</Y>
         </Point>
         <Point>
           <X>1533</X>
