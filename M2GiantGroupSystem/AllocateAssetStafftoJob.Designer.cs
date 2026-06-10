@@ -34,11 +34,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.jobAssetAssignmentDataGridView = new System.Windows.Forms.DataGridView();
-            this.jobID_Bridge = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ownedAssetID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hiredAssetID_Bridge = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn27 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.assignmentDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.jobAssetAssignmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupWst1DataSet = new M2GiantGroupSystem.GroupWst1DataSet();
             this.hiredAssetDataGridView = new System.Windows.Forms.DataGridView();
@@ -62,8 +57,6 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.button4 = new System.Windows.Forms.Button();
             this.jobStaffAssignmentDataGridView = new System.Windows.Forms.DataGridView();
-            this.hoursWorked = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn41 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.jobStaffAssignmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.button3 = new System.Windows.Forms.Button();
             this.staffDataGridView = new System.Windows.Forms.DataGridView();
@@ -106,6 +99,16 @@
             this.ownedAssetTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.OwnedAssetTableAdapter();
             this.staffTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.StaffTableAdapter();
             this.dataTable1TableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.DataTable1TableAdapter();
+            this.jobID_Bridge = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ownedAssetID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hiredAssetID_Bridge = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn27 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.assignmentDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.JColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hoursWorked = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn41 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabViewAllocations.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.jobAssetAssignmentDataGridView)).BeginInit();
@@ -189,6 +192,7 @@
             this.jobAssetAssignmentDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.jobAssetAssignmentDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.jobID_Bridge,
+            this.Column1,
             this.ownedAssetID,
             this.hiredAssetID_Bridge,
             this.dataGridViewTextBoxColumn27,
@@ -201,47 +205,6 @@
             this.jobAssetAssignmentDataGridView.RowTemplate.Height = 28;
             this.jobAssetAssignmentDataGridView.Size = new System.Drawing.Size(641, 220);
             this.jobAssetAssignmentDataGridView.TabIndex = 2;
-            // 
-            // jobID_Bridge
-            // 
-            this.jobID_Bridge.DataPropertyName = "jobID";
-            this.jobID_Bridge.HeaderText = "jobID";
-            this.jobID_Bridge.MinimumWidth = 8;
-            this.jobID_Bridge.Name = "jobID_Bridge";
-            this.jobID_Bridge.Width = 88;
-            // 
-            // ownedAssetID
-            // 
-            this.ownedAssetID.DataPropertyName = "ownedAssetID";
-            this.ownedAssetID.HeaderText = "ownedAssetID";
-            this.ownedAssetID.MinimumWidth = 8;
-            this.ownedAssetID.Name = "ownedAssetID";
-            this.ownedAssetID.Width = 162;
-            // 
-            // hiredAssetID_Bridge
-            // 
-            this.hiredAssetID_Bridge.DataPropertyName = "hiredAssetID";
-            this.hiredAssetID_Bridge.HeaderText = "hiredAssetID";
-            this.hiredAssetID_Bridge.MinimumWidth = 8;
-            this.hiredAssetID_Bridge.Name = "hiredAssetID_Bridge";
-            this.hiredAssetID_Bridge.Width = 150;
-            // 
-            // dataGridViewTextBoxColumn27
-            // 
-            this.dataGridViewTextBoxColumn27.DataPropertyName = "fuelUsed";
-            this.dataGridViewTextBoxColumn27.HeaderText = "fuelUsed";
-            this.dataGridViewTextBoxColumn27.MinimumWidth = 8;
-            this.dataGridViewTextBoxColumn27.Name = "dataGridViewTextBoxColumn27";
-            this.dataGridViewTextBoxColumn27.Visible = false;
-            this.dataGridViewTextBoxColumn27.Width = 90;
-            // 
-            // assignmentDate
-            // 
-            this.assignmentDate.DataPropertyName = "assignmentDate";
-            this.assignmentDate.HeaderText = "assignmentDate";
-            this.assignmentDate.MinimumWidth = 8;
-            this.assignmentDate.Name = "assignmentDate";
-            this.assignmentDate.Width = 176;
             // 
             // jobAssetAssignmentBindingSource
             // 
@@ -447,6 +410,8 @@
             this.jobStaffAssignmentDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.jobStaffAssignmentDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.jobStaffAssignmentDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.SColumn,
+            this.JColumn,
             this.hoursWorked,
             this.dataGridViewTextBoxColumn41});
             this.jobStaffAssignmentDataGridView.DataSource = this.jobStaffAssignmentBindingSource;
@@ -457,21 +422,6 @@
             this.jobStaffAssignmentDataGridView.RowTemplate.Height = 28;
             this.jobStaffAssignmentDataGridView.Size = new System.Drawing.Size(513, 194);
             this.jobStaffAssignmentDataGridView.TabIndex = 2;
-            // 
-            // hoursWorked
-            // 
-            this.hoursWorked.DataPropertyName = "hoursWorked";
-            this.hoursWorked.HeaderText = "HoursWorked";
-            this.hoursWorked.MinimumWidth = 8;
-            this.hoursWorked.Name = "hoursWorked";
-            this.hoursWorked.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn41
-            // 
-            this.dataGridViewTextBoxColumn41.DataPropertyName = "assignmentDate";
-            this.dataGridViewTextBoxColumn41.HeaderText = "AssignmentDate";
-            this.dataGridViewTextBoxColumn41.MinimumWidth = 8;
-            this.dataGridViewTextBoxColumn41.Name = "dataGridViewTextBoxColumn41";
             // 
             // jobStaffAssignmentBindingSource
             // 
@@ -596,7 +546,7 @@
             this.tab3.Location = new System.Drawing.Point(4, 29);
             this.tab3.Name = "tab3";
             this.tab3.Padding = new System.Windows.Forms.Padding(3);
-            this.tab3.Size = new System.Drawing.Size(1544, 413);
+            this.tab3.Size = new System.Drawing.Size(1544, 403);
             this.tab3.TabIndex = 2;
             this.tab3.Text = "View All Allocations";
             // 
@@ -847,6 +797,86 @@
             // 
             this.dataTable1TableAdapter.ClearBeforeFill = true;
             // 
+            // jobID_Bridge
+            // 
+            this.jobID_Bridge.DataPropertyName = "jobID";
+            this.jobID_Bridge.HeaderText = "jobID";
+            this.jobID_Bridge.MinimumWidth = 8;
+            this.jobID_Bridge.Name = "jobID_Bridge";
+            this.jobID_Bridge.Width = 88;
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "assignmentID";
+            this.Column1.HeaderText = "Column1";
+            this.Column1.MinimumWidth = 8;
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Visible = false;
+            this.Column1.Width = 115;
+            // 
+            // ownedAssetID
+            // 
+            this.ownedAssetID.DataPropertyName = "ownedAssetID";
+            this.ownedAssetID.HeaderText = "ownedAssetID";
+            this.ownedAssetID.MinimumWidth = 8;
+            this.ownedAssetID.Name = "ownedAssetID";
+            this.ownedAssetID.Width = 162;
+            // 
+            // hiredAssetID_Bridge
+            // 
+            this.hiredAssetID_Bridge.DataPropertyName = "hiredAssetID";
+            this.hiredAssetID_Bridge.HeaderText = "hiredAssetID";
+            this.hiredAssetID_Bridge.MinimumWidth = 8;
+            this.hiredAssetID_Bridge.Name = "hiredAssetID_Bridge";
+            this.hiredAssetID_Bridge.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn27
+            // 
+            this.dataGridViewTextBoxColumn27.DataPropertyName = "fuelUsed";
+            this.dataGridViewTextBoxColumn27.HeaderText = "fuelUsed";
+            this.dataGridViewTextBoxColumn27.MinimumWidth = 8;
+            this.dataGridViewTextBoxColumn27.Name = "dataGridViewTextBoxColumn27";
+            this.dataGridViewTextBoxColumn27.Visible = false;
+            this.dataGridViewTextBoxColumn27.Width = 117;
+            // 
+            // assignmentDate
+            // 
+            this.assignmentDate.DataPropertyName = "assignmentDate";
+            this.assignmentDate.HeaderText = "assignmentDate";
+            this.assignmentDate.MinimumWidth = 8;
+            this.assignmentDate.Name = "assignmentDate";
+            this.assignmentDate.Width = 176;
+            // 
+            // SColumn
+            // 
+            this.SColumn.DataPropertyName = "StaffID";
+            this.SColumn.HeaderText = "StaffID";
+            this.SColumn.MinimumWidth = 8;
+            this.SColumn.Name = "SColumn";
+            // 
+            // JColumn
+            // 
+            this.JColumn.DataPropertyName = "JobID";
+            this.JColumn.HeaderText = "jobID";
+            this.JColumn.MinimumWidth = 8;
+            this.JColumn.Name = "JColumn";
+            // 
+            // hoursWorked
+            // 
+            this.hoursWorked.DataPropertyName = "hoursWorked";
+            this.hoursWorked.HeaderText = "HoursWorked";
+            this.hoursWorked.MinimumWidth = 8;
+            this.hoursWorked.Name = "hoursWorked";
+            this.hoursWorked.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn41
+            // 
+            this.dataGridViewTextBoxColumn41.DataPropertyName = "assignmentDate";
+            this.dataGridViewTextBoxColumn41.HeaderText = "AssignmentDate";
+            this.dataGridViewTextBoxColumn41.MinimumWidth = 8;
+            this.dataGridViewTextBoxColumn41.Name = "dataGridViewTextBoxColumn41";
+            // 
             // AllocateAssetStafftoJob
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
@@ -949,19 +979,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn hiredAssetStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn ownedAssetID_Bridge;
         private System.Windows.Forms.DataGridViewTextBoxColumn assignmentID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn jobID_Bridge;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ownedAssetID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn hiredAssetID_Bridge;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn27;
-        private System.Windows.Forms.DataGridViewTextBoxColumn assignmentDate;
         private System.Windows.Forms.TabPage tab3;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.DataGridViewTextBoxColumn staffID_T;
         private System.Windows.Forms.DataGridViewTextBoxColumn jobID_T;
-        private System.Windows.Forms.DataGridViewTextBoxColumn hoursWorked;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn41;
         private System.Windows.Forms.DataGridViewTextBoxColumn staffID;
         private System.Windows.Forms.DataGridViewTextBoxColumn firstName;
         private System.Windows.Forms.DataGridViewTextBoxColumn lastName;
@@ -971,5 +994,15 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn staffStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn dailyRate;
         private System.Windows.Forms.DataGridViewTextBoxColumn roleID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn jobID_Bridge;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ownedAssetID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hiredAssetID_Bridge;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn27;
+        private System.Windows.Forms.DataGridViewTextBoxColumn assignmentDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn JColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hoursWorked;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn41;
     }
 }
