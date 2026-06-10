@@ -28,10 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lbl_status = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgvMaintenanceHistory = new System.Windows.Forms.DataGridView();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cboServiceType = new System.Windows.Forms.ComboBox();
@@ -46,13 +48,13 @@
             this.lblLabourCost = new System.Windows.Forms.Label();
             this.lblDumpingCost = new System.Windows.Forms.Label();
             this.MainServiceType = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMaintenanceHistory)).BeginInit();
-            this.tabControl1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMaintenanceHistory)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.tabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbl_status
@@ -80,6 +82,17 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Maintenance Log";
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.dgvMaintenanceHistory);
+            this.groupBox3.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.Location = new System.Drawing.Point(967, 90);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(941, 462);
+            this.groupBox3.TabIndex = 85;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Maintenance Log History";
+            // 
             // dgvMaintenanceHistory
             // 
             this.dgvMaintenanceHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -90,15 +103,14 @@
             this.dgvMaintenanceHistory.Size = new System.Drawing.Size(883, 336);
             this.dgvMaintenanceHistory.TabIndex = 81;
             // 
-            // tabControl1
+            // groupBox2
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1924, 1055);
-            this.tabControl1.TabIndex = 53;
+            this.groupBox2.Location = new System.Drawing.Point(-32, -82);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(200, 100);
+            this.groupBox2.TabIndex = 84;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "groupBox2";
             // 
             // groupBox1
             // 
@@ -262,25 +274,15 @@
             this.MainServiceType.TabIndex = 86;
             this.MainServiceType.Text = "Service Type";
             // 
-            // groupBox2
+            // tabControl1
             // 
-            this.groupBox2.Location = new System.Drawing.Point(-32, -82);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(200, 100);
-            this.groupBox2.TabIndex = 84;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "groupBox2";
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.dgvMaintenanceHistory);
-            this.groupBox3.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(967, 90);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(941, 462);
-            this.groupBox3.TabIndex = 85;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Maintenance Log History";
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(1924, 1055);
+            this.tabControl1.TabIndex = 53;
             // 
             // Maintenance
             // 
@@ -295,11 +297,11 @@
             this.Text = "Maintenance";
             this.Load += new System.EventHandler(this.Maintenance_Load);
             this.tabPage1.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaintenanceHistory)).EndInit();
-            this.tabControl1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -326,5 +328,6 @@
         private System.Windows.Forms.Label MainServiceType;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
