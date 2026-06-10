@@ -155,7 +155,7 @@ namespace M2GiantGroupSystem
                 txtAsSnumber_d.Text = row.Cells[1].Value?.ToString().Trim() ?? "";
 
                 cmbType_D.Text = row.Cells[2].Value?.ToString().Trim() ?? "";
-                cmbType_D.SelectedIndex = cmbType_D.FindStringExact(row.Cells[2].Value?.ToString().Trim() ?? "");
+                //cmbType_D.SelectedIndex = cmbType_D.FindStringExact(row.Cells[2].Value?.ToString().Trim() ?? "");
 
                 dtPurchaseDate_D.Value = Convert.ToDateTime(row.Cells[3].Value);
 
@@ -428,7 +428,7 @@ namespace M2GiantGroupSystem
                 MessageBox.Show("Please enter a Serial Number.", "Missing Field", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (string.IsNullOrWhiteSpace(cmbType_D.Text))
+            if (string.IsNullOrWhiteSpace(cmbType_D.Text)) 
             {
                 MessageBox.Show("Please select an Asset Type.", "Missing Field", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -460,7 +460,7 @@ namespace M2GiantGroupSystem
                 {
                     ownedAssetTableAdapter1.UpdateOwnedAsset(
                         txtAsSnumber_d.Text,
-                        cmbType_D.Text,
+                        cmbType2_D.Text,
                         dtPurchaseDate_D.Value.ToShortDateString(),
                         cmbCondit_D.SelectedItem.ToString(),
                         dtServiceDate_D.Value.ToShortDateString(),
@@ -491,7 +491,7 @@ namespace M2GiantGroupSystem
 
                 cmbType2_D.SelectedIndex = -1;
 
-                cmbType_D.Text = "";
+                cmbType2_D.Text = "";
 
                 dtPurchaseD2_D.Value = DateTime.Now;
 
@@ -875,6 +875,7 @@ namespace M2GiantGroupSystem
                 dtReturn2.Value = DateTime.Now;
                 txtCost2.Text = "";
                 cmbHassetTY.SelectedIndex = -1;
+                cmbHassetTY.Text = "";
                 cmbStatus3.SelectedIndex = -1;
             }
         }
