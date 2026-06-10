@@ -92,7 +92,7 @@ namespace M2GiantGroupSystem
             cmbStatus.BackColor = Color.FromArgb(143, 188, 143);
             cmbStatus3.BackColor = Color.FromArgb(143, 188, 143);
             comboBox1.BackColor = Color.FromArgb(143, 188, 143);
-
+            txtHassetID.Text = "";
 
 
 
@@ -185,6 +185,7 @@ namespace M2GiantGroupSystem
 
         private void dataGridView1_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
         {
+            
             DataGridViewRow row = dgvOwnedAsset_D.Rows[e.RowIndex];
             string status = row.Cells[6].Value?.ToString().Trim() ?? "";
 
@@ -206,17 +207,17 @@ namespace M2GiantGroupSystem
                     row.Cells[6].Style.BackColor = Color.White;
                     row.Cells[6].Style.ForeColor = Color.Black;
                     break;
+            }
 
-                    if (row.Cells[0].Value != null)
-                    {
-                        int assetID = Convert.ToInt32(row.Cells[0].Value);
-                        if (serviceDueAssets.Contains(assetID))
-                        {
-                            row.Cells[5].Style.BackColor = Color.Yellow;
-                            row.Cells[5].Style.ForeColor = Color.Black;
-                        }
-                    }
-
+            // Yellow highlight for assets with service due within 30 days
+            if (row.Cells[0].Value != null)
+            {
+                int assetID = Convert.ToInt32(row.Cells[0].Value);
+                if (serviceDueAssets.Contains(assetID))
+                {
+                    row.Cells[5].Style.BackColor = Color.Yellow;
+                    row.Cells[5].Style.ForeColor = Color.Black;
+                }
             }
         }
 
@@ -421,15 +422,36 @@ namespace M2GiantGroupSystem
 
         private void btnUpdateAsset_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtAsSnumber_d.Text))
+            {
+                MessageBox.Show("Please enter a Serial Number.", "Missing Field", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(cmbType_D.Text))
+            {
+                MessageBox.Show("Please select an Asset Type.", "Missing Field", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (cmbCondit_D.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a Condition.", "Missing Field", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (cmbStatus_D.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a Status.", "Missing Field", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             DialogResult result = MessageBox.Show(
-                   "Are the following Asset Details Correct?\n" +
-                 "\nSerial Number: " + txtAsSnumber_d.Text +
-                 "\nAsset Type: " + cmbType_D.Text +
-                  "\nPurchase Date: " + dtPurchaseDate_D.Value.ToShortDateString() +
-                        "\nCurrent Condition: " + cmbCondit_D.Text +
-                  "\nNext Service Date: " + dtServiceDate_D.Value.ToShortDateString() +
-                       "\nStatus: " + cmbStatus_D.Text,
-                         "Confirm Update", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                "Are the following Asset Details Correct?\n" +
+                "\nSerial Number: " + txtAsSnumber_d.Text +
+                "\nAsset Type: " + cmbType_D.Text +
+                "\nPurchase Date: " + dtPurchaseDate_D.Value.ToShortDateString() +
+                "\nCurrent Condition: " + cmbCondit_D.Text +
+                "\nNext Service Date: " + dtServiceDate_D.Value.ToShortDateString() +
+                "\nStatus: " + cmbStatus_D.Text,
+                "Confirm Update", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
             {
@@ -437,7 +459,7 @@ namespace M2GiantGroupSystem
                 {
                     ownedAssetTableAdapter1.UpdateOwnedAsset(
                         txtAsSnumber_d.Text,
-                        cmbType_D.Text.ToString(),
+                        cmbType_D.Text,
                         dtPurchaseDate_D.Value.ToShortDateString(),
                         cmbCondit_D.SelectedItem.ToString(),
                         dtServiceDate_D.Value.ToShortDateString(),
@@ -445,20 +467,12 @@ namespace M2GiantGroupSystem
                         int.Parse(txtAssetID_D.Text)
                     );
 
-
-                    // Refresh the DataGridView
-
                     ownedAssetTableAdapter1.Fill(groupWst1DataSet1.OwnedAsset);
-
                     MessageBox.Show("Asset updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error updating asset: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-
-
-
                 }
             }
         }
@@ -537,27 +551,31 @@ namespace M2GiantGroupSystem
 
         private void btnDeleteRcd_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtAssetID2.Text))
+            {
+                MessageBox.Show("Please select an asset to delete first.", "No Asset Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(txtDeleteSN.Text))
+            {
+                MessageBox.Show("Please enter a Serial Number to delete.", "Missing Field", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             DialogResult result = MessageBox.Show(
-                      "Are you sure you want to delete this asset?\n" +
-                               "\nSerial Number: " + txtDeleteSN.Text +
-                                    "\nAsset Type: " + cmbDeleteAT.Text +
-                                          "\nStatus: " + cmbDeleteST.Text,
-                                              "Confirm Delete",
-                                                     MessageBoxButtons.YesNo,
-                                                                      MessageBoxIcon.Warning);
+                "Are you sure you want to delete this asset?\n" +
+                "\nSerial Number: " + txtDeleteSN.Text +
+                "\nAsset Type: " + cmbDeleteAT.Text +
+                "\nStatus: " + cmbDeleteST.Text,
+                "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
             if (result == DialogResult.Yes)
             {
                 try
                 {
                     ownedAssetTableAdapter1.DeleteAssetRecord(int.Parse(txtAssetID2.Text));
-
-                    // Refresh the DataGridView
                     ownedAssetTableAdapter1.Fill(this.groupWst1DataSet1.OwnedAsset);
-
-                    // Clear the fields
                     txtDeleteSN.Text = "";
-
                     MessageBox.Show("Asset deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
@@ -576,21 +594,24 @@ namespace M2GiantGroupSystem
             {
 
 
-                txtSerialno2_D.Text = "";
+                txtDeleteSN.Text = "";
+                cmbDeleteAT.Text = "";
+                dtDeletP.Value = DateTime.Now;
+                textBox1.Text = "";
 
-                cmbType2_D.SelectedIndex = -1;
+                cmbDeleteCond.SelectedIndex = -1;
+                cmbDeleteCond.Text = "";
 
-                cmbType_D.Text = "";
+                dtDeleteNS.Value = DateTime.Now;
+                dtDeletP.Value = DateTime.Now;
 
-                dtPurchaseD2_D.Value = DateTime.Now;
+                cmbDeleteST.SelectedIndex = -1;
+                cmbDeleteST.Text = "";
 
-                cmbCondition2_D.SelectedIndex = -1;
-                cmbCondition2_D.Text = "";
 
-                dtService2_D.Value = DateTime.Now;
 
-                cmbStatus2_D.SelectedIndex = -1;
-                cmbStatus2_D.Text = "";
+
+
             }
         }
 
@@ -690,11 +711,30 @@ namespace M2GiantGroupSystem
 
         private void btnHupdate_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtSupplierName.Text))
+            {
+                MessageBox.Show("Please enter a Supplier Name.", "Missing Field", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(txtCostHire.Text) || !decimal.TryParse(txtCostHire.Text, out _))
+            {
+                MessageBox.Show("Please enter a valid Hire Cost.", "Missing Field", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(cmbType.Text))
+            {
+                MessageBox.Show("Please select an Equipment Type.", "Missing Field", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (cmbStatus.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a Status.", "Missing Field", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             DialogResult result = MessageBox.Show(
-        "Are you sure you want to update this asset?",
-        "Confirm Update",
-        MessageBoxButtons.YesNo,
-        MessageBoxIcon.Question);
+                "Are you sure you want to update this asset?",
+                "Confirm Update", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
             {
@@ -711,7 +751,6 @@ namespace M2GiantGroupSystem
                     );
 
                     hiredAssetTableAdapter1.Fill(groupWst1DataSet1.HiredAsset);
-
                     MessageBox.Show("Asset updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
@@ -841,25 +880,31 @@ namespace M2GiantGroupSystem
 
         private void btnDeleteHiredA_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtHassetID.Text))
+            {
+                MessageBox.Show("Please select a hired asset to delete first.", "No Asset Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(textBox2.Text))
+            {
+                MessageBox.Show("Please enter a Supplier Name to delete.", "Missing Field", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             DialogResult result = MessageBox.Show(
-                    "Are you sure you want to delete this asset?\n" +
-                    "\nSupplier Name: " + textBox2.Text +
-                  "\nAsset Type: " + comboBox2.Text +
-                   "\nStatus: " + comboBox1.Text,
-              "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                "Are you sure you want to delete this asset?\n" +
+                "\nSupplier Name: " + textBox2.Text +
+                "\nAsset Type: " + comboBox2.Text +
+                "\nStatus: " + comboBox1.Text,
+                "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
             if (result == DialogResult.Yes)
             {
                 try
                 {
                     hiredAssetTableAdapter1.DeleteHiredAsset(int.Parse(txtHassetID.Text));
-
-                    // Refresh the DataGridView
                     hiredAssetTableAdapter1.Fill(this.groupWst1DataSet1.HiredAsset);
-
-                    // Clear the fields
                     textBox2.Text = "";
-
                     MessageBox.Show("Asset deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
@@ -965,23 +1010,7 @@ namespace M2GiantGroupSystem
             }
         }
 
-        private void txtDeleteSN_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                // Trigger the same search as TextChanged
-                txtDeleteSN_TextChanged(sender, e);
-            }
-        }
-
-        private void textBox2_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                // Trigger the same search as TextChanged
-                textBox2_TextChanged(sender, e);
-            }
-        }
+        
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1032,16 +1061,32 @@ namespace M2GiantGroupSystem
 
         }
 
-
-      
-
         
-     
 
-    
+
+        private void txtDeleteSN_ImeModeChanged(object sender, EventArgs e)
+        {
+
+        }
+    }
+
 }
 
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
