@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using Drawing = System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -87,9 +88,49 @@ namespace M2GiantGroupSystem
             }
         }
 
+        private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            TabPage page = tabControl1.TabPages[e.Index];
+            Drawing.Rectangle tabRect = tabControl1.GetTabRect(e.Index);
+
+            Drawing.Font tabFont = new Drawing.Font("Segoe UI", 10, Drawing.FontStyle.Bold);
+             
+            Color backColor = Color.Honeydew;
+            Color textColor = Color.Black;
+
+            if (e.Index == tabControl1.SelectedIndex)
+            {
+                backColor = Color.DarkGreen;
+                textColor = Color.White;
+            }
+
+            using (Brush b = new SolidBrush(backColor))
+            {
+                e.Graphics.FillRectangle(b, tabRect);
+            }
+
+            using (Pen p = new Pen(Color.DarkGreen, 1))
+            {
+                e.Graphics.DrawRectangle(p, tabRect);
+            }
+
+            TextRenderer.DrawText(
+                e.Graphics,
+                page.Text,
+                tabFont,
+                tabRect,
+                textColor,
+                TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
+            );
+        }
+
 
         private void Quotation_Load(object sender, EventArgs e)
         {
+            tabControl1.DrawMode = TabDrawMode.OwnerDrawFixed;
+            tabControl1.DrawItem += tabControl1_DrawItem;
+            tabControl1.ItemSize = new Size(300, 30);
+            tabControl1.SizeMode = TabSizeMode.Fixed;
             ApplyPermissions(); // Apply user access level permissions immediately on form load
             // TODO: This line of code loads data into the 'groupWst1DataSet.DataTable3' table. You can move, or remove it, as needed.
             this.dataTable3TableAdapter.Fill(this.groupWst1DataSet.DataTable3);
