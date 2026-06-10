@@ -246,59 +246,62 @@ namespace M2GiantGroupSystem
 
             try
             {
-                // EXECUTE THE INSERT
+                // 1. INSERT QUOTE
                 this.quoteTableAdapter.InsertNewQuote(
-                    currentJobRequestID,                                   // @jobRequestID (int)
-                    dateIssuedDateTimePicker.Value.ToShortDateString(),    // @dateIssued (string)
-                    expiryDateDateTimePicker.Value.ToShortDateString(),    // @expiryDate (string)
-                    dateGeneratedDateTimePicker.Value.ToShortDateString(), // @dateGenerated (string)
-                    Convert.ToDecimal(txtAmount.Text),                     // @amount (decimal)
-                    cboQuoteStatus.SelectedItem.ToString(),                // @quoteStatus (string)
-                    string.IsNullOrWhiteSpace(txtFilePath.Text) ? null : txtFilePath.Text // @filePath (string)
-                );                
+                    currentJobRequestID,
+                    dateIssuedDateTimePicker.Value.ToShortDateString(),
+                    expiryDateDateTimePicker.Value.ToShortDateString(),
+                    dateGeneratedDateTimePicker.Value.ToShortDateString(),
+                    Convert.ToDecimal(txtTotalwithVAT.Text),
+                    cboQuoteStatus.SelectedItem.ToString(),
+                    string.IsNullOrWhiteSpace(txtFilePath.Text) ? null : txtFilePath.Text
+                );
+
+                // 2. REMOVE FROM UI (dataGridView1) IMMEDIATELY
+                // We access the DataTable directly from the DataSource of your management grid
+                if (dataGridView1.DataSource is DataTable dtManagement)
+                {
+                    // Find the specific row by ID and remove it from the table
+                    DataRow[] rowsToRemove = dtManagement.Select($"jobRequestID = {currentJobRequestID}");
+                    foreach (DataRow r in rowsToRemove)
+                    {
+                        dtManagement.Rows.Remove(r);
+                    }
+                    dtManagement.AcceptChanges();
+                    dataGridView1.Refresh();
+                }
 
                 // Success Feedback
-                MessageBox.Show("Your Quote has been successfully created and saved in your database. Go to Edit Quotes to save it as a PDF or Print!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Quote successfully saved.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-
-                // Safe cleaning to match the Clear button fix
-
-                // We just cleanly reset the suggested values without touching Min/Max properties.
-                dateIssuedDateTimePicker.Value = DateTime.Today; //
-                dateGeneratedDateTimePicker.Value = DateTime.Today; //
-                expiryDateDateTimePicker.Value = DateTime.Today.AddDays(30); //
-
+                // 3. RESET UI
+                dateIssuedDateTimePicker.Value = today;
+                dateGeneratedDateTimePicker.Value = today;
+                expiryDateDateTimePicker.Value = today.AddDays(30);
                 txtAmount.Text = "0.00";
                 txtFilePath.Text = "";
                 cboQuoteStatus.SelectedIndex = -1;
-                selectedJobsGridView.DataSource = null;  // ✅ CHANGED
-                jobTypeDataGridView.DataSource = null;   // ✅ ADD THIS: also clear the job types grid
+                selectedJobsGridView.DataSource = null;
+                jobTypeDataGridView.DataSource = null;
                 jobRequestIDTextBox.Text = "";
-                longitudeTextBox.Text = "";
-                latitudeTextBox.Text = "";
-                urgencyLevelTextBox.Text = "";
                 txtVAT.Text = "0.00";
                 txtTotalwithVAT.Text = "0.00";
+                txtTravelFee.Text = "";
+                currentTravelFee = 0.00m;
+                button3.Enabled = false;
 
-                // 1. Refresh the custom data tables that feed your visible UI grids
+                // 4. REFRESH DATA
                 this.dataTable3TableAdapter.Fill(this.groupWst1DataSet.DataTable3);
                 this.dataTable2TableAdapter.Fill(this.groupWst1DataSet.DataTable2);
                 this.quoteTableAdapter.Fill(this.groupWst1DataSet.Quote);
+                // You don't need to Fill() the JobRequest here anymore if you want to keep the UI exactly as is
 
-                // 2. Instantly refresh the client list so the SQL 'NOT IN' condition hides the user
-                this.jobRequestTableAdapter.Fill(this.groupWst1DataSet.JobRequest);
-
-                // 3. Force the grid to maintain your custom numerical sort layout
-                quoteDataGridView.Sort(quoteDataGridView.Columns["QuoteID_T"], System.ComponentModel.ListSortDirection.Ascending);
-
-                txtTravelFee.Text = "";
-                currentTravelFee = 0.00m;
-                // Deactivate save button until the next client selection
-                button3.Enabled = false;
+                //dataTable2BindingSource.ResetBindings(false);
+                //quoteDataGridView.Sort(quoteDataGridView.Columns["QuoteID_T"], System.ComponentModel.ListSortDirection.Ascending);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Unfortunately an error occurred while saving the quote: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Database Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1147,6 +1150,7 @@ namespace M2GiantGroupSystem
                 // 3. Update counter and restore the Job Request table pool immediately
                 UpdateQuoteCount();
                 this.jobRequestTableAdapter.Fill(this.groupWst1DataSet.JobRequest);
+                dataGridView1.Refresh();
 
                 // 6. Friendly, explicit feedback for lecturer / user showing we acknowledged the JobRequest link
                 MessageBox.Show($"Quote #{parsedQuoteID} has been removed from the Quote table.\n\n" +
@@ -1386,99 +1390,44 @@ namespace M2GiantGroupSystem
 
         private void btnRemoveJobType_Click(object sender, EventArgs e)
         {
-            // 1. Safety Check: Ensure a row is actually highlighted in the bottom grid
+            // 1. Safety Check
             if (selectedJobsGridView.CurrentRow == null || selectedJobsGridView.CurrentRow.IsNewRow)
             {
-                MessageBox.Show("Please select a specific job type row from the lower selection table to remove.",
+                MessageBox.Show("Please select a specific job type row from the selection table to remove.",
                                 "No Line Item Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // 2. Safely declare the current selected row
-            DataGridViewRow gridRow = selectedJobsGridView.CurrentRow;
+            // 2. Identify the item to move back
+            DataGridViewRow row = selectedJobsGridView.CurrentRow;
+            string jobTypeName = row.Cells["jobTypeName"].Value?.ToString();
+            object jobRate = row.Cells["jobRate"].Value;
 
-            // 3. HARD BUSINESS RULE: Intercept and block deletion of the Travel Care Fee
-            string jobTypeName = gridRow.Cells["colJobType"].Value?.ToString() ?? "";
-
-            if (jobTypeName.Equals("Travel Cost Fee", StringComparison.OrdinalIgnoreCase) ||
-                jobTypeName.Contains("Travel"))
+            // 3. Remove from the bottom grid's source
+            if (selectedJobsGridView.DataSource is DataTable dtSelected)
             {
-                MessageBox.Show("The Travel Cost Fee cannot be removed.\n\n" +
-                                "The travel logistic charge is automatically computed by the system based on site coordinates.",
-                                "You may not delete the Travel Cost",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Hand);
-                return; // Hard stop! Prevents the rest of the deletion logic from executing.
-            }
-
-            // 4. Extract and parse the active Job Request ID from your textbox control
-            int clickedID = 0;
-            if (jobRequestIDTextBox != null && !string.IsNullOrWhiteSpace(jobRequestIDTextBox.Text))
-            {
-                int.TryParse(jobRequestIDTextBox.Text, out clickedID);
-            }
-
-            // 5. Execute Front-End Deletion and Sync
-            try
-            {
-                // Remove the row directly from the DataGridView's visual collection
-                if (selectedJobsGridView.DataSource is DataTable dtRemove)
+                DataRow[] rowsToRemove = dtSelected.Select($"jobTypeName = '{jobTypeName.Replace("'", "''")}'");
+                foreach (DataRow r in rowsToRemove)
                 {
-                    string jobToRemove = gridRow.Cells["jobTypeName"].Value?.ToString();
-                    foreach (DataRow dr in dtRemove.Rows)
-                    {
-                        if (dr["jobTypeName"].ToString() == jobToRemove)
-                        {
-                            dr.Delete();
-                            break;
-                        }
-                    }
-                    dtRemove.AcceptChanges();
+                    dtSelected.Rows.Remove(r);
                 }
-
-                // Recalculate your summary textboxes instantly based on remaining items
-                RecalculateGrandTotalFromUI();
-
-                if (clickedID > 0)
-                {
-                    LoadRequestedJobTypes(clickedID);
-
-                    // Hide job types already present in selectedJobsGridView
-                    if (jobTypeDataGridView.DataSource is DataTable dtJobTypes)
-                    {
-                        foreach (DataGridViewRow bottomRow in selectedJobsGridView.Rows)
-                        {
-                            if (bottomRow.IsNewRow) continue;
-
-                            string selectedJobName = bottomRow.Cells["colJobType"].Value?.ToString();
-
-                            foreach (DataRow dtRow in dtJobTypes.Rows)
-                            {
-                                if (dtRow.RowState == DataRowState.Deleted) continue;
-
-                                if (dtRow["jobTypeName"].ToString() == selectedJobName)
-                                {
-                                    dtRow.Delete();
-                                    break;
-                                }
-                            }
-                        }
-                        dtJobTypes.AcceptChanges();
-                    }
-                }
-
-                selectedJobsGridView.Refresh();
+                dtSelected.AcceptChanges();
             }
-            catch (InvalidOperationException)
+
+            // 4. ADD IT BACK to the top grid's source
+            if (jobTypeDataGridView.DataSource is DataTable dtAvailable)
             {
-                // Fallback index-based handling if WinForms processing locks the collection
-                if (selectedJobsGridView.CurrentRow != null)
-                {
-                    selectedJobsGridView.Rows.RemoveAt(selectedJobsGridView.CurrentRow.Index);
-                    RecalculateGrandTotalFromUI();
-                }
+                DataRow newRow = dtAvailable.NewRow();
+                newRow["jobTypeName"] = jobTypeName;
+                newRow["jobRate"] = jobRate;
+                dtAvailable.Rows.Add(newRow);
+                dtAvailable.AcceptChanges();
             }
-        }
+
+            // 5. Cleanup
+            RecalculateGrandTotalFromUI();
+            selectedJobsGridView.ClearSelection();
+        }        
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
