@@ -181,5 +181,48 @@ namespace M2GiantGroupSystem
             return ds;
         }
 
+        public DataSet InvoiceData()
+        {
+            string query = @"
+        SELECT 
+    j.jobID,
+    c.clientName + ' ' + c.clientSurname AS ClientName,
+    jr.siteAddress,
+    j.startDate,
+    j.endDate,
+    jt.jobTypeName,
+    jt.jobRate,
+    CAST(id.detailValue AS DECIMAL(10,2)) AS DetailValue,
+    CAST(id.detailValue AS DECIMAL(10,2)) * jt.jobRate AS LineTotal,
+    q.amount AS QuoteAmount,
+    SUM(p.amountPaid) AS TotalReceived
+FROM Job j
+INNER JOIN Quote q ON j.quoteID = q.QuoteID
+INNER JOIN JobRequest jr ON q.jobRequestID = jr.jobRequestID
+INNER JOIN Client c ON jr.clientID = c.clientID
+INNER JOIN RequestItem ri ON jr.jobRequestID = ri.jobRequestID
+INNER JOIN JobType jt ON ri.jobTypeID = jt.jobTypeID
+INNER JOIN ItemDetail id ON ri.requestItemID = id.requestItemID
+LEFT JOIN Payment p ON j.jobID = p.jobID
+WHERE j.jobID = @JobID
+AND (
+    (jt.jobTypeName = 'Tree Felling'         AND id.jobDetailID = 1)  OR
+    (jt.jobTypeName = 'Grass Cutting'        AND id.jobDetailID = 6)  OR
+    (jt.jobTypeName = 'Tree Planting'        AND id.jobDetailID = 10) OR
+    (jt.jobTypeName = 'Vegetation Clearance' AND id.jobDetailID = 14) OR
+    (jt.jobTypeName = 'Hedge Trimming'       AND id.jobDetailID = 18)
+)
+GROUP BY j.jobID, c.clientName, c.clientSurname, jr.siteAddress,
+         j.startDate, j.endDate, jt.jobTypeName, jt.jobRate,
+         id.detailValue, q.amount";
+
+            SqlCommand cmd = new SqlCommand(query, con);
+            cmd.Parameters.AddWithValue("@JobID", InvoiceReportForm.SelectedJobID);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            return ds;
+        }
     }
 }

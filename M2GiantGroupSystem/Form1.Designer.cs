@@ -39,6 +39,7 @@
             this.updateJobRequestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.captureDetailsForRequestedItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewJobRequestsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addASitePhotoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.createQuoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewAllQuotesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,7 +68,6 @@
             this.toolStripMenuItem11 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem13 = new System.Windows.Forms.ToolStripMenuItem();
-            this.addASitePhotoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -180,6 +180,14 @@
             this.viewJobRequestsToolStripMenuItem.Size = new System.Drawing.Size(433, 32);
             this.viewJobRequestsToolStripMenuItem.Text = "View job requests";
             this.viewJobRequestsToolStripMenuItem.Click += new System.EventHandler(this.viewJobRequestsToolStripMenuItem_Click);
+            // 
+            // addASitePhotoToolStripMenuItem
+            // 
+            this.addASitePhotoToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(219)))), ((int)(((byte)(117)))));
+            this.addASitePhotoToolStripMenuItem.Name = "addASitePhotoToolStripMenuItem";
+            this.addASitePhotoToolStripMenuItem.Size = new System.Drawing.Size(433, 32);
+            this.addASitePhotoToolStripMenuItem.Text = "Add a site photo";
+            this.addASitePhotoToolStripMenuItem.Click += new System.EventHandler(this.addASitePhotoToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -322,6 +330,7 @@
             this.createAnInvoiceToolStripMenuItem.Name = "createAnInvoiceToolStripMenuItem";
             this.createAnInvoiceToolStripMenuItem.Size = new System.Drawing.Size(262, 32);
             this.createAnInvoiceToolStripMenuItem.Text = "Create an Invoice";
+            this.createAnInvoiceToolStripMenuItem.Click += new System.EventHandler(this.createAnInvoiceToolStripMenuItem_Click);
             // 
             // trackPaymentsToolStripMenuItem
             // 
@@ -419,14 +428,6 @@
             this.toolStripMenuItem13.Name = "toolStripMenuItem13";
             this.toolStripMenuItem13.Size = new System.Drawing.Size(176, 32);
             this.toolStripMenuItem13.Text = "Return to Menu";
-            // 
-            // addASitePhotoToolStripMenuItem
-            // 
-            this.addASitePhotoToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(219)))), ((int)(((byte)(117)))));
-            this.addASitePhotoToolStripMenuItem.Name = "addASitePhotoToolStripMenuItem";
-            this.addASitePhotoToolStripMenuItem.Size = new System.Drawing.Size(433, 32);
-            this.addASitePhotoToolStripMenuItem.Text = "Add a site photo";
-            this.addASitePhotoToolStripMenuItem.Click += new System.EventHandler(this.addASitePhotoToolStripMenuItem_Click);
             // 
             // Form1
             // 
