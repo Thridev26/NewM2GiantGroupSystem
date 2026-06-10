@@ -130,11 +130,11 @@ namespace M2GiantGroupSystem
 
             // --- RULE: only 2 colours ---
             // Gray if there is at least 1 job AND no workers assigned on that date
-            // Honeydew otherwise (default)
+            // lightgreen otherwise (default)
             if (jobCount > 0 && !HasWorkersAssigned(date))
                 p.BackColor = Color.Gray;
             else
-                p.BackColor = Color.Honeydew;
+                p.BackColor = Color.FromArgb(192, 255, 192);
 
             p.Controls.Add(lbl);
             p.Controls.Add(jobLabel);

@@ -153,7 +153,7 @@ WHERE
             //edit job request----------------------------------------------------------------------------------------------
             this.jobRequestTableAdapter1.Fill(this.groupWst1DataSet1.JobRequest);
 
-           // runQuery();
+         
 
             //whichever row is selected in the datagridview will be highlighted in green and the entire row will be
             //highlighted 
@@ -164,6 +164,10 @@ WHERE
             dgvJoinPictures.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvJoinPictures.DefaultCellStyle.SelectionBackColor = Color.Green;
             runQuery(textBox3, dgv_clientJoinJobRequest);
+
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.Green;
+            runQuery(textBox2, dataGridView1);
 
             //adding details-------------------------------------------------------------------------------------------------
             flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
@@ -430,6 +434,7 @@ WHERE
                 return;
             }//if the user clicks the header row index will be -1 and program will crash if we try to access the cell
 
+            label17.Text = "Selected Job Request ID: " + dataGridView1.Rows[e.RowIndex].Cells["jobRequestID"].Value.ToString();
 
             flowLayoutPanel1.Controls.Clear();
             ///clear the flowlayoutpanel before adding new controls for the selected job request
@@ -470,32 +475,29 @@ WHERE
                 foreach (DataRow jobDetailRow in groupWst1DataSet1.JobDetail.Rows)
                 {
                     Label lbl_jobDetailName = new Label();
-
-                    lbl_jobDetailName.Text =
-                        jobDetailRow["detailName"].ToString();
-
+                    lbl_jobDetailName.Text = jobDetailRow["detailName"].ToString();
                     lbl_jobDetailName.AutoSize = false;
                     lbl_jobDetailName.Width = 120;
-
                     lbl_jobDetailName.Margin = new Padding(10, 10, 5, 0);
 
-
                     TextBox tb_jobDetailName = new TextBox();
-
                     tb_jobDetailName.Margin = new Padding(5, 5, 20, 10);
                     tb_jobDetailName.Width = 300;
-
-                    tb_jobDetailName.Name =
-                        "tb_jobDetailName" +
-                        jobDetailRow["jobDetailID"].ToString();
-
-                    //STORE IMPORTANT IDS INSIDE THE TEXTBOX
+                    tb_jobDetailName.Name = "tb_jobDetailName" + jobDetailRow["jobDetailID"].ToString();
                     tb_jobDetailName.Tag = new
                     {
                         jobDetailID = Convert.ToInt32(jobDetailRow["jobDetailID"]),
                         requestItemID = requestItemID
                     };
 
+                    // check if a value already exists for this jobDetailID + requestItemID
+                    string existingValue = GetExistingDetailValue(
+                        Convert.ToInt32(jobDetailRow["jobDetailID"]),
+                        requestItemID
+                    );
+
+                    if (existingValue != null)
+                        tb_jobDetailName.Text = existingValue;
 
                     flowLayoutPanel1.Controls.Add(lbl_jobDetailName);
                     flowLayoutPanel1.Controls.Add(tb_jobDetailName);
@@ -521,48 +523,75 @@ WHERE
         private void button1_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show(
-                   "Are you sure you want to save these changes?",
-                   "Confirm Change",
-                   MessageBoxButtons.YesNo,
-                   MessageBoxIcon.Question
-                     );
+      "Are you sure you want to save these changes?",
+      "Confirm Change",
+      MessageBoxButtons.YesNo,
+      MessageBoxIcon.Question);
 
-            if (result == DialogResult.Yes)
-            {
-                foreach (Control control in flowLayoutPanel1.Controls)
-                {
-                    if (control is TextBox)
-                    {
-                        TextBox tb = (TextBox)control;
-
-                        if (string.IsNullOrWhiteSpace(tb.Text))
-                        {
-                            continue;
-                        }
-
-                        dynamic data = tb.Tag;
-
-                        int jobDetailID = data.jobDetailID;
-                        int requestItemID = data.requestItemID;
-
-                        string detailValue = tb.Text;
-
-                        itemDetailTableAdapter1.InsertQuery(
-                           detailValue,
-                           jobDetailID,
-                           requestItemID
-                           );
-
-
-
-                    }
-                }//for each
-                MessageBox.Show("Successfully saved!");
-            } //if
-            else
+            if (result != DialogResult.Yes)
             {
                 MessageBox.Show("No changes were saved.");
+                return;
             }
+
+            string connStr = "Data Source=146.230.177.46;Initial Catalog=GroupWst1;Persist Security Info=True;User ID=GroupWst1;Password=dtf39;Encrypt=True;TrustServerCertificate=True";
+
+            foreach (Control control in flowLayoutPanel1.Controls)
+            {
+                if (control is TextBox tb)
+                {
+                    if (string.IsNullOrWhiteSpace(tb.Text)) continue;
+
+                    dynamic data = tb.Tag;
+                    int jobDetailID = data.jobDetailID;
+                    int reqItemID = data.requestItemID;
+                    string detailValue = tb.Text;
+
+                    using (SqlConnection conn = new SqlConnection(connStr))
+                    {
+                        // check if record already exists
+                        SqlCommand checkCmd = new SqlCommand(@"
+                    SELECT COUNT(*) FROM ItemDetail 
+                    WHERE jobDetailID = @jobDetailID 
+                    AND requestItemID = @requestItemID", conn);
+
+                        checkCmd.Parameters.AddWithValue("@jobDetailID", jobDetailID);
+                        checkCmd.Parameters.AddWithValue("@requestItemID", reqItemID);
+                        conn.Open();
+
+                        int count = Convert.ToInt32(checkCmd.ExecuteScalar());
+
+                        if (count > 0)
+                        {
+                            // UPDATE existing
+                            SqlCommand updateCmd = new SqlCommand(@"
+                        UPDATE ItemDetail 
+                        SET detailValue = @detailValue
+                        WHERE jobDetailID = @jobDetailID 
+                        AND requestItemID = @requestItemID", conn);
+
+                            updateCmd.Parameters.AddWithValue("@detailValue", detailValue);
+                            updateCmd.Parameters.AddWithValue("@jobDetailID", jobDetailID);
+                            updateCmd.Parameters.AddWithValue("@requestItemID", reqItemID);
+                            updateCmd.ExecuteNonQuery();
+                        }
+                        else
+                        {
+                            // INSERT new
+                            SqlCommand insertCmd = new SqlCommand(@"
+                        INSERT INTO ItemDetail (detailValue, jobDetailID, requestItemID)
+                        VALUES (@detailValue, @jobDetailID, @requestItemID)", conn);
+
+                            insertCmd.Parameters.AddWithValue("@detailValue", detailValue);
+                            insertCmd.Parameters.AddWithValue("@jobDetailID", jobDetailID);
+                            insertCmd.Parameters.AddWithValue("@requestItemID", reqItemID);
+                            insertCmd.ExecuteNonQuery();
+                        }
+                    }
+                }
+            }
+
+            MessageBox.Show("Successfully saved!");
         }
 
         private void tabPage4_Click(object sender, EventArgs e)
@@ -868,8 +897,31 @@ WHERE
                 }
             }
         }
+        private string GetExistingDetailValue(int jobDetailID, int requestItemID)
+        {
+            string connStr = "Data Source=146.230.177.46;Initial Catalog=GroupWst1;Persist Security Info=True;User ID=GroupWst1;Password=dtf39;Encrypt=True;TrustServerCertificate=True";
+
+            using (SqlConnection conn = new SqlConnection(connStr))
+            using (SqlCommand cmd = new SqlCommand(@"
+        SELECT detailValue 
+        FROM ItemDetail 
+        WHERE jobDetailID = @jobDetailID 
+        AND requestItemID = @requestItemID", conn))
+            {
+                cmd.Parameters.AddWithValue("@jobDetailID", jobDetailID);
+                cmd.Parameters.AddWithValue("@requestItemID", requestItemID);
+                conn.Open();
+                object result = cmd.ExecuteScalar();
+                return result != null ? result.ToString() : null;
+            }
+        }
 
         private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
