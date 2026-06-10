@@ -204,5 +204,10 @@ namespace M2GiantGroupSystem
         {
             FormSetup(new Maintenance(0));
         }
+
+        private void toolStripMenuItem10_Click(object sender, EventArgs e)
+        {
+            FormSetup(new HelpForm_D());
+        }
     }
 }
