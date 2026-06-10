@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Text;
+using System.Threading.Tasks;
 
 public static class AuthDB
 {
@@ -19,29 +20,35 @@ public static class AuthDB
         using (SqlConnection con = new SqlConnection(connString))
         {
             SqlCommand cmd = new SqlCommand(queryCheck, con);
-            cmd.Parameters.AddWithValue("@email", email);
+            cmd.Parameters.Add("@email", SqlDbType.NVarChar).Value = email; // Explicitly define types
             con.Open();
             var result = cmd.ExecuteScalar();
             if (result != null) staffID = (int)result;
         }
 
-        if (staffID == null) return true; // Security best practice: Always return true
+        if (staffID == null) return true;
 
         string otp = SecurityHelper.GenerateOTP();
         DateTime expiry = DateTime.Now.AddMinutes(5);
 
-        string queryInsert = "INSERT INTO PasswordResets (StaffID, OTP, ExpiryTime) VALUES (@sid, @otp, @exp)";
+        // Explicitly listing columns to ensure 100% clarity for SQL Server
+        string queryInsert = @"SET NOCOUNT ON; 
+                       INSERT INTO PasswordResets (StaffID, OTP, ExpiryTime) 
+                       VALUES (@sid, @otp, @exp);";
+
         using (SqlConnection con = new SqlConnection(connString))
         {
             SqlCommand cmd = new SqlCommand(queryInsert, con);
-            cmd.Parameters.AddWithValue("@sid", staffID);
-            cmd.Parameters.AddWithValue("@otp", otp);
-            cmd.Parameters.AddWithValue("@exp", expiry);
+            // Using explicit SqlDbType helps resolve array/mapping mismatches
+            cmd.Parameters.Add("@sid", SqlDbType.Int).Value = staffID;
+            cmd.Parameters.Add("@otp", SqlDbType.VarChar, 6).Value = otp;
+            cmd.Parameters.Add("@exp", SqlDbType.DateTime).Value = expiry;
+
             con.Open();
             cmd.ExecuteNonQuery();
         }
 
-        // We will call the Email Sender here soon
+        SendEmail(email, otp);
         return true;
     }
 
