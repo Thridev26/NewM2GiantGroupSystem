@@ -40,7 +40,7 @@ namespace M2GiantGroupSystem
                 // Close this form and open the OTP verification form
                 this.Hide();
                 VerifyOTPForm verifyForm = new VerifyOTPForm(txtForgotEmail.Text);
-                verifyForm.Show();
+                verifyForm.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -50,6 +50,11 @@ namespace M2GiantGroupSystem
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

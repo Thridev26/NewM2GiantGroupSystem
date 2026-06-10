@@ -45,5 +45,38 @@ namespace M2GiantGroupSystem
             // Close the reset flow and return to login
             this.Close();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            // If the checkbox is checked, hide the asterisks (show the text)
+            if (checkBox1.Checked)
+            {
+                txtNewPassword.UseSystemPasswordChar = false;
+            }
+            // If it's unchecked, bring the asterisks back
+            else
+            {
+                txtNewPassword.UseSystemPasswordChar = true;
+            }
+        }        
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            // If the checkbox is checked, hide the asterisks (show the text)
+            if (checkBox2.Checked)
+            {
+                txtConfirmPassword.UseSystemPasswordChar = false;
+            }
+            // If it's unchecked, bring the asterisks back
+            else
+            {
+                txtConfirmPassword.UseSystemPasswordChar = true;
+            }
+        }
     }
 }

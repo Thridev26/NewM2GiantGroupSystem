@@ -28,13 +28,18 @@ namespace M2GiantGroupSystem
 
                 // Proceed to the final step: Setting the new password
                 ResetPasswordForm resetForm = new ResetPasswordForm(_userEmail);
-                resetForm.Show();
+                resetForm.ShowDialog();
                 this.Close();
             }
             else
             {
                 MessageBox.Show("Invalid or expired OTP. Please try again.");
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
     
