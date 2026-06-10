@@ -31,10 +31,49 @@ namespace M2GiantGroupSystem
             InitializeComponent();
             tabIndex = tab_index;
         }
+        private void ClearUpdateFormLayout()
+        {
+            selectedJobID = 0;
+            txtUpdateJobID.Clear(); // Resets your Job ID tracking box cleanly
+            dtpUpdateStartDate.Value = DateTime.Today;
+            dtpUpdateEndDate.Value = DateTime.Today;
+            cboUpdateJobStatus.SelectedIndex = -1;
+            txtUpdateFuelCost.Clear();
+            txtUpdateLabourCost.Clear();
+            txtUpdateDumpingCost.Clear();
+            txtUpdateQuoteID.Clear();
+        }
+        void ApplyStatusColoring(DataGridView dgv)
+        {
+            foreach (DataGridViewRow row in dgv.Rows)
+            {
+                // Ensure the grid has a "Status" column before trying to color it
+                if (row.Cells["Status"] != null && row.Cells["Status"].Value != null)
+                {
+                    string status = row.Cells["Status"].Value.ToString();
+
+                    switch (status)
+                    {
+                        case "Completed":
+                            row.DefaultCellStyle.BackColor = Color.LightGreen;
+                            break;
+                        case "In Progress":
+                            row.DefaultCellStyle.BackColor = Color.LightYellow;
+                            break;
+                        case "Not Started":
+                            row.DefaultCellStyle.BackColor = Color.LightCoral;
+                            break;
+                        default:
+                            row.DefaultCellStyle.BackColor = Color.White;
+                            break;
+                    }
+                }
+            }
+        }
         private void ViewJobDetailsForm_Load(object sender, EventArgs e)
         {
             // Setup grid visual layouts first...
-            SetupGrid();
+            SetupGridStyles();
 
             // Populate your filter ComboBox cleanly
             JobProgressFilter.Items.Clear();
@@ -110,32 +149,27 @@ namespace M2GiantGroupSystem
             // Instantly filter the grid as the user types
             loadAcceptedQuotes(txtSearchQuote.Text);
         }
-       
+
         private void JobsForm_Load(object sender, EventArgs e)
         {
-            
+            SetupGridStyles();
+
+            // UI Defaults
             tabControl1.SelectedIndex = tabIndex;
             tabControl1.DrawMode = TabDrawMode.OwnerDrawFixed;
             tabControl1.DrawItem += tabControl1_DrawItem;
-            tabControl1.ItemSize = new Size(300, 30);
-            tabControl1.SizeMode = TabSizeMode.Fixed;
 
-            cboJobStatus.Items.Clear();
             cboJobStatus.Items.AddRange(new string[] { "Not Started", "In Progress", "Completed" });
             cboJobStatus.SelectedIndex = 0;
 
-            txtFuelCost.Text = "0.00";
-            txtLabourCost.Text = "0.00";
-            txtDumpingCost.Text = "0.00";
+            cmbCriteriaSeach.Items.AddRange(new string[] { "Name", "Surname", "Job Status", "Site Adress" });
+            JobProgressFilter.Items.AddRange(new string[] { "All", "Not Started", "In Progress", "Completed" });
+            JobProgressFilter.SelectedIndex = 0;
 
-            dgvJoin.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvJoin.DefaultCellStyle.SelectionBackColor = Color.Green;
-
+            // Load Data
             loadAcceptedQuotes();
-            LoadTimeSlotsForDate(dtpStartDate.Value);
             LoadJobs();
-            SetupGrid();
-            ColourJobRows();
+            LoadTimeSlotsForDate(DateTime.Today);
 
         }
 
@@ -346,7 +380,7 @@ namespace M2GiantGroupSystem
             // Refresh slots for today
             LoadTimeSlotsForDate(DateTime.Today);
         }
-        
+
         // --------------------------------------------------------------------------------------------------------
         // CUSTOM TAB DRAWING
         // --------------------------------------------------------------------------------------------------------
@@ -402,9 +436,9 @@ namespace M2GiantGroupSystem
 
         // Assuming your ComboBox is named JobProgressFilter
         private void JobProgressFilter_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // Pass the newly selected status item and the typed search string
+        {// If nothing is selected, default to "All" to show everything
             string selectedStatus = JobProgressFilter.SelectedItem?.ToString() ?? "All";
+
             LoadJobs(selectedStatus, txtSearchJobV.Text);
         }
 
@@ -454,7 +488,7 @@ namespace M2GiantGroupSystem
             lblFuelJobCost.Text = "Total Fuel Cost: " + fuel.ToString("C2");
             lblJobLabourCost.Text = "Total Labour Cost: " + labour.ToString("C2");
             lblDumpJobCost.Text = "Dumping Cost: " + dumping.ToString("C2");
-           // lblDetailTotalCost.Text = "Overall Job Cost: " + (fuel + labour + dumping).ToString("C2");
+            // lblDetailTotalCost.Text = "Overall Job Cost: " + (fuel + labour + dumping).ToString("C2");
 
             // 7. System Tracking Keys
             lblJobQuoteID.Text = "Linked Quote ID: " + row.Cells["Quote ID"].Value?.ToString();
@@ -465,42 +499,41 @@ namespace M2GiantGroupSystem
             else if (status == "In Progress") jobStatuslb.ForeColor = Color.Orange;
             else jobStatuslb.ForeColor = Color.Red; // Not Started
         }
-        void SetupGrid()
+        void SetupGridStyles()
         {
-            dgvJobs.ReadOnly = true;
-            dgvJobs.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvJobs.MultiSelect = false;
-            dgvJobs.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvJobs.RowHeadersVisible = false;
-            dgvJobs.AllowUserToAddRows = false;
-            dgvJobs.BackgroundColor = Color.FromArgb(155, 198, 138);
-            dgvJobs.DefaultCellStyle.SelectionBackColor = Color.Green;
-            dgvJobs.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 12f, FontStyle.Bold);
-            dgvJobs.EnableHeadersVisualStyles = false;
+            foreach (DataGridView dgv in new[] { dgvJobs, dgvUpdateJob, dgvJoin })
+            {
+                dgv.ReadOnly = true;
+                dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dgv.AllowUserToAddRows = false;
+                dgv.BackgroundColor = Color.FromArgb(155, 198, 138);
+                dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 12f, FontStyle.Bold);
+                dgv.EnableHeadersVisualStyles = false;
+            }
         }
         void LoadJobs(string statusFilter = "All", string searchTerm = "")
         {
             using (SqlConnection conn = new SqlConnection(connStr))
             {
-                // Base SQL Query selecting all needed details
                 string sql = @"
-    SELECT 
-        j.jobID           AS [ID],
-        c.clientName      AS [Client Name],
-        c.clientSurname   AS [Client Surname],
-        jr.siteAddress    AS [Address],
-        j.startDate       AS [Start Date],
-        j.endDate         AS [End Date], 
-        j.jobStatus       AS [Status],
-        j.totalFuelCost   AS [Fuel Cost],
-        j.totalLabourCost AS [Labour Cost],
-        j.dumpingCost     AS [Dumping Cost],
-        j.quoteID         AS [Quote ID]
-    FROM Job j
-    INNER JOIN Quote q ON j.quoteID = q.QuoteID
-    INNER JOIN JobRequest jr ON q.jobRequestID = jr.jobRequestID
-    INNER JOIN Client c ON jr.clientID = c.clientID
-    WHERE 1=1"; // 'WHERE 1=1' is a trick that allows us to dynamically append 'AND' conditions safely
+            SELECT 
+                j.jobID           AS [ID],
+                c.clientName      AS [Client Name],
+                c.clientSurname   AS [Client Surname],
+                jr.siteAddress    AS [Address],
+                j.startDate       AS [Start Date],
+                j.endDate         AS [End Date], 
+                j.jobStatus       AS [Status],
+                j.totalFuelCost   AS [Fuel Cost],
+                j.totalLabourCost AS [Labour Cost],
+                j.dumpingCost     AS [Dumping Cost],
+                j.quoteID         AS [Quote ID]
+            FROM Job j
+            LEFT JOIN Quote q ON j.quoteID = q.QuoteID
+            LEFT JOIN JobRequest jr ON q.jobRequestID = jr.jobRequestID
+            LEFT JOIN Client c ON jr.clientID = c.clientID
+            WHERE 1=1";
 
                 // 1. Handle the ComboBox Status Filter
                 if (statusFilter != "All" && !string.IsNullOrWhiteSpace(statusFilter))
@@ -530,31 +563,28 @@ namespace M2GiantGroupSystem
 
                 DataTable dt = new DataTable();
                 da.Fill(dt);
+
                 dgvJobs.DataSource = dt;
+                dgvUpdateJob.DataSource = dt;
 
                 // Hide structural tracking columns
-                if (dgvJobs.Columns["ID"] != null) dgvJobs.Columns["ID"].Visible = false;
-                if (dgvJobs.Columns["Fuel Cost"] != null) dgvJobs.Columns["Fuel Cost"].Visible = false;
-                if (dgvJobs.Columns["Labour Cost"] != null) dgvJobs.Columns["Labour Cost"].Visible = false;
-                if (dgvJobs.Columns["Dumping Cost"] != null) dgvJobs.Columns["Dumping Cost"].Visible = false;
-                if (dgvJobs.Columns["Quote ID"] != null) dgvJobs.Columns["Quote ID"].Visible = false;
-            }
-            ColourJobRows();
+                foreach (DataGridView dgv in new[] { dgvJobs, dgvUpdateJob })
+                {
+                    if (dgv.Columns["ID"] != null) dgv.Columns["ID"].Visible = false;
+                    if (dgv.Columns["Fuel Cost"] != null) dgv.Columns["Fuel Cost"].Visible = false;
+                    if (dgv.Columns["Labour Cost"] != null) dgv.Columns["Labour Cost"].Visible = false;
+                    if (dgv.Columns["Dumping Cost"] != null) dgv.Columns["Dumping Cost"].Visible = false;
+                    if (dgv.Columns["Quote ID"] != null) dgv.Columns["Quote ID"].Visible = false;
+                }
+            } // Closes the database using connection rule context safely
+
+            // FIXED: Placed inside the LoadJobs function body cleanly
+            ApplyStatusColoring(dgvJobs);
+            ApplyStatusColoring(dgvUpdateJob);
+
         }
 
-        void ColourJobRows()
-        {
-            foreach (DataGridViewRow row in dgvJobs.Rows)
-            {
-                string status = row.Cells["Status"].Value?.ToString();
-
-                // Example: Color based on progress
-                if (status == "Completed") row.DefaultCellStyle.BackColor = Color.LightGreen;
-                else if (status == "In Progress") row.DefaultCellStyle.BackColor = Color.LightYellow;
-                else if (status == "Not Started") row.DefaultCellStyle.BackColor = Color.LightCoral;
-                else row.DefaultCellStyle.BackColor = Color.White;
-            }
-        }
+      
 
         private void JobAddBtn_Click(object sender, EventArgs e)
         {
@@ -625,6 +655,202 @@ namespace M2GiantGroupSystem
                 {
                     MessageBox.Show("Error archiving job: " + ex.Message, "Archive Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+        }
+
+        private void dtpStartDate_ValueChanged_1(object sender, EventArgs e)
+        {
+            LoadTimeSlotsForDate(dtpStartDate.Value);
+        }
+
+        private void searchJobUp_Click(object sender, EventArgs e)
+        {
+            // 1. Validate inputs
+            string criteria = cmbCriteriaSeach.SelectedItem?.ToString();
+            string searchTerm = txtSearchUpdate.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(searchTerm))
+            {
+                MessageBox.Show("Please enter a search term.");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(criteria))
+            {
+                MessageBox.Show("Please select a search criteria from the dropdown.");
+                return;
+            }
+
+            try
+            {
+                // 2. Base SQL Query
+                string sql = @"
+            SELECT 
+                j.jobID           AS [Job ID], 
+                c.clientName      AS [Name], 
+                c.clientSurname   AS [Surname], 
+                j.jobStatus       AS [Status], 
+                jr.siteAddress    AS [Address]
+            FROM Job j
+            INNER JOIN Quote q ON j.quoteID = q.QuoteID
+            INNER JOIN JobRequest jr ON q.jobRequestID = jr.jobRequestID
+            INNER JOIN Client c ON jr.clientID = c.clientID
+            WHERE ";
+
+                // 3. Map criteria to SQL column names
+                switch (criteria)
+                {
+                    case "Name": sql += "c.clientName LIKE @val"; break;
+                    case "Surname": sql += "c.clientSurname LIKE @val"; break;
+                    case "Job Status": sql += "j.jobStatus LIKE @val"; break;
+                    case "Site Adress": sql += "jr.siteAddress LIKE @val"; break;
+                    default:
+                        MessageBox.Show("Invalid search criteria selected.");
+                        return;
+                }
+
+                // 4. Connect and Fetch Data
+                using (SqlConnection conn = new SqlConnection(connStr))
+                {
+                    SqlDataAdapter da = new SqlDataAdapter(sql, conn);
+                    da.SelectCommand.Parameters.AddWithValue("@val", "%" + searchTerm + "%");
+
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                 
+
+                    if (dt.Rows.Count > 0)
+                    {
+                        dgvUpdateJob.DataSource = dt;
+                        dgvUpdateJob.ColumnHeadersVisible = true; // Show headers now that we have data
+
+                        // Apply your column visibility settings here
+                        if (dgvUpdateJob.Columns["Job ID"] != null)
+                            dgvUpdateJob.Columns["Job ID"].Visible = false;
+                    }
+                    else
+                    {
+                        dgvUpdateJob.DataSource = null;
+                        MessageBox.Show("No records found.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Search Error: " + ex.Message);
+            }
+        }
+
+        private void dgvUpdateJob_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                // 1. Prevent crash if they click the header row or an empty space
+                if (e.RowIndex < 0 || dgvUpdateJob.Rows[e.RowIndex].Cells["ID"].Value == DBNull.Value || dgvUpdateJob.Rows[e.RowIndex].Cells["ID"].Value == null)
+                    return;
+
+                DataGridViewRow row = dgvUpdateJob.Rows[e.RowIndex];
+
+                // Save tracking ID globally and display it in the non-editable textbox
+                selectedJobID = Convert.ToInt32(row.Cells["ID"].Value);
+                txtUpdateJobID.Text = selectedJobID.ToString();
+
+                // 2. Populate DateTimePickers safely
+                if (row.Cells["Start Date"].Value != DBNull.Value && row.Cells["Start Date"].Value != null)
+                {
+                    dtpUpdateStartDate.Value = Convert.ToDateTime(row.Cells["Start Date"].Value);
+                }
+
+                if (row.Cells["End Date"].Value != DBNull.Value && row.Cells["End Date"].Value != null)
+                {
+                    dtpUpdateEndDate.Value = Convert.ToDateTime(row.Cells["End Date"].Value);
+                }
+                else
+                {
+                    dtpUpdateEndDate.Value = DateTime.Today; // Fallback default if database end date is null
+                }
+
+                // 3. Populate ComboBox Status
+                string statusValue = row.Cells["Status"].Value?.ToString();
+                if (cboUpdateJobStatus.Items.Contains(statusValue))
+                {
+                    cboUpdateJobStatus.SelectedItem = statusValue;
+                }
+                else
+                {
+                    cboUpdateJobStatus.SelectedIndex = -1; // Clear it if no match
+                }
+
+                // 4. Populate Cost Textboxes
+                decimal fuel = row.Cells["Fuel Cost"].Value != DBNull.Value ? Convert.ToDecimal(row.Cells["Fuel Cost"].Value) : 0.00m;
+                decimal labour = row.Cells["Labour Cost"].Value != DBNull.Value ? Convert.ToDecimal(row.Cells["Labour Cost"].Value) : 0.00m;
+                decimal dumping = row.Cells["Dumping Cost"].Value != DBNull.Value ? Convert.ToDecimal(row.Cells["Dumping Cost"].Value) : 0.00m;
+
+                txtUpdateFuelCost.Text = fuel.ToString("F2");
+                txtUpdateLabourCost.Text = labour.ToString("F2");
+                txtUpdateDumpingCost.Text = dumping.ToString("F2");
+
+                // 5. Populate Quote ID (Read-only reference)
+                txtUpdateQuoteID.Text = row.Cells["Quote ID"].Value?.ToString();
+            }
+            catch (ArgumentException ex)
+            {
+                // This targets missing grid column names explicitly
+                MessageBox.Show($"Grid Column Error: {ex.Message}\n\nPlease check that your SQL column names match your CellClick names exactly.",
+                                "Column Missing", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading selected row: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            // 1. Check the newly named textbox to ensure a job is actively selected
+            if (string.IsNullOrWhiteSpace(txtUpdateJobID.Text) || selectedJobID == 0)
+            {
+                MessageBox.Show("Please select a job from the search results grid first.", "No Job Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (cboUpdateJobStatus.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a valid Job Status.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DialogResult confirm = MessageBox.Show($"Are you sure you want to save changes to Job ID: {selectedJobID}?", "Confirm Update", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirm != DialogResult.Yes) return;
+
+            try
+            {
+                decimal fuel = string.IsNullOrWhiteSpace(txtUpdateFuelCost.Text) ? 0.00m : Convert.ToDecimal(txtUpdateFuelCost.Text);
+                decimal labour = string.IsNullOrWhiteSpace(txtUpdateLabourCost.Text) ? 0.00m : Convert.ToDecimal(txtUpdateLabourCost.Text);
+                decimal dumping = string.IsNullOrWhiteSpace(txtUpdateDumpingCost.Text) ? 0.00m : Convert.ToDecimal(txtUpdateDumpingCost.Text);
+
+                // Call your newly created TableAdapter Update query!
+                jobTableAdapter1.UpdateJobQuery(
+                    dtpUpdateStartDate.Value.Date.ToString("yyyy-MM-dd"),
+                    dtpUpdateEndDate.Value.Date.ToString("yyyy-MM-dd"),
+                    cboUpdateJobStatus.SelectedItem.ToString(),
+                    fuel,
+                    labour,
+                    dumping,
+                    selectedJobID // Used in the WHERE clause to target the right row
+                );
+
+                MessageBox.Show($"Job ID {selectedJobID} updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Refresh your grids dynamically
+                string selectedStatus = JobProgressFilter.SelectedItem?.ToString() ?? "All";
+                LoadJobs(selectedStatus, txtSearchJobV.Text);
+
+                ClearUpdateFormLayout();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error updating job details: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

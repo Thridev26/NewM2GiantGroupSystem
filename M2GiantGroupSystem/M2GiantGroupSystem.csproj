@@ -350,6 +350,12 @@
     <Compile Include="MachineRecords_D.Designer.cs">
       <DependentUpon>MachineRecords_D.cs</DependentUpon>
     </Compile>
+    <Compile Include="Maintenance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Maintenance.Designer.cs">
+      <DependentUpon>Maintenance.cs</DependentUpon>
+    </Compile>
     <Compile Include="MapPopupForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -441,6 +447,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MachineRecords_D.resx">
       <DependentUpon>MachineRecords_D.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Maintenance.resx">
+      <DependentUpon>Maintenance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MapPopupForm.resx">
       <DependentUpon>MapPopupForm.cs</DependentUpon>
