@@ -19,6 +19,7 @@ namespace M2GiantGroupSystem
         public Staff(int tab_index)
         {
             InitializeComponent();
+            ThemeManager.ThemeChanged += ApplyTheme;
             tabIndex = tab_index;
             ApplyPermissions();
         }
@@ -136,6 +137,11 @@ namespace M2GiantGroupSystem
         }
         private void Staff_Load(object sender, EventArgs e)
         {
+            ApplyTheme();
+            dgvStaffInfo.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvStaffInfo.DefaultCellStyle.SelectionBackColor = Color.Green;
+            staffDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            staffDataGridView.DefaultCellStyle.SelectionBackColor = Color.Green;
             ApplyPermissions();
             // 2. Load Filtered Grid (Restricted view)
             dgvStaffInfo.DataSource = StaffDB.GetStaffForUser(UserSession.StaffID, UserSession.AccessLevel);
@@ -332,5 +338,17 @@ namespace M2GiantGroupSystem
                 cmbRoleEdit.SelectedValue = row.Cells["roleID"].Value;
             }
         }
+
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            ThemeManager.ThemeChanged -= ApplyTheme;
+            base.OnFormClosed(e);
+        }
+        private void ApplyTheme()
+        {
+            if (ThemeManager.IsDarkMode)
+                ThemeManager.ApplyTheme(this);
+        }
+
     }
 }
