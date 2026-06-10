@@ -20,7 +20,10 @@ namespace M2GiantGroupSystem
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+            // Initially disable the Return to Menu button because no child forms are open
+            toolStripMenuItem13.Enabled = false;
+            // Explicitly start the clock
+            timer1.Start();
         }
 
         public void FormSetup(Form myForm)
@@ -44,15 +47,7 @@ namespace M2GiantGroupSystem
             myForm.Show();  // display the child window
             AppState.selectedIdCalendar = -8;
         }
-
-        public void CloseActiveChild()
-        {
-            // This closes whatever MDI child is currently focused
-            if (this.ActiveMdiChild != null)
-            {
-                this.ActiveMdiChild.Close();
-            }
-        }
+               
 
         private void createQuoteToolStripMenuItem_Click(object sender, EventArgs e)
         {          
