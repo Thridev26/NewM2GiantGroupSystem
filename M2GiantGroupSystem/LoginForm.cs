@@ -17,6 +17,7 @@ namespace M2GiantGroupSystem
         public LoginForm()
         {
             InitializeComponent();
+            ThemeManager.ThemeChanged += ApplyTheme;
         }
 
         private async void button1_Click(object sender, EventArgs e)
@@ -136,6 +137,11 @@ namespace M2GiantGroupSystem
             forgotPass.ShowDialog();
         }
 
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+            ApplyTheme();
+        }
+
         //This method is for demonstration purposes only. It shows how to hash a password and update it in the database.
         //private void button3_Click(object sender, EventArgs e)
         //{
@@ -157,5 +163,17 @@ namespace M2GiantGroupSystem
         //        }
         //    }
         //}
+
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            ThemeManager.ThemeChanged -= ApplyTheme;
+            base.OnFormClosed(e);
+        }
+        private void ApplyTheme()
+        {
+            if (ThemeManager.IsDarkMode)
+                ThemeManager.ApplyTheme(this);
+        }
+
     }
 }
