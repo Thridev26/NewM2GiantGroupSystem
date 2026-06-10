@@ -34,7 +34,7 @@ namespace M2GiantGroupSystem
                 AuthDB.RequestPasswordReset(txtForgotEmail.Text);
 
                 // ALWAYS show the same message regardless of whether the email was found
-                MessageBox.Show("If a matching account was found, an OTP has been sent to your email.",
+                MessageBox.Show("An OTP has been sent to your email. \nCheck your spam/junk/promotions folder if you don't see it.",
                                 "Request Processed", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 // Close this form and open the OTP verification form
