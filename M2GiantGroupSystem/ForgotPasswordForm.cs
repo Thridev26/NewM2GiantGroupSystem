@@ -16,5 +16,33 @@ namespace M2GiantGroupSystem
         {
             InitializeComponent();
         }
+
+        private void btnSendOTP_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtForgotEmail.Text))
+            {
+                MessageBox.Show("Please enter your email address.");
+                return;
+            }
+
+            try
+            {
+                // This calls the AuthDB method
+                AuthDB.RequestPasswordReset(txtForgotEmail.Text);
+
+                // ALWAYS show the same message regardless of whether the email was found
+                MessageBox.Show("If a matching account was found, an OTP has been sent to your email.",
+                                "Request Processed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Close this form and open the OTP verification form
+                this.Hide();
+                VerifyOTPForm verifyForm = new VerifyOTPForm(txtForgotEmail.Text);
+                verifyForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
+        }
     }
 }

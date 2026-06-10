@@ -288,6 +288,9 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ForgotPasswordForm.resx">
+      <DependentUpon>ForgotPasswordForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GroupWst1DataSet.cs">
       <DependentUpon>GroupWst1DataSet.xsd</DependentUpon>
     </EmbeddedResource>
@@ -383,6 +386,12 @@
     <Compile Include="reportsMainForm.Designer.cs">
       <DependentUpon>reportsMainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ResetPasswordForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ResetPasswordForm.Designer.cs">
+      <DependentUpon>ResetPasswordForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SecurityHelper.cs" />
     <Compile Include="SitePhotosForm.cs">
       <SubType>Form</SubType>
@@ -399,6 +408,12 @@
     <Compile Include="StaffDB.cs" />
     <Compile Include="ThemeManager.cs" />
     <Compile Include="UserSession.cs" />
+    <Compile Include="VerifyOTPForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VerifyOTPForm.Designer.cs">
+      <DependentUpon>VerifyOTPForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="WeeklyExpenseDetails.cs" />
     <Compile Include="WeeklyExpensesReportForm.cs">
       <SubType>Form</SubType>
@@ -478,11 +493,17 @@
     <EmbeddedResource Include="reportsMainForm.resx">
       <DependentUpon>reportsMainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ResetPasswordForm.resx">
+      <DependentUpon>ResetPasswordForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SitePhotosForm.resx">
       <DependentUpon>SitePhotosForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Staff.resx">
       <DependentUpon>Staff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VerifyOTPForm.resx">
+      <DependentUpon>VerifyOTPForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WeeklyExpensesReportForm.resx">
       <DependentUpon>WeeklyExpensesReportForm.cs</DependentUpon>

@@ -45,6 +45,26 @@ public static class AuthDB
         return true;
     }
 
+    public static bool VerifyOTP(string email, string otp)
+    {
+        // Check if the OTP matches, the email matches, AND the expiry time is still valid
+        // We join PasswordResets with Staff to verify the email address
+        string query = @"SELECT COUNT(*) FROM PasswordResets pr 
+                     JOIN Staff s ON pr.StaffID = s.staffID 
+                     WHERE s.emailAddress = @email AND pr.OTP = @otp AND pr.ExpiryTime > GETDATE()";
+
+        using (SqlConnection con = new SqlConnection(connString))
+        {
+            SqlCommand cmd = new SqlCommand(query, con);
+            cmd.Parameters.AddWithValue("@email", email);
+            cmd.Parameters.AddWithValue("@otp", otp);
+            con.Open();
+
+            int count = (int)cmd.ExecuteScalar();
+            return count > 0; // Returns true if a valid, non-expired OTP exists
+        }
+    }
+
     public static void SendEmail(string toEmail, string otp)
     {
         var fromAddress = new MailAddress("your-email@gmail.com", "System Admin");
@@ -70,6 +90,23 @@ public static class AuthDB
         })
         {
             smtp.Send(message); // Pass the message object to the smtp.Send method
+        }
+    }
+
+    public static void UpdatePassword(string email, string newPassword)
+    {
+        // Hash the password using BCrypt
+        string hashed = BCrypt.Net.BCrypt.HashPassword(newPassword);
+
+        string query = "UPDATE Staff SET passwordHash = @hash WHERE emailAddress = @email";
+
+        using (SqlConnection con = new SqlConnection(connString))
+        {
+            SqlCommand cmd = new SqlCommand(query, con);
+            cmd.Parameters.AddWithValue("@hash", hashed);
+            cmd.Parameters.AddWithValue("@email", email);
+            con.Open();
+            cmd.ExecuteNonQuery();
         }
     }
 }
