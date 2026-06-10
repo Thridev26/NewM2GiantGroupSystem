@@ -22,6 +22,7 @@ namespace M2GiantGroupSystem
         public MachineRecords_D()
         {
             InitializeComponent();
+            ThemeManager.ThemeChanged += ApplyTheme;
         }
             private void ApplyPermissions()
         {
@@ -93,7 +94,7 @@ namespace M2GiantGroupSystem
             cmbStatus3.BackColor = Color.FromArgb(143, 188, 143);
             comboBox1.BackColor = Color.FromArgb(143, 188, 143);
             txtHassetID.Text = "";
-
+            ApplyTheme();
 
 
         }
@@ -1055,24 +1056,21 @@ namespace M2GiantGroupSystem
                 }
             }
         }
-
-        private void tabPage1_Click(object sender, EventArgs e)
+        protected override void OnFormClosed(FormClosedEventArgs e)
         {
-
+            ThemeManager.ThemeChanged -= ApplyTheme;
+            base.OnFormClosed(e);
         }
-
-        
-
-
-        private void txtDeleteSN_ImeModeChanged(object sender, EventArgs e)
+        private void ApplyTheme()
         {
-
+            if (ThemeManager.IsDarkMode)
+                ThemeManager.ApplyTheme(this);
         }
     }
 
 }
 
-
+    
 
 
 
