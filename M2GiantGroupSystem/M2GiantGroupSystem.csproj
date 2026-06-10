@@ -256,6 +256,7 @@
       <DependentUpon>AllocateAssetStafftoJob.cs</DependentUpon>
     </Compile>
     <Compile Include="AppState.cs" />
+    <Compile Include="AuthDB.cs" />
     <Compile Include="Calendar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -274,6 +275,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>expensesReport.rpt</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ForgotPasswordForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ForgotPasswordForm.Designer.cs">
+      <DependentUpon>ForgotPasswordForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -376,6 +383,7 @@
     <Compile Include="reportsMainForm.Designer.cs">
       <DependentUpon>reportsMainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SecurityHelper.cs" />
     <Compile Include="SitePhotosForm.cs">
       <SubType>Form</SubType>
     </Compile>
