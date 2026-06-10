@@ -31,64 +31,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(JobsForm));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtSearchQuote = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.dgvJoin = new System.Windows.Forms.DataGridView();
-            this.pnlTimeSlots = new System.Windows.Forms.FlowLayoutPanel();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.lblTimeSlots = new System.Windows.Forms.Label();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label12 = new System.Windows.Forms.Label();
-            this.pnlDetailsV = new System.Windows.Forms.Panel();
-            this.lblJobQuoteID = new System.Windows.Forms.Label();
-            this.lblDumpJobCost = new System.Windows.Forms.Label();
-            this.lblJobLabourCost = new System.Windows.Forms.Label();
-            this.lblFuelJobCost = new System.Windows.Forms.Label();
-            this.siteaddresslb = new System.Windows.Forms.Label();
-            this.lblClientJobName = new System.Windows.Forms.Label();
-            this.jobStatuslb = new System.Windows.Forms.Label();
-            this.jobEndDatelb = new System.Windows.Forms.Label();
-            this.jobStartDatelb = new System.Windows.Forms.Label();
-            this.lbJobID = new System.Windows.Forms.Label();
-            this.txtSearchJobV = new System.Windows.Forms.TextBox();
-            this.JobProgressFilter = new System.Windows.Forms.ComboBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.dgvJobs = new System.Windows.Forms.DataGridView();
-            this.JobAddBtn = new System.Windows.Forms.Button();
-            this.ArchiverJobBtn = new System.Windows.Forms.Button();
-            this.JobEditBtn = new System.Windows.Forms.Button();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.label13 = new System.Windows.Forms.Label();
-            this.txtUpdateJobID = new System.Windows.Forms.TextBox();
-            this.dgvUpdateJob = new System.Windows.Forms.DataGridView();
-            this.txtSearchUpdate = new System.Windows.Forms.TextBox();
-            this.searchJobUp = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
-            this.txtUpdateQuoteID = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.txtUpdateDumpingCost = new System.Windows.Forms.TextBox();
-            this.txtUpdateLabourCost = new System.Windows.Forms.TextBox();
-            this.txtUpdateFuelCost = new System.Windows.Forms.TextBox();
-            this.cboUpdateJobStatus = new System.Windows.Forms.ComboBox();
-            this.dtpUpdateEndDate = new System.Windows.Forms.DateTimePicker();
-            this.dtpUpdateStartDate = new System.Windows.Forms.DateTimePicker();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.lblSearchResults_A = new System.Windows.Forms.Label();
-            this.lblSearchBy_A = new System.Windows.Forms.Label();
-            this.lblSelectCriteria_A = new System.Windows.Forms.Label();
-            this.cmbCriteriaSeach = new System.Windows.Forms.ComboBox();
-            this.lblFindJob_A = new System.Windows.Forms.Label();
-            this.jobTimeSlotTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobTimeSlotTableAdapter();
-            this.jobTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobTableAdapter();
-            this.groupWst1DataSet1 = new M2GiantGroupSystem.GroupWst1DataSet();
-            this.timeSlotTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.TimeSlotTableAdapter();
+            this.pnlTimeSlots = new System.Windows.Forms.FlowLayoutPanel();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.dgvJoin = new System.Windows.Forms.DataGridView();
+            this.txtSearchQuote = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtSelectedQuoteID = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -106,23 +55,81 @@
             this.lblJobStatus = new System.Windows.Forms.Label();
             this.lbl_EndDate = new System.Windows.Forms.Label();
             this.lblStartDate = new System.Windows.Forms.Label();
-            this.lbl_enterDetails = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.pnlDetailsV = new System.Windows.Forms.Panel();
+            this.lblJobQuoteID = new System.Windows.Forms.Label();
+            this.lblDumpJobCost = new System.Windows.Forms.Label();
+            this.lblJobLabourCost = new System.Windows.Forms.Label();
+            this.lblFuelJobCost = new System.Windows.Forms.Label();
+            this.siteaddresslb = new System.Windows.Forms.Label();
+            this.lblClientJobName = new System.Windows.Forms.Label();
+            this.jobStatuslb = new System.Windows.Forms.Label();
+            this.jobEndDatelb = new System.Windows.Forms.Label();
+            this.jobStartDatelb = new System.Windows.Forms.Label();
+            this.lbJobID = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtSearchJobV = new System.Windows.Forms.TextBox();
+            this.JobProgressFilter = new System.Windows.Forms.ComboBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.dgvJobs = new System.Windows.Forms.DataGridView();
+            this.JobAddBtn = new System.Windows.Forms.Button();
+            this.ArchiverJobBtn = new System.Windows.Forms.Button();
+            this.JobEditBtn = new System.Windows.Forms.Button();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.dgvUpdateJob = new System.Windows.Forms.DataGridView();
+            this.txtSearchUpdate = new System.Windows.Forms.TextBox();
+            this.searchJobUp = new System.Windows.Forms.Button();
+            this.lblSearchResults_A = new System.Windows.Forms.Label();
+            this.lblSearchBy_A = new System.Windows.Forms.Label();
+            this.lblSelectCriteria_A = new System.Windows.Forms.Label();
+            this.cmbCriteriaSeach = new System.Windows.Forms.ComboBox();
+            this.jobTimeSlotTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobTimeSlotTableAdapter();
+            this.jobTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobTableAdapter();
+            this.groupWst1DataSet1 = new M2GiantGroupSystem.GroupWst1DataSet();
+            this.timeSlotTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.TimeSlotTableAdapter();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.lbl_name = new System.Windows.Forms.Label();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.txtUpdateJobID = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtUpdateQuoteID = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.txtUpdateDumpingCost = new System.Windows.Forms.TextBox();
+            this.txtUpdateLabourCost = new System.Windows.Forms.TextBox();
+            this.txtUpdateFuelCost = new System.Windows.Forms.TextBox();
+            this.cboUpdateJobStatus = new System.Windows.Forms.ComboBox();
+            this.dtpUpdateEndDate = new System.Windows.Forms.DateTimePicker();
+            this.dtpUpdateStartDate = new System.Windows.Forms.DateTimePicker();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBox3.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvJoin)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPage2.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.pnlDetailsV.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvJobs)).BeginInit();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUpdateJob)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupWst1DataSet1)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -154,6 +161,71 @@
             this.tabPage1.Text = "Add Job Details";
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.lblTimeSlots);
+            this.groupBox3.Controls.Add(this.pnlTimeSlots);
+            this.groupBox3.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.Location = new System.Drawing.Point(903, 69);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(910, 377);
+            this.groupBox3.TabIndex = 81;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Select Available Time Slots";
+            // 
+            // lblTimeSlots
+            // 
+            this.lblTimeSlots.AutoSize = true;
+            this.lblTimeSlots.BackColor = System.Drawing.Color.Transparent;
+            this.lblTimeSlots.Font = new System.Drawing.Font("Segoe UI", 31.2F, System.Drawing.FontStyle.Bold);
+            this.lblTimeSlots.Location = new System.Drawing.Point(102, 62);
+            this.lblTimeSlots.Name = "lblTimeSlots";
+            this.lblTimeSlots.Size = new System.Drawing.Size(0, 70);
+            this.lblTimeSlots.TabIndex = 55;
+            // 
+            // pnlTimeSlots
+            // 
+            this.pnlTimeSlots.Location = new System.Drawing.Point(136, 79);
+            this.pnlTimeSlots.Name = "pnlTimeSlots";
+            this.pnlTimeSlots.Size = new System.Drawing.Size(612, 234);
+            this.pnlTimeSlots.TabIndex = 56;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.dgvJoin);
+            this.groupBox2.Controls.Add(this.txtSearchQuote);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(835, 466);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(1060, 439);
+            this.groupBox2.TabIndex = 80;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Search by Name, Surname, or Address";
+            // 
+            // dgvJoin
+            // 
+            this.dgvJoin.AllowUserToAddRows = false;
+            this.dgvJoin.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvJoin.Location = new System.Drawing.Point(29, 143);
+            this.dgvJoin.Name = "dgvJoin";
+            this.dgvJoin.ReadOnly = true;
+            this.dgvJoin.RowHeadersWidth = 51;
+            this.dgvJoin.RowTemplate.Height = 24;
+            this.dgvJoin.Size = new System.Drawing.Size(1004, 226);
+            this.dgvJoin.TabIndex = 58;
+            this.dgvJoin.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvJoin_CellClick);
+            // 
+            // txtSearchQuote
+            // 
+            this.txtSearchQuote.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.txtSearchQuote.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearchQuote.Location = new System.Drawing.Point(321, 77);
+            this.txtSearchQuote.Name = "txtSearchQuote";
+            this.txtSearchQuote.Size = new System.Drawing.Size(410, 43);
+            this.txtSearchQuote.TabIndex = 63;
+            this.txtSearchQuote.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -161,19 +233,199 @@
             this.label2.Font = new System.Drawing.Font("Segoe UI", 31.2F, System.Drawing.FontStyle.Bold);
             this.label2.Location = new System.Drawing.Point(78, 50);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(960, 70);
+            this.label2.Size = new System.Drawing.Size(0, 70);
             this.label2.TabIndex = 64;
-            this.label2.Text = "Search by Name, Surname, or Address";
             // 
-            // txtSearchQuote
+            // groupBox1
             // 
-            this.txtSearchQuote.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.txtSearchQuote.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearchQuote.Location = new System.Drawing.Point(296, 171);
-            this.txtSearchQuote.Name = "txtSearchQuote";
-            this.txtSearchQuote.Size = new System.Drawing.Size(410, 43);
-            this.txtSearchQuote.TabIndex = 63;
-            this.txtSearchQuote.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.groupBox1.Controls.Add(this.txtSelectedQuoteID);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.btnSaveJob);
+            this.groupBox1.Controls.Add(this.txtDumpingCost);
+            this.groupBox1.Controls.Add(this.txtLabourCost);
+            this.groupBox1.Controls.Add(this.txtFuelCost);
+            this.groupBox1.Controls.Add(this.cboJobStatus);
+            this.groupBox1.Controls.Add(this.dtpEndDate);
+            this.groupBox1.Controls.Add(this.dtpStartDate);
+            this.groupBox1.Controls.Add(this.lblLabourCost);
+            this.groupBox1.Controls.Add(this.lblDumpingCost);
+            this.groupBox1.Controls.Add(this.lblFuelCost);
+            this.groupBox1.Controls.Add(this.lblJobStatus);
+            this.groupBox1.Controls.Add(this.lbl_EndDate);
+            this.groupBox1.Controls.Add(this.lblStartDate);
+            this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(6, 57);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(823, 765);
+            this.groupBox1.TabIndex = 65;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Provide Job Details";
+            // 
+            // txtSelectedQuoteID
+            // 
+            this.txtSelectedQuoteID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.txtSelectedQuoteID.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSelectedQuoteID.Location = new System.Drawing.Point(319, 528);
+            this.txtSelectedQuoteID.Name = "txtSelectedQuoteID";
+            this.txtSelectedQuoteID.Size = new System.Drawing.Size(410, 43);
+            this.txtSelectedQuoteID.TabIndex = 79;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold);
+            this.label1.Location = new System.Drawing.Point(54, 521);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(178, 50);
+            this.label1.TabIndex = 78;
+            this.label1.Text = "Quote ID";
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.DarkGreen;
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.button1.Location = new System.Drawing.Point(510, 623);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(219, 56);
+            this.button1.TabIndex = 77;
+            this.button1.Text = "Clear";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
+            // btnSaveJob
+            // 
+            this.btnSaveJob.BackColor = System.Drawing.Color.DarkGreen;
+            this.btnSaveJob.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveJob.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnSaveJob.Location = new System.Drawing.Point(53, 623);
+            this.btnSaveJob.Name = "btnSaveJob";
+            this.btnSaveJob.Size = new System.Drawing.Size(410, 56);
+            this.btnSaveJob.TabIndex = 76;
+            this.btnSaveJob.Text = "Add Job";
+            this.btnSaveJob.UseVisualStyleBackColor = false;
+            // 
+            // txtDumpingCost
+            // 
+            this.txtDumpingCost.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.txtDumpingCost.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDumpingCost.Location = new System.Drawing.Point(319, 463);
+            this.txtDumpingCost.Name = "txtDumpingCost";
+            this.txtDumpingCost.Size = new System.Drawing.Size(410, 43);
+            this.txtDumpingCost.TabIndex = 75;
+            // 
+            // txtLabourCost
+            // 
+            this.txtLabourCost.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.txtLabourCost.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLabourCost.Location = new System.Drawing.Point(319, 392);
+            this.txtLabourCost.Name = "txtLabourCost";
+            this.txtLabourCost.Size = new System.Drawing.Size(410, 43);
+            this.txtLabourCost.TabIndex = 74;
+            // 
+            // txtFuelCost
+            // 
+            this.txtFuelCost.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.txtFuelCost.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFuelCost.Location = new System.Drawing.Point(319, 325);
+            this.txtFuelCost.Name = "txtFuelCost";
+            this.txtFuelCost.Size = new System.Drawing.Size(410, 43);
+            this.txtFuelCost.TabIndex = 73;
+            // 
+            // cboJobStatus
+            // 
+            this.cboJobStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.cboJobStatus.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboJobStatus.FormattingEnabled = true;
+            this.cboJobStatus.Items.AddRange(new object[] {
+            "Not Started",
+            "In Progress",
+            "Completed"});
+            this.cboJobStatus.Location = new System.Drawing.Point(319, 264);
+            this.cboJobStatus.Name = "cboJobStatus";
+            this.cboJobStatus.Size = new System.Drawing.Size(410, 45);
+            this.cboJobStatus.TabIndex = 72;
+            // 
+            // dtpEndDate
+            // 
+            this.dtpEndDate.Location = new System.Drawing.Point(296, 201);
+            this.dtpEndDate.Name = "dtpEndDate";
+            this.dtpEndDate.Size = new System.Drawing.Size(457, 43);
+            this.dtpEndDate.TabIndex = 71;
+            // 
+            // dtpStartDate
+            // 
+            this.dtpStartDate.Location = new System.Drawing.Point(296, 116);
+            this.dtpStartDate.Name = "dtpStartDate";
+            this.dtpStartDate.Size = new System.Drawing.Size(457, 43);
+            this.dtpStartDate.TabIndex = 70;
+            // 
+            // lblLabourCost
+            // 
+            this.lblLabourCost.AutoSize = true;
+            this.lblLabourCost.BackColor = System.Drawing.Color.Transparent;
+            this.lblLabourCost.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold);
+            this.lblLabourCost.Location = new System.Drawing.Point(56, 392);
+            this.lblLabourCost.Name = "lblLabourCost";
+            this.lblLabourCost.Size = new System.Drawing.Size(230, 50);
+            this.lblLabourCost.TabIndex = 69;
+            this.lblLabourCost.Text = "Labour Cost";
+            // 
+            // lblDumpingCost
+            // 
+            this.lblDumpingCost.AutoSize = true;
+            this.lblDumpingCost.BackColor = System.Drawing.Color.Transparent;
+            this.lblDumpingCost.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold);
+            this.lblDumpingCost.Location = new System.Drawing.Point(54, 463);
+            this.lblDumpingCost.Name = "lblDumpingCost";
+            this.lblDumpingCost.Size = new System.Drawing.Size(270, 50);
+            this.lblDumpingCost.TabIndex = 68;
+            this.lblDumpingCost.Text = "Dumping Cost";
+            // 
+            // lblFuelCost
+            // 
+            this.lblFuelCost.AutoSize = true;
+            this.lblFuelCost.BackColor = System.Drawing.Color.Transparent;
+            this.lblFuelCost.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold);
+            this.lblFuelCost.Location = new System.Drawing.Point(54, 329);
+            this.lblFuelCost.Name = "lblFuelCost";
+            this.lblFuelCost.Size = new System.Drawing.Size(180, 50);
+            this.lblFuelCost.TabIndex = 67;
+            this.lblFuelCost.Text = "Fuel Cost";
+            // 
+            // lblJobStatus
+            // 
+            this.lblJobStatus.AutoSize = true;
+            this.lblJobStatus.BackColor = System.Drawing.Color.Transparent;
+            this.lblJobStatus.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold);
+            this.lblJobStatus.Location = new System.Drawing.Point(56, 259);
+            this.lblJobStatus.Name = "lblJobStatus";
+            this.lblJobStatus.Size = new System.Drawing.Size(200, 50);
+            this.lblJobStatus.TabIndex = 66;
+            this.lblJobStatus.Text = "Job Status";
+            // 
+            // lbl_EndDate
+            // 
+            this.lbl_EndDate.AutoSize = true;
+            this.lbl_EndDate.BackColor = System.Drawing.Color.Transparent;
+            this.lbl_EndDate.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold);
+            this.lbl_EndDate.Location = new System.Drawing.Point(56, 194);
+            this.lbl_EndDate.Name = "lbl_EndDate";
+            this.lbl_EndDate.Size = new System.Drawing.Size(178, 50);
+            this.lbl_EndDate.TabIndex = 65;
+            this.lbl_EndDate.Text = "End Date";
+            // 
+            // lblStartDate
+            // 
+            this.lblStartDate.AutoSize = true;
+            this.lblStartDate.BackColor = System.Drawing.Color.Transparent;
+            this.lblStartDate.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold);
+            this.lblStartDate.Location = new System.Drawing.Point(54, 111);
+            this.lblStartDate.Name = "lblStartDate";
+            this.lblStartDate.Size = new System.Drawing.Size(197, 50);
+            this.lblStartDate.TabIndex = 64;
+            this.lblStartDate.Text = "Start Date";
             // 
             // pictureBox1
             // 
@@ -185,51 +437,14 @@
             this.pictureBox1.TabIndex = 59;
             this.pictureBox1.TabStop = false;
             // 
-            // dgvJoin
-            // 
-            this.dgvJoin.AllowUserToAddRows = false;
-            this.dgvJoin.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvJoin.Location = new System.Drawing.Point(42, 246);
-            this.dgvJoin.Name = "dgvJoin";
-            this.dgvJoin.ReadOnly = true;
-            this.dgvJoin.RowHeadersWidth = 51;
-            this.dgvJoin.RowTemplate.Height = 24;
-            this.dgvJoin.Size = new System.Drawing.Size(1004, 226);
-            this.dgvJoin.TabIndex = 58;
-            this.dgvJoin.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvJoin_CellClick);
-            // 
-            // pnlTimeSlots
-            // 
-            this.pnlTimeSlots.Location = new System.Drawing.Point(237, 165);
-            this.pnlTimeSlots.Name = "pnlTimeSlots";
-            this.pnlTimeSlots.Size = new System.Drawing.Size(469, 161);
-            this.pnlTimeSlots.TabIndex = 56;
-            // 
-            // lblTimeSlots
-            // 
-            this.lblTimeSlots.AutoSize = true;
-            this.lblTimeSlots.BackColor = System.Drawing.Color.Transparent;
-            this.lblTimeSlots.Font = new System.Drawing.Font("Segoe UI", 31.2F, System.Drawing.FontStyle.Bold);
-            this.lblTimeSlots.Location = new System.Drawing.Point(102, 62);
-            this.lblTimeSlots.Name = "lblTimeSlots";
-            this.lblTimeSlots.Size = new System.Drawing.Size(681, 70);
-            this.lblTimeSlots.TabIndex = 55;
-            this.lblTimeSlots.Text = "Select Available Time Slots";
-            // 
             // tabPage2
             // 
             this.tabPage2.AutoScroll = true;
             this.tabPage2.BackColor = System.Drawing.Color.SeaShell;
+            this.tabPage2.Controls.Add(this.groupBox5);
+            this.tabPage2.Controls.Add(this.groupBox4);
             this.tabPage2.Controls.Add(this.label12);
-            this.tabPage2.Controls.Add(this.pnlDetailsV);
-            this.tabPage2.Controls.Add(this.txtSearchJobV);
-            this.tabPage2.Controls.Add(this.JobProgressFilter);
             this.tabPage2.Controls.Add(this.pictureBox2);
-            this.tabPage2.Controls.Add(this.label8);
-            this.tabPage2.Controls.Add(this.dgvJobs);
-            this.tabPage2.Controls.Add(this.JobAddBtn);
-            this.tabPage2.Controls.Add(this.ArchiverJobBtn);
-            this.tabPage2.Controls.Add(this.JobEditBtn);
             this.tabPage2.Location = new System.Drawing.Point(4, 40);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -237,16 +452,17 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "View Job Details";
             // 
-            // label12
+            // groupBox4
             // 
-            this.label12.AutoSize = true;
-            this.label12.BackColor = System.Drawing.Color.Transparent;
-            this.label12.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(137, 33);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(1128, 54);
-            this.label12.TabIndex = 65;
-            this.label12.Text = "Search by Job Progress, Client Name, Surname, or Address";
+            this.groupBox4.Controls.Add(this.pnlDetailsV);
+            this.groupBox4.Controls.Add(this.label8);
+            this.groupBox4.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox4.Location = new System.Drawing.Point(1318, 139);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(602, 647);
+            this.groupBox4.TabIndex = 66;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Details of Selected Job";
             // 
             // pnlDetailsV
             // 
@@ -261,7 +477,7 @@
             this.pnlDetailsV.Controls.Add(this.jobStartDatelb);
             this.pnlDetailsV.Controls.Add(this.lbJobID);
             this.pnlDetailsV.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlDetailsV.Location = new System.Drawing.Point(1338, 223);
+            this.pnlDetailsV.Location = new System.Drawing.Point(40, 75);
             this.pnlDetailsV.Name = "pnlDetailsV";
             this.pnlDetailsV.Size = new System.Drawing.Size(553, 523);
             this.pnlDetailsV.TabIndex = 63;
@@ -366,11 +582,31 @@
             this.lbJobID.TabIndex = 6;
             this.lbJobID.Text = "Job ID";
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.DarkGreen;
+            this.label8.Location = new System.Drawing.Point(157, 34);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(0, 38);
+            this.label8.TabIndex = 14;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.Color.Transparent;
+            this.label12.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(137, 33);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(0, 54);
+            this.label12.TabIndex = 65;
+            // 
             // txtSearchJobV
             // 
             this.txtSearchJobV.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.txtSearchJobV.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearchJobV.Location = new System.Drawing.Point(777, 96);
+            this.txtSearchJobV.Location = new System.Drawing.Point(806, 76);
             this.txtSearchJobV.Name = "txtSearchJobV";
             this.txtSearchJobV.Size = new System.Drawing.Size(273, 50);
             this.txtSearchJobV.TabIndex = 62;
@@ -381,11 +617,7 @@
             this.JobProgressFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.JobProgressFilter.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.JobProgressFilter.FormattingEnabled = true;
-            this.JobProgressFilter.Items.AddRange(new object[] {
-            "Not Started",
-            "In Progress",
-            "Completed"});
-            this.JobProgressFilter.Location = new System.Drawing.Point(318, 93);
+            this.JobProgressFilter.Location = new System.Drawing.Point(197, 70);
             this.JobProgressFilter.Name = "JobProgressFilter";
             this.JobProgressFilter.Size = new System.Drawing.Size(273, 53);
             this.JobProgressFilter.TabIndex = 61;
@@ -401,27 +633,16 @@
             this.pictureBox2.TabIndex = 60;
             this.pictureBox2.TabStop = false;
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.DarkGreen;
-            this.label8.Location = new System.Drawing.Point(1454, 162);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(323, 38);
-            this.label8.TabIndex = 14;
-            this.label8.Text = "Details of Selected Job:";
-            // 
             // dgvJobs
             // 
             this.dgvJobs.AllowUserToAddRows = false;
             this.dgvJobs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvJobs.Location = new System.Drawing.Point(105, 200);
+            this.dgvJobs.Location = new System.Drawing.Point(19, 158);
             this.dgvJobs.Name = "dgvJobs";
             this.dgvJobs.ReadOnly = true;
             this.dgvJobs.RowHeadersWidth = 51;
             this.dgvJobs.RowTemplate.Height = 24;
-            this.dgvJobs.Size = new System.Drawing.Size(1169, 517);
+            this.dgvJobs.Size = new System.Drawing.Size(1267, 452);
             this.dgvJobs.TabIndex = 12;
             this.dgvJobs.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvJobs_CellClick);
             // 
@@ -430,7 +651,7 @@
             this.JobAddBtn.BackColor = System.Drawing.Color.DarkGreen;
             this.JobAddBtn.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.JobAddBtn.ForeColor = System.Drawing.Color.White;
-            this.JobAddBtn.Location = new System.Drawing.Point(164, 749);
+            this.JobAddBtn.Location = new System.Drawing.Point(54, 684);
             this.JobAddBtn.Name = "JobAddBtn";
             this.JobAddBtn.Size = new System.Drawing.Size(494, 78);
             this.JobAddBtn.TabIndex = 11;
@@ -443,7 +664,7 @@
             this.ArchiverJobBtn.BackColor = System.Drawing.Color.DarkGreen;
             this.ArchiverJobBtn.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ArchiverJobBtn.ForeColor = System.Drawing.Color.White;
-            this.ArchiverJobBtn.Location = new System.Drawing.Point(164, 874);
+            this.ArchiverJobBtn.Location = new System.Drawing.Point(54, 790);
             this.ArchiverJobBtn.Name = "ArchiverJobBtn";
             this.ArchiverJobBtn.Size = new System.Drawing.Size(494, 78);
             this.ArchiverJobBtn.TabIndex = 10;
@@ -456,7 +677,7 @@
             this.JobEditBtn.BackColor = System.Drawing.Color.DarkGreen;
             this.JobEditBtn.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.JobEditBtn.ForeColor = System.Drawing.Color.White;
-            this.JobEditBtn.Location = new System.Drawing.Point(700, 749);
+            this.JobEditBtn.Location = new System.Drawing.Point(585, 684);
             this.JobEditBtn.Name = "JobEditBtn";
             this.JobEditBtn.Size = new System.Drawing.Size(494, 78);
             this.JobEditBtn.TabIndex = 9;
@@ -467,32 +688,8 @@
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.SeaShell;
-            this.tabPage3.Controls.Add(this.label13);
-            this.tabPage3.Controls.Add(this.txtUpdateJobID);
-            this.tabPage3.Controls.Add(this.dgvUpdateJob);
-            this.tabPage3.Controls.Add(this.txtSearchUpdate);
-            this.tabPage3.Controls.Add(this.searchJobUp);
-            this.tabPage3.Controls.Add(this.label11);
-            this.tabPage3.Controls.Add(this.txtUpdateQuoteID);
-            this.tabPage3.Controls.Add(this.label3);
-            this.tabPage3.Controls.Add(this.button3);
-            this.tabPage3.Controls.Add(this.txtUpdateDumpingCost);
-            this.tabPage3.Controls.Add(this.txtUpdateLabourCost);
-            this.tabPage3.Controls.Add(this.txtUpdateFuelCost);
-            this.tabPage3.Controls.Add(this.cboUpdateJobStatus);
-            this.tabPage3.Controls.Add(this.dtpUpdateEndDate);
-            this.tabPage3.Controls.Add(this.dtpUpdateStartDate);
-            this.tabPage3.Controls.Add(this.label4);
-            this.tabPage3.Controls.Add(this.label5);
-            this.tabPage3.Controls.Add(this.label6);
-            this.tabPage3.Controls.Add(this.label7);
-            this.tabPage3.Controls.Add(this.label9);
-            this.tabPage3.Controls.Add(this.label10);
-            this.tabPage3.Controls.Add(this.lblSearchResults_A);
-            this.tabPage3.Controls.Add(this.lblSearchBy_A);
-            this.tabPage3.Controls.Add(this.lblSelectCriteria_A);
-            this.tabPage3.Controls.Add(this.cmbCriteriaSeach);
-            this.tabPage3.Controls.Add(this.lblFindJob_A);
+            this.tabPage3.Controls.Add(this.groupBox7);
+            this.tabPage3.Controls.Add(this.groupBox6);
             this.tabPage3.Location = new System.Drawing.Point(4, 40);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -500,37 +697,16 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Edit Job Details";
             // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.BackColor = System.Drawing.Color.Transparent;
-            this.label13.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold);
-            this.label13.Location = new System.Drawing.Point(1119, 202);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(133, 50);
-            this.label13.TabIndex = 92;
-            this.label13.Text = "Job ID";
-            // 
-            // txtUpdateJobID
-            // 
-            this.txtUpdateJobID.BackColor = System.Drawing.Color.Silver;
-            this.txtUpdateJobID.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUpdateJobID.Location = new System.Drawing.Point(1382, 202);
-            this.txtUpdateJobID.Name = "txtUpdateJobID";
-            this.txtUpdateJobID.ReadOnly = true;
-            this.txtUpdateJobID.Size = new System.Drawing.Size(410, 43);
-            this.txtUpdateJobID.TabIndex = 91;
-            // 
             // dgvUpdateJob
             // 
             this.dgvUpdateJob.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dgvUpdateJob.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvUpdateJob.Location = new System.Drawing.Point(87, 545);
+            this.dgvUpdateJob.Location = new System.Drawing.Point(61, 452);
             this.dgvUpdateJob.Name = "dgvUpdateJob";
             this.dgvUpdateJob.ReadOnly = true;
             this.dgvUpdateJob.RowHeadersWidth = 51;
             this.dgvUpdateJob.RowTemplate.Height = 24;
-            this.dgvUpdateJob.Size = new System.Drawing.Size(846, 229);
+            this.dgvUpdateJob.Size = new System.Drawing.Size(886, 229);
             this.dgvUpdateJob.TabIndex = 90;
             this.dgvUpdateJob.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUpdateJob_CellClick);
             // 
@@ -538,7 +714,7 @@
             // 
             this.txtSearchUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.txtSearchUpdate.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearchUpdate.Location = new System.Drawing.Point(206, 400);
+            this.txtSearchUpdate.Location = new System.Drawing.Point(256, 294);
             this.txtSearchUpdate.Margin = new System.Windows.Forms.Padding(5);
             this.txtSearchUpdate.Name = "txtSearchUpdate";
             this.txtSearchUpdate.Size = new System.Drawing.Size(494, 50);
@@ -549,7 +725,7 @@
             this.searchJobUp.BackColor = System.Drawing.Color.DarkGreen;
             this.searchJobUp.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchJobUp.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.searchJobUp.Location = new System.Drawing.Point(221, 847);
+            this.searchJobUp.Location = new System.Drawing.Point(290, 712);
             this.searchJobUp.Name = "searchJobUp";
             this.searchJobUp.Size = new System.Drawing.Size(410, 56);
             this.searchJobUp.TabIndex = 87;
@@ -557,177 +733,11 @@
             this.searchJobUp.UseVisualStyleBackColor = false;
             this.searchJobUp.Click += new System.EventHandler(this.searchJobUp_Click);
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.BackColor = System.Drawing.Color.Transparent;
-            this.label11.Font = new System.Drawing.Font("Segoe UI", 31.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(1169, 117);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(490, 70);
-            this.label11.TabIndex = 86;
-            this.label11.Text = "Update Job Details";
-            // 
-            // txtUpdateQuoteID
-            // 
-            this.txtUpdateQuoteID.BackColor = System.Drawing.Color.Silver;
-            this.txtUpdateQuoteID.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUpdateQuoteID.Location = new System.Drawing.Point(1382, 669);
-            this.txtUpdateQuoteID.Name = "txtUpdateQuoteID";
-            this.txtUpdateQuoteID.ReadOnly = true;
-            this.txtUpdateQuoteID.Size = new System.Drawing.Size(410, 43);
-            this.txtUpdateQuoteID.TabIndex = 85;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold);
-            this.label3.Location = new System.Drawing.Point(1119, 669);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(178, 50);
-            this.label3.TabIndex = 84;
-            this.label3.Text = "Quote ID";
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.DarkGreen;
-            this.button3.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.button3.Location = new System.Drawing.Point(1249, 760);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(410, 56);
-            this.button3.TabIndex = 82;
-            this.button3.Text = "Update Job Details";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // txtUpdateDumpingCost
-            // 
-            this.txtUpdateDumpingCost.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.txtUpdateDumpingCost.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUpdateDumpingCost.Location = new System.Drawing.Point(1382, 604);
-            this.txtUpdateDumpingCost.Name = "txtUpdateDumpingCost";
-            this.txtUpdateDumpingCost.Size = new System.Drawing.Size(410, 43);
-            this.txtUpdateDumpingCost.TabIndex = 81;
-            // 
-            // txtUpdateLabourCost
-            // 
-            this.txtUpdateLabourCost.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.txtUpdateLabourCost.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUpdateLabourCost.Location = new System.Drawing.Point(1382, 533);
-            this.txtUpdateLabourCost.Name = "txtUpdateLabourCost";
-            this.txtUpdateLabourCost.Size = new System.Drawing.Size(410, 43);
-            this.txtUpdateLabourCost.TabIndex = 80;
-            // 
-            // txtUpdateFuelCost
-            // 
-            this.txtUpdateFuelCost.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.txtUpdateFuelCost.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUpdateFuelCost.Location = new System.Drawing.Point(1382, 466);
-            this.txtUpdateFuelCost.Name = "txtUpdateFuelCost";
-            this.txtUpdateFuelCost.Size = new System.Drawing.Size(410, 43);
-            this.txtUpdateFuelCost.TabIndex = 79;
-            // 
-            // cboUpdateJobStatus
-            // 
-            this.cboUpdateJobStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.cboUpdateJobStatus.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboUpdateJobStatus.FormattingEnabled = true;
-            this.cboUpdateJobStatus.Items.AddRange(new object[] {
-            "Not Started",
-            "In Progress",
-            "Completed"});
-            this.cboUpdateJobStatus.Location = new System.Drawing.Point(1382, 406);
-            this.cboUpdateJobStatus.Name = "cboUpdateJobStatus";
-            this.cboUpdateJobStatus.Size = new System.Drawing.Size(410, 45);
-            this.cboUpdateJobStatus.TabIndex = 78;
-            // 
-            // dtpUpdateEndDate
-            // 
-            this.dtpUpdateEndDate.Location = new System.Drawing.Point(1382, 350);
-            this.dtpUpdateEndDate.Name = "dtpUpdateEndDate";
-            this.dtpUpdateEndDate.Size = new System.Drawing.Size(457, 38);
-            this.dtpUpdateEndDate.TabIndex = 77;
-            // 
-            // dtpUpdateStartDate
-            // 
-            this.dtpUpdateStartDate.Location = new System.Drawing.Point(1382, 270);
-            this.dtpUpdateStartDate.Name = "dtpUpdateStartDate";
-            this.dtpUpdateStartDate.Size = new System.Drawing.Size(457, 38);
-            this.dtpUpdateStartDate.TabIndex = 76;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(1119, 533);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(230, 50);
-            this.label4.TabIndex = 75;
-            this.label4.Text = "Labour Cost";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold);
-            this.label5.Location = new System.Drawing.Point(1117, 604);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(270, 50);
-            this.label5.TabIndex = 74;
-            this.label5.Text = "Dumping Cost";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold);
-            this.label6.Location = new System.Drawing.Point(1117, 470);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(180, 50);
-            this.label6.TabIndex = 73;
-            this.label6.Text = "Fuel Cost";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold);
-            this.label7.Location = new System.Drawing.Point(1119, 407);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(200, 50);
-            this.label7.TabIndex = 72;
-            this.label7.Text = "Job Status";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.BackColor = System.Drawing.Color.Transparent;
-            this.label9.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold);
-            this.label9.Location = new System.Drawing.Point(1117, 342);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(178, 50);
-            this.label9.TabIndex = 71;
-            this.label9.Text = "End Date";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.BackColor = System.Drawing.Color.Transparent;
-            this.label10.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold);
-            this.label10.Location = new System.Drawing.Point(1117, 270);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(197, 50);
-            this.label10.TabIndex = 70;
-            this.label10.Text = "Start Date";
-            // 
             // lblSearchResults_A
             // 
             this.lblSearchResults_A.AutoSize = true;
             this.lblSearchResults_A.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSearchResults_A.Location = new System.Drawing.Point(197, 468);
+            this.lblSearchResults_A.Location = new System.Drawing.Point(257, 381);
             this.lblSearchResults_A.Name = "lblSearchResults_A";
             this.lblSearchResults_A.Size = new System.Drawing.Size(496, 50);
             this.lblSearchResults_A.TabIndex = 68;
@@ -737,18 +747,18 @@
             // 
             this.lblSearchBy_A.AutoSize = true;
             this.lblSearchBy_A.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSearchBy_A.Location = new System.Drawing.Point(197, 324);
+            this.lblSearchBy_A.Location = new System.Drawing.Point(149, 227);
             this.lblSearchBy_A.Name = "lblSearchBy_A";
-            this.lblSearchBy_A.Size = new System.Drawing.Size(130, 50);
+            this.lblSearchBy_A.Size = new System.Drawing.Size(685, 50);
             this.lblSearchBy_A.TabIndex = 67;
-            this.lblSearchBy_A.Text = "Enter..";
+            this.lblSearchBy_A.Text = "Search by Name, Surname, or Address";
             // 
             // lblSelectCriteria_A
             // 
             this.lblSelectCriteria_A.AutoSize = true;
             this.lblSelectCriteria_A.BackColor = System.Drawing.Color.Transparent;
             this.lblSelectCriteria_A.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSelectCriteria_A.Location = new System.Drawing.Point(194, 195);
+            this.lblSelectCriteria_A.Location = new System.Drawing.Point(297, 64);
             this.lblSelectCriteria_A.Name = "lblSelectCriteria_A";
             this.lblSelectCriteria_A.Size = new System.Drawing.Size(421, 50);
             this.lblSelectCriteria_A.TabIndex = 64;
@@ -764,21 +774,10 @@
             "Surname",
             "Job Status",
             "Site Adress"});
-            this.cmbCriteriaSeach.Location = new System.Drawing.Point(203, 255);
+            this.cmbCriteriaSeach.Location = new System.Drawing.Point(290, 143);
             this.cmbCriteriaSeach.Name = "cmbCriteriaSeach";
             this.cmbCriteriaSeach.Size = new System.Drawing.Size(428, 53);
             this.cmbCriteriaSeach.TabIndex = 63;
-            // 
-            // lblFindJob_A
-            // 
-            this.lblFindJob_A.AutoSize = true;
-            this.lblFindJob_A.BackColor = System.Drawing.Color.Transparent;
-            this.lblFindJob_A.Font = new System.Drawing.Font("Segoe UI", 31.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFindJob_A.Location = new System.Drawing.Point(260, 87);
-            this.lblFindJob_A.Name = "lblFindJob_A";
-            this.lblFindJob_A.Size = new System.Drawing.Size(236, 70);
-            this.lblFindJob_A.TabIndex = 62;
-            this.lblFindJob_A.Text = "Find Job";
             // 
             // jobTimeSlotTableAdapter1
             // 
@@ -797,231 +796,263 @@
             // 
             this.timeSlotTableAdapter1.ClearBeforeFill = true;
             // 
-            // groupBox1
+            // groupBox5
             // 
-            this.groupBox1.Controls.Add(this.txtSelectedQuoteID);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.btnSaveJob);
-            this.groupBox1.Controls.Add(this.txtDumpingCost);
-            this.groupBox1.Controls.Add(this.txtLabourCost);
-            this.groupBox1.Controls.Add(this.txtFuelCost);
-            this.groupBox1.Controls.Add(this.cboJobStatus);
-            this.groupBox1.Controls.Add(this.dtpEndDate);
-            this.groupBox1.Controls.Add(this.dtpStartDate);
-            this.groupBox1.Controls.Add(this.lblLabourCost);
-            this.groupBox1.Controls.Add(this.lblDumpingCost);
-            this.groupBox1.Controls.Add(this.lblFuelCost);
-            this.groupBox1.Controls.Add(this.lblJobStatus);
-            this.groupBox1.Controls.Add(this.lbl_EndDate);
-            this.groupBox1.Controls.Add(this.lblStartDate);
-            this.groupBox1.Controls.Add(this.lbl_enterDetails);
-            this.groupBox1.Location = new System.Drawing.Point(6, 38);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(823, 768);
-            this.groupBox1.TabIndex = 65;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Edit ";
+            this.groupBox5.Controls.Add(this.lbl_name);
+            this.groupBox5.Controls.Add(this.JobEditBtn);
+            this.groupBox5.Controls.Add(this.JobAddBtn);
+            this.groupBox5.Controls.Add(this.ArchiverJobBtn);
+            this.groupBox5.Controls.Add(this.txtSearchJobV);
+            this.groupBox5.Controls.Add(this.dgvJobs);
+            this.groupBox5.Controls.Add(this.JobProgressFilter);
+            this.groupBox5.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox5.Location = new System.Drawing.Point(8, 69);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(1297, 885);
+            this.groupBox5.TabIndex = 67;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Search by Job Progress, Client Name, Surname, or Address";
             // 
-            // txtSelectedQuoteID
+            // lbl_name
             // 
-            this.txtSelectedQuoteID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.txtSelectedQuoteID.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSelectedQuoteID.Location = new System.Drawing.Point(342, 588);
-            this.txtSelectedQuoteID.Name = "txtSelectedQuoteID";
-            this.txtSelectedQuoteID.Size = new System.Drawing.Size(410, 43);
-            this.txtSelectedQuoteID.TabIndex = 79;
+            this.lbl_name.AutoSize = true;
+            this.lbl_name.BackColor = System.Drawing.Color.Transparent;
+            this.lbl_name.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_name.Location = new System.Drawing.Point(628, 73);
+            this.lbl_name.Name = "lbl_name";
+            this.lbl_name.Size = new System.Drawing.Size(138, 50);
+            this.lbl_name.TabIndex = 63;
+            this.lbl_name.Text = "Search";
             // 
-            // label1
+            // groupBox6
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(77, 581);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(178, 50);
-            this.label1.TabIndex = 78;
-            this.label1.Text = "Quote ID";
+            this.groupBox6.Controls.Add(this.searchJobUp);
+            this.groupBox6.Controls.Add(this.dgvUpdateJob);
+            this.groupBox6.Controls.Add(this.lblSearchResults_A);
+            this.groupBox6.Controls.Add(this.txtSearchUpdate);
+            this.groupBox6.Controls.Add(this.lblSearchBy_A);
+            this.groupBox6.Controls.Add(this.cmbCriteriaSeach);
+            this.groupBox6.Controls.Add(this.lblSelectCriteria_A);
+            this.groupBox6.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox6.Location = new System.Drawing.Point(8, 45);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(1058, 832);
+            this.groupBox6.TabIndex = 93;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Find Job";
             // 
-            // button1
+            // groupBox7
             // 
-            this.button1.BackColor = System.Drawing.Color.DarkGreen;
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.button1.Location = new System.Drawing.Point(533, 683);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(219, 56);
-            this.button1.TabIndex = 77;
-            this.button1.Text = "Clear";
-            this.button1.UseVisualStyleBackColor = false;
+            this.groupBox7.Controls.Add(this.label13);
+            this.groupBox7.Controls.Add(this.txtUpdateJobID);
+            this.groupBox7.Controls.Add(this.label11);
+            this.groupBox7.Controls.Add(this.txtUpdateQuoteID);
+            this.groupBox7.Controls.Add(this.label3);
+            this.groupBox7.Controls.Add(this.button3);
+            this.groupBox7.Controls.Add(this.txtUpdateDumpingCost);
+            this.groupBox7.Controls.Add(this.txtUpdateLabourCost);
+            this.groupBox7.Controls.Add(this.txtUpdateFuelCost);
+            this.groupBox7.Controls.Add(this.cboUpdateJobStatus);
+            this.groupBox7.Controls.Add(this.dtpUpdateEndDate);
+            this.groupBox7.Controls.Add(this.dtpUpdateStartDate);
+            this.groupBox7.Controls.Add(this.label4);
+            this.groupBox7.Controls.Add(this.label5);
+            this.groupBox7.Controls.Add(this.label6);
+            this.groupBox7.Controls.Add(this.label7);
+            this.groupBox7.Controls.Add(this.label9);
+            this.groupBox7.Controls.Add(this.label10);
+            this.groupBox7.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox7.Location = new System.Drawing.Point(1096, 163);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(812, 714);
+            this.groupBox7.TabIndex = 94;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Update Job Details";
             // 
-            // btnSaveJob
+            // label13
             // 
-            this.btnSaveJob.BackColor = System.Drawing.Color.DarkGreen;
-            this.btnSaveJob.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveJob.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnSaveJob.Location = new System.Drawing.Point(76, 683);
-            this.btnSaveJob.Name = "btnSaveJob";
-            this.btnSaveJob.Size = new System.Drawing.Size(410, 56);
-            this.btnSaveJob.TabIndex = 76;
-            this.btnSaveJob.Text = "Add Job";
-            this.btnSaveJob.UseVisualStyleBackColor = false;
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.Color.Transparent;
+            this.label13.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold);
+            this.label13.Location = new System.Drawing.Point(47, 93);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(133, 50);
+            this.label13.TabIndex = 110;
+            this.label13.Text = "Job ID";
             // 
-            // txtDumpingCost
+            // txtUpdateJobID
             // 
-            this.txtDumpingCost.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.txtDumpingCost.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDumpingCost.Location = new System.Drawing.Point(342, 523);
-            this.txtDumpingCost.Name = "txtDumpingCost";
-            this.txtDumpingCost.Size = new System.Drawing.Size(410, 43);
-            this.txtDumpingCost.TabIndex = 75;
+            this.txtUpdateJobID.BackColor = System.Drawing.Color.Silver;
+            this.txtUpdateJobID.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUpdateJobID.Location = new System.Drawing.Point(310, 93);
+            this.txtUpdateJobID.Name = "txtUpdateJobID";
+            this.txtUpdateJobID.ReadOnly = true;
+            this.txtUpdateJobID.Size = new System.Drawing.Size(410, 43);
+            this.txtUpdateJobID.TabIndex = 109;
             // 
-            // txtLabourCost
+            // label11
             // 
-            this.txtLabourCost.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.txtLabourCost.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLabourCost.Location = new System.Drawing.Point(342, 452);
-            this.txtLabourCost.Name = "txtLabourCost";
-            this.txtLabourCost.Size = new System.Drawing.Size(410, 43);
-            this.txtLabourCost.TabIndex = 74;
+            this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.Color.Transparent;
+            this.label11.Font = new System.Drawing.Font("Segoe UI", 31.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(97, 8);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(0, 70);
+            this.label11.TabIndex = 108;
             // 
-            // txtFuelCost
+            // txtUpdateQuoteID
             // 
-            this.txtFuelCost.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.txtFuelCost.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFuelCost.Location = new System.Drawing.Point(342, 385);
-            this.txtFuelCost.Name = "txtFuelCost";
-            this.txtFuelCost.Size = new System.Drawing.Size(410, 43);
-            this.txtFuelCost.TabIndex = 73;
+            this.txtUpdateQuoteID.BackColor = System.Drawing.Color.Silver;
+            this.txtUpdateQuoteID.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUpdateQuoteID.Location = new System.Drawing.Point(310, 560);
+            this.txtUpdateQuoteID.Name = "txtUpdateQuoteID";
+            this.txtUpdateQuoteID.ReadOnly = true;
+            this.txtUpdateQuoteID.Size = new System.Drawing.Size(410, 43);
+            this.txtUpdateQuoteID.TabIndex = 107;
             // 
-            // cboJobStatus
+            // label3
             // 
-            this.cboJobStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.cboJobStatus.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboJobStatus.FormattingEnabled = true;
-            this.cboJobStatus.Items.AddRange(new object[] {
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold);
+            this.label3.Location = new System.Drawing.Point(47, 560);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(178, 50);
+            this.label3.TabIndex = 106;
+            this.label3.Text = "Quote ID";
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.DarkGreen;
+            this.button3.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.button3.Location = new System.Drawing.Point(182, 638);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(410, 56);
+            this.button3.TabIndex = 105;
+            this.button3.Text = "Update Job Details";
+            this.button3.UseVisualStyleBackColor = false;
+            // 
+            // txtUpdateDumpingCost
+            // 
+            this.txtUpdateDumpingCost.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.txtUpdateDumpingCost.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUpdateDumpingCost.Location = new System.Drawing.Point(310, 495);
+            this.txtUpdateDumpingCost.Name = "txtUpdateDumpingCost";
+            this.txtUpdateDumpingCost.Size = new System.Drawing.Size(410, 43);
+            this.txtUpdateDumpingCost.TabIndex = 104;
+            // 
+            // txtUpdateLabourCost
+            // 
+            this.txtUpdateLabourCost.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.txtUpdateLabourCost.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUpdateLabourCost.Location = new System.Drawing.Point(310, 424);
+            this.txtUpdateLabourCost.Name = "txtUpdateLabourCost";
+            this.txtUpdateLabourCost.Size = new System.Drawing.Size(410, 43);
+            this.txtUpdateLabourCost.TabIndex = 103;
+            // 
+            // txtUpdateFuelCost
+            // 
+            this.txtUpdateFuelCost.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.txtUpdateFuelCost.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUpdateFuelCost.Location = new System.Drawing.Point(310, 357);
+            this.txtUpdateFuelCost.Name = "txtUpdateFuelCost";
+            this.txtUpdateFuelCost.Size = new System.Drawing.Size(410, 43);
+            this.txtUpdateFuelCost.TabIndex = 102;
+            // 
+            // cboUpdateJobStatus
+            // 
+            this.cboUpdateJobStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.cboUpdateJobStatus.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboUpdateJobStatus.FormattingEnabled = true;
+            this.cboUpdateJobStatus.Items.AddRange(new object[] {
             "Not Started",
             "In Progress",
             "Completed"});
-            this.cboJobStatus.Location = new System.Drawing.Point(342, 324);
-            this.cboJobStatus.Name = "cboJobStatus";
-            this.cboJobStatus.Size = new System.Drawing.Size(410, 45);
-            this.cboJobStatus.TabIndex = 72;
+            this.cboUpdateJobStatus.Location = new System.Drawing.Point(310, 297);
+            this.cboUpdateJobStatus.Name = "cboUpdateJobStatus";
+            this.cboUpdateJobStatus.Size = new System.Drawing.Size(410, 45);
+            this.cboUpdateJobStatus.TabIndex = 101;
             // 
-            // dtpEndDate
+            // dtpUpdateEndDate
             // 
-            this.dtpEndDate.Location = new System.Drawing.Point(319, 269);
-            this.dtpEndDate.Name = "dtpEndDate";
-            this.dtpEndDate.Size = new System.Drawing.Size(457, 38);
-            this.dtpEndDate.TabIndex = 71;
+            this.dtpUpdateEndDate.Location = new System.Drawing.Point(310, 241);
+            this.dtpUpdateEndDate.Name = "dtpUpdateEndDate";
+            this.dtpUpdateEndDate.Size = new System.Drawing.Size(457, 43);
+            this.dtpUpdateEndDate.TabIndex = 100;
             // 
-            // dtpStartDate
+            // dtpUpdateStartDate
             // 
-            this.dtpStartDate.Location = new System.Drawing.Point(319, 184);
-            this.dtpStartDate.Name = "dtpStartDate";
-            this.dtpStartDate.Size = new System.Drawing.Size(457, 38);
-            this.dtpStartDate.TabIndex = 70;
+            this.dtpUpdateStartDate.Location = new System.Drawing.Point(310, 161);
+            this.dtpUpdateStartDate.Name = "dtpUpdateStartDate";
+            this.dtpUpdateStartDate.Size = new System.Drawing.Size(457, 43);
+            this.dtpUpdateStartDate.TabIndex = 99;
             // 
-            // lblLabourCost
+            // label4
             // 
-            this.lblLabourCost.AutoSize = true;
-            this.lblLabourCost.BackColor = System.Drawing.Color.Transparent;
-            this.lblLabourCost.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold);
-            this.lblLabourCost.Location = new System.Drawing.Point(79, 452);
-            this.lblLabourCost.Name = "lblLabourCost";
-            this.lblLabourCost.Size = new System.Drawing.Size(230, 50);
-            this.lblLabourCost.TabIndex = 69;
-            this.lblLabourCost.Text = "Labour Cost";
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold);
+            this.label4.Location = new System.Drawing.Point(47, 424);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(230, 50);
+            this.label4.TabIndex = 98;
+            this.label4.Text = "Labour Cost";
             // 
-            // lblDumpingCost
+            // label5
             // 
-            this.lblDumpingCost.AutoSize = true;
-            this.lblDumpingCost.BackColor = System.Drawing.Color.Transparent;
-            this.lblDumpingCost.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold);
-            this.lblDumpingCost.Location = new System.Drawing.Point(77, 523);
-            this.lblDumpingCost.Name = "lblDumpingCost";
-            this.lblDumpingCost.Size = new System.Drawing.Size(270, 50);
-            this.lblDumpingCost.TabIndex = 68;
-            this.lblDumpingCost.Text = "Dumping Cost";
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold);
+            this.label5.Location = new System.Drawing.Point(45, 495);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(270, 50);
+            this.label5.TabIndex = 97;
+            this.label5.Text = "Dumping Cost";
             // 
-            // lblFuelCost
+            // label6
             // 
-            this.lblFuelCost.AutoSize = true;
-            this.lblFuelCost.BackColor = System.Drawing.Color.Transparent;
-            this.lblFuelCost.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold);
-            this.lblFuelCost.Location = new System.Drawing.Point(77, 389);
-            this.lblFuelCost.Name = "lblFuelCost";
-            this.lblFuelCost.Size = new System.Drawing.Size(180, 50);
-            this.lblFuelCost.TabIndex = 67;
-            this.lblFuelCost.Text = "Fuel Cost";
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold);
+            this.label6.Location = new System.Drawing.Point(45, 361);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(180, 50);
+            this.label6.TabIndex = 96;
+            this.label6.Text = "Fuel Cost";
             // 
-            // lblJobStatus
+            // label7
             // 
-            this.lblJobStatus.AutoSize = true;
-            this.lblJobStatus.BackColor = System.Drawing.Color.Transparent;
-            this.lblJobStatus.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold);
-            this.lblJobStatus.Location = new System.Drawing.Point(79, 326);
-            this.lblJobStatus.Name = "lblJobStatus";
-            this.lblJobStatus.Size = new System.Drawing.Size(200, 50);
-            this.lblJobStatus.TabIndex = 66;
-            this.lblJobStatus.Text = "Job Status";
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold);
+            this.label7.Location = new System.Drawing.Point(47, 298);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(200, 50);
+            this.label7.TabIndex = 95;
+            this.label7.Text = "Job Status";
             // 
-            // lbl_EndDate
+            // label9
             // 
-            this.lbl_EndDate.AutoSize = true;
-            this.lbl_EndDate.BackColor = System.Drawing.Color.Transparent;
-            this.lbl_EndDate.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold);
-            this.lbl_EndDate.Location = new System.Drawing.Point(79, 261);
-            this.lbl_EndDate.Name = "lbl_EndDate";
-            this.lbl_EndDate.Size = new System.Drawing.Size(178, 50);
-            this.lbl_EndDate.TabIndex = 65;
-            this.lbl_EndDate.Text = "End Date";
+            this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.Color.Transparent;
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold);
+            this.label9.Location = new System.Drawing.Point(45, 233);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(178, 50);
+            this.label9.TabIndex = 94;
+            this.label9.Text = "End Date";
             // 
-            // lblStartDate
+            // label10
             // 
-            this.lblStartDate.AutoSize = true;
-            this.lblStartDate.BackColor = System.Drawing.Color.Transparent;
-            this.lblStartDate.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold);
-            this.lblStartDate.Location = new System.Drawing.Point(77, 176);
-            this.lblStartDate.Name = "lblStartDate";
-            this.lblStartDate.Size = new System.Drawing.Size(197, 50);
-            this.lblStartDate.TabIndex = 64;
-            this.lblStartDate.Text = "Start Date";
-            // 
-            // lbl_enterDetails
-            // 
-            this.lbl_enterDetails.AutoSize = true;
-            this.lbl_enterDetails.BackColor = System.Drawing.Color.Transparent;
-            this.lbl_enterDetails.Font = new System.Drawing.Font("Segoe UI", 31.2F, System.Drawing.FontStyle.Bold);
-            this.lbl_enterDetails.Location = new System.Drawing.Point(173, 59);
-            this.lbl_enterDetails.Name = "lbl_enterDetails";
-            this.lbl_enterDetails.Size = new System.Drawing.Size(440, 70);
-            this.lbl_enterDetails.TabIndex = 63;
-            this.lbl_enterDetails.Text = "Enter Job Details";
-            this.lbl_enterDetails.Click += new System.EventHandler(this.lbl_enterDetails_Click);
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.dgvJoin);
-            this.groupBox2.Controls.Add(this.txtSearchQuote);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Location = new System.Drawing.Point(835, 466);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1060, 512);
-            this.groupBox2.TabIndex = 80;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Search";
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.lblTimeSlots);
-            this.groupBox3.Controls.Add(this.pnlTimeSlots);
-            this.groupBox3.Location = new System.Drawing.Point(903, 69);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(910, 377);
-            this.groupBox3.TabIndex = 81;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Time Slots";
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.Color.Transparent;
+            this.label10.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold);
+            this.label10.Location = new System.Drawing.Point(45, 161);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(197, 50);
+            this.label10.TabIndex = 93;
+            this.label10.Text = "Start Date";
             // 
             // JobsForm
             // 
@@ -1035,24 +1066,31 @@
             this.Load += new System.EventHandler(this.JobsForm_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvJoin)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.pnlDetailsV.ResumeLayout(false);
             this.pnlDetailsV.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvJobs)).EndInit();
             this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUpdateJob)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupWst1DataSet1)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1094,31 +1132,12 @@
         private System.Windows.Forms.Label lblSearchBy_A;
         private System.Windows.Forms.Label lblSelectCriteria_A;
         private System.Windows.Forms.ComboBox cmbCriteriaSeach;
-        private System.Windows.Forms.Label lblFindJob_A;
-        private System.Windows.Forms.TextBox txtUpdateQuoteID;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox txtUpdateDumpingCost;
-        private System.Windows.Forms.TextBox txtUpdateLabourCost;
-        private System.Windows.Forms.TextBox txtUpdateFuelCost;
-        private System.Windows.Forms.ComboBox cboUpdateJobStatus;
-        private System.Windows.Forms.DateTimePicker dtpUpdateEndDate;
-        private System.Windows.Forms.DateTimePicker dtpUpdateStartDate;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label lblDumpJobCost;
         private System.Windows.Forms.Label lblJobQuoteID;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button searchJobUp;
         private System.Windows.Forms.TextBox txtSearchUpdate;
         private System.Windows.Forms.DataGridView dgvUpdateJob;
-        private System.Windows.Forms.TextBox txtUpdateJobID;
-        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtSelectedQuoteID;
         private System.Windows.Forms.Label label1;
@@ -1136,8 +1155,30 @@
         private System.Windows.Forms.Label lblJobStatus;
         private System.Windows.Forms.Label lbl_EndDate;
         private System.Windows.Forms.Label lblStartDate;
-        private System.Windows.Forms.Label lbl_enterDetails;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Label lbl_name;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox txtUpdateJobID;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox txtUpdateQuoteID;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox txtUpdateDumpingCost;
+        private System.Windows.Forms.TextBox txtUpdateLabourCost;
+        private System.Windows.Forms.TextBox txtUpdateFuelCost;
+        private System.Windows.Forms.ComboBox cboUpdateJobStatus;
+        private System.Windows.Forms.DateTimePicker dtpUpdateEndDate;
+        private System.Windows.Forms.DateTimePicker dtpUpdateStartDate;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
     }
 }
