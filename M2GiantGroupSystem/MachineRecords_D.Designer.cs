@@ -211,7 +211,7 @@
             this.tabPage1.Size = new System.Drawing.Size(1724, 882);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "OWNED ASSETS";
-            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+           
             // 
             // pictureBox1
             // 
@@ -285,7 +285,7 @@
             this.txtDeleteSN.Size = new System.Drawing.Size(170, 34);
             this.txtDeleteSN.TabIndex = 16;
             this.txtDeleteSN.TextChanged += new System.EventHandler(this.txtDeleteSN_TextChanged);
-            this.txtDeleteSN.ImeModeChanged += new System.EventHandler(this.txtDeleteSN_ImeModeChanged);
+           
             // 
             // cmbDeleteST
             // 
