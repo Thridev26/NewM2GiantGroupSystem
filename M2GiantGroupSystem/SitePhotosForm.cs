@@ -158,7 +158,7 @@ namespace M2GiantGroupSystem
         private void SitePhotosForm_Load(object sender, EventArgs e)
         {
             //set to maximize the form when it loads
-            this.WindowState = FormWindowState.Maximized;
+           // this.WindowState = FormWindowState.Maximized;
             //ask user if they want too manage job photos or request photos
             //   MessageBox.Show("Welcome to the Site Photos Manager! Please select a Job Request from the table to view and manage its associated site photos. You can upload BEFORE and AFTER photos for each Job Request.", "Welcome", MessageBoxButtons.OK, MessageBoxIcon.Information);
             runQuery(textBox1, dgvJoinPicturesView);
