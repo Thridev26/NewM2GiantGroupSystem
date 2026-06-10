@@ -204,6 +204,7 @@ namespace M2GiantGroupSystem
             contactNumberTextBox.Clear();
             cmbEditStatus.SelectedIndex = -1; // Deselects the combo box
             cmbRoleEdit.SelectedIndex = -1; // Deselects the combo box
+            emailAddressTextBox1.Clear(); // Add this
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -235,6 +236,7 @@ namespace M2GiantGroupSystem
                     userNameTextBox.Text,
                     passToSend,
                     contactNumberTextBox.Text,
+                    emailAddressTextBox.Text,
                     selectedStatus,
                     decimal.Parse(dailyRateTextBox.Text),
                     (int)cmbRoleEdit.SelectedValue,
@@ -242,7 +244,7 @@ namespace M2GiantGroupSystem
                 );
 
                 MessageBox.Show("Staff updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                ClearAddFields();
+                ClearEditFields();
                 dgvStaffInfo.DataSource = StaffDB.GetStaffForUser(UserSession.StaffID, UserSession.AccessLevel);
             }
             catch (Exception ex)
@@ -260,6 +262,7 @@ namespace M2GiantGroupSystem
             contactNumberTextBox1.Clear();
             cmbAddStatus.SelectedIndex = -1; // Deselects the combo box
             cmbRoleAdd.SelectedIndex = -1; // Deselects the combo box
+            emailAddressTextBox.Clear(); // Add this
         }
 
         private void btnAddStaff_Click(object sender, EventArgs e)
@@ -281,6 +284,7 @@ namespace M2GiantGroupSystem
                     userNameTextBox1.Text,
                     passwordHashTextBox1.Text,
                     contactNumberTextBox1.Text,
+                    emailAddressTextBox1.Text,
                     cmbAddStatus.SelectedItem.ToString(),
                     decimal.Parse(dailyRateTextBox.Text),
                     (int)cmbRoleAdd.SelectedValue,
@@ -288,7 +292,7 @@ namespace M2GiantGroupSystem
                 );
 
                 MessageBox.Show("New staff member added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                ClearEditFields();
+                ClearAddFields();
                 staffDataGridView.DataSource = StaffDB.GetStaffForUser(UserSession.StaffID, UserSession.AccessLevel);
             }
             catch (Exception ex)
@@ -310,6 +314,7 @@ namespace M2GiantGroupSystem
                 lastNameTextBox.Text = row.Cells["lastName"].Value.ToString();
                 userNameTextBox.Text = row.Cells["userName"].Value.ToString();
                 contactNumberTextBox.Text = row.Cells["contactNumber"].Value.ToString();
+                emailAddressTextBox.Text = row.Cells["emailAddress"].Value.ToString();
                 string statusFromGrid = row.Cells["staffStatus"].Value.ToString();
 
                 // This forces the ComboBox to show the item that matches the grid text
