@@ -8,15 +8,9 @@ using System.Security.Cryptography;
 public static class SecurityHelper
 {
     public static string GenerateOTP()
-    {
-        // Using RNGCryptoServiceProvider for true cryptographic randomness
-        byte[] bytes = new byte[3]; // 3 bytes provide enough range for a 6-digit number
-        using (var rng = new RNGCryptoServiceProvider())
-        {
-            rng.GetBytes(bytes);
-        }
-        // Convert to a number and ensure it's 6 digits
-        int randomInt = Math.Abs(BitConverter.ToInt32(bytes, 0) % 900000) + 100000;
-        return randomInt.ToString();
+    {// A 6-digit OTP is simply a random number between 100,000 and 999,999
+        Random random = new Random();
+        int otp = random.Next(100000, 1000000);
+        return otp.ToString();
     }
 }
