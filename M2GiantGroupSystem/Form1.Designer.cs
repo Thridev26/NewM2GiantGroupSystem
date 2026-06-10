@@ -374,6 +374,7 @@
             this.recordMaintenanceLogToolStripMenuItem.Name = "recordMaintenanceLogToolStripMenuItem";
             this.recordMaintenanceLogToolStripMenuItem.Size = new System.Drawing.Size(402, 40);
             this.recordMaintenanceLogToolStripMenuItem.Text = "Record Maintenance Log";
+            this.recordMaintenanceLogToolStripMenuItem.Click += new System.EventHandler(this.recordMaintenanceLogToolStripMenuItem_Click);
             // 
             // toolStripMenuItem7
             // 

@@ -200,41 +200,9 @@ namespace M2GiantGroupSystem
             FormSetup(new InvoiceReportForm(0));
         }
 
-        public void CloseActiveChild()
+        private void recordMaintenanceLogToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
-            {
-                // Because the button is disabled when no child is active, 
-                // we no longer need the 'else' block or the 'MessageBox'.
-                if (this.ActiveMdiChild != null)
-                {
-                    this.ActiveMdiChild.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"An error occurred while attempting to close the active form: {ex.Message}",
-                                "Developer Exception Log",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
-            }
-        }
-        private void toolStripMenuItem13_Click(object sender, EventArgs e)
-        {
-            CloseActiveChild();
-        }
-
-        private void Form1_MdiChildActivate(object sender, EventArgs e)
-        {
-            // If there is an active child, enable the button. If not (null), disable it.
-            toolStripMenuItem13.Enabled = (this.ActiveMdiChild != null);
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            // This runs every 1000 milliseconds (1 second)
-            // We update the text of the status label to show the current time
-            //lblClock.Text = DateTime.Now.ToString("dd MMMM yyyy | HH:mm:ss");
+            FormSetup(new Maintenance(0));
         }
     }
 }
