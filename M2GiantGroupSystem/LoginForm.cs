@@ -129,6 +129,13 @@ namespace M2GiantGroupSystem
             }
         }
 
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            // This opens the Forgot Password form
+            ForgotPasswordForm forgotPass = new ForgotPasswordForm();
+            forgotPass.ShowDialog();
+        }
+
         //This method is for demonstration purposes only. It shows how to hash a password and update it in the database.
         //private void button3_Click(object sender, EventArgs e)
         //{
