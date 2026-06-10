@@ -33,6 +33,7 @@ namespace M2GiantGroupSystem
             tabIndex = tab_index;
             this.BackColor = Color.SeaShell; // Soft off-white background for a clean, professional appearance
             tabControl1.BackColor = Color.SeaShell; // Ensure the tab control matches the overall form background
+            ThemeManager.ThemeChanged += ApplyTheme;  // ADD THIS
 
         }
 
@@ -97,7 +98,7 @@ namespace M2GiantGroupSystem
             Drawing.Rectangle tabRect = tabControl1.GetTabRect(e.Index);
 
             Drawing.Font tabFont = new Drawing.Font("Segoe UI", 10, Drawing.FontStyle.Bold);
-             
+
             Color backColor = Color.Honeydew;
             Color textColor = Color.Black;
 
@@ -134,6 +135,14 @@ namespace M2GiantGroupSystem
             tabControl1.DrawItem += tabControl1_DrawItem;
             tabControl1.ItemSize = new Size(300, 30);
             tabControl1.SizeMode = TabSizeMode.Fixed;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.Green;
+            jobTypeDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            jobTypeDataGridView.DefaultCellStyle.SelectionBackColor = Color.Green;
+            selectedJobsGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            selectedJobsGridView.DefaultCellStyle.SelectionBackColor = Color.Green;
+            quoteDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            quoteDataGridView.DefaultCellStyle.SelectionBackColor = Color.Green;
             ApplyPermissions(); // Apply user access level permissions immediately on form load
             // TODO: This line of code loads data into the 'groupWst1DataSet.DataTable3' table. You can move, or remove it, as needed.
             this.dataTable3TableAdapter.Fill(this.groupWst1DataSet.DataTable3);
@@ -151,6 +160,7 @@ namespace M2GiantGroupSystem
             // This organizes the rows cleanly by Quote ID so they display sequentially (1, 2, 3...)
             quoteDataGridView.Sort(quoteDataGridView.Columns["QuoteID_T"], System.ComponentModel.ListSortDirection.Ascending);
             UpdateQuoteCount();
+            ApplyTheme();
 
         }
 
@@ -306,7 +316,7 @@ namespace M2GiantGroupSystem
         }
 
         private void button2_Click(object sender, EventArgs e)
-        {        
+        {
             // 2. ASSIGN NEW DEFAULT VALUES SAFELY            
             dateIssuedDateTimePicker.Value = DateTime.Today;
             dateGeneratedDateTimePicker.Value = DateTime.Today;
@@ -330,7 +340,7 @@ namespace M2GiantGroupSystem
             //jobTypeTableAdapter.Fill(this.groupWst1DataSet.JobType); // Refresh the job types in case they were modified
             jobTypeDataGridView.DataSource = null;
             // ADD THIS LINE HERE: Refresh the top grid on Clear too!                                                                     
-            
+
             jobTypeDataGridView.ClearSelection(); // Clear any existing selection to avoid confusion
             selectedJobsGridView.ClearSelection(); // Clear the quote details grid selection as well for a clean slate
             button3.Enabled = false; // Disable the button till the user selects a job request and starts building a quote
@@ -448,7 +458,7 @@ namespace M2GiantGroupSystem
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-           
+
         }
 
         // Hardcoded Business Location Constants 
@@ -649,7 +659,7 @@ namespace M2GiantGroupSystem
             // 1. VALIDATION: Ensure an active Quote row has actually been loaded from the grid
             if (string.IsNullOrWhiteSpace(txtEditQuoteID.Text))
             {
-                MessageBox.Show("No active quote record has been selected or loaded or editing. Please select a row from the table above and click Edit first.",
+                MessageBox.Show("No active quote record has been selected or loaded for editing. Please select a row from the table above and click Edit first.",
                                 "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -717,9 +727,9 @@ namespace M2GiantGroupSystem
 
         private void btnExportPDF_Click(object sender, EventArgs e)
         {
-            
+
             //THE MAIN BUTTON CLICK HANDLER 
-            
+
 
             if (quoteDataGridView.CurrentRow == null || quoteDataGridView.CurrentRow.IsNewRow)
             {
@@ -864,7 +874,7 @@ namespace M2GiantGroupSystem
                 innerItemsTable.AddCell(new PdfPCell(new Phrase("Description", headerWhiteFont)) { BackgroundColor = tableHeaderBg, Padding = 8f });
                 innerItemsTable.AddCell(new PdfPCell(new Phrase("Price", headerWhiteFont)) { BackgroundColor = tableHeaderBg, Padding = 8f, HorizontalAlignment = Element.ALIGN_RIGHT });
 
-                string itemString = $"Tree Felling Services Rendered (Job Request Reference #{jobId})";
+                string itemString = $"Services Rendered (Job Request Reference #{jobId})";
 
                 // ADJUSTMENT 2: Added internal padding directly to original cell definitions to increase vertical footprint
                 innerItemsTable.AddCell(new PdfPCell(new Phrase(itemString, bodyBlackFont)) { PaddingTop = 14f, PaddingBottom = 14f, PaddingLeft = 8f, PaddingRight = 8f, BackgroundColor = lightGray });
@@ -1086,7 +1096,7 @@ namespace M2GiantGroupSystem
                 }
 
                 // STEP A: Do not allow the user to delete a quote that has already been assigned to an active job
-                
+
                 using (var checkCmd = sqlConn.CreateCommand())
                 {
                     // Count how many entries in the Job table rely on this quoteID
@@ -1116,9 +1126,9 @@ namespace M2GiantGroupSystem
                     }
                 }
 
-                
+
                 // STEP B: If the quote has not been accepted and converted into an active job, allow them to delete it.
-                
+
                 using (var cmd = sqlConn.CreateCommand())
                 {
                     cmd.CommandText = "DELETE FROM [Quote] WHERE quoteID = @QuoteID";
@@ -1132,7 +1142,7 @@ namespace M2GiantGroupSystem
                     }
                 }
 
-                
+
                 // STEP C: CLEANLY CLOSE THE CONNECTION                
                 if (openedHere)
                 {
@@ -1158,7 +1168,7 @@ namespace M2GiantGroupSystem
                                 "If you want to re-create a quote for that Job Request, open the Job Request and generate a new quote.",
                                 "Deletion Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                
+
             }
             catch (Exception ex)
             {
@@ -1226,7 +1236,7 @@ namespace M2GiantGroupSystem
                 case "EvaluationDate": return "siteEvaluationDate";
                 default: return null;
             }
-        
+
         }
 
 
@@ -1325,7 +1335,7 @@ namespace M2GiantGroupSystem
 
         private void dataGridView1_CellContentDoubleClick_1(object sender, DataGridViewCellEventArgs e)
         {
-            
+
         }
 
         private void dataGridView1_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
@@ -1363,7 +1373,7 @@ namespace M2GiantGroupSystem
                     MessageBox.Show($"You have selected Job Request #{clickedID}\nCalculated Travel Fee: R{currentTravelFee}",
                                     "System Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                  
+
 
                     // ✅ CHANGED: replaces FillByID with your new raw SQL method
                     LoadRequestedJobTypes(clickedID);
@@ -1427,7 +1437,7 @@ namespace M2GiantGroupSystem
             // 5. Cleanup
             RecalculateGrandTotalFromUI();
             selectedJobsGridView.ClearSelection();
-        }        
+        }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
@@ -1509,6 +1519,17 @@ namespace M2GiantGroupSystem
 
                 jobTypeDataGridView.DataSource = dt;
             }
+        }    
+
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            ThemeManager.ThemeChanged -= ApplyTheme;
+            base.OnFormClosed(e);
+        }
+        private void ApplyTheme()
+        {
+            if (ThemeManager.IsDarkMode)
+                ThemeManager.ApplyTheme(this);
         }
     }
 }
