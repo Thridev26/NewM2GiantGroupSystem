@@ -222,5 +222,20 @@ namespace M2GiantGroupSystem
             if (ThemeManager.IsDarkMode)
                 ThemeManager.ApplyTheme(this);
         }
+
+        private void siteEvaluationPhotosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormSetup(new SitePhotosForm(0));
+        }
+
+        private void completedJobPhotosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormSetup(new JobSitePhotos(0));
+        }
+
+        private void toolStripMenuItem13_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
