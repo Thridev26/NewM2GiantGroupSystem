@@ -64,100 +64,125 @@ namespace M2GiantGroupSystem
         }
         private void AllocateAssetStafftoJob_Load(object sender, EventArgs e)
         {
+            // 1. UI Setup (Do this once)
             tabViewAllocations.DrawMode = TabDrawMode.OwnerDrawFixed;
             tabViewAllocations.DrawItem += tabControl1_DrawItem;
             tabViewAllocations.ItemSize = new Size(300, 30);
             tabViewAllocations.SizeMode = TabSizeMode.Fixed;
-            tabViewAllocations.SelectedIndex = tabIndex; // Set the selected tab based on the passed index
-            // TODO: This line of code loads data into the 'groupWst1DataSet.DataTable1' table. You can move, or remove it, as needed.
-            this.dataTable1TableAdapter.Fill(this.groupWst1DataSet.DataTable1);
-            this.dataTable1TableAdapter.FillByID(this.groupWst1DataSet.DataTable1, AppState.selectedIdCalendar);
-            // Force this to true in code if you can't find the designer property
-            dataGridView1.AutoGenerateColumns = true;
+            tabViewAllocations.SelectedIndex = tabIndex;
 
-            // Clear the selection so no row is highlighted automatically
+            // 2. Load the specific Job ID data ONLY
+            // ReloadSelectedJob() already calls FillByID, so do not call it again later
+            ReloadSelectedJob();
+
+            // 3. Now apply the filters (This is where the "Available" logic happens)
+            // This is the SINGLE point of truth for your grid data
+            RefreshAllGrids();
+
+            // 4. Final Polish
             ownedAssetDataGridView.ClearSelection();
             hiredAssetDataGridView.ClearSelection();
-            try
-            {
-                // TODO: This line of code loads data into the 'groupWst1DataSet.JobStaffAssignment' table. You can move, or remove it, as needed.
-                this.jobStaffAssignmentTableAdapter.Fill(this.groupWst1DataSet.JobStaffAssignment);
-                // TODO: This line of code loads data into the 'groupWst1DataSet.Staff' table. You can move, or remove it, as needed.
-                this.staffTableAdapter.Fill(this.groupWst1DataSet.Staff);
-                // TODO: This line of code loads data into the 'groupWst1DataSet.JobAssetAssignment' table. You can move, or remove it, as needed.
-                this.jobAssetAssignmentTableAdapter.Fill(this.groupWst1DataSet.JobAssetAssignment);
-                // TODO: This line of code loads data into the 'groupWst1DataSet.HiredAsset' table. You can move, or remove it, as needed.
-                this.hiredAssetTableAdapter.Fill(this.groupWst1DataSet.HiredAsset);
-                // TODO: This line of code loads data into the 'groupWst1DataSet.OwnedAsset' table. You can move, or remove it, as needed.
-                this.ownedAssetTableAdapter.Fill(this.groupWst1DataSet.OwnedAsset);
 
-                // 2. Use the NEW adapter you just created
-                GroupWst1DataSetTableAdapters.DataTable1TableAdapter customAdapter = new GroupWst1DataSetTableAdapters.DataTable1TableAdapter();
+            // 2. Use the NEW adapter you just created
 
-                // 3. Fetch the data
-                // var data = customAdapter.GetDataByInProgress();
-               // MessageBox.Show("Selected Job ID: " + AppState.selectedIdCalendar);
-                //var data = customAdapter.FillByID(this.groupWst1DataSet.DataTable1,1); // Example: Fetch data for jobID = 1. Adjust as needed.
-                // 4. Bind the data
+            GroupWst1DataSetTableAdapters.DataTable1TableAdapter customAdapter = new GroupWst1DataSetTableAdapters.DataTable1TableAdapter();
+
+
+
+            // 3. Fetch the data
+
+            // var data = customAdapter.GetDataByInProgress();
+
+            // MessageBox.Show("Selected Job ID: " + AppState.selectedIdCalendar);
+
+            //var data = customAdapter.FillByID(this.groupWst1DataSet.DataTable1,1); // Example: Fetch data for jobID = 1. Adjust as needed.
+
+            // 4. Bind the data
+
+            dataGridView1.AutoGenerateColumns = true;
+
+            //dataGridView1.DataSource = data;         
+                  
+
+                int jobId = AppState.selectedIdCalendar;
+
+                if (jobId > 0)
+
+                    MessageBox.Show("Opening allocation form for job ID: " + AppState.selectedIdCalendar);
+
+
+                if (jobId <= 0)
+
+                {
+
+                    // MessageBox.Show("No job selected from calendar.");
+
+                    loadJobs();
+
+                    return;
+
+                }
+
+
+
+                GroupWst1DataSetTableAdapters.DataTable1TableAdapter adapter =
+
+                    new GroupWst1DataSetTableAdapters.DataTable1TableAdapter();
+
+
+
+                //  var data = adapter.FillByID(this.groupWst1DataSet.DataTable1,jobId);
+
+
+
+                // dataGridView1.AutoGenerateColumns = true;
+
+                // dataGridView1.DataSource = data;
+
+                adapter.FillByID(this.groupWst1DataSet.DataTable1, jobId);
+
+
+
                 dataGridView1.AutoGenerateColumns = true;
-                //dataGridView1.DataSource = data;
-                try
+
+                dataGridView1.DataSource = this.groupWst1DataSet.DataTable1;
+
+                adapter.FillByID(this.groupWst1DataSet.DataTable1, jobId);
+
+
+
+                dataGridView1.DataSource = this.groupWst1DataSet.DataTable1;
+
+
+
+                if (this.groupWst1DataSet.DataTable1.Rows.Count > 0)
+
                 {
 
-                    int jobId = AppState.selectedIdCalendar;
-                    if (jobId > 0)
-                        MessageBox.Show("Opening allocation form for job ID: " + AppState.selectedIdCalendar);
-                   
+                    DataRow row = this.groupWst1DataSet.DataTable1.Rows[0];
 
-                    if (jobId <= 0)
-                    {
-                        // MessageBox.Show("No job selected from calendar.");
-                        loadJobs();
-                        return;
-                    }
 
-                    GroupWst1DataSetTableAdapters.DataTable1TableAdapter adapter =
-                        new GroupWst1DataSetTableAdapters.DataTable1TableAdapter();
 
-                    //  var data = adapter.FillByID(this.groupWst1DataSet.DataTable1,jobId);
+                    jobIDBox.Text = row["jobID"].ToString();
 
-                    // dataGridView1.AutoGenerateColumns = true;
-                    // dataGridView1.DataSource = data;
-                    adapter.FillByID(this.groupWst1DataSet.DataTable1, jobId);
 
-                    dataGridView1.AutoGenerateColumns = true;
-                    dataGridView1.DataSource = this.groupWst1DataSet.DataTable1;
-                    adapter.FillByID(this.groupWst1DataSet.DataTable1, jobId);
 
-                    dataGridView1.DataSource = this.groupWst1DataSet.DataTable1;
+                    clientNameBox.Text =
 
-                    if (this.groupWst1DataSet.DataTable1.Rows.Count > 0)
-                    {
-                        DataRow row = this.groupWst1DataSet.DataTable1.Rows[0];
+                        row["clientName"].ToString() + " " +
 
-                        jobIDBox.Text = row["jobID"].ToString();
+                        row["clientSurname"].ToString();
 
-                        clientNameBox.Text =
-                            row["clientName"].ToString() + " " +
-                            row["clientSurname"].ToString();
 
-                        addressBox.Text = row["siteAddress"].ToString();
 
-                        statusBox.Text = row["jobStatus"].ToString();
-                    }
-                   
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
+                    addressBox.Text = row["siteAddress"].ToString();
+
+
+
+                    statusBox.Text = row["jobStatus"].ToString();
+
                 }
             }
-            catch (Exception ex)
-            {
-                // This will tell you EXACTLY why it is crashing
-                MessageBox.Show("Error loading data: " + ex.Message + "\n\nStack Trace: " + ex.StackTrace);
-            }
-        }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
@@ -244,7 +269,7 @@ namespace M2GiantGroupSystem
                 var row = jobAssetAssignmentDataGridView.SelectedRows[0];
 
                 // Use the EXACT name you found in the Edit Columns dialog
-                var cellValue = row.Cells["assignmentID"].Value;
+                var cellValue = row.Cells["Column1"].Value;
 
                 if (cellValue != null && cellValue != DBNull.Value)
                 {
@@ -267,28 +292,66 @@ namespace M2GiantGroupSystem
         {
             try
             {
-                // 1. Refresh the Assignment list first
+                // Use parameters to filter by the current Job ID
+                int jobId = AppState.selectedIdCalendar;
+
+                // Load assignments for this specific job
+                // NOTE: Ensure your XSD has a FillByJobID query for these adapters
                 this.jobAssetAssignmentTableAdapter.Fill(this.groupWst1DataSet.JobAssetAssignment);
                 this.jobStaffAssignmentTableAdapter.Fill(this.groupWst1DataSet.JobStaffAssignment);
 
-                // 2. Then refresh the available assets (the query will re-run)
+                // Load "Available" lists
+                // Ensure these queries use: WHERE status = 'Active' or similar
                 this.ownedAssetTableAdapter.FillByAvailableOwned(this.groupWst1DataSet.OwnedAsset);
                 this.hiredAssetTableAdapter.FillByAvailableHired(this.groupWst1DataSet.HiredAsset);
 
-                // 3. Refresh "Available" Staff Grid
-                // Use the new method we just created in the .xsd
+                // Load Staff (Exclude restricted roles here in your SQL query!)
                 this.staffTableAdapter.FillByAvailableStaff(this.groupWst1DataSet.Staff);
             }
             catch (System.Exception ex)
             {
                 MessageBox.Show("Error refreshing data: " + ex.Message);
             }
+            //try
+            //{
+            //    // 1. Refresh the Assignment list first
+            //    this.jobAssetAssignmentTableAdapter.Fill(this.groupWst1DataSet.JobAssetAssignment);
+            //    this.jobStaffAssignmentTableAdapter.Fill(this.groupWst1DataSet.JobStaffAssignment);
+
+            //    // 2. Then refresh the available assets (the query will re-run)
+            //    this.ownedAssetTableAdapter.FillByAvailableOwned(this.groupWst1DataSet.OwnedAsset);
+            //    this.hiredAssetTableAdapter.FillByAvailableHired(this.groupWst1DataSet.HiredAsset);
+
+            //    // 3. Refresh "Available" Staff Grid
+            //    // Use the new method we just created in the .xsd
+            //    this.staffTableAdapter.FillByAvailableStaff(this.groupWst1DataSet.Staff);
+            //}
+            //catch (System.Exception ex)
+            //{
+            //    MessageBox.Show("Error refreshing data: " + ex.Message);
+            //}
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            // 1. Safety Check: Ensure a job and a staff member are selected
-            if (string.IsNullOrEmpty(jobIDBox.Text) || staffDataGridView.SelectedRows.Count == 0)
+            if (staffDataGridView.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = staffDataGridView.SelectedRows[0];
+
+                // Retrieve the roleID from the selected staff member's row
+                int roleId = Convert.ToInt32(selectedRow.Cells["roleID"].Value);
+
+                // Logic: Restrict access levels 5 (Admin) and 6 (Manager)
+                // You can check this by comparing the roleID directly
+                if (roleId == 10 || roleId == 11)
+                {
+                    MessageBox.Show("This staff member (Top Management/Admin) cannot be assigned to jobs.",
+                                    "Restricted Assignment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
+                // 1. Safety Check: Ensure a job and a staff member are selected
+                if (string.IsNullOrEmpty(jobIDBox.Text) || staffDataGridView.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Please select a Job and a Staff member.");
                 return;
@@ -319,8 +382,8 @@ namespace M2GiantGroupSystem
             {
                 // 2. Get data from the Assignment grid
                 var row = jobStaffAssignmentDataGridView.SelectedRows[0];
-                int staffId = (int)row.Cells["staffID_T"].Value;
-                int jobId = (int)row.Cells["jobID_T"].Value;
+                int staffId = (int)row.Cells["SColumn"].Value;
+                int jobId = (int)row.Cells["JColumn"].Value;
 
                 // 3. Confirmation
                 var confirm = MessageBox.Show("Remove this staff member from the job?", "Confirm Removal", MessageBoxButtons.YesNo);
@@ -352,7 +415,7 @@ namespace M2GiantGroupSystem
             Calendar calendarForm = new Calendar();
 
             calendarForm.StartPosition = FormStartPosition.CenterScreen;
-            calendarForm.Size = new Size(1000, 700);
+            
 
             calendarForm.ShowDialog();
 
