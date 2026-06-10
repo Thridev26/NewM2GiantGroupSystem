@@ -67,9 +67,9 @@ public static class AuthDB
 
     public static void SendEmail(string toEmail, string otp)
     {
-        var fromAddress = new MailAddress("your-email@gmail.com", "System Admin");
+        var fromAddress = new MailAddress("maharajhthridev@gmail.com", "The Giant Group");
         var toAddress = new MailAddress(toEmail);
-        const string fromPassword = "your-app-password"; // This is the 16-char App Password
+        const string fromPassword = "ihmxfebigcjmjnnb"; // This is the 16-char App Password
         string subject = "Your Password Reset Code";
         string body = $"Your verification code is: {otp}. It will expire in 5 minutes.";
 
