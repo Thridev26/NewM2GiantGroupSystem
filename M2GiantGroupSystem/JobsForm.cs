@@ -202,18 +202,22 @@ namespace M2GiantGroupSystem
         private void LoadTimeSlotsForDate(DateTime selectedDate)
         {
             pnlTimeSlots.Controls.Clear();
+
+            // 1. Turn on scrolling just in case the panel is too small to fit them all
+            pnlTimeSlots.AutoScroll = true;
+
             List<int> bookedSlots = new List<int>();
 
             try
             {
-                // 1. Find all time slots already booked for this specific date
+                // 2. Find all time slots already booked for this specific date
                 using (SqlConnection conn = new SqlConnection(connStr))
                 {
                     string sql = @"
-                        SELECT jts.timeSlotID 
-                        FROM JobTimeSlot jts
-                        INNER JOIN Job j ON jts.jobID = j.jobID
-                        WHERE CAST(j.startDate AS DATE) = @d";
+                SELECT jts.timeSlotID 
+                FROM JobTimeSlot jts
+                INNER JOIN Job j ON jts.jobID = j.jobID
+                WHERE CAST(j.startDate AS DATE) = @d";
 
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
@@ -229,15 +233,20 @@ namespace M2GiantGroupSystem
                     }
                 }
 
-                // 2. Load all possible slots
+                // 3. Load all possible slots
                 this.timeSlotTableAdapter1.Fill(this.groupWst1DataSet1.TimeSlot);
 
-                // 3. Draw the checkboxes, skipping any that are in the 'bookedSlots' list
+                // 4. Setup coordinates for a 2-column grid layout
+                int xPos = 10;
+                int yPos = 10;
+                int count = 0;
+
+                // 5. Draw the checkboxes
                 foreach (var slot in this.groupWst1DataSet1.TimeSlot)
                 {
                     if (bookedSlots.Contains(slot.timeSlotID))
                     {
-                        continue; // Skip it entirely
+                        continue; // Skip it entirely if booked
                     }
 
                     CheckBox cb = new CheckBox();
@@ -249,22 +258,38 @@ namespace M2GiantGroupSystem
                     cb.Font = new Font("Segoe UI", 11, FontStyle.Regular);
                     cb.Tag = slot.timeSlotID;
 
+                    // THE FIX: Explicitly set the location of each checkbox so they don't overlap!
+                    cb.Location = new Point(xPos, yPos);
                     pnlTimeSlots.Controls.Add(cb);
+
+                    count++;
+
+                    // Math to create the neat 2-column layout
+                    if (count % 2 == 0)
+                    {
+                        xPos = 10;       // Reset back to the left column
+                        yPos += 35;      // Move down a row
+                    }
+                    else
+                    {
+                        xPos += 160;     // Move to the right column
+                    }
                 }
 
-                // 4. Show a friendly warning if everything is booked
+                // 6. Show a friendly warning if everything is booked
                 if (pnlTimeSlots.Controls.Count == 0)
                 {
                     Label lblFull = new Label();
                     lblFull.Text = "All time slots are booked for this date.";
                     lblFull.AutoSize = true;
                     lblFull.ForeColor = Color.Red;
+                    lblFull.Location = new Point(10, 10);
                     pnlTimeSlots.Controls.Add(lblFull);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error loading time slots: " + ex.Message);
+                MessageBox.Show("Error loading time slots: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
