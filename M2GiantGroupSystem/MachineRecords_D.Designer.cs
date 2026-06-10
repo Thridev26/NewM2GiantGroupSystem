@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MachineRecords_D));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -40,7 +41,6 @@
             this.cmbDeleteST = new System.Windows.Forms.ComboBox();
             this.cmbDeleteCond = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
@@ -49,6 +49,7 @@
             this.dtDeletP = new System.Windows.Forms.DateTimePicker();
             this.cmbDeleteAT = new System.Windows.Forms.ComboBox();
             this.label22 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             this.dgvOwnedAsset_D = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -84,7 +85,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.btnUpdateAass_D = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.cmbStatus_D = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -95,7 +95,9 @@
             this.txtAsSnumber_d = new System.Windows.Forms.TextBox();
             this.cmbType_D = new System.Windows.Forms.ComboBox();
             this.dtPurchaseDate_D = new System.Windows.Forms.DateTimePicker();
+            this.label6 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -170,6 +172,7 @@
             this.panel1.SuspendLayout();
             this.grpboxOwnAsset_D.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -187,7 +190,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1809, 800);
+            this.tabControl1.Size = new System.Drawing.Size(1732, 911);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tabControl1_DrawItem);
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
@@ -205,7 +208,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1801, 771);
+            this.tabPage1.Size = new System.Drawing.Size(1724, 882);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "OWNED ASSETS";
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
@@ -213,7 +216,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(1608, 6);
+            this.pictureBox1.Location = new System.Drawing.Point(1536, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(185, 72);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -229,7 +232,6 @@
             this.panel2.Controls.Add(this.cmbDeleteST);
             this.panel2.Controls.Add(this.cmbDeleteCond);
             this.panel2.Controls.Add(this.label16);
-            this.panel2.Controls.Add(this.label17);
             this.panel2.Controls.Add(this.label18);
             this.panel2.Controls.Add(this.label19);
             this.panel2.Controls.Add(this.label20);
@@ -238,20 +240,22 @@
             this.panel2.Controls.Add(this.dtDeletP);
             this.panel2.Controls.Add(this.cmbDeleteAT);
             this.panel2.Controls.Add(this.label22);
+            this.panel2.Controls.Add(this.label17);
+            this.panel2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel2.Location = new System.Drawing.Point(1116, 74);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(468, 356);
+            this.panel2.Size = new System.Drawing.Size(518, 394);
             this.panel2.TabIndex = 5;
             // 
             // btncleareDel
             // 
             this.btncleareDel.BackColor = System.Drawing.Color.DarkGreen;
             this.btncleareDel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btncleareDel.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btncleareDel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btncleareDel.ForeColor = System.Drawing.Color.White;
-            this.btncleareDel.Location = new System.Drawing.Point(249, 306);
+            this.btncleareDel.Location = new System.Drawing.Point(300, 339);
             this.btncleareDel.Name = "btncleareDel";
-            this.btncleareDel.Size = new System.Drawing.Size(75, 36);
+            this.btncleareDel.Size = new System.Drawing.Size(94, 36);
             this.btncleareDel.TabIndex = 29;
             this.btncleareDel.Text = "Clear";
             this.btncleareDel.UseVisualStyleBackColor = false;
@@ -262,7 +266,7 @@
             this.btnDeleteRcd.BackColor = System.Drawing.Color.DarkGreen;
             this.btnDeleteRcd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnDeleteRcd.ForeColor = System.Drawing.Color.White;
-            this.btnDeleteRcd.Location = new System.Drawing.Point(56, 306);
+            this.btnDeleteRcd.Location = new System.Drawing.Point(121, 339);
             this.btnDeleteRcd.Name = "btnDeleteRcd";
             this.btnDeleteRcd.Size = new System.Drawing.Size(127, 36);
             this.btnDeleteRcd.TabIndex = 27;
@@ -275,124 +279,114 @@
             this.txtDeleteSN.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtDeleteSN.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtDeleteSN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.txtDeleteSN.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDeleteSN.Location = new System.Drawing.Point(175, 45);
+            this.txtDeleteSN.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDeleteSN.Location = new System.Drawing.Point(177, 55);
             this.txtDeleteSN.Name = "txtDeleteSN";
-            this.txtDeleteSN.Size = new System.Drawing.Size(129, 25);
+            this.txtDeleteSN.Size = new System.Drawing.Size(170, 34);
             this.txtDeleteSN.TabIndex = 16;
             this.txtDeleteSN.TextChanged += new System.EventHandler(this.txtDeleteSN_TextChanged);
-            this.txtDeleteSN.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDeleteSN_KeyDown);
+            this.txtDeleteSN.ImeModeChanged += new System.EventHandler(this.txtDeleteSN_ImeModeChanged);
             // 
             // cmbDeleteST
             // 
             this.cmbDeleteST.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.cmbDeleteST.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbDeleteST.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbDeleteST.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbDeleteST.FormattingEnabled = true;
             this.cmbDeleteST.Items.AddRange(new object[] {
             "Available ",
             "In Use"});
-            this.cmbDeleteST.Location = new System.Drawing.Point(175, 209);
+            this.cmbDeleteST.Location = new System.Drawing.Point(177, 285);
             this.cmbDeleteST.Name = "cmbDeleteST";
-            this.cmbDeleteST.Size = new System.Drawing.Size(121, 25);
+            this.cmbDeleteST.Size = new System.Drawing.Size(170, 36);
             this.cmbDeleteST.TabIndex = 26;
             // 
             // cmbDeleteCond
             // 
             this.cmbDeleteCond.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.cmbDeleteCond.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbDeleteCond.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbDeleteCond.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbDeleteCond.FormattingEnabled = true;
             this.cmbDeleteCond.Items.AddRange(new object[] {
             "Excellent ",
             "Good",
             "Fair",
             "Poor"});
-            this.cmbDeleteCond.Location = new System.Drawing.Point(175, 143);
+            this.cmbDeleteCond.Location = new System.Drawing.Point(177, 188);
             this.cmbDeleteCond.Name = "cmbDeleteCond";
-            this.cmbDeleteCond.Size = new System.Drawing.Size(121, 25);
+            this.cmbDeleteCond.Size = new System.Drawing.Size(170, 36);
             this.cmbDeleteCond.TabIndex = 25;
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(3, 205);
+            this.label16.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(3, 285);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(50, 17);
+            this.label16.Size = new System.Drawing.Size(74, 28);
             this.label16.TabIndex = 17;
             this.label16.Text = "Status :";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(3, 174);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(118, 17);
-            this.label17.TabIndex = 20;
-            this.label17.Text = "Next Service Date :";
             // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(3, 143);
+            this.label18.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(3, 191);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(118, 17);
+            this.label18.Size = new System.Drawing.Size(178, 28);
             this.label18.TabIndex = 21;
             this.label18.Text = "Current Condition :";
             // 
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(3, 112);
+            this.label19.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(3, 152);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(98, 17);
+            this.label19.Size = new System.Drawing.Size(144, 28);
             this.label19.TabIndex = 22;
             this.label19.Text = "Purchase Date :";
             // 
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(3, 81);
+            this.label20.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(3, 105);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(77, 17);
+            this.label20.Size = new System.Drawing.Size(113, 28);
             this.label20.TabIndex = 23;
             this.label20.Text = "Asset Type :";
             // 
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(3, 50);
+            this.label21.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(3, 58);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(99, 17);
+            this.label21.Size = new System.Drawing.Size(146, 28);
             this.label21.TabIndex = 24;
             this.label21.Text = "Serial Number :";
             // 
             // dtDeleteNS
             // 
-            this.dtDeleteNS.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtDeleteNS.Location = new System.Drawing.Point(175, 177);
+            this.dtDeleteNS.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtDeleteNS.Location = new System.Drawing.Point(177, 237);
             this.dtDeleteNS.Name = "dtDeleteNS";
-            this.dtDeleteNS.Size = new System.Drawing.Size(248, 25);
+            this.dtDeleteNS.Size = new System.Drawing.Size(329, 34);
             this.dtDeleteNS.TabIndex = 15;
             // 
             // dtDeletP
             // 
-            this.dtDeletP.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtDeletP.Location = new System.Drawing.Point(175, 111);
+            this.dtDeletP.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtDeletP.Location = new System.Drawing.Point(175, 147);
             this.dtDeletP.Name = "dtDeletP";
-            this.dtDeletP.Size = new System.Drawing.Size(248, 25);
+            this.dtDeletP.Size = new System.Drawing.Size(328, 34);
             this.dtDeletP.TabIndex = 14;
             // 
             // cmbDeleteAT
             // 
             this.cmbDeleteAT.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.cmbDeleteAT.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbDeleteAT.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbDeleteAT.FormattingEnabled = true;
             this.cmbDeleteAT.Items.AddRange(new object[] {
             "Chainsaw",
@@ -401,20 +395,30 @@
             "Hedge Trimmer",
             "Trailer ",
             "Ford Ranger LWB"});
-            this.cmbDeleteAT.Location = new System.Drawing.Point(175, 77);
+            this.cmbDeleteAT.Location = new System.Drawing.Point(177, 102);
             this.cmbDeleteAT.Name = "cmbDeleteAT";
-            this.cmbDeleteAT.Size = new System.Drawing.Size(121, 25);
+            this.cmbDeleteAT.Size = new System.Drawing.Size(170, 36);
             this.cmbDeleteAT.TabIndex = 13;
             // 
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label22.Location = new System.Drawing.Point(172, 12);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(135, 16);
+            this.label22.Size = new System.Drawing.Size(190, 28);
             this.label22.TabIndex = 5;
             this.label22.Text = "Delete  Asset Record";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(3, 238);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(175, 28);
+            this.label17.TabIndex = 20;
+            this.label17.Text = "Next Service Date :";
             // 
             // dgvOwnedAsset_D
             // 
@@ -429,11 +433,19 @@
             this.dataGridViewTextBoxColumn13,
             this.dataGridViewTextBoxColumn14});
             this.dgvOwnedAsset_D.DataSource = this.ownedAssetBindingSource1;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvOwnedAsset_D.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgvOwnedAsset_D.Location = new System.Drawing.Point(8, 474);
             this.dgvOwnedAsset_D.Name = "dgvOwnedAsset_D";
             this.dgvOwnedAsset_D.RowHeadersWidth = 51;
             this.dgvOwnedAsset_D.RowTemplate.Height = 24;
-            this.dgvOwnedAsset_D.Size = new System.Drawing.Size(1551, 230);
+            this.dgvOwnedAsset_D.Size = new System.Drawing.Size(1551, 412);
             this.dgvOwnedAsset_D.TabIndex = 4;
             this.dgvOwnedAsset_D.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dgvOwnedAsset_D.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dataGridView1_RowPrePaint);
@@ -544,16 +556,17 @@
             this.panel1.Controls.Add(this.dtPurchaseD2_D);
             this.panel1.Controls.Add(this.cmbType2_D);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Location = new System.Drawing.Point(549, 74);
+            this.panel1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panel1.Location = new System.Drawing.Point(569, 74);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(468, 356);
+            this.panel1.Size = new System.Drawing.Size(520, 394);
             this.panel1.TabIndex = 1;
             // 
             // txtAssetID2
             // 
-            this.txtAssetID2.Location = new System.Drawing.Point(95, 246);
+            this.txtAssetID2.Location = new System.Drawing.Point(449, 58);
             this.txtAssetID2.Name = "txtAssetID2";
-            this.txtAssetID2.Size = new System.Drawing.Size(10, 22);
+            this.txtAssetID2.Size = new System.Drawing.Size(10, 34);
             this.txtAssetID2.TabIndex = 29;
             this.txtAssetID2.Visible = false;
             // 
@@ -562,7 +575,7 @@
             this.btnClearNewAsset_d.BackColor = System.Drawing.Color.DarkGreen;
             this.btnClearNewAsset_d.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnClearNewAsset_d.ForeColor = System.Drawing.Color.White;
-            this.btnClearNewAsset_d.Location = new System.Drawing.Point(229, 306);
+            this.btnClearNewAsset_d.Location = new System.Drawing.Point(299, 334);
             this.btnClearNewAsset_d.Name = "btnClearNewAsset_d";
             this.btnClearNewAsset_d.Size = new System.Drawing.Size(75, 36);
             this.btnClearNewAsset_d.TabIndex = 28;
@@ -575,7 +588,7 @@
             this.btnAddAsset_D.BackColor = System.Drawing.Color.DarkGreen;
             this.btnAddAsset_D.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAddAsset_D.ForeColor = System.Drawing.Color.White;
-            this.btnAddAsset_D.Location = new System.Drawing.Point(59, 306);
+            this.btnAddAsset_D.Location = new System.Drawing.Point(95, 334);
             this.btnAddAsset_D.Name = "btnAddAsset_D";
             this.btnAddAsset_D.Size = new System.Drawing.Size(127, 36);
             this.btnAddAsset_D.TabIndex = 27;
@@ -586,122 +599,122 @@
             // txtSerialno2_D
             // 
             this.txtSerialno2_D.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.txtSerialno2_D.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSerialno2_D.Location = new System.Drawing.Point(175, 45);
+            this.txtSerialno2_D.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSerialno2_D.Location = new System.Drawing.Point(187, 53);
             this.txtSerialno2_D.Name = "txtSerialno2_D";
-            this.txtSerialno2_D.Size = new System.Drawing.Size(129, 25);
+            this.txtSerialno2_D.Size = new System.Drawing.Size(187, 34);
             this.txtSerialno2_D.TabIndex = 16;
             // 
             // cmbStatus2_D
             // 
             this.cmbStatus2_D.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.cmbStatus2_D.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbStatus2_D.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbStatus2_D.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbStatus2_D.FormattingEnabled = true;
             this.cmbStatus2_D.Items.AddRange(new object[] {
             "Available ",
             "In Use"});
-            this.cmbStatus2_D.Location = new System.Drawing.Point(175, 209);
+            this.cmbStatus2_D.Location = new System.Drawing.Point(187, 277);
             this.cmbStatus2_D.Name = "cmbStatus2_D";
-            this.cmbStatus2_D.Size = new System.Drawing.Size(121, 25);
+            this.cmbStatus2_D.Size = new System.Drawing.Size(187, 36);
             this.cmbStatus2_D.TabIndex = 26;
             // 
             // cmbCondition2_D
             // 
             this.cmbCondition2_D.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.cmbCondition2_D.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbCondition2_D.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbCondition2_D.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbCondition2_D.FormattingEnabled = true;
             this.cmbCondition2_D.Items.AddRange(new object[] {
             "Excellent ",
             "Good",
             "Fair",
             "Poor"});
-            this.cmbCondition2_D.Location = new System.Drawing.Point(175, 143);
+            this.cmbCondition2_D.Location = new System.Drawing.Point(187, 186);
             this.cmbCondition2_D.Name = "cmbCondition2_D";
-            this.cmbCondition2_D.Size = new System.Drawing.Size(121, 25);
+            this.cmbCondition2_D.Size = new System.Drawing.Size(187, 36);
             this.cmbCondition2_D.TabIndex = 25;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(3, 205);
+            this.label10.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(3, 277);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(50, 17);
+            this.label10.Size = new System.Drawing.Size(74, 28);
             this.label10.TabIndex = 17;
             this.label10.Text = "Status :";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(3, 174);
+            this.label11.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(3, 230);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(118, 17);
+            this.label11.Size = new System.Drawing.Size(175, 28);
             this.label11.TabIndex = 20;
             this.label11.Text = "Next Service Date :";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(3, 143);
+            this.label12.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(3, 183);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(118, 17);
+            this.label12.Size = new System.Drawing.Size(178, 28);
             this.label12.TabIndex = 21;
             this.label12.Text = "Current Condition :";
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(3, 112);
+            this.label13.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(3, 144);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(98, 17);
+            this.label13.Size = new System.Drawing.Size(144, 28);
             this.label13.TabIndex = 22;
             this.label13.Text = "Purchase Date :";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(3, 81);
+            this.label14.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(3, 97);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(77, 17);
+            this.label14.Size = new System.Drawing.Size(113, 28);
             this.label14.TabIndex = 23;
             this.label14.Text = "Asset Type :";
             // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.Location = new System.Drawing.Point(3, 50);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(99, 17);
+            this.label15.Size = new System.Drawing.Size(146, 28);
             this.label15.TabIndex = 24;
             this.label15.Text = "Serial Number :";
             // 
             // dtService2_D
             // 
-            this.dtService2_D.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtService2_D.Location = new System.Drawing.Point(175, 177);
+            this.dtService2_D.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtService2_D.Location = new System.Drawing.Point(187, 237);
             this.dtService2_D.Name = "dtService2_D";
-            this.dtService2_D.Size = new System.Drawing.Size(248, 25);
+            this.dtService2_D.Size = new System.Drawing.Size(331, 34);
             this.dtService2_D.TabIndex = 15;
             // 
             // dtPurchaseD2_D
             // 
-            this.dtPurchaseD2_D.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtPurchaseD2_D.Location = new System.Drawing.Point(175, 111);
+            this.dtPurchaseD2_D.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtPurchaseD2_D.Location = new System.Drawing.Point(187, 138);
             this.dtPurchaseD2_D.Name = "dtPurchaseD2_D";
-            this.dtPurchaseD2_D.Size = new System.Drawing.Size(248, 25);
+            this.dtPurchaseD2_D.Size = new System.Drawing.Size(328, 34);
             this.dtPurchaseD2_D.TabIndex = 14;
             // 
             // cmbType2_D
             // 
             this.cmbType2_D.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.cmbType2_D.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbType2_D.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbType2_D.FormattingEnabled = true;
             this.cmbType2_D.Items.AddRange(new object[] {
             "Chainsaw",
@@ -710,18 +723,18 @@
             "Hedge Trimmer",
             "Trailer ",
             "Ford Ranger LWB"});
-            this.cmbType2_D.Location = new System.Drawing.Point(175, 77);
+            this.cmbType2_D.Location = new System.Drawing.Point(187, 93);
             this.cmbType2_D.Name = "cmbType2_D";
-            this.cmbType2_D.Size = new System.Drawing.Size(121, 25);
+            this.cmbType2_D.Size = new System.Drawing.Size(187, 36);
             this.cmbType2_D.TabIndex = 13;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(172, 12);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(111, 16);
+            this.label2.Size = new System.Drawing.Size(162, 28);
             this.label2.TabIndex = 5;
             this.label2.Text = "Add A New Asset";
             // 
@@ -733,7 +746,6 @@
             this.grpboxOwnAsset_D.Controls.Add(this.label8);
             this.grpboxOwnAsset_D.Controls.Add(this.btnUpdateAass_D);
             this.grpboxOwnAsset_D.Controls.Add(this.label7);
-            this.grpboxOwnAsset_D.Controls.Add(this.label6);
             this.grpboxOwnAsset_D.Controls.Add(this.cmbStatus_D);
             this.grpboxOwnAsset_D.Controls.Add(this.label5);
             this.grpboxOwnAsset_D.Controls.Add(this.label4);
@@ -744,9 +756,11 @@
             this.grpboxOwnAsset_D.Controls.Add(this.txtAsSnumber_d);
             this.grpboxOwnAsset_D.Controls.Add(this.cmbType_D);
             this.grpboxOwnAsset_D.Controls.Add(this.dtPurchaseDate_D);
+            this.grpboxOwnAsset_D.Controls.Add(this.label6);
+            this.grpboxOwnAsset_D.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpboxOwnAsset_D.Location = new System.Drawing.Point(23, 74);
             this.grpboxOwnAsset_D.Name = "grpboxOwnAsset_D";
-            this.grpboxOwnAsset_D.Size = new System.Drawing.Size(458, 356);
+            this.grpboxOwnAsset_D.Size = new System.Drawing.Size(530, 371);
             this.grpboxOwnAsset_D.TabIndex = 0;
             this.grpboxOwnAsset_D.TabStop = false;
             this.grpboxOwnAsset_D.Text = "Owned Asset";
@@ -756,7 +770,7 @@
             this.btnClear_d.BackColor = System.Drawing.Color.DarkGreen;
             this.btnClear_d.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnClear_d.ForeColor = System.Drawing.Color.White;
-            this.btnClear_d.Location = new System.Drawing.Point(214, 307);
+            this.btnClear_d.Location = new System.Drawing.Point(287, 329);
             this.btnClear_d.Name = "btnClear_d";
             this.btnClear_d.Size = new System.Drawing.Size(75, 36);
             this.btnClear_d.TabIndex = 14;
@@ -766,19 +780,19 @@
             // 
             // label9
             // 
-            this.label9.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(6, 79);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(120, 16);
+            this.label9.Size = new System.Drawing.Size(156, 28);
             this.label9.TabIndex = 6;
             this.label9.Text = "Serial Number :";
             // 
             // label8
             // 
-            this.label8.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(6, 117);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(120, 16);
+            this.label8.Size = new System.Drawing.Size(120, 30);
             this.label8.TabIndex = 5;
             this.label8.Text = "Asset Type :";
             // 
@@ -787,7 +801,7 @@
             this.btnUpdateAass_D.BackColor = System.Drawing.Color.DarkGreen;
             this.btnUpdateAass_D.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnUpdateAass_D.ForeColor = System.Drawing.Color.White;
-            this.btnUpdateAass_D.Location = new System.Drawing.Point(61, 307);
+            this.btnUpdateAass_D.Location = new System.Drawing.Point(131, 329);
             this.btnUpdateAass_D.Name = "btnUpdateAass_D";
             this.btnUpdateAass_D.Size = new System.Drawing.Size(121, 36);
             this.btnUpdateAass_D.TabIndex = 13;
@@ -797,112 +811,103 @@
             // 
             // label7
             // 
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(6, 155);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(120, 16);
+            this.label7.Size = new System.Drawing.Size(156, 30);
             this.label7.TabIndex = 4;
             this.label7.Text = "Purchase Date :";
-            // 
-            // label6
-            // 
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(6, 193);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(120, 16);
-            this.label6.TabIndex = 3;
-            this.label6.Text = "Current Condition :";
             // 
             // cmbStatus_D
             // 
             this.cmbStatus_D.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.cmbStatus_D.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbStatus_D.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbStatus_D.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbStatus_D.FormattingEnabled = true;
             this.cmbStatus_D.Items.AddRange(new object[] {
             "Available ",
             "In Use"});
-            this.cmbStatus_D.Location = new System.Drawing.Point(168, 267);
+            this.cmbStatus_D.Location = new System.Drawing.Point(189, 271);
             this.cmbStatus_D.Name = "cmbStatus_D";
-            this.cmbStatus_D.Size = new System.Drawing.Size(121, 25);
+            this.cmbStatus_D.Size = new System.Drawing.Size(199, 36);
             this.cmbStatus_D.TabIndex = 12;
             // 
             // label5
             // 
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(6, 269);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(120, 16);
+            this.label5.Size = new System.Drawing.Size(120, 34);
             this.label5.TabIndex = 2;
             this.label5.Text = "Status :";
             // 
             // label4
             // 
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(6, 231);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(120, 16);
+            this.label4.Size = new System.Drawing.Size(176, 32);
             this.label4.TabIndex = 1;
             this.label4.Text = "Next Service Date :";
             // 
             // label3
             // 
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(6, 41);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(120, 16);
+            this.label3.Size = new System.Drawing.Size(120, 28);
             this.label3.TabIndex = 0;
             this.label3.Text = "Asset ID :";
             // 
             // dtServiceDate_D
             // 
             this.dtServiceDate_D.CalendarTitleBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.dtServiceDate_D.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtServiceDate_D.Location = new System.Drawing.Point(168, 229);
+            this.dtServiceDate_D.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtServiceDate_D.Location = new System.Drawing.Point(189, 231);
             this.dtServiceDate_D.Name = "dtServiceDate_D";
-            this.dtServiceDate_D.Size = new System.Drawing.Size(268, 25);
+            this.dtServiceDate_D.Size = new System.Drawing.Size(335, 34);
             this.dtServiceDate_D.TabIndex = 2;
             // 
             // cmbCondit_D
             // 
             this.cmbCondit_D.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.cmbCondit_D.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbCondit_D.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbCondit_D.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbCondit_D.FormattingEnabled = true;
             this.cmbCondit_D.Items.AddRange(new object[] {
             "Excellent ",
             "Good",
             "Fair",
             "Poor"});
-            this.cmbCondit_D.Location = new System.Drawing.Point(168, 189);
+            this.cmbCondit_D.Location = new System.Drawing.Point(186, 190);
             this.cmbCondit_D.Name = "cmbCondit_D";
-            this.cmbCondit_D.Size = new System.Drawing.Size(121, 25);
+            this.cmbCondit_D.Size = new System.Drawing.Size(202, 36);
             this.cmbCondit_D.TabIndex = 11;
             // 
             // txtAssetID_D
             // 
             this.txtAssetID_D.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.txtAssetID_D.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAssetID_D.Location = new System.Drawing.Point(168, 35);
+            this.txtAssetID_D.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAssetID_D.Location = new System.Drawing.Point(189, 31);
             this.txtAssetID_D.Name = "txtAssetID_D";
             this.txtAssetID_D.ReadOnly = true;
-            this.txtAssetID_D.Size = new System.Drawing.Size(100, 25);
+            this.txtAssetID_D.Size = new System.Drawing.Size(100, 34);
             this.txtAssetID_D.TabIndex = 5;
             this.txtAssetID_D.TextChanged += new System.EventHandler(this.txtAssetID_D_TextChanged);
             // 
             // txtAsSnumber_d
             // 
             this.txtAsSnumber_d.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.txtAsSnumber_d.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAsSnumber_d.Location = new System.Drawing.Point(168, 73);
+            this.txtAsSnumber_d.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAsSnumber_d.Location = new System.Drawing.Point(186, 71);
             this.txtAsSnumber_d.Name = "txtAsSnumber_d";
-            this.txtAsSnumber_d.Size = new System.Drawing.Size(150, 25);
+            this.txtAsSnumber_d.Size = new System.Drawing.Size(150, 34);
             this.txtAsSnumber_d.TabIndex = 5;
             // 
             // cmbType_D
             // 
             this.cmbType_D.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.cmbType_D.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbType_D.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbType_D.FormattingEnabled = true;
             this.cmbType_D.Items.AddRange(new object[] {
             "Chainsaw",
@@ -911,23 +916,33 @@
             "Hedge Trimmer",
             "Trailer ",
             "Ford Ranger LWB"});
-            this.cmbType_D.Location = new System.Drawing.Point(168, 111);
+            this.cmbType_D.Location = new System.Drawing.Point(186, 111);
             this.cmbType_D.Name = "cmbType_D";
-            this.cmbType_D.Size = new System.Drawing.Size(121, 25);
+            this.cmbType_D.Size = new System.Drawing.Size(202, 36);
             this.cmbType_D.TabIndex = 0;
             // 
             // dtPurchaseDate_D
             // 
             this.dtPurchaseDate_D.CalendarTitleBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.dtPurchaseDate_D.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtPurchaseDate_D.Location = new System.Drawing.Point(168, 151);
+            this.dtPurchaseDate_D.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtPurchaseDate_D.Location = new System.Drawing.Point(186, 151);
             this.dtPurchaseDate_D.Name = "dtPurchaseDate_D";
-            this.dtPurchaseDate_D.Size = new System.Drawing.Size(268, 25);
+            this.dtPurchaseDate_D.Size = new System.Drawing.Size(334, 34);
             this.dtPurchaseDate_D.TabIndex = 1;
+            // 
+            // label6
+            // 
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(6, 193);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(188, 30);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "Current Condition :";
             // 
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.SeaShell;
+            this.tabPage2.Controls.Add(this.pictureBox2);
             this.tabPage2.Controls.Add(this.panel4);
             this.tabPage2.Controls.Add(this.panel3);
             this.tabPage2.Controls.Add(this.groupBox1);
@@ -938,10 +953,20 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1801, 771);
+            this.tabPage2.Size = new System.Drawing.Size(1724, 882);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "HIRED ASSETS";
             this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(1531, 6);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(185, 72);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 8;
+            this.pictureBox2.TabStop = false;
             // 
             // panel4
             // 
@@ -962,32 +987,34 @@
             this.panel4.Controls.Add(this.btnDeleteHiredA);
             this.panel4.Controls.Add(this.label44);
             this.panel4.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel4.Location = new System.Drawing.Point(1094, 92);
+            this.panel4.Location = new System.Drawing.Point(1085, 89);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(468, 346);
+            this.panel4.Size = new System.Drawing.Size(513, 451);
             this.panel4.TabIndex = 7;
             // 
             // comboBox1
             // 
             this.comboBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "Active",
             "Returned",
             "Overdue",
             "Damaged"});
-            this.comboBox1.Location = new System.Drawing.Point(161, 224);
+            this.comboBox1.Location = new System.Drawing.Point(177, 322);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 25);
+            this.comboBox1.Size = new System.Drawing.Size(177, 36);
             this.comboBox1.TabIndex = 43;
             // 
             // textBox1
             // 
             this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.textBox1.Location = new System.Drawing.Point(161, 165);
+            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(177, 223);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(129, 25);
+            this.textBox1.Size = new System.Drawing.Size(129, 34);
             this.textBox1.TabIndex = 42;
             // 
             // textBox2
@@ -995,101 +1022,111 @@
             this.textBox2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.textBox2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.textBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.textBox2.Location = new System.Drawing.Point(161, 64);
+            this.textBox2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(178, 79);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(129, 25);
+            this.textBox2.Size = new System.Drawing.Size(212, 34);
             this.textBox2.TabIndex = 34;
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
-            this.textBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox2_KeyDown);
             // 
             // comboBox2
             // 
             this.comboBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.comboBox2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Items.AddRange(new object[] {
             "Excavator",
             "Skid Steer",
             "Bobcat",
             "Hedge Trimmer"});
-            this.comboBox2.Location = new System.Drawing.Point(161, 193);
+            this.comboBox2.Location = new System.Drawing.Point(177, 270);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 25);
+            this.comboBox2.Size = new System.Drawing.Size(190, 36);
             this.comboBox2.TabIndex = 41;
             // 
             // label38
             // 
             this.label38.AutoSize = true;
-            this.label38.Location = new System.Drawing.Point(23, 227);
+            this.label38.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label38.Location = new System.Drawing.Point(20, 325);
             this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(50, 17);
+            this.label38.Size = new System.Drawing.Size(74, 28);
             this.label38.TabIndex = 35;
             this.label38.Text = "Status :";
             // 
             // label39
             // 
             this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(23, 196);
+            this.label39.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label39.Location = new System.Drawing.Point(20, 278);
             this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(81, 17);
+            this.label39.Size = new System.Drawing.Size(118, 28);
             this.label39.TabIndex = 36;
             this.label39.Text = "Asset Type  :";
             // 
             // label40
             // 
             this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(23, 165);
+            this.label40.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label40.Location = new System.Drawing.Point(19, 218);
             this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(89, 17);
+            this.label40.Size = new System.Drawing.Size(129, 28);
             this.label40.TabIndex = 37;
             this.label40.Text = "Cost of Hire  :";
             // 
             // label41
             // 
             this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(23, 134);
+            this.label41.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label41.Location = new System.Drawing.Point(19, 171);
             this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(104, 17);
+            this.label41.Size = new System.Drawing.Size(152, 28);
             this.label41.TabIndex = 38;
             this.label41.Text = "Date of Return  :";
             // 
             // label42
             // 
             this.label42.AutoSize = true;
-            this.label42.Location = new System.Drawing.Point(23, 103);
+            this.label42.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label42.Location = new System.Drawing.Point(20, 124);
             this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(86, 17);
+            this.label42.Size = new System.Drawing.Size(126, 28);
             this.label42.TabIndex = 39;
             this.label42.Text = "Date of Hire :";
             // 
             // label43
             // 
             this.label43.AutoSize = true;
-            this.label43.Location = new System.Drawing.Point(23, 72);
+            this.label43.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label43.Location = new System.Drawing.Point(21, 80);
             this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(102, 17);
+            this.label43.Size = new System.Drawing.Size(151, 28);
             this.label43.TabIndex = 40;
             this.label43.Text = "Supplier Name :";
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(161, 134);
+            this.dateTimePicker1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.Location = new System.Drawing.Point(178, 172);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(248, 25);
+            this.dateTimePicker1.Size = new System.Drawing.Size(330, 34);
             this.dateTimePicker1.TabIndex = 33;
             // 
             // dateTimePicker2
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(161, 100);
+            this.dateTimePicker2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker2.Location = new System.Drawing.Point(178, 129);
             this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(248, 25);
+            this.dateTimePicker2.Size = new System.Drawing.Size(335, 34);
             this.dateTimePicker2.TabIndex = 32;
             // 
             // btnClearAssedDel
             // 
             this.btnClearAssedDel.BackColor = System.Drawing.Color.DarkGreen;
             this.btnClearAssedDel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnClearAssedDel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClearAssedDel.ForeColor = System.Drawing.Color.White;
-            this.btnClearAssedDel.Location = new System.Drawing.Point(240, 302);
+            this.btnClearAssedDel.Location = new System.Drawing.Point(279, 400);
             this.btnClearAssedDel.Name = "btnClearAssedDel";
             this.btnClearAssedDel.Size = new System.Drawing.Size(75, 36);
             this.btnClearAssedDel.TabIndex = 29;
@@ -1101,8 +1138,9 @@
             // 
             this.btnDeleteHiredA.BackColor = System.Drawing.Color.DarkGreen;
             this.btnDeleteHiredA.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnDeleteHiredA.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeleteHiredA.ForeColor = System.Drawing.Color.White;
-            this.btnDeleteHiredA.Location = new System.Drawing.Point(73, 302);
+            this.btnDeleteHiredA.Location = new System.Drawing.Point(113, 400);
             this.btnDeleteHiredA.Name = "btnDeleteHiredA";
             this.btnDeleteHiredA.Size = new System.Drawing.Size(127, 36);
             this.btnDeleteHiredA.TabIndex = 27;
@@ -1113,10 +1151,10 @@
             // label44
             // 
             this.label44.AutoSize = true;
-            this.label44.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label44.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label44.Location = new System.Drawing.Point(144, 12);
             this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(171, 16);
+            this.label44.Size = new System.Drawing.Size(246, 25);
             this.label44.TabIndex = 5;
             this.label44.Text = "Delete  Hired Asset Record";
             // 
@@ -1138,10 +1176,10 @@
             this.panel3.Controls.Add(this.dtReturn2);
             this.panel3.Controls.Add(this.dtHiRe2);
             this.panel3.Controls.Add(this.label37);
-            this.panel3.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel3.Location = new System.Drawing.Point(583, 92);
+            this.panel3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panel3.Location = new System.Drawing.Point(528, 89);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(468, 346);
+            this.panel3.Size = new System.Drawing.Size(530, 451);
             this.panel3.TabIndex = 6;
             // 
             // cmbStatus3
@@ -1154,17 +1192,17 @@
             "Returned",
             "Overdue",
             "Damaged"});
-            this.cmbStatus3.Location = new System.Drawing.Point(139, 205);
+            this.cmbStatus3.Location = new System.Drawing.Point(176, 317);
             this.cmbStatus3.Name = "cmbStatus3";
-            this.cmbStatus3.Size = new System.Drawing.Size(121, 25);
+            this.cmbStatus3.Size = new System.Drawing.Size(188, 36);
             this.cmbStatus3.TabIndex = 31;
             // 
             // txtCost2
             // 
             this.txtCost2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.txtCost2.Location = new System.Drawing.Point(139, 146);
+            this.txtCost2.Location = new System.Drawing.Point(176, 223);
             this.txtCost2.Name = "txtCost2";
-            this.txtCost2.Size = new System.Drawing.Size(129, 25);
+            this.txtCost2.Size = new System.Drawing.Size(129, 34);
             this.txtCost2.TabIndex = 30;
             // 
             // btnclear2
@@ -1172,7 +1210,7 @@
             this.btnclear2.BackColor = System.Drawing.Color.DarkGreen;
             this.btnclear2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnclear2.ForeColor = System.Drawing.Color.White;
-            this.btnclear2.Location = new System.Drawing.Point(283, 302);
+            this.btnclear2.Location = new System.Drawing.Point(267, 401);
             this.btnclear2.Name = "btnclear2";
             this.btnclear2.Size = new System.Drawing.Size(75, 36);
             this.btnclear2.TabIndex = 28;
@@ -1185,7 +1223,7 @@
             this.btnAdd2.BackColor = System.Drawing.Color.DarkGreen;
             this.btnAdd2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAdd2.ForeColor = System.Drawing.Color.White;
-            this.btnAdd2.Location = new System.Drawing.Point(111, 302);
+            this.btnAdd2.Location = new System.Drawing.Point(77, 401);
             this.btnAdd2.Name = "btnAdd2";
             this.btnAdd2.Size = new System.Drawing.Size(127, 36);
             this.btnAdd2.TabIndex = 27;
@@ -1196,9 +1234,9 @@
             // txtSName2
             // 
             this.txtSName2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.txtSName2.Location = new System.Drawing.Point(139, 45);
+            this.txtSName2.Location = new System.Drawing.Point(176, 85);
             this.txtSName2.Name = "txtSName2";
-            this.txtSName2.Size = new System.Drawing.Size(129, 25);
+            this.txtSName2.Size = new System.Drawing.Size(213, 34);
             this.txtSName2.TabIndex = 16;
             // 
             // cmbHassetTY
@@ -1210,86 +1248,86 @@
             "Skid Steer",
             "Bobcat",
             "Hedge Trimmer"});
-            this.cmbHassetTY.Location = new System.Drawing.Point(139, 174);
+            this.cmbHassetTY.Location = new System.Drawing.Point(176, 275);
             this.cmbHassetTY.Name = "cmbHassetTY";
-            this.cmbHassetTY.Size = new System.Drawing.Size(121, 25);
+            this.cmbHassetTY.Size = new System.Drawing.Size(188, 36);
             this.cmbHassetTY.TabIndex = 26;
             // 
             // label31
             // 
             this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(3, 205);
+            this.label31.Location = new System.Drawing.Point(20, 312);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(50, 17);
+            this.label31.Size = new System.Drawing.Size(74, 28);
             this.label31.TabIndex = 17;
             this.label31.Text = "Status :";
             // 
             // label32
             // 
             this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(3, 174);
+            this.label32.Location = new System.Drawing.Point(20, 265);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(81, 17);
+            this.label32.Size = new System.Drawing.Size(118, 28);
             this.label32.TabIndex = 20;
             this.label32.Text = "Asset Type  :";
             // 
             // label33
             // 
             this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(3, 143);
+            this.label33.Location = new System.Drawing.Point(20, 218);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(89, 17);
+            this.label33.Size = new System.Drawing.Size(129, 28);
             this.label33.TabIndex = 21;
             this.label33.Text = "Cost of Hire  :";
             // 
             // label34
             // 
             this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(3, 112);
+            this.label34.Location = new System.Drawing.Point(20, 171);
             this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(104, 17);
+            this.label34.Size = new System.Drawing.Size(152, 28);
             this.label34.TabIndex = 22;
             this.label34.Text = "Date of Return  :";
             // 
             // label35
             // 
             this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(3, 81);
+            this.label35.Location = new System.Drawing.Point(20, 124);
             this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(86, 17);
+            this.label35.Size = new System.Drawing.Size(126, 28);
             this.label35.TabIndex = 23;
             this.label35.Text = "Date of Hire :";
             // 
             // label36
             // 
             this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(3, 50);
+            this.label36.Location = new System.Drawing.Point(20, 85);
             this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(102, 17);
+            this.label36.Size = new System.Drawing.Size(151, 28);
             this.label36.TabIndex = 24;
             this.label36.Text = "Supplier Name :";
             // 
             // dtReturn2
             // 
-            this.dtReturn2.Location = new System.Drawing.Point(139, 115);
+            this.dtReturn2.Location = new System.Drawing.Point(176, 172);
             this.dtReturn2.Name = "dtReturn2";
-            this.dtReturn2.Size = new System.Drawing.Size(248, 25);
+            this.dtReturn2.Size = new System.Drawing.Size(330, 34);
             this.dtReturn2.TabIndex = 15;
             // 
             // dtHiRe2
             // 
-            this.dtHiRe2.Location = new System.Drawing.Point(139, 81);
+            this.dtHiRe2.Location = new System.Drawing.Point(176, 129);
             this.dtHiRe2.Name = "dtHiRe2";
-            this.dtHiRe2.Size = new System.Drawing.Size(248, 25);
+            this.dtHiRe2.Size = new System.Drawing.Size(330, 34);
             this.dtHiRe2.TabIndex = 14;
             // 
             // label37
             // 
             this.label37.AutoSize = true;
-            this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.Location = new System.Drawing.Point(172, 12);
+            this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label37.Location = new System.Drawing.Point(125, 38);
             this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(147, 16);
+            this.label37.Size = new System.Drawing.Size(217, 25);
             this.label37.TabIndex = 5;
             this.label37.Text = "Add A New Hired Asset";
             // 
@@ -1311,13 +1349,13 @@
             this.groupBox1.Controls.Add(this.txtHassetID);
             this.groupBox1.Controls.Add(this.txtSupplierName);
             this.groupBox1.Controls.Add(this.dtReturn);
-            this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(56, 82);
+            this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(6, 78);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(458, 356);
+            this.groupBox1.Size = new System.Drawing.Size(506, 453);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Owned Asset";
+            this.groupBox1.Text = "Hired Asset";
             // 
             // cmbType
             // 
@@ -1328,24 +1366,24 @@
             "Skid Steer",
             "Bobcat",
             "Hedge Trimmer"});
-            this.cmbType.Location = new System.Drawing.Point(168, 228);
+            this.cmbType.Location = new System.Drawing.Point(168, 300);
             this.cmbType.Name = "cmbType";
-            this.cmbType.Size = new System.Drawing.Size(121, 25);
+            this.cmbType.Size = new System.Drawing.Size(195, 36);
             this.cmbType.TabIndex = 17;
             // 
             // txtCostHire
             // 
             this.txtCostHire.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.txtCostHire.Location = new System.Drawing.Point(168, 187);
+            this.txtCostHire.Location = new System.Drawing.Point(168, 243);
             this.txtCostHire.Name = "txtCostHire";
-            this.txtCostHire.Size = new System.Drawing.Size(132, 25);
+            this.txtCostHire.Size = new System.Drawing.Size(186, 34);
             this.txtCostHire.TabIndex = 16;
             // 
             // dtHiredate
             // 
-            this.dtHiredate.Location = new System.Drawing.Point(168, 111);
+            this.dtHiredate.Location = new System.Drawing.Point(168, 135);
             this.dtHiredate.Name = "dtHiredate";
-            this.dtHiredate.Size = new System.Drawing.Size(268, 25);
+            this.dtHiredate.Size = new System.Drawing.Size(327, 34);
             this.dtHiredate.TabIndex = 15;
             // 
             // btnHclear
@@ -1353,7 +1391,7 @@
             this.btnHclear.BackColor = System.Drawing.Color.DarkGreen;
             this.btnHclear.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnHclear.ForeColor = System.Drawing.Color.White;
-            this.btnHclear.Location = new System.Drawing.Point(243, 313);
+            this.btnHclear.Location = new System.Drawing.Point(252, 402);
             this.btnHclear.Name = "btnHclear";
             this.btnHclear.Size = new System.Drawing.Size(75, 36);
             this.btnHclear.TabIndex = 14;
@@ -1363,17 +1401,17 @@
             // 
             // label24
             // 
-            this.label24.Location = new System.Drawing.Point(6, 79);
+            this.label24.Location = new System.Drawing.Point(6, 95);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(120, 16);
+            this.label24.Size = new System.Drawing.Size(156, 30);
             this.label24.TabIndex = 6;
             this.label24.Text = "Supplier Name :";
             // 
             // label25
             // 
-            this.label25.Location = new System.Drawing.Point(6, 117);
+            this.label25.Location = new System.Drawing.Point(6, 149);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(120, 16);
+            this.label25.Size = new System.Drawing.Size(156, 28);
             this.label25.TabIndex = 5;
             this.label25.Text = "Date of Hire :";
             // 
@@ -1382,7 +1420,7 @@
             this.btnHupdate.BackColor = System.Drawing.Color.DarkGreen;
             this.btnHupdate.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnHupdate.ForeColor = System.Drawing.Color.White;
-            this.btnHupdate.Location = new System.Drawing.Point(71, 313);
+            this.btnHupdate.Location = new System.Drawing.Point(89, 402);
             this.btnHupdate.Name = "btnHupdate";
             this.btnHupdate.Size = new System.Drawing.Size(121, 36);
             this.btnHupdate.TabIndex = 13;
@@ -1392,17 +1430,17 @@
             // 
             // label26
             // 
-            this.label26.Location = new System.Drawing.Point(6, 155);
+            this.label26.Location = new System.Drawing.Point(6, 203);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(120, 16);
+            this.label26.Size = new System.Drawing.Size(156, 30);
             this.label26.TabIndex = 4;
             this.label26.Text = "Date of Return :";
             // 
             // label27
             // 
-            this.label27.Location = new System.Drawing.Point(6, 193);
+            this.label27.Location = new System.Drawing.Point(6, 257);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(120, 16);
+            this.label27.Size = new System.Drawing.Size(136, 28);
             this.label27.TabIndex = 3;
             this.label27.Text = "Cost of Hire :";
             // 
@@ -1416,24 +1454,24 @@
             "Returned",
             "Overdue",
             "Damaged"});
-            this.cmbStatus.Location = new System.Drawing.Point(168, 267);
+            this.cmbStatus.Location = new System.Drawing.Point(168, 355);
             this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(121, 25);
+            this.cmbStatus.Size = new System.Drawing.Size(186, 36);
             this.cmbStatus.TabIndex = 12;
             // 
             // label28
             // 
-            this.label28.Location = new System.Drawing.Point(6, 269);
+            this.label28.Location = new System.Drawing.Point(6, 365);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(120, 16);
+            this.label28.Size = new System.Drawing.Size(120, 34);
             this.label28.TabIndex = 2;
             this.label28.Text = "Status :";
             // 
             // label29
             // 
-            this.label29.Location = new System.Drawing.Point(6, 231);
+            this.label29.Location = new System.Drawing.Point(6, 311);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(120, 16);
+            this.label29.Size = new System.Drawing.Size(120, 29);
             this.label29.TabIndex = 1;
             this.label29.Text = "Asset Type :";
             // 
@@ -1441,51 +1479,52 @@
             // 
             this.label30.Location = new System.Drawing.Point(6, 41);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(120, 16);
+            this.label30.Size = new System.Drawing.Size(120, 28);
             this.label30.TabIndex = 0;
             this.label30.Text = "Asset ID :";
             // 
             // txtHassetID
             // 
             this.txtHassetID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.txtHassetID.Location = new System.Drawing.Point(168, 35);
+            this.txtHassetID.Location = new System.Drawing.Point(168, 27);
             this.txtHassetID.Name = "txtHassetID";
             this.txtHassetID.ReadOnly = true;
-            this.txtHassetID.Size = new System.Drawing.Size(100, 25);
+            this.txtHassetID.Size = new System.Drawing.Size(100, 34);
             this.txtHassetID.TabIndex = 5;
             this.txtHassetID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtSupplierName
             // 
             this.txtSupplierName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.txtSupplierName.Location = new System.Drawing.Point(168, 73);
+            this.txtSupplierName.Location = new System.Drawing.Point(168, 81);
             this.txtSupplierName.Name = "txtSupplierName";
-            this.txtSupplierName.Size = new System.Drawing.Size(150, 25);
+            this.txtSupplierName.Size = new System.Drawing.Size(150, 34);
             this.txtSupplierName.TabIndex = 5;
             // 
             // dtReturn
             // 
-            this.dtReturn.Location = new System.Drawing.Point(168, 151);
+            this.dtReturn.Location = new System.Drawing.Point(168, 191);
             this.dtReturn.Name = "dtReturn";
-            this.dtReturn.Size = new System.Drawing.Size(268, 25);
+            this.dtReturn.Size = new System.Drawing.Size(327, 34);
             this.dtReturn.TabIndex = 1;
             // 
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(324, 24);
+            this.label23.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(322, 29);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(164, 17);
+            this.label23.Size = new System.Drawing.Size(243, 28);
             this.label23.TabIndex = 4;
             this.label23.Text = "Enter Asset Supplier Name";
             // 
             // txtHAsearch_D
             // 
-            this.txtHAsearch_D.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtHAsearch_D.Location = new System.Drawing.Point(515, 18);
+            this.txtHAsearch_D.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.txtHAsearch_D.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtHAsearch_D.Location = new System.Drawing.Point(591, 29);
             this.txtHAsearch_D.Name = "txtHAsearch_D";
-            this.txtHAsearch_D.Size = new System.Drawing.Size(280, 25);
+            this.txtHAsearch_D.Size = new System.Drawing.Size(280, 34);
             this.txtHAsearch_D.TabIndex = 1;
             this.txtHAsearch_D.TextChanged += new System.EventHandler(this.txtHAsearch_D_TextChanged);
             // 
@@ -1502,7 +1541,7 @@
             this.dataGridViewTextBoxColumn6,
             this.dataGridViewTextBoxColumn7});
             this.dgHiredAsset.DataSource = this.hiredAssetBindingSource1;
-            this.dgHiredAsset.Location = new System.Drawing.Point(36, 465);
+            this.dgHiredAsset.Location = new System.Drawing.Point(25, 579);
             this.dgHiredAsset.Name = "dgHiredAsset";
             this.dgHiredAsset.RowHeadersWidth = 51;
             this.dgHiredAsset.RowTemplate.Height = 24;
@@ -1594,7 +1633,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(1809, 800);
+            this.ClientSize = new System.Drawing.Size(1732, 911);
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MachineRecords_D";
@@ -1617,6 +1656,7 @@
             this.grpboxOwnAsset_D.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -1780,5 +1820,6 @@
         private System.Windows.Forms.Button btnDeleteHiredA;
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }
