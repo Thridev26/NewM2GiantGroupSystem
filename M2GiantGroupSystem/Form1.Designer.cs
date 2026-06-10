@@ -70,6 +70,7 @@
             this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem13 = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.returnToMainMenuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -92,7 +93,8 @@
             this.toolStripMenuItem8,
             this.toolStripMenuItem11,
             this.toolStripMenuItem10,
-            this.toolStripMenuItem13});
+            this.toolStripMenuItem13,
+            this.returnToMainMenuToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(20, 6, 0, 6);
@@ -429,17 +431,15 @@
             // 
             // toolStripMenuItem13
             // 
-            this.toolStripMenuItem13.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripMenuItem13.Name = "toolStripMenuItem13";
-            this.toolStripMenuItem13.Size = new System.Drawing.Size(211, 36);
-            this.toolStripMenuItem13.Text = "Return to Menu";
-            this.toolStripMenuItem13.Click += new System.EventHandler(this.toolStripMenuItem13_Click);
+            this.toolStripMenuItem13.Size = new System.Drawing.Size(16, 36);
             // 
-            // timer1
+            // returnToMainMenuToolStripMenuItem
             // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 1000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.returnToMainMenuToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.returnToMainMenuToolStripMenuItem.Name = "returnToMainMenuToolStripMenuItem";
+            this.returnToMainMenuToolStripMenuItem.Size = new System.Drawing.Size(211, 36);
+            this.returnToMainMenuToolStripMenuItem.Text = "Return to Menu";
             // 
             // Form1
             // 
@@ -456,7 +456,6 @@
             this.Text = "The Giant Group Operations and Asset Management System - Main Menu";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.MdiChildActivate += new System.EventHandler(this.Form1_MdiChildActivate);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -506,6 +505,7 @@
         private System.Windows.Forms.ToolStripMenuItem addASitePhotoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem13;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.ToolStripMenuItem returnToMainMenuToolStripMenuItem;
     }
 }
 
