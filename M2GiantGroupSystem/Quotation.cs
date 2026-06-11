@@ -131,6 +131,7 @@ namespace M2GiantGroupSystem
 
         private void Quotation_Load(object sender, EventArgs e)
         {
+            button4.Enabled = false;
             tabControl1.DrawMode = TabDrawMode.OwnerDrawFixed;
             tabControl1.DrawItem += tabControl1_DrawItem;
             tabControl1.ItemSize = new Size(300, 30);
@@ -326,7 +327,19 @@ namespace M2GiantGroupSystem
             txtTotalwithVAT.Text = "0.00";
             txtFilePath.Text = "";
             cboQuoteStatus.SelectedIndex = -1;
-            selectedJobsGridView.Rows.Clear();
+            // --- CRASH PREVENTION START ---
+            // If the grid is data-bound, clearing the rows directly causes an exception.
+            // We set the DataSource to null to safely detach the list.
+            if (selectedJobsGridView.DataSource != null)
+            {
+                selectedJobsGridView.DataSource = null;
+            }
+            else
+            {
+                // If it's not bound, it's safe to clear manually
+                selectedJobsGridView.Rows.Clear();
+            }
+            // --- CRASH PREVENTION END ---
             txtEditQuoteID.Text = "";
             longitudeTextBox.Text = "";
             latitudeTextBox.Text = "";
@@ -657,8 +670,10 @@ namespace M2GiantGroupSystem
 
         private void button6_Click(object sender, EventArgs e)
         {
-            // 1. VALIDATION: Ensure an active Quote row has actually been loaded from the grid
-            if (string.IsNullOrWhiteSpace(txtEditQuoteID.Text))
+          try
+          {
+                // 1. VALIDATION: Ensure an active Quote row has actually been loaded from the grid
+                if (string.IsNullOrWhiteSpace(txtEditQuoteID.Text))
             {
                 MessageBox.Show("No active quote record has been selected or loaded for editing. Please select a row from the table above and click Edit first.",
                                 "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -680,9 +695,7 @@ namespace M2GiantGroupSystem
                                 "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
-            try
-            {
+            
                 // 4. Extract and parse your UI values into clean data types
                 int targetQuoteID = Convert.ToInt32(txtEditQuoteID.Text);
 
@@ -692,7 +705,7 @@ namespace M2GiantGroupSystem
                 string updatedGenerated = dtpEditGenerated.Value.ToShortDateString();
 
                 // Pull the total gross value (Inclusive of VAT) back out of your final summary field (textBox2)
-                decimal updatedAmount = Convert.ToDecimal(textBox2.Text);
+                decimal updatedAmount = decimal.TryParse(textBox2.Text, out decimal tempAmount) ? tempAmount : 0;
 
                 string updatedStatus = cmbEditStatus.SelectedItem.ToString();
                 string updatedPath = string.IsNullOrWhiteSpace(txtEditFilePath.Text) ? null : txtEditFilePath.Text;
@@ -718,12 +731,15 @@ namespace M2GiantGroupSystem
                 // 7. SUCCESS FEEDBACK
                 MessageBox.Show($"Quote record #{targetQuoteID} has been successfully updated.",
                                 "System Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("An unexpected error occurred while compiling your changes to the Quote: " + ex.Message,
-                                "Database Configuration Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+          }
+          catch (SqlException sqlEx)
+          {
+                MessageBox.Show("Database error: " + sqlEx.Message, "Database Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
+          }
+          catch (Exception ex)
+          {
+                MessageBox.Show("An unexpected error occurred: " + ex.Message, "System Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+          }
         }
 
         private void btnExportPDF_Click(object sender, EventArgs e)
@@ -949,27 +965,40 @@ namespace M2GiantGroupSystem
 
         private void button4_Click(object sender, EventArgs e)
         {
-            // 1. Initialize the file dialog component
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+
+            // The "Try" block handles the file operation and potential system errors
+            try
             {
-                // Set the initial directory to the user's Documents folder
-                openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-
-                // Allow all file extensions as requested
-                openFileDialog.Filter = "All files (*.*)|*.*";
-                openFileDialog.FilterIndex = 1;
-                openFileDialog.RestoreDirectory = true;
-                openFileDialog.Title = "Select Quote Document File";
-
-                // 2. Show the dialog window and check if the user actually selected a file
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                // 1. Validation Check: Ensure we have a valid selection context
+                // If these textboxes are empty, the user hasn't selected a quote to edit
+                if (string.IsNullOrWhiteSpace(txtEditJobRequestID.Text) || string.IsNullOrWhiteSpace(txtEditQuoteID.Text))
                 {
-                    // 3. Grab the full file path chosen by the user
-                    string selectedFilePath = openFileDialog.FileName;
-
-                    // 4. Assign the string path directly into your UI TextBox
-                    txtFilePath.Text = selectedFilePath;
+                    MessageBox.Show("Please select a valid Quote from the archive to edit before browsing for a file.",
+                                    "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return; // Stop execution
                 }
+
+                // 2. Initialize the file dialog component
+                using (OpenFileDialog openFileDialog = new OpenFileDialog())
+                {
+                    openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                    openFileDialog.Filter = "All files (*.*)|*.*";
+                    openFileDialog.FilterIndex = 1;
+                    openFileDialog.RestoreDirectory = true;
+                    openFileDialog.Title = "Select Quote Document File";
+
+                    // 3. Show the dialog and assign the path
+                    if (openFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        txtFilePath.Text = openFileDialog.FileName;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // 4. Centralized Error Handling
+                MessageBox.Show($"An unexpected error occurred while accessing the file system: {ex.Message}",
+                                "System Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1531,6 +1560,42 @@ namespace M2GiantGroupSystem
         {
             if (ThemeManager.IsDarkMode)
                 ThemeManager.ApplyTheme(this);
+        }
+
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtEditJobRequestID.Text) || string.IsNullOrWhiteSpace(txtEditQuoteID.Text))
+            {
+                MessageBox.Show("Please select a valid Quote from the archive to trying to cancel the edit.",
+                                "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Stop execution
+            }
+
+            // 1. Clear all text fields
+            txtEditQuoteID.Clear();
+            txtEditJobRequestID.Clear();
+            txtEditAmount.Clear();
+            textBox4.Clear(); // VAT
+            textBox2.Clear(); // Grand Total
+            txtEditFilePath.Clear(); 
+
+            // 2. Reset date pickers to today
+            dtpEditIssued.Value = DateTime.Today;
+            dtpEditExpiry.Value = DateTime.Today;
+            dtpEditGenerated.Value = DateTime.Today;
+
+            // 3. Reset dropdowns and selection states
+            cmbEditStatus.SelectedIndex = -1;
+
+            // 4. Safely clear the selection from the grid to "stop" the edit mode
+            // This assumes your main grid is named 'quoteDataGridView'
+            if (quoteDataGridView != null)
+            {
+                quoteDataGridView.ClearSelection();
+            }
+
+            // 5. Provide feedback or reset UI state
+            MessageBox.Show("Editing cancelled. Fields have been cleared.", "Action Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
