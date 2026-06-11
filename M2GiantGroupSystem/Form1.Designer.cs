@@ -335,7 +335,7 @@
             // 
             this.createAnInvoiceToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(219)))), ((int)(((byte)(117)))));
             this.createAnInvoiceToolStripMenuItem.Name = "createAnInvoiceToolStripMenuItem";
-            this.createAnInvoiceToolStripMenuItem.Size = new System.Drawing.Size(316, 40);
+            this.createAnInvoiceToolStripMenuItem.Size = new System.Drawing.Size(327, 40);
             this.createAnInvoiceToolStripMenuItem.Text = "Create an Invoice";
             this.createAnInvoiceToolStripMenuItem.Click += new System.EventHandler(this.createAnInvoiceToolStripMenuItem_Click);
             // 
@@ -343,8 +343,8 @@
             // 
             this.trackPaymentsToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(219)))), ((int)(((byte)(117)))));
             this.trackPaymentsToolStripMenuItem.Name = "trackPaymentsToolStripMenuItem";
-            this.trackPaymentsToolStripMenuItem.Size = new System.Drawing.Size(316, 40);
-            this.trackPaymentsToolStripMenuItem.Text = "Track Payments";
+            this.trackPaymentsToolStripMenuItem.Size = new System.Drawing.Size(327, 40);
+            this.trackPaymentsToolStripMenuItem.Text = "Manage Payments";
             // 
             // toolStripMenuItem5
             // 
