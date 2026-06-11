@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MachineRecords_D));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.cmbFilterStatus = new System.Windows.Forms.ComboBox();
@@ -100,6 +100,10 @@
             this.dtPurchaseDate_D = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.cmbFilterStatus_HA = new System.Windows.Forms.ComboBox();
+            this.cmbFilterType_HA = new System.Windows.Forms.ComboBox();
+            this.label48 = new System.Windows.Forms.Label();
+            this.label47 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -134,6 +138,7 @@
             this.dtHiRe2 = new System.Windows.Forms.DateTimePicker();
             this.label37 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label49 = new System.Windows.Forms.Label();
             this.cmbType = new System.Windows.Forms.ComboBox();
             this.txtCostHire = new System.Windows.Forms.TextBox();
             this.dtHiredate = new System.Windows.Forms.DateTimePicker();
@@ -165,11 +170,6 @@
             this.hiredAssetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.hiredAssetTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.HiredAssetTableAdapter();
             this.ownedAssetTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.OwnedAssetTableAdapter();
-            this.label47 = new System.Windows.Forms.Label();
-            this.label48 = new System.Windows.Forms.Label();
-            this.cmbFilterType_HA = new System.Windows.Forms.ComboBox();
-            this.cmbFilterStatus_HA = new System.Windows.Forms.ComboBox();
-            this.label49 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
             this.toolTip3 = new System.Windows.Forms.ToolTip(this.components);
@@ -179,6 +179,14 @@
             this.toolTip7 = new System.Windows.Forms.ToolTip(this.components);
             this.toolTip8 = new System.Windows.Forms.ToolTip(this.components);
             this.toolTip9 = new System.Windows.Forms.ToolTip(this.components);
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label50 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label51 = new System.Windows.Forms.Label();
+            this.label52 = new System.Windows.Forms.Label();
+            this.label53 = new System.Windows.Forms.Label();
+            this.btnSaveFuelUsed = new System.Windows.Forms.Button();
+            this.dgvAssetAssignments = new System.Windows.Forms.DataGridView();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -197,12 +205,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.hiredAssetBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ownedAssetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hiredAssetBindingSource)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAssetAssignments)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -499,14 +510,14 @@
             this.dataGridViewTextBoxColumn13,
             this.dataGridViewTextBoxColumn14});
             this.dgvOwnedAsset_D.DataSource = this.ownedAssetBindingSource1;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvOwnedAsset_D.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvOwnedAsset_D.DefaultCellStyle = dataGridViewCellStyle11;
             this.dgvOwnedAsset_D.Location = new System.Drawing.Point(8, 474);
             this.dgvOwnedAsset_D.Name = "dgvOwnedAsset_D";
             this.dgvOwnedAsset_D.RowHeadersWidth = 51;
@@ -1025,6 +1036,51 @@
             this.tabPage2.Text = "HIRED ASSETS";
             this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
             // 
+            // cmbFilterStatus_HA
+            // 
+            this.cmbFilterStatus_HA.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.cmbFilterStatus_HA.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbFilterStatus_HA.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbFilterStatus_HA.FormattingEnabled = true;
+            this.cmbFilterStatus_HA.Location = new System.Drawing.Point(1345, 26);
+            this.cmbFilterStatus_HA.Name = "cmbFilterStatus_HA";
+            this.cmbFilterStatus_HA.Size = new System.Drawing.Size(147, 36);
+            this.cmbFilterStatus_HA.TabIndex = 12;
+            this.cmbFilterStatus_HA.SelectedIndexChanged += new System.EventHandler(this.cmbFilterStatus_HA_SelectedIndexChanged);
+            // 
+            // cmbFilterType_HA
+            // 
+            this.cmbFilterType_HA.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.cmbFilterType_HA.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbFilterType_HA.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbFilterType_HA.FormattingEnabled = true;
+            this.cmbFilterType_HA.Location = new System.Drawing.Point(937, 26);
+            this.cmbFilterType_HA.Name = "cmbFilterType_HA";
+            this.cmbFilterType_HA.Size = new System.Drawing.Size(161, 36);
+            this.cmbFilterType_HA.TabIndex = 11;
+            this.cmbFilterType_HA.SelectedIndexChanged += new System.EventHandler(this.cmbFilterType_HA_SelectedIndexChanged);
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label48.Location = new System.Drawing.Point(1104, 29);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(235, 28);
+            this.label48.TabIndex = 10;
+            this.label48.Text = "Select Hired Asset Status :";
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label47.Location = new System.Drawing.Point(713, 32);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(223, 28);
+            this.label47.TabIndex = 9;
+            this.label47.Text = "Select Hired Asset Type :";
+            this.label47.Click += new System.EventHandler(this.label47_Click);
+            // 
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
@@ -1425,6 +1481,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Hired Asset";
             // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label49.Location = new System.Drawing.Point(120, 24);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(205, 25);
+            this.label49.TabIndex = 18;
+            this.label49.Text = "Update A  Hired Asset";
+            // 
             // cmbType
             // 
             this.cmbType.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
@@ -1697,60 +1763,100 @@
             // 
             this.ownedAssetTableAdapter1.ClearBeforeFill = true;
             // 
-            // label47
+            // tabPage3
             // 
-            this.label47.AutoSize = true;
-            this.label47.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label47.Location = new System.Drawing.Point(713, 32);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(223, 28);
-            this.label47.TabIndex = 9;
-            this.label47.Text = "Select Hired Asset Type :";
-            this.label47.Click += new System.EventHandler(this.label47_Click);
+            this.tabPage3.BackColor = System.Drawing.Color.SeaShell;
+            this.tabPage3.Controls.Add(this.label50);
+            this.tabPage3.Controls.Add(this.textBox3);
+            this.tabPage3.Controls.Add(this.label51);
+            this.tabPage3.Controls.Add(this.label52);
+            this.tabPage3.Controls.Add(this.label53);
+            this.tabPage3.Controls.Add(this.btnSaveFuelUsed);
+            this.tabPage3.Controls.Add(this.dgvAssetAssignments);
+            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(1724, 882);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "View job asset assignments";
             // 
-            // label48
+            // label50
             // 
-            this.label48.AutoSize = true;
-            this.label48.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label48.Location = new System.Drawing.Point(1104, 29);
-            this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(235, 28);
-            this.label48.TabIndex = 10;
-            this.label48.Text = "Select Hired Asset Status :";
+            this.label50.AutoSize = true;
+            this.label50.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label50.Location = new System.Drawing.Point(99, 186);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(355, 28);
+            this.label50.TabIndex = 13;
+            this.label50.Text = "Search by site address or asset type:";
             // 
-            // cmbFilterType_HA
+            // textBox3
             // 
-            this.cmbFilterType_HA.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.cmbFilterType_HA.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbFilterType_HA.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbFilterType_HA.FormattingEnabled = true;
-            this.cmbFilterType_HA.Location = new System.Drawing.Point(937, 26);
-            this.cmbFilterType_HA.Name = "cmbFilterType_HA";
-            this.cmbFilterType_HA.Size = new System.Drawing.Size(161, 36);
-            this.cmbFilterType_HA.TabIndex = 11;
-            this.cmbFilterType_HA.SelectedIndexChanged += new System.EventHandler(this.cmbFilterType_HA_SelectedIndexChanged);
+            this.textBox3.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox3.Location = new System.Drawing.Point(460, 186);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(444, 30);
+            this.textBox3.TabIndex = 12;
+            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
-            // cmbFilterStatus_HA
+            // label51
             // 
-            this.cmbFilterStatus_HA.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.cmbFilterStatus_HA.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbFilterStatus_HA.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbFilterStatus_HA.FormattingEnabled = true;
-            this.cmbFilterStatus_HA.Location = new System.Drawing.Point(1345, 26);
-            this.cmbFilterStatus_HA.Name = "cmbFilterStatus_HA";
-            this.cmbFilterStatus_HA.Size = new System.Drawing.Size(147, 36);
-            this.cmbFilterStatus_HA.TabIndex = 12;
-            this.cmbFilterStatus_HA.SelectedIndexChanged += new System.EventHandler(this.cmbFilterStatus_HA_SelectedIndexChanged);
+            this.label51.AutoSize = true;
+            this.label51.Location = new System.Drawing.Point(1235, 111);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(51, 16);
+            this.label51.TabIndex = 11;
+            this.label51.Text = "label51";
             // 
-            // label49
+            // label52
             // 
-            this.label49.AutoSize = true;
-            this.label49.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label49.Location = new System.Drawing.Point(120, 24);
-            this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(205, 25);
-            this.label49.TabIndex = 18;
-            this.label49.Text = "Update A  Hired Asset";
+            this.label52.AutoSize = true;
+            this.label52.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label52.Location = new System.Drawing.Point(149, 669);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(50, 28);
+            this.label52.TabIndex = 10;
+            this.label52.Text = "info";
+            // 
+            // label53
+            // 
+            this.label53.AutoSize = true;
+            this.label53.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label53.Location = new System.Drawing.Point(369, 84);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(693, 45);
+            this.label53.TabIndex = 9;
+            this.label53.Text = "Edit the hours worked for the selected staff";
+            // 
+            // btnSaveFuelUsed
+            // 
+            this.btnSaveFuelUsed.BackColor = System.Drawing.Color.DarkGreen;
+            this.btnSaveFuelUsed.Enabled = false;
+            this.btnSaveFuelUsed.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveFuelUsed.ForeColor = System.Drawing.Color.White;
+            this.btnSaveFuelUsed.Location = new System.Drawing.Point(673, 650);
+            this.btnSaveFuelUsed.Name = "btnSaveFuelUsed";
+            this.btnSaveFuelUsed.Size = new System.Drawing.Size(402, 83);
+            this.btnSaveFuelUsed.TabIndex = 8;
+            this.btnSaveFuelUsed.Text = "Save fuel used";
+            this.btnSaveFuelUsed.UseVisualStyleBackColor = false;
+            this.btnSaveFuelUsed.Click += new System.EventHandler(this.btnSaveFuelUsed_Click);
+            // 
+            // dgvAssetAssignments
+            // 
+            this.dgvAssetAssignments.AllowUserToAddRows = false;
+            this.dgvAssetAssignments.AllowUserToDeleteRows = false;
+            this.dgvAssetAssignments.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvAssetAssignments.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.dgvAssetAssignments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAssetAssignments.Location = new System.Drawing.Point(82, 256);
+            this.dgvAssetAssignments.MultiSelect = false;
+            this.dgvAssetAssignments.Name = "dgvAssetAssignments";
+            this.dgvAssetAssignments.RowHeadersWidth = 51;
+            this.dgvAssetAssignments.RowTemplate.Height = 24;
+            this.dgvAssetAssignments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvAssetAssignments.Size = new System.Drawing.Size(1616, 362);
+            this.dgvAssetAssignments.TabIndex = 7;
+            this.dgvAssetAssignments.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAssetAssignments_CellClick);
             // 
             // MachineRecords_D
             // 
@@ -1789,6 +1895,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.hiredAssetBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ownedAssetBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.hiredAssetBindingSource)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAssetAssignments)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1960,5 +2069,13 @@
         private System.Windows.Forms.ToolTip toolTip8;
         private System.Windows.Forms.ToolTip toolTip9;
         private System.Windows.Forms.ToolTip toolTip7;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Label label50;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label51;
+        private System.Windows.Forms.Label label52;
+        private System.Windows.Forms.Label label53;
+        private System.Windows.Forms.Button btnSaveFuelUsed;
+        private System.Windows.Forms.DataGridView dgvAssetAssignments;
     }
 }

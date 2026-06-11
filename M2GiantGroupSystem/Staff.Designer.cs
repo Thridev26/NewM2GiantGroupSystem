@@ -105,17 +105,17 @@
             this.dailyRateDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.roleIDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.emailAddressDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnSaveHours = new System.Windows.Forms.Button();
+            this.dgvStaff = new System.Windows.Forms.DataGridView();
             this.staffTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.StaffTableAdapter();
             this.tableAdapterManager = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.TableAdapterManager();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.dgvStaff = new System.Windows.Forms.DataGridView();
-            this.btnSaveHours = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             staffIDLabel = new System.Windows.Forms.Label();
             firstNameLabel = new System.Windows.Forms.Label();
             lastNameLabel = new System.Windows.Forms.Label();
@@ -406,7 +406,7 @@
             this.emailAddressTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.emailAddressTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.emailAddressTextBox1.Location = new System.Drawing.Point(265, 220);
-            this.emailAddressTextBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.emailAddressTextBox1.Margin = new System.Windows.Forms.Padding(2);
             this.emailAddressTextBox1.Name = "emailAddressTextBox1";
             this.emailAddressTextBox1.Size = new System.Drawing.Size(182, 26);
             this.emailAddressTextBox1.TabIndex = 20;
@@ -419,7 +419,7 @@
             "Active",
             "Inactive"});
             this.cmbAddStatus.Location = new System.Drawing.Point(265, 250);
-            this.cmbAddStatus.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbAddStatus.Margin = new System.Windows.Forms.Padding(2);
             this.cmbAddStatus.Name = "cmbAddStatus";
             this.cmbAddStatus.Size = new System.Drawing.Size(182, 25);
             this.cmbAddStatus.TabIndex = 18;
@@ -429,7 +429,7 @@
             this.cmbRoleAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.cmbRoleAdd.FormattingEnabled = true;
             this.cmbRoleAdd.Location = new System.Drawing.Point(265, 309);
-            this.cmbRoleAdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbRoleAdd.Margin = new System.Windows.Forms.Padding(2);
             this.cmbRoleAdd.Name = "cmbRoleAdd";
             this.cmbRoleAdd.Size = new System.Drawing.Size(182, 25);
             this.cmbRoleAdd.TabIndex = 17;
@@ -439,7 +439,7 @@
             this.staffIDTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.staffIDTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.staffIDTextBox1.Location = new System.Drawing.Point(265, 33);
-            this.staffIDTextBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.staffIDTextBox1.Margin = new System.Windows.Forms.Padding(2);
             this.staffIDTextBox1.Name = "staffIDTextBox1";
             this.staffIDTextBox1.ReadOnly = true;
             this.staffIDTextBox1.Size = new System.Drawing.Size(182, 26);
@@ -450,7 +450,7 @@
             this.firstNameTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.firstNameTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.firstNameTextBox1.Location = new System.Drawing.Point(265, 63);
-            this.firstNameTextBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.firstNameTextBox1.Margin = new System.Windows.Forms.Padding(2);
             this.firstNameTextBox1.Name = "firstNameTextBox1";
             this.firstNameTextBox1.Size = new System.Drawing.Size(182, 26);
             this.firstNameTextBox1.TabIndex = 3;
@@ -460,7 +460,7 @@
             this.lastNameTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.lastNameTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lastNameTextBox1.Location = new System.Drawing.Point(265, 93);
-            this.lastNameTextBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lastNameTextBox1.Margin = new System.Windows.Forms.Padding(2);
             this.lastNameTextBox1.Name = "lastNameTextBox1";
             this.lastNameTextBox1.Size = new System.Drawing.Size(182, 26);
             this.lastNameTextBox1.TabIndex = 5;
@@ -470,7 +470,7 @@
             this.userNameTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.userNameTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.userNameTextBox1.Location = new System.Drawing.Point(265, 123);
-            this.userNameTextBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.userNameTextBox1.Margin = new System.Windows.Forms.Padding(2);
             this.userNameTextBox1.Name = "userNameTextBox1";
             this.userNameTextBox1.Size = new System.Drawing.Size(182, 26);
             this.userNameTextBox1.TabIndex = 7;
@@ -480,7 +480,7 @@
             this.passwordHashTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.passwordHashTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.passwordHashTextBox1.Location = new System.Drawing.Point(265, 158);
-            this.passwordHashTextBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.passwordHashTextBox1.Margin = new System.Windows.Forms.Padding(2);
             this.passwordHashTextBox1.Name = "passwordHashTextBox1";
             this.passwordHashTextBox1.Size = new System.Drawing.Size(182, 26);
             this.passwordHashTextBox1.TabIndex = 9;
@@ -490,7 +490,7 @@
             this.contactNumberTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.contactNumberTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.contactNumberTextBox1.Location = new System.Drawing.Point(265, 188);
-            this.contactNumberTextBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.contactNumberTextBox1.Margin = new System.Windows.Forms.Padding(2);
             this.contactNumberTextBox1.Name = "contactNumberTextBox1";
             this.contactNumberTextBox1.Size = new System.Drawing.Size(182, 26);
             this.contactNumberTextBox1.TabIndex = 11;
@@ -500,7 +500,7 @@
             this.dailyRateTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.dailyRateTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dailyRateTextBox1.Location = new System.Drawing.Point(265, 279);
-            this.dailyRateTextBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dailyRateTextBox1.Margin = new System.Windows.Forms.Padding(2);
             this.dailyRateTextBox1.Name = "dailyRateTextBox1";
             this.dailyRateTextBox1.Size = new System.Drawing.Size(182, 26);
             this.dailyRateTextBox1.TabIndex = 15;
@@ -669,7 +669,7 @@
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1428, 674);
@@ -685,9 +685,9 @@
             this.tabPage1.Controls.Add(this.txtSearchStaff);
             this.tabPage1.Controls.Add(this.dgvStaffInfo);
             this.tabPage1.Location = new System.Drawing.Point(4, 26);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(2);
             this.tabPage1.Size = new System.Drawing.Size(1420, 644);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "View / Edit Staff";
@@ -698,7 +698,7 @@
             this.button1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button1.Location = new System.Drawing.Point(482, 597);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(206, 42);
             this.button1.TabIndex = 42;
@@ -712,7 +712,7 @@
             this.btnSave.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnSave.Location = new System.Drawing.Point(721, 597);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(2);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(244, 42);
             this.btnSave.TabIndex = 41;
@@ -743,9 +743,9 @@
             this.groupBox1.Controls.Add(dailyRateLabel);
             this.groupBox1.Controls.Add(passwordHashLabel);
             this.groupBox1.Location = new System.Drawing.Point(482, 222);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(482, 369);
             this.groupBox1.TabIndex = 40;
             this.groupBox1.TabStop = false;
@@ -756,7 +756,7 @@
             this.emailAddressTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.emailAddressTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.emailAddressTextBox.Location = new System.Drawing.Point(218, 215);
-            this.emailAddressTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.emailAddressTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.emailAddressTextBox.Name = "emailAddressTextBox";
             this.emailAddressTextBox.Size = new System.Drawing.Size(166, 26);
             this.emailAddressTextBox.TabIndex = 42;
@@ -769,7 +769,7 @@
             "Active ",
             "Inactive"});
             this.cmbEditStatus.Location = new System.Drawing.Point(218, 250);
-            this.cmbEditStatus.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbEditStatus.Margin = new System.Windows.Forms.Padding(2);
             this.cmbEditStatus.Name = "cmbEditStatus";
             this.cmbEditStatus.Size = new System.Drawing.Size(166, 25);
             this.cmbEditStatus.TabIndex = 40;
@@ -779,7 +779,7 @@
             this.cmbRoleEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.cmbRoleEdit.FormattingEnabled = true;
             this.cmbRoleEdit.Location = new System.Drawing.Point(218, 318);
-            this.cmbRoleEdit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbRoleEdit.Margin = new System.Windows.Forms.Padding(2);
             this.cmbRoleEdit.Name = "cmbRoleEdit";
             this.cmbRoleEdit.Size = new System.Drawing.Size(166, 25);
             this.cmbRoleEdit.TabIndex = 39;
@@ -789,7 +789,7 @@
             this.contactNumberTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.contactNumberTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.contactNumberTextBox.Location = new System.Drawing.Point(218, 182);
-            this.contactNumberTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.contactNumberTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.contactNumberTextBox.Name = "contactNumberTextBox";
             this.contactNumberTextBox.Size = new System.Drawing.Size(166, 26);
             this.contactNumberTextBox.TabIndex = 33;
@@ -799,7 +799,7 @@
             this.lastNameTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.lastNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lastNameTextBox.Location = new System.Drawing.Point(218, 91);
-            this.lastNameTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lastNameTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.lastNameTextBox.Name = "lastNameTextBox";
             this.lastNameTextBox.Size = new System.Drawing.Size(166, 26);
             this.lastNameTextBox.TabIndex = 27;
@@ -809,7 +809,7 @@
             this.staffIDTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.staffIDTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.staffIDTextBox.Location = new System.Drawing.Point(218, 31);
-            this.staffIDTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.staffIDTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.staffIDTextBox.Name = "staffIDTextBox";
             this.staffIDTextBox.ReadOnly = true;
             this.staffIDTextBox.Size = new System.Drawing.Size(166, 26);
@@ -820,7 +820,7 @@
             this.dailyRateTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.dailyRateTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dailyRateTextBox.Location = new System.Drawing.Point(218, 283);
-            this.dailyRateTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dailyRateTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.dailyRateTextBox.Name = "dailyRateTextBox";
             this.dailyRateTextBox.Size = new System.Drawing.Size(166, 26);
             this.dailyRateTextBox.TabIndex = 37;
@@ -830,7 +830,7 @@
             this.userNameTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.userNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.userNameTextBox.Location = new System.Drawing.Point(218, 121);
-            this.userNameTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.userNameTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.userNameTextBox.Name = "userNameTextBox";
             this.userNameTextBox.Size = new System.Drawing.Size(166, 26);
             this.userNameTextBox.TabIndex = 29;
@@ -840,7 +840,7 @@
             this.passwordHashTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.passwordHashTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.passwordHashTextBox.Location = new System.Drawing.Point(218, 152);
-            this.passwordHashTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.passwordHashTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.passwordHashTextBox.Name = "passwordHashTextBox";
             this.passwordHashTextBox.Size = new System.Drawing.Size(166, 26);
             this.passwordHashTextBox.TabIndex = 31;
@@ -852,7 +852,7 @@
             this.firstNameTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.firstNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.firstNameTextBox.Location = new System.Drawing.Point(218, 61);
-            this.firstNameTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.firstNameTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.firstNameTextBox.Name = "firstNameTextBox";
             this.firstNameTextBox.Size = new System.Drawing.Size(166, 26);
             this.firstNameTextBox.TabIndex = 25;
@@ -865,9 +865,9 @@
             this.tabPage2.Controls.Add(this.gbAddStaff);
             this.tabPage2.Controls.Add(this.btnAddStaff);
             this.tabPage2.Location = new System.Drawing.Point(4, 26);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(2);
             this.tabPage2.Size = new System.Drawing.Size(1420, 644);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Add Staff";
@@ -906,7 +906,7 @@
             this.staffDataGridView.DataSource = this.staffBindingSource;
             this.staffDataGridView.GridColor = System.Drawing.Color.DarkGreen;
             this.staffDataGridView.Location = new System.Drawing.Point(77, 20);
-            this.staffDataGridView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.staffDataGridView.Margin = new System.Windows.Forms.Padding(2);
             this.staffDataGridView.Name = "staffDataGridView";
             this.staffDataGridView.ReadOnly = true;
             this.staffDataGridView.RowHeadersWidth = 62;
@@ -994,6 +994,103 @@
             this.emailAddressDataGridViewTextBoxColumn1.Name = "emailAddressDataGridViewTextBoxColumn1";
             this.emailAddressDataGridViewTextBoxColumn1.ReadOnly = true;
             // 
+            // tabPage3
+            // 
+            this.tabPage3.BackColor = System.Drawing.Color.SeaShell;
+            this.tabPage3.Controls.Add(this.label7);
+            this.tabPage3.Controls.Add(this.textBox1);
+            this.tabPage3.Controls.Add(this.label6);
+            this.tabPage3.Controls.Add(this.label5);
+            this.tabPage3.Controls.Add(this.label4);
+            this.tabPage3.Controls.Add(this.btnSaveHours);
+            this.tabPage3.Controls.Add(this.dgvStaff);
+            this.tabPage3.Location = new System.Drawing.Point(4, 26);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(1420, 644);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "View staff assignments";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(157, 146);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(255, 28);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "Search by staff full name:";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(447, 146);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(444, 30);
+            this.textBox1.TabIndex = 5;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(1222, 71);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(45, 19);
+            this.label6.TabIndex = 4;
+            this.label6.Text = "label6";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(152, 419);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(46, 28);
+            this.label5.TabIndex = 3;
+            this.label5.Text = "info";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(356, 44);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(693, 45);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Edit the hours worked for the selected staff";
+            // 
+            // btnSaveHours
+            // 
+            this.btnSaveHours.BackColor = System.Drawing.Color.DarkGreen;
+            this.btnSaveHours.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveHours.ForeColor = System.Drawing.Color.White;
+            this.btnSaveHours.Location = new System.Drawing.Point(572, 437);
+            this.btnSaveHours.Name = "btnSaveHours";
+            this.btnSaveHours.Size = new System.Drawing.Size(341, 71);
+            this.btnSaveHours.TabIndex = 1;
+            this.btnSaveHours.Text = "Save hours worked";
+            this.btnSaveHours.UseVisualStyleBackColor = false;
+            this.btnSaveHours.Click += new System.EventHandler(this.btnSaveHours_Click);
+            // 
+            // dgvStaff
+            // 
+            this.dgvStaff.AllowUserToAddRows = false;
+            this.dgvStaff.AllowUserToDeleteRows = false;
+            this.dgvStaff.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvStaff.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.dgvStaff.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvStaff.Location = new System.Drawing.Point(157, 193);
+            this.dgvStaff.MultiSelect = false;
+            this.dgvStaff.Name = "dgvStaff";
+            this.dgvStaff.RowHeadersWidth = 51;
+            this.dgvStaff.RowTemplate.Height = 24;
+            this.dgvStaff.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvStaff.Size = new System.Drawing.Size(1110, 192);
+            this.dgvStaff.TabIndex = 0;
+            this.dgvStaff.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dgvStaff_CellBeginEdit);
+            this.dgvStaff.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvStaff_CellClick);
+            this.dgvStaff.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvStaff_CellEndEdit);
+            this.dgvStaff.SelectionChanged += new System.EventHandler(this.dgvStaff_SelectionChanged);
+            // 
             // staffTableAdapter
             // 
             this.staffTableAdapter.ClearBeforeFill = true;
@@ -1022,102 +1119,6 @@
             this.tableAdapterManager.TimeSlotTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = M2GiantGroupSystem.GroupWst1DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
-            // tabPage3
-            // 
-            this.tabPage3.BackColor = System.Drawing.Color.SeaShell;
-            this.tabPage3.Controls.Add(this.label7);
-            this.tabPage3.Controls.Add(this.textBox1);
-            this.tabPage3.Controls.Add(this.label6);
-            this.tabPage3.Controls.Add(this.label5);
-            this.tabPage3.Controls.Add(this.label4);
-            this.tabPage3.Controls.Add(this.btnSaveHours);
-            this.tabPage3.Controls.Add(this.dgvStaff);
-            this.tabPage3.Location = new System.Drawing.Point(4, 26);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1420, 644);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "View staff assignments";
-            // 
-            // dgvStaff
-            // 
-            this.dgvStaff.AllowUserToAddRows = false;
-            this.dgvStaff.AllowUserToDeleteRows = false;
-            this.dgvStaff.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvStaff.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvStaff.Location = new System.Drawing.Point(157, 193);
-            this.dgvStaff.MultiSelect = false;
-            this.dgvStaff.Name = "dgvStaff";
-            this.dgvStaff.RowHeadersWidth = 51;
-            this.dgvStaff.RowTemplate.Height = 24;
-            this.dgvStaff.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvStaff.Size = new System.Drawing.Size(1110, 192);
-            this.dgvStaff.TabIndex = 0;
-            this.dgvStaff.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dgvStaff_CellBeginEdit);
-            this.dgvStaff.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvStaff_CellClick);
-            this.dgvStaff.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvStaff_CellEndEdit);
-            this.dgvStaff.SelectionChanged += new System.EventHandler(this.dgvStaff_SelectionChanged);
-            // 
-            // btnSaveHours
-            // 
-            this.btnSaveHours.BackColor = System.Drawing.Color.DarkGreen;
-            this.btnSaveHours.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveHours.ForeColor = System.Drawing.Color.White;
-            this.btnSaveHours.Location = new System.Drawing.Point(572, 437);
-            this.btnSaveHours.Name = "btnSaveHours";
-            this.btnSaveHours.Size = new System.Drawing.Size(341, 71);
-            this.btnSaveHours.TabIndex = 1;
-            this.btnSaveHours.Text = "Save hours worked";
-            this.btnSaveHours.UseVisualStyleBackColor = false;
-            this.btnSaveHours.Click += new System.EventHandler(this.btnSaveHours_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(356, 44);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(707, 46);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Edit the hours worked for the selected staff";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(152, 419);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(46, 28);
-            this.label5.TabIndex = 3;
-            this.label5.Text = "info";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(1222, 71);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(45, 19);
-            this.label6.TabIndex = 4;
-            this.label6.Text = "label6";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(447, 146);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(444, 30);
-            this.textBox1.TabIndex = 5;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(157, 146);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(255, 28);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "Search by staff full name:";
-            // 
             // Staff
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -1127,7 +1128,7 @@
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.btnDeleteStaff);
             this.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Staff";
             this.Text = "Staff";
             this.Load += new System.EventHandler(this.Staff_Load);

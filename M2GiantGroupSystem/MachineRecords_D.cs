@@ -12,7 +12,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static iText.Signatures.Validation.Lotl.CountrySpecificLotlFetcher;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-
+//using sql data
+using System.Data.SqlClient;
 namespace M2GiantGroupSystem
 {
     public partial class MachineRecords_D : Form
@@ -24,6 +25,8 @@ namespace M2GiantGroupSystem
             InitializeComponent();
             ThemeManager.ThemeChanged += ApplyTheme;
         }
+        string _connectionString = "Data Source=146.230.177.46;Initial Catalog=GroupWst1;Persist Security Info=True;User ID=GroupWst1;Password=dtf39;Encrypt=True;TrustServerCertificate=True";
+
         private void ApplyPermissions()
         {
             int level = UserSession.AccessLevel; // The user Session object is global so this will work 
@@ -96,6 +99,14 @@ namespace M2GiantGroupSystem
             txtHassetID.Text = "";
             ApplyTheme();
 
+            label52.Text = "Save button will only be enabled\nwhen an asset is selected";
+            label51.Text = "Only the 'Fuel used' column is editable.\nAll other columns are locked for security.\nDouble click the fuel used column to edit it.";
+
+            LoadJobAssetAssignments();
+            dgvAssetAssignments.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvAssetAssignments.DefaultCellStyle.SelectionBackColor = Color.Green;
+
+            btnSaveFuelUsed.Enabled = false;
 
         }
 
@@ -1209,8 +1220,129 @@ private void btnUpdateAsset_Click(object sender, EventArgs e)
                 MessageBox.Show("Error filtering: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void LoadJobAssetAssignments(string search = "")
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                {
+                    string sql = @"
+                SELECT
+                    jaa.AssignmentID                                AS [Assignment ID],
+                    jaa.assignmentDate                              AS [Date],
+                    j.jobID                                         AS [Job ID],
+                    j.startDate                                     AS [Job Start Date],
+                    jr.siteAddress                                  AS [Site Address],
+                    c.clientName + ' ' + c.clientSurname           AS [Client],
+                    ISNULL(oa.type, 'N/A')                          AS [Owned Asset],
+                    ISNULL(oa.serialNumber, 'N/A')                  AS [Serial No],
+                    ISNULL(oa.assetStatus, 'N/A')                   AS [Owned Asset Status],
+                    ISNULL(ha.equipmentType, 'N/A')                 AS [Hired Equipment],
+                    ISNULL(ha.supplierName, 'N/A')                  AS [Supplier],
+                    ISNULL(ha.hiredAssetStatus, 'N/A')              AS [Hired Asset Status],
+                    jaa.fuelUsed                                    AS [Fuel Used (L)]
+                FROM JobAssetAssignment jaa
+                INNER JOIN Job          j  ON jaa.jobID        = j.jobID
+                INNER JOIN Quote        q  ON j.quoteID        = q.QuoteID
+                INNER JOIN JobRequest   jr ON q.jobRequestID   = jr.jobRequestID
+                INNER JOIN Client       c  ON jr.clientID      = c.clientID
+                LEFT  JOIN OwnedAsset   oa ON jaa.ownedAssetID = oa.assetID
+                LEFT  JOIN HiredAsset   ha ON jaa.hiredAssetID = ha.hiredAssetID
+                WHERE oa.type           LIKE @search
+                   OR ha.equipmentType  LIKE @search
+                   OR c.clientName      LIKE @search
+                   OR c.clientSurname   LIKE @search
+                   OR jr.siteAddress    LIKE @search
+                ORDER BY jaa.assignmentDate DESC, j.jobID";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@search", "%" + search + "%");
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        dgvAssetAssignments.DataSource = dt;
+
+                        foreach (DataGridViewColumn col in dgvAssetAssignments.Columns)
+                            col.ReadOnly = col.HeaderText != "Fuel Used (L)";
+                    }
+                }
+            }
+            catch (SqlException sqlEx)
+            {
+                MessageBox.Show("Database error loading asset assignments:\n" + sqlEx.Message,
+                    "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Unexpected error loading asset assignments:\n" + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            LoadJobAssetAssignments(textBox3.Text.Trim());
+        }
+
+        private void dgvAssetAssignments_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            btnSaveFuelUsed.Enabled = e.RowIndex >= 0;
+            foreach (DataGridViewColumn col in dgvAssetAssignments.Columns)
+                col.DefaultCellStyle.BackColor = col.HeaderText == "Fuel Used (L)" ? Color.LightYellow : Color.White;
+
+        }
+
+        private void btnSaveFuelUsed_Click(object sender, EventArgs e)
+        {
+            if (dgvAssetAssignments.SelectedRows.Count == 0) return;
+
+            var row = dgvAssetAssignments.SelectedRows[0];
+            int assignId = Convert.ToInt32(row.Cells["Assignment ID"].Value);
+            string raw = row.Cells["Fuel Used (L)"].Value?.ToString() ?? "";
+
+            if (!decimal.TryParse(raw, out decimal fuel) || fuel < 0)
+            {
+                MessageBox.Show("Please enter a valid positive number for fuel used.",
+                    "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                {
+                    conn.Open();
+                    string sql = @"UPDATE JobAssetAssignment 
+                           SET fuelUsed = @fuel 
+                           WHERE AssignmentID = @id";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@fuel", fuel);
+                        cmd.Parameters.AddWithValue("@id", assignId);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                MessageBox.Show("Fuel used updated.", "Saved",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadJobAssetAssignments(textBox3.Text.Trim());
+            }
+            catch (SqlException sqlEx)
+            {
+                MessageBox.Show("Database error saving fuel:\n" + sqlEx.Message,
+                    "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error saving fuel:\n" + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
-    }
+ }
    
     
     
