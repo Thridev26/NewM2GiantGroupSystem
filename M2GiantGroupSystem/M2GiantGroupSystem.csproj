@@ -324,7 +324,7 @@
     <Compile Include="incomeReportForm.Designer.cs">
       <DependentUpon>incomeReportForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="InvoiceDetails2.cs" />
+    <Compile Include="InvoiceDetails3.cs" />
     <Compile Include="InvoiceReport.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

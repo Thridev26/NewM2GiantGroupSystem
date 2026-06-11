@@ -183,8 +183,7 @@ namespace M2GiantGroupSystem
 
         public DataSet InvoiceData()
         {
-            string query = @"
-        SELECT 
+            string query = @"SELECT 
     j.jobID,
     c.clientName + ' ' + c.clientSurname AS ClientName,
     jr.siteAddress,
@@ -195,7 +194,23 @@ namespace M2GiantGroupSystem
     CAST(id.detailValue AS DECIMAL(10,2)) AS DetailValue,
     CAST(id.detailValue AS DECIMAL(10,2)) * jt.jobRate AS LineTotal,
     q.amount AS QuoteAmount,
-    SUM(p.amountPaid) AS TotalReceived
+    ISNULL(pay.TotalReceived, 0) AS TotalReceived,
+
+    -- Sum of all line items for this job (across all rows)
+    SUM(CAST(id.detailValue AS DECIMAL(10,2)) * jt.jobRate) 
+        OVER (PARTITION BY j.jobID) AS LineItemsSubtotal,
+
+   
+
+    -- VAT = linetotal * 0.15 (but we need to sum all line totals first, then apply VAT)
+     SUM(CAST(id.detailValue AS DECIMAL(10,2)) * jt.jobRate) 
+        OVER (PARTITION BY j.jobID) * 0.15 AS VATAmount,
+
+ -- Travel fee = QuoteAmount minus (line subtotal * 0.15)
+    q.amount - ( SUM(CAST(id.detailValue AS DECIMAL(10,2)) * jt.jobRate) 
+        OVER (PARTITION BY j.jobID) +    SUM(CAST(id.detailValue AS DECIMAL(10,2)) * jt.jobRate) 
+        OVER (PARTITION BY j.jobID) * 0.15 ) AS TravelFee
+
 FROM Job j
 INNER JOIN Quote q ON j.quoteID = q.QuoteID
 INNER JOIN JobRequest jr ON q.jobRequestID = jr.jobRequestID
@@ -203,7 +218,14 @@ INNER JOIN Client c ON jr.clientID = c.clientID
 INNER JOIN RequestItem ri ON jr.jobRequestID = ri.jobRequestID
 INNER JOIN JobType jt ON ri.jobTypeID = jt.jobTypeID
 INNER JOIN ItemDetail id ON ri.requestItemID = id.requestItemID
-LEFT JOIN Payment p ON j.jobID = p.jobID
+
+-- Pre-aggregate payments to avoid GROUP BY conflict
+LEFT JOIN (
+    SELECT jobID, SUM(amountPaid) AS TotalReceived
+    FROM Payment
+    GROUP BY jobID
+) pay ON j.jobID = pay.jobID
+
 WHERE j.jobID = @JobID
 AND (
     (jt.jobTypeName = 'Tree Felling'         AND id.jobDetailID = 1)  OR
@@ -211,10 +233,7 @@ AND (
     (jt.jobTypeName = 'Tree Planting'        AND id.jobDetailID = 10) OR
     (jt.jobTypeName = 'Vegetation Clearance' AND id.jobDetailID = 14) OR
     (jt.jobTypeName = 'Hedge Trimming'       AND id.jobDetailID = 18)
-)
-GROUP BY j.jobID, c.clientName, c.clientSurname, jr.siteAddress,
-         j.startDate, j.endDate, jt.jobTypeName, jt.jobRate,
-         id.detailValue, q.amount";
+)";
 
             SqlCommand cmd = new SqlCommand(query, con);
             cmd.Parameters.AddWithValue("@JobID", InvoiceReportForm.SelectedJobID);
