@@ -1234,7 +1234,7 @@ private void btnUpdateAsset_Click(object sender, EventArgs e)
                     j.jobID                                         AS [Job ID],
                     j.startDate                                     AS [Job Start Date],
                     jr.siteAddress                                  AS [Site Address],
-                    c.clientName + ' ' + c.clientSurname           AS [Client],
+                 
                     ISNULL(oa.type, 'N/A')                          AS [Owned Asset],
                     ISNULL(oa.serialNumber, 'N/A')                  AS [Serial No],
                     ISNULL(oa.assetStatus, 'N/A')                   AS [Owned Asset Status],
@@ -1251,8 +1251,7 @@ private void btnUpdateAsset_Click(object sender, EventArgs e)
                 LEFT  JOIN HiredAsset   ha ON jaa.hiredAssetID = ha.hiredAssetID
                 WHERE oa.type           LIKE @search
                    OR ha.equipmentType  LIKE @search
-                   OR c.clientName      LIKE @search
-                   OR c.clientSurname   LIKE @search
+                
                    OR jr.siteAddress    LIKE @search
                 ORDER BY jaa.assignmentDate DESC, j.jobID";
 
