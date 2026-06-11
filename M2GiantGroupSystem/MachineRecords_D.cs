@@ -24,7 +24,7 @@ namespace M2GiantGroupSystem
             InitializeComponent();
             ThemeManager.ThemeChanged += ApplyTheme;
         }
-            private void ApplyPermissions()
+        private void ApplyPermissions()
         {
             int level = UserSession.AccessLevel; // The user Session object is global so this will work 
 
@@ -58,9 +58,9 @@ namespace M2GiantGroupSystem
                     panel4.Enabled = false;
                     break;
             }
-        } 
-            
-        
+        }
+
+
 
         private void MachineRecords_D_Load(object sender, EventArgs e)
         {
@@ -186,7 +186,7 @@ namespace M2GiantGroupSystem
 
         private void dataGridView1_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
         {
-            
+
             DataGridViewRow row = dgvOwnedAsset_D.Rows[e.RowIndex];
             string status = row.Cells[6].Value?.ToString().Trim() ?? "";
 
@@ -266,7 +266,7 @@ namespace M2GiantGroupSystem
 
         private void btnAddAsset_D_Click(object sender, EventArgs e)
         {
-
+            DateTime nextServiceDate = dtPurchaseD2_D.Value.AddYears(1);
             if (string.IsNullOrWhiteSpace(txtSerialno2_D.Text))
             {
                 MessageBox.Show("Please enter a Serial Number.", "Missing Field", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -294,7 +294,7 @@ namespace M2GiantGroupSystem
             DialogResult result = MessageBox.Show("Are the following Asset Details Correct?\n" + "\nSerial Number : " + txtSerialno2_D.Text +
                       "\nAsset Type: " + cmbType2_D.Text + "\nPurchase Date: "
                            + dtPurchaseD2_D.Value.ToShortDateString() + "\nCurrent Condition: " +
-                               cmbCondition2_D.SelectedItem.ToString() + "\nNext Service Date: " + dtService2_D.Value.ToShortDateString() +
+                               cmbCondition2_D.SelectedItem.ToString() + "\nNext Service Date: " + nextServiceDate.ToShortDateString() +
                                  "\nStatus: " + cmbStatus2_D.SelectedItem.ToString(),
                                       "Confirm Asset Details", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -307,7 +307,7 @@ namespace M2GiantGroupSystem
                         cmbType2_D.Text,
                         dtPurchaseD2_D.Value.ToShortDateString(),
                         cmbCondition2_D.SelectedItem.ToString(),
-                        dtService2_D.Value.ToShortDateString(),
+                        nextServiceDate.ToShortDateString(),
                         cmbStatus2_D.SelectedItem.ToString()
                     );
                     ownedAssetTableAdapter1.Fill(groupWst1DataSet1.OwnedAsset);
@@ -395,7 +395,23 @@ namespace M2GiantGroupSystem
                             dgvRow.Cells[5].Style.ForeColor = Color.Black;
                         }
                     }
-                }
+                }// Status filter items
+                cmbFilterStatus.Items.Add("Available");
+                cmbFilterStatus.Items.Add("In Use");
+                cmbFilterStatus.Items.Add("Under Maintenance");
+                cmbFilterStatus.Items.Add("Retired");
+
+                // Asset type filter - load from database dynamically
+                cmbFilterType.Items.Clear();
+                foreach (DataRow row in groupWst1DataSet1.OwnedAsset.Rows)
+                {
+                    string type = row["type"].ToString().Trim();
+                    if (!string.IsNullOrWhiteSpace(type) && !cmbFilterType.Items.Contains(type))
+                    {
+                        cmbFilterType.Items.Add(type);
+                    }
+                
+            }
 
             }
             AutoCompleteStringCollection supplierNames = new AutoCompleteStringCollection();
@@ -417,11 +433,30 @@ namespace M2GiantGroupSystem
                                       " — " + daysUntilService + " days remaining";
                 }
             }
-        }
+            cmbFilterStatus_HA.Items.Add("Active");
+            cmbFilterStatus_HA.Items.Add("Returned");
+            cmbFilterStatus_HA.Items.Add("Overdue");
+            cmbFilterStatus_HA.Items.Add("Damaged");
 
-        // private void btnUpdateAass_D_Click(object sender, EventArgs e)
+            foreach (DataRow row in groupWst1DataSet1.HiredAsset.Rows)
+            {
+                string type = row["equipmentType"].ToString().Trim();
+                if (!cmbFilterType_HA.Items.Contains(type))
+                {
+                    cmbFilterType_HA.Items.Add(type);
+                }
+            }
+        } 
 
-        private void btnUpdateAsset_Click(object sender, EventArgs e)
+
+        
+    
+
+
+
+// private void btnUpdateAass_D_Click(object sender, EventArgs e)
+
+private void btnUpdateAsset_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtAsSnumber_d.Text))
             {
@@ -498,7 +533,7 @@ namespace M2GiantGroupSystem
                 cmbCondition2_D.SelectedIndex = -1;
                 cmbCondition2_D.Text = "";
 
-                dtService2_D.Value = DateTime.Now;
+                
 
                 cmbStatus2_D.SelectedIndex = -1;
                 cmbStatus2_D.Text = "";
@@ -574,7 +609,7 @@ namespace M2GiantGroupSystem
             {
                 try
                 {
-                    ownedAssetTableAdapter1.DeleteAssetRecord(int.Parse(txtAssetID2.Text));
+                    ownedAssetTableAdapter1.UpdateRetiredAsset(int.Parse(txtAssetID2.Text));
                     ownedAssetTableAdapter1.Fill(this.groupWst1DataSet1.OwnedAsset);
                     txtDeleteSN.Text = "";
                     MessageBox.Show("Asset deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -904,7 +939,7 @@ namespace M2GiantGroupSystem
             {
                 try
                 {
-                    hiredAssetTableAdapter1.DeleteHiredAsset(int.Parse(txtHassetID.Text));
+                    hiredAssetTableAdapter1.UpdateReturnedAsset(int.Parse(txtHassetID.Text));
                     hiredAssetTableAdapter1.Fill(this.groupWst1DataSet1.HiredAsset);
                     textBox2.Text = "";
                     MessageBox.Show("Asset deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -1067,9 +1102,120 @@ namespace M2GiantGroupSystem
             if (ThemeManager.IsDarkMode)
                 ThemeManager.ApplyTheme(this);
         }
-    }
 
-}
+        private void cmbFilterType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cmbFilterType.SelectedIndex == -1) return;
+
+                string selectedType = cmbFilterType.SelectedItem.ToString();
+
+                dgvOwnedAsset_D.CurrentCell = null;  // ← deselect current row first
+
+                foreach (DataGridViewRow row in dgvOwnedAsset_D.Rows)
+                {
+                    if (row.Cells[2].Value != null)
+                    {
+                        row.Visible = row.Cells[2].Value.ToString().Trim() == selectedType;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error filtering: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        
+
+        private void cmbFilterStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+                
+            {
+                try
+                {
+                    if (cmbFilterStatus.SelectedIndex == -1) return;
+
+                    string selectedStatus = cmbFilterStatus.SelectedItem.ToString();
+
+                    dgvOwnedAsset_D.CurrentCell = null;
+
+                    foreach (DataGridViewRow row in dgvOwnedAsset_D.Rows)
+                    {
+                        if (row.Cells[6].Value != null)
+                        {
+                            row.Visible = row.Cells[6].Value.ToString().Trim() == selectedStatus;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error filtering: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            }
+
+        private void label47_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbFilterType_HA_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cmbFilterType_HA.SelectedIndex == -1) return;
+
+                string selectedType = cmbFilterType_HA.SelectedItem.ToString();
+
+                dgHiredAsset.CurrentCell = null;
+
+                foreach (DataGridViewRow row in dgHiredAsset.Rows)
+                {
+                    if (row.Cells[5].Value != null)
+                    {
+                        row.Visible = row.Cells[5].Value.ToString().Trim() == selectedType;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error filtering: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        
+
+        private void cmbFilterStatus_HA_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cmbFilterStatus_HA.SelectedIndex == -1) return;
+
+                string selectedStatus = cmbFilterStatus_HA.SelectedItem.ToString();
+
+                dgHiredAsset.CurrentCell = null;
+
+                foreach (DataGridViewRow row in dgHiredAsset.Rows)
+                {
+                    if (row.Cells[6].Value != null)
+                    {
+                        row.Visible = row.Cells[6].Value.ToString().Trim() == selectedStatus;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error filtering: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+    }
+    }
+   
+    
+    
+
+
 
     
 
