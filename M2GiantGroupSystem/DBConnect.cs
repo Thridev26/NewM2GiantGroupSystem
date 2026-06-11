@@ -196,36 +196,35 @@ namespace M2GiantGroupSystem
     q.amount AS QuoteAmount,
     ISNULL(pay.TotalReceived, 0) AS TotalReceived,
 
-    -- Sum of all line items for this job (across all rows)
+    -- Sum of all line items for this job
     SUM(CAST(id.detailValue AS DECIMAL(10,2)) * jt.jobRate) 
         OVER (PARTITION BY j.jobID) AS LineItemsSubtotal,
 
-   
+    -- Work backwards: SubtotalBeforeVAT = QuoteAmount / 1.15
+    ROUND(q.amount / 1.15, 2) AS SubtotalBeforeVAT,
 
-    -- VAT = linetotal * 0.15 (but we need to sum all line totals first, then apply VAT)
-     SUM(CAST(id.detailValue AS DECIMAL(10,2)) * jt.jobRate) 
-        OVER (PARTITION BY j.jobID) * 0.15 AS VATAmount,
+    -- VAT = QuoteAmount - SubtotalBeforeVAT
+    ROUND(q.amount - (q.amount / 1.15), 2) AS VATAmount,
 
- -- Travel fee = QuoteAmount minus (line subtotal * 0.15)
-    q.amount - ( SUM(CAST(id.detailValue AS DECIMAL(10,2)) * jt.jobRate) 
-        OVER (PARTITION BY j.jobID) +    SUM(CAST(id.detailValue AS DECIMAL(10,2)) * jt.jobRate) 
-        OVER (PARTITION BY j.jobID) * 0.15 ) AS TravelFee
+    -- TravelFee = SubtotalBeforeVAT - LineItemsSubtotal
+    ROUND(
+        (q.amount / 1.15) - 
+        SUM(CAST(id.detailValue AS DECIMAL(10,2)) * jt.jobRate) 
+            OVER (PARTITION BY j.jobID)
+    , 2) AS TravelFee
 
 FROM Job j
-INNER JOIN Quote q ON j.quoteID = q.QuoteID
+INNER JOIN Quote q      ON j.quoteID = q.QuoteID
 INNER JOIN JobRequest jr ON q.jobRequestID = jr.jobRequestID
-INNER JOIN Client c ON jr.clientID = c.clientID
+INNER JOIN Client c     ON jr.clientID = c.clientID
 INNER JOIN RequestItem ri ON jr.jobRequestID = ri.jobRequestID
-INNER JOIN JobType jt ON ri.jobTypeID = jt.jobTypeID
+INNER JOIN JobType jt   ON ri.jobTypeID = jt.jobTypeID
 INNER JOIN ItemDetail id ON ri.requestItemID = id.requestItemID
-
--- Pre-aggregate payments to avoid GROUP BY conflict
 LEFT JOIN (
     SELECT jobID, SUM(amountPaid) AS TotalReceived
     FROM Payment
     GROUP BY jobID
 ) pay ON j.jobID = pay.jobID
-
 WHERE j.jobID = @JobID
 AND (
     (jt.jobTypeName = 'Tree Felling'         AND id.jobDetailID = 1)  OR
