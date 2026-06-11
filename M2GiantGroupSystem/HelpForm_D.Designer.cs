@@ -128,10 +128,10 @@
             this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.seacrchClients);
             this.tabPage1.Controls.Add(this.clientsText);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Location = new System.Drawing.Point(4, 26);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1014, 723);
+            this.tabPage1.Size = new System.Drawing.Size(1014, 722);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Clients";
             // 
@@ -172,10 +172,10 @@
             this.tabPage2.Controls.Add(this.button2);
             this.tabPage2.Controls.Add(this.textBox1);
             this.tabPage2.Controls.Add(this.richTextBox1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Location = new System.Drawing.Point(4, 26);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1014, 723);
+            this.tabPage2.Size = new System.Drawing.Size(1014, 722);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "JobRequests";
             // 
@@ -216,9 +216,9 @@
             this.tabPage3.Controls.Add(this.button3);
             this.tabPage3.Controls.Add(this.textBox2);
             this.tabPage3.Controls.Add(this.richTextBox2);
-            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Location = new System.Drawing.Point(4, 26);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1014, 723);
+            this.tabPage3.Size = new System.Drawing.Size(1014, 722);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Quotations";
             // 
@@ -259,9 +259,9 @@
             this.tabPage4.Controls.Add(this.button4);
             this.tabPage4.Controls.Add(this.textBox3);
             this.tabPage4.Controls.Add(this.richTextBox3);
-            this.tabPage4.Location = new System.Drawing.Point(4, 25);
+            this.tabPage4.Location = new System.Drawing.Point(4, 26);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1014, 723);
+            this.tabPage4.Size = new System.Drawing.Size(1014, 722);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Scheduling";
             // 
@@ -302,9 +302,9 @@
             this.tabPage5.Controls.Add(this.button5);
             this.tabPage5.Controls.Add(this.textBox4);
             this.tabPage5.Controls.Add(this.richTextBox4);
-            this.tabPage5.Location = new System.Drawing.Point(4, 25);
+            this.tabPage5.Location = new System.Drawing.Point(4, 26);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(1014, 723);
+            this.tabPage5.Size = new System.Drawing.Size(1014, 722);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Jobs";
             // 
@@ -345,9 +345,9 @@
             this.tabPage6.Controls.Add(this.button6);
             this.tabPage6.Controls.Add(this.textBox5);
             this.tabPage6.Controls.Add(this.richTextBox5);
-            this.tabPage6.Location = new System.Drawing.Point(4, 25);
+            this.tabPage6.Location = new System.Drawing.Point(4, 26);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(1014, 723);
+            this.tabPage6.Size = new System.Drawing.Size(1014, 722);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Invoicing";
             // 
@@ -388,9 +388,9 @@
             this.tabPage7.Controls.Add(this.button7);
             this.tabPage7.Controls.Add(this.textBox6);
             this.tabPage7.Controls.Add(this.richTextBox6);
-            this.tabPage7.Location = new System.Drawing.Point(4, 25);
+            this.tabPage7.Location = new System.Drawing.Point(4, 26);
             this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(1014, 723);
+            this.tabPage7.Size = new System.Drawing.Size(1014, 722);
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "Assets";
             // 
@@ -431,9 +431,9 @@
             this.tabPage8.Controls.Add(this.button8);
             this.tabPage8.Controls.Add(this.textBox7);
             this.tabPage8.Controls.Add(this.richTextBox7);
-            this.tabPage8.Location = new System.Drawing.Point(4, 25);
+            this.tabPage8.Location = new System.Drawing.Point(4, 26);
             this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Size = new System.Drawing.Size(1014, 723);
+            this.tabPage8.Size = new System.Drawing.Size(1014, 722);
             this.tabPage8.TabIndex = 7;
             this.tabPage8.Text = "Maintenance";
             // 
@@ -474,9 +474,9 @@
             this.tabPage9.Controls.Add(this.button9);
             this.tabPage9.Controls.Add(this.textBox8);
             this.tabPage9.Controls.Add(this.richTextBox8);
-            this.tabPage9.Location = new System.Drawing.Point(4, 25);
+            this.tabPage9.Location = new System.Drawing.Point(4, 26);
             this.tabPage9.Name = "tabPage9";
-            this.tabPage9.Size = new System.Drawing.Size(1014, 723);
+            this.tabPage9.Size = new System.Drawing.Size(1014, 722);
             this.tabPage9.TabIndex = 8;
             this.tabPage9.Text = "Staff";
             // 
@@ -561,9 +561,9 @@
             this.tabPage11.Controls.Add(this.button11);
             this.tabPage11.Controls.Add(this.textBox10);
             this.tabPage11.Controls.Add(this.richTextBox10);
-            this.tabPage11.Location = new System.Drawing.Point(4, 25);
+            this.tabPage11.Location = new System.Drawing.Point(4, 26);
             this.tabPage11.Name = "tabPage11";
-            this.tabPage11.Size = new System.Drawing.Size(1014, 723);
+            this.tabPage11.Size = new System.Drawing.Size(1014, 722);
             this.tabPage11.TabIndex = 10;
             this.tabPage11.Text = "SitePhotos";
             // 
@@ -604,9 +604,9 @@
             this.tabPage12.Controls.Add(this.button12);
             this.tabPage12.Controls.Add(this.textBox11);
             this.tabPage12.Controls.Add(this.richTextBox11);
-            this.tabPage12.Location = new System.Drawing.Point(4, 25);
+            this.tabPage12.Location = new System.Drawing.Point(4, 26);
             this.tabPage12.Name = "tabPage12";
-            this.tabPage12.Size = new System.Drawing.Size(1014, 723);
+            this.tabPage12.Size = new System.Drawing.Size(1014, 722);
             this.tabPage12.TabIndex = 11;
             this.tabPage12.Text = "Main menu";
             // 
@@ -616,9 +616,9 @@
             this.tabPage13.Controls.Add(this.button13);
             this.tabPage13.Controls.Add(this.textBox12);
             this.tabPage13.Controls.Add(this.richTextBox12);
-            this.tabPage13.Location = new System.Drawing.Point(4, 25);
+            this.tabPage13.Location = new System.Drawing.Point(4, 26);
             this.tabPage13.Name = "tabPage13";
-            this.tabPage13.Size = new System.Drawing.Size(1014, 723);
+            this.tabPage13.Size = new System.Drawing.Size(1014, 722);
             this.tabPage13.TabIndex = 12;
             this.tabPage13.Text = "Login";
             // 
