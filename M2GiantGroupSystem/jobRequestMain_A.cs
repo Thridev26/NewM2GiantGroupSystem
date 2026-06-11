@@ -215,6 +215,11 @@ namespace M2GiantGroupSystem
                     }
                     clientTableAdapter1.FillByID(this.groupWst1DataSet1.Client, id);
                 }
+                 if (numberOfResults==0)
+                {
+                    lbSearchResults.Items.Add("Client not found!");
+                    return;
+                }
             }
             catch (SqlException sqlEx)
             {

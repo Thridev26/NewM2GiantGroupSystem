@@ -334,7 +334,7 @@
             // 
             this.createAnInvoiceToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(219)))), ((int)(((byte)(117)))));
             this.createAnInvoiceToolStripMenuItem.Name = "createAnInvoiceToolStripMenuItem";
-            this.createAnInvoiceToolStripMenuItem.Size = new System.Drawing.Size(262, 32);
+            this.createAnInvoiceToolStripMenuItem.Size = new System.Drawing.Size(327, 40);
             this.createAnInvoiceToolStripMenuItem.Text = "Create an Invoice";
             this.createAnInvoiceToolStripMenuItem.Click += new System.EventHandler(this.createAnInvoiceToolStripMenuItem_Click);
             // 
@@ -342,9 +342,8 @@
             // 
             this.trackPaymentsToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(219)))), ((int)(((byte)(117)))));
             this.trackPaymentsToolStripMenuItem.Name = "trackPaymentsToolStripMenuItem";
-            this.trackPaymentsToolStripMenuItem.Size = new System.Drawing.Size(262, 32);
-            this.trackPaymentsToolStripMenuItem.Text = "Track Payments";
-            this.trackPaymentsToolStripMenuItem.Click += new System.EventHandler(this.trackPaymentsToolStripMenuItem_Click);
+            this.trackPaymentsToolStripMenuItem.Size = new System.Drawing.Size(327, 40);
+            this.trackPaymentsToolStripMenuItem.Text = "Manage Payments";
             // 
             // toolStripMenuItem5
             // 
@@ -470,6 +469,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.SeaShell;
+            this.BackgroundImage = global::M2GiantGroupSystem.Properties.Resources.mainMenuBgWithLogo;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1603, 450);
             this.Controls.Add(this.menuStrip1);
