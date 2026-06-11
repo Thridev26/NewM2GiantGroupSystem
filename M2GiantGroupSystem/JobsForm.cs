@@ -139,6 +139,7 @@ namespace M2GiantGroupSystem
         {
             SetupGridStyles();
 
+            // UI Defaults
             tabControl1.SelectedIndex = tabIndex;
             tabControl1.DrawMode = TabDrawMode.OwnerDrawFixed;
             tabControl1.DrawItem += tabControl1_DrawItem;
@@ -146,10 +147,14 @@ namespace M2GiantGroupSystem
             cboJobStatus.Items.AddRange(new string[] { "Not Started", "In Progress", "Completed" });
             cboJobStatus.SelectedIndex = 0;
 
+            // THE FIX: Clear any designer-set items first before appending code items!
+            cmbCriteriaSeach.Items.Clear();
             cmbCriteriaSeach.Items.AddRange(new string[] { "Name", "Surname", "Job Status", "Site Adress" });
+
             JobProgressFilter.Items.AddRange(new string[] { "All", "Not Started", "In Progress", "Completed" });
             JobProgressFilter.SelectedIndex = 0;
 
+            // Load Data
             loadAcceptedQuotes();
             LoadJobs();
             LoadTimeSlotsForDate(dtpStartDate.Value);
@@ -179,103 +184,111 @@ namespace M2GiantGroupSystem
         // --------------------------------------------------------------------------------------------------------
         private void LoadTimeSlotsForDate(DateTime selectedDate)
         {
-            pnlTimeSlots.Controls.Clear();
-            List<int> bookedSlots = new List<int>();
+           
+                pnlTimeSlots.Controls.Clear();
+                pnlTimeSlots.AutoScroll = true;
+                pnlTimeSlots.AutoSize = false;
 
-            try
-            {
-                // -----------------------------------------------------------------------
-                // STEP 1: Find booked slots for this date
-                // NOTE: We only block a slot if the selected date falls on the job's
-                // START date specifically. This prevents multi-day jobs from blocking
-                // slots on every single day of their duration.
-                // -----------------------------------------------------------------------
-                using (SqlConnection conn = new SqlConnection(connStr))
+                var bookedSlots = new HashSet<int>();
+
+                try
                 {
-                    string sql = @"
-                        SELECT jts.timeSlotID 
-                        FROM JobTimeSlot jts
-                        INNER JOIN Job j ON jts.jobID = j.jobID
-                        WHERE CAST(j.startDate AS DATE) = CAST(@d AS DATE)";
-
-                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    using (SqlConnection conn = new SqlConnection(connStr))
                     {
-                        cmd.Parameters.AddWithValue("@d", selectedDate.Date);
                         conn.Open();
-                        using (SqlDataReader reader = cmd.ExecuteReader())
+
+                        using (var cmd = new SqlCommand(@"
+                SELECT jts.timeSlotID
+                FROM JobTimeSlot jts
+                INNER JOIN Job j ON jts.jobID = j.jobID
+                WHERE CAST(j.startDate AS DATE) = @d", conn))
                         {
-                            while (reader.Read())
+                            cmd.Parameters.Add("@d", System.Data.SqlDbType.Date).Value = selectedDate.Date;
+                            using (var reader = cmd.ExecuteReader())
                             {
-                                bookedSlots.Add(Convert.ToInt32(reader["timeSlotID"]));
+                                while (reader.Read())
+                                {
+                                    if (!reader.IsDBNull(0))
+                                        bookedSlots.Add(reader.GetInt32(0));
+                                }
+                            }
+                        }
+
+                        using (var cmdSlots = new SqlCommand("SELECT timeSlotID, startTime, endTime FROM TimeSlot ORDER BY startTime", conn))
+                        {
+                            using (var reader = cmdSlots.ExecuteReader())
+                            {
+                                int yOffset = 5;
+                                bool anyAdded = false;
+
+                                while (reader.Read())
+                                {
+                                    if (reader.IsDBNull(reader.GetOrdinal("timeSlotID")))
+                                        continue;
+
+                                    int slotID = reader.GetInt32(reader.GetOrdinal("timeSlotID"));
+
+                                    if (bookedSlots.Contains(slotID))
+                                        continue;
+
+                                    TimeSpan start = TimeSpan.Zero;
+                                    TimeSpan end = TimeSpan.Zero;
+
+                                    int startIdx = reader.GetOrdinal("startTime");
+                                    int endIdx = reader.GetOrdinal("endTime");
+
+                                    if (!reader.IsDBNull(startIdx))
+                                    {
+                                        object sVal = reader.GetValue(startIdx);
+                                        if (sVal is TimeSpan) start = (TimeSpan)sVal;
+                                        else if (sVal is DateTime) start = ((DateTime)sVal).TimeOfDay;
+                                    }
+
+                                    if (!reader.IsDBNull(endIdx))
+                                    {
+                                        object eVal = reader.GetValue(endIdx);
+                                        if (eVal is TimeSpan) end = (TimeSpan)eVal;
+                                        else if (eVal is DateTime) end = ((DateTime)eVal).TimeOfDay;
+                                    }
+
+                                    var cb = new CheckBox
+                                    {
+                                        AutoSize = false,
+                                        Height = 28,
+                                        Width = pnlTimeSlots.ClientSize.Width - 20,
+                                        Font = new Font("Segoe UI", 10f, FontStyle.Regular),
+                                        Tag = slotID,
+                                        Location = new Point(5, yOffset),
+                                        Text = string.Format("{0:00}:{1:00} - {2:00}:{3:00}",
+                                            start.Hours, start.Minutes,
+                                            end.Hours, end.Minutes),
+                                        TextAlign = ContentAlignment.MiddleLeft
+                                    };
+
+                                    pnlTimeSlots.Controls.Add(cb);
+                                    yOffset += 33;
+                                    anyAdded = true;
+                                }
+
+                                if (!anyAdded)
+                                {
+                                    pnlTimeSlots.Controls.Add(new Label
+                                    {
+                                        Text = "All time slots are booked for this date.",
+                                        AutoSize = true,
+                                        ForeColor = Color.Red,
+                                        Location = new Point(5, 5)
+                                    });
+                                }
                             }
                         }
                     }
                 }
-
-                // -----------------------------------------------------------------------
-                // DEBUG: Uncomment this block temporarily to see what is being blocked.
-                // If all 8 slots show here, your JobTimeSlot table has existing test data.
-                // Delete that test data from the database and the slots will reappear.
-                // -----------------------------------------------------------------------
-                // MessageBox.Show(
-                //     "Booked slot IDs for " + selectedDate.ToShortDateString() + ":\n" +
-                //     (bookedSlots.Count == 0 ? "None" : string.Join(", ", bookedSlots)),
-                //     "Debug: Booked Slots"
-                // );
-
-                // -----------------------------------------------------------------------
-                // STEP 2: Load ALL time slots directly from the database
-                // -----------------------------------------------------------------------
-                DataTable allSlots = new DataTable();
-                using (SqlConnection conn2 = new SqlConnection(connStr))
+                catch (Exception ex)
                 {
-                    string slotSql = "SELECT timeSlotID, startTime, endTime FROM TimeSlot ORDER BY startTime";
-                    SqlDataAdapter slotDa = new SqlDataAdapter(slotSql, conn2);
-                    slotDa.Fill(allSlots);
-                }
-
-                // -----------------------------------------------------------------------
-                // STEP 3: Draw checkboxes, skipping booked ones
-                // -----------------------------------------------------------------------
-                foreach (DataRow slot in allSlots.Rows)
-                {
-                    int slotID = Convert.ToInt32(slot["timeSlotID"]);
-
-                    if (bookedSlots.Contains(slotID))
-                        continue;
-
-                    CheckBox cb = new CheckBox();
-
-                    // SQL 'time' columns return as TimeSpan in C#
-                    TimeSpan start = (TimeSpan)slot["startTime"];
-                    TimeSpan end = (TimeSpan)slot["endTime"];
-
-                    cb.Text = $"{start:hh\\:mm} - {end:hh\\:mm}";
-                    cb.AutoSize = true;
-                    cb.Font = new Font("Segoe UI", 11, FontStyle.Regular);
-                    cb.Tag = slotID;
-
-                    pnlTimeSlots.Controls.Add(cb);
-                }
-
-                // -----------------------------------------------------------------------
-                // STEP 4: If nothing is available, show a message
-                // -----------------------------------------------------------------------
-                if (pnlTimeSlots.Controls.Count == 0)
-                {
-                    Label lblFull = new Label();
-                    lblFull.Text = "All time slots are booked for this date.";
-                    lblFull.AutoSize = true;
-                    lblFull.ForeColor = Color.Red;
-                    pnlTimeSlots.Controls.Add(lblFull);
+                    MessageBox.Show("Error loading time slots: " + ex.Message);
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error loading time slots: " + ex.Message);
-            }
-        }
-
         // SINGLE handler only — the _1 version is the one kept
         // Make sure in your Designer.cs only dtpStartDate_ValueChanged_1 is wired up
         private void dtpStartDate_ValueChanged_1(object sender, EventArgs e)
