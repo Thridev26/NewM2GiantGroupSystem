@@ -34,6 +34,7 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgvMaintenanceHistory = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.cboServiceType = new System.Windows.Forms.ComboBox();
             this.cboAssetSelection = new System.Windows.Forms.ComboBox();
@@ -49,6 +50,7 @@
             this.MainServiceType = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.maintenanceLogTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.MaintenanceLogTableAdapter();
             this.tabPage1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaintenanceHistory)).BeginInit();
@@ -100,9 +102,11 @@
             this.dgvMaintenanceHistory.RowTemplate.Height = 24;
             this.dgvMaintenanceHistory.Size = new System.Drawing.Size(883, 336);
             this.dgvMaintenanceHistory.TabIndex = 81;
+            this.dgvMaintenanceHistory.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMaintenanceHistory_CellClick_1);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.cboServiceType);
             this.groupBox1.Controls.Add(this.cboAssetSelection);
@@ -119,10 +123,23 @@
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(19, 51);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(931, 803);
+            this.groupBox1.Size = new System.Drawing.Size(931, 888);
             this.groupBox1.TabIndex = 83;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Enter Maintenance Log";
+            this.groupBox1.Text = "Enter/Edit Maintenance Log";
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.DarkGreen;
+            this.button2.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.button2.Location = new System.Drawing.Point(99, 809);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(410, 56);
+            this.button2.TabIndex = 99;
+            this.button2.Text = "Update Maintenance Log";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label3
             // 
@@ -165,7 +182,7 @@
             this.button1.BackColor = System.Drawing.Color.DarkGreen;
             this.button1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.button1.Location = new System.Drawing.Point(559, 724);
+            this.button1.Location = new System.Drawing.Point(626, 724);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(219, 56);
             this.button1.TabIndex = 95;
@@ -178,7 +195,7 @@
             this.btnSaveLog.BackColor = System.Drawing.Color.DarkGreen;
             this.btnSaveLog.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveLog.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnSaveLog.Location = new System.Drawing.Point(25, 724);
+            this.btnSaveLog.Location = new System.Drawing.Point(99, 724);
             this.btnSaveLog.Name = "btnSaveLog";
             this.btnSaveLog.Size = new System.Drawing.Size(410, 56);
             this.btnSaveLog.TabIndex = 94;
@@ -275,6 +292,10 @@
             this.tabControl1.TabIndex = 53;
             this.tabControl1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tabControl1_DrawItem);
             // 
+            // maintenanceLogTableAdapter1
+            // 
+            this.maintenanceLogTableAdapter1.ClearBeforeFill = true;
+            // 
             // Maintenance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -319,5 +340,7 @@
         private System.Windows.Forms.Label MainServiceType;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Button button2;
+        private GroupWst1DataSetTableAdapters.MaintenanceLogTableAdapter maintenanceLogTableAdapter1;
     }
 }
