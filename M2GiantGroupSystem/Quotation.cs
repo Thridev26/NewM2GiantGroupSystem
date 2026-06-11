@@ -464,8 +464,8 @@ namespace M2GiantGroupSystem
         // Hardcoded Business Location Constants 
         private const double BaseLatitude = -29.890840081918007;
         private const double BaseLongitude = 30.905937134956915;
-        private const decimal CostPerKilometer = 6.50m; // R6.50 per km for fuel/transport
-        private const decimal BaseCallOutFee = 450.00m; // Flat base fee just to drive out
+        private const decimal CostPerKilometer = 15m; // R15.00 per km for fuel/transport
+        private const decimal BaseCallOutFee = 500.00m; // Flat base fee just to drive out
 
         private decimal CalculateTravelFee(double clientLat, double clientLng)
         {
