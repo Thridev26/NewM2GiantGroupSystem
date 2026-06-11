@@ -74,6 +74,14 @@
             this.button11 = new System.Windows.Forms.Button();
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.richTextBox10 = new System.Windows.Forms.RichTextBox();
+            this.tabPage12 = new System.Windows.Forms.TabPage();
+            this.tabPage13 = new System.Windows.Forms.TabPage();
+            this.button12 = new System.Windows.Forms.Button();
+            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.richTextBox11 = new System.Windows.Forms.RichTextBox();
+            this.button13 = new System.Windows.Forms.Button();
+            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.richTextBox12 = new System.Windows.Forms.RichTextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -86,6 +94,8 @@
             this.tabPage9.SuspendLayout();
             this.tabPage10.SuspendLayout();
             this.tabPage11.SuspendLayout();
+            this.tabPage12.SuspendLayout();
+            this.tabPage13.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -101,6 +111,8 @@
             this.tabControl1.Controls.Add(this.tabPage9);
             this.tabControl1.Controls.Add(this.tabPage10);
             this.tabControl1.Controls.Add(this.tabPage11);
+            this.tabControl1.Controls.Add(this.tabPage12);
+            this.tabControl1.Controls.Add(this.tabPage13);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -586,6 +598,92 @@
             this.richTextBox10.TabIndex = 4;
             this.richTextBox10.Text = "";
             // 
+            // tabPage12
+            // 
+            this.tabPage12.BackColor = System.Drawing.SystemColors.Info;
+            this.tabPage12.Controls.Add(this.button12);
+            this.tabPage12.Controls.Add(this.textBox11);
+            this.tabPage12.Controls.Add(this.richTextBox11);
+            this.tabPage12.Location = new System.Drawing.Point(4, 25);
+            this.tabPage12.Name = "tabPage12";
+            this.tabPage12.Size = new System.Drawing.Size(1014, 723);
+            this.tabPage12.TabIndex = 11;
+            this.tabPage12.Text = "Main menu";
+            // 
+            // tabPage13
+            // 
+            this.tabPage13.BackColor = System.Drawing.SystemColors.Info;
+            this.tabPage13.Controls.Add(this.button13);
+            this.tabPage13.Controls.Add(this.textBox12);
+            this.tabPage13.Controls.Add(this.richTextBox12);
+            this.tabPage13.Location = new System.Drawing.Point(4, 25);
+            this.tabPage13.Name = "tabPage13";
+            this.tabPage13.Size = new System.Drawing.Size(1014, 723);
+            this.tabPage13.TabIndex = 12;
+            this.tabPage13.Text = "Login";
+            // 
+            // button12
+            // 
+            this.button12.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button12.Location = new System.Drawing.Point(904, 3);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(107, 25);
+            this.button12.TabIndex = 9;
+            this.button12.Text = "Find next";
+            this.button12.UseVisualStyleBackColor = false;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
+            // 
+            // textBox11
+            // 
+            this.textBox11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.textBox11.Location = new System.Drawing.Point(3, 5);
+            this.textBox11.Name = "textBox11";
+            this.textBox11.Size = new System.Drawing.Size(895, 22);
+            this.textBox11.TabIndex = 8;
+            this.textBox11.Text = "Search...";
+            this.textBox11.TextChanged += new System.EventHandler(this.textBox11_TextChanged);
+            this.textBox11.Enter += new System.EventHandler(this.textBox11_Enter);
+            // 
+            // richTextBox11
+            // 
+            this.richTextBox11.BackColor = System.Drawing.SystemColors.Info;
+            this.richTextBox11.Location = new System.Drawing.Point(3, 34);
+            this.richTextBox11.Name = "richTextBox11";
+            this.richTextBox11.Size = new System.Drawing.Size(1005, 686);
+            this.richTextBox11.TabIndex = 7;
+            this.richTextBox11.Text = "";
+            // 
+            // button13
+            // 
+            this.button13.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.button13.Location = new System.Drawing.Point(904, 3);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(107, 25);
+            this.button13.TabIndex = 9;
+            this.button13.Text = "Find next";
+            this.button13.UseVisualStyleBackColor = false;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
+            // 
+            // textBox12
+            // 
+            this.textBox12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.textBox12.Location = new System.Drawing.Point(3, 5);
+            this.textBox12.Name = "textBox12";
+            this.textBox12.Size = new System.Drawing.Size(895, 22);
+            this.textBox12.TabIndex = 8;
+            this.textBox12.Text = "Search...";
+            this.textBox12.TextChanged += new System.EventHandler(this.textBox12_TextChanged);
+            this.textBox12.Enter += new System.EventHandler(this.textBox12_Enter);
+            // 
+            // richTextBox12
+            // 
+            this.richTextBox12.BackColor = System.Drawing.SystemColors.Info;
+            this.richTextBox12.Location = new System.Drawing.Point(3, 34);
+            this.richTextBox12.Name = "richTextBox12";
+            this.richTextBox12.Size = new System.Drawing.Size(1005, 686);
+            this.richTextBox12.TabIndex = 7;
+            this.richTextBox12.Text = "";
+            // 
             // HelpForm_D
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -620,6 +718,10 @@
             this.tabPage10.PerformLayout();
             this.tabPage11.ResumeLayout(false);
             this.tabPage11.PerformLayout();
+            this.tabPage12.ResumeLayout(false);
+            this.tabPage12.PerformLayout();
+            this.tabPage13.ResumeLayout(false);
+            this.tabPage13.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -671,5 +773,13 @@
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.RichTextBox richTextBox10;
+        private System.Windows.Forms.TabPage tabPage12;
+        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.TextBox textBox11;
+        private System.Windows.Forms.RichTextBox richTextBox11;
+        private System.Windows.Forms.TabPage tabPage13;
+        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.RichTextBox richTextBox12;
     }
 }
