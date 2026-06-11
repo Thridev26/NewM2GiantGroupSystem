@@ -512,8 +512,8 @@ namespace M2GiantGroupSystem
             // ADD THE TRAVEL FEE INTO THE SUBTOTAL
             subTotalAccumulator += currentTravelFee;
 
-           // decimal vatAccumulator = subTotalAccumulator * 0.15m;
-            decimal vatAccumulator = (subTotalAccumulator - currentTravelFee) * 0.15m; // only on line total
+            decimal vatAccumulator = subTotalAccumulator * 0.15m;
+           
             decimal grandTotalAccumulator = subTotalAccumulator + vatAccumulator;
 
             txtAmount.Text = subTotalAccumulator.ToString("F2");
