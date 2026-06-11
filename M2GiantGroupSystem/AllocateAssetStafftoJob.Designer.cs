@@ -891,7 +891,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "AllocateAssetStafftoJob";
             this.Text = "Allocation Hub";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AllocateAssetStafftoJob_FormClosed);
             this.Load += new System.EventHandler(this.AllocateAssetStafftoJob_Load);
             this.tabViewAllocations.ResumeLayout(false);
