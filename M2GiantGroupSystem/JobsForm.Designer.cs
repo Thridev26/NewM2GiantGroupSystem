@@ -34,7 +34,6 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.lblTimeSlots = new System.Windows.Forms.Label();
-            this.pnlTimeSlots = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvJoin = new System.Windows.Forms.DataGridView();
             this.txtSearchQuote = new System.Windows.Forms.TextBox();
@@ -114,6 +113,7 @@
             this.groupWst1DataSet1 = new M2GiantGroupSystem.GroupWst1DataSet();
             this.timeSlotTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.TimeSlotTableAdapter();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.pnlTimeSlots = new System.Windows.Forms.FlowLayoutPanel();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -165,8 +165,8 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.lblTimeSlots);
             this.groupBox3.Controls.Add(this.pnlTimeSlots);
+            this.groupBox3.Controls.Add(this.lblTimeSlots);
             this.groupBox3.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(903, 69);
             this.groupBox3.Name = "groupBox3";
@@ -184,13 +184,6 @@
             this.lblTimeSlots.Name = "lblTimeSlots";
             this.lblTimeSlots.Size = new System.Drawing.Size(0, 70);
             this.lblTimeSlots.TabIndex = 55;
-            // 
-            // pnlTimeSlots
-            // 
-            this.pnlTimeSlots.Location = new System.Drawing.Point(136, 79);
-            this.pnlTimeSlots.Name = "pnlTimeSlots";
-            this.pnlTimeSlots.Size = new System.Drawing.Size(612, 234);
-            this.pnlTimeSlots.TabIndex = 56;
             // 
             // groupBox2
             // 
@@ -549,9 +542,9 @@
             this.JobProgressFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.JobProgressFilter.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.JobProgressFilter.FormattingEnabled = true;
-            this.JobProgressFilter.Location = new System.Drawing.Point(197, 70);
+            this.JobProgressFilter.Location = new System.Drawing.Point(152, 70);
             this.JobProgressFilter.Name = "JobProgressFilter";
-            this.JobProgressFilter.Size = new System.Drawing.Size(273, 53);
+            this.JobProgressFilter.Size = new System.Drawing.Size(318, 53);
             this.JobProgressFilter.TabIndex = 61;
             this.JobProgressFilter.SelectedIndexChanged += new System.EventHandler(this.JobProgressFilter_SelectedIndexChanged);
             // 
@@ -1056,6 +1049,16 @@
             // 
             this.timeSlotTableAdapter1.ClearBeforeFill = true;
             // 
+            // pnlTimeSlots
+            // 
+            this.pnlTimeSlots.AutoScroll = true;
+            this.pnlTimeSlots.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.pnlTimeSlots.Location = new System.Drawing.Point(73, 62);
+            this.pnlTimeSlots.Name = "pnlTimeSlots";
+            this.pnlTimeSlots.Size = new System.Drawing.Size(806, 267);
+            this.pnlTimeSlots.TabIndex = 57;
+            this.pnlTimeSlots.WrapContents = false;
+            // 
             // JobsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -1103,7 +1106,6 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.FlowLayoutPanel pnlTimeSlots;
         private System.Windows.Forms.Label lblTimeSlots;
         private System.Windows.Forms.DataGridView dgvJoin;
         private GroupWst1DataSetTableAdapters.JobTimeSlotTableAdapter jobTimeSlotTableAdapter1;
@@ -1183,5 +1185,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.FlowLayoutPanel pnlTimeSlots;
     }
 }
