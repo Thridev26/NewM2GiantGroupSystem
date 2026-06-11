@@ -107,6 +107,8 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1022, 752);
             this.tabControl1.TabIndex = 0;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
+            this.tabControl1.Enter += new System.EventHandler(this.tabControl1_Enter);
             // 
             // tabPage1
             // 
@@ -139,7 +141,9 @@
             this.seacrchClients.Name = "seacrchClients";
             this.seacrchClients.Size = new System.Drawing.Size(895, 22);
             this.seacrchClients.TabIndex = 2;
+            this.seacrchClients.Text = "Search...";
             this.seacrchClients.TextChanged += new System.EventHandler(this.seacrchClients_TextChanged);
+            this.seacrchClients.Enter += new System.EventHandler(this.seacrchClients_Enter);
             // 
             // clientsText
             // 
@@ -181,7 +185,9 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(895, 22);
             this.textBox1.TabIndex = 5;
+            this.textBox1.Text = "Search...";
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox1.Enter += new System.EventHandler(this.textBox1_Enter);
             // 
             // richTextBox1
             // 
@@ -222,7 +228,9 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(895, 22);
             this.textBox2.TabIndex = 5;
+            this.textBox2.Text = "Search...";
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.textBox2.Enter += new System.EventHandler(this.textBox2_Enter);
             // 
             // richTextBox2
             // 
@@ -263,7 +271,9 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(895, 22);
             this.textBox3.TabIndex = 5;
+            this.textBox3.Text = "Search...";
             this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            this.textBox3.Enter += new System.EventHandler(this.textBox3_Enter);
             // 
             // richTextBox3
             // 
@@ -304,7 +314,9 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(895, 22);
             this.textBox4.TabIndex = 5;
+            this.textBox4.Text = "Search...";
             this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
+            this.textBox4.Enter += new System.EventHandler(this.textBox4_Enter);
             // 
             // richTextBox4
             // 
@@ -345,7 +357,9 @@
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(895, 22);
             this.textBox5.TabIndex = 5;
+            this.textBox5.Text = "Search...";
             this.textBox5.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
+            this.textBox5.Enter += new System.EventHandler(this.textBox5_Enter);
             // 
             // richTextBox5
             // 
@@ -386,7 +400,9 @@
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(895, 22);
             this.textBox6.TabIndex = 5;
+            this.textBox6.Text = "Search...";
             this.textBox6.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
+            this.textBox6.Enter += new System.EventHandler(this.textBox6_Enter);
             // 
             // richTextBox6
             // 
@@ -427,7 +443,9 @@
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(895, 22);
             this.textBox7.TabIndex = 5;
+            this.textBox7.Text = "Search...";
             this.textBox7.TextChanged += new System.EventHandler(this.textBox7_TextChanged);
+            this.textBox7.Enter += new System.EventHandler(this.textBox7_Enter);
             // 
             // richTextBox7
             // 
@@ -468,7 +486,9 @@
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(895, 22);
             this.textBox8.TabIndex = 5;
+            this.textBox8.Text = "Search...";
             this.textBox8.TextChanged += new System.EventHandler(this.textBox8_TextChanged);
+            this.textBox8.Enter += new System.EventHandler(this.textBox8_Enter);
             // 
             // richTextBox8
             // 
@@ -509,7 +529,9 @@
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(895, 22);
             this.textBox9.TabIndex = 5;
+            this.textBox9.Text = "Search...";
             this.textBox9.TextChanged += new System.EventHandler(this.textBox9_TextChanged);
+            this.textBox9.Enter += new System.EventHandler(this.textBox9_Enter);
             // 
             // richTextBox9
             // 
@@ -551,7 +573,9 @@
             this.textBox10.Name = "textBox10";
             this.textBox10.Size = new System.Drawing.Size(895, 22);
             this.textBox10.TabIndex = 5;
+            this.textBox10.Text = "Search...";
             this.textBox10.TextChanged += new System.EventHandler(this.textBox10_TextChanged);
+            this.textBox10.Enter += new System.EventHandler(this.textBox10_Enter);
             // 
             // richTextBox10
             // 
