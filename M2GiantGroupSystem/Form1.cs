@@ -17,13 +17,63 @@ namespace M2GiantGroupSystem
         {
             InitializeComponent();
             ThemeManager.ThemeChanged += ApplyTheme;
+            // Explicitly set initial state
+            btnExitToMenu.Enabled = false;
+        }
+
+        private void ApplyPermissions()
+        {
+            int level = UserSession.AccessLevel; // The user Session object is global so this will work 
+
+            // 1. If Owner (6), they already have full access.  
+            // We just return early and don't change anything! 
+            if (level >= 6) return;
+
+            // 2. If we reach this point, the user is NOT an owner. 
+            // Now we apply restrictions for everyone else. 
+            switch (level)
+            {
+                case 5: // Admin: Some locks 
+                   toolStripMenuItem4.Enabled = false;
+                    toolStripMenuItem5.Enabled = false;
+                    break;
+
+                case 4: // Ops Manager: More locks 
+                    toolStripMenuItem4.Enabled = false;
+                    toolStripMenuItem5.Enabled = false;
+                    clientsToolStripMenuItem.Enabled = false;
+                    toolStripMenuItem9.Enabled = false;
+                    toolStripMenuItem1.Enabled = false;
+                    toolStripMenuItem2.Enabled = false;
+                    addEditJobDetailsToolStripMenuItem.Enabled = false;
+                    editJobProgressToolStripMenuItem.Enabled = false;
+                    toolStripMenuItem4.Enabled = false;
+                    toolStripMenuItem6.Enabled = false;
+                    toolStripMenuItem8.Enabled = false;
+                    break;
+
+                default: // Level 3 and below: Complete lockdown – lock all controls if you feel they should 
+                    toolStripMenuItem4.Enabled = false;
+                    toolStripMenuItem5.Enabled = false;
+                    clientsToolStripMenuItem.Enabled = false;
+                    toolStripMenuItem9.Enabled = false;
+                    toolStripMenuItem1.Enabled = false;
+                    toolStripMenuItem2.Enabled = false;
+                    addEditJobDetailsToolStripMenuItem.Enabled = false;
+                    editJobProgressToolStripMenuItem.Enabled = false;
+                    toolStripMenuItem4.Enabled = false;
+                    toolStripMenuItem6.Enabled = false;
+                    toolStripMenuItem8.Enabled = false;
+                    break;
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            ApplyPermissions();
             ApplyTheme();
             // Initially disable the Return to Menu button because no child forms are open
-            toolStripMenuItem13.Enabled = false;
+            btnExitToMenu.Enabled = false;
             // Explicitly start the clock
             timer1.Start();
         }
@@ -235,7 +285,26 @@ namespace M2GiantGroupSystem
 
         private void toolStripMenuItem13_Click(object sender, EventArgs e)
         {
+            // This closes whatever child is currently active
+            if (this.ActiveMdiChild != null)
+            {
+                this.ActiveMdiChild.Close();
+            }
+        }
 
+        private void Form1_MdiChildActivate(object sender, EventArgs e)
+        {
+            // Check if any child forms are currently active
+            if (this.ActiveMdiChild == null)
+            {
+                // No children open, disable the button
+                btnExitToMenu.Enabled = false;
+            }
+            else
+            {
+                // A child is open, enable the button
+                btnExitToMenu.Enabled = true;
+            }
         }
     }
 }
