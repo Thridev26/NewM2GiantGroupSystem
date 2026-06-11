@@ -17,6 +17,7 @@ namespace M2GiantGroupSystem
         public Maintenance(int tabIndex)
         {
             InitializeComponent();
+            ThemeManager.ThemeChanged += ApplyTheme; // ADD THIS
             tabIndex = tabIndex;
         }
 
@@ -27,6 +28,10 @@ namespace M2GiantGroupSystem
         {
             // Cleanly delegate all initialization logic to the centralized setup method
             InitializeMaintenanceFormLayout();
+            tabControl1.DrawMode = TabDrawMode.OwnerDrawFixed;
+            tabControl1.DrawItem += tabControl1_DrawItem;
+            ApplyTheme(); // ADD THIS
+
         }
 
         private void InitializeMaintenanceFormLayout()
@@ -174,6 +179,63 @@ namespace M2GiantGroupSystem
             {
                 MessageBox.Show("Failed to record maintenance logs entry mapping profiles: " + ex.Message, "Execution Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //clear all form fields to default values for a new log entry
+            ClearFormLayout();
+        }
+
+        private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 1. Get the current page and its bounding rectangle coordinates
+            TabPage page = tabControl1.TabPages[e.Index];
+            Rectangle tabRect = tabControl1.GetTabRect(e.Index);
+
+            // 2. Set up the typography and fallback background color (Honeydew)
+            Font tabFont = new Font("Segoe UI", 10, FontStyle.Bold);
+            Color backColor = Color.Honeydew;
+
+            // 3. THE FIX: If the tab is currently selected, paint it with the signature bright green!
+            if (e.Index == tabControl1.SelectedIndex)
+            {
+                backColor = Color.LightGreen;
+            }
+
+            Color textColor = Color.Black;
+
+            // 4. Fill the tab background rectangle canvas
+            using (Brush b = new SolidBrush(backColor))
+            {
+                e.Graphics.FillRectangle(b, tabRect);
+            }
+
+            // 5. Draw the neat dark green border lines around the tab shape
+            using (Pen p = new Pen(Color.DarkGreen, 1))
+            {
+                e.Graphics.DrawRectangle(p, tabRect);
+            }
+
+            // 6. Center and draw the text string cleanly inside the tab boundary
+            TextRenderer.DrawText(
+                e.Graphics,
+                page.Text,
+                tabFont,
+                tabRect,
+                textColor,
+                TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
+            );
+        }
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            ThemeManager.ThemeChanged -= ApplyTheme;
+            base.OnFormClosed(e);
+        }
+        private void ApplyTheme()
+        {
+            if (ThemeManager.IsDarkMode)
+                ThemeManager.ApplyTheme(this);
         }
     }
 }
