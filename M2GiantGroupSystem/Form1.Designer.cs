@@ -68,11 +68,11 @@
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem11 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem13 = new System.Windows.Forms.ToolStripMenuItem();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.btnExitToMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem14 = new System.Windows.Forms.ToolStripMenuItem();
             this.siteEvaluationPhotosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.completedJobPhotosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -95,7 +95,7 @@
             this.toolStripMenuItem8,
             this.toolStripMenuItem11,
             this.toolStripMenuItem10,
-            this.toolStripMenuItem13,
+            this.btnExitToMenu,
             this.toolStripMenuItem14});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -432,13 +432,13 @@
             this.toolStripMenuItem10.Text = "Help";
             this.toolStripMenuItem10.Click += new System.EventHandler(this.toolStripMenuItem10_Click);
             // 
-            // toolStripMenuItem13
+            // btnExitToMenu
             // 
-            this.toolStripMenuItem13.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripMenuItem13.Name = "toolStripMenuItem13";
-            this.toolStripMenuItem13.Size = new System.Drawing.Size(179, 36);
-            this.toolStripMenuItem13.Text = "Exit To Menu";
-            this.toolStripMenuItem13.Click += new System.EventHandler(this.toolStripMenuItem13_Click);
+            this.btnExitToMenu.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.btnExitToMenu.Name = "btnExitToMenu";
+            this.btnExitToMenu.Size = new System.Drawing.Size(179, 36);
+            this.btnExitToMenu.Text = "Exit To Menu";
+            this.btnExitToMenu.Click += new System.EventHandler(this.toolStripMenuItem13_Click);
             // 
             // toolStripMenuItem14
             // 
@@ -480,6 +480,7 @@
             this.Text = "The Giant Group Operations and Asset Management System - Main Menu";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.MdiChildActivate += new System.EventHandler(this.Form1_MdiChildActivate);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -527,7 +528,7 @@
         private System.Windows.Forms.ToolStripMenuItem printQuoteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addStaffDetailsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addASitePhotoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem13;
+        private System.Windows.Forms.ToolStripMenuItem btnExitToMenu;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem14;
         private System.Windows.Forms.ToolStripMenuItem siteEvaluationPhotosToolStripMenuItem;
