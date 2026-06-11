@@ -33,7 +33,6 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgvMaintenanceHistory = new System.Windows.Forms.DataGridView();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cboServiceType = new System.Windows.Forms.ComboBox();
@@ -73,7 +72,6 @@
             this.tabPage1.AutoScroll = true;
             this.tabPage1.BackColor = System.Drawing.Color.SeaShell;
             this.tabPage1.Controls.Add(this.groupBox3);
-            this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Controls.Add(this.groupBox1);
             this.tabPage1.Location = new System.Drawing.Point(4, 34);
             this.tabPage1.Name = "tabPage1";
@@ -102,15 +100,6 @@
             this.dgvMaintenanceHistory.RowTemplate.Height = 24;
             this.dgvMaintenanceHistory.Size = new System.Drawing.Size(883, 336);
             this.dgvMaintenanceHistory.TabIndex = 81;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Location = new System.Drawing.Point(-32, -82);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(200, 100);
-            this.groupBox2.TabIndex = 84;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "groupBox2";
             // 
             // groupBox1
             // 
@@ -327,7 +316,6 @@
         private System.Windows.Forms.Label lblDumpingCost;
         private System.Windows.Forms.Label MainServiceType;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ToolTip toolTip1;
     }
 }
