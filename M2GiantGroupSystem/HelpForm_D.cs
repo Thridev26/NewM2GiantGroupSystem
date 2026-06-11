@@ -73,7 +73,7 @@ namespace M2GiantGroupSystem
             richTextBox4.Text = "hi";
             richTextBox5.Text = "hi";
             richTextBox7.Text = "hi";
-            richTextBox6.Text = "hi";
+            
             richTextBox8.Text = "hi";
             richTextBox9.Text = "hi";
             richTextBox10.Text = "hi";
