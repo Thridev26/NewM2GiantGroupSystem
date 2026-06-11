@@ -48,6 +48,7 @@
             this.dt2.Name = "dt2";
             this.dt2.Size = new System.Drawing.Size(502, 34);
             this.dt2.TabIndex = 0;
+            this.dt2.ValueChanged += new System.EventHandler(this.dt2_ValueChanged);
             // 
             // dt1
             // 
@@ -56,6 +57,7 @@
             this.dt1.Name = "dt1";
             this.dt1.Size = new System.Drawing.Size(502, 34);
             this.dt1.TabIndex = 1;
+            this.dt1.ValueChanged += new System.EventHandler(this.dt1_ValueChanged);
             // 
             // tabControl1
             // 
@@ -68,6 +70,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1242, 788);
             this.tabControl1.TabIndex = 2;
+            this.tabControl1.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tabControl1_Selecting);
             // 
             // tabPage1
             // 
@@ -75,11 +78,11 @@
             this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.dt1);
             this.tabPage1.Controls.Add(this.dt2);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Location = new System.Drawing.Point(4, 37);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tabPage1.Size = new System.Drawing.Size(1234, 759);
+            this.tabPage1.Size = new System.Drawing.Size(1234, 747);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Select date range";
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
@@ -112,12 +115,11 @@
             this.crystalReportViewer1.ActiveViewIndex = 0;
             this.crystalReportViewer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.crystalReportViewer1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.crystalReportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.crystalReportViewer1.Location = new System.Drawing.Point(4, 5);
             this.crystalReportViewer1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.crystalReportViewer1.Name = "crystalReportViewer1";
             this.crystalReportViewer1.ReportSource = this.expensesReport1;
-            this.crystalReportViewer1.Size = new System.Drawing.Size(1226, 737);
+            this.crystalReportViewer1.Size = new System.Drawing.Size(1222, 725);
             this.crystalReportViewer1.TabIndex = 0;
             this.crystalReportViewer1.ToolPanelWidth = 275;
             this.crystalReportViewer1.Load += new System.EventHandler(this.crystalReportViewer1_Load);
