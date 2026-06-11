@@ -33,6 +33,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.pnlTimeSlots = new System.Windows.Forms.Panel();
             this.lblTimeSlots = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvJoin = new System.Windows.Forms.DataGridView();
@@ -101,19 +102,18 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.searchJobUp = new System.Windows.Forms.Button();
             this.dgvUpdateJob = new System.Windows.Forms.DataGridView();
             this.lblSearchResults_A = new System.Windows.Forms.Label();
             this.txtSearchUpdate = new System.Windows.Forms.TextBox();
             this.lblSearchBy_A = new System.Windows.Forms.Label();
             this.cmbCriteriaSeach = new System.Windows.Forms.ComboBox();
             this.lblSelectCriteria_A = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.jobTimeSlotTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobTimeSlotTableAdapter();
             this.jobTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobTableAdapter();
             this.groupWst1DataSet1 = new M2GiantGroupSystem.GroupWst1DataSet();
             this.timeSlotTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.TimeSlotTableAdapter();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.pnlTimeSlots = new System.Windows.Forms.Panel();
+            this.label14 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -174,6 +174,14 @@
             this.groupBox3.TabIndex = 81;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Select Available Time Slots";
+            // 
+            // pnlTimeSlots
+            // 
+            this.pnlTimeSlots.AutoScroll = true;
+            this.pnlTimeSlots.Location = new System.Drawing.Point(83, 72);
+            this.pnlTimeSlots.Name = "pnlTimeSlots";
+            this.pnlTimeSlots.Size = new System.Drawing.Size(739, 268);
+            this.pnlTimeSlots.TabIndex = 56;
             // 
             // lblTimeSlots
             // 
@@ -288,6 +296,7 @@
             this.button1.TabIndex = 77;
             this.button1.Text = "Clear";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // btnSaveJob
             // 
@@ -300,6 +309,7 @@
             this.btnSaveJob.TabIndex = 76;
             this.btnSaveJob.Text = "Add Job";
             this.btnSaveJob.UseVisualStyleBackColor = false;
+            this.btnSaveJob.Click += new System.EventHandler(this.btnSaveJob_Click_1);
             // 
             // txtDumpingCost
             // 
@@ -333,10 +343,6 @@
             this.cboJobStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.cboJobStatus.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboJobStatus.FormattingEnabled = true;
-            this.cboJobStatus.Items.AddRange(new object[] {
-            "Not Started",
-            "In Progress",
-            "Completed"});
             this.cboJobStatus.Location = new System.Drawing.Point(319, 264);
             this.cboJobStatus.Name = "cboJobStatus";
             this.cboJobStatus.Size = new System.Drawing.Size(410, 45);
@@ -450,6 +456,7 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.label14);
             this.groupBox5.Controls.Add(this.lbl_name);
             this.groupBox5.Controls.Add(this.JobEditBtn);
             this.groupBox5.Controls.Add(this.JobAddBtn);
@@ -470,7 +477,7 @@
             this.lbl_name.AutoSize = true;
             this.lbl_name.BackColor = System.Drawing.Color.Transparent;
             this.lbl_name.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_name.Location = new System.Drawing.Point(628, 73);
+            this.lbl_name.Location = new System.Drawing.Point(730, 79);
             this.lbl_name.Name = "lbl_name";
             this.lbl_name.Size = new System.Drawing.Size(138, 50);
             this.lbl_name.TabIndex = 63;
@@ -519,7 +526,7 @@
             // 
             this.txtSearchJobV.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.txtSearchJobV.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearchJobV.Location = new System.Drawing.Point(806, 76);
+            this.txtSearchJobV.Location = new System.Drawing.Point(900, 76);
             this.txtSearchJobV.Name = "txtSearchJobV";
             this.txtSearchJobV.Size = new System.Drawing.Size(273, 50);
             this.txtSearchJobV.TabIndex = 62;
@@ -543,7 +550,7 @@
             this.JobProgressFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.JobProgressFilter.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.JobProgressFilter.FormattingEnabled = true;
-            this.JobProgressFilter.Location = new System.Drawing.Point(152, 70);
+            this.JobProgressFilter.Location = new System.Drawing.Point(369, 77);
             this.JobProgressFilter.Name = "JobProgressFilter";
             this.JobProgressFilter.Size = new System.Drawing.Size(318, 53);
             this.JobProgressFilter.TabIndex = 61;
@@ -812,6 +819,7 @@
             this.button3.TabIndex = 105;
             this.button3.Text = "Update Job Details";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click_1);
             // 
             // txtUpdateDumpingCost
             // 
@@ -936,7 +944,6 @@
             // 
             // groupBox6
             // 
-            this.groupBox6.Controls.Add(this.searchJobUp);
             this.groupBox6.Controls.Add(this.dgvUpdateJob);
             this.groupBox6.Controls.Add(this.lblSearchResults_A);
             this.groupBox6.Controls.Add(this.txtSearchUpdate);
@@ -950,19 +957,6 @@
             this.groupBox6.TabIndex = 93;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Find Job";
-            // 
-            // searchJobUp
-            // 
-            this.searchJobUp.BackColor = System.Drawing.Color.DarkGreen;
-            this.searchJobUp.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchJobUp.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.searchJobUp.Location = new System.Drawing.Point(290, 712);
-            this.searchJobUp.Name = "searchJobUp";
-            this.searchJobUp.Size = new System.Drawing.Size(410, 56);
-            this.searchJobUp.TabIndex = 87;
-            this.searchJobUp.Text = "Search";
-            this.searchJobUp.UseVisualStyleBackColor = false;
-            this.searchJobUp.Click += new System.EventHandler(this.searchJobUp_Click);
             // 
             // dgvUpdateJob
             // 
@@ -996,6 +990,7 @@
             this.txtSearchUpdate.Name = "txtSearchUpdate";
             this.txtSearchUpdate.Size = new System.Drawing.Size(494, 50);
             this.txtSearchUpdate.TabIndex = 89;
+            this.txtSearchUpdate.TextChanged += new System.EventHandler(this.txtSearchUpdate_TextChanged);
             // 
             // lblSearchBy_A
             // 
@@ -1050,13 +1045,16 @@
             // 
             this.timeSlotTableAdapter1.ClearBeforeFill = true;
             // 
-            // pnlTimeSlots
+            // label14
             // 
-            this.pnlTimeSlots.AutoScroll = true;
-            this.pnlTimeSlots.Location = new System.Drawing.Point(83, 72);
-            this.pnlTimeSlots.Name = "pnlTimeSlots";
-            this.pnlTimeSlots.Size = new System.Drawing.Size(739, 268);
-            this.pnlTimeSlots.TabIndex = 56;
+            this.label14.AutoSize = true;
+            this.label14.BackColor = System.Drawing.Color.Transparent;
+            this.label14.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(10, 76);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(353, 50);
+            this.label14.TabIndex = 64;
+            this.label14.Text = "Filter by Job Status";
             // 
             // JobsForm
             // 
@@ -1138,7 +1136,6 @@
         private System.Windows.Forms.Label lblDumpJobCost;
         private System.Windows.Forms.Label lblJobQuoteID;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Button searchJobUp;
         private System.Windows.Forms.TextBox txtSearchUpdate;
         private System.Windows.Forms.DataGridView dgvUpdateJob;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -1185,5 +1182,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Panel pnlTimeSlots;
+        private System.Windows.Forms.Label label14;
     }
 }
