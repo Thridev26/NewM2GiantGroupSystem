@@ -548,6 +548,7 @@
   <ItemGroup>
     <Content Include="images1\logo %28bg removed%29 EDITED.png" />
     <Content Include="images1\logoWithWhiteBG.png" />
+    <Content Include="images1\mainMenuBg.jpg" />
     <Content Include="images1\mapIcon.png" />
     <Content Include="images1\no image available icon.jpg" />
     <Content Include="map_A.html">
