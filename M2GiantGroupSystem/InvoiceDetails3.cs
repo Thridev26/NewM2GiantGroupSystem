@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace M2GiantGroupSystem
 {
-    internal class InvoiceDetails2
+    internal class InvoiceDetails3
     {
         public int JobID { get; set; }
         public string ClientName { get; set; }
@@ -19,5 +19,8 @@ namespace M2GiantGroupSystem
         public decimal LineTotal { get; set; }
         public decimal QuoteAmount { get; set; }
         public decimal TotalReceived { get; set; }
+        public decimal LineItemsSubtotal { get; set; }  // sum of all line totals
+        public decimal TravelFee { get; set; }          // back-calculated
+        public decimal VATAmount { get; set; }          // back-calculated
     }
 }

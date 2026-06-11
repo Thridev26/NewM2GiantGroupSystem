@@ -21,6 +21,7 @@ namespace M2GiantGroupSystem
         }
         public static int SelectedJobID;
         DBConnect DB1 = new DBConnect();
+        private bool _reportLoading = false;  // ADD THIS FLAG
 
         public void runQuery(TextBox t, DataGridView dgv)
         {
@@ -142,60 +143,58 @@ namespace M2GiantGroupSystem
         {
             try
             {
-                List<InvoiceDetails2> list = new List<InvoiceDetails2>();
-
+                List<InvoiceDetails3> list = new List<InvoiceDetails3>();
                 DataSet ds = DB1.InvoiceData();
+
+                if (ds.Tables[0].Rows.Count == 0)
+                {
+                    MessageBox.Show("No data found for the selected job.",
+                        "No Data", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
 
                 foreach (DataRow dr in ds.Tables[0].Rows)
                 {
-                    list.Add(new InvoiceDetails2()
+                    list.Add(new InvoiceDetails3()
                     {
-                        JobID = Convert.ToInt32(dr["jobID"]),
-                        ClientName = dr["ClientName"].ToString(),
-                        SiteAddress = dr["siteAddress"].ToString(),
-                        StartDate = Convert.ToDateTime(dr["startDate"]),
-                        EndDate = Convert.ToDateTime(dr["endDate"]),
+
                         JobTypeName = dr["jobTypeName"].ToString(),
                         JobRate = Convert.ToDecimal(dr["jobRate"]),
                         DetailValue = Convert.ToDecimal(dr["DetailValue"]),
                         LineTotal = Convert.ToDecimal(dr["LineTotal"]),
-                        QuoteAmount = Convert.ToDecimal(dr["QuoteAmount"]),
-                        TotalReceived = Convert.ToDecimal(dr["TotalReceived"])
+
                     });
                 }
 
-
+                // set data source BEFORE setting parameter values
                 InvoiceReport1.SetDataSource(list);
 
+                DataRow first = ds.Tables[0].Rows[0];
 
-                // Pass header-level info as parameters
-                if (ds.Tables[0].Rows.Count > 0)
-                {
-                    DataRow first = ds.Tables[0].Rows[0];
+                InvoiceReport1.SetParameterValue("ClientName", first["ClientName"].ToString());
+                InvoiceReport1.SetParameterValue("SiteAddress", first["siteAddress"].ToString());
+                InvoiceReport1.SetParameterValue("JobID", SelectedJobID);
+                InvoiceReport1.SetParameterValue("StartDate", Convert.ToDateTime(first["startDate"]).ToString("dd/MM/yyyy"));
+                InvoiceReport1.SetParameterValue("EndDate", Convert.ToDateTime(first["endDate"]).ToString("dd/MM/yyyy"));
+                InvoiceReport1.SetParameterValue("QuoteAmount", Convert.ToDecimal(first["QuoteAmount"]));
+                InvoiceReport1.SetParameterValue("TotalReceived", Convert.ToDecimal(first["TotalReceived"]));
+                InvoiceReport1.SetParameterValue("LineItemsSubtotal", Convert.ToDecimal(first["LineItemsSubtotal"]));
+                InvoiceReport1.SetParameterValue("TravelFee", Convert.ToDecimal(first["TravelFee"]));
+                InvoiceReport1.SetParameterValue("VATAmount", Convert.ToDecimal(first["VATAmount"]));
 
-                    InvoiceReport1.SetParameterValue("ClientName", first["ClientName"].ToString());
-                    InvoiceReport1.SetParameterValue("SiteAddress", first["siteAddress"].ToString());
-                    InvoiceReport1.SetParameterValue("JobID", SelectedJobID);
-                    InvoiceReport1.SetParameterValue("StartDate", Convert.ToDateTime(first["startDate"]).ToString("dd/MM/yyyy"));
-                    InvoiceReport1.SetParameterValue("EndDate", Convert.ToDateTime(first["endDate"]).ToString("dd/MM/yyyy"));
-                    InvoiceReport1.SetParameterValue("QuoteAmount", Convert.ToDecimal(first["QuoteAmount"]));
-                    InvoiceReport1.SetParameterValue("TotalReceived", Convert.ToDecimal(first["TotalReceived"]));
+                decimal balance = Convert.ToDecimal(first["QuoteAmount"])
+                                - Convert.ToDecimal(first["TotalReceived"]);
+                InvoiceReport1.SetParameterValue("BalanceOutstanding", balance);
 
-                    // balance outstanding
-                    decimal balance = Convert.ToDecimal(first["QuoteAmount"]) - Convert.ToDecimal(first["TotalReceived"]);
-                    InvoiceReport1.SetParameterValue("BalanceOutstanding", balance);
-                }
-                else
-                {
-                  MessageBox.Show("No data found for the selected job.", "No Data", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+               
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error loading report: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error loading report: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
             crystalReportViewer1.ReportSource = InvoiceReport1;
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -209,7 +208,7 @@ namespace M2GiantGroupSystem
 
             InvoiceReport1.Refresh();  // add this
                                        //make cyrtal viewer load event run again to refresh data
-                                       crystalReportViewer1_Load(sender, e);
+            crystalReportViewer1_Load(sender, e);
             tabControl1.SelectedIndex = 1;
         }
 
@@ -217,6 +216,15 @@ namespace M2GiantGroupSystem
         {
            // tabControl1.TabPages[1].Enabled = false;
             //button1.Enabled = false;
+        }
+        private void LoadInvoiceReport()
+        {
+            if (SelectedJobID == 0) return;
+            if (_reportLoading) return;  // STOP RE-ENTRY
+
+            _reportLoading = true;
+
+           
         }
     }
 }
