@@ -470,7 +470,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.SeaShell;
-//            this.BackgroundImage = global::M2GiantGroupSystem.Properties.Resources.mainMenuBgWithLogo;
+            this.BackgroundImage = global::M2GiantGroupSystem.Properties.Resources.mainMenuBgWithLogo;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1924, 540);
             this.Controls.Add(this.menuStrip1);
