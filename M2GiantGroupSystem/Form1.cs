@@ -306,5 +306,10 @@ namespace M2GiantGroupSystem
                 btnExitToMenu.Enabled = true;
             }
         }
+
+        private void trackPaymentsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormSetup(new paymentMain(0));
+        }
     }
 }
