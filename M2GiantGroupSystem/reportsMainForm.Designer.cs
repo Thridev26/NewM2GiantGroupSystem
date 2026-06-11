@@ -44,7 +44,7 @@
             this.button1.BackColor = System.Drawing.Color.DarkGreen;
             this.button1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(85, 232);
+            this.button1.Location = new System.Drawing.Point(85, 35);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(633, 70);
             this.button1.TabIndex = 0;
@@ -57,7 +57,7 @@
             this.button2.BackColor = System.Drawing.Color.DarkGreen;
             this.button2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(85, 33);
+            this.button2.Location = new System.Drawing.Point(85, 134);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(633, 70);
             this.button2.TabIndex = 1;
@@ -70,12 +70,13 @@
             this.button3.BackColor = System.Drawing.Color.DarkGreen;
             this.button3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(85, 135);
+            this.button3.Location = new System.Drawing.Point(85, 229);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(633, 70);
             this.button3.TabIndex = 2;
             this.button3.Text = "Outstanding payment report";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // pictureBox1
             // 
@@ -105,7 +106,7 @@
             this.label1.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(1014, 439);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(571, 46);
+            this.label1.Size = new System.Drawing.Size(555, 45);
             this.label1.TabIndex = 5;
             this.label1.Text = "Click to go to the report generator";
             // 

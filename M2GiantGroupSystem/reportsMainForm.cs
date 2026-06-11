@@ -42,5 +42,10 @@ namespace M2GiantGroupSystem
                 MessageBox.Show("Main menu not found. Please open the main menu before adding a new client.");
             }
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

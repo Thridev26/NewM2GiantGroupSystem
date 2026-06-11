@@ -195,14 +195,8 @@ namespace M2GiantGroupSystem
         {
             try
             {
-                if (numberOfResults == 1)
-                {
-                    clientTableAdapter1.FillByID(
-                        this.groupWst1DataSet1.Client,
-                        this.groupWst1DataSet1.Client[0].clientID);
-                    return;
-                }
-                if (lbSearchResults.SelectedIndex > -1)
+               
+                if (lbSearchResults.SelectedIndex > 0)
                 {
                     string selectedItem = lbSearchResults.SelectedItem.ToString();
                     string[] parts = selectedItem.Split(':');
@@ -398,11 +392,32 @@ namespace M2GiantGroupSystem
 
             try
             {
-                jobRequestID = Convert.ToInt32(jobRequestTableAdapter1.InsertQuery(
-                    clientID,
-                    tbAddress_A.Text.Trim(),
-                    cmbRequestSource_A.SelectedItem.ToString(),
-                    cmbUrgencyLevel_A.SelectedItem.ToString()));
+                decimal latitude;
+                decimal longitude;
+
+                if (decimal.TryParse(tbLat_A.Text, out latitude) &&
+                    decimal.TryParse(tbLong_A.Text, out longitude))
+                {
+                    jobRequestID = Convert.ToInt32(
+                        jobRequestTableAdapter1.InsertQuery(
+                            clientID,
+                            tbAddress_A.Text.Trim(),
+                            cmbRequestSource_A.SelectedItem.ToString(),
+                            cmbUrgencyLevel_A.SelectedItem.ToString(),
+                            longitude,
+                            latitude));
+                }
+                else
+                {
+                    jobRequestID = Convert.ToInt32(
+                        jobRequestTableAdapter1.InsertQuery(
+                            clientID,
+                            tbAddress_A.Text.Trim(),
+                            cmbRequestSource_A.SelectedItem.ToString(),
+                            cmbUrgencyLevel_A.SelectedItem.ToString(),
+                            null,
+                            null));
+                }
 
                 foreach (var item in clbItems.CheckedItems)
                 {
@@ -494,6 +509,7 @@ namespace M2GiantGroupSystem
                 DataRow r = groupWst1DataSet1.JobRequest.Rows[0];
 
                 tbSiteAddress.Text = r["siteAddress"].ToString();
+               // MessageBox.Show("Raw latitude value from database: " + r["latitude"].ToString() + "\nRaw longitude value from database: " + (r.IsNull("longitude") ? "NULL" : r["longitude"].ToString()), "Debug Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 tbLat.Text = r.IsNull("latitude") ? "" : Convert.ToDecimal(r["latitude"]).ToString("F6");
                 tbLong.Text = r.IsNull("longitude") ? "" : Convert.ToDecimal(r["longitude"]).ToString("F6");
 
@@ -700,12 +716,25 @@ namespace M2GiantGroupSystem
 
                     foreach (DataRow jobDetailRow in groupWst1DataSet1.JobDetail.Rows)
                     {
+                        string dataType = jobDetailRow["dataType"].ToString();
+
+                        // ── Field label (detail name) ──────────────────────────
                         Label lbl_jobDetailName = new Label();
                         lbl_jobDetailName.Text = jobDetailRow["detailName"].ToString();
                         lbl_jobDetailName.AutoSize = false;
                         lbl_jobDetailName.Width = 120;
                         lbl_jobDetailName.Margin = new Padding(10, 10, 5, 0);
 
+                        // ── Input hint label (what to enter) ───────────────────
+                        Label lbl_hint = new Label();
+                        lbl_hint.Text = GetDataTypeHint(dataType);
+                        lbl_hint.AutoSize = false;
+                        lbl_hint.Width = 180;
+                        lbl_hint.ForeColor = Color.Gray;
+                        lbl_hint.Font = new Font("Segoe UI", 8, FontStyle.Italic);
+                        lbl_hint.Margin = new Padding(0, 12, 10, 0);
+
+                        // ── Textbox ────────────────────────────────────────────
                         TextBox tb_jobDetailName = new TextBox();
                         tb_jobDetailName.Margin = new Padding(5, 5, 20, 10);
                         tb_jobDetailName.Width = 300;
@@ -713,7 +742,8 @@ namespace M2GiantGroupSystem
                         tb_jobDetailName.Tag = new
                         {
                             jobDetailID = Convert.ToInt32(jobDetailRow["jobDetailID"]),
-                            requestItemID = requestItemID
+                            requestItemID = requestItemID,
+                            dataType = dataType        // ← store dataType so Save can validate it
                         };
 
                         string existingValue = GetExistingDetailValue(
@@ -725,6 +755,7 @@ namespace M2GiantGroupSystem
 
                         flowLayoutPanel1.Controls.Add(lbl_jobDetailName);
                         flowLayoutPanel1.Controls.Add(tb_jobDetailName);
+                        flowLayoutPanel1.Controls.Add(lbl_hint);
                     }
 
                     Panel separator = new Panel();
@@ -754,7 +785,7 @@ namespace M2GiantGroupSystem
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (jobRequestID ==0)
+            if (jobRequestID <=0)
             {
                 MessageBox.Show("Please select a job request from the table before saving details.",
                     "No Job Request Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -763,8 +794,9 @@ namespace M2GiantGroupSystem
 
             // Check at least one textbox in the panel has a value
             bool hasAnyValue = flowLayoutPanel1.Controls
-                .OfType<TextBox>()
-                .Any(tb => !string.IsNullOrWhiteSpace(tb.Text));
+    .OfType<TextBox>()
+    .Any(tb => !string.IsNullOrWhiteSpace(tb.Text) &&
+               !tb.Text.Trim().Equals("Not Specified", StringComparison.OrdinalIgnoreCase));
 
             if (!hasAnyValue)
             {
@@ -773,51 +805,96 @@ namespace M2GiantGroupSystem
                 return;
             }
 
-            DialogResult result = MessageBox.Show(
-                "Are you sure you want to save these changes?",
-                "Confirm Change", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (result != DialogResult.Yes)
+            bool hasErrors = false;
+            foreach (Control control in flowLayoutPanel1.Controls)
             {
-                MessageBox.Show("No changes were saved.");
+                if (control is TextBox tb)
+                {
+                    if (string.IsNullOrWhiteSpace(tb.Text)) continue;
+                    if (tb.Text.Trim().Equals("Not Specified", StringComparison.OrdinalIgnoreCase)) continue;
+                    if (tb.Tag == null) continue;
+
+                    dynamic data = tb.Tag;
+                    string dataType = data.dataType;
+                    string detailValue = tb.Text.Trim();
+
+                    if (detailValue.Length > 50 || ValidateDetailValue(detailValue, dataType) != null)
+                    {
+                        hasErrors = true;
+                        break;
+                    }
+                }
+            }
+
+            if (hasErrors)
+            {
+                MessageBox.Show("One or more fields contain invalid values. Please correct them before saving.",
+                    "Validation Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
+            // Only ask for confirmation once we know everything is valid
+            DialogResult result = MessageBox.Show(
+                "Are you sure you want to save these changes?",
+                "Confirm Save", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result != DialogResult.Yes) return;
+
             try
             {
+                bool allSavedSuccessfully = true;
+                bool anythingSaved = false;
+
                 foreach (Control control in flowLayoutPanel1.Controls)
                 {
                     if (control is TextBox tb)
                     {
                         if (string.IsNullOrWhiteSpace(tb.Text)) continue;
+                        if (tb.Text.Trim().Equals("Not Specified", StringComparison.OrdinalIgnoreCase)) continue;
 
                         if (tb.Tag == null)
                         {
                             MessageBox.Show("A detail field is missing its ID information. Skipping.",
                                 "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            allSavedSuccessfully = false;
                             continue;
                         }
 
                         dynamic data = tb.Tag;
                         int jdID = data.jobDetailID;
                         int reqItemID = data.requestItemID;
+                        string dataType = data.dataType;
                         string detailValue = tb.Text.Trim();
 
                         if (detailValue.Length > 50)
                         {
-                            MessageBox.Show($"A detail value exceeds 50 characters and cannot be saved:\n\"{detailValue.Substring(0, 30)}...\"",
+                            MessageBox.Show(
+                                $"A detail value exceeds 50 characters and cannot be saved:\n\"{detailValue.Substring(0, 30)}...\"",
                                 "Value Too Long", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            allSavedSuccessfully = false;
                             continue;
                         }
 
+                        string validationError = ValidateDetailValue(detailValue, dataType);
+                        if (validationError != null)
+                        {
+                            MessageBox.Show(
+                                $"The value \"{detailValue}\" is invalid — it {validationError}.",
+                                "Invalid Value", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            tb.Focus();
+                            allSavedSuccessfully = false;
+                            continue;
+                        }
+
+                        // — Save to DB ——————————————————————————————————
                         using (SqlConnection conn = new SqlConnection(connStr))
                         {
                             conn.Open();
 
                             SqlCommand checkCmd = new SqlCommand(@"
-                                SELECT COUNT(*) FROM ItemDetail 
-                                WHERE jobDetailID = @jobDetailID 
-                                AND requestItemID = @requestItemID", conn);
+                SELECT COUNT(*) FROM ItemDetail 
+                WHERE jobDetailID = @jobDetailID 
+                AND requestItemID = @requestItemID", conn);
                             checkCmd.Parameters.AddWithValue("@jobDetailID", jdID);
                             checkCmd.Parameters.AddWithValue("@requestItemID", reqItemID);
                             int count = Convert.ToInt32(checkCmd.ExecuteScalar());
@@ -825,10 +902,10 @@ namespace M2GiantGroupSystem
                             if (count > 0)
                             {
                                 SqlCommand updateCmd = new SqlCommand(@"
-                                    UPDATE ItemDetail 
-                                    SET detailValue = @detailValue
-                                    WHERE jobDetailID = @jobDetailID 
-                                    AND requestItemID = @requestItemID", conn);
+                    UPDATE ItemDetail 
+                    SET detailValue = @detailValue
+                    WHERE jobDetailID = @jobDetailID 
+                    AND requestItemID = @requestItemID", conn);
                                 updateCmd.Parameters.AddWithValue("@detailValue", detailValue);
                                 updateCmd.Parameters.AddWithValue("@jobDetailID", jdID);
                                 updateCmd.Parameters.AddWithValue("@requestItemID", reqItemID);
@@ -837,18 +914,35 @@ namespace M2GiantGroupSystem
                             else
                             {
                                 SqlCommand insertCmd = new SqlCommand(@"
-                                    INSERT INTO ItemDetail (detailValue, jobDetailID, requestItemID)
-                                    VALUES (@detailValue, @jobDetailID, @requestItemID)", conn);
+                    INSERT INTO ItemDetail (detailValue, jobDetailID, requestItemID)
+                    VALUES (@detailValue, @jobDetailID, @requestItemID)", conn);
                                 insertCmd.Parameters.AddWithValue("@detailValue", detailValue);
                                 insertCmd.Parameters.AddWithValue("@jobDetailID", jdID);
                                 insertCmd.Parameters.AddWithValue("@requestItemID", reqItemID);
                                 insertCmd.ExecuteNonQuery();
                             }
+
+                            anythingSaved = true;
                         }
                     }
                 }
 
-                MessageBox.Show("Successfully saved!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // — Final message based on outcome ————————————————————
+                if (!anythingSaved)
+                {
+                    MessageBox.Show("No valid details were saved. Please fill in at least one field correctly.",
+                        "Nothing Saved", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else if (!allSavedSuccessfully)
+                {
+                    MessageBox.Show("Some details were saved, but one or more fields were skipped due to errors. Please review and correct them.",
+                        "Partially Saved", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    MessageBox.Show("All details saved successfully!",
+                        "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             catch (SqlException sqlEx)
             {
@@ -1301,6 +1395,56 @@ namespace M2GiantGroupSystem
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             jobRequestID = 0;
+        }
+        // Returns a user-friendly hint string based on the DB dataType column
+        private string GetDataTypeHint(string dataType)
+        {
+            switch (dataType.ToLower())
+            {
+                case "int": return "Enter a whole number (e.g. 5)";
+                case "decimal": return "Enter a number (e.g. 12.50)";
+                case "date": return "Enter a date (dd/MM/yyyy)";
+                case "boolean": return "Enter Yes or No";
+                case "varchar": return "Enter text";
+                default: return "Enter a value";
+            }
+        }
+
+        // Validates a detail value against its expected dataType
+        // Returns null if valid, or an error message string if not
+        private string ValidateDetailValue(string value, string dataType)
+        {
+            switch (dataType.ToLower())
+            {
+                case "int":
+                    if (!int.TryParse(value, out _))
+                        return "must be a whole number (e.g. 5)";
+                    break;
+
+                case "decimal":
+                    if (!decimal.TryParse(value, out _))
+                        return "must be a number (e.g. 12.50)";
+                    break;
+
+                case "date":
+                    if (!DateTime.TryParseExact(value,
+                            new[] { "dd/MM/yyyy", "yyyy-MM-dd", "d/M/yyyy" },
+                            System.Globalization.CultureInfo.InvariantCulture,
+                            System.Globalization.DateTimeStyles.None, out _))
+                        return "must be a valid date (dd/MM/yyyy)";
+                    break;
+
+                case "boolean":
+                    string v = value.ToLower().Trim();
+                    if (v != "yes" && v != "no" && v != "true" && v != "false")
+                        return "must be Yes or No";
+                    break;
+
+                case "varchar":
+                    // Any text is fine — length is caught separately
+                    break;
+            }
+            return null; // valid
         }
     }
 }

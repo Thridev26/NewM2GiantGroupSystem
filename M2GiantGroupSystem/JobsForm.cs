@@ -88,6 +88,7 @@ namespace M2GiantGroupSystem
         {
             using (SqlConnection conn = new SqlConnection(connStr))
             {
+                // THE FIX: Active NOT IN clause. Quotes already assigned a Job will drop off the list.
                 string sql = @"
                     SELECT 
                         q.QuoteID,
@@ -99,7 +100,8 @@ namespace M2GiantGroupSystem
                     FROM Quote q
                     INNER JOIN JobRequest jr ON q.jobRequestID = jr.jobRequestID
                     INNER JOIN Client c ON jr.clientID = c.clientID
-                    WHERE q.quoteStatus = 'Accepted'";
+                    WHERE q.quoteStatus = 'Accepted'
+                    AND q.QuoteID NOT IN (SELECT DISTINCT quoteID FROM Job WHERE quoteID IS NOT NULL)";
 
                 if (!string.IsNullOrWhiteSpace(searchTerm))
                 {
@@ -197,7 +199,6 @@ namespace M2GiantGroupSystem
                 {
                     conn.Open();
 
-                    // 1. Fetch booked slot IDs for selected date context
                     string bookedSql = @"
                         SELECT jts.timeSlotID
                         FROM JobTimeSlot jts
@@ -217,7 +218,6 @@ namespace M2GiantGroupSystem
                         }
                     }
 
-                    // 2. Fetch master definitions and process horizontal flow layouts
                     string slotsSql = "SELECT timeSlotID, startTime, endTime FROM TimeSlot ORDER BY startTime";
                     using (var cmdSlots = new SqlCommand(slotsSql, conn))
                     {
@@ -262,7 +262,7 @@ namespace M2GiantGroupSystem
                                 var cb = new CheckBox
                                 {
                                     AutoSize = false,
-                                    Width = 115,  // Provides safety from truncations like '08:00 -'
+                                    Width = 115,
                                     Height = 25,
                                     Font = new Font("Segoe UI", 10f, FontStyle.Regular),
                                     Tag = slotID,
@@ -276,10 +276,8 @@ namespace M2GiantGroupSystem
                                 pnlTimeSlots.Controls.Add(cb);
                                 anyAdded = true;
 
-                                // Slide layout target to the right
                                 xPos += horizontalGap;
 
-                                // Wrap row breaks gracefully when panel bounds are exceeded
                                 if (xPos + horizontalGap > pnlTimeSlots.ClientSize.Width)
                                 {
                                     xPos = 15;
@@ -308,84 +306,16 @@ namespace M2GiantGroupSystem
             }
         }
 
-        private void dtpStartDate_ValueChanged_1(object sender, EventArgs e)
-        {
-            //LoadTimeSlotsForDate(dtpStartDate.Value);
-        }
 
         // --------------------------------------------------------------------------------------------------------
         // CAPTURE JOB AND SCHEDULE
         // --------------------------------------------------------------------------------------------------------
-        private void btnSaveJob_Click(object sender, EventArgs e)
-        {
-            if (selectedQuoteID == 0)
-            {
-                MessageBox.Show("Please select an accepted Quote from the table first.");
-                return;
-            }
+        // [INFO FOR UPDATE: You have TWO methods for the Add Job Button: btnSaveJob_Click AND btnSaveJob_Click_1. 
+        // When you update your components, make sure you delete the unused ghost one, and map the visual button 
+        // to the correct method in the designer events panel!]
+       
 
-            if (cboJobStatus.SelectedIndex == -1)
-            {
-                MessageBox.Show("Please ensure a Job Status is selected.");
-                return;
-            }
-
-            DialogResult confirm = MessageBox.Show("Are you sure you want to schedule this job?", "Confirm Job Scheduling", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (confirm != DialogResult.Yes)
-                return;
-
-            try
-            {
-                decimal fuel = string.IsNullOrWhiteSpace(txtFuelCost.Text) ? 0.00m : Convert.ToDecimal(txtFuelCost.Text);
-                decimal labour = string.IsNullOrWhiteSpace(txtLabourCost.Text) ? 0.00m : Convert.ToDecimal(txtLabourCost.Text);
-                decimal dumping = string.IsNullOrWhiteSpace(txtDumpingCost.Text) ? 0.00m : Convert.ToDecimal(txtDumpingCost.Text);
-
-                jobID = Convert.ToInt32(jobTableAdapter1.InsertQuery(
-                    dtpStartDate.Value.Date.ToString("yyyy-MM-dd"),
-                    dtpEndDate.Value.ToString("yyyy-MM-dd"),
-                    cboJobStatus.SelectedItem.ToString(),
-                    fuel,
-                    labour,
-                    dumping,
-                    selectedQuoteID
-                ));
-
-                foreach (Control control in pnlTimeSlots.Controls)
-                {
-                    if (control is CheckBox cb && cb.Checked)
-                    {
-                        timeSlotID = Convert.ToInt32(cb.Tag);
-                        jobTimeSlotTableAdapter1.Insert(jobID, timeSlotID);
-                    }
-                }
-
-                decimal totalAmount = fuel + labour + dumping;
-
-                using (PaymentTableAdapter paymentAdapter = new PaymentTableAdapter())
-                {
-                    paymentAdapter.InsertQuery(
-                        DateTime.Today.ToString("yyyy-MM-dd"),
-                        totalAmount,
-                        "Pending Method",
-                        "Unpaid",
-                        jobID
-                    );
-                }
-
-                MessageBox.Show("Job Scheduled and Payment Profile created successfully! Job ID: " + jobID);
-                ClearFormLayout();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error saving job or generating payment details: " + ex.Message);
-            }
-        }
-
-        private void btnClearForm_Click(object sender, EventArgs e)
-        {
-            // ClearFormLayout();
-        }
-
+    
         private void ClearFormLayout()
         {
             selectedQuoteID = 0;
@@ -439,13 +369,6 @@ namespace M2GiantGroupSystem
                 textColor,
                 TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
             );
-        }
-
-        private void lblJobStatus_Click(object sender, EventArgs e) { }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            ClearFormLayout();
         }
 
         private void txtSearchJobV_TextChanged(object sender, EventArgs e)
@@ -635,84 +558,31 @@ namespace M2GiantGroupSystem
             {
                 try
                 {
+                    // THE FIX: Execute a direct SQL command to update the job status to Archived
+                    using (SqlConnection conn = new SqlConnection(connStr))
+                    {
+                        string archiveSql = "UPDATE Job SET jobStatus = 'Archived' WHERE jobID = @jobID";
+
+                        using (SqlCommand cmd = new SqlCommand(archiveSql, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@jobID", selectedJobID);
+
+                            conn.Open();
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+
                     MessageBox.Show("Job archived successfully!", "Archive Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Refresh your grids to reflect the changes instantly
+                    string selectedStatus = JobProgressFilter.SelectedItem?.ToString() ?? "All";
+                    LoadJobs(selectedStatus, txtSearchJobV.Text);
+                    ClearUpdateFormLayout();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error archiving job: " + ex.Message, "Archive Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }
-        }
-
-        private void searchJobUp_Click(object sender, EventArgs e)
-        {
-            string criteria = cmbCriteriaSeach.SelectedItem?.ToString();
-            string searchTerm = txtSearchUpdate.Text.Trim();
-
-            if (string.IsNullOrWhiteSpace(searchTerm))
-            {
-                MessageBox.Show("Please enter a search term.");
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(criteria))
-            {
-                MessageBox.Show("Please select a search criteria from the dropdown.");
-                return;
-            }
-
-            try
-            {
-                string sql = @"
-                    SELECT 
-                        j.jobID           AS [Job ID], 
-                        c.clientName      AS [Name], 
-                        c.clientSurname   AS [Surname], 
-                        j.jobStatus       AS [Status], 
-                        jr.siteAddress    AS [Address]
-                    FROM Job j
-                    INNER JOIN Quote q ON j.quoteID = q.QuoteID
-                    INNER JOIN JobRequest jr ON q.jobRequestID = jr.jobRequestID
-                    INNER JOIN Client c ON jr.clientID = c.clientID
-                    WHERE ";
-
-                switch (criteria)
-                {
-                    case "Name": sql += "c.clientName LIKE @val"; break;
-                    case "Surname": sql += "c.clientSurname LIKE @val"; break;
-                    case "Job Status": sql += "j.jobStatus LIKE @val"; break;
-                    case "Site Adress": sql += "jr.siteAddress LIKE @val"; break;
-                    default:
-                        MessageBox.Show("Invalid search criteria selected.");
-                        return;
-                }
-
-                using (SqlConnection conn = new SqlConnection(connStr))
-                {
-                    SqlDataAdapter da = new SqlDataAdapter(sql, conn);
-                    da.SelectCommand.Parameters.AddWithValue("@val", "%" + searchTerm + "%");
-
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-
-                    if (dt.Rows.Count > 0)
-                    {
-                        dgvUpdateJob.DataSource = dt;
-                        dgvUpdateJob.ColumnHeadersVisible = true;
-
-                        if (dgvUpdateJob.Columns["Job ID"] != null)
-                            dgvUpdateJob.Columns["Job ID"].Visible = false;
-                    }
-                    else
-                    {
-                        dgvUpdateJob.DataSource = null;
-                        MessageBox.Show("No records found.");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Search Error: " + ex.Message);
             }
         }
 
@@ -763,7 +633,221 @@ namespace M2GiantGroupSystem
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void lbl_enterDetails_Click(object sender, EventArgs e) { }
+
+        private void tabPage1_Click(object sender, EventArgs e) { }
+
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            ThemeManager.ThemeChanged -= ApplyTheme;
+            base.OnFormClosed(e);
+        }
+
+        private void ApplyTheme()
+        {
+            if (ThemeManager.IsDarkMode)
+                ThemeManager.ApplyTheme(this);
+        }
+
+        private void dtpStartDate_ValueChanged(object sender, EventArgs e)
+        {
+            LoadTimeSlotsForDate(dtpStartDate.Value);
+        }
+
+        private void btnSaveJob_Click_1(object sender, EventArgs e)
+        {
+            if (selectedQuoteID == 0)
+            {
+                MessageBox.Show("Please select an accepted Quote from the table first.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (cboJobStatus.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please ensure a Job Status is selected.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Verify that at least one time slot checkbox has been checked
+            bool slotSelected = false;
+            foreach (Control control in pnlTimeSlots.Controls)
+            {
+                if (control is CheckBox cb && cb.Checked)
+                {
+                    slotSelected = true;
+                    break;
+                }
+            }
+
+            if (!slotSelected)
+            {
+                MessageBox.Show("Please select at least one available time slot before saving.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DialogResult confirm = MessageBox.Show("Are you sure you want to schedule this job?", "Confirm Job Scheduling", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirm != DialogResult.Yes)
+                return;
+
+            try
+            {
+                // Safe conversion handling that passes '0.00m' if fields are empty to protect SQL NOT NULL rules
+                decimal fuel = 0.00m;
+                decimal labour = 0.00m;
+                decimal dumping = 0.00m;
+
+                if (!string.IsNullOrWhiteSpace(txtFuelCost.Text)) decimal.TryParse(txtFuelCost.Text, out fuel);
+                if (!string.IsNullOrWhiteSpace(txtLabourCost.Text)) decimal.TryParse(txtLabourCost.Text, out labour);
+                if (!string.IsNullOrWhiteSpace(txtDumpingCost.Text)) decimal.TryParse(txtDumpingCost.Text, out dumping);
+
+                // DIRECT ADO.NET INSERT TO BYPASS DATASET AND GET IDENTITY BACK
+                using (SqlConnection conn = new SqlConnection(connStr))
+                {
+                    string insertSql = @"
+                INSERT INTO Job (startDate, endDate, jobStatus, totalFuelCost, totalLabourCost, dumpingCost, quoteID) 
+                VALUES (@start, @end, @status, @fuel, @labour, @dumping, @quoteID);
+                SELECT SCOPE_IDENTITY();";
+
+                    using (SqlCommand cmd = new SqlCommand(insertSql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@start", dtpStartDate.Value.Date);
+                        cmd.Parameters.AddWithValue("@end", dtpEndDate.Value.Date);
+                        cmd.Parameters.AddWithValue("@status", cboJobStatus.SelectedItem.ToString());
+                        cmd.Parameters.AddWithValue("@fuel", fuel);
+                        cmd.Parameters.AddWithValue("@labour", labour);
+                        cmd.Parameters.AddWithValue("@dumping", dumping);
+                        cmd.Parameters.AddWithValue("@quoteID", selectedQuoteID);
+
+                        conn.Open();
+                        // Grabs the newly generated identity scope ID directly from SQL memory
+                        jobID = Convert.ToInt32(cmd.ExecuteScalar());
+                    }
+                }
+
+                foreach (Control control in pnlTimeSlots.Controls)
+                {
+                    if (control is CheckBox cb && cb.Checked)
+                    {
+                        timeSlotID = Convert.ToInt32(cb.Tag);
+                        jobTimeSlotTableAdapter1.Insert(jobID, timeSlotID);
+                    }
+                }
+
+                decimal totalAmount = fuel + labour + dumping;
+
+                using (PaymentTableAdapter paymentAdapter = new PaymentTableAdapter())
+                {
+                    // THE FIX: Passed strictly approved database constraint vocabulary 
+                    paymentAdapter.InsertQuery(
+                        DateTime.Today.ToString("yyyy-MM-dd"),
+                        totalAmount,
+                        "EFT",      // Replaced "Pending Method" with an approved method
+                        "Pending",  // Replaced "Unpaid" with an approved status
+                        jobID
+                    );
+                }
+
+                MessageBox.Show("Job Scheduled and Payment Profile created successfully! Job ID: " + jobID, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Refresh records and sync grids
+                LoadJobs();
+                loadAcceptedQuotes();
+                ClearFormLayout();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error saving job or generating payment profile details: " + ex.Message, "Execution Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            ClearFormLayout();
+        }
+
+        private void txtSearchUpdate_TextChanged(object sender, EventArgs e)
+        {
+            string criteria = cmbCriteriaSeach.SelectedItem?.ToString();
+            string searchTerm = txtSearchUpdate.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(searchTerm))
+            {
+                MessageBox.Show("Please enter a search term.");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(criteria))
+            {
+                MessageBox.Show("Please select a search criteria from the dropdown.");
+                return;
+            }
+
+            try
+            {
+                // THE FIX: Changed 'j.jobID AS [Job ID]' to 'j.jobID AS [ID]' to align with dgvUpdateJob_CellClick target key indexer strings
+                string sql = @"
+                    SELECT 
+                        j.jobID           AS [ID], 
+                        c.clientName      AS [Name], 
+                        c.clientSurname   AS [Surname], 
+                        j.jobStatus       AS [Status], 
+                        jr.siteAddress    AS [Address],
+                        j.startDate       AS [Start Date],
+                        j.endDate         AS [End Date],
+                        j.totalFuelCost   AS [Fuel Cost],
+                        j.totalLabourCost AS [Labour Cost],
+                        j.dumpingCost     AS [Dumping Cost],
+                        j.quoteID         AS [Quote ID]
+                    FROM Job j
+                    INNER JOIN Quote q ON j.quoteID = q.QuoteID
+                    INNER JOIN JobRequest jr ON q.jobRequestID = jr.jobRequestID
+                    INNER JOIN Client c ON jr.clientID = c.clientID
+                    WHERE ";
+
+                switch (criteria)
+                {
+                    case "Name": sql += "c.clientName LIKE @val"; break;
+                    case "Surname": sql += "c.clientSurname LIKE @val"; break;
+                    case "Job Status": sql += "j.jobStatus LIKE @val"; break;
+                    case "Site Adress": sql += "jr.siteAddress LIKE @val"; break;
+                    default:
+                        MessageBox.Show("Invalid search criteria selected.");
+                        return;
+                }
+
+                using (SqlConnection conn = new SqlConnection(connStr))
+                {
+                    SqlDataAdapter da = new SqlDataAdapter(sql, conn);
+                    da.SelectCommand.Parameters.AddWithValue("@val", "%" + searchTerm + "%");
+
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    if (dt.Rows.Count > 0)
+                    {
+                        dgvUpdateJob.DataSource = dt;
+                        dgvUpdateJob.ColumnHeadersVisible = true;
+
+                        if (dgvUpdateJob.Columns["ID"] != null) dgvUpdateJob.Columns["ID"].Visible = false;
+                        if (dgvUpdateJob.Columns["Fuel Cost"] != null) dgvUpdateJob.Columns["Fuel Cost"].Visible = false;
+                        if (dgvUpdateJob.Columns["Labour Cost"] != null) dgvUpdateJob.Columns["Labour Cost"].Visible = false;
+                        if (dgvUpdateJob.Columns["Dumping Cost"] != null) dgvUpdateJob.Columns["Dumping Cost"].Visible = false;
+                        if (dgvUpdateJob.Columns["Quote ID"] != null) dgvUpdateJob.Columns["Quote ID"].Visible = false;
+                    }
+                    else
+                    {
+                        dgvUpdateJob.DataSource = null;
+                        MessageBox.Show("No records found.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Search Error: " + ex.Message);
+            }
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtUpdateJobID.Text) || selectedJobID == 0)
             {
@@ -786,6 +870,7 @@ namespace M2GiantGroupSystem
                 decimal labour = string.IsNullOrWhiteSpace(txtUpdateLabourCost.Text) ? 0.00m : Convert.ToDecimal(txtUpdateLabourCost.Text);
                 decimal dumping = string.IsNullOrWhiteSpace(txtUpdateDumpingCost.Text) ? 0.00m : Convert.ToDecimal(txtUpdateDumpingCost.Text);
 
+                // Commit modifications to the locked database rows via the typed table adapter context query
                 jobTableAdapter1.UpdateJobQuery(
                     dtpUpdateStartDate.Value.Date.ToString("yyyy-MM-dd"),
                     dtpUpdateEndDate.Value.Date.ToString("yyyy-MM-dd"),
@@ -798,6 +883,7 @@ namespace M2GiantGroupSystem
 
                 MessageBox.Show($"Job ID {selectedJobID} updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                // Instantly refresh tracking grids
                 string selectedStatus = JobProgressFilter.SelectedItem?.ToString() ?? "All";
                 LoadJobs(selectedStatus, txtSearchJobV.Text);
 
@@ -807,27 +893,6 @@ namespace M2GiantGroupSystem
             {
                 MessageBox.Show("Error updating job details: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void lbl_enterDetails_Click(object sender, EventArgs e) { }
-
-        private void tabPage1_Click(object sender, EventArgs e) { }
-
-        protected override void OnFormClosed(FormClosedEventArgs e)
-        {
-            ThemeManager.ThemeChanged -= ApplyTheme;
-            base.OnFormClosed(e);
-        }
-
-        private void ApplyTheme()
-        {
-            if (ThemeManager.IsDarkMode)
-                ThemeManager.ApplyTheme(this);
-        }
-
-        private void dtpStartDate_ValueChanged(object sender, EventArgs e)
-        {
-            LoadTimeSlotsForDate(dtpStartDate.Value);
         }
     }
 }
