@@ -22,6 +22,7 @@ namespace M2GiantGroupSystem
         {
             InitializeComponent();
             tabIndex = tab_index;
+            ThemeManager.ThemeChanged += ApplyTheme;
         }
         int numberOfResults;
         string value;
@@ -39,7 +40,7 @@ namespace M2GiantGroupSystem
 
         private void client_MainForm_Load(object sender, EventArgs e)
         {
-           
+            ApplyTheme(); // ADD THIS
             cmb_status.SelectedIndex = 0;
 
             try
@@ -1189,6 +1190,17 @@ namespace M2GiantGroupSystem
                 MessageBox.Show("Unexpected error while activating client:\n" + ex.Message,
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            ThemeManager.ThemeChanged -= ApplyTheme;
+            base.OnFormClosed(e);
+        }
+        private void ApplyTheme()
+        {
+            if (ThemeManager.IsDarkMode)
+                ThemeManager.ApplyTheme(this);
         }
     }
  }

@@ -318,6 +318,82 @@ namespace M2GiantGroupSystem
         {
             FindNextInRichTextBox(richTextBox10, textBox10.Text, ref photosIndex);
         }
+
+        private void seacrchClients_Enter(object sender, EventArgs e)
+        {
+            seacrchClients.Clear();
+        }
+
+        private void textBox1_Enter(object sender, EventArgs e)
+        {
+            textBox1.Clear();
+        }
+
+        private void textBox2_Enter(object sender, EventArgs e)
+        {
+            textBox2.Clear();
+        }
+
+        private void textBox3_Enter(object sender, EventArgs e)
+        {
+            textBox3.Clear();
+        }
+
+        private void textBox4_Enter(object sender, EventArgs e)
+        {
+            textBox4.Clear();
+        }
+
+        private void textBox5_Enter(object sender, EventArgs e)
+        {
+            textBox5.Clear();
+        }
+
+        private void tabControl1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox6_Enter(object sender, EventArgs e)
+        {
+            textBox6.Clear();
+        }
+
+        private void textBox7_Enter(object sender, EventArgs e)
+        {
+            textBox7.Clear();
+        }
+
+        private void textBox8_Enter(object sender, EventArgs e)
+        {
+            textBox8.Clear();
+        }
+
+        private void textBox9_Enter(object sender, EventArgs e)
+        {
+            textBox9.Clear();
+        }
+
+        private void textBox10_Enter(object sender, EventArgs e)
+        {
+            textBox10.Clear();
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //set all textboxes back to Search...
+            textBox1.Text = "Search...";
+            textBox2.Text = "Search...";
+            textBox3.Text = "Search...";
+            textBox4.Text = "Search...";
+            textBox5.Text = "Search...";
+            textBox6.Text = "Search...";
+            textBox7.Text = "Search...";
+            textBox8.Text = "Search...";
+            textBox9.Text = "Search...";
+            textBox10.Text = "Search...";
+            seacrchClients.Text = "Search...";
+        }
     }
 }
 
