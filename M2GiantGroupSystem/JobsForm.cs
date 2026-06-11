@@ -28,6 +28,7 @@ namespace M2GiantGroupSystem
 
         public JobsForm(int tab_index)
         {
+            ThemeManager.ThemeChanged += ApplyTheme;
             InitializeComponent();
             tabIndex = tab_index;
         }
@@ -137,6 +138,7 @@ namespace M2GiantGroupSystem
 
         private void JobsForm_Load(object sender, EventArgs e)
         {
+            ApplyTheme();
             SetupGridStyles();
 
             // UI Defaults
@@ -147,7 +149,6 @@ namespace M2GiantGroupSystem
             cboJobStatus.Items.AddRange(new string[] { "Not Started", "In Progress", "Completed" });
             cboJobStatus.SelectedIndex = 0;
 
-            // THE FIX: Clear any designer-set items first before appending code items!
             cmbCriteriaSeach.Items.Clear();
             cmbCriteriaSeach.Items.AddRange(new string[] { "Name", "Surname", "Job Status", "Site Adress" });
 
@@ -180,120 +181,136 @@ namespace M2GiantGroupSystem
         }
 
         // --------------------------------------------------------------------------------------------------------
-        // DYNAMIC TIME SLOT CHECKBOXES (FILTERS OUT BOOKED SLOTS)
+        // DYNAMIC TIME SLOT CHECKBOXES (FILTERS OUT BOOKED SLOTS WITH FIXED WIDTH GRID WRAPPING)
         // --------------------------------------------------------------------------------------------------------
         private void LoadTimeSlotsForDate(DateTime selectedDate)
         {
-           
-                pnlTimeSlots.Controls.Clear();
-                pnlTimeSlots.AutoScroll = true;
-                pnlTimeSlots.AutoSize = false;
+            pnlTimeSlots.Controls.Clear();
+            pnlTimeSlots.AutoScroll = true;
+            pnlTimeSlots.AutoSize = false;
 
-                var bookedSlots = new HashSet<int>();
+            var bookedSlots = new HashSet<int>();
 
-                try
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connStr))
                 {
-                    using (SqlConnection conn = new SqlConnection(connStr))
-                    {
-                        conn.Open();
+                    conn.Open();
 
-                        using (var cmd = new SqlCommand(@"
-                SELECT jts.timeSlotID
-                FROM JobTimeSlot jts
-                INNER JOIN Job j ON jts.jobID = j.jobID
-                WHERE CAST(j.startDate AS DATE) = @d", conn))
+                    // 1. Fetch booked slot IDs for selected date context
+                    string bookedSql = @"
+                        SELECT jts.timeSlotID
+                        FROM JobTimeSlot jts
+                        INNER JOIN Job j ON jts.jobID = j.jobID
+                        WHERE CAST(j.startDate AS DATE) = @d";
+
+                    using (var cmd = new SqlCommand(bookedSql, conn))
+                    {
+                        cmd.Parameters.Add("@d", System.Data.SqlDbType.Date).Value = selectedDate.Date;
+                        using (var reader = cmd.ExecuteReader())
                         {
-                            cmd.Parameters.Add("@d", System.Data.SqlDbType.Date).Value = selectedDate.Date;
-                            using (var reader = cmd.ExecuteReader())
+                            while (reader.Read())
                             {
-                                while (reader.Read())
-                                {
-                                    if (!reader.IsDBNull(0))
-                                        bookedSlots.Add(reader.GetInt32(0));
-                                }
+                                if (!reader.IsDBNull(0))
+                                    bookedSlots.Add(reader.GetInt32(0));
                             }
                         }
+                    }
 
-                        using (var cmdSlots = new SqlCommand("SELECT timeSlotID, startTime, endTime FROM TimeSlot ORDER BY startTime", conn))
+                    // 2. Fetch master definitions and process horizontal flow layouts
+                    string slotsSql = "SELECT timeSlotID, startTime, endTime FROM TimeSlot ORDER BY startTime";
+                    using (var cmdSlots = new SqlCommand(slotsSql, conn))
+                    {
+                        using (var reader = cmdSlots.ExecuteReader())
                         {
-                            using (var reader = cmdSlots.ExecuteReader())
+                            int xPos = 15;
+                            int yPos = 20;
+                            int horizontalGap = 135;
+                            int verticalGap = 35;
+                            bool anyAdded = false;
+
+                            while (reader.Read())
                             {
-                                int yOffset = 5;
-                                bool anyAdded = false;
+                                if (reader.IsDBNull(reader.GetOrdinal("timeSlotID")))
+                                    continue;
 
-                                while (reader.Read())
+                                int slotID = reader.GetInt32(reader.GetOrdinal("timeSlotID"));
+
+                                if (bookedSlots.Contains(slotID))
+                                    continue;
+
+                                TimeSpan start = TimeSpan.Zero;
+                                TimeSpan end = TimeSpan.Zero;
+
+                                int startIdx = reader.GetOrdinal("startTime");
+                                int endIdx = reader.GetOrdinal("endTime");
+
+                                if (!reader.IsDBNull(startIdx))
                                 {
-                                    if (reader.IsDBNull(reader.GetOrdinal("timeSlotID")))
-                                        continue;
-
-                                    int slotID = reader.GetInt32(reader.GetOrdinal("timeSlotID"));
-
-                                    if (bookedSlots.Contains(slotID))
-                                        continue;
-
-                                    TimeSpan start = TimeSpan.Zero;
-                                    TimeSpan end = TimeSpan.Zero;
-
-                                    int startIdx = reader.GetOrdinal("startTime");
-                                    int endIdx = reader.GetOrdinal("endTime");
-
-                                    if (!reader.IsDBNull(startIdx))
-                                    {
-                                        object sVal = reader.GetValue(startIdx);
-                                        if (sVal is TimeSpan) start = (TimeSpan)sVal;
-                                        else if (sVal is DateTime) start = ((DateTime)sVal).TimeOfDay;
-                                    }
-
-                                    if (!reader.IsDBNull(endIdx))
-                                    {
-                                        object eVal = reader.GetValue(endIdx);
-                                        if (eVal is TimeSpan) end = (TimeSpan)eVal;
-                                        else if (eVal is DateTime) end = ((DateTime)eVal).TimeOfDay;
-                                    }
-
-                                    var cb = new CheckBox
-                                    {
-                                        AutoSize = false,
-                                        Height = 28,
-                                        Width = pnlTimeSlots.ClientSize.Width - 20,
-                                        Font = new Font("Segoe UI", 10f, FontStyle.Regular),
-                                        Tag = slotID,
-                                        Location = new Point(5, yOffset),
-                                        Text = string.Format("{0:00}:{1:00} - {2:00}:{3:00}",
-                                            start.Hours, start.Minutes,
-                                            end.Hours, end.Minutes),
-                                        TextAlign = ContentAlignment.MiddleLeft
-                                    };
-
-                                    pnlTimeSlots.Controls.Add(cb);
-                                    yOffset += 33;
-                                    anyAdded = true;
+                                    object sVal = reader.GetValue(startIdx);
+                                    if (sVal is TimeSpan span) start = span;
+                                    else if (sVal is DateTime time) start = time.TimeOfDay;
                                 }
 
-                                if (!anyAdded)
+                                if (!reader.IsDBNull(endIdx))
                                 {
-                                    pnlTimeSlots.Controls.Add(new Label
-                                    {
-                                        Text = "All time slots are booked for this date.",
-                                        AutoSize = true,
-                                        ForeColor = Color.Red,
-                                        Location = new Point(5, 5)
-                                    });
+                                    object eVal = reader.GetValue(endIdx);
+                                    if (eVal is TimeSpan span) end = span;
+                                    else if (eVal is DateTime time) end = time.TimeOfDay;
                                 }
+
+                                var cb = new CheckBox
+                                {
+                                    AutoSize = false,
+                                    Width = 115,  // Provides safety from truncations like '08:00 -'
+                                    Height = 25,
+                                    Font = new Font("Segoe UI", 10f, FontStyle.Regular),
+                                    Tag = slotID,
+                                    Text = string.Format("{0:00}:{1:00} - {2:00}:{3:00}",
+                                        start.Hours, start.Minutes,
+                                        end.Hours, end.Minutes),
+                                    TextAlign = ContentAlignment.MiddleLeft,
+                                    Location = new Point(xPos, yPos)
+                                };
+
+                                pnlTimeSlots.Controls.Add(cb);
+                                anyAdded = true;
+
+                                // Slide layout target to the right
+                                xPos += horizontalGap;
+
+                                // Wrap row breaks gracefully when panel bounds are exceeded
+                                if (xPos + horizontalGap > pnlTimeSlots.ClientSize.Width)
+                                {
+                                    xPos = 15;
+                                    yPos += verticalGap;
+                                }
+                            }
+
+                            if (!anyAdded)
+                            {
+                                pnlTimeSlots.Controls.Add(new Label
+                                {
+                                    Text = "All time slots are booked for this date.",
+                                    AutoSize = true,
+                                    ForeColor = Color.Red,
+                                    Location = new Point(15, 15),
+                                    Font = new Font("Segoe UI", 11f, FontStyle.Bold)
+                                });
                             }
                         }
                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error loading time slots: " + ex.Message);
-                }
             }
-        // SINGLE handler only — the _1 version is the one kept
-        // Make sure in your Designer.cs only dtpStartDate_ValueChanged_1 is wired up
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading available time slots: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void dtpStartDate_ValueChanged_1(object sender, EventArgs e)
         {
-            LoadTimeSlotsForDate(dtpStartDate.Value);
+            //LoadTimeSlotsForDate(dtpStartDate.Value);
         }
 
         // --------------------------------------------------------------------------------------------------------
@@ -502,6 +519,9 @@ namespace M2GiantGroupSystem
                 dgv.BackgroundColor = Color.FromArgb(155, 198, 138);
                 dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 12f, FontStyle.Bold);
                 dgv.EnableHeadersVisualStyles = false;
+
+                dgv.DefaultCellStyle.SelectionBackColor = Color.Green;
+                dgv.DefaultCellStyle.SelectionForeColor = Color.White;
             }
         }
 
@@ -792,5 +812,22 @@ namespace M2GiantGroupSystem
         private void lbl_enterDetails_Click(object sender, EventArgs e) { }
 
         private void tabPage1_Click(object sender, EventArgs e) { }
+
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            ThemeManager.ThemeChanged -= ApplyTheme;
+            base.OnFormClosed(e);
+        }
+
+        private void ApplyTheme()
+        {
+            if (ThemeManager.IsDarkMode)
+                ThemeManager.ApplyTheme(this);
+        }
+
+        private void dtpStartDate_ValueChanged(object sender, EventArgs e)
+        {
+            LoadTimeSlotsForDate(dtpStartDate.Value);
+        }
     }
 }

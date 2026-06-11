@@ -113,7 +113,7 @@
             this.groupWst1DataSet1 = new M2GiantGroupSystem.GroupWst1DataSet();
             this.timeSlotTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.TimeSlotTableAdapter();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.pnlTimeSlots = new System.Windows.Forms.FlowLayoutPanel();
+            this.pnlTimeSlots = new System.Windows.Forms.Panel();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -355,6 +355,7 @@
             this.dtpStartDate.Name = "dtpStartDate";
             this.dtpStartDate.Size = new System.Drawing.Size(457, 43);
             this.dtpStartDate.TabIndex = 70;
+            this.dtpStartDate.ValueChanged += new System.EventHandler(this.dtpStartDate_ValueChanged);
             // 
             // lblLabourCost
             // 
@@ -1052,12 +1053,10 @@
             // pnlTimeSlots
             // 
             this.pnlTimeSlots.AutoScroll = true;
-            this.pnlTimeSlots.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.pnlTimeSlots.Location = new System.Drawing.Point(73, 62);
+            this.pnlTimeSlots.Location = new System.Drawing.Point(83, 72);
             this.pnlTimeSlots.Name = "pnlTimeSlots";
-            this.pnlTimeSlots.Size = new System.Drawing.Size(806, 267);
-            this.pnlTimeSlots.TabIndex = 57;
-            this.pnlTimeSlots.WrapContents = false;
+            this.pnlTimeSlots.Size = new System.Drawing.Size(739, 268);
+            this.pnlTimeSlots.TabIndex = 56;
             // 
             // JobsForm
             // 
@@ -1185,6 +1184,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.FlowLayoutPanel pnlTimeSlots;
+        private System.Windows.Forms.Panel pnlTimeSlots;
     }
 }
