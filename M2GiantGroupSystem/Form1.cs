@@ -309,7 +309,12 @@ namespace M2GiantGroupSystem
 
         private void trackPaymentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormSetup(new paymentMain(0));
+           
+        }
+
+        private void trackPaymentsToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            FormSetup(new paymentMain());
         }
     }
 }

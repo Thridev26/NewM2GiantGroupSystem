@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace M2GiantGroupSystem
 {
@@ -23,6 +24,54 @@ namespace M2GiantGroupSystem
             InitializeComponent();
         }
 
+        private void LoadJobLookup(string search)
+        {
+            // Shows all jobs so the user can pick which job to add a payment for.
+            // Includes client info and the quoted amount so they know what to expect.
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connStr))
+                {
+                    string sql = @"
+                        SELECT
+                            j.jobID             AS [Job ID],
+                            c.clientName + ' ' + c.clientSurname AS [Client],
+                            c.emailAddress      AS [Email],
+                            jr.siteAddress      AS [Site Address],
+                            j.jobStatus         AS [Job Status],
+                            q.amount            AS [Quoted Amount (R)]
+                        FROM Job j
+                        INNER JOIN Quote q      ON j.quoteID = q.QuoteID
+                        INNER JOIN JobRequest jr ON q.jobRequestID = jr.jobRequestID
+                        INNER JOIN Client c     ON jr.clientID = c.clientID
+                        WHERE c.clientName    LIKE @search
+                           OR c.clientSurname LIKE @search
+                           OR jr.siteAddress  LIKE @search
+                           OR CAST(j.jobID AS VARCHAR) LIKE @search";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@search", "%" + search + "%");
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        dgvJobLookup.DataSource = dt;
+                    }
+                }
+            }
+            catch (SqlException sqlEx)
+            {
+                MessageBox.Show("Database error loading jobs:\n" + sqlEx.Message,
+                    "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Unexpected error loading jobs:\n" + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
         private void paymentMain_Load(object sender, EventArgs e)
         {
             // Tab styling — same pattern as jobRequestMain_A
@@ -32,9 +81,9 @@ namespace M2GiantGroupSystem
             tabControl1.SizeMode = TabSizeMode.Fixed;
 
             // View tab grid setup
-            dgvPayments.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvPayments.DefaultCellStyle.SelectionBackColor = Color.Green;
-            dgvPayments.ReadOnly = true;
+            dgvPayment.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvPayment.DefaultCellStyle.SelectionBackColor = Color.Green;
+            dgvPayment.ReadOnly = true;
 
             // Job lookup grid setup
             dgvJobLookup.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -80,7 +129,9 @@ namespace M2GiantGroupSystem
             if (tabControl1.SelectedIndex == 2)
                 LoadPaymentsView_Edit("");
         }
-    } private void LoadPaymentsView(string search)
+    
+
+private void LoadPaymentsView(string search)
         {
             // Joins Payment → Job → Quote → JobRequest → Client
             // so the grid shows: PaymentID, Client name, Job status,
@@ -114,7 +165,7 @@ namespace M2GiantGroupSystem
                         SqlDataAdapter da = new SqlDataAdapter(cmd);
                         DataTable dt = new DataTable();
                         da.Fill(dt);
-                        dgvPayments.DataSource = dt;
+                        dgvPayment.DataSource = dt;
                     }
                 }
             }
@@ -433,52 +484,8 @@ namespace M2GiantGroupSystem
             }
         }
     }
-    }
+    
 }
-} private void LoadJobLookup(string search)
-{
-    // Shows all jobs so the user can pick which job to add a payment for.
-    // Includes client info and the quoted amount so they know what to expect.
-    try
-    {
-        using (SqlConnection conn = new SqlConnection(connStr))
-        {
-            string sql = @"
-                        SELECT
-                            j.jobID             AS [Job ID],
-                            c.clientName + ' ' + c.clientSurname AS [Client],
-                            c.emailAddress      AS [Email],
-                            jr.siteAddress      AS [Site Address],
-                            j.jobStatus         AS [Job Status],
-                            q.amount            AS [Quoted Amount (R)]
-                        FROM Job j
-                        INNER JOIN Quote q      ON j.quoteID = q.QuoteID
-                        INNER JOIN JobRequest jr ON q.jobRequestID = jr.jobRequestID
-                        INNER JOIN Client c     ON jr.clientID = c.clientID
-                        WHERE c.clientName    LIKE @search
-                           OR c.clientSurname LIKE @search
-                           OR jr.siteAddress  LIKE @search
-                           OR CAST(j.jobID AS VARCHAR) LIKE @search";
 
-            using (SqlCommand cmd = new SqlCommand(sql, conn))
-            {
-                cmd.Parameters.AddWithValue("@search", "%" + search + "%");
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                dgvJobLookup.DataSource = dt;
-            }
-        }
-    }
-    catch (SqlException sqlEx)
-    {
-        MessageBox.Show("Database error loading jobs:\n" + sqlEx.Message,
-            "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-    }
-    catch (Exception ex)
-    {
-        MessageBox.Show("Unexpected error loading jobs:\n" + ex.Message,
-            "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-    }
-}
-}
+
+ 
