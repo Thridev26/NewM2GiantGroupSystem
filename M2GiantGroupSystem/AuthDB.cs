@@ -28,7 +28,7 @@ public static class AuthDB
             if (result != null) staffID = (int)result;
         }
 
-        if (staffID == null) return true;
+        if (staffID == null) return false;
 
         string otp = SecurityHelper.GenerateOTP();
         DateTime expiry = DateTime.Now.AddMinutes(5);
