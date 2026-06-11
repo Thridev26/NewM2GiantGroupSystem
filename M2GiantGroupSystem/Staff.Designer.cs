@@ -50,6 +50,7 @@
             System.Windows.Forms.Label label1;
             System.Windows.Forms.Label label3;
             this.gbAddStaff = new System.Windows.Forms.GroupBox();
+            this.emailAddressTextBox1 = new System.Windows.Forms.TextBox();
             this.cmbAddStatus = new System.Windows.Forms.ComboBox();
             this.cmbRoleAdd = new System.Windows.Forms.ComboBox();
             this.staffIDTextBox1 = new System.Windows.Forms.TextBox();
@@ -64,12 +65,23 @@
             this.btnAddStaff = new System.Windows.Forms.Button();
             this.btnDeleteStaff = new System.Windows.Forms.Button();
             this.dgvStaffInfo = new System.Windows.Forms.DataGridView();
+            this.staffID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.firstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.passwordHash = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contactNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.staffStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dailyRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.roleID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtSearchStaff = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.btnSave = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.emailAddressTextBox = new System.Windows.Forms.TextBox();
             this.cmbEditStatus = new System.Windows.Forms.ComboBox();
             this.cmbRoleEdit = new System.Windows.Forms.ComboBox();
             this.contactNumberTextBox = new System.Windows.Forms.TextBox();
@@ -81,10 +93,6 @@
             this.firstNameTextBox = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.staffDataGridView = new System.Windows.Forms.DataGridView();
-            this.staffTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.StaffTableAdapter();
-            this.tableAdapterManager = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.TableAdapterManager();
-            this.emailAddressTextBox = new System.Windows.Forms.TextBox();
-            this.emailAddressTextBox1 = new System.Windows.Forms.TextBox();
             this.staffIDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.firstNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lastNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -95,16 +103,11 @@
             this.dailyRateDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.roleIDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.emailAddressDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.staffID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.firstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.userName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.passwordHash = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contactNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.staffStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dailyRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.roleID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emailAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.staffTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.StaffTableAdapter();
+            this.tableAdapterManager = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.TableAdapterManager();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             staffIDLabel = new System.Windows.Forms.Label();
             firstNameLabel = new System.Windows.Forms.Label();
             lastNameLabel = new System.Windows.Forms.Label();
@@ -316,6 +319,26 @@
             roleIDLabel1.TabIndex = 16;
             roleIDLabel1.Text = "Role ID:";
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label1.Location = new System.Drawing.Point(60, 263);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(158, 25);
+            label1.TabIndex = 41;
+            label1.Text = "Email Address:";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label3.Location = new System.Drawing.Point(76, 264);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(158, 25);
+            label3.TabIndex = 19;
+            label3.Text = "Email Address:";
+            // 
             // gbAddStaff
             // 
             this.gbAddStaff.Controls.Add(this.emailAddressTextBox1);
@@ -347,6 +370,15 @@
             this.gbAddStaff.TabStop = false;
             this.gbAddStaff.Text = "Add New Staff";
             this.gbAddStaff.Enter += new System.EventHandler(this.gbAddStaff_Enter);
+            // 
+            // emailAddressTextBox1
+            // 
+            this.emailAddressTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.emailAddressTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.emailAddressTextBox1.Location = new System.Drawing.Point(318, 264);
+            this.emailAddressTextBox1.Name = "emailAddressTextBox1";
+            this.emailAddressTextBox1.Size = new System.Drawing.Size(218, 30);
+            this.emailAddressTextBox1.TabIndex = 20;
             // 
             // cmbAddStatus
             // 
@@ -496,6 +528,77 @@
             this.dgvStaffInfo.TabIndex = 22;
             this.dgvStaffInfo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvStaffInfo_CellClick);
             // 
+            // staffID
+            // 
+            this.staffID.DataPropertyName = "staffID";
+            this.staffID.HeaderText = "staffID";
+            this.staffID.MinimumWidth = 8;
+            this.staffID.Name = "staffID";
+            this.staffID.ReadOnly = true;
+            // 
+            // firstName
+            // 
+            this.firstName.DataPropertyName = "firstName";
+            this.firstName.HeaderText = "firstName";
+            this.firstName.MinimumWidth = 8;
+            this.firstName.Name = "firstName";
+            // 
+            // lastName
+            // 
+            this.lastName.DataPropertyName = "lastName";
+            this.lastName.HeaderText = "lastName";
+            this.lastName.MinimumWidth = 8;
+            this.lastName.Name = "lastName";
+            // 
+            // userName
+            // 
+            this.userName.DataPropertyName = "userName";
+            this.userName.HeaderText = "userName";
+            this.userName.MinimumWidth = 8;
+            this.userName.Name = "userName";
+            // 
+            // passwordHash
+            // 
+            this.passwordHash.DataPropertyName = "passwordHash";
+            this.passwordHash.HeaderText = "passwordHash";
+            this.passwordHash.MinimumWidth = 8;
+            this.passwordHash.Name = "passwordHash";
+            // 
+            // contactNumber
+            // 
+            this.contactNumber.DataPropertyName = "contactNumber";
+            this.contactNumber.HeaderText = "contactNumber";
+            this.contactNumber.MinimumWidth = 8;
+            this.contactNumber.Name = "contactNumber";
+            // 
+            // staffStatus
+            // 
+            this.staffStatus.DataPropertyName = "staffStatus";
+            this.staffStatus.HeaderText = "staffStatus";
+            this.staffStatus.MinimumWidth = 8;
+            this.staffStatus.Name = "staffStatus";
+            // 
+            // dailyRate
+            // 
+            this.dailyRate.DataPropertyName = "dailyRate";
+            this.dailyRate.HeaderText = "dailyRate";
+            this.dailyRate.MinimumWidth = 8;
+            this.dailyRate.Name = "dailyRate";
+            // 
+            // roleID
+            // 
+            this.roleID.DataPropertyName = "roleID";
+            this.roleID.HeaderText = "roleID";
+            this.roleID.MinimumWidth = 8;
+            this.roleID.Name = "roleID";
+            // 
+            // emailAddress
+            // 
+            this.emailAddress.DataPropertyName = "emailAddress";
+            this.emailAddress.HeaderText = "emailAddress";
+            this.emailAddress.MinimumWidth = 8;
+            this.emailAddress.Name = "emailAddress";
+            // 
             // txtSearchStaff
             // 
             this.txtSearchStaff.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
@@ -532,6 +635,7 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.SeaShell;
+            this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.btnSave);
             this.tabPage1.Controls.Add(this.groupBox1);
             this.tabPage1.Controls.Add(this.label2);
@@ -585,6 +689,15 @@
             this.groupBox1.TabIndex = 40;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Edit Staff Details";
+            // 
+            // emailAddressTextBox
+            // 
+            this.emailAddressTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.emailAddressTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.emailAddressTextBox.Location = new System.Drawing.Point(262, 258);
+            this.emailAddressTextBox.Name = "emailAddressTextBox";
+            this.emailAddressTextBox.Size = new System.Drawing.Size(199, 30);
+            this.emailAddressTextBox.TabIndex = 42;
             // 
             // cmbEditStatus
             // 
@@ -661,6 +774,8 @@
             this.passwordHashTextBox.Name = "passwordHashTextBox";
             this.passwordHashTextBox.Size = new System.Drawing.Size(199, 30);
             this.passwordHashTextBox.TabIndex = 31;
+            this.toolTip1.SetToolTip(this.passwordHashTextBox, "You may leave this blank if you do not wish to change your password.\r\nIf you do e" +
+        "dit this textbox, that will become your new password!");
             // 
             // firstNameTextBox
             // 
@@ -674,6 +789,7 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.SeaShell;
+            this.tabPage2.Controls.Add(this.button2);
             this.tabPage2.Controls.Add(this.staffDataGridView);
             this.tabPage2.Controls.Add(this.gbAddStaff);
             this.tabPage2.Controls.Add(this.btnAddStaff);
@@ -710,72 +826,6 @@
             this.staffDataGridView.RowTemplate.Height = 28;
             this.staffDataGridView.Size = new System.Drawing.Size(1431, 237);
             this.staffDataGridView.TabIndex = 28;
-            // 
-            // staffTableAdapter
-            // 
-            this.staffTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.ClientTableAdapter = null;
-            this.tableAdapterManager.HiredAssetTableAdapter = null;
-            this.tableAdapterManager.ItemDetailTableAdapter = null;
-            this.tableAdapterManager.JobAssetAssignmentTableAdapter = null;
-            this.tableAdapterManager.JobDetailTableAdapter = null;
-            this.tableAdapterManager.JobRequestTableAdapter = null;
-            this.tableAdapterManager.JobStaffAssignmentTableAdapter = null;
-            this.tableAdapterManager.JobTableAdapter = null;
-            this.tableAdapterManager.JobTimeSlotTableAdapter = null;
-            this.tableAdapterManager.JobTypeTableAdapter = null;
-            this.tableAdapterManager.MaintenanceLogTableAdapter = null;
-            this.tableAdapterManager.OwnedAssetTableAdapter = null;
-            this.tableAdapterManager.PaymentTableAdapter = null;
-            this.tableAdapterManager.QuoteTableAdapter = null;
-            this.tableAdapterManager.RequestItemTableAdapter = null;
-            this.tableAdapterManager.RoleTableAdapter = null;
-            this.tableAdapterManager.SitePhotoTableAdapter = null;
-            this.tableAdapterManager.StaffTableAdapter = this.staffTableAdapter;
-            this.tableAdapterManager.TimeSlotTableAdapter = null;
-            this.tableAdapterManager.UpdateOrder = M2GiantGroupSystem.GroupWst1DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label1.Location = new System.Drawing.Point(60, 263);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(158, 25);
-            label1.TabIndex = 41;
-            label1.Text = "Email Address:";
-            // 
-            // emailAddressTextBox
-            // 
-            this.emailAddressTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.emailAddressTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emailAddressTextBox.Location = new System.Drawing.Point(262, 258);
-            this.emailAddressTextBox.Name = "emailAddressTextBox";
-            this.emailAddressTextBox.Size = new System.Drawing.Size(199, 30);
-            this.emailAddressTextBox.TabIndex = 42;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label3.Location = new System.Drawing.Point(76, 264);
-            label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(158, 25);
-            label3.TabIndex = 19;
-            label3.Text = "Email Address:";
-            // 
-            // emailAddressTextBox1
-            // 
-            this.emailAddressTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.emailAddressTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emailAddressTextBox1.Location = new System.Drawing.Point(318, 264);
-            this.emailAddressTextBox1.Name = "emailAddressTextBox1";
-            this.emailAddressTextBox1.Size = new System.Drawing.Size(218, 30);
-            this.emailAddressTextBox1.TabIndex = 20;
             // 
             // staffIDDataGridViewTextBoxColumn1
             // 
@@ -857,76 +907,60 @@
             this.emailAddressDataGridViewTextBoxColumn1.Name = "emailAddressDataGridViewTextBoxColumn1";
             this.emailAddressDataGridViewTextBoxColumn1.ReadOnly = true;
             // 
-            // staffID
+            // staffTableAdapter
             // 
-            this.staffID.DataPropertyName = "staffID";
-            this.staffID.HeaderText = "staffID";
-            this.staffID.MinimumWidth = 8;
-            this.staffID.Name = "staffID";
-            this.staffID.ReadOnly = true;
+            this.staffTableAdapter.ClearBeforeFill = true;
             // 
-            // firstName
+            // tableAdapterManager
             // 
-            this.firstName.DataPropertyName = "firstName";
-            this.firstName.HeaderText = "firstName";
-            this.firstName.MinimumWidth = 8;
-            this.firstName.Name = "firstName";
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.ClientTableAdapter = null;
+            this.tableAdapterManager.HiredAssetTableAdapter = null;
+            this.tableAdapterManager.ItemDetailTableAdapter = null;
+            this.tableAdapterManager.JobAssetAssignmentTableAdapter = null;
+            this.tableAdapterManager.JobDetailTableAdapter = null;
+            this.tableAdapterManager.JobRequestTableAdapter = null;
+            this.tableAdapterManager.JobStaffAssignmentTableAdapter = null;
+            this.tableAdapterManager.JobTableAdapter = null;
+            this.tableAdapterManager.JobTimeSlotTableAdapter = null;
+            this.tableAdapterManager.JobTypeTableAdapter = null;
+            this.tableAdapterManager.MaintenanceLogTableAdapter = null;
+            this.tableAdapterManager.OwnedAssetTableAdapter = null;
+            this.tableAdapterManager.PaymentTableAdapter = null;
+            this.tableAdapterManager.QuoteTableAdapter = null;
+            this.tableAdapterManager.RequestItemTableAdapter = null;
+            this.tableAdapterManager.RoleTableAdapter = null;
+            this.tableAdapterManager.SitePhotoTableAdapter = null;
+            this.tableAdapterManager.StaffTableAdapter = this.staffTableAdapter;
+            this.tableAdapterManager.TimeSlotTableAdapter = null;
+            this.tableAdapterManager.UpdateOrder = M2GiantGroupSystem.GroupWst1DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
-            // lastName
+            // button1
             // 
-            this.lastName.DataPropertyName = "lastName";
-            this.lastName.HeaderText = "lastName";
-            this.lastName.MinimumWidth = 8;
-            this.lastName.Name = "lastName";
+            this.button1.BackColor = System.Drawing.Color.DarkGreen;
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button1.Location = new System.Drawing.Point(579, 716);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(247, 51);
+            this.button1.TabIndex = 42;
+            this.button1.Text = "Cancel";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
-            // userName
+            // button2
             // 
-            this.userName.DataPropertyName = "userName";
-            this.userName.HeaderText = "userName";
-            this.userName.MinimumWidth = 8;
-            this.userName.Name = "userName";
-            // 
-            // passwordHash
-            // 
-            this.passwordHash.DataPropertyName = "passwordHash";
-            this.passwordHash.HeaderText = "passwordHash";
-            this.passwordHash.MinimumWidth = 8;
-            this.passwordHash.Name = "passwordHash";
-            // 
-            // contactNumber
-            // 
-            this.contactNumber.DataPropertyName = "contactNumber";
-            this.contactNumber.HeaderText = "contactNumber";
-            this.contactNumber.MinimumWidth = 8;
-            this.contactNumber.Name = "contactNumber";
-            // 
-            // staffStatus
-            // 
-            this.staffStatus.DataPropertyName = "staffStatus";
-            this.staffStatus.HeaderText = "staffStatus";
-            this.staffStatus.MinimumWidth = 8;
-            this.staffStatus.Name = "staffStatus";
-            // 
-            // dailyRate
-            // 
-            this.dailyRate.DataPropertyName = "dailyRate";
-            this.dailyRate.HeaderText = "dailyRate";
-            this.dailyRate.MinimumWidth = 8;
-            this.dailyRate.Name = "dailyRate";
-            // 
-            // roleID
-            // 
-            this.roleID.DataPropertyName = "roleID";
-            this.roleID.HeaderText = "roleID";
-            this.roleID.MinimumWidth = 8;
-            this.roleID.Name = "roleID";
-            // 
-            // emailAddress
-            // 
-            this.emailAddress.DataPropertyName = "emailAddress";
-            this.emailAddress.HeaderText = "emailAddress";
-            this.emailAddress.MinimumWidth = 8;
-            this.emailAddress.Name = "emailAddress";
+            this.button2.BackColor = System.Drawing.Color.DarkGreen;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button2.Location = new System.Drawing.Point(462, 714);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(246, 52);
+            this.button2.TabIndex = 29;
+            this.button2.Text = "Cancel";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Staff
             // 
@@ -1013,5 +1047,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dailyRate;
         private System.Windows.Forms.DataGridViewTextBoxColumn roleID;
         private System.Windows.Forms.DataGridViewTextBoxColumn emailAddress;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
