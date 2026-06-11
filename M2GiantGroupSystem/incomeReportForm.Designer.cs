@@ -47,30 +47,33 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(911, 450);
+            this.tabControl1.Size = new System.Drawing.Size(1253, 788);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
+            this.tabPage1.BackColor = System.Drawing.Color.SeaShell;
             this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.dt1);
             this.tabPage1.Controls.Add(this.dt2);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Location = new System.Drawing.Point(4, 37);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(903, 421);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tabPage1.Size = new System.Drawing.Size(1245, 747);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Select date range";
-            this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(289, 256);
+            this.button1.Location = new System.Drawing.Point(397, 448);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(365, 105);
+            this.button1.Size = new System.Drawing.Size(502, 184);
             this.button1.TabIndex = 5;
             this.button1.Text = "generate report";
             this.button1.UseVisualStyleBackColor = true;
@@ -78,28 +81,31 @@
             // 
             // dt1
             // 
-            this.dt1.Location = new System.Drawing.Point(138, 59);
+            this.dt1.Location = new System.Drawing.Point(190, 103);
+            this.dt1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dt1.Name = "dt1";
-            this.dt1.Size = new System.Drawing.Size(366, 22);
+            this.dt1.Size = new System.Drawing.Size(502, 34);
             this.dt1.TabIndex = 4;
             // 
             // dt2
             // 
-            this.dt2.Location = new System.Drawing.Point(138, 110);
+            this.dt2.Location = new System.Drawing.Point(190, 192);
+            this.dt2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dt2.Name = "dt2";
-            this.dt2.Size = new System.Drawing.Size(366, 22);
+            this.dt2.Size = new System.Drawing.Size(502, 34);
             this.dt2.TabIndex = 3;
             // 
             // tabPage2
             // 
+            this.tabPage2.BackColor = System.Drawing.Color.SeaShell;
             this.tabPage2.Controls.Add(this.crystalReportViewer1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Location = new System.Drawing.Point(4, 37);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(903, 421);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tabPage2.Size = new System.Drawing.Size(1245, 747);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Income report";
-            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // crystalReportViewer1
             // 
@@ -107,21 +113,27 @@
             this.crystalReportViewer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.crystalReportViewer1.Cursor = System.Windows.Forms.Cursors.Default;
             this.crystalReportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.crystalReportViewer1.Location = new System.Drawing.Point(3, 3);
+            this.crystalReportViewer1.Location = new System.Drawing.Point(4, 5);
+            this.crystalReportViewer1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.crystalReportViewer1.Name = "crystalReportViewer1";
             this.crystalReportViewer1.ReportSource = this.incomeReport1;
-            this.crystalReportViewer1.Size = new System.Drawing.Size(897, 415);
+            this.crystalReportViewer1.Size = new System.Drawing.Size(1237, 737);
             this.crystalReportViewer1.TabIndex = 0;
+            this.crystalReportViewer1.ToolPanelWidth = 275;
             this.crystalReportViewer1.Load += new System.EventHandler(this.crystalReportViewer1_Load);
             // 
             // incomeReportForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(911, 450);
+            this.BackColor = System.Drawing.Color.SeaShell;
+            this.ClientSize = new System.Drawing.Size(1253, 788);
             this.Controls.Add(this.tabControl1);
+            this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "incomeReportForm";
             this.Text = "incomeReportForm";
+            this.Load += new System.EventHandler(this.incomeReportForm_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);

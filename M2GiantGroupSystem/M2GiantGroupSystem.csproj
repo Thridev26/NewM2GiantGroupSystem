@@ -552,6 +552,7 @@
     <Content Include="images1\mainMenuBgWithLogo.png" />
     <Content Include="images1\mapIcon.png" />
     <Content Include="images1\no image available icon.jpg" />
+    <Content Include="images1\reportBg.png" />
     <Content Include="map_A.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

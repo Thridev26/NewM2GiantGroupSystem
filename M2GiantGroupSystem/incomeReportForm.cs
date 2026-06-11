@@ -112,5 +112,48 @@ new List<WeeklyIncomeDetails>();
 
             tabControl1.SelectedIndex = 1;
         }
+
+        private void incomeReportForm_Load(object sender, EventArgs e)
+        {
+            tabControl1.DrawMode = TabDrawMode.OwnerDrawFixed;
+            tabControl1.DrawItem += tabControl1_DrawItem;
+            tabControl1.ItemSize = new Size(300, 30);
+            tabControl1.SizeMode = TabSizeMode.Fixed;
+        }
+        private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            TabPage page = tabControl1.TabPages[e.Index];
+            Rectangle tabRect = tabControl1.GetTabRect(e.Index);
+
+            Font tabFont = new Font("Segoe UI", 10, FontStyle.Bold);
+
+            Color backColor = Color.Honeydew;
+            Color textColor = Color.Black;
+
+            if (e.Index == tabControl1.SelectedIndex)
+            {
+                backColor = Color.DarkGreen;
+                textColor = Color.White;
+            }
+
+            using (Brush b = new SolidBrush(backColor))
+            {
+                e.Graphics.FillRectangle(b, tabRect);
+            }
+
+            using (Pen p = new Pen(Color.DarkGreen, 1))
+            {
+                e.Graphics.DrawRectangle(p, tabRect);
+            }
+
+            TextRenderer.DrawText(
+                e.Graphics,
+                page.Text,
+                tabFont,
+                tabRect,
+                textColor,
+                TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
+            );
+        }
     }
 }
