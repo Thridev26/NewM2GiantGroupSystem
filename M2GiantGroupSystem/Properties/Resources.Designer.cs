@@ -69,5 +69,15 @@ namespace M2GiantGroupSystem.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mainMenuBgWithLogo {
+            get {
+                object obj = ResourceManager.GetObject("mainMenuBgWithLogo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
