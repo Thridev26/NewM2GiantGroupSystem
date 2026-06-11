@@ -203,13 +203,15 @@ namespace M2GiantGroupSystem
 
         private void ClearAddFields()
         {
-            firstNameTextBox.Clear();
-            lastNameTextBox.Clear();
-            userNameTextBox.Clear();
-            passwordHashTextBox.Clear(); // This will be the NEW password
-            contactNumberTextBox.Clear();
-            cmbEditStatus.SelectedIndex = -1; // Deselects the combo box
-            cmbRoleEdit.SelectedIndex = -1; // Deselects the combo box
+            staffIDTextBox1.Clear();
+            dailyRateTextBox1.Clear();
+            firstNameTextBox1.Clear();
+            lastNameTextBox1.Clear();
+            userNameTextBox1.Clear();
+            passwordHashTextBox1.Clear(); // This will be the NEW password
+            contactNumberTextBox1.Clear();
+            cmbAddStatus.SelectedIndex = -1; // Deselects the combo box
+            cmbRoleAdd.SelectedIndex = -1; // Deselects the combo box
             emailAddressTextBox1.Clear(); // Add this
         }
 
@@ -261,13 +263,15 @@ namespace M2GiantGroupSystem
 
         private void ClearEditFields()
         {
-            firstNameTextBox1.Clear();
-            lastNameTextBox1.Clear();
-            userNameTextBox1.Clear();
-            passwordHashTextBox1.Clear(); // This will be the NEW password
-            contactNumberTextBox1.Clear();
-            cmbAddStatus.SelectedIndex = -1; // Deselects the combo box
-            cmbRoleAdd.SelectedIndex = -1; // Deselects the combo box
+            staffIDTextBox.Clear();
+            dailyRateTextBox.Clear();
+            firstNameTextBox.Clear();
+            lastNameTextBox.Clear();
+            userNameTextBox.Clear();
+            passwordHashTextBox.Clear(); // This will be the NEW password
+            contactNumberTextBox.Clear();
+            cmbEditStatus.SelectedIndex = -1; // Deselects the combo box
+            cmbRoleEdit.SelectedIndex = -1; // Deselects the combo box
             emailAddressTextBox.Clear(); // Add this
         }
 
@@ -309,34 +313,82 @@ namespace M2GiantGroupSystem
 
         private void dgvStaffInfo_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Check if the user clicked a valid data row (not the header)
-            if (e.RowIndex >= 0)
+            try
             {
-                DataGridViewRow row = dgvStaffInfo.Rows[e.RowIndex];
-
-                // Fill the Edit textboxes (using your specific naming convention)
-                staffIDTextBox.Text = row.Cells["staffID"].Value.ToString();
-                firstNameTextBox.Text = row.Cells["firstName"].Value.ToString();
-                lastNameTextBox.Text = row.Cells["lastName"].Value.ToString();
-                userNameTextBox.Text = row.Cells["userName"].Value.ToString();
-                contactNumberTextBox.Text = row.Cells["contactNumber"].Value.ToString();
-                emailAddressTextBox.Text = row.Cells["emailAddress"].Value.ToString();
-                string statusFromGrid = row.Cells["staffStatus"].Value.ToString();
-
-                // This forces the ComboBox to show the item that matches the grid text
-                if (cmbEditStatus.Items.Contains(statusFromGrid))
+                // 1. Ensure the user clicked a valid row
+                if (e.RowIndex >= 0)
                 {
-                    cmbEditStatus.SelectedItem = statusFromGrid;
-                }
-                else
-                {
-                    cmbEditStatus.SelectedIndex = -1; // Or handle as an error if the status is something unexpected
-                }
-                dailyRateTextBox.Text = row.Cells["dailyRate"].Value.ToString();
+                    DataGridViewRow row = dgvStaffInfo.Rows[e.RowIndex];
 
-                // Match the role ID in the ComboBox
-                cmbRoleEdit.SelectedValue = row.Cells["roleID"].Value;
+                    // 2. Safe Helper: We use ? to handle potential nulls 
+                    // and ?? "" to ensure we always get a string, never a crash.
+                    staffIDTextBox.Text = row.Cells["staffID"].Value?.ToString() ?? "";
+                    firstNameTextBox.Text = row.Cells["firstName"].Value?.ToString() ?? "";
+                    lastNameTextBox.Text = row.Cells["lastName"].Value?.ToString() ?? "";
+                    userNameTextBox.Text = row.Cells["userName"].Value?.ToString() ?? "";
+                    contactNumberTextBox.Text = row.Cells["contactNumber"].Value?.ToString() ?? "";
+                    emailAddressTextBox.Text = row.Cells["emailAddress"].Value?.ToString() ?? "";
+                    dailyRateTextBox.Text = row.Cells["dailyRate"].Value?.ToString() ?? "";
+
+                    // 3. Status ComboBox Logic
+                    string statusFromGrid = row.Cells["staffStatus"].Value?.ToString() ?? "";
+                    if (cmbEditStatus.Items.Contains(statusFromGrid))
+                    {
+                        cmbEditStatus.SelectedItem = statusFromGrid;
+                    }
+                    else
+                    {
+                        cmbEditStatus.SelectedIndex = -1;
+                    }
+
+                    // 4. Role ComboBox Logic
+                    // Checking if the value is not null before assigning to prevent UI exceptions
+                    var roleValue = row.Cells["roleID"].Value;
+                    if (roleValue != null && roleValue != DBNull.Value)
+                    {
+                        cmbRoleEdit.SelectedValue = roleValue;
+                    }
+                    else
+                    {
+                        cmbRoleEdit.SelectedIndex = -1;
+                    }
+                }
             }
+            catch (Exception ex)
+            {
+                // UI events can occasionally throw unexpected exceptions; catch them to prevent app exit.
+                MessageBox.Show("An error occurred while loading staff details: " + ex.Message,
+                                "Data Loading Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            //// Check if the user clicked a valid data row (not the header)
+            //if (e.RowIndex >= 0)
+            //{
+            //    DataGridViewRow row = dgvStaffInfo.Rows[e.RowIndex];
+
+            //    // Fill the Edit textboxes (using your specific naming convention)
+            //    staffIDTextBox.Text = row.Cells["staffID"].Value.ToString();
+            //    firstNameTextBox.Text = row.Cells["firstName"].Value.ToString();
+            //    lastNameTextBox.Text = row.Cells["lastName"].Value.ToString();
+            //    userNameTextBox.Text = row.Cells["userName"].Value.ToString();
+            //    contactNumberTextBox.Text = row.Cells["contactNumber"].Value.ToString();
+            //    emailAddressTextBox.Text = row.Cells["emailAddress"].Value.ToString();
+            //    string statusFromGrid = row.Cells["staffStatus"].Value.ToString();
+
+            //    // This forces the ComboBox to show the item that matches the grid text
+            //    if (cmbEditStatus.Items.Contains(statusFromGrid))
+            //    {
+            //        cmbEditStatus.SelectedItem = statusFromGrid;
+            //    }
+            //    else
+            //    {
+            //        cmbEditStatus.SelectedIndex = -1; // Or handle as an error if the status is something unexpected
+            //    }
+            //    dailyRateTextBox.Text = row.Cells["dailyRate"].Value.ToString();
+
+            //    // Match the role ID in the ComboBox
+            //    cmbRoleEdit.SelectedValue = row.Cells["roleID"].Value;
+            //}
         }
 
         protected override void OnFormClosed(FormClosedEventArgs e)
@@ -350,5 +402,14 @@ namespace M2GiantGroupSystem
                 ThemeManager.ApplyTheme(this);
         }
 
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            ClearEditFields();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ClearAddFields();
+        }
     }
 }
