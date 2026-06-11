@@ -23,6 +23,9 @@ namespace M2GiantGroupSystem
             tabIndex = tab_index;
             ApplyPermissions();
         }
+        string _connectionString = "Data Source=146.230.177.46;Initial Catalog=GroupWst1;" +
+                                 "Persist Security Info=True;User ID=GroupWst1;Password=dtf39;" +
+                                 "Encrypt=True;TrustServerCertificate=True";
 
         private void ApplyPermissions()
         {
@@ -155,7 +158,16 @@ namespace M2GiantGroupSystem
             tabControl1.DrawItem += tabControl1_DrawItem;
             tabControl1.ItemSize = new Size(300, 30);
             tabControl1.SizeMode = TabSizeMode.Fixed;
-            LoadRoles();            
+            LoadRoles();
+            LoadJobStaffAssignments();
+            dgvStaff.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvStaff.DefaultCellStyle.SelectionBackColor = Color.Green;
+            btnSaveHours.Enabled = false;
+
+            label5.Text = "Save button will only be enabled\nwhen a staff is selected";
+            label6.Text = "Only the 'Hours Worked' column is editable.\nAll other columns are locked for security.\nDouble click the hours worked column to edit it.";
+
+
         }
 
         private void gbAddStaff_Enter(object sender, EventArgs e)
@@ -410,6 +422,138 @@ namespace M2GiantGroupSystem
         private void button2_Click(object sender, EventArgs e)
         {
             ClearAddFields();
+        }
+
+       
+
+        private void dgvStaff_SelectionChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void dgvStaff_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+        }
+
+        private void dgvStaff_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+
+        private void btnSaveHours_Click(object sender, EventArgs e)
+        {
+            if (dgvStaff.SelectedRows.Count == 0) return;
+
+            var row = dgvStaff.SelectedRows[0];
+            int staffId = Convert.ToInt32(row.Cells["Staff ID"].Value);
+            int jobId = Convert.ToInt32(row.Cells["Job ID"].Value);
+            string raw = row.Cells["Hours Worked"].Value?.ToString() ?? "";
+
+            if (!decimal.TryParse(raw, out decimal hours) || hours < 0)
+            {
+                MessageBox.Show("Please enter a valid positive number for hours worked.",
+                    "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                {
+                    conn.Open();
+                    string sql = @"UPDATE JobStaffAssignment 
+                           SET hoursWorked = @hours 
+                           WHERE staffID = @staffID AND jobID = @jobID";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@hours", hours);
+                        cmd.Parameters.AddWithValue("@staffID", staffId);
+                        cmd.Parameters.AddWithValue("@jobID", jobId);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                MessageBox.Show("Hours worked updated.", "Saved",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadJobStaffAssignments(); // refresh grid
+            }
+            catch (SqlException sqlEx)
+            {
+                MessageBox.Show("Database error saving hours:\n" + sqlEx.Message,
+                    "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error saving hours:\n" + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+       
+
+        private void dgvStaff_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            btnSaveHours.Enabled = e.RowIndex >= 0;
+            //change column backcolour to indicate edit mode
+            foreach (DataGridViewColumn col in dgvStaff.Columns)
+                col.DefaultCellStyle.BackColor = col.HeaderText == "Hours Worked" ? Color.LightYellow : Color.White;
+
+
+        }
+        private void LoadJobStaffAssignments(string search = "")
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                {
+                    string sql = @"
+                SELECT
+                    jsa.staffID                                     AS [Staff ID],
+                    jsa.jobID                                       AS [Job ID],
+                    CONCAT(s.firstName, ' ', s.lastName)            AS [Name],
+                    r.roleName                                      AS [Role],
+                    jsa.assignmentDate                              AS [Date],
+                    j.startDate                                     AS [Job Start Date],
+                    jr.siteAddress                                  AS [Site Address],
+                    jsa.hoursWorked                                 AS [Hours Worked]
+                FROM JobStaffAssignment jsa
+                JOIN Staff       s  ON jsa.staffID      = s.staffID
+                JOIN Role        r  ON s.roleID         = r.roleID
+                JOIN Job         j  ON jsa.jobID        = j.jobID
+                JOIN Quote       q  ON j.quoteID        = q.QuoteID
+                JOIN JobRequest  jr ON q.jobRequestID   = jr.jobRequestID
+                WHERE s.firstName  LIKE @search
+                   OR s.lastName   LIKE @search
+                ORDER BY jsa.assignmentDate DESC, s.lastName";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@search", "%" + search + "%");
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        dgvStaff.DataSource = dt;
+
+                        foreach (DataGridViewColumn col in dgvStaff.Columns)
+                            col.ReadOnly = col.HeaderText != "Hours Worked";
+                    }
+                }
+            }
+            catch (SqlException sqlEx)
+            {
+                MessageBox.Show("Database error loading staff assignments:\n" + sqlEx.Message,
+                    "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Unexpected error loading staff assignments:\n" + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            LoadJobStaffAssignments(textBox1.Text.Trim());
         }
     }
 }
