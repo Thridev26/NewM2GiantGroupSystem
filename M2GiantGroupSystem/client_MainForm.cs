@@ -481,14 +481,10 @@ namespace M2GiantGroupSystem
 
             try
             {
-                if (numberOfResults == 1)
+               
+                if (numberOfResults == 0)
                 {
-                    clientTableAdapter1.FillByID(
-                        this.groupWst1DataSet1.Client,
-                        this.groupWst1DataSet1.Client[0].clientID);
-                    ResetOriginalValues();
-                    loadingClient = false;
-                    enableInput();
+                    lbSearchResults.Items.Add("Client not found!");
                     return;
                 }
 
