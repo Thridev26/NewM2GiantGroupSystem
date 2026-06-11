@@ -19,15 +19,18 @@ namespace M2GiantGroupSystem
         private string connStr = "Data Source=146.230.177.46;Initial Catalog=GroupWst1;" +
                                  "Persist Security Info=True;User ID=GroupWst1;Password=dtf39;" +
                                  "Encrypt=True;TrustServerCertificate=True";
-        public paymentMain()
+        int index;
+        public paymentMain(int index)
         {
             InitializeComponent();
+            this.index = index;
         }
 
         private void LoadJobLookup(string search)
         {
             // Shows all jobs so the user can pick which job to add a payment for.
             // Includes client info and the quoted amount so they know what to expect.
+             // Ensure we're on the first tab where the lookup grid is visible
             try
             {
                 using (SqlConnection conn = new SqlConnection(connStr))
@@ -74,6 +77,7 @@ namespace M2GiantGroupSystem
 
         private void paymentMain_Load(object sender, EventArgs e)
         {
+            tabControl1.SelectedIndex = index; // Open the tab that was requested by the caller
             // Tab styling — same pattern as jobRequestMain_A
             tabControl1.DrawMode = TabDrawMode.OwnerDrawFixed;
             tabControl1.DrawItem += tabControl1_DrawItem;
@@ -482,6 +486,70 @@ private void LoadPaymentsView(string search)
                 MessageBox.Show("Unexpected error while updating payment:\n" + ex.Message,
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        }
+
+        private void txtEditAmount_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbEditMethod_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbEditStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtpEditDate_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
     
