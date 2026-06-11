@@ -36,21 +36,33 @@ namespace M2GiantGroupSystem
                 using (SqlConnection conn = new SqlConnection(connStr))
                 {
                     string sql = @"
-                        SELECT
-                            j.jobID             AS [Job ID],
-                            c.clientName + ' ' + c.clientSurname AS [Client],
-                            c.emailAddress      AS [Email],
-                            jr.siteAddress      AS [Site Address],
-                            j.jobStatus         AS [Job Status],
-                            q.amount            AS [Quoted Amount (R)]
-                        FROM Job j
-                        INNER JOIN Quote q      ON j.quoteID = q.QuoteID
-                        INNER JOIN JobRequest jr ON q.jobRequestID = jr.jobRequestID
-                        INNER JOIN Client c     ON jr.clientID = c.clientID
-                        WHERE c.clientName    LIKE @search
-                           OR c.clientSurname LIKE @search
-                           OR jr.siteAddress  LIKE @search
-                           OR CAST(j.jobID AS VARCHAR) LIKE @search";
+    SELECT
+        j.jobID             AS [Job ID],
+        c.clientName + ' ' + c.clientSurname AS [Client],
+        c.emailAddress      AS [Email],
+        jr.siteAddress      AS [Site Address],
+        j.jobStatus         AS [Job Status],
+        q.amount            AS [Quoted Amount (R)],
+        ISNULL((
+            SELECT SUM(p.amountPaid)
+            FROM Payment p
+            WHERE p.jobID = j.jobID
+              AND p.paymentStatus NOT IN ('Cancelled', 'Pending')
+        ), 0)               AS [Total Paid (R)],
+        q.amount - ISNULL((
+            SELECT SUM(p.amountPaid)
+            FROM Payment p
+            WHERE p.jobID = j.jobID
+              AND p.paymentStatus NOT IN ('Cancelled', 'Pending')
+        ), 0)               AS [Balance Outstanding (R)]
+    FROM Job j
+    INNER JOIN Quote q       ON j.quoteID = q.QuoteID
+    INNER JOIN JobRequest jr ON q.jobRequestID = jr.jobRequestID
+    INNER JOIN Client c      ON jr.clientID = c.clientID
+    WHERE c.clientName    LIKE @search
+       OR c.clientSurname LIKE @search
+       OR jr.siteAddress  LIKE @search
+       OR CAST(j.jobID AS VARCHAR) LIKE @search";
 
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
@@ -77,6 +89,7 @@ namespace M2GiantGroupSystem
 
         private void paymentMain_Load(object sender, EventArgs e)
         {
+            label14.Text = DateTime.Now.ToString();
             tabControl1.SelectedIndex = index; // Open the tab that was requested by the caller
             // Tab styling — same pattern as jobRequestMain_A
             tabControl1.DrawMode = TabDrawMode.OwnerDrawFixed;
@@ -318,7 +331,7 @@ private void LoadPaymentsView(string search)
                         cmd.Parameters.AddWithValue("@amount", amount);
                         cmd.Parameters.AddWithValue("@method", cmbPaymentMethod.SelectedItem.ToString());
                         cmd.Parameters.AddWithValue("@status", cmbPaymentStatus.SelectedItem.ToString());
-                        cmd.Parameters.AddWithValue("@date", dtpPaymentDate.Value.Date);
+                        cmd.Parameters.AddWithValue("@date", DateTime.Now);
                         cmd.Parameters.AddWithValue("@jobID", selectedJobID);
 
                         conn.Open();
@@ -333,7 +346,7 @@ private void LoadPaymentsView(string search)
                 txtAmount.Text = "";
                 cmbPaymentMethod.SelectedIndex = -1;
                 cmbPaymentStatus.SelectedIndex = -1;
-                dtpPaymentDate.Value = DateTime.Now;
+               
                 selectedJobID = 0;
                 lblSelectedID.Text = "No job selected";
                 LoadJobLookup("");
@@ -386,8 +399,8 @@ private void LoadPaymentsView(string search)
                     .FirstOrDefault(i => i.ToString() == row.Cells["Payment Status"].Value?.ToString());
 
                 if (row.Cells["Payment Date"].Value != null &&
-                    row.Cells["Payment Date"].Value != DBNull.Value)
-                    dtpEditDate.Value = Convert.ToDateTime(row.Cells["Payment Date"].Value);
+                    row.Cells["Payment Date"].Value != DBNull.Value) ;
+                    //dtpEditDate.Value = Convert.ToDateTime(row.Cells["Payment Date"].Value);
             }
             catch (Exception ex)
             {
@@ -452,8 +465,8 @@ private void LoadPaymentsView(string search)
                         UPDATE Payment
                         SET amountPaid    = @amount,
                             paymentMethod = @method,
-                            paymentStatus = @status,
-                            paymentDate   = @date
+                            paymentStatus = @status
+                          
                         WHERE paymentID   = @paymentID";
 
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
@@ -461,7 +474,7 @@ private void LoadPaymentsView(string search)
                         cmd.Parameters.AddWithValue("@amount", amount);
                         cmd.Parameters.AddWithValue("@method", cmbEditMethod.SelectedItem.ToString());
                         cmd.Parameters.AddWithValue("@status", cmbEditStatus.SelectedItem.ToString());
-                        cmd.Parameters.AddWithValue("@date", dtpEditDate.Value.Date);
+                       // cmd.Parameters.AddWithValue("@date", dtpEditDate.Value.Date);
                         cmd.Parameters.AddWithValue("@paymentID", selectedPaymentID);
 
                         conn.Open();
