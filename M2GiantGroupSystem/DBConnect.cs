@@ -66,74 +66,51 @@ namespace M2GiantGroupSystem
         public DataSet WeeklyExpenseData(DateTime d1, DateTime d2)
         {
             string query =
-            @"SELECT
-        jobID,
-        endDate,
-        totalFuelCost,
-        totalLabourCost,
-        dumpingCost
-      FROM Job
-      WHERE startDate
-            BETWEEN @StartDate AND @EndDate
-     
-      ORDER BY endDate";
+           @"SELECT
+                jobID,
+                endDate,
+                ISNULL(totalFuelCost,   0) AS totalFuelCost,
+                ISNULL(totalLabourCost, 0) AS totalLabourCost,
+                ISNULL(dumpingCost,     0) AS dumpingCost
+              FROM Job
+              WHERE endDate >= @StartDate
+  AND endDate <  DATEADD(DAY, 1, @EndDate)
+  AND jobStatus = 'Completed'
+ORDER BY endDate";
 
-            SqlCommand cmd =
-                new SqlCommand(query, con);
+            SqlCommand cmd = new SqlCommand(query, con);
+            cmd.Parameters.AddWithValue("@StartDate", d1.Date);
+            cmd.Parameters.AddWithValue("@EndDate", d2.Date);
 
-            cmd.Parameters.AddWithValue(
-                "@StartDate",
-                d1);
-
-            cmd.Parameters.AddWithValue(
-                "@EndDate",
-                d2);
-
-            SqlDataAdapter da =
-                new SqlDataAdapter(cmd);
-
-            DataSet ds =
-                new DataSet();
-
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
             da.Fill(ds);
-
             return ds;
         }
         public DataSet WeeklyExpenseSummary(DateTime d1, DateTime d2)
         {
             string query =
             @"SELECT
-        ISNULL(SUM(totalFuelCost), 0) AS FuelTotal,
-        ISNULL(SUM(totalLabourCost), 0) AS LabourTotal,
-        ISNULL(SUM(dumpingCost), 0) AS DumpingTotal,
-        ISNULL(SUM(
-            ISNULL(totalFuelCost,0) +
-            ISNULL(totalLabourCost,0) +
-            ISNULL(dumpingCost,0)
-        ), 0) AS ExpenseTotal
-      FROM Job
-      WHERE endDate BETWEEN @StartDate AND @EndDate
-      AND jobStatus = 'Completed'";
+                ISNULL(SUM(totalFuelCost),   0) AS FuelTotal,
+                ISNULL(SUM(totalLabourCost), 0) AS LabourTotal,
+                ISNULL(SUM(dumpingCost),     0) AS DumpingTotal,
+                ISNULL(SUM(
+                    ISNULL(totalFuelCost,   0) +
+                    ISNULL(totalLabourCost, 0) +
+                    ISNULL(dumpingCost,     0)
+                ), 0) AS ExpenseTotal
+              FROM Job
+              WHERE endDate >= @StartDate
+                AND endDate <  DATEADD(DAY, 1, @EndDate)
+              AND jobStatus = 'Completed'";
 
-            SqlCommand cmd =
-                new SqlCommand(query, con);
+            SqlCommand cmd = new SqlCommand(query, con);
+            cmd.Parameters.AddWithValue("@StartDate", d1.Date);
+            cmd.Parameters.AddWithValue("@EndDate", d2.Date);
 
-            cmd.Parameters.AddWithValue(
-                "@StartDate",
-                d1);
-
-            cmd.Parameters.AddWithValue(
-                "@EndDate",
-                d2);
-
-            SqlDataAdapter da =
-                new SqlDataAdapter(cmd);
-
-            DataSet ds =
-                new DataSet();
-
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
             da.Fill(ds);
-
             return ds;
         }
         public DataSet OutstandingPaymentsData()

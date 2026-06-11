@@ -18,8 +18,8 @@ namespace M2GiantGroupSystem
         }
 
         DBConnect DB1 = new DBConnect();
-        public static DateTime SelectedWeekStart;
-        public static DateTime SelectedWeekEnd;
+        public  DateTime SelectedWeekStart;
+        public  DateTime SelectedWeekEnd;
 
         private void WeeklyExpensesReportForm_Load(object sender, EventArgs e)
         {
@@ -40,6 +40,120 @@ namespace M2GiantGroupSystem
 
         private void crystalReportViewer1_Load(object sender, EventArgs e)
         {
+
+            
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                if (dt1.Value == null || dt2.Value == null)
+                {
+                    MessageBox.Show("Please select both a start and end date.",
+                        "Missing Dates", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                if (dt1.Value.Date > dt2.Value.Date)
+                {
+                    MessageBox.Show("Start date cannot be after the end date.",
+                        "Invalid Date Range", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                if (dt2.Value.Date > DateTime.Now.Date)
+                {
+                    MessageBox.Show("End date cannot be in the future. Please select a past or current date.",
+                        "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                // Sanity check: warn if range is unusually large (over a year)
+                if ((dt2.Value.Date - dt1.Value.Date).TotalDays > 365)
+                {
+                    DialogResult confirm = MessageBox.Show(
+                        "The selected date range spans more than a year. Are you sure you want to continue?",
+                        "Large Date Range", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (confirm != DialogResult.Yes) return;
+                }
+
+                SelectedWeekStart = dt1.Value.Date;
+                SelectedWeekEnd = dt2.Value.Date;
+                reportReady = true;
+
+                tabControl1.SelectedIndex = 1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Unexpected error processing date selection:\n" + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+        }
+        private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)
+        {
+
+            
+                TabPage page = tabControl1.TabPages[e.Index];
+                Rectangle tabRect = tabControl1.GetTabRect(e.Index);
+                Font tabFont = new Font("Segoe UI", 10, FontStyle.Bold);
+
+                Color backColor = Color.Honeydew;
+                Color textColor = Color.Black;
+
+                if (e.Index == tabControl1.SelectedIndex)
+                {
+                    backColor = Color.DarkGreen;
+                    textColor = Color.White;
+                }
+
+                using (Brush b = new SolidBrush(backColor))
+                    e.Graphics.FillRectangle(b, tabRect);
+
+                using (Pen p = new Pen(Color.DarkGreen, 1))
+                    e.Graphics.DrawRectangle(p, tabRect);
+
+                TextRenderer.DrawText(e.Graphics, page.Text, tabFont, tabRect, textColor,
+                    TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
+            
+        }
+        bool reportReady = false;
+        private void tabControl1_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+            if (e.TabPageIndex == 1 && !reportReady)
+            {
+                e.Cancel = true;
+                MessageBox.Show("Please select a date range and click Generate Report first.",
+                    "Report Not Generated", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (e.TabPageIndex == 1 && reportReady)
+            {
+                LoadExpenseReport();
+                reportReady = false; // reset so next date change requires Generate again
+            }
+        }
+
+        private void dt2_ValueChanged(object sender, EventArgs e)
+        {
+            reportReady = false;
+        }
+
+        private void dt1_ValueChanged(object sender, EventArgs e)
+        {
+            reportReady = false;
+        }
+
+        private void LoadExpenseReport()
+        {
+            // paste the entire contents of crystalReportViewer1_Load here
+            // (everything inside the try block)
 
             // Guard: dates must have been set by button1_Click before this tab loads.
             // If someone navigates here without selecting dates, SelectedWeekStart
@@ -148,105 +262,6 @@ namespace M2GiantGroupSystem
                     "Report Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tabControl1.SelectedIndex = 0;
             }
-        }
-
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-            try
-            {
-                if (dt1.Value == null || dt2.Value == null)
-                {
-                    MessageBox.Show("Please select both a start and end date.",
-                        "Missing Dates", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-                if (dt1.Value.Date > dt2.Value.Date)
-                {
-                    MessageBox.Show("Start date cannot be after the end date.",
-                        "Invalid Date Range", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-                if (dt2.Value.Date > DateTime.Now.Date)
-                {
-                    MessageBox.Show("End date cannot be in the future. Please select a past or current date.",
-                        "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-                // Sanity check: warn if range is unusually large (over a year)
-                if ((dt2.Value.Date - dt1.Value.Date).TotalDays > 365)
-                {
-                    DialogResult confirm = MessageBox.Show(
-                        "The selected date range spans more than a year. Are you sure you want to continue?",
-                        "Large Date Range", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (confirm != DialogResult.Yes) return;
-                }
-
-                SelectedWeekStart = dt1.Value.Date;
-                SelectedWeekEnd = dt2.Value.Date;
-                reportReady = true;
-
-                tabControl1.SelectedIndex = 1;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Unexpected error processing date selection:\n" + ex.Message,
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-
-        }
-        private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)
-        {
-
-            
-                TabPage page = tabControl1.TabPages[e.Index];
-                Rectangle tabRect = tabControl1.GetTabRect(e.Index);
-                Font tabFont = new Font("Segoe UI", 10, FontStyle.Bold);
-
-                Color backColor = Color.Honeydew;
-                Color textColor = Color.Black;
-
-                if (e.Index == tabControl1.SelectedIndex)
-                {
-                    backColor = Color.DarkGreen;
-                    textColor = Color.White;
-                }
-
-                using (Brush b = new SolidBrush(backColor))
-                    e.Graphics.FillRectangle(b, tabRect);
-
-                using (Pen p = new Pen(Color.DarkGreen, 1))
-                    e.Graphics.DrawRectangle(p, tabRect);
-
-                TextRenderer.DrawText(e.Graphics, page.Text, tabFont, tabRect, textColor,
-                    TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
-            
-        }
-        bool reportReady = false;
-        private void tabControl1_Selecting(object sender, TabControlCancelEventArgs e)
-        {
-            if (e.TabPageIndex == 1 && !reportReady)
-            {
-                e.Cancel = true;
-                MessageBox.Show("Please select a date range and click Generate Report first.",
-                    "Report Not Generated", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
-        private void dt2_ValueChanged(object sender, EventArgs e)
-        {
-            reportReady = false;
-        }
-
-        private void dt1_ValueChanged(object sender, EventArgs e)
-        {
-            reportReady = false;
         }
     }
     
