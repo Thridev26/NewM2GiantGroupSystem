@@ -53,7 +53,7 @@ namespace M2GiantGroupSystem
             tabControl1.DrawMode = TabDrawMode.OwnerDrawFixed;
             tabControl1.DrawItem += tabControl1_DrawItem;
             tabControl1.ItemSize = new Size(100, 30);
-            tabControl1.SizeMode = TabSizeMode.Normal;
+            tabControl1.SizeMode = TabSizeMode.Fixed;
 
             // Fix all RichTextBoxes
             RichTextBox[] allBoxes = new RichTextBox[]
