@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MachineRecords_D));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.cmbFilterStatus = new System.Windows.Forms.ComboBox();
@@ -166,6 +166,14 @@
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.hiredAssetBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label50 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label51 = new System.Windows.Forms.Label();
+            this.label52 = new System.Windows.Forms.Label();
+            this.label53 = new System.Windows.Forms.Label();
+            this.btnSaveFuelUsed = new System.Windows.Forms.Button();
+            this.dgvAssetAssignments = new System.Windows.Forms.DataGridView();
             this.ownedAssetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.hiredAssetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.hiredAssetTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.HiredAssetTableAdapter();
@@ -179,14 +187,6 @@
             this.toolTip7 = new System.Windows.Forms.ToolTip(this.components);
             this.toolTip8 = new System.Windows.Forms.ToolTip(this.components);
             this.toolTip9 = new System.Windows.Forms.ToolTip(this.components);
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.label50 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label51 = new System.Windows.Forms.Label();
-            this.label52 = new System.Windows.Forms.Label();
-            this.label53 = new System.Windows.Forms.Label();
-            this.btnSaveFuelUsed = new System.Windows.Forms.Button();
-            this.dgvAssetAssignments = new System.Windows.Forms.DataGridView();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -203,10 +203,10 @@
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgHiredAsset)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hiredAssetBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ownedAssetBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.hiredAssetBindingSource)).BeginInit();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAssetAssignments)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ownedAssetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.hiredAssetBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -347,8 +347,8 @@
             this.btnDeleteRcd.Name = "btnDeleteRcd";
             this.btnDeleteRcd.Size = new System.Drawing.Size(127, 36);
             this.btnDeleteRcd.TabIndex = 27;
-            this.btnDeleteRcd.Text = "Delete Asset";
-            this.toolTip8.SetToolTip(this.btnDeleteRcd, "Click this button to Delete  asset !");
+            this.btnDeleteRcd.Text = "Retire Asset";
+            this.toolTip8.SetToolTip(this.btnDeleteRcd, "Click this button to Retire  asset !\r\n");
             this.btnDeleteRcd.UseVisualStyleBackColor = false;
             this.btnDeleteRcd.Click += new System.EventHandler(this.btnDeleteRcd_Click);
             // 
@@ -483,9 +483,9 @@
             this.label22.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label22.Location = new System.Drawing.Point(172, 12);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(190, 28);
+            this.label22.Size = new System.Drawing.Size(179, 28);
             this.label22.TabIndex = 5;
-            this.label22.Text = "Delete  Asset Record";
+            this.label22.Text = "Retire Asset Record";
             // 
             // label17
             // 
@@ -510,14 +510,14 @@
             this.dataGridViewTextBoxColumn13,
             this.dataGridViewTextBoxColumn14});
             this.dgvOwnedAsset_D.DataSource = this.ownedAssetBindingSource1;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvOwnedAsset_D.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvOwnedAsset_D.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgvOwnedAsset_D.Location = new System.Drawing.Point(8, 474);
             this.dgvOwnedAsset_D.Name = "dgvOwnedAsset_D";
             this.dgvOwnedAsset_D.RowHeadersWidth = 51;
@@ -1267,7 +1267,7 @@
             this.btnDeleteHiredA.Name = "btnDeleteHiredA";
             this.btnDeleteHiredA.Size = new System.Drawing.Size(127, 36);
             this.btnDeleteHiredA.TabIndex = 27;
-            this.btnDeleteHiredA.Text = "Delete Asset";
+            this.btnDeleteHiredA.Text = "Return Asset";
             this.btnDeleteHiredA.UseVisualStyleBackColor = false;
             this.btnDeleteHiredA.Click += new System.EventHandler(this.btnDeleteHiredA_Click);
             // 
@@ -1277,9 +1277,9 @@
             this.label44.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label44.Location = new System.Drawing.Point(144, 12);
             this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(246, 25);
+            this.label44.Size = new System.Drawing.Size(185, 25);
             this.label44.TabIndex = 5;
-            this.label44.Text = "Delete  Hired Asset Record";
+            this.label44.Text = " Return Hired Asset \r\n";
             // 
             // panel3
             // 
@@ -1747,22 +1747,6 @@
             this.hiredAssetBindingSource1.DataMember = "HiredAsset";
             this.hiredAssetBindingSource1.DataSource = this.groupWst1DataSet1;
             // 
-            // ownedAssetBindingSource
-            // 
-            this.ownedAssetBindingSource.DataMember = "OwnedAsset";
-            // 
-            // hiredAssetBindingSource
-            // 
-            this.hiredAssetBindingSource.DataMember = "HiredAsset";
-            // 
-            // hiredAssetTableAdapter1
-            // 
-            this.hiredAssetTableAdapter1.ClearBeforeFill = true;
-            // 
-            // ownedAssetTableAdapter1
-            // 
-            this.ownedAssetTableAdapter1.ClearBeforeFill = true;
-            // 
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.SeaShell;
@@ -1858,6 +1842,22 @@
             this.dgvAssetAssignments.TabIndex = 7;
             this.dgvAssetAssignments.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAssetAssignments_CellClick);
             // 
+            // ownedAssetBindingSource
+            // 
+            this.ownedAssetBindingSource.DataMember = "OwnedAsset";
+            // 
+            // hiredAssetBindingSource
+            // 
+            this.hiredAssetBindingSource.DataMember = "HiredAsset";
+            // 
+            // hiredAssetTableAdapter1
+            // 
+            this.hiredAssetTableAdapter1.ClearBeforeFill = true;
+            // 
+            // ownedAssetTableAdapter1
+            // 
+            this.ownedAssetTableAdapter1.ClearBeforeFill = true;
+            // 
             // MachineRecords_D
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -1893,11 +1893,11 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgHiredAsset)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.hiredAssetBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ownedAssetBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.hiredAssetBindingSource)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAssetAssignments)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ownedAssetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.hiredAssetBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
