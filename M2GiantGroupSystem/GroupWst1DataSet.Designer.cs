@@ -19385,9 +19385,9 @@ SELECT assetID, serialNumber, type, purchaseDate, currentCondition, nextServiceD
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@assetID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "assetID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT * FROM OwnedAsset AS O\nWHERE O.assetStatus <> \'Retired\'\n  AND NOT EXISTS (" +
-                "\n    SELECT 1 \n    FROM JobAssetAssignment AS J \n    WHERE J.ownedAssetID = O.as" +
-                "setID\n);";
+            this._commandCollection[2].CommandText = "SELECT * FROM OwnedAsset AS O\r\nWHERE O.assetStatus <> \'Retired\'\r\n  AND NOT EXISTS" +
+                " (\r\n    SELECT 1 \r\n    FROM JobAssetAssignment AS J \r\n    WHERE J.ownedAssetID =" +
+                " O.assetID\r\n);";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
@@ -20523,9 +20523,9 @@ SELECT hiredAssetID, supplierName, hireDate, returnDate, hireCost, equipmentType
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@hiredAssetID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "hiredAssetID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT * FROM HiredAsset AS H\nWHERE H.hiredAssetStatus <> \'Returned\'\n  AND NOT EX" +
-                "ISTS (\n    SELECT 1 \n    FROM JobAssetAssignment AS J \n    WHERE J.hiredAssetID " +
-                "= H.hiredAssetID\n);";
+            this._commandCollection[2].CommandText = "SELECT * FROM HiredAsset AS H\r\nWHERE H.hiredAssetStatus <> \'Returned\'\r\n  AND NOT " +
+                "EXISTS (\r\n    SELECT 1 \r\n    FROM JobAssetAssignment AS J \r\n    WHERE J.hiredAss" +
+                "etID = H.hiredAssetID\r\n);";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
@@ -21232,9 +21232,16 @@ SELECT staffID, firstName, lastName, userName, passwordHash, contactNumber, staf
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT contactNumber, dailyRate, emailAddress, firstName, lastName, passwordHash," +
-                " roleID, staffID, staffStatus, userName FROM Staff AS S WHERE (NOT EXISTS (SELEC" +
-                "T 1 AS Expr1 FROM JobStaffAssignment AS J WHERE (staffID = S.staffID)))";
+            this._commandCollection[1].CommandText = @"SELECT 
+    contactNumber, dailyRate, emailAddress, firstName, lastName, 
+    passwordHash, roleID, staffID, staffStatus, userName 
+FROM Staff AS S 
+WHERE S.roleID NOT IN (10, 11)
+  AND NOT EXISTS (
+    SELECT 1 
+    FROM JobStaffAssignment AS J 
+    WHERE J.staffID = S.staffID
+);";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
         }
         
