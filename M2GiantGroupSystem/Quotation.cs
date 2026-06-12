@@ -713,6 +713,16 @@ namespace M2GiantGroupSystem
                 this.dataTable3TableAdapter.Fill(this.groupWst1DataSet.DataTable3);
                 this.quoteTableAdapter.Fill(this.groupWst1DataSet.Quote);
                 UpdateQuoteCount();
+                txtEditJobRequestID.Text = "";
+                txtEditQuoteID.Text = "";
+                dtpEditExpiry.Value = DateTime.Today.AddDays(30);
+                dtpEditGenerated.Value = DateTime.Today;
+                dtpEditIssued.Value = DateTime.Today;
+                txtEditAmount.Text = "0.00";
+                textBox2.Text = "0.00";
+                textBox4.Text = "0.00";
+                cmbEditStatus.SelectedIndex = 0;
+                txtEditFilePath.Text = "";
 
                 // 7. SUCCESS FEEDBACK
                 MessageBox.Show($"Quote record #{targetQuoteID} has been successfully updated.",
@@ -1530,6 +1540,23 @@ namespace M2GiantGroupSystem
         {
             if (ThemeManager.IsDarkMode)
                 ThemeManager.ApplyTheme(this);
+        }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+            // Define the wildcard string
+            string searchQuery = "%" + txtSearch.Text.Trim() + "%";
+
+            try
+            {
+                // Call the method you just created in the TableAdapter
+                // (Make sure to point to your specific TableAdapter instance)
+                this.dataTable3TableAdapter.FillByClientSearch(this.groupWst1DataSet.DataTable3, searchQuery);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Search Error: " + ex.Message);
+            }
         }
     }
 }
