@@ -295,29 +295,29 @@ namespace M2GiantGroupSystem
                         }
                     }
                 }
-                // 3. Logic for Hired Asset
-                else if (hiredAssetDataGridView.SelectedRows.Count > 0)
-                {
-                    var row = hiredAssetDataGridView.SelectedRows[0];
-                    string assetName = row.Cells["equipmentType"].Value?.ToString() ?? "Unknown Asset";
+                //// 3. Logic for Hired Asset
+                //else if (hiredAssetDataGridView.SelectedRows.Count > 0)
+                //{
+                //    var row = hiredAssetDataGridView.SelectedRows[0];
+                //    string assetName = row.Cells["equipmentType"].Value?.ToString() ?? "Unknown Asset";
 
-                    var confirm = MessageBox.Show($"Assign {assetName} to this job?", "Confirm", MessageBoxButtons.YesNo);
-                    if (confirm == DialogResult.Yes)
-                    {
-                        if (int.TryParse(jobIDBox.Text, out int jobId) && int.TryParse(row.Cells["hiredAssetID"].Value?.ToString(), out int hiredId))
-                        {
-                            jobAssetAssignmentTableAdapter.Insert1(jobId, null, hiredId, DateTime.Now.ToString());
-                            RefreshAllGrids();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Error: Invalid Job or Asset ID format.");
-                        }
-                    }
-                }
+                //    var confirm = MessageBox.Show($"Assign {assetName} to this job?", "Confirm", MessageBoxButtons.YesNo);
+                //    if (confirm == DialogResult.Yes)
+                //    {
+                //        if (int.TryParse(jobIDBox.Text, out int jobId) && int.TryParse(row.Cells["hiredAssetID"].Value?.ToString(), out int hiredId))
+                //        {
+                //            jobAssetAssignmentTableAdapter.Insert1(jobId, null, hiredId, DateTime.Now.ToString());
+                //            RefreshAllGrids();
+                //        }
+                //        else
+                //        {
+                //            MessageBox.Show("Error: Invalid Job or Asset ID format.");
+                //        }
+                //    }
+                //}
                 else
                 {
-                    MessageBox.Show("Please select an asset from either the Owned or Hired grid.");
+                    MessageBox.Show("Please select an asset from the Owned Asset grid.");
                 }
             }
             catch (System.Data.SqlClient.SqlException sqlEx)
@@ -380,14 +380,14 @@ namespace M2GiantGroupSystem
                         // Safely parse the ID
                         if (int.TryParse(cellValue.ToString(), out int assignmentId))
                         {
-                            var confirm = MessageBox.Show("Are you sure you want to delete this assignment?",
-                                                          "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            var confirm = MessageBox.Show("Are you sure you want to unassign this assignment?",
+                                                          "Confirm Unassign", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                             if (confirm == DialogResult.Yes)
                             {
                                 jobAssetAssignmentTableAdapter.Delete1(assignmentId);
                                 RefreshAllGrids();
-                                MessageBox.Show("Assignment deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.Show("Assignment has been successfully unassigned.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
                         }
                         else
@@ -745,6 +745,51 @@ namespace M2GiantGroupSystem
                 ThemeManager.ApplyTheme(this);
         }
 
+        private void button7_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // 1. Validation: Check if a job is selected
+                if (string.IsNullOrEmpty(jobIDBox.Text))
+                {
+                    MessageBox.Show("Select a job first!");
+                    return;
+                }
 
+                
+                // 2. Logic for Hired Asset
+                if (hiredAssetDataGridView.SelectedRows.Count > 0)
+                {
+                    var row = hiredAssetDataGridView.SelectedRows[0];
+                    string assetName = row.Cells["equipmentType"].Value?.ToString() ?? "Unknown Asset";
+
+                    var confirm = MessageBox.Show($"Assign {assetName} to this job?", "Confirm", MessageBoxButtons.YesNo);
+                    if (confirm == DialogResult.Yes)
+                    {
+                        if (int.TryParse(jobIDBox.Text, out int jobId) && int.TryParse(row.Cells["hiredAssetID"].Value?.ToString(), out int hiredId))
+                        {
+                            jobAssetAssignmentTableAdapter.Insert1(jobId, null, hiredId, DateTime.Now.ToString());
+                            RefreshAllGrids();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error: Invalid Job or Asset ID format.");
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please select an asset from the Hired Asset grid.");
+                }
+            }
+            catch (System.Data.SqlClient.SqlException sqlEx)
+            {
+                MessageBox.Show("Database error: " + sqlEx.Message, "Database Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An unexpected error occurred: " + ex.Message, "System Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
