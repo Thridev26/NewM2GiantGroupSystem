@@ -22371,7 +22371,8 @@ WHERE  (Job.jobID = @id)";
             this._commandCollection[0].CommandText = @"SELECT Client.clientName, Client.clientSurname, JobRequest.siteAddress, JobRequest.longitude, JobRequest.latitude, JobRequest.requestSource, JobRequest.urgencyLevel, JobRequest.status, JobRequest.dateRecieved, JobRequest.siteEvaluationDate, Client.clientID, 
              JobRequest.clientID, JobRequest.jobRequestID
 FROM   Client INNER JOIN
-             JobRequest ON Client.clientID = JobRequest.clientID";
+             JobRequest ON Client.clientID = JobRequest.clientID
+WHERE JobRequest.status = 'Site Evaluated';";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -22545,7 +22546,7 @@ FROM   Client INNER JOIN
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[4];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = @"SELECT Client.clientID, Client.clientName, Client.clientSurname, JobRequest.jobRequestID, Quote.QuoteID, Quote.dateIssued, Quote.expiryDate, Quote.dateGenerated, Quote.amount, Quote.quoteStatus, Quote.filePath
@@ -22562,7 +22563,16 @@ FROM   Client INNER JOIN
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@targetQuoteID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "QuoteID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = @"SELECT 
+            this._commandCollection[2].CommandText = @"SELECT Client.clientID, Client.clientName, Client.clientSurname, JobRequest.jobRequestID, Quote.QuoteID, Quote.dateIssued, Quote.expiryDate, Quote.dateGenerated, Quote.amount, Quote.quoteStatus, Quote.filePath
+FROM   Client INNER JOIN
+             JobRequest ON Client.clientID = JobRequest.clientID INNER JOIN
+             Quote ON JobRequest.jobRequestID = Quote.jobRequestID
+WHERE (Client.clientName LIKE @Search OR Client.clientSurname LIKE @Search)";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Search", global::System.Data.SqlDbType.VarChar, 40, global::System.Data.ParameterDirection.Input, 0, 0, "clientName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[3].Connection = this.Connection;
+            this._commandCollection[3].CommandText = @"SELECT 
     Client.clientID, 
     Client.clientName, 
     Client.clientSurname, 
@@ -22578,8 +22588,8 @@ FROM Client
 INNER JOIN JobRequest ON Client.clientID = JobRequest.clientID 
 INNER JOIN Quote ON JobRequest.jobRequestID = Quote.jobRequestID
 WHERE (Quote.quoteStatus = @quoteStatus)";
-            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@quoteStatus", global::System.Data.SqlDbType.VarChar, 30, global::System.Data.ParameterDirection.Input, 0, 0, "quoteStatus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@quoteStatus", global::System.Data.SqlDbType.VarChar, 30, global::System.Data.ParameterDirection.Input, 0, 0, "quoteStatus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -22636,8 +22646,44 @@ WHERE (Quote.quoteStatus = @quoteStatus)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillByQuoteStatus(GroupWst1DataSet.DataTable3DataTable dataTable, string quoteStatus) {
+        public virtual int FillByClientSearch(GroupWst1DataSet.DataTable3DataTable dataTable, string Search) {
             this.Adapter.SelectCommand = this.CommandCollection[2];
+            if ((Search == null)) {
+                throw new global::System.ArgumentNullException("Search");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(Search));
+            }
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual GroupWst1DataSet.DataTable3DataTable GetDataBy1(string Search) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            if ((Search == null)) {
+                throw new global::System.ArgumentNullException("Search");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(Search));
+            }
+            GroupWst1DataSet.DataTable3DataTable dataTable = new GroupWst1DataSet.DataTable3DataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByQuoteStatus(GroupWst1DataSet.DataTable3DataTable dataTable, string quoteStatus) {
+            this.Adapter.SelectCommand = this.CommandCollection[3];
             if ((quoteStatus == null)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -22656,7 +22702,7 @@ WHERE (Quote.quoteStatus = @quoteStatus)";
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual GroupWst1DataSet.DataTable3DataTable GetDataBy(string quoteStatus) {
-            this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand = this.CommandCollection[3];
             if ((quoteStatus == null)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
             }

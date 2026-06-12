@@ -1597,5 +1597,22 @@ namespace M2GiantGroupSystem
             // 5. Provide feedback or reset UI state
             MessageBox.Show("Editing cancelled. Fields have been cleared.", "Action Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+            // Define the wildcard search string
+            string searchParam = "%" + txtSearch.Text.Trim() + "%";
+
+            try
+            {
+                // Replace 'quoteTableAdapter' with your actual table adapter name
+                // Replace 'groupWst1DataSet.Quote' with your specific DataTable
+                this.dataTable3TableAdapter.FillByClientSearch(this.groupWst1DataSet.DataTable3, searchParam);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Search failed: " + ex.Message);
+            }
+        }
     }
 }
