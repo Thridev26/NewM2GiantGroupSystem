@@ -428,3 +428,6 @@ FodyWeavers.xsd
 *.msm
 *.msp
 /Crystal Reports Backup Files/M2GiantGroupSystem.csproj
+/M2GiantGroupSystem/Quotation.cs
+/M2GiantGroupSystem/Quotation.Designer.cs
+/M2GiantGroupSystem/Quotation.resx
