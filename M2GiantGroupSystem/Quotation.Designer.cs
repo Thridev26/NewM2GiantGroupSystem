@@ -406,7 +406,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1544, 1057);
+            this.tabControl1.Size = new System.Drawing.Size(1570, 1057);
             this.tabControl1.TabIndex = 4;
             // 
             // tabPage1
@@ -416,7 +416,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage1.Size = new System.Drawing.Size(1562, 1015);
+            this.tabPage1.Size = new System.Drawing.Size(1562, 1022);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Create New Quote";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -474,7 +474,7 @@
             this.panel1.Location = new System.Drawing.Point(2, 2);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1558, 1011);
+            this.panel1.Size = new System.Drawing.Size(1558, 1018);
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -1650,7 +1650,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1570, 1046);
+            this.ClientSize = new System.Drawing.Size(1596, 1046);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
