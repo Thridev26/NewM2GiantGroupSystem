@@ -54,24 +54,13 @@ namespace M2GiantGroupSystem
 
             try
             {
-                if (dt1.Value == null || dt2.Value == null)
-                {
-                    MessageBox.Show("Please select both a start and end date.",
-                        "Missing Dates", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
                 if (dt1.Value.Date > dt2.Value.Date)
                 {
                     MessageBox.Show("Start date cannot be after the end date.",
                         "Invalid Date Range", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                if (dt2.Value.Date > DateTime.Now.Date)
-                {
-                    MessageBox.Show("End date cannot be in the future. Please select a past or current date.",
-                        "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
+
                 // Sanity check: warn if range is unusually large (over a year)
                 if ((dt2.Value.Date - dt1.Value.Date).TotalDays > 365)
                 {
@@ -190,9 +179,9 @@ namespace M2GiantGroupSystem
                     if (dr["jobID"] != DBNull.Value)
                         int.TryParse(dr["jobID"].ToString(), out jobID);
 
-                    DateTime endDate = dr["endDate"] == DBNull.Value
-                        ? DateTime.MinValue
-                        : Convert.ToDateTime(dr["endDate"]);
+                    DateTime startDate = dr["startDate"] == DBNull.Value
+    ? DateTime.MinValue
+    : Convert.ToDateTime(dr["startDate"]);
 
                     decimal fuelCost = dr["totalFuelCost"] == DBNull.Value
                         ? 0
@@ -209,7 +198,7 @@ namespace M2GiantGroupSystem
                     list.Add(new WeeklyExpenseDetails()
                     {
                         JobID = jobID,
-                        EndDate = endDate,
+                        EndDate = startDate,
                         FuelCost = fuelCost,
                         LabourCost = labourCost,
                         DumpingCost = dumpingCost

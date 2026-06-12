@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UI_Design;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace M2GiantGroupSystem
 {
@@ -151,7 +152,7 @@ namespace M2GiantGroupSystem
             }
         }
 
-        public void runQuery(TextBox t, DataGridView dgv)
+        public void runQuery(System.Windows.Forms.TextBox t, DataGridView dgv)
         {
             try
             {
@@ -444,8 +445,22 @@ namespace M2GiantGroupSystem
                             null,
                             null));
                 }
+
                 tbName_A.Text = "";
                 tbEmail_A.Text = "";
+                tbLong_A.Text = "";
+                tbLat_A.Text = "";
+                tbAddress_A.Text = "";
+                cmbUrgencyLevel_A.Text = "";
+                cmbRequestSource_A.Text = "";
+                clbItems.ClearSelected();
+
+                tbSearchValue_A.Text = "";
+                lbSearchResults.Items.Clear();
+                groupWst1DataSet1.Client.Clear();
+                clientID = 0;
+
+                cmbCriteria_A.SelectedIndex = -1;
                 foreach (var item in clbItems.CheckedItems)
                 {
                     string itemString = item.ToString();
@@ -654,6 +669,16 @@ namespace M2GiantGroupSystem
 
                 MessageBox.Show("Changes updated successfully!",
                     "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                jobRequestID = 0;
+                lbl_ID.Text = "Selected Job Request ID: ";
+                tbSiteAddress.Text = "";
+                tbLat.Text = "";
+                tbLong.Text = "";
+                cmbRS.SelectedIndex = -1;
+                cmbUL.SelectedIndex = -1;
+                cmbStatus.SelectedIndex = -1;
+                dateTimePicker1.Value = DateTime.Now;
+                runQuery(textBox1, dgv_clientJoinJobRequest);
             }
             catch (SqlException sqlEx)
             {
@@ -763,7 +788,7 @@ namespace M2GiantGroupSystem
                         lbl_hint.Margin = new Padding(0, 12, 10, 0);
 
                         // ── Textbox ────────────────────────────────────────────
-                        TextBox tb_jobDetailName = new TextBox();
+                        System.Windows.Forms.TextBox tb_jobDetailName = new System.Windows.Forms.TextBox();
                         tb_jobDetailName.Margin = new Padding(5, 5, 20, 10);
                         tb_jobDetailName.Width = 300;
                         tb_jobDetailName.Name = "tb_jobDetailName" + jobDetailRow["jobDetailID"].ToString();
@@ -822,7 +847,7 @@ namespace M2GiantGroupSystem
 
             // Check at least one textbox in the panel has a value
             bool hasAnyValue = flowLayoutPanel1.Controls
-    .OfType<TextBox>()
+    .OfType<System.Windows.Forms.TextBox>()
     .Any(tb => !string.IsNullOrWhiteSpace(tb.Text) &&
                !tb.Text.Trim().Equals("Not Specified", StringComparison.OrdinalIgnoreCase));
 
@@ -836,7 +861,7 @@ namespace M2GiantGroupSystem
             bool hasErrors = false;
             foreach (Control control in flowLayoutPanel1.Controls)
             {
-                if (control is TextBox tb)
+                if (control is System.Windows.Forms.TextBox tb) 
                 {
                     if (string.IsNullOrWhiteSpace(tb.Text)) continue;
                     if (tb.Text.Trim().Equals("Not Specified", StringComparison.OrdinalIgnoreCase)) continue;
@@ -875,7 +900,7 @@ namespace M2GiantGroupSystem
 
                 foreach (Control control in flowLayoutPanel1.Controls)
                 {
-                    if (control is TextBox tb)
+                    if (control is System.Windows.Forms.TextBox tb)
                     {
                         if (string.IsNullOrWhiteSpace(tb.Text)) continue;
                         if (tb.Text.Trim().Equals("Not Specified", StringComparison.OrdinalIgnoreCase)) continue;
@@ -1349,7 +1374,7 @@ namespace M2GiantGroupSystem
         {
 
         }
-        private void OpenMap(TextBox latBox, TextBox lngBox)
+        private void OpenMap(System.Windows.Forms.TextBox latBox, System.Windows.Forms.TextBox lngBox)
         {
             try
             {

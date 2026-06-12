@@ -47,8 +47,8 @@ namespace M2GiantGroupSystem
             {
                 disableInput();
                 userTip.Text = "Updating will be disabled until a \n " +
-                               "client is selected from the results \n" +
-                               "or only one client is found.";
+                               "client is selected from the results. \n";
+                         
                 userTip1.Text = "Select a criteria  \nbefore entering\n a value.";
 
 
@@ -218,8 +218,11 @@ namespace M2GiantGroupSystem
                     tb_surname.Text = "";
                     tb_email.Text = "";
                     tb_phone.Text = "";
+                    cmb_status.SelectedIndex = -1;
+                    cmb_type.SelectedIndex = -1;
 
                     LoadClients(); // Refresh the grid
+
                 }
                 catch (SqlException sqlEx)
                 {
@@ -386,6 +389,15 @@ namespace M2GiantGroupSystem
 
                     MessageBox.Show("Client updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ResetOriginalValues();
+                    textBox1.Text = "";
+                    textBox2.Text = "";
+                    textBox3.Text = "";
+                    textBox4.Text = "";
+                    tbSearchValue_A.Text = "";
+                    lbSearchResults.Items.Clear();
+                    comboBox1.SelectedIndex = -1;
+                    comboBox2.SelectedIndex = -1;
+                    cmbCriteria_A.SelectedIndex = -1;
                     LoadClients();
                 }
                 catch (SqlException sqlEx)
