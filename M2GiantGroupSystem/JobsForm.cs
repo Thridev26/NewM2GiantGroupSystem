@@ -33,6 +33,7 @@ namespace M2GiantGroupSystem
             tabIndex = tab_index;
         }
 
+        
         private void ClearUpdateFormLayout()
         {
             selectedJobID = 0;
@@ -72,8 +73,50 @@ namespace M2GiantGroupSystem
             }
         }
 
+        private void ApplyPermissions()
+        {
+            int level = UserSession.AccessLevel; // The user Session object is global so this will work 
+
+            // 1. If Owner (6), they already have full access.  
+            // We just return early and don't change anything! 
+            if (level >= 6) return;
+
+            // 2. If we reach this point, the user is NOT an owner. 
+            // Now we apply restrictions for everyone else. 
+            switch (level)
+            {
+                case 5: // Admin: Some locks                     
+                    break;
+
+                case 4: // Ops Manager: More locks 
+                    if (tabControl1.TabPages.Contains(tabPage1) && tabControl1.TabPages.Contains(tabPage3))
+                    {
+                        tabControl1.TabPages.Remove(tabPage1);
+                        tabControl1.TabPages.Remove(tabPage3);
+                    }
+                    tabControl1.Refresh(); // Refresh the tab control to reflect changes immediately
+
+                    JobAddBtn.Enabled = false; // Disable the Add Job button
+                    JobEditBtn.Enabled = false; // Disable the Edit Job button
+                    ArchiverJobBtn.Enabled = false; // Disable the Archive Job button
+                    break;
+
+                default: // Level 3 and below: Complete lockdown – lock all controls if you feel they should not have access
+                    if (tabControl1.TabPages.Contains(tabPage1) && tabControl1.TabPages.Contains(tabPage3))
+                    {
+                        tabControl1.TabPages.Remove(tabPage1);
+                        tabControl1.TabPages.Remove(tabPage3);
+                    }
+                    tabControl1.Refresh(); // Refresh the tab control to reflect changes immediately
+                    JobAddBtn.Enabled = false; // Disable the Add Job button
+                    JobEditBtn.Enabled = false; // Disable the Edit Job button
+                    ArchiverJobBtn.Enabled = false;
+                    break;
+            }
+        }
         private void ViewJobDetailsForm_Load(object sender, EventArgs e)
         {
+            ApplyPermissions();
             SetupGridStyles();
             JobProgressFilter.Items.Clear();
             JobProgressFilter.Items.AddRange(new string[] { "All", "Not Started", "In Progress", "Completed" });
@@ -973,6 +1016,11 @@ GROUP BY q.amount";
                 MessageBox.Show("Error updating job: " + ex.Message,
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void JobsForm_Shown(object sender, EventArgs e)
+        {
+            ApplyPermissions();
         }
     }
 }
