@@ -504,22 +504,17 @@ namespace M2GiantGroupSystem
                 pbPreview.Image = LoadDefaultImage();
                 return;
             }
-            if (!rbBefore.Checked && !rbAfter.Checked)
-            {
-                MessageBox.Show("Please select whether this is a BEFORE or AFTER photo.",
-                    "Photo Type Not Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+           
 
             DialogResult confirm = MessageBox.Show(
-                $"Upload this photo as '{(rbBefore.Checked ? "BEFORE" : "AFTER")}' for Job Request ID {jobRequestID}?",
+           $"Upload this photo as 'BEFORE' for Job Request ID {jobRequestID}?",
                 "Confirm Upload", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (confirm != DialogResult.Yes) return;
 
             try
             {
-                string photoType = rbBefore.Checked ? "BEFORE" : "AFTER";
+                string photoType = "BEFORE";
                 string folderPath = Path.Combine(Application.StartupPath, "SitePhotos", $"JobRequest_{jobRequestID}");
                 Directory.CreateDirectory(folderPath);
 

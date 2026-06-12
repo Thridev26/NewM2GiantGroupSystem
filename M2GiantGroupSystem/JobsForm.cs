@@ -658,49 +658,74 @@ namespace M2GiantGroupSystem
         {
             if (selectedQuoteID == 0)
             {
-                MessageBox.Show("Please select an accepted Quote from the table first.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please select an accepted Quote from the table first.",
+                    "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (cboJobStatus.SelectedIndex == -1)
             {
-                MessageBox.Show("Please ensure a Job Status is selected.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please select a Job Status.",
+                    "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Verify that at least one time slot checkbox has been checked
-            bool slotSelected = false;
-            foreach (Control control in pnlTimeSlots.Controls)
+            if (dtpStartDate.Value.Date < DateTime.Today)
             {
-                if (control is CheckBox cb && cb.Checked)
-                {
-                    slotSelected = true;
-                    break;
-                }
+                MessageBox.Show("Start date cannot be in the past.",
+                    "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
+
+            if (dtpEndDate.Value.Date < dtpStartDate.Value.Date)
+            {
+                MessageBox.Show("End date cannot be before the start date.",
+                    "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!decimal.TryParse(txtFuelCost.Text, out decimal fuel) || fuel < 0)
+            {
+                MessageBox.Show("Fuel cost must be a valid positive number.",
+                    "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtFuelCost.Focus();
+                return;
+            }
+
+            if (!decimal.TryParse(txtLabourCost.Text, out decimal labour) || labour < 0)
+            {
+                MessageBox.Show("Labour cost must be a valid positive number.",
+                    "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtLabourCost.Focus();
+                return;
+            }
+
+            if (!decimal.TryParse(txtDumpingCost.Text, out decimal dumping) || dumping < 0)
+            {
+                MessageBox.Show("Dumping cost must be a valid positive number.",
+                    "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtDumpingCost.Focus();
+                return;
+            }
+
+            bool slotSelected = pnlTimeSlots.Controls
+                .OfType<CheckBox>()
+                .Any(cb => cb.Checked);
 
             if (!slotSelected)
             {
-                MessageBox.Show("Please select at least one available time slot before saving.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please select at least one available time slot before saving.",
+                    "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            DialogResult confirm = MessageBox.Show("Are you sure you want to schedule this job?", "Confirm Job Scheduling", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (confirm != DialogResult.Yes)
-                return;
+            DialogResult confirm = MessageBox.Show(
+                "Are you sure you want to schedule this job?",
+                "Confirm Job Scheduling", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirm != DialogResult.Yes) return;
 
             try
             {
-                // Safe conversion handling that passes '0.00m' if fields are empty to protect SQL NOT NULL rules
-                decimal fuel = 0.00m;
-                decimal labour = 0.00m;
-                decimal dumping = 0.00m;
-
-                if (!string.IsNullOrWhiteSpace(txtFuelCost.Text)) decimal.TryParse(txtFuelCost.Text, out fuel);
-                if (!string.IsNullOrWhiteSpace(txtLabourCost.Text)) decimal.TryParse(txtLabourCost.Text, out labour);
-                if (!string.IsNullOrWhiteSpace(txtDumpingCost.Text)) decimal.TryParse(txtDumpingCost.Text, out dumping);
-
-                // DIRECT ADO.NET INSERT TO BYPASS DATASET AND GET IDENTITY BACK
                 using (SqlConnection conn = new SqlConnection(connStr))
                 {
                     string insertSql = @"
@@ -719,7 +744,6 @@ namespace M2GiantGroupSystem
                         cmd.Parameters.AddWithValue("@quoteID", selectedQuoteID);
 
                         conn.Open();
-                        // Grabs the newly generated identity scope ID directly from SQL memory
                         jobID = Convert.ToInt32(cmd.ExecuteScalar());
                     }
                 }
@@ -737,26 +761,25 @@ namespace M2GiantGroupSystem
 
                 using (PaymentTableAdapter paymentAdapter = new PaymentTableAdapter())
                 {
-                    // THE FIX: Passed strictly approved database constraint vocabulary 
                     paymentAdapter.InsertQuery(
                         DateTime.Today.ToString("yyyy-MM-dd"),
                         totalAmount,
-                        "EFT",      // Replaced "Pending Method" with an approved method
-                        "Pending",  // Replaced "Unpaid" with an approved status
-                        jobID
-                    );
+                        "EFT",
+                        "Pending",
+                        jobID);
                 }
 
-                MessageBox.Show("Job Scheduled and Payment Profile created successfully! Job ID: " + jobID, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Job scheduled and payment profile created successfully! Job ID: " + jobID,
+                    "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Refresh records and sync grids
                 LoadJobs();
                 loadAcceptedQuotes();
                 ClearFormLayout();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error saving job or generating payment profile details: " + ex.Message, "Execution Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error saving job: " + ex.Message,
+                    "Execution Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -770,39 +793,30 @@ namespace M2GiantGroupSystem
             string criteria = cmbCriteriaSeach.SelectedItem?.ToString();
             string searchTerm = txtSearchUpdate.Text.Trim();
 
-            if (string.IsNullOrWhiteSpace(searchTerm))
-            {
-                MessageBox.Show("Please enter a search term.");
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(criteria))
-            {
-                MessageBox.Show("Please select a search criteria from the dropdown.");
-                return;
-            }
+            // Silent returns — no popups on every keystroke
+            if (string.IsNullOrWhiteSpace(searchTerm)) return;
+            if (string.IsNullOrWhiteSpace(criteria)) return;
 
             try
             {
-                // THE FIX: Changed 'j.jobID AS [Job ID]' to 'j.jobID AS [ID]' to align with dgvUpdateJob_CellClick target key indexer strings
                 string sql = @"
-                    SELECT 
-                        j.jobID           AS [ID], 
-                        c.clientName      AS [Name], 
-                        c.clientSurname   AS [Surname], 
-                        j.jobStatus       AS [Status], 
-                        jr.siteAddress    AS [Address],
-                        j.startDate       AS [Start Date],
-                        j.endDate         AS [End Date],
-                        j.totalFuelCost   AS [Fuel Cost],
-                        j.totalLabourCost AS [Labour Cost],
-                        j.dumpingCost     AS [Dumping Cost],
-                        j.quoteID         AS [Quote ID]
-                    FROM Job j
-                    INNER JOIN Quote q ON j.quoteID = q.QuoteID
-                    INNER JOIN JobRequest jr ON q.jobRequestID = jr.jobRequestID
-                    INNER JOIN Client c ON jr.clientID = c.clientID
-                    WHERE ";
+            SELECT 
+                j.jobID           AS [ID], 
+                c.clientName      AS [Name], 
+                c.clientSurname   AS [Surname], 
+                j.jobStatus       AS [Status], 
+                jr.siteAddress    AS [Address],
+                j.startDate       AS [Start Date],
+                j.endDate         AS [End Date],
+                j.totalFuelCost   AS [Fuel Cost],
+                j.totalLabourCost AS [Labour Cost],
+                j.dumpingCost     AS [Dumping Cost],
+                j.quoteID         AS [Quote ID]
+            FROM Job j
+            INNER JOIN Quote q ON j.quoteID = q.QuoteID
+            INNER JOIN JobRequest jr ON q.jobRequestID = jr.jobRequestID
+            INNER JOIN Client c ON jr.clientID = c.clientID
+            WHERE ";
 
                 switch (criteria)
                 {
@@ -810,9 +824,7 @@ namespace M2GiantGroupSystem
                     case "Surname": sql += "c.clientSurname LIKE @val"; break;
                     case "Job Status": sql += "j.jobStatus LIKE @val"; break;
                     case "Site Adress": sql += "jr.siteAddress LIKE @val"; break;
-                    default:
-                        MessageBox.Show("Invalid search criteria selected.");
-                        return;
+                    default: return;
                 }
 
                 using (SqlConnection conn = new SqlConnection(connStr))
@@ -823,27 +835,21 @@ namespace M2GiantGroupSystem
                     DataTable dt = new DataTable();
                     da.Fill(dt);
 
-                    if (dt.Rows.Count > 0)
-                    {
-                        dgvUpdateJob.DataSource = dt;
-                        dgvUpdateJob.ColumnHeadersVisible = true;
+                    dgvUpdateJob.DataSource = dt.Rows.Count > 0 ? dt : null;
 
-                        if (dgvUpdateJob.Columns["ID"] != null) dgvUpdateJob.Columns["ID"].Visible = false;
-                        if (dgvUpdateJob.Columns["Fuel Cost"] != null) dgvUpdateJob.Columns["Fuel Cost"].Visible = false;
-                        if (dgvUpdateJob.Columns["Labour Cost"] != null) dgvUpdateJob.Columns["Labour Cost"].Visible = false;
-                        if (dgvUpdateJob.Columns["Dumping Cost"] != null) dgvUpdateJob.Columns["Dumping Cost"].Visible = false;
-                        if (dgvUpdateJob.Columns["Quote ID"] != null) dgvUpdateJob.Columns["Quote ID"].Visible = false;
-                    }
-                    else
-                    {
-                        dgvUpdateJob.DataSource = null;
-                        MessageBox.Show("No records found.");
-                    }
+                    if (dt.Rows.Count == 0) return;
+
+                    if (dgvUpdateJob.Columns["ID"] != null) dgvUpdateJob.Columns["ID"].Visible = false;
+                    if (dgvUpdateJob.Columns["Fuel Cost"] != null) dgvUpdateJob.Columns["Fuel Cost"].Visible = false;
+                    if (dgvUpdateJob.Columns["Labour Cost"] != null) dgvUpdateJob.Columns["Labour Cost"].Visible = false;
+                    if (dgvUpdateJob.Columns["Dumping Cost"] != null) dgvUpdateJob.Columns["Dumping Cost"].Visible = false;
+                    if (dgvUpdateJob.Columns["Quote ID"] != null) dgvUpdateJob.Columns["Quote ID"].Visible = false;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Search Error: " + ex.Message);
+                MessageBox.Show("Search error: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -851,26 +857,56 @@ namespace M2GiantGroupSystem
         {
             if (string.IsNullOrWhiteSpace(txtUpdateJobID.Text) || selectedJobID == 0)
             {
-                MessageBox.Show("Please select a job from the search results grid first.", "No Job Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please select a job from the grid first.",
+                    "No Job Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (cboUpdateJobStatus.SelectedIndex == -1)
             {
-                MessageBox.Show("Please select a valid Job Status.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please select a valid Job Status.",
+                    "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            DialogResult confirm = MessageBox.Show($"Are you sure you want to save changes to Job ID: {selectedJobID}?", "Confirm Update", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dtpUpdateStartDate.Value.Date > dtpUpdateEndDate.Value.Date)
+            {
+                MessageBox.Show("End date cannot be before the start date.",
+                    "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!decimal.TryParse(txtUpdateFuelCost.Text, out decimal fuel) || fuel < 0)
+            {
+                MessageBox.Show("Fuel cost must be a valid positive number.",
+                    "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtUpdateFuelCost.Focus();
+                return;
+            }
+
+            if (!decimal.TryParse(txtUpdateLabourCost.Text, out decimal labour) || labour < 0)
+            {
+                MessageBox.Show("Labour cost must be a valid positive number.",
+                    "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtUpdateLabourCost.Focus();
+                return;
+            }
+
+            if (!decimal.TryParse(txtUpdateDumpingCost.Text, out decimal dumping) || dumping < 0)
+            {
+                MessageBox.Show("Dumping cost must be a valid positive number.",
+                    "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtUpdateDumpingCost.Focus();
+                return;
+            }
+
+            DialogResult confirm = MessageBox.Show(
+                $"Are you sure you want to save changes to Job ID: {selectedJobID}?",
+                "Confirm Update", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (confirm != DialogResult.Yes) return;
 
             try
             {
-                decimal fuel = string.IsNullOrWhiteSpace(txtUpdateFuelCost.Text) ? 0.00m : Convert.ToDecimal(txtUpdateFuelCost.Text);
-                decimal labour = string.IsNullOrWhiteSpace(txtUpdateLabourCost.Text) ? 0.00m : Convert.ToDecimal(txtUpdateLabourCost.Text);
-                decimal dumping = string.IsNullOrWhiteSpace(txtUpdateDumpingCost.Text) ? 0.00m : Convert.ToDecimal(txtUpdateDumpingCost.Text);
-
-                // Commit modifications to the locked database rows via the typed table adapter context query
                 jobTableAdapter1.UpdateJobQuery(
                     dtpUpdateStartDate.Value.Date.ToString("yyyy-MM-dd"),
                     dtpUpdateEndDate.Value.Date.ToString("yyyy-MM-dd"),
@@ -878,20 +914,19 @@ namespace M2GiantGroupSystem
                     fuel,
                     labour,
                     dumping,
-                    selectedJobID
-                );
+                    selectedJobID);
 
-                MessageBox.Show($"Job ID {selectedJobID} updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"Job ID {selectedJobID} updated successfully!",
+                    "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Instantly refresh tracking grids
                 string selectedStatus = JobProgressFilter.SelectedItem?.ToString() ?? "All";
                 LoadJobs(selectedStatus, txtSearchJobV.Text);
-
                 ClearUpdateFormLayout();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error updating job details: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error updating job: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
