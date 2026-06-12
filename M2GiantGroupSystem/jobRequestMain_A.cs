@@ -389,6 +389,31 @@ namespace M2GiantGroupSystem
                 clbItems.Focus();
                 return;
             }
+            string email = tbEmail_A.Text.Trim();
+
+            string query = "SELECT ClientID FROM Client WHERE emailAddress =@Email";
+
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Email", email);
+
+                    conn.Open();
+
+                    object result = cmd.ExecuteScalar();
+
+                    if (result != null)
+                    {
+                        clientID = Convert.ToInt32(result);
+                      //  MessageBox.Show("Client ID: " + clientID);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Client not found.");
+                    }
+                }
+            }
 
             try
             {
@@ -398,27 +423,28 @@ namespace M2GiantGroupSystem
                 if (decimal.TryParse(tbLat_A.Text, out latitude) &&
                     decimal.TryParse(tbLong_A.Text, out longitude))
                 {
-                    jobRequestID = Convert.ToInt32(
+                   /* jobRequestID = Convert.ToInt32(
                         jobRequestTableAdapter1.InsertQuery(
                             clientID,
                             tbAddress_A.Text.Trim(),
                             cmbRequestSource_A.SelectedItem.ToString(),
                             cmbUrgencyLevel_A.SelectedItem.ToString(),
                             longitude,
-                            latitude));
+                            latitude));*/
                 }
                 else
                 {
-                    jobRequestID = Convert.ToInt32(
+                    /*jobRequestID = Convert.ToInt32(
                         jobRequestTableAdapter1.InsertQuery(
                             clientID,
                             tbAddress_A.Text.Trim(),
                             cmbRequestSource_A.SelectedItem.ToString(),
                             cmbUrgencyLevel_A.SelectedItem.ToString(),
                             null,
-                            null));
+                            null));*/
                 }
-
+                tbName_A.Text = "";
+                tbEmail_A.Text = "";
                 foreach (var item in clbItems.CheckedItems)
                 {
                     string itemString = item.ToString();
@@ -459,6 +485,7 @@ namespace M2GiantGroupSystem
                 MessageBox.Show("Unexpected error while saving job request:\n" + ex.Message,
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+           
         }
 
         

@@ -620,7 +620,7 @@ private void btnUpdateAsset_Click(object sender, EventArgs e)
             {
                 try
                 {
-                    ownedAssetTableAdapter1.UpdateRetiredAsset(int.Parse(txtAssetID2.Text));
+                   // ownedAssetTableAdapter1.UpdateRetiredAsset(int.Parse(txtAssetID2.Text));
                     ownedAssetTableAdapter1.Fill(this.groupWst1DataSet1.OwnedAsset);
                     txtDeleteSN.Text = "";
                     MessageBox.Show("Asset deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -950,7 +950,7 @@ private void btnUpdateAsset_Click(object sender, EventArgs e)
             {
                 try
                 {
-                    hiredAssetTableAdapter1.UpdateReturnedAsset(int.Parse(txtHassetID.Text));
+                   // hiredAssetTableAdapter1.UpdateReturnedAsset(int.Parse(txtHassetID.Text));
                     hiredAssetTableAdapter1.Fill(this.groupWst1DataSet1.HiredAsset);
                     textBox2.Text = "";
                     MessageBox.Show("Asset deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
