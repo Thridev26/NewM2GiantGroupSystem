@@ -131,9 +131,12 @@ namespace M2GiantGroupSystem
                 tb_email.Focus();
                 return;
             }
-            if (!tb_email.Text.Contains("@") || !tb_email.Text.Contains("."))
+            if (string.IsNullOrWhiteSpace(tb_email.Text) ||
+     !System.Text.RegularExpressions.Regex.IsMatch(tb_email.Text.Trim(),
+     @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
             {
-                MessageBox.Show("Please enter a valid email address.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please enter a valid email address (e.g. name@example.com).",
+                    "Invalid Email", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 tb_email.Focus();
                 return;
             }

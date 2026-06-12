@@ -178,6 +178,51 @@ namespace M2GiantGroupSystem
 
             if (txtSelectedQuoteID != null)
                 txtSelectedQuoteID.Text = selectedQuoteID.ToString();
+            // Auto-fill fuel cost from travel fee calculation
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connStr))
+                {
+                    string sql = @"SELECT
+    ROUND(
+        (q.amount / 1.15) -
+        SUM(CAST(id.detailValue AS DECIMAL(10,2)) * jt.jobRate)
+    , 2) AS TravelFee
+FROM Quote q
+INNER JOIN JobRequest jr  ON q.jobRequestID = jr.jobRequestID
+INNER JOIN RequestItem ri ON jr.jobRequestID = ri.jobRequestID
+INNER JOIN JobType jt     ON ri.jobTypeID = jt.jobTypeID
+INNER JOIN ItemDetail id  ON ri.requestItemID = id.requestItemID
+WHERE q.QuoteID = @QuoteID
+AND (
+    (jt.jobTypeName = 'Tree Felling'         AND id.jobDetailID = 1)  OR
+    (jt.jobTypeName = 'Grass Cutting'        AND id.jobDetailID = 6)  OR
+    (jt.jobTypeName = 'Tree Planting'        AND id.jobDetailID = 10) OR
+    (jt.jobTypeName = 'Vegetation Clearance' AND id.jobDetailID = 14) OR
+    (jt.jobTypeName = 'Hedge Trimming'       AND id.jobDetailID = 18)
+)
+GROUP BY q.amount";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@QuoteID", selectedQuoteID);
+                        conn.Open();
+                        object result = cmd.ExecuteScalar();
+
+                        if (result != null && result != DBNull.Value)
+                            txtFuelCost.Text = Convert.ToDecimal(result).ToString("F2");
+                        else
+                            txtFuelCost.Text = "0.00";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading travel fee: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtFuelCost.Text = "0.00";
+            }
+
 
             MessageBox.Show("Quote Selected! ID: " + selectedQuoteID, "Quote Locked", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
