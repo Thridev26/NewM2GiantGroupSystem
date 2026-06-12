@@ -228,14 +228,14 @@ namespace M2GiantGroupSystem
                 }
 
                 // 3. Execute update statement via your designer-dragged visual TableAdapter query module!
-                this.maintenanceLogTableAdapter1.UpdateQuery(
+                /*this.maintenanceLogTableAdapter1.UpdateQuery(
                     type,
                     cost,
                     dateStr,
                     noteDetails,
                     assetID,
                     selectedLogID
-                );
+                );*/
 
                 MessageBox.Show($"Maintenance Log entry {selectedLogID} successfully updated!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
