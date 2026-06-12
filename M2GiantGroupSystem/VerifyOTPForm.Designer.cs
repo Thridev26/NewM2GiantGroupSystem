@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VerifyOTPForm));
             this.btnVerify = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtOTP = new System.Windows.Forms.TextBox();
@@ -88,7 +89,9 @@
             this.Controls.Add(this.txtOTP);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnVerify);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "VerifyOTPForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "VerifyOTPForm";
             this.ResumeLayout(false);
             this.PerformLayout();
