@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.tabViewAllocations = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button7 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.jobAssetAssignmentDataGridView = new System.Windows.Forms.DataGridView();
@@ -109,7 +110,6 @@
             this.ownedAssetTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.OwnedAssetTableAdapter();
             this.staffTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.StaffTableAdapter();
             this.dataTable1TableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.DataTable1TableAdapter();
-            this.button7 = new System.Windows.Forms.Button();
             this.tabViewAllocations.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.jobAssetAssignmentDataGridView)).BeginInit();
@@ -160,6 +160,18 @@
             this.tabPage1.Size = new System.Drawing.Size(1544, 403);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Assets";
+            // 
+            // button7
+            // 
+            this.button7.BackColor = System.Drawing.Color.DarkGreen;
+            this.button7.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button7.Location = new System.Drawing.Point(739, 178);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(136, 76);
+            this.button7.TabIndex = 5;
+            this.button7.Text = "Assign Hired Asset To Job\r\n    >>>";
+            this.button7.UseVisualStyleBackColor = false;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // button2
             // 
@@ -912,18 +924,6 @@
             // dataTable1TableAdapter
             // 
             this.dataTable1TableAdapter.ClearBeforeFill = true;
-            // 
-            // button7
-            // 
-            this.button7.BackColor = System.Drawing.Color.DarkGreen;
-            this.button7.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button7.Location = new System.Drawing.Point(739, 178);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(136, 76);
-            this.button7.TabIndex = 5;
-            this.button7.Text = "Assign Hired Asset To Job\r\n    >>>";
-            this.button7.UseVisualStyleBackColor = false;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // AllocateAssetStafftoJob
             // 
