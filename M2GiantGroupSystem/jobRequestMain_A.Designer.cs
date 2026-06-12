@@ -1274,6 +1274,7 @@
             this.rbAfter.TabIndex = 56;
             this.rbAfter.Text = "After";
             this.rbAfter.UseVisualStyleBackColor = true;
+            this.rbAfter.Visible = false;
             // 
             // rbBefore
             // 
