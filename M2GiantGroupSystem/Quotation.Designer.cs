@@ -1094,7 +1094,7 @@
             this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage2.Size = new System.Drawing.Size(1536, 1022);
+            this.tabPage2.Size = new System.Drawing.Size(1562, 1022);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "View All / Edit Quote";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1122,7 +1122,7 @@
             this.panel2.Location = new System.Drawing.Point(2, 2);
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1532, 1018);
+            this.panel2.Size = new System.Drawing.Size(1558, 1018);
             this.panel2.TabIndex = 1;
             // 
             // label25
