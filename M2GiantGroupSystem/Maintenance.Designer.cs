@@ -158,10 +158,10 @@
             this.cboServiceType.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboServiceType.FormattingEnabled = true;
             this.cboServiceType.Items.AddRange(new object[] {
-            "Routine Cleaning",
-            "Repair",
-            "Software Update ",
-            "Inspection"});
+            "Inspection",
+            "Routine Maintenance",
+            "Emergency Repair",
+            "Part Replacement"});
             this.cboServiceType.Location = new System.Drawing.Point(396, 210);
             this.cboServiceType.Name = "cboServiceType";
             this.cboServiceType.Size = new System.Drawing.Size(410, 45);
@@ -201,6 +201,7 @@
             this.btnSaveLog.TabIndex = 94;
             this.btnSaveLog.Text = "Add Maintenance Log";
             this.btnSaveLog.UseVisualStyleBackColor = false;
+            this.btnSaveLog.Click += new System.EventHandler(this.btnSaveLog_Click_1);
             // 
             // rtbCompletionDetails
             // 
@@ -225,7 +226,7 @@
             this.dtpServiceDate.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpServiceDate.Location = new System.Drawing.Point(396, 365);
             this.dtpServiceDate.Name = "dtpServiceDate";
-            this.dtpServiceDate.Size = new System.Drawing.Size(410, 43);
+            this.dtpServiceDate.Size = new System.Drawing.Size(449, 43);
             this.dtpServiceDate.TabIndex = 91;
             // 
             // label1
