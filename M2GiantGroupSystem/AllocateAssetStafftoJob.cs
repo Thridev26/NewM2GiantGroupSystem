@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace M2GiantGroupSystem
 {
@@ -19,7 +20,7 @@ namespace M2GiantGroupSystem
             tabIndex = tab_index;
             ThemeManager.ThemeChanged += ApplyTheme;
         }
-
+        public int selectedJobId;
         private void jobBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
             this.Validate();
@@ -217,50 +218,29 @@ namespace M2GiantGroupSystem
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0) return;
+
             try
             {
-                // 1. Ensure the user didn't double-click the header row
-                if (e.RowIndex >= 0)
+                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+
+                jobIDBox.Text = row.Cells["jobID"].Value?.ToString() ?? "";
+                clientNameBox.Text = ($"{row.Cells["clientName"].Value} {row.Cells["clientSurname"].Value}").Trim();
+                addressBox.Text = row.Cells["siteAddress"].Value?.ToString() ?? "";
+                statusBox.Text = row.Cells["jobStatus"].Value?.ToString() ?? "";
+
+                // Parse and store so RefreshAllGrids can use it
+                if (int.TryParse(jobIDBox.Text, out selectedJobId))
                 {
-                    DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
-
-                    // 2. Use a helper function or safe null-check pattern
-                    // This prevents the app from crashing if a cell is empty or null
-                    jobIDBox.Text = row.Cells["jobID"].Value?.ToString() ?? "";
-
-                    string clientName = row.Cells["clientName"].Value?.ToString() ?? "";
-                    string clientSurname = row.Cells["clientSurname"].Value?.ToString() ?? "";
-                    clientNameBox.Text = $"{clientName} {clientSurname}".Trim();
-
-                    addressBox.Text = row.Cells["siteAddress"].Value?.ToString() ?? "";
-                    statusBox.Text = row.Cells["jobStatus"].Value?.ToString() ?? "";
+                    AppState.selectedIdCalendar = selectedJobId;
+                    RefreshAllGrids();  // This re-runs all three queries with the new @jobID
                 }
             }
             catch (Exception ex)
             {
-                // Even with safe null checks, unexpected UI state errors can happen
-                MessageBox.Show("An error occurred while loading the job details: " + ex.Message,
+                MessageBox.Show("Error loading job details: " + ex.Message,
                                 "UI Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            //// Ensure the user didn't double-click the header row
-            //if (e.RowIndex >= 0)
-            //{
-            //    // Get the specific row that was double-clicked
-            //    DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
-
-            //    // Fill the Job ID
-            //    jobIDBox.Text = row.Cells["jobID"].Value.ToString();
-
-            //    // Combine Name and Surname for the name box
-            //    string fullName = row.Cells["clientName"].Value.ToString() + " " +
-            //                      row.Cells["clientSurname"].Value.ToString();
-            //    clientNameBox.Text = fullName;
-
-            //    // Fill the Address and Status
-            //    addressBox.Text = row.Cells["siteAddress"].Value.ToString();
-            //    statusBox.Text = row.Cells["jobStatus"].Value.ToString();
-            //}
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -286,7 +266,7 @@ namespace M2GiantGroupSystem
                         // Use int.TryParse for safety
                         if (int.TryParse(jobIDBox.Text, out int jobId) && int.TryParse(row.Cells["assetID"].Value?.ToString(), out int ownedId))
                         {
-                            jobAssetAssignmentTableAdapter.Insert1(jobId, ownedId, null, DateTime.Now.ToString());
+                            jobAssetAssignmentTableAdapter.Insert1(jobId, ownedId, null, DateTime.Now.Date.ToString());
                             RefreshAllGrids();
                         }
                         else
@@ -373,115 +353,194 @@ namespace M2GiantGroupSystem
                 if (jobAssetAssignmentDataGridView.SelectedRows.Count > 0)
                 {
                     var row = jobAssetAssignmentDataGridView.SelectedRows[0];
-                    var cellValue = row.Cells["Column1"].Value;
+                    var cellValue = row.Cells["AssignmentID"].Value;
 
                     if (cellValue != null && cellValue != DBNull.Value)
                     {
-                        // Safely parse the ID
                         if (int.TryParse(cellValue.ToString(), out int assignmentId))
                         {
                             var confirm = MessageBox.Show("Are you sure you want to unassign this assignment?",
                                                           "Confirm Unassign", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
                             if (confirm == DialogResult.Yes)
                             {
-                                jobAssetAssignmentTableAdapter.Delete1(assignmentId);
+                                string connStr = "Data Source=146.230.177.46;Initial Catalog=GroupWst1;Persist Security Info=True;User ID=GroupWst1;Password=dtf39;Encrypt=True;TrustServerCertificate=True";
+
+                                using (SqlConnection conn = new SqlConnection(connStr))
+                                using (SqlCommand cmd = new SqlCommand(
+                                    "DELETE FROM JobAssetAssignment WHERE AssignmentID = @AssignmentID", conn))
+                                {
+                                    cmd.Parameters.AddWithValue("@AssignmentID", assignmentId);
+                                    conn.Open();
+                                    cmd.ExecuteNonQuery();
+                                }
+
                                 RefreshAllGrids();
-                                MessageBox.Show("Assignment has been successfully unassigned.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.Show("Assignment has been successfully unassigned.",
+                                    "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
                         }
                         else
                         {
-                            MessageBox.Show("The selected ID is not a valid number.", "Format Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("The selected ID is not a valid number.",
+                                "Format Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     else
                     {
-                        MessageBox.Show("The selected row does not have a valid ID.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("The selected row does not have a valid ID.",
+                            "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Please select a row to delete.", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Please select a row to delete.",
+                        "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-            catch (System.Data.SqlClient.SqlException sqlEx)
+            catch (SqlException sqlEx)
             {
-                // This is crucial for deletions, as it will catch foreign key constraint errors
-                MessageBox.Show("Database error: Could not delete record. It may be linked to other data. \n\nDetails: " + sqlEx.Message,
-                                "Database Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Database error: Could not delete record. It may be linked to other data.\n\nDetails: " + sqlEx.Message,
+                    "Database Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An unexpected error occurred: " + ex.Message, "System Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An unexpected error occurred: " + ex.Message,
+                    "System Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            //if (jobAssetAssignmentDataGridView.SelectedRows.Count > 0)
-            //{
-            //    var row = jobAssetAssignmentDataGridView.SelectedRows[0];
 
-            //    // Use the EXACT name you found in the Edit Columns dialog
-            //    var cellValue = row.Cells["Column1"].Value;
-
-            //    if (cellValue != null && cellValue != DBNull.Value)
-            //    {
-            //        var confirm = MessageBox.Show("Are you sure?", "Confirm", MessageBoxButtons.YesNo);
-            //        if (confirm == DialogResult.Yes)
-            //        {
-            //            int assignmentId = Convert.ToInt32(cellValue);
-            //            jobAssetAssignmentTableAdapter.Delete1(assignmentId);
-            //            RefreshAllGrids();
-            //        }
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("The selected row does not have a valid ID.");
-            //    }
         }
         
 
         private void RefreshAllGrids()
         {
+            int jobId = AppState.selectedIdCalendar;
+            selectedJobId = jobId;
+
+            if (jobId <= 0) return;
+
             try
             {
-                // Use parameters to filter by the current Job ID
-                int jobId = AppState.selectedIdCalendar;
+                string connStr = "Data Source=146.230.177.46;Initial Catalog=GroupWst1;Persist Security Info=True;User ID=GroupWst1;Password=dtf39;Encrypt=True;TrustServerCertificate=True";
 
-                // Load assignments for this specific job
-                // NOTE: Ensure your XSD has a FillByJobID query for these adapters
-                this.jobAssetAssignmentTableAdapter.Fill(this.groupWst1DataSet.JobAssetAssignment);
-                this.jobStaffAssignmentTableAdapter.Fill(this.groupWst1DataSet.JobStaffAssignment);
+                string staffSQL = @"
+            SELECT s.staffID, s.firstName, s.lastName, s.contactNumber, s.dailyRate, s.roleID, r.roleName, j.startDate AS jobStartDate
+            FROM Staff AS s
+            INNER JOIN Role AS r ON s.roleID = r.roleID
+            LEFT OUTER JOIN JobStaffAssignment AS jsa ON s.staffID = jsa.staffID AND jsa.jobID = @jobID
+            LEFT OUTER JOIN Job AS j ON j.jobID = @jobID
+            WHERE s.staffStatus = 'Active' AND r.roleID NOT IN (10, 11) AND jsa.staffID IS NULL";
 
-                // Load "Available" lists
-                // Ensure these queries use: WHERE status = 'Active' or similar
-                this.ownedAssetTableAdapter.FillByAvailableOwned(this.groupWst1DataSet.OwnedAsset);
-                this.hiredAssetTableAdapter.FillByAvailableHired(this.groupWst1DataSet.HiredAsset);
+                string hiredSQL = @"
+            SELECT ha.hiredAssetID, ha.equipmentType, ha.supplierName, ha.hireDate, ha.hireCost, ha.hiredAssetStatus, j.startDate AS jobStartDate
+            FROM HiredAsset AS ha
+            LEFT OUTER JOIN JobAssetAssignment AS jaa ON ha.hiredAssetID = jaa.hiredAssetID AND jaa.jobID = @jobID
+            LEFT OUTER JOIN Job AS j ON j.jobID = @jobID
+            WHERE ha.hiredAssetStatus NOT IN ('Returned', 'Damaged', 'Overdue') AND jaa.hiredAssetID IS NULL";
 
-                // Load Staff (Exclude restricted roles here in your SQL query!)
-                this.staffTableAdapter.FillByAvailableStaff(this.groupWst1DataSet.Staff);
+                string ownedSQL = @"
+            SELECT oa.assetID, oa.type, oa.serialNumber, oa.currentCondition, oa.assetStatus, j.startDate AS jobStartDate
+            FROM OwnedAsset AS oa
+            LEFT OUTER JOIN JobAssetAssignment AS jaa ON oa.assetID = jaa.ownedAssetID AND jaa.jobID = @jobID
+            LEFT OUTER JOIN Job AS j ON j.jobID = @jobID
+            WHERE oa.assetStatus NOT IN ('Retired', 'Under Maintenance') AND jaa.ownedAssetID IS NULL";
+
+                string assetAssignSQL = @"
+    SELECT 
+        jaa.AssignmentID,
+        jaa.jobID,
+        COALESCE(jaa.ownedAssetID, jaa.hiredAssetID) AS assetID,
+        COALESCE(oa.type, ha.equipmentType)           AS assetDescription,
+        CASE 
+            WHEN jaa.ownedAssetID IS NOT NULL THEN 'Owned'
+            WHEN jaa.hiredAssetID IS NOT NULL THEN 'Hired'
+        END AS assetCategory,
+        jaa.fuelUsed,
+        jaa.assignmentDate
+    FROM JobAssetAssignment jaa
+    LEFT JOIN OwnedAsset oa ON jaa.ownedAssetID = oa.assetID
+    LEFT JOIN HiredAsset ha ON jaa.hiredAssetID = ha.hiredAssetID
+    WHERE jaa.jobID = @jobID";
+
+                string staffAssignSQL = @"
+SELECT 
+    jsa.staffID,
+    s.firstName,
+    s.lastName,
+    jsa.jobID,
+    jsa.hoursWorked,
+    jsa.assignmentDate
+FROM JobStaffAssignment jsa
+INNER JOIN Staff s
+    ON jsa.staffID = s.staffID
+WHERE jsa.jobID = @jobID";
+
+                // Run each query the same way as jobRequestMain_A
+                using (SqlConnection conn = new SqlConnection(connStr))
+                {
+                    conn.Open();
+
+                    // Available Staff
+                    using (SqlCommand cmd = new SqlCommand(staffSQL, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@jobID", jobId);
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        staffDataGridView.DataSource = dt;
+                    }
+
+                    // Available Hired Assets
+                    using (SqlCommand cmd = new SqlCommand(hiredSQL, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@jobID", jobId);
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        hiredAssetDataGridView.DataSource = dt;
+                    }
+
+                    // Available Owned Assets
+                    using (SqlCommand cmd = new SqlCommand(ownedSQL, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@jobID", jobId);
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        ownedAssetDataGridView.DataSource = dt;
+                    }
+
+                    // Asset Assignments for this job
+                    using (SqlCommand cmd = new SqlCommand(assetAssignSQL, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@jobID", jobId);
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        jobAssetAssignmentDataGridView.DataSource = dt;
+                    }
+
+                    // Staff Assignments for this job
+                    using (SqlCommand cmd = new SqlCommand(staffAssignSQL, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@jobID", jobId);
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        jobStaffAssignmentDataGridView.DataSource = dt;
+                    }
+                }
             }
-            catch (System.Exception ex)
+            catch (SqlException sqlEx)
             {
-                MessageBox.Show("Error refreshing data: " + ex.Message);
+                MessageBox.Show("Database error while refreshing grids:\n" + sqlEx.Message,
+                    "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            //try
-            //{
-            //    // 1. Refresh the Assignment list first
-            //    this.jobAssetAssignmentTableAdapter.Fill(this.groupWst1DataSet.JobAssetAssignment);
-            //    this.jobStaffAssignmentTableAdapter.Fill(this.groupWst1DataSet.JobStaffAssignment);
-
-            //    // 2. Then refresh the available assets (the query will re-run)
-            //    this.ownedAssetTableAdapter.FillByAvailableOwned(this.groupWst1DataSet.OwnedAsset);
-            //    this.hiredAssetTableAdapter.FillByAvailableHired(this.groupWst1DataSet.HiredAsset);
-
-            //    // 3. Refresh "Available" Staff Grid
-            //    // Use the new method we just created in the .xsd
-            //    this.staffTableAdapter.FillByAvailableStaff(this.groupWst1DataSet.Staff);
-            //}
-            //catch (System.Exception ex)
-            //{
-            //    MessageBox.Show("Error refreshing data: " + ex.Message);
-            //}
+            catch (Exception ex)
+            {
+                MessageBox.Show("Unexpected error while refreshing grids:\n" + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -520,7 +579,7 @@ namespace M2GiantGroupSystem
                         int.TryParse(jobIDBox.Text, out int jobId))
                     {
                         // 5. Execute Insert
-                        jobStaffAssignmentTableAdapter.InsertStaff(staffId, jobId, DateTime.Now.ToString());
+                        jobStaffAssignmentTableAdapter.InsertStaff(staffId, jobId, DateTime.Now.Date.ToString());
 
                         // 6. Update UI
                         RefreshAllGrids();
@@ -541,45 +600,9 @@ namespace M2GiantGroupSystem
                 MessageBox.Show("An unexpected error occurred: " + ex.Message, "System Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            //if (staffDataGridView.SelectedRows.Count > 0)
-            //{
-            //    DataGridViewRow selectedRow = staffDataGridView.SelectedRows[0];
+            
 
-            //    // Retrieve the roleID from the selected staff member's row
-            //    int roleId = Convert.ToInt32(selectedRow.Cells["roleID"].Value);
-
-            //    // Logic: Restrict access levels 5 (Admin) and 6 (Manager)
-            //    // You can check this by comparing the roleID directly
-            //    if (roleId == 10 || roleId == 11)
-            //    {
-            //        MessageBox.Show("This staff member (Top Management/Admin) cannot be assigned to jobs.",
-            //                        "Restricted Assignment", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //        return;
-            //    }
-            //}
-            //    // 1. Safety Check: Ensure a job and a staff member are selected
-            //    if (string.IsNullOrEmpty(jobIDBox.Text) || staffDataGridView.SelectedRows.Count == 0)
-            //{
-            //    MessageBox.Show("Please select a Job and a Staff member.");
-            //    return;
-            //}
-
-            //// 2. Confirmation
-            //var row = staffDataGridView.SelectedRows[0];
-            //string name = row.Cells["firstName"].Value.ToString();
-            //var confirm = MessageBox.Show($"Assign {name} to this job?", "Confirm", MessageBoxButtons.YesNo);
-
-            //if (confirm == DialogResult.Yes)
-            //{
-            //    int staffId = (int)row.Cells["staffID"].Value;
-            //    int jobId = int.Parse(jobIDBox.Text);
-
-            //    // 3. Execute Insert
-            //    jobStaffAssignmentTableAdapter.InsertStaff(staffId, jobId, DateTime.Now.ToString());
-
-            //    // 4. Update UI
-            //    RefreshAllGrids();
-            //}
+           
         }
 
         private void button4_Click(object sender, EventArgs e)
