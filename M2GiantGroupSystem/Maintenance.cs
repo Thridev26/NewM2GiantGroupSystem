@@ -65,9 +65,16 @@ namespace M2GiantGroupSystem
                 dgvMaintenanceHistory.RowTemplate.Height = 32;
                 dgvMaintenanceHistory.ColumnHeadersHeight = 40;
 
-                // 2. Populate Service Type Dropdown menu options
+                // 2. THE FIX: Expanded default list to include the actual database realities
                 cboServiceType.Items.Clear();
-                cboServiceType.Items.AddRange(new string[] { "Inspection", "Routine Maintenance", "Emergency Repair", "Part Replacement" });
+                cboServiceType.Items.AddRange(new string[] {
+                    "Inspection",
+                    "Routine Maintenance",
+                    "Emergency Repair",
+                    "Part Replacement",
+                    "Routine Sharpening",
+                    "Oil Change"
+                });
                 cboServiceType.SelectedIndex = 0;
 
                 // 3. Fetch active database asset profiles for your selection dropdown
@@ -145,49 +152,8 @@ namespace M2GiantGroupSystem
         // ACTION CLICK & ROW SELECTION HANDLERS
         // --------------------------------------------------------------------------------------------------------
        
-        private void btnSaveLog_Click(object sender, EventArgs e)
-        {
-            // 1. Defensive input validation routines
-            if (cboAssetSelection.SelectedValue == null)
-            {
-                MessageBox.Show("Please select a valid asset being logged.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(rtbCompletionDetails.Text))
-            {
-                MessageBox.Show("Please fill out description details for the completion log task notes.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            try
-            {
-                // 2. Safely capture input properties from active layout elements
-                int selectedAssetID = Convert.ToInt32(cboAssetSelection.SelectedValue);
-                string serviceType = cboServiceType.SelectedItem.ToString();
-                string serviceDate = dtpServiceDate.Value.ToString("yyyy-MM-dd");
-                string details = rtbCompletionDetails.Text.Trim();
-
-                decimal cost = 0.00m;
-                if (!string.IsNullOrWhiteSpace(txtRepairCost.Text))
-                {
-                    decimal.TryParse(txtRepairCost.Text, out cost);
-                }
-
-                // 3. Commit new log records directly via Dataset TableAdapter component logic
-                this.maintenanceLogTableAdapter1.InsertQuery(serviceType, cost, serviceDate, details, selectedAssetID);
-
-                MessageBox.Show("Maintenance activity successfully logged for this asset entry!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                // 4. Force synchronization visual grid state refreshes
-                RefreshMaintenanceGrid();
-                ClearFormLayout();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Failed to record maintenance logs entry mapping profiles: " + ex.Message, "Execution Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+        
+        
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -228,14 +194,14 @@ namespace M2GiantGroupSystem
                 }
 
                 // 3. Execute update statement via your designer-dragged visual TableAdapter query module!
-                /*this.maintenanceLogTableAdapter1.UpdateQuery(
+                this.maintenanceLogTableAdapter1.UpdateQuery(
                     type,
                     cost,
                     dateStr,
                     noteDetails,
                     assetID,
                     selectedLogID
-                );*/
+                );
 
                 MessageBox.Show($"Maintenance Log entry {selectedLogID} successfully updated!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -325,11 +291,20 @@ namespace M2GiantGroupSystem
                     dtpServiceDate.Value = Convert.ToDateTime(row.Cells["serviceDate"].Value);
                 }
 
-                // 3. Select matching service string in the combo box list
+                // 3. THE FIX: Dynamic combobox injection safety net
                 string serviceTypeVal = row.Cells["serviceType"].Value?.ToString();
-                if (cboServiceType.Items.Contains(serviceTypeVal))
+                if (!string.IsNullOrWhiteSpace(serviceTypeVal))
                 {
+                    // If the database row contains a service type not currently in the dropdown, add it dynamically!
+                    if (!cboServiceType.Items.Contains(serviceTypeVal))
+                    {
+                        cboServiceType.Items.Add(serviceTypeVal);
+                    }
                     cboServiceType.SelectedItem = serviceTypeVal;
+                }
+                else
+                {
+                    cboServiceType.SelectedIndex = -1;
                 }
 
                 // 4. Map selection combo box back using index keys
@@ -345,6 +320,74 @@ namespace M2GiantGroupSystem
             catch (Exception ex)
             {
                 MessageBox.Show($"Error fetching selected maintenance record row: {ex.Message}", "Form Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnSaveLog_Click_1(object sender, EventArgs e)
+        {
+            // 0. Duplicate Prevention Guard Check
+            if (selectedLogID != 0)
+            {
+                MessageBox.Show("You currently have an existing maintenance record selected. \n\nPlease click 'Update' to save changes to this record, or click 'Clear' to start a brand new log.", "Duplicate Prevention", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // 1. Defensive input validation routines
+            if (cboAssetSelection.SelectedValue == null)
+            {
+                MessageBox.Show("Please select a valid asset being logged.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(rtbCompletionDetails.Text))
+            {
+                MessageBox.Show("Please fill out description details for the completion log task notes.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // THE FIX: Strict cost checking to enforce that a valid, non-zero amount has already been paid
+            if (string.IsNullOrWhiteSpace(txtRepairCost.Text))
+            {
+                MessageBox.Show("Please provide the repair cost. A default or zero value is not permitted as this maintenance has already been completed.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            decimal cost;
+            // Attempt to parse the text box entry into a valid decimal value
+            if (!decimal.TryParse(txtRepairCost.Text, out cost))
+            {
+                MessageBox.Show("Invalid characters detected in Repair Cost. Please enter a valid numerical amount (e.g., 250.00).", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Enforce that the cost must be strictly greater than zero to pass validation metrics
+            if (cost <= 0.00m)
+            {
+                MessageBox.Show("The repair cost must be a value greater than 0.00 since this maintenance task is marked as finalized and paid.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                // 2. Safely capture input properties from active layout elements
+                int selectedAssetID = Convert.ToInt32(cboAssetSelection.SelectedValue);
+                string serviceType = cboServiceType.SelectedItem.ToString();
+                string serviceDate = dtpServiceDate.Value.ToString("yyyy-MM-dd");
+                string details = rtbCompletionDetails.Text.Trim();
+
+                // 3. Commit new log records directly via Dataset TableAdapter component logic
+                this.maintenanceLogTableAdapter1.InsertQuery(serviceType, cost, serviceDate, details, selectedAssetID);
+
+                // Message box to show that it was inserted
+                MessageBox.Show("New maintenance log entry successfully recorded!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // 4. Force synchronization visual grid state refreshes
+                RefreshMaintenanceGrid();
+                ClearFormLayout();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to record maintenance logs entry mapping profiles: " + ex.Message, "Execution Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
