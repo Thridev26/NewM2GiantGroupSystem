@@ -22,19 +22,41 @@ namespace M2GiantGroupSystem
 
         private void btnVerify_Click(object sender, EventArgs e)
         {
-            if (AuthDB.VerifyOTP(_userEmail, txtOTP.Text))
-            {
-                MessageBox.Show("OTP Verified successfully!");
+            string status = AuthDB.VerifyOTP(_userEmail, txtOTP.Text);
 
-                // Proceed to the final step: Setting the new password
-                ResetPasswordForm resetForm = new ResetPasswordForm(_userEmail);
-                resetForm.ShowDialog();
-                this.Close();
-            }
-            else
+            switch (status)
             {
-                MessageBox.Show("Invalid or expired OTP. Please try again.");
+                case "Verified":
+                    MessageBox.Show("OTP Verified successfully!");
+
+                    // Proceed to the final step: Setting the new password
+                    ResetPasswordForm resetForm = new ResetPasswordForm(_userEmail);
+                    resetForm.ShowDialog();
+                    this.Close();
+                    break;
+
+                case "Expired":
+                    MessageBox.Show("The OTP you entered has expired. Please request a new one.");
+                    break;
+
+                case "Invalid":
+                default:
+                    MessageBox.Show("The OTP you entered is incorrect. Please double-check your code.");
+                    break;
             }
+            //if (AuthDB.VerifyOTP(_userEmail, txtOTP.Text))
+            //{
+            //    MessageBox.Show("OTP Verified successfully!");
+
+            //    // Proceed to the final step: Setting the new password
+            //    ResetPasswordForm resetForm = new ResetPasswordForm(_userEmail);
+            //    resetForm.ShowDialog();
+            //    this.Close();
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Invalid or expired OTP. Please try again.");
+            //}
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -54,24 +54,54 @@ public static class AuthDB
         return true;
     }
 
-    public static bool VerifyOTP(string email, string otp)
+    public static string VerifyOTP(string email, string otp) 
     {
-        // Check if the OTP matches, the email matches, AND the expiry time is still valid
-        // We join PasswordResets with Staff to verify the email address
-        string query = @"SELECT COUNT(*) FROM PasswordResets pr 
-                     JOIN Staff s ON pr.StaffID = s.staffID 
-                     WHERE s.emailAddress = @email AND pr.OTP = @otp AND pr.ExpiryTime > GETDATE()";
-
         using (SqlConnection con = new SqlConnection(connString))
         {
-            SqlCommand cmd = new SqlCommand(query, con);
-            cmd.Parameters.AddWithValue("@email", email);
-            cmd.Parameters.AddWithValue("@otp", otp);
             con.Open();
 
-            int count = (int)cmd.ExecuteScalar();
-            return count > 0; // Returns true if a valid, non-expired OTP exists
+            // 1. Check if the OTP matches at all
+            string checkMatchQuery = @"SELECT COUNT(*) FROM PasswordResets pr 
+                                   JOIN Staff s ON pr.StaffID = s.staffID 
+                                   WHERE s.emailAddress = @email AND pr.OTP = @otp";
+
+            SqlCommand matchCmd = new SqlCommand(checkMatchQuery, con);
+            matchCmd.Parameters.AddWithValue("@email", email);
+            matchCmd.Parameters.AddWithValue("@otp", otp);
+
+            int count = (int)matchCmd.ExecuteScalar();
+            if (count == 0) return "Invalid";
+
+            // 2. If it exists, check if it is expired
+            string checkExpiryQuery = @"SELECT COUNT(*) FROM PasswordResets pr 
+                                    JOIN Staff s ON pr.StaffID = s.staffID 
+                                    WHERE s.emailAddress = @email AND pr.OTP = @otp AND pr.ExpiryTime > GETDATE()";
+
+            SqlCommand expiryCmd = new SqlCommand(checkExpiryQuery, con);
+            expiryCmd.Parameters.AddWithValue("@email", email);
+            expiryCmd.Parameters.AddWithValue("@otp", otp);
+
+            int validCount = (int)expiryCmd.ExecuteScalar();
+
+            return (validCount > 0) ? "Verified" : "Expired";
         }
+
+        //// Check if the OTP matches, the email matches, AND the expiry time is still valid
+        //// We join PasswordResets with Staff to verify the email address
+        //string query = @"SELECT COUNT(*) FROM PasswordResets pr 
+        //             JOIN Staff s ON pr.StaffID = s.staffID 
+        //             WHERE s.emailAddress = @email AND pr.OTP = @otp AND pr.ExpiryTime > GETDATE()";
+
+        //using (SqlConnection con = new SqlConnection(connString))
+        //{
+        //    SqlCommand cmd = new SqlCommand(query, con);
+        //    cmd.Parameters.AddWithValue("@email", email);
+        //    cmd.Parameters.AddWithValue("@otp", otp);
+        //    con.Open();
+
+        //    int count = (int)cmd.ExecuteScalar();
+        //    return count > 0; // Returns true if a valid, non-expired OTP exists
+        //}
     }
 
     public static async Task SendEmail(string toEmail, string otp)
