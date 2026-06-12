@@ -19373,7 +19373,7 @@ SELECT assetID, serialNumber, type, purchaseDate, currentCondition, nextServiceD
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[7];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[8];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT * FROM OwnedAsset \r\n";
@@ -19385,34 +19385,33 @@ SELECT assetID, serialNumber, type, purchaseDate, currentCondition, nextServiceD
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@assetID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "assetID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT * FROM OwnedAsset AS O\r\nWHERE O.assetStatus <> \'Retired\'\r\n  AND NOT EXISTS" +
-                " (\r\n    SELECT 1 \r\n    FROM JobAssetAssignment AS J \r\n    WHERE J.ownedAssetID =" +
-                " O.assetID\r\n);";
+            this._commandCollection[2].CommandText = @"SELECT oa.assetID, oa.type, oa.serialNumber, oa.currentCondition, oa.assetStatus, j.startDate AS jobStartDate
+FROM     OwnedAsset AS oa LEFT OUTER JOIN
+                  JobAssetAssignment AS jaa ON oa.assetID = jaa.ownedAssetID AND jaa.jobID = @jobID LEFT OUTER JOIN
+                  Job AS j ON j.jobID = @jobID
+WHERE  (oa.assetStatus NOT IN ('Retired', 'Under Maintenance')) AND (jaa.ownedAssetID IS NULL)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@jobID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "jobID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "SELECT assetID, serialNumber, type, purchaseDate, currentCondition, nextServiceDa" +
-                "te, assetStatus\r\nFROM     OwnedAsset\r\nWHERE  (serialNumber LIKE @serialNumber + " +
-                "\'%\')";
+            this._commandCollection[3].CommandText = @"SELECT oa.assetID, oa.type, oa.serialNumber, oa.currentCondition, oa.assetStatus, j.startDate AS jobStartDate
+FROM     OwnedAsset AS oa LEFT OUTER JOIN
+                  JobAssetAssignment AS jaa ON oa.assetID = jaa.ownedAssetID AND jaa.jobID = @jobID LEFT OUTER JOIN
+                  Job AS j ON j.jobID = @jobID
+WHERE  (oa.assetStatus NOT IN ('Retired', 'Under Maintenance')) AND (jaa.ownedAssetID IS NULL)";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@serialNumber", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "serialNumber", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@jobID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "jobID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = @"INSERT INTO [OwnedAsset] ([serialNumber], [type], [purchaseDate], [currentCondition], [nextServiceDate], [assetStatus]) VALUES (@serialNumber, @type, @purchaseDate, @currentCondition, @nextServiceDate, @assetStatus);
-SELECT assetID, serialNumber, type, purchaseDate, currentCondition, nextServiceDate, assetStatus FROM OwnedAsset WHERE (assetID = SCOPE_IDENTITY())";
+            this._commandCollection[4].CommandText = "SELECT assetID, serialNumber, type, purchaseDate, currentCondition, nextServiceDa" +
+                "te, assetStatus\r\nFROM     OwnedAsset\r\nWHERE  (serialNumber LIKE @serialNumber + " +
+                "\'%\')";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@serialNumber", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "serialNumber", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@type", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "type", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@purchaseDate", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 0, 0, "purchaseDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@currentCondition", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "currentCondition", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@nextServiceDate", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 0, 0, "nextServiceDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@assetStatus", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "assetStatus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[5] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[5].Connection = this.Connection;
-            this._commandCollection[5].CommandText = @"UPDATE OwnedAsset
-SET          serialNumber = @serialNumber, type = @type, purchaseDate = @purchaseDate, currentCondition = @currentCondition, nextServiceDate = @nextServiceDate, assetStatus = @assetStatus
-WHERE  (assetID = @assetID); 
-SELECT assetID, serialNumber, type, purchaseDate, currentCondition, nextServiceDate, assetStatus FROM OwnedAsset WHERE (assetID = @assetID)";
+            this._commandCollection[5].CommandText = @"INSERT INTO [OwnedAsset] ([serialNumber], [type], [purchaseDate], [currentCondition], [nextServiceDate], [assetStatus]) VALUES (@serialNumber, @type, @purchaseDate, @currentCondition, @nextServiceDate, @assetStatus);
+SELECT assetID, serialNumber, type, purchaseDate, currentCondition, nextServiceDate, assetStatus FROM OwnedAsset WHERE (assetID = SCOPE_IDENTITY())";
             this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@serialNumber", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "serialNumber", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@type", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "type", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -19420,14 +19419,27 @@ SELECT assetID, serialNumber, type, purchaseDate, currentCondition, nextServiceD
             this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@currentCondition", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "currentCondition", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@nextServiceDate", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 0, 0, "nextServiceDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@assetStatus", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "assetStatus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@assetID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "assetID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[6] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[6].Connection = this.Connection;
-            this._commandCollection[6].CommandText = "UPDATE OwnedAsset\r\nSET          assetStatus = \'Retired\'\r\nWHERE  (assetID = @asset" +
+            this._commandCollection[6].CommandText = @"UPDATE OwnedAsset
+SET          serialNumber = @serialNumber, type = @type, purchaseDate = @purchaseDate, currentCondition = @currentCondition, nextServiceDate = @nextServiceDate, assetStatus = @assetStatus
+WHERE  (assetID = @assetID); 
+SELECT assetID, serialNumber, type, purchaseDate, currentCondition, nextServiceDate, assetStatus FROM OwnedAsset WHERE (assetID = @assetID)";
+            this._commandCollection[6].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@serialNumber", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "serialNumber", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@type", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "type", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@purchaseDate", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 0, 0, "purchaseDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@currentCondition", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "currentCondition", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@nextServiceDate", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 0, 0, "nextServiceDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@assetStatus", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "assetStatus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@assetID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "assetID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[7] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[7].Connection = this.Connection;
+            this._commandCollection[7].CommandText = "UPDATE OwnedAsset\r\nSET          assetStatus = \'Retired\'\r\nWHERE  (assetID = @asset" +
                 "ID); \r\nSELECT assetID, serialNumber, type, purchaseDate, currentCondition, nextS" +
                 "erviceDate, assetStatus FROM OwnedAsset WHERE (assetID = @assetID)";
-            this._commandCollection[6].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@assetID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "assetID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[7].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[7].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@assetID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "assetID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -19458,8 +19470,9 @@ SELECT assetID, serialNumber, type, purchaseDate, currentCondition, nextServiceD
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillByAvailableOwned(GroupWst1DataSet.OwnedAssetDataTable dataTable) {
+        public virtual int FillByAvailableOwned(GroupWst1DataSet.OwnedAssetDataTable dataTable, int jobID) {
             this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(jobID));
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
@@ -19471,8 +19484,35 @@ SELECT assetID, serialNumber, type, purchaseDate, currentCondition, nextServiceD
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual GroupWst1DataSet.OwnedAssetDataTable GetDataBy1() {
+        public virtual GroupWst1DataSet.OwnedAssetDataTable GetDataBy1(int jobID) {
             this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(jobID));
+            GroupWst1DataSet.OwnedAssetDataTable dataTable = new GroupWst1DataSet.OwnedAssetDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByAvailableOwnedNew(GroupWst1DataSet.OwnedAssetDataTable dataTable, int jobID) {
+            this.Adapter.SelectCommand = this.CommandCollection[3];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(jobID));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual GroupWst1DataSet.OwnedAssetDataTable GetDataBy5(int jobID) {
+            this.Adapter.SelectCommand = this.CommandCollection[3];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(jobID));
             GroupWst1DataSet.OwnedAssetDataTable dataTable = new GroupWst1DataSet.OwnedAssetDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -19483,7 +19523,7 @@ SELECT assetID, serialNumber, type, purchaseDate, currentCondition, nextServiceD
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
         public virtual int FillBySerialNumber(GroupWst1DataSet.OwnedAssetDataTable dataTable, string serialNumber) {
-            this.Adapter.SelectCommand = this.CommandCollection[3];
+            this.Adapter.SelectCommand = this.CommandCollection[4];
             if ((serialNumber == null)) {
                 throw new global::System.ArgumentNullException("serialNumber");
             }
@@ -19502,7 +19542,7 @@ SELECT assetID, serialNumber, type, purchaseDate, currentCondition, nextServiceD
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual GroupWst1DataSet.OwnedAssetDataTable GetDataBy11(string serialNumber) {
-            this.Adapter.SelectCommand = this.CommandCollection[3];
+            this.Adapter.SelectCommand = this.CommandCollection[4];
             if ((serialNumber == null)) {
                 throw new global::System.ArgumentNullException("serialNumber");
             }
@@ -19774,7 +19814,7 @@ SELECT assetID, serialNumber, type, purchaseDate, currentCondition, nextServiceD
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
         public virtual int InsertNewOwnedAsset(string serialNumber, string type, string purchaseDate, string currentCondition, string nextServiceDate, string assetStatus) {
-            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[4];
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[5];
             if ((serialNumber == null)) {
                 throw new global::System.ArgumentNullException("serialNumber");
             }
@@ -19833,7 +19873,7 @@ SELECT assetID, serialNumber, type, purchaseDate, currentCondition, nextServiceD
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
         public virtual int UpdateOwnedAsset(string serialNumber, string type, string purchaseDate, string currentCondition, string nextServiceDate, string assetStatus, int assetID) {
-            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[5];
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[6];
             if ((serialNumber == null)) {
                 throw new global::System.ArgumentNullException("serialNumber");
             }
@@ -19893,7 +19933,7 @@ SELECT assetID, serialNumber, type, purchaseDate, currentCondition, nextServiceD
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
         public virtual int UpdateRetiredAsset(int assetID) {
-            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[6];
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[7];
             command.Parameters[0].Value = ((int)(assetID));
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -20523,10 +20563,13 @@ SELECT hiredAssetID, supplierName, hireDate, returnDate, hireCost, equipmentType
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@hiredAssetID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "hiredAssetID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT * FROM HiredAsset AS H\r\nWHERE H.hiredAssetStatus <> \'Returned\'\r\n  AND NOT " +
-                "EXISTS (\r\n    SELECT 1 \r\n    FROM JobAssetAssignment AS J \r\n    WHERE J.hiredAss" +
-                "etID = H.hiredAssetID\r\n);";
+            this._commandCollection[2].CommandText = @"SELECT ha.hiredAssetID, ha.equipmentType, ha.supplierName, ha.hireDate, ha.hireCost, ha.hiredAssetStatus, j.startDate AS jobStartDate
+FROM     HiredAsset AS ha LEFT OUTER JOIN
+                  JobAssetAssignment AS jaa ON ha.hiredAssetID = jaa.hiredAssetID AND jaa.jobID = @jobID LEFT OUTER JOIN
+                  Job AS j ON j.jobID = @jobID
+WHERE  (ha.hiredAssetStatus NOT IN ('Returned', 'Damaged', 'Overdue')) AND (jaa.hiredAssetID IS NULL)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@jobID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "jobID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
             this._commandCollection[3].CommandText = "SELECT hiredAssetID, supplierName, hireDate, returnDate, hireCost, equipmentType," +
@@ -20595,8 +20638,9 @@ SELECT hiredAssetID, supplierName, hireDate, returnDate, hireCost, equipmentType
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillByAvailableHired(GroupWst1DataSet.HiredAssetDataTable dataTable) {
+        public virtual int FillByAvailableHired(GroupWst1DataSet.HiredAssetDataTable dataTable, int jobID) {
             this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(jobID));
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
@@ -20608,8 +20652,9 @@ SELECT hiredAssetID, supplierName, hireDate, returnDate, hireCost, equipmentType
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual GroupWst1DataSet.HiredAssetDataTable GetDataBy1() {
+        public virtual GroupWst1DataSet.HiredAssetDataTable GetDataBy1(int jobID) {
             this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(jobID));
             GroupWst1DataSet.HiredAssetDataTable dataTable = new GroupWst1DataSet.HiredAssetDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -21232,17 +21277,14 @@ SELECT staffID, firstName, lastName, userName, passwordHash, contactNumber, staf
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = @"SELECT 
-    contactNumber, dailyRate, emailAddress, firstName, lastName, 
-    passwordHash, roleID, staffID, staffStatus, userName 
-FROM Staff AS S 
-WHERE S.roleID NOT IN (10, 11)
-  AND NOT EXISTS (
-    SELECT 1 
-    FROM JobStaffAssignment AS J 
-    WHERE J.staffID = S.staffID
-);";
+            this._commandCollection[1].CommandText = @"SELECT s.staffID, s.firstName, s.lastName, s.contactNumber, s.dailyRate, s.roleID, r.roleName, j.startDate AS jobStartDate
+FROM     Staff AS s INNER JOIN
+                  Role AS r ON s.roleID = r.roleID LEFT OUTER JOIN
+                  JobStaffAssignment AS jsa ON s.staffID = jsa.staffID AND jsa.jobID = @jobID LEFT OUTER JOIN
+                  Job AS j ON j.jobID = @jobID
+WHERE  (s.staffStatus = 'Active') AND (r.roleID NOT IN (10, 11)) AND (jsa.staffID IS NULL)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@jobID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "jobID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -21273,8 +21315,9 @@ WHERE S.roleID NOT IN (10, 11)
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillByAvailableStaff(GroupWst1DataSet.StaffDataTable dataTable) {
+        public virtual int FillByAvailableStaff(GroupWst1DataSet.StaffDataTable dataTable, int jobID) {
             this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(jobID));
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
@@ -21286,8 +21329,9 @@ WHERE S.roleID NOT IN (10, 11)
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual GroupWst1DataSet.StaffDataTable GetDataBy() {
+        public virtual GroupWst1DataSet.StaffDataTable GetDataBy(int jobID) {
             this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(jobID));
             GroupWst1DataSet.StaffDataTable dataTable = new GroupWst1DataSet.StaffDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -22102,7 +22146,7 @@ FROM   Job INNER JOIN
              Quote ON Job.quoteID = Quote.QuoteID INNER JOIN
              JobRequest ON Quote.jobRequestID = JobRequest.jobRequestID INNER JOIN
              Client ON JobRequest.clientID = Client.clientID
-WHERE (Job.jobStatus LIKE 'Not Started%')";
+WHERE (jobStatus IN ('Not Started', 'In Progress'))";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
