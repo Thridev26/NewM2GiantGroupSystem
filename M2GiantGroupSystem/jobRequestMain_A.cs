@@ -64,7 +64,7 @@ namespace M2GiantGroupSystem
 
                 dgvJoinPictures.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                 dgvJoinPictures.DefaultCellStyle.SelectionBackColor = Color.Green;
-                runQuery(textBox3, dgv_clientJoinJobRequest);
+                runQuery(textBox1, dgv_clientJoinJobRequest);
 
                 dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                 dataGridView1.DefaultCellStyle.SelectionBackColor = Color.Green;
@@ -423,25 +423,25 @@ namespace M2GiantGroupSystem
                 if (decimal.TryParse(tbLat_A.Text, out latitude) &&
                     decimal.TryParse(tbLong_A.Text, out longitude))
                 {
-                   /* jobRequestID = Convert.ToInt32(
+                   jobRequestID = Convert.ToInt32(
                         jobRequestTableAdapter1.InsertQuery(
                             clientID,
                             tbAddress_A.Text.Trim(),
                             cmbRequestSource_A.SelectedItem.ToString(),
                             cmbUrgencyLevel_A.SelectedItem.ToString(),
                             longitude,
-                            latitude));*/
+                            latitude));
                 }
                 else
                 {
-                    /*jobRequestID = Convert.ToInt32(
+                    jobRequestID = Convert.ToInt32(
                         jobRequestTableAdapter1.InsertQuery(
                             clientID,
                             tbAddress_A.Text.Trim(),
                             cmbRequestSource_A.SelectedItem.ToString(),
                             cmbUrgencyLevel_A.SelectedItem.ToString(),
                             null,
-                            null));*/
+                            null));
                 }
                 tbName_A.Text = "";
                 tbEmail_A.Text = "";
@@ -1422,6 +1422,11 @@ namespace M2GiantGroupSystem
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             jobRequestID = 0;
+            runQuery2(DateTime.Now, "", "");
+            runQuery(textBox2, dataGridView1);
+            runQuery(textBox1, dgv_clientJoinJobRequest);
+            runQuery(textBox3, dgvJoinPictures);
+
         }
         // Returns a user-friendly hint string based on the DB dataType column
         private string GetDataTypeHint(string dataType)
