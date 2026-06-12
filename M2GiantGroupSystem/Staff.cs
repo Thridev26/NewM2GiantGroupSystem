@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace M2GiantGroupSystem
 {
@@ -265,7 +266,9 @@ namespace M2GiantGroupSystem
 
                 MessageBox.Show("Staff updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ClearEditFields();
+                // Refresh BOTH grids
                 dgvStaffInfo.DataSource = StaffDB.GetStaffForUser(UserSession.StaffID, UserSession.AccessLevel);
+                staffDataGridView.DataSource = StaffDB.GetAllStaff();               
             }
             catch (Exception ex)
             {
@@ -298,6 +301,14 @@ namespace M2GiantGroupSystem
                 if (cmbRoleAdd.SelectedValue == null)
                     throw new Exception("Please select a role.");
 
+                string rawInput = dailyRateTextBox1.Text.Trim();
+                // 2.Safe Number Conversion
+                //decimal dailyRate;
+                // Use InvariantCulture to ensure the parser always accepts '.' as the decimal separator
+                if (!decimal.TryParse(rawInput, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal dailyRate))
+                {
+                    throw new Exception("Please enter a valid numeric value for the Daily Rate (e.g., 1000 or 1000.00).");
+                }
                 // Call Save
                 StaffDB.SaveStaff(
                     null,
@@ -308,14 +319,16 @@ namespace M2GiantGroupSystem
                     contactNumberTextBox1.Text,
                     emailAddressTextBox1.Text,
                     cmbAddStatus.SelectedItem.ToString(),
-                    decimal.Parse(dailyRateTextBox.Text),
+                    dailyRate,
                     (int)cmbRoleAdd.SelectedValue,
                     true
                 );
 
                 MessageBox.Show("New staff member added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ClearAddFields();
-                staffDataGridView.DataSource = StaffDB.GetStaffForUser(UserSession.StaffID, UserSession.AccessLevel);
+                // Refresh BOTH grids (assigning to their respective targets)
+                dgvStaffInfo.DataSource = StaffDB.GetStaffForUser(UserSession.StaffID, UserSession.AccessLevel);
+                staffDataGridView.DataSource = StaffDB.GetAllStaff();
             }
             catch (Exception ex)
             {
