@@ -49,6 +49,7 @@ namespace M2GiantGroupSystem
         {
             try
             {
+                dateTimePicker1.Value = DateTime.Now;
                 tabControl1.SelectedIndex = tabIndex;
                 tabControl1.DrawMode = TabDrawMode.OwnerDrawFixed;
                 tabControl1.DrawItem += tabControl1_DrawItem;
@@ -525,7 +526,7 @@ namespace M2GiantGroupSystem
                         "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-
+                dateTimePicker1.Value = DateTime.Now;
                 jobRequestID = Convert.ToInt32(cell.Value);
                 lbl_ID.Text = "Selected Job Request ID: " + jobRequestID.ToString();
 
@@ -1426,6 +1427,7 @@ namespace M2GiantGroupSystem
             runQuery(textBox2, dataGridView1);
             runQuery(textBox1, dgv_clientJoinJobRequest);
             runQuery(textBox3, dgvJoinPictures);
+            dateTimePicker1.Value= DateTime.Now;
 
         }
         // Returns a user-friendly hint string based on the DB dataType column
