@@ -75,10 +75,10 @@
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.richTextBox10 = new System.Windows.Forms.RichTextBox();
             this.tabPage12 = new System.Windows.Forms.TabPage();
-            this.tabPage13 = new System.Windows.Forms.TabPage();
             this.button12 = new System.Windows.Forms.Button();
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.richTextBox11 = new System.Windows.Forms.RichTextBox();
+            this.tabPage13 = new System.Windows.Forms.TabPage();
             this.button13 = new System.Windows.Forms.Button();
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.richTextBox12 = new System.Windows.Forms.RichTextBox();
@@ -100,6 +100,9 @@
             // 
             // tabControl1
             // 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
@@ -113,11 +116,10 @@
             this.tabControl1.Controls.Add(this.tabPage11);
             this.tabControl1.Controls.Add(this.tabPage12);
             this.tabControl1.Controls.Add(this.tabPage13);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1022, 752);
+            this.tabControl1.Size = new System.Drawing.Size(1924, 1055);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             this.tabControl1.Enter += new System.EventHandler(this.tabControl1_Enter);
@@ -128,10 +130,10 @@
             this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.seacrchClients);
             this.tabPage1.Controls.Add(this.clientsText);
-            this.tabPage1.Location = new System.Drawing.Point(4, 26);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1014, 722);
+            this.tabPage1.Size = new System.Drawing.Size(1916, 1026);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Clients";
             // 
@@ -159,10 +161,14 @@
             // 
             // clientsText
             // 
+            this.clientsText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.clientsText.BackColor = System.Drawing.SystemColors.Info;
             this.clientsText.Location = new System.Drawing.Point(3, 34);
             this.clientsText.Name = "clientsText";
-            this.clientsText.Size = new System.Drawing.Size(1005, 686);
+            this.clientsText.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.clientsText.Size = new System.Drawing.Size(1907, 989);
             this.clientsText.TabIndex = 1;
             this.clientsText.Text = "";
             // 
@@ -172,10 +178,10 @@
             this.tabPage2.Controls.Add(this.button2);
             this.tabPage2.Controls.Add(this.textBox1);
             this.tabPage2.Controls.Add(this.richTextBox1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 26);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1014, 722);
+            this.tabPage2.Size = new System.Drawing.Size(1916, 1026);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "JobRequests";
             // 
@@ -203,10 +209,14 @@
             // 
             // richTextBox1
             // 
+            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBox1.BackColor = System.Drawing.SystemColors.Info;
             this.richTextBox1.Location = new System.Drawing.Point(3, 34);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(1005, 686);
+            this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.richTextBox1.Size = new System.Drawing.Size(1907, 989);
             this.richTextBox1.TabIndex = 4;
             this.richTextBox1.Text = "";
             // 
@@ -216,9 +226,9 @@
             this.tabPage3.Controls.Add(this.button3);
             this.tabPage3.Controls.Add(this.textBox2);
             this.tabPage3.Controls.Add(this.richTextBox2);
-            this.tabPage3.Location = new System.Drawing.Point(4, 26);
+            this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1014, 722);
+            this.tabPage3.Size = new System.Drawing.Size(1916, 1026);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Quotations";
             // 
@@ -246,10 +256,14 @@
             // 
             // richTextBox2
             // 
+            this.richTextBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBox2.BackColor = System.Drawing.SystemColors.Info;
             this.richTextBox2.Location = new System.Drawing.Point(3, 34);
             this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(1005, 686);
+            this.richTextBox2.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.richTextBox2.Size = new System.Drawing.Size(1907, 989);
             this.richTextBox2.TabIndex = 4;
             this.richTextBox2.Text = "";
             // 
@@ -259,9 +273,9 @@
             this.tabPage4.Controls.Add(this.button4);
             this.tabPage4.Controls.Add(this.textBox3);
             this.tabPage4.Controls.Add(this.richTextBox3);
-            this.tabPage4.Location = new System.Drawing.Point(4, 26);
+            this.tabPage4.Location = new System.Drawing.Point(4, 25);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1014, 722);
+            this.tabPage4.Size = new System.Drawing.Size(1014, 723);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Scheduling";
             // 
@@ -289,6 +303,9 @@
             // 
             // richTextBox3
             // 
+            this.richTextBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBox3.BackColor = System.Drawing.SystemColors.Info;
             this.richTextBox3.Location = new System.Drawing.Point(3, 34);
             this.richTextBox3.Name = "richTextBox3";
@@ -302,9 +319,9 @@
             this.tabPage5.Controls.Add(this.button5);
             this.tabPage5.Controls.Add(this.textBox4);
             this.tabPage5.Controls.Add(this.richTextBox4);
-            this.tabPage5.Location = new System.Drawing.Point(4, 26);
+            this.tabPage5.Location = new System.Drawing.Point(4, 25);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(1014, 722);
+            this.tabPage5.Size = new System.Drawing.Size(1014, 723);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Jobs";
             // 
@@ -332,6 +349,9 @@
             // 
             // richTextBox4
             // 
+            this.richTextBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBox4.BackColor = System.Drawing.SystemColors.Info;
             this.richTextBox4.Location = new System.Drawing.Point(3, 34);
             this.richTextBox4.Name = "richTextBox4";
@@ -345,9 +365,9 @@
             this.tabPage6.Controls.Add(this.button6);
             this.tabPage6.Controls.Add(this.textBox5);
             this.tabPage6.Controls.Add(this.richTextBox5);
-            this.tabPage6.Location = new System.Drawing.Point(4, 26);
+            this.tabPage6.Location = new System.Drawing.Point(4, 25);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(1014, 722);
+            this.tabPage6.Size = new System.Drawing.Size(1014, 723);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Invoicing";
             // 
@@ -375,6 +395,9 @@
             // 
             // richTextBox5
             // 
+            this.richTextBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBox5.BackColor = System.Drawing.SystemColors.Info;
             this.richTextBox5.Location = new System.Drawing.Point(3, 34);
             this.richTextBox5.Name = "richTextBox5";
@@ -388,9 +411,9 @@
             this.tabPage7.Controls.Add(this.button7);
             this.tabPage7.Controls.Add(this.textBox6);
             this.tabPage7.Controls.Add(this.richTextBox6);
-            this.tabPage7.Location = new System.Drawing.Point(4, 26);
+            this.tabPage7.Location = new System.Drawing.Point(4, 25);
             this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(1014, 722);
+            this.tabPage7.Size = new System.Drawing.Size(1014, 723);
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "Assets";
             // 
@@ -418,6 +441,9 @@
             // 
             // richTextBox6
             // 
+            this.richTextBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBox6.BackColor = System.Drawing.SystemColors.Info;
             this.richTextBox6.Location = new System.Drawing.Point(3, 34);
             this.richTextBox6.Name = "richTextBox6";
@@ -431,9 +457,9 @@
             this.tabPage8.Controls.Add(this.button8);
             this.tabPage8.Controls.Add(this.textBox7);
             this.tabPage8.Controls.Add(this.richTextBox7);
-            this.tabPage8.Location = new System.Drawing.Point(4, 26);
+            this.tabPage8.Location = new System.Drawing.Point(4, 25);
             this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Size = new System.Drawing.Size(1014, 722);
+            this.tabPage8.Size = new System.Drawing.Size(1014, 723);
             this.tabPage8.TabIndex = 7;
             this.tabPage8.Text = "Maintenance";
             // 
@@ -461,6 +487,9 @@
             // 
             // richTextBox7
             // 
+            this.richTextBox7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBox7.BackColor = System.Drawing.SystemColors.Info;
             this.richTextBox7.Location = new System.Drawing.Point(3, 34);
             this.richTextBox7.Name = "richTextBox7";
@@ -474,9 +503,9 @@
             this.tabPage9.Controls.Add(this.button9);
             this.tabPage9.Controls.Add(this.textBox8);
             this.tabPage9.Controls.Add(this.richTextBox8);
-            this.tabPage9.Location = new System.Drawing.Point(4, 26);
+            this.tabPage9.Location = new System.Drawing.Point(4, 25);
             this.tabPage9.Name = "tabPage9";
-            this.tabPage9.Size = new System.Drawing.Size(1014, 722);
+            this.tabPage9.Size = new System.Drawing.Size(1014, 723);
             this.tabPage9.TabIndex = 8;
             this.tabPage9.Text = "Staff";
             // 
@@ -504,6 +533,9 @@
             // 
             // richTextBox8
             // 
+            this.richTextBox8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBox8.BackColor = System.Drawing.SystemColors.Info;
             this.richTextBox8.Location = new System.Drawing.Point(3, 34);
             this.richTextBox8.Name = "richTextBox8";
@@ -547,9 +579,14 @@
             // 
             // richTextBox9
             // 
+            this.richTextBox9.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBox9.BackColor = System.Drawing.SystemColors.Info;
+            this.richTextBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 4.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBox9.Location = new System.Drawing.Point(3, 34);
             this.richTextBox9.Name = "richTextBox9";
+            this.richTextBox9.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.richTextBox9.Size = new System.Drawing.Size(1005, 686);
             this.richTextBox9.TabIndex = 4;
             this.richTextBox9.Text = "";
@@ -561,9 +598,9 @@
             this.tabPage11.Controls.Add(this.button11);
             this.tabPage11.Controls.Add(this.textBox10);
             this.tabPage11.Controls.Add(this.richTextBox10);
-            this.tabPage11.Location = new System.Drawing.Point(4, 26);
+            this.tabPage11.Location = new System.Drawing.Point(4, 25);
             this.tabPage11.Name = "tabPage11";
-            this.tabPage11.Size = new System.Drawing.Size(1014, 722);
+            this.tabPage11.Size = new System.Drawing.Size(1014, 723);
             this.tabPage11.TabIndex = 10;
             this.tabPage11.Text = "SitePhotos";
             // 
@@ -591,8 +628,11 @@
             // 
             // richTextBox10
             // 
+            this.richTextBox10.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBox10.BackColor = System.Drawing.SystemColors.Info;
-            this.richTextBox10.Location = new System.Drawing.Point(3, 34);
+            this.richTextBox10.Location = new System.Drawing.Point(3, 29);
             this.richTextBox10.Name = "richTextBox10";
             this.richTextBox10.Size = new System.Drawing.Size(1005, 686);
             this.richTextBox10.TabIndex = 4;
@@ -604,23 +644,11 @@
             this.tabPage12.Controls.Add(this.button12);
             this.tabPage12.Controls.Add(this.textBox11);
             this.tabPage12.Controls.Add(this.richTextBox11);
-            this.tabPage12.Location = new System.Drawing.Point(4, 26);
+            this.tabPage12.Location = new System.Drawing.Point(4, 25);
             this.tabPage12.Name = "tabPage12";
-            this.tabPage12.Size = new System.Drawing.Size(1014, 722);
+            this.tabPage12.Size = new System.Drawing.Size(1014, 723);
             this.tabPage12.TabIndex = 11;
             this.tabPage12.Text = "Main menu";
-            // 
-            // tabPage13
-            // 
-            this.tabPage13.BackColor = System.Drawing.SystemColors.Info;
-            this.tabPage13.Controls.Add(this.button13);
-            this.tabPage13.Controls.Add(this.textBox12);
-            this.tabPage13.Controls.Add(this.richTextBox12);
-            this.tabPage13.Location = new System.Drawing.Point(4, 26);
-            this.tabPage13.Name = "tabPage13";
-            this.tabPage13.Size = new System.Drawing.Size(1014, 722);
-            this.tabPage13.TabIndex = 12;
-            this.tabPage13.Text = "Login";
             // 
             // button12
             // 
@@ -646,12 +674,27 @@
             // 
             // richTextBox11
             // 
+            this.richTextBox11.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBox11.BackColor = System.Drawing.SystemColors.Info;
             this.richTextBox11.Location = new System.Drawing.Point(3, 34);
             this.richTextBox11.Name = "richTextBox11";
             this.richTextBox11.Size = new System.Drawing.Size(1005, 686);
             this.richTextBox11.TabIndex = 7;
             this.richTextBox11.Text = "";
+            // 
+            // tabPage13
+            // 
+            this.tabPage13.BackColor = System.Drawing.SystemColors.Info;
+            this.tabPage13.Controls.Add(this.button13);
+            this.tabPage13.Controls.Add(this.textBox12);
+            this.tabPage13.Controls.Add(this.richTextBox12);
+            this.tabPage13.Location = new System.Drawing.Point(4, 25);
+            this.tabPage13.Name = "tabPage13";
+            this.tabPage13.Size = new System.Drawing.Size(1916, 1026);
+            this.tabPage13.TabIndex = 12;
+            this.tabPage13.Text = "Login";
             // 
             // button13
             // 
@@ -677,19 +720,23 @@
             // 
             // richTextBox12
             // 
+            this.richTextBox12.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextBox12.BackColor = System.Drawing.SystemColors.Info;
             this.richTextBox12.Location = new System.Drawing.Point(3, 34);
             this.richTextBox12.Name = "richTextBox12";
-            this.richTextBox12.Size = new System.Drawing.Size(1005, 686);
+            this.richTextBox12.Size = new System.Drawing.Size(1907, 989);
             this.richTextBox12.TabIndex = 7;
             this.richTextBox12.Text = "";
             // 
             // HelpForm_D
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.SeaShell;
-            this.ClientSize = new System.Drawing.Size(1022, 752);
+            this.ClientSize = new System.Drawing.Size(1924, 1055);
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "HelpForm_D";

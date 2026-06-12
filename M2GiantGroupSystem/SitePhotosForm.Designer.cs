@@ -51,7 +51,6 @@
             this.btnUpload = new System.Windows.Forms.Button();
             this.pbPreview = new System.Windows.Forms.PictureBox();
             this.btnBrowse = new System.Windows.Forms.Button();
-            this.rbAfter = new System.Windows.Forms.RadioButton();
             this.rbBefore = new System.Windows.Forms.RadioButton();
             this.label10 = new System.Windows.Forms.Label();
             this.photosTabControl = new System.Windows.Forms.TabControl();
@@ -109,6 +108,7 @@
             this.button1.TabIndex = 66;
             this.button1.Text = "Edit";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label4
@@ -220,7 +220,6 @@
             this.tabPage1.Controls.Add(this.btnUpload);
             this.tabPage1.Controls.Add(this.pbPreview);
             this.tabPage1.Controls.Add(this.btnBrowse);
-            this.tabPage1.Controls.Add(this.rbAfter);
             this.tabPage1.Controls.Add(this.rbBefore);
             this.tabPage1.Controls.Add(this.label10);
             this.tabPage1.Location = new System.Drawing.Point(4, 40);
@@ -339,18 +338,6 @@
             this.btnBrowse.UseVisualStyleBackColor = false;
             this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
             // 
-            // rbAfter
-            // 
-            this.rbAfter.AutoSize = true;
-            this.rbAfter.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbAfter.Location = new System.Drawing.Point(1298, 733);
-            this.rbAfter.Name = "rbAfter";
-            this.rbAfter.Size = new System.Drawing.Size(124, 54);
-            this.rbAfter.TabIndex = 63;
-            this.rbAfter.Text = "After";
-            this.rbAfter.UseVisualStyleBackColor = true;
-            this.rbAfter.CheckedChanged += new System.EventHandler(this.rbAfter_CheckedChanged);
-            // 
             // rbBefore
             // 
             this.rbBefore.AutoSize = true;
@@ -431,7 +418,6 @@
         private System.Windows.Forms.Button btnUpload;
         private System.Windows.Forms.PictureBox pbPreview;
         private System.Windows.Forms.Button btnBrowse;
-        private System.Windows.Forms.RadioButton rbAfter;
         private System.Windows.Forms.RadioButton rbBefore;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TabControl photosTabControl;
