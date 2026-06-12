@@ -92,7 +92,6 @@
             this.txtTotalwithVAT = new System.Windows.Forms.TextBox();
             this.txtVAT = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button9 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.giantGroupLogo = new System.Windows.Forms.PictureBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -127,7 +126,6 @@
             this.btnDeleteQuote = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.btnExportPDF = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dtpEditGenerated = new System.Windows.Forms.DateTimePicker();
             this.dtpEditExpiry = new System.Windows.Forms.DateTimePicker();
@@ -158,6 +156,9 @@
             this.quoteTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.QuoteTableAdapter();
             this.dataTable2TableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.DataTable2TableAdapter();
             this.dataTable3TableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.DataTable3TableAdapter();
+            this.label25 = new System.Windows.Forms.Label();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
             filePathLabel = new System.Windows.Forms.Label();
             urgencyLevelLabel = new System.Windows.Forms.Label();
             latitudeLabel = new System.Windows.Forms.Label();
@@ -444,7 +445,6 @@
             this.panel1.Controls.Add(this.txtTotalwithVAT);
             this.panel1.Controls.Add(this.txtVAT);
             this.panel1.Controls.Add(this.textBox1);
-            this.panel1.Controls.Add(this.button9);
             this.panel1.Controls.Add(this.button8);
             this.panel1.Controls.Add(this.giantGroupLogo);
             this.panel1.Controls.Add(this.label8);
@@ -915,19 +915,6 @@
             this.textBox1.Size = new System.Drawing.Size(287, 28);
             this.textBox1.TabIndex = 38;
             // 
-            // button9
-            // 
-            this.button9.BackColor = System.Drawing.Color.White;
-            this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button9.Location = new System.Drawing.Point(155, 836);
-            this.button9.Margin = new System.Windows.Forms.Padding(2);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(244, 42);
-            this.button9.TabIndex = 37;
-            this.button9.Text = "Return to Main Menu";
-            this.button9.UseVisualStyleBackColor = false;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
-            // 
             // button8
             // 
             this.button8.BackColor = System.Drawing.Color.White;
@@ -1116,12 +1103,14 @@
             // 
             this.panel2.AutoSize = true;
             this.panel2.BackColor = System.Drawing.Color.SeaShell;
+            this.panel2.Controls.Add(this.label26);
+            this.panel2.Controls.Add(this.txtSearch);
+            this.panel2.Controls.Add(this.label25);
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Controls.Add(this.quoteDataGridView);
             this.panel2.Controls.Add(this.btnDeleteQuote);
             this.panel2.Controls.Add(this.button10);
             this.panel2.Controls.Add(this.btnExportPDF);
-            this.panel2.Controls.Add(this.button7);
             this.panel2.Controls.Add(this.groupBox1);
             this.panel2.Controls.Add(this.btnEditQuote);
             this.panel2.Controls.Add(this.comboBox2);
@@ -1303,19 +1292,6 @@
             this.btnExportPDF.UseVisualStyleBackColor = false;
             this.btnExportPDF.Click += new System.EventHandler(this.btnExportPDF_Click);
             // 
-            // button7
-            // 
-            this.button7.BackColor = System.Drawing.Color.White;
-            this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button7.Location = new System.Drawing.Point(877, 869);
-            this.button7.Margin = new System.Windows.Forms.Padding(2);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(211, 42);
-            this.button7.TabIndex = 49;
-            this.button7.Text = "Return to Main Menu\r\n";
-            this.button7.UseVisualStyleBackColor = false;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.dtpEditGenerated);
@@ -1469,6 +1445,7 @@
             this.txtEditQuoteID.ReadOnly = true;
             this.txtEditQuoteID.Size = new System.Drawing.Size(287, 28);
             this.txtEditQuoteID.TabIndex = 48;
+            this.txtEditQuoteID.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // button4
             // 
@@ -1526,6 +1503,7 @@
             this.txtEditJobRequestID.ReadOnly = true;
             this.txtEditJobRequestID.Size = new System.Drawing.Size(287, 28);
             this.txtEditJobRequestID.TabIndex = 39;
+            this.txtEditJobRequestID.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // btnEditQuote
             // 
@@ -1550,7 +1528,7 @@
             "Not Sent",
             "Accepted",
             "Rejected"});
-            this.comboBox2.Location = new System.Drawing.Point(560, 50);
+            this.comboBox2.Location = new System.Drawing.Point(254, 50);
             this.comboBox2.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(234, 30);
@@ -1562,7 +1540,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(244, 59);
+            this.label4.Location = new System.Drawing.Point(34, 53);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(171, 22);
@@ -1633,6 +1611,38 @@
             // 
             this.dataTable3TableAdapter.ClearBeforeFill = true;
             // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(34, 102);
+            this.label25.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(803, 22);
+            this.label25.TabIndex = 55;
+            this.label25.Text = "Note to User: Double click the Quote record you would like to Edit / Print / Save" +
+    " / Delete.";
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.txtSearch.Location = new System.Drawing.Point(881, 50);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(296, 28);
+            this.txtSearch.TabIndex = 56;
+            this.txtSearch.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.ForeColor = System.Drawing.Color.Black;
+            this.label26.Location = new System.Drawing.Point(556, 58);
+            this.label26.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(262, 22);
+            this.label26.TabIndex = 57;
+            this.label26.Text = "Search By Name / Surname:";
+            // 
             // Quotation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
@@ -1697,7 +1707,6 @@
         private System.Windows.Forms.TextBox txtTotalwithVAT;
         private System.Windows.Forms.TextBox txtVAT;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.PictureBox giantGroupLogo;
         private System.Windows.Forms.Label label9;
@@ -1721,7 +1730,6 @@
         private System.Windows.Forms.Button btnDeleteQuote;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button btnExportPDF;
-        private System.Windows.Forms.Button button7;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DateTimePicker dtpEditGenerated;
         private System.Windows.Forms.DateTimePicker dtpEditExpiry;
@@ -1792,5 +1800,8 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox txtTravelFee;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.Label label26;
     }
 }
