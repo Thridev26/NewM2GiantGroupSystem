@@ -330,9 +330,9 @@
             "Tree Planting",
             "Vegetation Clearance",
             "Hedge Trimming"});
-            this.clbItems.Location = new System.Drawing.Point(1009, 646);
+            this.clbItems.Location = new System.Drawing.Point(1009, 634);
             this.clbItems.Name = "clbItems";
-            this.clbItems.Size = new System.Drawing.Size(532, 118);
+            this.clbItems.Size = new System.Drawing.Size(532, 156);
             this.clbItems.TabIndex = 44;
             // 
             // lblUrgencyLevel_A
@@ -351,7 +351,7 @@
             this.lblRequestSource_A.AutoSize = true;
             this.lblRequestSource_A.BackColor = System.Drawing.Color.Transparent;
             this.lblRequestSource_A.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRequestSource_A.Location = new System.Drawing.Point(597, 562);
+            this.lblRequestSource_A.Location = new System.Drawing.Point(597, 560);
             this.lblRequestSource_A.Name = "lblRequestSource_A";
             this.lblRequestSource_A.Size = new System.Drawing.Size(284, 50);
             this.lblRequestSource_A.TabIndex = 42;
@@ -382,7 +382,7 @@
             "Phone call",
             "Walk in",
             "Other"});
-            this.cmbRequestSource_A.Location = new System.Drawing.Point(1009, 569);
+            this.cmbRequestSource_A.Location = new System.Drawing.Point(1009, 564);
             this.cmbRequestSource_A.Name = "cmbRequestSource_A";
             this.cmbRequestSource_A.Size = new System.Drawing.Size(532, 45);
             this.cmbRequestSource_A.TabIndex = 40;
