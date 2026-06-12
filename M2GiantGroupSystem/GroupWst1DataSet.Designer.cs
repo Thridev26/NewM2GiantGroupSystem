@@ -14187,14 +14187,21 @@ SELECT jobRequestID, clientID, siteAddress, longitude, latitude, requestSource, 
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@jobRequestID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "jobRequestID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "INSERT INTO JobRequest\r\n                  (clientID, siteAddress, requestSource, " +
-                "urgencyLevel)\r\nVALUES (@clientID,@siteAddress,@requestSource,@urgencyLevel);\r\n\r\n" +
-                "SELECT jobRequestID\r\nFROM JobRequest\r\nWHERE jobRequestID= SCOPE_IDENTITY()\r\n";
+            this._commandCollection[3].CommandText = @"INSERT INTO JobRequest
+                  (clientID, siteAddress, requestSource, urgencyLevel,longitude,latitude)
+VALUES (@clientID,@siteAddress,@requestSource,@urgencyLevel,@long,@lat);
+
+SELECT jobRequestID
+FROM JobRequest
+WHERE jobRequestID= SCOPE_IDENTITY()
+";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@clientID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "clientID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@siteAddress", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "siteAddress", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@requestSource", global::System.Data.SqlDbType.VarChar, 20, global::System.Data.ParameterDirection.Input, 0, 0, "requestSource", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@urgencyLevel", global::System.Data.SqlDbType.VarChar, 15, global::System.Data.ParameterDirection.Input, 0, 0, "urgencyLevel", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@long", global::System.Data.SqlDbType.Decimal, 5, global::System.Data.ParameterDirection.Input, 9, 6, "longitude", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@lat", global::System.Data.SqlDbType.Decimal, 5, global::System.Data.ParameterDirection.Input, 9, 6, "latitude", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[4].Connection = this.Connection;
             this._commandCollection[4].CommandText = @"UPDATE JobRequest
@@ -14626,7 +14633,7 @@ SELECT jobRequestID, clientID, siteAddress, longitude, latitude, requestSource, 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
-        public virtual object InsertQuery(int clientID, string siteAddress, string requestSource, string urgencyLevel) {
+        public virtual object InsertQuery(int clientID, string siteAddress, string requestSource, string urgencyLevel, global::System.Nullable<decimal> _long, global::System.Nullable<decimal> lat) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[3];
             command.Parameters[0].Value = ((int)(clientID));
             if ((siteAddress == null)) {
@@ -14646,6 +14653,18 @@ SELECT jobRequestID, clientID, siteAddress, longitude, latitude, requestSource, 
             }
             else {
                 command.Parameters[3].Value = ((string)(urgencyLevel));
+            }
+            if ((_long.HasValue == true)) {
+                command.Parameters[4].Value = ((decimal)(_long.Value));
+            }
+            else {
+                command.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((lat.HasValue == true)) {
+                command.Parameters[5].Value = ((decimal)(lat.Value));
+            }
+            else {
+                command.Parameters[5].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
