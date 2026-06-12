@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ForgotPasswordForm));
             this.label1 = new System.Windows.Forms.Label();
             this.txtForgotEmail = new System.Windows.Forms.TextBox();
             this.btnSendOTP = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // label1
@@ -52,6 +54,8 @@
             this.txtForgotEmail.Name = "txtForgotEmail";
             this.txtForgotEmail.Size = new System.Drawing.Size(328, 34);
             this.txtForgotEmail.TabIndex = 1;
+            this.toolTip1.SetToolTip(this.txtForgotEmail, "Enter the email that you gave when you were added as a staff member. Anything els" +
+        "e will be rejected.");
             // 
             // btnSendOTP
             // 
@@ -104,5 +108,6 @@
         private System.Windows.Forms.TextBox txtForgotEmail;
         private System.Windows.Forms.Button btnSendOTP;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

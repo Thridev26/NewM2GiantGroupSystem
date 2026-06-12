@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
-            this.label4 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
@@ -43,20 +43,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(136, 9);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(225, 60);
-            this.label4.TabIndex = 26;
-            this.label4.Text = "\r\nusername: giant_Owner\r\npassword: giantManager12";
             // 
             // pictureBox2
             // 
@@ -97,6 +88,7 @@
             this.button2.Size = new System.Drawing.Size(122, 55);
             this.button2.TabIndex = 41;
             this.button2.Text = "EXIT";
+            this.toolTip1.SetToolTip(this.button2, "This will close the entire application");
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -128,6 +120,7 @@
             this.button1.Size = new System.Drawing.Size(226, 55);
             this.button1.TabIndex = 35;
             this.button1.Text = "LOGIN";
+            this.toolTip1.SetToolTip(this.button1, "This will take you to the Main Menu");
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -139,6 +132,8 @@
             this.passwordBox.Name = "passwordBox";
             this.passwordBox.Size = new System.Drawing.Size(176, 29);
             this.passwordBox.TabIndex = 39;
+            this.toolTip1.SetToolTip(this.passwordBox, "Enter your Password here. This is case specific so make sure you enter the detail" +
+        "s correctly");
             this.passwordBox.UseSystemPasswordChar = true;
             // 
             // label2
@@ -175,16 +170,19 @@
             this.usernameBox.Name = "usernameBox";
             this.usernameBox.Size = new System.Drawing.Size(176, 29);
             this.usernameBox.TabIndex = 36;
+            this.toolTip1.SetToolTip(this.usernameBox, "Enter your username here. This is case specific so make sure you enter the detail" +
+        "s correctly");
             // 
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(258, 191);
+            this.linkLabel1.Location = new System.Drawing.Point(271, 191);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(126, 21);
             this.linkLabel1.TabIndex = 42;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Forgot Password";
+            this.toolTip1.SetToolTip(this.linkLabel1, "Click me to reset your password");
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // label3
@@ -234,7 +232,6 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.label4);
             this.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -249,7 +246,6 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -263,10 +259,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox usernameBox;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

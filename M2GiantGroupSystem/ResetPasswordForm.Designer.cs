@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ResetPasswordForm));
             this.label1 = new System.Windows.Forms.Label();
             this.txtNewPassword = new System.Windows.Forms.TextBox();
@@ -37,6 +38,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // label1
@@ -51,10 +53,12 @@
             // 
             // txtNewPassword
             // 
+            this.txtNewPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.txtNewPassword.Location = new System.Drawing.Point(377, 73);
             this.txtNewPassword.Name = "txtNewPassword";
             this.txtNewPassword.Size = new System.Drawing.Size(300, 39);
             this.txtNewPassword.TabIndex = 1;
+            this.toolTip1.SetToolTip(this.txtNewPassword, "Make sure both textboxes match!");
             this.txtNewPassword.UseSystemPasswordChar = true;
             // 
             // label2
@@ -69,10 +73,12 @@
             // 
             // txtConfirmPassword
             // 
+            this.txtConfirmPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.txtConfirmPassword.Location = new System.Drawing.Point(377, 140);
             this.txtConfirmPassword.Name = "txtConfirmPassword";
             this.txtConfirmPassword.Size = new System.Drawing.Size(300, 39);
             this.txtConfirmPassword.TabIndex = 3;
+            this.toolTip1.SetToolTip(this.txtConfirmPassword, "Make sure both textboxes match!");
             this.txtConfirmPassword.UseSystemPasswordChar = true;
             // 
             // btnSaveNewPassword
@@ -96,6 +102,7 @@
             this.button1.Size = new System.Drawing.Size(230, 53);
             this.button1.TabIndex = 5;
             this.button1.Text = "Cancel";
+            this.toolTip1.SetToolTip(this.button1, "Return to the Login Screen.");
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -156,5 +163,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

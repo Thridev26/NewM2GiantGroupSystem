@@ -109,6 +109,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label26 = new System.Windows.Forms.Label();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.quoteDataGridView = new System.Windows.Forms.DataGridView();
             this.clientNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -156,9 +159,7 @@
             this.quoteTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.QuoteTableAdapter();
             this.dataTable2TableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.DataTable2TableAdapter();
             this.dataTable3TableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.DataTable3TableAdapter();
-            this.label25 = new System.Windows.Forms.Label();
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.label26 = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             filePathLabel = new System.Windows.Forms.Label();
             urgencyLevelLabel = new System.Windows.Forms.Label();
             latitudeLabel = new System.Windows.Forms.Label();
@@ -510,6 +511,7 @@
             this.btnRemoveJobType.Size = new System.Drawing.Size(244, 73);
             this.btnRemoveJobType.TabIndex = 55;
             this.btnRemoveJobType.Text = "Remove Selected Job Type";
+            this.toolTip1.SetToolTip(this.btnRemoveJobType, "Select what you want to remove from the grid view on my left!");
             this.btnRemoveJobType.UseVisualStyleBackColor = false;
             this.btnRemoveJobType.Click += new System.EventHandler(this.btnRemoveJobType_Click);
             // 
@@ -795,6 +797,7 @@
             this.dtpSearchDate.Name = "dtpSearchDate";
             this.dtpSearchDate.Size = new System.Drawing.Size(200, 28);
             this.dtpSearchDate.TabIndex = 48;
+            this.toolTip1.SetToolTip(this.dtpSearchDate, "Select the Date you want to see and watch the grid view get populated....");
             this.dtpSearchDate.ValueChanged += new System.EventHandler(this.dtpSearchDate_ValueChanged);
             // 
             // label24
@@ -827,6 +830,8 @@
             this.txtSearchRequests.Name = "txtSearchRequests";
             this.txtSearchRequests.Size = new System.Drawing.Size(272, 28);
             this.txtSearchRequests.TabIndex = 45;
+            this.toolTip1.SetToolTip(this.txtSearchRequests, "Type the Name, Surname , Address, Source, Status or Urgency that you can recall i" +
+        "n this box here....");
             this.txtSearchRequests.TextChanged += new System.EventHandler(this.txtSearchRequests_TextChanged);
             this.txtSearchRequests.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearchRequests_KeyPress);
             // 
@@ -850,6 +855,7 @@
             this.cmbSearchColumn.Name = "cmbSearchColumn";
             this.cmbSearchColumn.Size = new System.Drawing.Size(232, 30);
             this.cmbSearchColumn.TabIndex = 44;
+            this.toolTip1.SetToolTip(this.cmbSearchColumn, "Choose your search criteria here...");
             this.cmbSearchColumn.SelectedIndexChanged += new System.EventHandler(this.cmbSearchColumn_SelectedIndexChanged);
             // 
             // label15
@@ -928,11 +934,9 @@
             // 
             // giantGroupLogo
             // 
-            this.giantGroupLogo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.giantGroupLogo.BackColor = System.Drawing.Color.SeaShell;
             this.giantGroupLogo.Image = global::M2GiantGroupSystem.Properties.Resources.logo__bg_removed__EDITED;
-            this.giantGroupLogo.Location = new System.Drawing.Point(1351, 11);
+            this.giantGroupLogo.Location = new System.Drawing.Point(1336, 11);
             this.giantGroupLogo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.giantGroupLogo.Name = "giantGroupLogo";
             this.giantGroupLogo.Size = new System.Drawing.Size(201, 102);
@@ -993,6 +997,7 @@
             this.jobRequestIDTextBox.ReadOnly = true;
             this.jobRequestIDTextBox.Size = new System.Drawing.Size(287, 28);
             this.jobRequestIDTextBox.TabIndex = 27;
+            this.toolTip1.SetToolTip(this.jobRequestIDTextBox, "Sorry! You can\'t edit this");
             // 
             // button3
             // 
@@ -1005,6 +1010,7 @@
             this.button3.Size = new System.Drawing.Size(133, 42);
             this.button3.TabIndex = 21;
             this.button3.Text = "Save";
+            this.toolTip1.SetToolTip(this.button3, "Click me to save this new Quote!");
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -1018,6 +1024,7 @@
             this.button2.Size = new System.Drawing.Size(133, 42);
             this.button2.TabIndex = 20;
             this.button2.Text = "Clear";
+            this.toolTip1.SetToolTip(this.button2, "Click me to clear all the textboxes and selections above.");
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -1026,13 +1033,14 @@
             this.cboQuoteStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.cboQuoteStatus.FormattingEnabled = true;
             this.cboQuoteStatus.Items.AddRange(new object[] {
-            "Sent",
             "Not Sent"});
             this.cboQuoteStatus.Location = new System.Drawing.Point(932, 911);
             this.cboQuoteStatus.Margin = new System.Windows.Forms.Padding(2);
             this.cboQuoteStatus.Name = "cboQuoteStatus";
             this.cboQuoteStatus.Size = new System.Drawing.Size(287, 30);
             this.cboQuoteStatus.TabIndex = 17;
+            this.toolTip1.SetToolTip(this.cboQuoteStatus, "I am automatically set to Not Sent, change the status on the Edit tab after savin" +
+        "g this quote.");
             // 
             // dateIssuedDateTimePicker
             // 
@@ -1043,6 +1051,7 @@
             this.dateIssuedDateTimePicker.Name = "dateIssuedDateTimePicker";
             this.dateIssuedDateTimePicker.Size = new System.Drawing.Size(287, 28);
             this.dateIssuedDateTimePicker.TabIndex = 6;
+            this.toolTip1.SetToolTip(this.dateIssuedDateTimePicker, "Do not select a date before or after today!");
             // 
             // expiryDateDateTimePicker
             // 
@@ -1053,6 +1062,7 @@
             this.expiryDateDateTimePicker.Name = "expiryDateDateTimePicker";
             this.expiryDateDateTimePicker.Size = new System.Drawing.Size(287, 28);
             this.expiryDateDateTimePicker.TabIndex = 8;
+            this.toolTip1.SetToolTip(this.expiryDateDateTimePicker, "Do not set the expiry date to anything before today\'s date");
             // 
             // dateGeneratedDateTimePicker
             // 
@@ -1063,6 +1073,7 @@
             this.dateGeneratedDateTimePicker.Name = "dateGeneratedDateTimePicker";
             this.dateGeneratedDateTimePicker.Size = new System.Drawing.Size(287, 28);
             this.dateGeneratedDateTimePicker.TabIndex = 10;
+            this.toolTip1.SetToolTip(this.dateGeneratedDateTimePicker, "Do not select a date before or after today!");
             // 
             // txtAmount
             // 
@@ -1124,6 +1135,38 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1558, 1011);
             this.panel2.TabIndex = 1;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.ForeColor = System.Drawing.Color.Black;
+            this.label26.Location = new System.Drawing.Point(556, 58);
+            this.label26.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(262, 22);
+            this.label26.TabIndex = 57;
+            this.label26.Text = "Search By Name / Surname:";
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.txtSearch.Location = new System.Drawing.Point(881, 50);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(296, 28);
+            this.txtSearch.TabIndex = 56;
+            this.txtSearch.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(34, 102);
+            this.label25.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(803, 22);
+            this.label25.TabIndex = 55;
+            this.label25.Text = "Note to User: Double click the Quote record you would like to Edit / Print / Save" +
+    " / Delete.";
             // 
             // pictureBox1
             // 
@@ -1611,38 +1654,6 @@
             // 
             this.dataTable3TableAdapter.ClearBeforeFill = true;
             // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(34, 102);
-            this.label25.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(803, 22);
-            this.label25.TabIndex = 55;
-            this.label25.Text = "Note to User: Double click the Quote record you would like to Edit / Print / Save" +
-    " / Delete.";
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.txtSearch.Location = new System.Drawing.Point(881, 50);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(296, 28);
-            this.txtSearch.TabIndex = 56;
-            this.txtSearch.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.ForeColor = System.Drawing.Color.Black;
-            this.label26.Location = new System.Drawing.Point(556, 58);
-            this.label26.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(262, 22);
-            this.label26.TabIndex = 57;
-            this.label26.Text = "Search By Name / Surname:";
-            // 
             // Quotation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
@@ -1803,5 +1814,6 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

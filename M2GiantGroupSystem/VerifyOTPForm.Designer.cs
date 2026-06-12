@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VerifyOTPForm));
             this.btnVerify = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtOTP = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // btnVerify
@@ -65,6 +67,8 @@
             this.txtOTP.Name = "txtOTP";
             this.txtOTP.Size = new System.Drawing.Size(202, 34);
             this.txtOTP.TabIndex = 2;
+            this.toolTip1.SetToolTip(this.txtOTP, "The OTP expires in 5 minutes. Make sure you enter the correct number and in good " +
+        "time!");
             // 
             // button1
             // 
@@ -76,6 +80,7 @@
             this.button1.Size = new System.Drawing.Size(126, 56);
             this.button1.TabIndex = 3;
             this.button1.Text = "Cancel\r\n";
+            this.toolTip1.SetToolTip(this.button1, "Return to the Login screen");
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -104,5 +109,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtOTP;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
