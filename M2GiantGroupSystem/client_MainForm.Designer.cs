@@ -316,6 +316,7 @@
             // dgvClients
             // 
             this.dgvClients.AllowUserToResizeRows = false;
+            this.dgvClients.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvClients.ColumnHeadersHeight = 40;
             this.dgvClients.Location = new System.Drawing.Point(67, 158);
             this.dgvClients.Name = "dgvClients";
@@ -961,6 +962,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1924, 1055);
             this.tabControl1.TabIndex = 0;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // client_MainForm
             // 
