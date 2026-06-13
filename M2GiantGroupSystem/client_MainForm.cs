@@ -42,6 +42,8 @@ namespace M2GiantGroupSystem
         {
             ApplyTheme(); // ADD THIS
             cmb_status.SelectedIndex = 0;
+            dgvClients.ScrollBars= ScrollBars.Both;
+
 
             try
             {
@@ -218,8 +220,8 @@ namespace M2GiantGroupSystem
                     tb_surname.Text = "";
                     tb_email.Text = "";
                     tb_phone.Text = "";
-                    cmb_status.SelectedIndex = -1;
-                    cmb_type.SelectedIndex = -1;
+                  //  cmb_status.SelectedIndex = -1;
+                   // cmb_type.SelectedIndex = -1;
 
                     LoadClients(); // Refresh the grid
 
@@ -286,9 +288,10 @@ namespace M2GiantGroupSystem
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             // — Validation —
-            if (clientID <= 0)
+            clientID = selectedClientID;
+            if (selectedClientID == -1)
             {
-                MessageBox.Show("No client is selected for updating.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("No client is selected for updating.");
                 return;
             }
             if (string.IsNullOrWhiteSpace(textBox4.Text))
@@ -338,7 +341,7 @@ namespace M2GiantGroupSystem
             }
 
             // — Uniqueness check: email must not belong to a DIFFERENT client —
-            if (IsEmailTaken(textBox2.Text.Trim(), clientID))
+            if (IsEmailTaken(textBox2.Text.Trim(), selectedClientID))
             {
                 MessageBox.Show(
                     "Another client already has this email address.",
@@ -388,16 +391,21 @@ namespace M2GiantGroupSystem
                     );
 
                     MessageBox.Show("Client updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+                    // Reset BEFORE clearing — comboBoxes still have values here
                     ResetOriginalValues();
+
+                    // Now safe to clear
                     textBox1.Text = "";
                     textBox2.Text = "";
                     textBox3.Text = "";
                     textBox4.Text = "";
                     tbSearchValue_A.Text = "";
                     lbSearchResults.Items.Clear();
-                    comboBox1.SelectedIndex = -1;
-                    comboBox2.SelectedIndex = -1;
                     cmbCriteria_A.SelectedIndex = -1;
+                    selectedClientID = -1;  // also reset this so the form is in a clean state
+                    disableInput();          // disable update button until another client is selected
                     LoadClients();
                 }
                 catch (SqlException sqlEx)
@@ -514,7 +522,7 @@ namespace M2GiantGroupSystem
                             "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
-
+                    selectedClientID = id;  // ADD THIS
                     clientTableAdapter1.FillByID(this.groupWst1DataSet1.Client, id);
                     enableInput();
                     ResetOriginalValues();
@@ -586,8 +594,12 @@ namespace M2GiantGroupSystem
                 tbSearchValue_A.Text = "";
                 tbSearchValue_A.Focus();
                 tbSearchValue_A.BackColor = Color.FromArgb(155, 198, 138);
+                lblSearchBy_A.Text = "Enter: " + cmbCriteria_A.SelectedItem.ToString(); // moved inside the if
             }
-            lblSearchBy_A.Text = "Enter: " + cmbCriteria_A.SelectedItem.ToString();
+            else
+            {
+                lblSearchBy_A.Text = ""; // or whatever default text you want
+            }
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
@@ -864,8 +876,8 @@ namespace M2GiantGroupSystem
             {
                
                 txtSearchV.Text = "";
-                cboFilterType.SelectedIndex = -1;
-                cboFilterStatus.SelectedIndex = -1;
+               /// cboFilterType.SelectedIndex = -1;
+               // cboFilterStatus.SelectedIndex = -1;
                 (dgvClients.DataSource as DataTable).DefaultView.RowFilter = "";
                 ColourRows();
             }
@@ -1212,6 +1224,11 @@ namespace M2GiantGroupSystem
         {
             if (ThemeManager.IsDarkMode)
                 ThemeManager.ApplyTheme(this);
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadClients();
         }
     }
  }

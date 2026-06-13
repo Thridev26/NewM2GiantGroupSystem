@@ -616,8 +616,8 @@ WHERE jsa.jobID = @jobID";
 
                     // 2. Safe Parsing: Using TryParse instead of explicit (int) casting 
                     // prevents crashes if the cell contains unexpected data
-                    if (int.TryParse(row.Cells["SColumn"].Value?.ToString(), out int staffId) &&
-                        int.TryParse(row.Cells["JColumn"].Value?.ToString(), out int jobId))
+                    if (int.TryParse(row.Cells["staffID"].Value?.ToString(), out int staffId) &&
+                        int.TryParse(row.Cells["jobID"].Value?.ToString(), out int jobId))
                     {
                         // 3. Confirmation
                         var confirm = MessageBox.Show("Remove this staff member from the job?",
