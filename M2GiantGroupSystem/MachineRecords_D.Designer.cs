@@ -371,8 +371,7 @@
             this.cmbDeleteST.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbDeleteST.FormattingEnabled = true;
             this.cmbDeleteST.Items.AddRange(new object[] {
-            "Available ",
-            "In Use"});
+            "Available "});
             this.cmbDeleteST.Location = new System.Drawing.Point(177, 285);
             this.cmbDeleteST.Name = "cmbDeleteST";
             this.cmbDeleteST.Size = new System.Drawing.Size(170, 36);
@@ -690,8 +689,7 @@
             this.cmbStatus2_D.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbStatus2_D.FormattingEnabled = true;
             this.cmbStatus2_D.Items.AddRange(new object[] {
-            "Available ",
-            "In Use"});
+            "Available "});
             this.cmbStatus2_D.Location = new System.Drawing.Point(187, 249);
             this.cmbStatus2_D.Name = "cmbStatus2_D";
             this.cmbStatus2_D.Size = new System.Drawing.Size(187, 36);
@@ -899,8 +897,7 @@
             this.cmbStatus_D.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbStatus_D.FormattingEnabled = true;
             this.cmbStatus_D.Items.AddRange(new object[] {
-            "Available ",
-            "In Use"});
+            "Available "});
             this.cmbStatus_D.Location = new System.Drawing.Point(195, 297);
             this.cmbStatus_D.Name = "cmbStatus_D";
             this.cmbStatus_D.Size = new System.Drawing.Size(199, 36);
