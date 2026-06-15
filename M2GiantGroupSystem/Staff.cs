@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace M2GiantGroupSystem
 {
@@ -52,6 +53,11 @@ namespace M2GiantGroupSystem
                     cmbRoleEdit.Enabled = false;
                     dailyRateTextBox.ReadOnly = true; // Ops Managers can view but not change daily rates
                     cmbEditStatus.Enabled = false; // Ops Managers can view but not change their active/inactive status
+                    if (tabControl1.TabPages.Contains(tabPage3))
+                    {
+                        tabControl1.TabPages.Remove(tabPage3);
+                    }
+                    tabControl1.Refresh(); // Refresh the tab control to reflect changes immediately
                     break;
 
                 default: // Level 3 and below: Complete lockdown – lock all controls if you feel they should not have access
@@ -60,6 +66,11 @@ namespace M2GiantGroupSystem
                     cmbRoleEdit.Enabled = false;
                     dailyRateTextBox.ReadOnly = true;
                     cmbEditStatus.Enabled = false; // Regular staff can view but not change their active/inactive status
+                    if (tabControl1.TabPages.Contains(tabPage3))
+                    {
+                        tabControl1.TabPages.Remove(tabPage3);
+                    }
+                    tabControl1.Refresh(); // Refresh the tab control to reflect changes immediately
                     break;
             
             }
@@ -103,7 +114,43 @@ namespace M2GiantGroupSystem
             }
         }
 
-       
+        private bool IsUsernameTaken(string username)
+        {
+            string connStr = "Data Source=146.230.177.46;Initial Catalog=GroupWst1;Persist Security Info=True;User ID=GroupWst1;Password=dtf39;";
+            string query = "SELECT COUNT(*) FROM Staff WHERE username = @Username";
+
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    // Add the parameter to prevent SQL Injection
+                    cmd.Parameters.AddWithValue("@Username", username);
+
+                    conn.Open();
+                    int count = (int)cmd.ExecuteScalar();
+                    return count > 0; // Returns true if username exists
+                }
+            }
+        }
+
+        private bool DoesValueExist(string columnName, string value)
+        {
+            string connStr = "Data Source=146.230.177.46;Initial Catalog=GroupWst1;Persist Security Info=True;User ID=GroupWst1;Password=dtf39;";
+            // We use string interpolation carefully here for the column name
+            string query = $"SELECT COUNT(*) FROM Staff WHERE {columnName} = @Value";
+
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Value", value);
+                    conn.Open();
+                    int count = (int)cmd.ExecuteScalar();
+                    return count > 0;
+                }
+            }
+        }
+
         private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)
         {
             TabPage page = tabControl1.TabPages[e.Index];
@@ -567,6 +614,126 @@ namespace M2GiantGroupSystem
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             LoadJobStaffAssignments(textBox1.Text.Trim());
+        }
+
+        private void userNameTextBox1_Leave(object sender, EventArgs e)
+        {
+            string inputUsername = userNameTextBox1.Text.Trim();
+
+            if (string.IsNullOrEmpty(inputUsername)) return;
+
+            if (IsUsernameTaken(inputUsername))
+            {
+                MessageBox.Show("This username is already taken. Please choose another.",
+                                "Username Taken", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                userNameTextBox1.Focus(); // Put the cursor back in the box
+            }
+        }
+
+        private void contactNumberTextBox1_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(contactNumberTextBox1.Text)) return;
+
+            // 1. Format Check (Regex)
+            string phonePattern = @"^(\+27|27|0)[6-8][0-9]{8}$";
+            if (!Regex.IsMatch(contactNumberTextBox1.Text.Trim(), phonePattern))
+            {
+                MessageBox.Show("Please enter a valid South African contact number (e.g., 0821234567).", "Invalid Format", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                contactNumberTextBox1.Focus();
+                return; // Stop here if format is wrong
+            }
+
+            if (DoesValueExist("contactNumber", contactNumberTextBox1.Text.Trim()))
+            {
+                MessageBox.Show("This contact number is already in use.", "Duplicate Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                contactNumberTextBox1.Focus();
+            }
+        }
+
+        private void emailAddressTextBox1_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(emailAddressTextBox1.Text)) return;
+
+            // 1. Format Check (Regex)
+            string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            if (!Regex.IsMatch(emailAddressTextBox1.Text.Trim(), emailPattern))
+            {
+                MessageBox.Show("Please enter a valid email address.", "Invalid Format", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                emailAddressTextBox1.Focus();
+                return; // Stop here if format is wrong
+            }
+
+            if (DoesValueExist("emailAddress", emailAddressTextBox1.Text.Trim()))
+            {
+                MessageBox.Show("This email address is already registered.", "Duplicate Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                emailAddressTextBox1.Focus();
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            // If the checkbox is checked, hide the asterisks (show the text)
+            if (checkBox1.Checked)
+            {
+                passwordHashTextBox.UseSystemPasswordChar = false;
+            }
+            // If it's unchecked, bring the asterisks back
+            else
+            {
+                passwordHashTextBox.UseSystemPasswordChar = true;
+            }
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            // If the checkbox is checked, hide the asterisks (show the text)
+            if (checkBox2.Checked)
+            {
+                passwordHashTextBox1.UseSystemPasswordChar = false;
+            }
+            // If it's unchecked, bring the asterisks back
+            else
+            {
+                passwordHashTextBox1.UseSystemPasswordChar = true;
+            }
+        }
+
+        private void userNameTextBox_Leave(object sender, EventArgs e)
+        {
+            string inputUsername = userNameTextBox.Text.Trim();
+
+            if (string.IsNullOrEmpty(inputUsername)) return;
+
+            if (IsUsernameTaken(inputUsername))
+            {
+                MessageBox.Show("This username is already taken. Please choose another.",
+                                "Username Taken", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                userNameTextBox.Focus(); // Put the cursor back in the box
+            }
+        }
+
+        private void contactNumberTextBox_Leave(object sender, EventArgs e)
+        {
+            // 1. Format Check (Regex)
+            string phonePattern = @"^(\+27|27|0)[6-8][0-9]{8}$";
+            if (!Regex.IsMatch(contactNumberTextBox.Text.Trim(), phonePattern))
+            {
+                MessageBox.Show("Please enter a valid South African contact number (e.g., 0821234567).", "Invalid Format", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                contactNumberTextBox.Focus();
+                return; // Stop here if format is wrong
+            }
+        }
+
+        private void emailAddressTextBox_Leave(object sender, EventArgs e)
+        {
+            // 1. Format Check (Regex)
+            string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            if (!Regex.IsMatch(emailAddressTextBox.Text.Trim(), emailPattern))
+            {
+                MessageBox.Show("Please enter a valid email address.", "Invalid Format", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                emailAddressTextBox.Focus();
+                return; // Stop here if format is wrong
+            }
         }
     }
 }

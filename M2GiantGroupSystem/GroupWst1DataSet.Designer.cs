@@ -22211,12 +22211,13 @@ FROM Job
 INNER JOIN Quote ON Job.quoteID = Quote.QuoteID
 INNER JOIN JobRequest ON Quote.jobRequestID = JobRequest.jobRequestID
 INNER JOIN Client ON JobRequest.clientID = Client.clientID
-WHERE Job.jobStatus LIKE 'In Progress%'
+WHERE (Job.jobStatus IN ('Not Started', 'In Progress')) 
 AND (
     (Client.clientName LIKE @SearchText + '%')
     OR (Client.clientSurname LIKE @SearchText + '%')
     OR (JobRequest.siteAddress LIKE @SearchText + '%')
-)";
+)
+";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SearchText", global::System.Data.SqlDbType.VarChar, 40, global::System.Data.ParameterDirection.Input, 0, 0, "clientName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();

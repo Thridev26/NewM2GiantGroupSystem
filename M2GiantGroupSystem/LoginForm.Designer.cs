@@ -240,6 +240,9 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LoginForm";
             this.Load += new System.EventHandler(this.LoginForm_Load);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LoginForm_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LoginForm_MouseMove);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LoginForm_MouseUp);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

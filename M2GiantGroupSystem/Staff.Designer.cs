@@ -65,6 +65,16 @@
             this.btnAddStaff = new System.Windows.Forms.Button();
             this.btnDeleteStaff = new System.Windows.Forms.Button();
             this.dgvStaffInfo = new System.Windows.Forms.DataGridView();
+            this.staffID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.firstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.passwordHash = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contactNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.staffStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dailyRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.roleID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtSearchStaff = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -85,6 +95,16 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.button2 = new System.Windows.Forms.Button();
             this.staffDataGridView = new System.Windows.Forms.DataGridView();
+            this.staffIDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.firstNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lastNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.passwordHashDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contactNumberDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.staffStatusDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dailyRateDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.roleIDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailAddressDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.label7 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -96,26 +116,8 @@
             this.staffTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.StaffTableAdapter();
             this.tableAdapterManager = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.TableAdapterManager();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.staffIDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.firstNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lastNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.userNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.passwordHashDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contactNumberDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.staffStatusDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dailyRateDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.roleIDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emailAddressDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.staffID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.firstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.userName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.passwordHash = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contactNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.staffStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dailyRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.roleID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emailAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             staffIDLabel = new System.Windows.Forms.Label();
             firstNameLabel = new System.Windows.Forms.Label();
             lastNameLabel = new System.Windows.Forms.Label();
@@ -372,6 +374,7 @@
             // 
             // gbAddStaff
             // 
+            this.gbAddStaff.Controls.Add(this.checkBox2);
             this.gbAddStaff.Controls.Add(this.emailAddressTextBox1);
             this.gbAddStaff.Controls.Add(label3);
             this.gbAddStaff.Controls.Add(this.cmbAddStatus);
@@ -396,7 +399,7 @@
             this.gbAddStaff.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.gbAddStaff.Name = "gbAddStaff";
             this.gbAddStaff.Padding = new System.Windows.Forms.Padding(2, 4, 2, 4);
-            this.gbAddStaff.Size = new System.Drawing.Size(610, 438);
+            this.gbAddStaff.Size = new System.Drawing.Size(787, 438);
             this.gbAddStaff.TabIndex = 28;
             this.gbAddStaff.TabStop = false;
             this.gbAddStaff.Text = "Add New Staff";
@@ -411,6 +414,7 @@
             this.emailAddressTextBox1.Name = "emailAddressTextBox1";
             this.emailAddressTextBox1.Size = new System.Drawing.Size(218, 30);
             this.emailAddressTextBox1.TabIndex = 20;
+            this.emailAddressTextBox1.Leave += new System.EventHandler(this.emailAddressTextBox1_Leave);
             // 
             // cmbAddStatus
             // 
@@ -476,6 +480,7 @@
             this.userNameTextBox1.Name = "userNameTextBox1";
             this.userNameTextBox1.Size = new System.Drawing.Size(218, 30);
             this.userNameTextBox1.TabIndex = 7;
+            this.userNameTextBox1.Leave += new System.EventHandler(this.userNameTextBox1_Leave);
             // 
             // passwordHashTextBox1
             // 
@@ -486,6 +491,7 @@
             this.passwordHashTextBox1.Name = "passwordHashTextBox1";
             this.passwordHashTextBox1.Size = new System.Drawing.Size(218, 30);
             this.passwordHashTextBox1.TabIndex = 9;
+            this.passwordHashTextBox1.UseSystemPasswordChar = true;
             // 
             // contactNumberTextBox1
             // 
@@ -496,6 +502,7 @@
             this.contactNumberTextBox1.Name = "contactNumberTextBox1";
             this.contactNumberTextBox1.Size = new System.Drawing.Size(218, 30);
             this.contactNumberTextBox1.TabIndex = 11;
+            this.contactNumberTextBox1.Leave += new System.EventHandler(this.contactNumberTextBox1_Leave);
             // 
             // dailyRateTextBox1
             // 
@@ -569,6 +576,78 @@
             this.dgvStaffInfo.Size = new System.Drawing.Size(1556, 163);
             this.dgvStaffInfo.TabIndex = 22;
             this.dgvStaffInfo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvStaffInfo_CellClick);
+            // 
+            // staffID
+            // 
+            this.staffID.DataPropertyName = "staffID";
+            this.staffID.HeaderText = "staffID";
+            this.staffID.MinimumWidth = 8;
+            this.staffID.Name = "staffID";
+            this.staffID.ReadOnly = true;
+            // 
+            // firstName
+            // 
+            this.firstName.DataPropertyName = "firstName";
+            this.firstName.HeaderText = "firstName";
+            this.firstName.MinimumWidth = 8;
+            this.firstName.Name = "firstName";
+            // 
+            // lastName
+            // 
+            this.lastName.DataPropertyName = "lastName";
+            this.lastName.HeaderText = "lastName";
+            this.lastName.MinimumWidth = 8;
+            this.lastName.Name = "lastName";
+            // 
+            // userName
+            // 
+            this.userName.DataPropertyName = "userName";
+            this.userName.HeaderText = "userName";
+            this.userName.MinimumWidth = 8;
+            this.userName.Name = "userName";
+            // 
+            // passwordHash
+            // 
+            this.passwordHash.DataPropertyName = "passwordHash";
+            this.passwordHash.HeaderText = "passwordHash";
+            this.passwordHash.MinimumWidth = 8;
+            this.passwordHash.Name = "passwordHash";
+            this.passwordHash.Visible = false;
+            // 
+            // contactNumber
+            // 
+            this.contactNumber.DataPropertyName = "contactNumber";
+            this.contactNumber.HeaderText = "contactNumber";
+            this.contactNumber.MinimumWidth = 8;
+            this.contactNumber.Name = "contactNumber";
+            // 
+            // staffStatus
+            // 
+            this.staffStatus.DataPropertyName = "staffStatus";
+            this.staffStatus.HeaderText = "staffStatus";
+            this.staffStatus.MinimumWidth = 8;
+            this.staffStatus.Name = "staffStatus";
+            // 
+            // dailyRate
+            // 
+            this.dailyRate.DataPropertyName = "dailyRate";
+            this.dailyRate.HeaderText = "dailyRate";
+            this.dailyRate.MinimumWidth = 8;
+            this.dailyRate.Name = "dailyRate";
+            // 
+            // roleID
+            // 
+            this.roleID.DataPropertyName = "roleID";
+            this.roleID.HeaderText = "roleID";
+            this.roleID.MinimumWidth = 8;
+            this.roleID.Name = "roleID";
+            // 
+            // emailAddress
+            // 
+            this.emailAddress.DataPropertyName = "emailAddress";
+            this.emailAddress.HeaderText = "emailAddress";
+            this.emailAddress.MinimumWidth = 8;
+            this.emailAddress.Name = "emailAddress";
             // 
             // txtSearchStaff
             // 
@@ -653,6 +732,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Controls.Add(this.emailAddressTextBox);
             this.groupBox1.Controls.Add(label1);
             this.groupBox1.Controls.Add(this.cmbEditStatus);
@@ -677,7 +757,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(578, 443);
+            this.groupBox1.Size = new System.Drawing.Size(665, 443);
             this.groupBox1.TabIndex = 40;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Edit Staff Details";
@@ -691,6 +771,7 @@
             this.emailAddressTextBox.Name = "emailAddressTextBox";
             this.emailAddressTextBox.Size = new System.Drawing.Size(198, 30);
             this.emailAddressTextBox.TabIndex = 42;
+            this.emailAddressTextBox.Leave += new System.EventHandler(this.emailAddressTextBox_Leave);
             // 
             // cmbEditStatus
             // 
@@ -724,6 +805,7 @@
             this.contactNumberTextBox.Name = "contactNumberTextBox";
             this.contactNumberTextBox.Size = new System.Drawing.Size(198, 30);
             this.contactNumberTextBox.TabIndex = 33;
+            this.contactNumberTextBox.Leave += new System.EventHandler(this.contactNumberTextBox_Leave);
             // 
             // lastNameTextBox
             // 
@@ -765,6 +847,7 @@
             this.userNameTextBox.Name = "userNameTextBox";
             this.userNameTextBox.Size = new System.Drawing.Size(198, 30);
             this.userNameTextBox.TabIndex = 29;
+            this.userNameTextBox.Leave += new System.EventHandler(this.userNameTextBox_Leave);
             // 
             // passwordHashTextBox
             // 
@@ -777,6 +860,7 @@
             this.passwordHashTextBox.TabIndex = 31;
             this.toolTip1.SetToolTip(this.passwordHashTextBox, "You may leave this blank if you do not wish to change your password.\r\nIf you do e" +
         "dit this textbox, that will become your new password!");
+            this.passwordHashTextBox.UseSystemPasswordChar = true;
             // 
             // firstNameTextBox
             // 
@@ -844,139 +928,6 @@
             this.staffDataGridView.RowTemplate.Height = 28;
             this.staffDataGridView.Size = new System.Drawing.Size(1430, 238);
             this.staffDataGridView.TabIndex = 28;
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.BackColor = System.Drawing.Color.SeaShell;
-            this.tabPage3.Controls.Add(this.label7);
-            this.tabPage3.Controls.Add(this.textBox1);
-            this.tabPage3.Controls.Add(this.label6);
-            this.tabPage3.Controls.Add(this.label5);
-            this.tabPage3.Controls.Add(this.label4);
-            this.tabPage3.Controls.Add(this.btnSaveHours);
-            this.tabPage3.Controls.Add(this.dgvStaff);
-            this.tabPage3.Location = new System.Drawing.Point(4, 30);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1706, 775);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "View staff assignments";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(188, 175);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(304, 32);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "Search by staff full name:";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(536, 175);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(532, 35);
-            this.textBox1.TabIndex = 5;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(1466, 85);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(52, 21);
-            this.label6.TabIndex = 4;
-            this.label6.Text = "label6";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(182, 503);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(56, 32);
-            this.label5.TabIndex = 3;
-            this.label5.Text = "info";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(427, 53);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(839, 54);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Edit the hours worked for the selected staff";
-            // 
-            // btnSaveHours
-            // 
-            this.btnSaveHours.BackColor = System.Drawing.Color.DarkGreen;
-            this.btnSaveHours.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveHours.ForeColor = System.Drawing.Color.White;
-            this.btnSaveHours.Location = new System.Drawing.Point(686, 524);
-            this.btnSaveHours.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnSaveHours.Name = "btnSaveHours";
-            this.btnSaveHours.Size = new System.Drawing.Size(409, 85);
-            this.btnSaveHours.TabIndex = 1;
-            this.btnSaveHours.Text = "Save hours worked";
-            this.btnSaveHours.UseVisualStyleBackColor = false;
-            this.btnSaveHours.Click += new System.EventHandler(this.btnSaveHours_Click);
-            // 
-            // dgvStaff
-            // 
-            this.dgvStaff.AllowUserToAddRows = false;
-            this.dgvStaff.AllowUserToDeleteRows = false;
-            this.dgvStaff.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvStaff.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.dgvStaff.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvStaff.Location = new System.Drawing.Point(188, 232);
-            this.dgvStaff.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.dgvStaff.MultiSelect = false;
-            this.dgvStaff.Name = "dgvStaff";
-            this.dgvStaff.RowHeadersWidth = 51;
-            this.dgvStaff.RowTemplate.Height = 24;
-            this.dgvStaff.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvStaff.Size = new System.Drawing.Size(1332, 230);
-            this.dgvStaff.TabIndex = 0;
-            this.dgvStaff.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dgvStaff_CellBeginEdit);
-            this.dgvStaff.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvStaff_CellClick);
-            this.dgvStaff.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvStaff_CellEndEdit);
-            this.dgvStaff.SelectionChanged += new System.EventHandler(this.dgvStaff_SelectionChanged);
-            // 
-            // staffTableAdapter
-            // 
-            this.staffTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.ClientTableAdapter = null;
-            this.tableAdapterManager.HiredAssetTableAdapter = null;
-            this.tableAdapterManager.ItemDetailTableAdapter = null;
-            this.tableAdapterManager.JobAssetAssignmentTableAdapter = null;
-            this.tableAdapterManager.JobDetailTableAdapter = null;
-            this.tableAdapterManager.JobRequestTableAdapter = null;
-            this.tableAdapterManager.JobStaffAssignmentTableAdapter = null;
-            this.tableAdapterManager.JobTableAdapter = null;
-            this.tableAdapterManager.JobTimeSlotTableAdapter = null;
-            this.tableAdapterManager.JobTypeTableAdapter = null;
-            this.tableAdapterManager.MaintenanceLogTableAdapter = null;
-            this.tableAdapterManager.OwnedAssetTableAdapter = null;
-            this.tableAdapterManager.PaymentTableAdapter = null;
-            this.tableAdapterManager.QuoteTableAdapter = null;
-            this.tableAdapterManager.RequestItemTableAdapter = null;
-            this.tableAdapterManager.RoleTableAdapter = null;
-            this.tableAdapterManager.SitePhotoTableAdapter = null;
-            this.tableAdapterManager.StaffTableAdapter = this.staffTableAdapter;
-            this.tableAdapterManager.TimeSlotTableAdapter = null;
-            this.tableAdapterManager.UpdateOrder = M2GiantGroupSystem.GroupWst1DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
             // staffIDDataGridViewTextBoxColumn1
             // 
@@ -1059,77 +1010,162 @@
             this.emailAddressDataGridViewTextBoxColumn1.Name = "emailAddressDataGridViewTextBoxColumn1";
             this.emailAddressDataGridViewTextBoxColumn1.ReadOnly = true;
             // 
-            // staffID
+            // tabPage3
             // 
-            this.staffID.DataPropertyName = "staffID";
-            this.staffID.HeaderText = "staffID";
-            this.staffID.MinimumWidth = 8;
-            this.staffID.Name = "staffID";
-            this.staffID.ReadOnly = true;
+            this.tabPage3.BackColor = System.Drawing.Color.SeaShell;
+            this.tabPage3.Controls.Add(this.label7);
+            this.tabPage3.Controls.Add(this.textBox1);
+            this.tabPage3.Controls.Add(this.label6);
+            this.tabPage3.Controls.Add(this.label5);
+            this.tabPage3.Controls.Add(this.label4);
+            this.tabPage3.Controls.Add(this.btnSaveHours);
+            this.tabPage3.Controls.Add(this.dgvStaff);
+            this.tabPage3.Location = new System.Drawing.Point(4, 30);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(1706, 775);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "View staff assignments";
             // 
-            // firstName
+            // label7
             // 
-            this.firstName.DataPropertyName = "firstName";
-            this.firstName.HeaderText = "firstName";
-            this.firstName.MinimumWidth = 8;
-            this.firstName.Name = "firstName";
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(188, 175);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(304, 32);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "Search by staff full name:";
             // 
-            // lastName
+            // textBox1
             // 
-            this.lastName.DataPropertyName = "lastName";
-            this.lastName.HeaderText = "lastName";
-            this.lastName.MinimumWidth = 8;
-            this.lastName.Name = "lastName";
+            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(536, 175);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(532, 35);
+            this.textBox1.TabIndex = 5;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // userName
+            // label6
             // 
-            this.userName.DataPropertyName = "userName";
-            this.userName.HeaderText = "userName";
-            this.userName.MinimumWidth = 8;
-            this.userName.Name = "userName";
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(1466, 85);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(52, 21);
+            this.label6.TabIndex = 4;
+            this.label6.Text = "label6";
             // 
-            // passwordHash
+            // label5
             // 
-            this.passwordHash.DataPropertyName = "passwordHash";
-            this.passwordHash.HeaderText = "passwordHash";
-            this.passwordHash.MinimumWidth = 8;
-            this.passwordHash.Name = "passwordHash";
-            this.passwordHash.Visible = false;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(182, 503);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(56, 32);
+            this.label5.TabIndex = 3;
+            this.label5.Text = "info";
             // 
-            // contactNumber
+            // label4
             // 
-            this.contactNumber.DataPropertyName = "contactNumber";
-            this.contactNumber.HeaderText = "contactNumber";
-            this.contactNumber.MinimumWidth = 8;
-            this.contactNumber.Name = "contactNumber";
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(427, 53);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(839, 54);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Edit the hours worked for the selected staff";
             // 
-            // staffStatus
+            // btnSaveHours
             // 
-            this.staffStatus.DataPropertyName = "staffStatus";
-            this.staffStatus.HeaderText = "staffStatus";
-            this.staffStatus.MinimumWidth = 8;
-            this.staffStatus.Name = "staffStatus";
+            this.btnSaveHours.BackColor = System.Drawing.Color.DarkGreen;
+            this.btnSaveHours.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveHours.ForeColor = System.Drawing.Color.White;
+            this.btnSaveHours.Location = new System.Drawing.Point(686, 524);
+            this.btnSaveHours.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSaveHours.Name = "btnSaveHours";
+            this.btnSaveHours.Size = new System.Drawing.Size(409, 85);
+            this.btnSaveHours.TabIndex = 1;
+            this.btnSaveHours.Text = "Save hours worked";
+            this.btnSaveHours.UseVisualStyleBackColor = false;
+            this.btnSaveHours.Click += new System.EventHandler(this.btnSaveHours_Click);
             // 
-            // dailyRate
+            // dgvStaff
             // 
-            this.dailyRate.DataPropertyName = "dailyRate";
-            this.dailyRate.HeaderText = "dailyRate";
-            this.dailyRate.MinimumWidth = 8;
-            this.dailyRate.Name = "dailyRate";
+            this.dgvStaff.AllowUserToAddRows = false;
+            this.dgvStaff.AllowUserToDeleteRows = false;
+            this.dgvStaff.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvStaff.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.dgvStaff.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvStaff.Location = new System.Drawing.Point(188, 232);
+            this.dgvStaff.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvStaff.MultiSelect = false;
+            this.dgvStaff.Name = "dgvStaff";
+            this.dgvStaff.RowHeadersWidth = 51;
+            this.dgvStaff.RowTemplate.Height = 24;
+            this.dgvStaff.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvStaff.Size = new System.Drawing.Size(1332, 230);
+            this.dgvStaff.TabIndex = 0;
+            this.dgvStaff.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dgvStaff_CellBeginEdit);
+            this.dgvStaff.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvStaff_CellClick);
+            this.dgvStaff.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvStaff_CellEndEdit);
+            this.dgvStaff.SelectionChanged += new System.EventHandler(this.dgvStaff_SelectionChanged);
             // 
-            // roleID
+            // staffTableAdapter
             // 
-            this.roleID.DataPropertyName = "roleID";
-            this.roleID.HeaderText = "roleID";
-            this.roleID.MinimumWidth = 8;
-            this.roleID.Name = "roleID";
+            this.staffTableAdapter.ClearBeforeFill = true;
             // 
-            // emailAddress
+            // tableAdapterManager
             // 
-            this.emailAddress.DataPropertyName = "emailAddress";
-            this.emailAddress.HeaderText = "emailAddress";
-            this.emailAddress.MinimumWidth = 8;
-            this.emailAddress.Name = "emailAddress";
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.ClientTableAdapter = null;
+            this.tableAdapterManager.HiredAssetTableAdapter = null;
+            this.tableAdapterManager.ItemDetailTableAdapter = null;
+            this.tableAdapterManager.JobAssetAssignmentTableAdapter = null;
+            this.tableAdapterManager.JobDetailTableAdapter = null;
+            this.tableAdapterManager.JobRequestTableAdapter = null;
+            this.tableAdapterManager.JobStaffAssignmentTableAdapter = null;
+            this.tableAdapterManager.JobTableAdapter = null;
+            this.tableAdapterManager.JobTimeSlotTableAdapter = null;
+            this.tableAdapterManager.JobTypeTableAdapter = null;
+            this.tableAdapterManager.MaintenanceLogTableAdapter = null;
+            this.tableAdapterManager.OwnedAssetTableAdapter = null;
+            this.tableAdapterManager.PaymentTableAdapter = null;
+            this.tableAdapterManager.QuoteTableAdapter = null;
+            this.tableAdapterManager.RequestItemTableAdapter = null;
+            this.tableAdapterManager.RoleTableAdapter = null;
+            this.tableAdapterManager.SitePhotoTableAdapter = null;
+            this.tableAdapterManager.StaffTableAdapter = this.staffTableAdapter;
+            this.tableAdapterManager.TimeSlotTableAdapter = null;
+            this.tableAdapterManager.UpdateOrder = M2GiantGroupSystem.GroupWst1DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox1.Location = new System.Drawing.Point(476, 187);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(139, 25);
+            this.checkBox1.TabIndex = 43;
+            this.checkBox1.Text = "See Password";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox2.Location = new System.Drawing.Point(557, 195);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(139, 25);
+            this.checkBox2.TabIndex = 21;
+            this.checkBox2.Text = "See Password";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
             // Staff
             // 
@@ -1232,5 +1268,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dailyRateDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn roleIDDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn emailAddressDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBox2;
     }
 }

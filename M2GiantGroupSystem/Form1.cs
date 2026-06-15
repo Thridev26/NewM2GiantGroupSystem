@@ -34,7 +34,7 @@ namespace M2GiantGroupSystem
             switch (level)
             {
                 case 5: // Admin: Some locks 
-                   toolStripMenuItem4.Enabled = false;
+                   //toolStripMenuItem4.Enabled = false;
                     toolStripMenuItem5.Enabled = false;
                     break;
 
@@ -44,7 +44,8 @@ namespace M2GiantGroupSystem
                     clientsToolStripMenuItem.Enabled = false;
                     toolStripMenuItem9.Enabled = false;
                     toolStripMenuItem1.Enabled = false;
-                    toolStripMenuItem2.Enabled = false;
+                   allocateAssetsToJobsToolStripMenuItem.Enabled = false;
+                    viewAllAllocationsToolStripMenuItem.Enabled = false;
                     addEditJobDetailsToolStripMenuItem.Enabled = false;
                     editJobProgressToolStripMenuItem.Enabled = false;
                     toolStripMenuItem4.Enabled = false;
@@ -58,7 +59,8 @@ namespace M2GiantGroupSystem
                     clientsToolStripMenuItem.Enabled = false;
                     toolStripMenuItem9.Enabled = false;
                     toolStripMenuItem1.Enabled = false;
-                    toolStripMenuItem2.Enabled = false;
+                    allocateAssetsToJobsToolStripMenuItem.Enabled = false;
+                    viewAllAllocationsToolStripMenuItem.Enabled = false;
                     addEditJobDetailsToolStripMenuItem.Enabled = false;
                     editJobProgressToolStripMenuItem.Enabled = false;
                     toolStripMenuItem4.Enabled = false;

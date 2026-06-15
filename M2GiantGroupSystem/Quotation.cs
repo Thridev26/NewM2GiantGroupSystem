@@ -26,6 +26,8 @@ namespace M2GiantGroupSystem
     {
         private decimal currentTravelFee = 0.00m;
         int tabIndex;
+        
+        
         // Global flag to temporarily ignore events during form resets        
         public Quotation(int tab_index)
         {
@@ -131,6 +133,11 @@ namespace M2GiantGroupSystem
 
         private void Quotation_Load(object sender, EventArgs e)
         {
+            dateIssuedDateTimePicker.Value = DateTime.Today;
+            dateGeneratedDateTimePicker.Value = DateTime.Today;
+            dtpEditIssued.Value = DateTime.Today;
+            dtpEditGenerated.Value = DateTime.Today;
+            cboQuoteStatus.SelectedIndex = 0; // Default to the first status option
             tabControl1.DrawMode = TabDrawMode.OwnerDrawFixed;
             tabControl1.DrawItem += tabControl1_DrawItem;
             tabControl1.ItemSize = new Size(300, 30);
@@ -290,7 +297,7 @@ namespace M2GiantGroupSystem
                 expiryDateDateTimePicker.Value = today.AddDays(30);
                 txtAmount.Text = "0.00";
                 txtFilePath.Text = "";
-                cboQuoteStatus.SelectedIndex = -1;
+                cboQuoteStatus.SelectedIndex = 0; // Default to the first status option
                 selectedJobsGridView.DataSource = null;
                 jobTypeDataGridView.DataSource = null;
                 jobRequestIDTextBox.Text = "";
@@ -325,9 +332,26 @@ namespace M2GiantGroupSystem
             txtVAT.Text = "0.00";
             txtTotalwithVAT.Text = "0.00";
             txtFilePath.Text = "";
-            cboQuoteStatus.SelectedIndex = -1;
-            selectedJobsGridView.Rows.Clear();
-            txtEditQuoteID.Text = "";
+            cboQuoteStatus.SelectedIndex = 0;
+            // 2. Identify the item to move back
+            DataGridViewRow row = selectedJobsGridView.CurrentRow;
+            // --- ADD THIS CHECK ---
+            if (row == null)
+            {
+                return; // Stop here if no row is selected
+            }
+            string jobTypeName = row.Cells["jobTypeName"].Value?.ToString();
+            object jobRate = row.Cells["jobRate"].Value;
+            if (selectedJobsGridView.DataSource is DataTable dtSelected)
+            {
+                DataRow[] rowsToRemove = dtSelected.Select($"jobTypeName = '{jobTypeName.Replace("'", "''")}'");
+                foreach (DataRow r in rowsToRemove)
+                {
+                    dtSelected.Rows.Remove(r);
+                }
+                dtSelected.AcceptChanges();
+            }
+                txtEditQuoteID.Text = "";
             longitudeTextBox.Text = "";
             latitudeTextBox.Text = "";
             urgencyLevelTextBox.Text = "";
@@ -464,8 +488,8 @@ namespace M2GiantGroupSystem
         // Hardcoded Business Location Constants 
         private const double BaseLatitude = -29.890840081918007;
         private const double BaseLongitude = 30.905937134956915;
-        private const decimal CostPerKilometer = 6.50m; // R6.50 per km for fuel/transport
-        private const decimal BaseCallOutFee = 450.00m; // Flat base fee just to drive out
+        private const decimal CostPerKilometer = 36.00m; // R36.00 per km for fuel/transport
+        private const decimal BaseCallOutFee = 500.00m; // Flat base fee just to drive out
 
         private decimal CalculateTravelFee(double clientLat, double clientLng)
         {
@@ -1557,6 +1581,29 @@ namespace M2GiantGroupSystem
             {
                 MessageBox.Show("Search Error: " + ex.Message);
             }
+        }
+
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+            // 6. DATABASE RE-SYNC AND UI REFRESH
+            // Pull down a pristine snapshot to update the local DataTable layout cache
+            this.dataTable3TableAdapter.Fill(this.groupWst1DataSet.DataTable3);
+            this.quoteTableAdapter.Fill(this.groupWst1DataSet.Quote);
+            UpdateQuoteCount();
+            txtEditJobRequestID.Text = "";
+            txtEditQuoteID.Text = "";
+            dtpEditExpiry.Value = DateTime.Today.AddDays(30);
+            dtpEditGenerated.Value = DateTime.Today;
+            dtpEditIssued.Value = DateTime.Today;
+            txtEditAmount.Text = "0.00";
+            textBox2.Text = "0.00";
+            textBox4.Text = "0.00";
+            cmbEditStatus.SelectedIndex = 0;
+            txtEditFilePath.Text = "";
+
+            // 7. SUCCESS FEEDBACK
+            MessageBox.Show($"Your request to stop editing was successful.",
+                            "System Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

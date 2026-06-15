@@ -29,6 +29,43 @@ namespace M2GiantGroupSystem
 
         }
 
+        private void ApplyPermissions()
+        {
+            int level = UserSession.AccessLevel; // The user Session object is global so this will work 
+
+            // 1. If Owner (6), they already have full access.  
+            // We just return early and don't change anything! 
+            if (level >= 6) return;
+
+            // 2. If we reach this point, the user is NOT an owner. 
+            // Now we apply restrictions for everyone else. 
+            switch (level)
+            {
+                case 5: // Admin: Some locks                     
+                    break;
+
+                case 4: // Ops Manager: More locks 
+                    if (tabViewAllocations.TabPages.Contains(tabPage1) && tabViewAllocations.TabPages.Contains(tabPage2))
+                    {
+                        tabViewAllocations.TabPages.Remove(tabPage1);
+                        tabViewAllocations.TabPages.Remove(tabPage2);
+                    }
+                    tabViewAllocations.Refresh(); // Refresh the tab control to reflect changes immediately
+
+                   
+                    break;
+
+                default: // Level 3 and below: Complete lockdown – lock all controls if you feel they should not have access
+                    if (tabViewAllocations.TabPages.Contains(tabPage1) && tabViewAllocations.TabPages.Contains(tabPage2))
+                    {
+                        tabViewAllocations.TabPages.Remove(tabPage1);
+                        tabViewAllocations.TabPages.Remove(tabPage2);
+                    }
+                    tabViewAllocations.Refresh(); // Refresh the tab control to reflect changes immediately
+                    
+                    break;
+            }
+        }
         private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)
         {
             TabPage page = tabViewAllocations.TabPages[e.Index];
@@ -66,6 +103,7 @@ namespace M2GiantGroupSystem
         }
         private void AllocateAssetStafftoJob_Load(object sender, EventArgs e)
         {
+            ApplyPermissions();
             ApplyTheme();
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.DefaultCellStyle.SelectionBackColor = Color.Green;
@@ -616,8 +654,8 @@ WHERE jsa.jobID = @jobID";
 
                     // 2. Safe Parsing: Using TryParse instead of explicit (int) casting 
                     // prevents crashes if the cell contains unexpected data
-                    if (int.TryParse(row.Cells["SColumn"].Value?.ToString(), out int staffId) &&
-                        int.TryParse(row.Cells["JColumn"].Value?.ToString(), out int jobId))
+                    if (int.TryParse(row.Cells["staffID"].Value?.ToString(), out int staffId) &&
+                        int.TryParse(row.Cells["jobID"].Value?.ToString(), out int jobId))
                     {
                         // 3. Confirmation
                         var confirm = MessageBox.Show("Remove this staff member from the job?",
