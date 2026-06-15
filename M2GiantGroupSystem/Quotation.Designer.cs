@@ -130,6 +130,7 @@
             this.button10 = new System.Windows.Forms.Button();
             this.btnExportPDF = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button5 = new System.Windows.Forms.Button();
             this.dtpEditGenerated = new System.Windows.Forms.DateTimePicker();
             this.dtpEditExpiry = new System.Windows.Forms.DateTimePicker();
             this.label14 = new System.Windows.Forms.Label();
@@ -735,6 +736,7 @@
             this.siteEvaluationDateDataGridViewTextBoxColumn.HeaderText = "EvaluationDate";
             this.siteEvaluationDateDataGridViewTextBoxColumn.MinimumWidth = 8;
             this.siteEvaluationDateDataGridViewTextBoxColumn.Name = "siteEvaluationDateDataGridViewTextBoxColumn";
+            this.siteEvaluationDateDataGridViewTextBoxColumn.Visible = false;
             // 
             // clientIDDataGridViewTextBoxColumn
             // 
@@ -848,8 +850,7 @@
             "RequestSource",
             "Urgency",
             "Status",
-            "DateRecieved",
-            "EvaluationDate"});
+            "DateRecieved"});
             this.cmbSearchColumn.Location = new System.Drawing.Point(338, 37);
             this.cmbSearchColumn.Margin = new System.Windows.Forms.Padding(2);
             this.cmbSearchColumn.Name = "cmbSearchColumn";
@@ -1031,6 +1032,7 @@
             // cboQuoteStatus
             // 
             this.cboQuoteStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.cboQuoteStatus.Enabled = false;
             this.cboQuoteStatus.FormattingEnabled = true;
             this.cboQuoteStatus.Items.AddRange(new object[] {
             "Not Sent"});
@@ -1045,6 +1047,7 @@
             // dateIssuedDateTimePicker
             // 
             this.dateIssuedDateTimePicker.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.dateIssuedDateTimePicker.Enabled = false;
             this.dateIssuedDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateIssuedDateTimePicker.Location = new System.Drawing.Point(960, 362);
             this.dateIssuedDateTimePicker.Margin = new System.Windows.Forms.Padding(2);
@@ -1067,6 +1070,7 @@
             // dateGeneratedDateTimePicker
             // 
             this.dateGeneratedDateTimePicker.CalendarMonthBackground = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.dateGeneratedDateTimePicker.Enabled = false;
             this.dateGeneratedDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateGeneratedDateTimePicker.Location = new System.Drawing.Point(960, 426);
             this.dateGeneratedDateTimePicker.Margin = new System.Windows.Forms.Padding(2);
@@ -1337,6 +1341,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button5);
             this.groupBox1.Controls.Add(this.dtpEditGenerated);
             this.groupBox1.Controls.Add(this.dtpEditExpiry);
             this.groupBox1.Controls.Add(this.label14);
@@ -1368,6 +1373,19 @@
             this.groupBox1.TabIndex = 47;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Edit Quote Details";
+            // 
+            // button5
+            // 
+            this.button5.BackColor = System.Drawing.Color.DarkGreen;
+            this.button5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button5.Location = new System.Drawing.Point(459, 374);
+            this.button5.Margin = new System.Windows.Forms.Padding(2);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(211, 42);
+            this.button5.TabIndex = 61;
+            this.button5.Text = "Cancel Edit";
+            this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click_1);
             // 
             // dtpEditGenerated
             // 
@@ -1668,7 +1686,6 @@
             this.Name = "Quotation";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quotation";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Quotation_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -1774,19 +1791,6 @@
         private System.Windows.Forms.BindingSource dataTable2BindingSource;
         private GroupWst1DataSetTableAdapters.DataTable2TableAdapter dataTable2TableAdapter;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clientName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clientSurname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn siteAddress;
-        private System.Windows.Forms.DataGridViewTextBoxColumn longitude;
-        private System.Windows.Forms.DataGridViewTextBoxColumn latitude;
-        private System.Windows.Forms.DataGridViewTextBoxColumn requestSourceDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn urgencyLevelDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dateRecievedDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn siteEvaluationDateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clientIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clientID1DataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn jobRequestID;
         private System.Windows.Forms.DataGridView quoteDataGridView;
         private System.Windows.Forms.BindingSource dataTable3BindingSource;
         private GroupWst1DataSetTableAdapters.DataTable3TableAdapter dataTable3TableAdapter;
@@ -1815,5 +1819,19 @@
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clientName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clientSurname;
+        private System.Windows.Forms.DataGridViewTextBoxColumn siteAddress;
+        private System.Windows.Forms.DataGridViewTextBoxColumn longitude;
+        private System.Windows.Forms.DataGridViewTextBoxColumn latitude;
+        private System.Windows.Forms.DataGridViewTextBoxColumn requestSourceDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn urgencyLevelDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dateRecievedDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn siteEvaluationDateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clientIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clientID1DataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn jobRequestID;
     }
 }

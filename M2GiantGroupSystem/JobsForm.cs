@@ -116,6 +116,10 @@ namespace M2GiantGroupSystem
         }
         private void ViewJobDetailsForm_Load(object sender, EventArgs e)
         {
+            txtLabourCost.Text = "0";
+            txtDumpingCost.Text = "0";
+            txtUpdateLabourCost.Text = "0";
+            txtUpdateDumpingCost.Text = "0";
             ApplyPermissions();
             SetupGridStyles();
             JobProgressFilter.Items.Clear();
@@ -780,21 +784,26 @@ GROUP BY q.amount";
                 return;
             }
 
-            if (!decimal.TryParse(txtLabourCost.Text, out decimal labour) || labour < 0)
-            {
-                MessageBox.Show("Labour cost must be a valid positive number.",
-                    "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtLabourCost.Focus();
-                return;
-            }
+            decimal labour = 0;
+            decimal.TryParse(txtLabourCost.Text, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out labour);
 
-            if (!decimal.TryParse(txtDumpingCost.Text, out decimal dumping) || dumping < 0)
-            {
-                MessageBox.Show("Dumping cost must be a valid positive number.",
-                    "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtDumpingCost.Focus();
-                return;
-            }
+            decimal dumping = 0;
+            decimal.TryParse(txtDumpingCost.Text, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out dumping);
+            //if (!decimal.TryParse(txtLabourCost.Text, out decimal labour) || labour < 0)
+            //{
+            //    MessageBox.Show("Labour cost must be a valid positive number.",
+            //        "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    txtLabourCost.Focus();
+            //    return;
+            //}
+
+            //if (!decimal.TryParse(txtDumpingCost.Text, out decimal dumping) || dumping < 0)
+            //{
+            //    MessageBox.Show("Dumping cost must be a valid positive number.",
+            //        "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    txtDumpingCost.Focus();
+            //    return;
+            //}
 
             bool slotSelected = pnlTimeSlots.Controls
                 .OfType<CheckBox>()

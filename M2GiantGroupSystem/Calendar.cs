@@ -26,6 +26,33 @@ namespace M2GiantGroupSystem
         string connStr =
             "Data Source=146.230.177.46;Initial Catalog=GroupWst1;Persist Security Info=True;User ID=GroupWst1;Password=dtf39;Encrypt=True;TrustServerCertificate=True";
 
+        private void ApplyPermissions()
+        {
+            int level = UserSession.AccessLevel; // The user Session object is global so this will work 
+
+            // 1. If Owner (6), they already have full access.  
+            // We just return early and don't change anything! 
+            if (level >= 6) return;
+
+            // 2. If we reach this point, the user is NOT an owner. 
+            // Now we apply restrictions for everyone else. 
+            switch (level)
+            {
+                case 5: // Admin: Some locks                     
+                    break;
+
+                case 4: // Ops Manager: More locks 
+                    button2.Enabled = false; // Disable "Allocate Assets" button for Ops Managers and below
+
+
+                    break;
+
+                default: // Level 3 and below: Complete lockdown – lock all controls if you feel they should not have access
+                    button2.Enabled = false; // Disable "Allocate Assets" button for Level 3 and below
+
+                    break;
+            }
+        }
         // ─────────────────────────────────────────────
         // FORM LOAD
         // ─────────────────────────────────────────────
@@ -44,6 +71,7 @@ namespace M2GiantGroupSystem
 
                 SetupGrid();
                 RefreshCalendar();
+                ApplyPermissions();
             }
             catch (SqlException sqlEx)
             {
