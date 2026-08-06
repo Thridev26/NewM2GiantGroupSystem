@@ -12,5 +12,8 @@ namespace M2GiantGroupSystem
         public static int StaffID { get; set; }
         public static int AccessLevel { get; set; }
         public static string UserName { get; set; }
+        public static string FirstName { get; set; }
+
+        public static string LastName { get; set; }
     }
 }

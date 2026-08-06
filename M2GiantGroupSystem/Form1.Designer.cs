@@ -73,6 +73,10 @@
             this.siteEvaluationPhotosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.completedJobPhotosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.Loglbl = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblClock = new System.Windows.Forms.Label();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -466,6 +470,45 @@
             this.completedJobPhotosToolStripMenuItem.Text = "Completed Job Photos";
             this.completedJobPhotosToolStripMenuItem.Click += new System.EventHandler(this.completedJobPhotosToolStripMenuItem_Click);
             // 
+            // Loglbl
+            // 
+            this.Loglbl.AutoSize = true;
+            this.Loglbl.BackColor = System.Drawing.Color.SeaShell;
+            this.Loglbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Loglbl.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Loglbl.Location = new System.Drawing.Point(33, 71);
+            this.Loglbl.Name = "Loglbl";
+            this.Loglbl.Size = new System.Drawing.Size(83, 32);
+            this.Loglbl.TabIndex = 2;
+            this.Loglbl.Text = "label1";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(33, 126);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(293, 140);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Access Level Guide:\r\n6 - Owner\r\n5 - System Manager\r\n4 - Daily Operations Manager\r" +
+    "\n1 - General Workers";
+            // 
+            // lblClock
+            // 
+            this.lblClock.AutoSize = true;
+            this.lblClock.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblClock.Location = new System.Drawing.Point(1567, 71);
+            this.lblClock.Name = "lblClock";
+            this.lblClock.Size = new System.Drawing.Size(83, 32);
+            this.lblClock.TabIndex = 5;
+            this.lblClock.Text = "label2";
+            // 
+            // timer2
+            // 
+            this.timer2.Enabled = true;
+            this.timer2.Interval = 1000;
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
@@ -474,6 +517,9 @@
             this.BackgroundImage = global::M2GiantGroupSystem.Properties.Resources.mainMenuBgWithLogo;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1924, 540);
+            this.Controls.Add(this.lblClock);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.Loglbl);
             this.Controls.Add(this.menuStrip1);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -538,6 +584,10 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem14;
         private System.Windows.Forms.ToolStripMenuItem siteEvaluationPhotosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem completedJobPhotosToolStripMenuItem;
+        private System.Windows.Forms.Label Loglbl;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblClock;
+        private System.Windows.Forms.Timer timer2;
     }
 }
 
