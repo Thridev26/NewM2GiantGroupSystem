@@ -43,10 +43,10 @@ namespace M2GiantGroupSystem
             string connString = "Data Source=146.230.177.46;Initial Catalog=GroupWst1;Persist Security Info=True;User ID=GroupWst1;Password=dtf39;Encrypt=True;Trust Server Certificate=True;";
 
             // 4. Asynchronous Database Operation
-            string query = @"SELECT s.staffID, s.passwordHash, r.accessLevel, s.userName 
-                     FROM Staff s 
-                     JOIN Role r ON s.roleID = r.roleID 
-                     WHERE s.userName = @userName";
+            string query = @"SELECT s.staffID, s.passwordHash, r.accessLevel, s.userName, s.firstName, s.lastName 
+                 FROM Staff s 
+                 JOIN Role r ON s.roleID = r.roleID 
+                 WHERE s.userName = @userName";
 
             try
             {
@@ -72,11 +72,13 @@ namespace M2GiantGroupSystem
                                     UserSession.StaffID = Convert.ToInt32(reader["staffID"]);
                                     UserSession.AccessLevel = Convert.ToInt32(reader["accessLevel"]);
                                     UserSession.UserName = reader["userName"].ToString();
+                                    UserSession.FirstName = reader["firstName"].ToString(); // Save the first name
+                                    UserSession.LastName = reader["lastName"].ToString();
 
                                     // 7. Success - Navigate to Main Menu
-                                    MessageBox.Show($"Welcome back, {UserSession.UserName}.", "System Access Granted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    MessageBox.Show($"Welcome back, {UserSession.FirstName} {UserSession.LastName}.", "System Access Granted", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                                    Form1 form1 = new Form1();
+                                    Form1 form1 = new Form1(UserSession.FirstName, UserSession.LastName, UserSession.AccessLevel.ToString());
                                     form1.Show();
                                     this.Hide();
                                 }
