@@ -159,7 +159,7 @@ namespace M2GiantGroupSystem
     c.clientName + ' ' + c.clientSurname AS ClientName,
     jr.siteAddress,
     j.startDate,
-    j.endDate,
+  
     jt.jobTypeName,
     jt.jobRate,
     CAST(id.detailValue AS DECIMAL(10,2)) AS DetailValue,

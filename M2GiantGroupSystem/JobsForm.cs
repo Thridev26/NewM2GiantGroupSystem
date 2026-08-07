@@ -171,6 +171,7 @@ namespace M2GiantGroupSystem
                 dgvJoin.RowTemplate.Height = 32;
                 dgvJoin.ColumnHeadersHeight = 40;
 
+
                 if (dgvJoin.Columns["QuoteID"] != null)
                     dgvJoin.Columns["QuoteID"].Visible = false;
             }
