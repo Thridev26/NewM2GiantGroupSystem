@@ -33,16 +33,14 @@ namespace M2GiantGroupSystem
             tabIndex = tab_index;
         }
 
-        
+
         private void ClearUpdateFormLayout()
         {
             selectedJobID = 0;
             txtUpdateJobID.Clear();
             dtpUpdateStartDate.Value = DateTime.Today;
-            dtpUpdateEndDate.Value = DateTime.Today;
             cboUpdateJobStatus.SelectedIndex = -1;
             txtUpdateFuelCost.Clear();
-            txtUpdateLabourCost.Clear();
             txtUpdateDumpingCost.Clear();
             txtUpdateQuoteID.Clear();
         }
@@ -116,9 +114,7 @@ namespace M2GiantGroupSystem
         }
         private void ViewJobDetailsForm_Load(object sender, EventArgs e)
         {
-            txtLabourCost.Text = "0";
-            txtDumpingCost.Text = "0";
-            txtUpdateLabourCost.Text = "0";
+            //txtDumpingCost.Text = "0";
             txtUpdateDumpingCost.Text = "0";
             ApplyPermissions();
             SetupGridStyles();
@@ -215,6 +211,7 @@ namespace M2GiantGroupSystem
         // --------------------------------------------------------------------------------------------------------
         private void dgvJoin_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            txtFuelCost.Text =     "0.00"; // Reset fuel cost on new selection
             if (e.RowIndex < 0) return;
 
             if (dgvJoin.Rows[e.RowIndex].Cells["QuoteID"].Value == DBNull.Value ||
@@ -405,9 +402,9 @@ GROUP BY q.amount";
         // [INFO FOR UPDATE: You have TWO methods for the Add Job Button: btnSaveJob_Click AND btnSaveJob_Click_1. 
         // When you update your components, make sure you delete the unused ghost one, and map the visual button 
         // to the correct method in the designer events panel!]
-       
 
-    
+
+
         private void ClearFormLayout()
         {
             selectedQuoteID = 0;
@@ -416,11 +413,9 @@ GROUP BY q.amount";
             if (txtSearchQuote != null) txtSearchQuote.Clear();
 
             txtFuelCost.Text = "0.00";
-            txtLabourCost.Text = "0.00";
-            txtDumpingCost.Text = "0.00";
+          //  txtDumpingCost.Text = "0.00";
             cboJobStatus.SelectedIndex = 0;
             dtpStartDate.Value = DateTime.Today;
-            dtpEndDate.Value = DateTime.Today;
 
             foreach (Control c in pnlTimeSlots.Controls)
             {
@@ -497,22 +492,10 @@ GROUP BY q.amount";
                 jobStartDatelb.Text = "Start Date: N/A";
             }
 
-            if (row.Cells["End Date"].Value != DBNull.Value && row.Cells["End Date"].Value != null)
-            {
-                DateTime endDate = Convert.ToDateTime(row.Cells["End Date"].Value);
-                jobEndDatelb.Text = "End Date: " + endDate.ToString("yyyy/MM/dd");
-            }
-            else
-            {
-                jobEndDatelb.Text = "End Date: N/A";
-            }
-
             decimal fuel = row.Cells["Fuel Cost"].Value != DBNull.Value ? Convert.ToDecimal(row.Cells["Fuel Cost"].Value) : 0.00m;
-            decimal labour = row.Cells["Labour Cost"].Value != DBNull.Value ? Convert.ToDecimal(row.Cells["Labour Cost"].Value) : 0.00m;
             decimal dumping = row.Cells["Dumping Cost"].Value != DBNull.Value ? Convert.ToDecimal(row.Cells["Dumping Cost"].Value) : 0.00m;
 
             lblFuelJobCost.Text = "Total Fuel Cost: " + fuel.ToString("C2");
-            lblJobLabourCost.Text = "Total Labour Cost: " + labour.ToString("C2");
             lblDumpJobCost.Text = "Dumping Cost: " + dumping.ToString("C2");
 
             lblJobQuoteID.Text = "Linked Quote ID: " + row.Cells["Quote ID"].Value?.ToString();
@@ -551,10 +534,8 @@ GROUP BY q.amount";
                         c.clientSurname   AS [Client Surname],
                         jr.siteAddress    AS [Address],
                         j.startDate       AS [Start Date],
-                        j.endDate         AS [End Date], 
                         j.jobStatus       AS [Status],
                         j.totalFuelCost   AS [Fuel Cost],
-                        j.totalLabourCost AS [Labour Cost],
                         j.dumpingCost     AS [Dumping Cost],
                         j.quoteID         AS [Quote ID]
                     FROM Job j
@@ -589,7 +570,6 @@ GROUP BY q.amount";
                 {
                     if (dgv.Columns["ID"] != null) dgv.Columns["ID"].Visible = false;
                     if (dgv.Columns["Fuel Cost"] != null) dgv.Columns["Fuel Cost"].Visible = false;
-                    if (dgv.Columns["Labour Cost"] != null) dgv.Columns["Labour Cost"].Visible = false;
                     if (dgv.Columns["Dumping Cost"] != null) dgv.Columns["Dumping Cost"].Visible = false;
                     if (dgv.Columns["Quote ID"] != null) dgv.Columns["Quote ID"].Visible = false;
                 }
@@ -693,11 +673,6 @@ GROUP BY q.amount";
                 if (row.Cells["Start Date"].Value != DBNull.Value && row.Cells["Start Date"].Value != null)
                     dtpUpdateStartDate.Value = Convert.ToDateTime(row.Cells["Start Date"].Value);
 
-                if (row.Cells["End Date"].Value != DBNull.Value && row.Cells["End Date"].Value != null)
-                    dtpUpdateEndDate.Value = Convert.ToDateTime(row.Cells["End Date"].Value);
-                else
-                    dtpUpdateEndDate.Value = DateTime.Today;
-
                 string statusValue = row.Cells["Status"].Value?.ToString();
                 if (cboUpdateJobStatus.Items.Contains(statusValue))
                     cboUpdateJobStatus.SelectedItem = statusValue;
@@ -705,11 +680,9 @@ GROUP BY q.amount";
                     cboUpdateJobStatus.SelectedIndex = -1;
 
                 decimal fuel = row.Cells["Fuel Cost"].Value != DBNull.Value ? Convert.ToDecimal(row.Cells["Fuel Cost"].Value) : 0.00m;
-                decimal labour = row.Cells["Labour Cost"].Value != DBNull.Value ? Convert.ToDecimal(row.Cells["Labour Cost"].Value) : 0.00m;
                 decimal dumping = row.Cells["Dumping Cost"].Value != DBNull.Value ? Convert.ToDecimal(row.Cells["Dumping Cost"].Value) : 0.00m;
 
                 txtUpdateFuelCost.Text = fuel.ToString("F2");
-                txtUpdateLabourCost.Text = labour.ToString("F2");
                 txtUpdateDumpingCost.Text = dumping.ToString("F2");
 
                 txtUpdateQuoteID.Text = row.Cells["Quote ID"].Value?.ToString();
@@ -769,13 +742,6 @@ GROUP BY q.amount";
                 return;
             }
 
-            if (dtpEndDate.Value.Date < dtpStartDate.Value.Date)
-            {
-                MessageBox.Show("End date cannot be before the start date.",
-                    "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
             if (!decimal.TryParse(txtFuelCost.Text, out decimal fuel) || fuel < 0)
             {
                 MessageBox.Show("Fuel cost must be a valid positive number.",
@@ -784,26 +750,8 @@ GROUP BY q.amount";
                 return;
             }
 
-            decimal labour = 0;
-            decimal.TryParse(txtLabourCost.Text, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out labour);
-
             decimal dumping = 0;
-            decimal.TryParse(txtDumpingCost.Text, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out dumping);
-            //if (!decimal.TryParse(txtLabourCost.Text, out decimal labour) || labour < 0)
-            //{
-            //    MessageBox.Show("Labour cost must be a valid positive number.",
-            //        "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    txtLabourCost.Focus();
-            //    return;
-            //}
-
-            //if (!decimal.TryParse(txtDumpingCost.Text, out decimal dumping) || dumping < 0)
-            //{
-            //    MessageBox.Show("Dumping cost must be a valid positive number.",
-            //        "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    txtDumpingCost.Focus();
-            //    return;
-            //}
+            //decimal.TryParse(txtDumpingCost.Text, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out dumping);
 
             bool slotSelected = pnlTimeSlots.Controls
                 .OfType<CheckBox>()
@@ -826,18 +774,16 @@ GROUP BY q.amount";
                 using (SqlConnection conn = new SqlConnection(connStr))
                 {
                     string insertSql = @"
-                INSERT INTO Job (startDate, endDate, jobStatus, totalFuelCost, totalLabourCost, dumpingCost, quoteID) 
-                VALUES (@start, @end, @status, @fuel, @labour, @dumping, @quoteID);
+                INSERT INTO Job (startDate, jobStatus, totalFuelCost, dumpingCost, quoteID) 
+                VALUES (@start, @status, @fuel, @dumping, @quoteID);
                 SELECT SCOPE_IDENTITY();";
 
                     using (SqlCommand cmd = new SqlCommand(insertSql, conn))
                     {
                         cmd.Parameters.AddWithValue("@start", dtpStartDate.Value.Date);
-                        cmd.Parameters.AddWithValue("@end", dtpEndDate.Value.Date);
                         cmd.Parameters.AddWithValue("@status", cboJobStatus.SelectedItem.ToString());
                         cmd.Parameters.AddWithValue("@fuel", fuel);
-                        cmd.Parameters.AddWithValue("@labour", labour);
-                        cmd.Parameters.AddWithValue("@dumping", dumping);
+                        cmd.Parameters.AddWithValue("@dumping", 0); //initially no dumping cost
                         cmd.Parameters.AddWithValue("@quoteID", selectedQuoteID);
 
                         conn.Open();
@@ -854,19 +800,13 @@ GROUP BY q.amount";
                     }
                 }
 
-                decimal totalAmount = fuel + labour + dumping;
+                // NOTE: We no longer auto-insert a Payment row here. Payment now has no
+                // status column, so any row in Payment is treated as money actually
+                // received - inserting one for the full job total on creation would make
+                // every job look "Paid" before the client has paid anything. Payments are
+                // recorded separately in paymentMain as they actually come in.
 
-                using (PaymentTableAdapter paymentAdapter = new PaymentTableAdapter())
-                {
-                    paymentAdapter.InsertQuery(
-                        DateTime.Today.ToString("yyyy-MM-dd"),
-                        totalAmount,
-                        "EFT",
-                        "Pending",
-                        jobID);
-                }
-
-                MessageBox.Show("Job scheduled and payment profile created successfully! Job ID: " + jobID,
+                MessageBox.Show("Job scheduled successfully! Job ID: " + jobID,
                     "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 LoadJobs();
@@ -904,9 +844,7 @@ GROUP BY q.amount";
                 j.jobStatus       AS [Status], 
                 jr.siteAddress    AS [Address],
                 j.startDate       AS [Start Date],
-                j.endDate         AS [End Date],
                 j.totalFuelCost   AS [Fuel Cost],
-                j.totalLabourCost AS [Labour Cost],
                 j.dumpingCost     AS [Dumping Cost],
                 j.quoteID         AS [Quote ID]
             FROM Job j
@@ -938,7 +876,6 @@ GROUP BY q.amount";
 
                     if (dgvUpdateJob.Columns["ID"] != null) dgvUpdateJob.Columns["ID"].Visible = false;
                     if (dgvUpdateJob.Columns["Fuel Cost"] != null) dgvUpdateJob.Columns["Fuel Cost"].Visible = false;
-                    if (dgvUpdateJob.Columns["Labour Cost"] != null) dgvUpdateJob.Columns["Labour Cost"].Visible = false;
                     if (dgvUpdateJob.Columns["Dumping Cost"] != null) dgvUpdateJob.Columns["Dumping Cost"].Visible = false;
                     if (dgvUpdateJob.Columns["Quote ID"] != null) dgvUpdateJob.Columns["Quote ID"].Visible = false;
                 }
@@ -952,6 +889,7 @@ GROUP BY q.amount";
 
         private void button3_Click_1(object sender, EventArgs e)
         {
+            
             if (string.IsNullOrWhiteSpace(txtUpdateJobID.Text) || selectedJobID == 0)
             {
                 MessageBox.Show("Please select a job from the grid first.",
@@ -966,26 +904,11 @@ GROUP BY q.amount";
                 return;
             }
 
-            if (dtpUpdateStartDate.Value.Date > dtpUpdateEndDate.Value.Date)
-            {
-                MessageBox.Show("End date cannot be before the start date.",
-                    "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
             if (!decimal.TryParse(txtUpdateFuelCost.Text, out decimal fuel) || fuel < 0)
             {
                 MessageBox.Show("Fuel cost must be a valid positive number.",
                     "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtUpdateFuelCost.Focus();
-                return;
-            }
-
-            if (!decimal.TryParse(txtUpdateLabourCost.Text, out decimal labour) || labour < 0)
-            {
-                MessageBox.Show("Labour cost must be a valid positive number.",
-                    "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtUpdateLabourCost.Focus();
                 return;
             }
 
@@ -1004,12 +927,13 @@ GROUP BY q.amount";
 
             try
             {
+                // NOTE: UpdateJobQuery's signature will change once GroupWst1DataSet.xsd
+                // is regenerated without endDate/totalLabourCost. Update this call to
+                // match the regenerated TableAdapter method signature.
                 jobTableAdapter1.UpdateJobQuery(
                     dtpUpdateStartDate.Value.Date.ToString("yyyy-MM-dd"),
-                    dtpUpdateEndDate.Value.Date.ToString("yyyy-MM-dd"),
                     cboUpdateJobStatus.SelectedItem.ToString(),
                     fuel,
-                    labour,
                     dumping,
                     selectedJobID);
 

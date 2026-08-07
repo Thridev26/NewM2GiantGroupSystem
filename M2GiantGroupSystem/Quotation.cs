@@ -1511,7 +1511,7 @@ namespace M2GiantGroupSystem
 
                 if (dt.Rows.Count == 0)
                 {
-                    MessageBox.Show($"No detail record found for '{jobTypeName}' on Job Request #{jobRequestID}.",
+                    MessageBox.Show($"No details recorded for '{jobTypeName}' on Job Request #{jobRequestID}.",
                                     "No Data Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
