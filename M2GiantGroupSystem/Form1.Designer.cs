@@ -77,6 +77,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblClock = new System.Windows.Forms.Label();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -101,7 +102,7 @@
             this.toolStripMenuItem10,
             this.btnExitToMenu,
             this.toolStripMenuItem14});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Location = new System.Drawing.Point(0, 24);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(20, 6, 0, 6);
             this.menuStrip1.Size = new System.Drawing.Size(1924, 48);
@@ -473,10 +474,10 @@
             // Loglbl
             // 
             this.Loglbl.AutoSize = true;
-            this.Loglbl.BackColor = System.Drawing.Color.SeaShell;
+            this.Loglbl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(219)))), ((int)(((byte)(117)))));
             this.Loglbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Loglbl.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Loglbl.Location = new System.Drawing.Point(33, 71);
+            this.Loglbl.Location = new System.Drawing.Point(33, 9);
             this.Loglbl.Name = "Loglbl";
             this.Loglbl.Size = new System.Drawing.Size(83, 32);
             this.Loglbl.TabIndex = 2;
@@ -496,8 +497,9 @@
             // lblClock
             // 
             this.lblClock.AutoSize = true;
+            this.lblClock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(219)))), ((int)(((byte)(117)))));
             this.lblClock.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblClock.Location = new System.Drawing.Point(1567, 71);
+            this.lblClock.Location = new System.Drawing.Point(1631, 9);
             this.lblClock.Name = "lblClock";
             this.lblClock.Size = new System.Drawing.Size(83, 32);
             this.lblClock.TabIndex = 5;
@@ -508,6 +510,17 @@
             this.timer2.Enabled = true;
             this.timer2.Interval = 1000;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
+            // menuStrip2
+            // 
+            this.menuStrip2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(219)))), ((int)(((byte)(117)))));
+            this.menuStrip2.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
+            this.menuStrip2.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.menuStrip2.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip2.Name = "menuStrip2";
+            this.menuStrip2.Size = new System.Drawing.Size(1924, 24);
+            this.menuStrip2.TabIndex = 7;
+            this.menuStrip2.Text = "menuStrip2";
             // 
             // Form1
             // 
@@ -521,11 +534,13 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Loglbl);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.menuStrip2);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
+            this.MainMenuStrip = this.menuStrip2;
             this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.Name = "Form1";
             this.Text = "The Giant Group Operations and Asset Management System - Main Menu";
@@ -588,6 +603,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblClock;
         private System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.MenuStrip menuStrip2;
     }
 }
 

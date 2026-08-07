@@ -303,16 +303,16 @@ namespace M2GiantGroupSystem
             {
                 // No children open, disable the button
                 btnExitToMenu.Enabled = false;
-                lblClock.Visible = true;
-                Loglbl.Visible = true;
+                //lblClock.Visible = true;
+                //Loglbl.Visible = true;
                 label1.Visible = true;
             }
             else
             {
                 // A child is open, enable the button
                 btnExitToMenu.Enabled = true;
-                lblClock.Visible = false;
-                Loglbl.Visible = false;
+                //lblClock.Visible = false;
+                //Loglbl.Visible = false;
                 label1.Visible = false;
             }
         }
