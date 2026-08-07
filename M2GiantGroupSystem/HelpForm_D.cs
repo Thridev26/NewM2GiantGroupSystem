@@ -459,7 +459,7 @@ namespace M2GiantGroupSystem
         }
         private void resizeButton(Button b)
         {
-            b.Width = 100;
+            b.Width = 200;
             b.Height = 35;
         }
     }

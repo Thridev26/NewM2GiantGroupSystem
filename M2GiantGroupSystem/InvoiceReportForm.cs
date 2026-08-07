@@ -19,6 +19,7 @@ namespace M2GiantGroupSystem
             InitializeComponent();
             index = selectedIndex;
         }
+        private bool _allowReportTab = false;
         public static int SelectedJobID;
         DBConnect DB1 = new DBConnect();
         private bool _reportLoading = false;  // ADD THIS FLAG
@@ -206,16 +207,20 @@ namespace M2GiantGroupSystem
                 return;
             }
 
-            InvoiceReport1.Refresh();  // add this
-                                       //make cyrtal viewer load event run again to refresh data
+            InvoiceReport1.Refresh();
             crystalReportViewer1_Load(sender, e);
+
+            _allowReportTab = true;
             tabControl1.SelectedIndex = 1;
+            _allowReportTab = false;
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
            // tabControl1.TabPages[1].Enabled = false;
             //button1.Enabled = false;
+           
+            
         }
         private void LoadInvoiceReport()
         {
@@ -225,6 +230,16 @@ namespace M2GiantGroupSystem
             _reportLoading = true;
 
            
+        }
+
+        private void tabControl1_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+            if (e.TabPageIndex == 1 && !_allowReportTab)
+            {
+                e.Cancel = true;
+                MessageBox.Show("Click 'Generate Report' to view the invoice report.",
+                    "No Report Generated", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }

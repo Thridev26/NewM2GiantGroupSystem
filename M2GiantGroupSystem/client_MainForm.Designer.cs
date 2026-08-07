@@ -100,6 +100,7 @@
             this.tb_surname = new System.Windows.Forms.TextBox();
             this.tb_name = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.label19 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.clientBS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupWst1DataSet1)).BeginInit();
             this.tabPage3.SuspendLayout();
@@ -316,6 +317,7 @@
             // dgvClients
             // 
             this.dgvClients.AllowUserToResizeRows = false;
+            this.dgvClients.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvClients.ColumnHeadersHeight = 40;
             this.dgvClients.Location = new System.Drawing.Point(67, 158);
             this.dgvClients.Name = "dgvClients";
@@ -436,6 +438,7 @@
             // 
             this.tabPage2.AutoScroll = true;
             this.tabPage2.BackColor = System.Drawing.Color.SeaShell;
+            this.tabPage2.Controls.Add(this.label19);
             this.tabPage2.Controls.Add(this.pictureBox3);
             this.tabPage2.Controls.Add(this.userTip1);
             this.tabPage2.Controls.Add(this.userTip);
@@ -961,6 +964,18 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1924, 1055);
             this.tabControl1.TabIndex = 0;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.ForeColor = System.Drawing.Color.Blue;
+            this.label19.Location = new System.Drawing.Point(103, 886);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(240, 25);
+            this.label19.TabIndex = 63;
+            this.label19.Text = "select client from here ↑";
             // 
             // client_MainForm
             // 
@@ -1061,5 +1076,6 @@
         private System.Windows.Forms.Button btnActivate;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Label label19;
     }
 }
