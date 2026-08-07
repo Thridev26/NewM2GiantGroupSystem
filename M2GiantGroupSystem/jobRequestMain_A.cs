@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UI_Design;
+using static iText.StyledXmlParser.Jsoup.Select.Evaluator;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace M2GiantGroupSystem
@@ -22,7 +23,7 @@ namespace M2GiantGroupSystem
         int tabIndex;
         private string selectedPhotoPath = null;
         private string defaultImagePath = @"C:\Users\ashmi\source\repos\NewM2GiantGroupSystem\M2GiantGroupSystem\images1\no image available icon.jpg";
-        
+        private DateTime? originalEvaluationDate;
         public jobRequestMain_A(int tab_index)
         {
             InitializeComponent();
@@ -50,6 +51,7 @@ namespace M2GiantGroupSystem
         {
             try
             {
+                clientID = -1;
                 dateTimePicker1.Value = DateTime.Now;
                 tabControl1.SelectedIndex = tabIndex;
                 tabControl1.DrawMode = TabDrawMode.OwnerDrawFixed;
@@ -198,7 +200,7 @@ namespace M2GiantGroupSystem
             try
             {
                
-                if (lbSearchResults.SelectedIndex > 0)
+                if (lbSearchResults.SelectedIndex >= 0)
                 {
                     string selectedItem = lbSearchResults.SelectedItem.ToString();
                     string[] parts = selectedItem.Split(':');
@@ -210,12 +212,14 @@ namespace M2GiantGroupSystem
                         return;
                     }
                     clientTableAdapter1.FillByID(this.groupWst1DataSet1.Client, id);
+                //    MessageBox.Show(id.ToString());
                 }
                  if (numberOfResults==0)
                 {
                     lbSearchResults.Items.Add("Client not found!");
                     return;
                 }
+              //  MessageBox.Show(id.ToString());
             }
             catch (SqlException sqlEx)
             {
@@ -350,7 +354,7 @@ namespace M2GiantGroupSystem
         private void btnCapture_Click(object sender, EventArgs e)
         {
             // — Validation —
-            if (clientID == 0)
+            if (clientID <0 || lbSearchResults.SelectedIndex<0 )
             {
                 MessageBox.Show("Please search for and select a client before saving.",
                     "No Client Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -446,21 +450,6 @@ namespace M2GiantGroupSystem
                             null));
                 }
 
-                tbName_A.Text = "";
-                tbEmail_A.Text = "";
-                tbLong_A.Text = "";
-                tbLat_A.Text = "";
-                tbAddress_A.Text = "";
-                cmbUrgencyLevel_A.Text = "";
-                cmbRequestSource_A.Text = "";
-                clbItems.ClearSelected();
-
-                tbSearchValue_A.Text = "";
-                lbSearchResults.Items.Clear();
-                groupWst1DataSet1.Client.Clear();
-                clientID = 0;
-
-                cmbCriteria_A.SelectedIndex = -1;
                 foreach (var item in clbItems.CheckedItems)
                 {
                     string itemString = item.ToString();
@@ -478,12 +467,38 @@ namespace M2GiantGroupSystem
                     requestItemTableAdapter1.InsertQuery(jobRequestID, jtID);
                     this.requestItemTableAdapter1.Fill(this.groupWst1DataSet1.RequestItem);
                 }
+                //ask for confirmation before saving
+                DialogResult result = MessageBox.Show(
+                "Are you sure you want to capture this job request?",
+                "Confirm capture", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                MessageBox.Show("Inquiry with requested items saved successfully!",
+                if (result == DialogResult.Yes)
+                {
+                    MessageBox.Show("Inquiry with requested items saved successfully!",
                     "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Reset form
-                tbAddress_A.Text = "";
+
+                    tbName_A.Text = "";
+                    tbEmail_A.Text = "";
+                    tbLong_A.Text = "";
+                    tbLat_A.Text = "";
+                    tbAddress_A.Text = "";
+                    cmbUrgencyLevel_A.Text = "";
+                    cmbRequestSource_A.Text = "";
+                    clbItems.ClearSelected();
+
+                    tbSearchValue_A.Text = "";
+                    lbSearchResults.Items.Clear();
+                    groupWst1DataSet1.Client.Clear();
+                    clientID = 0;
+
+                    cmbCriteria_A.SelectedIndex = -1;
+                }
+
+
+
+                    // Reset form
+                    tbAddress_A.Text = "";
                 tbLat_A.Text = "";
                 tbLong_A.Text = "";
                 cmbRequestSource_A.SelectedIndex = -1;
@@ -565,7 +580,15 @@ namespace M2GiantGroupSystem
                                             .FirstOrDefault(i => i.ToString() == r["status"].ToString());
 
                 if (!r.IsNull("siteEvaluationDate"))
+                {
                     dateTimePicker1.Value = Convert.ToDateTime(r["siteEvaluationDate"]);
+                    originalEvaluationDate = Convert.ToDateTime(r["siteEvaluationDate"]);
+                }
+                else
+                {
+                    dateTimePicker1.Value = DateTime.Now;
+                    originalEvaluationDate = null;
+                }
             }
             catch (Exception ex)
             {
@@ -648,7 +671,11 @@ namespace M2GiantGroupSystem
             }
 
             DateTime selectedDate = dateTimePicker1.Value;
-            if (selectedDate.Date < DateTime.Now.Date)
+
+            bool dateWasChanged = originalEvaluationDate == null
+                || selectedDate.Date != originalEvaluationDate.Value.Date;
+
+            if (dateWasChanged && selectedDate.Date < DateTime.Now.Date)
             {
                 MessageBox.Show("The site evaluation date cannot be in the past.",
                     "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -678,6 +705,7 @@ namespace M2GiantGroupSystem
                 cmbUL.SelectedIndex = -1;
                 cmbStatus.SelectedIndex = -1;
                 dateTimePicker1.Value = DateTime.Now;
+                originalEvaluationDate = null;
                 runQuery(textBox1, dgv_clientJoinJobRequest);
             }
             catch (SqlException sqlEx)
@@ -783,7 +811,7 @@ namespace M2GiantGroupSystem
                         lbl_hint.Text = GetDataTypeHint(dataType);
                         lbl_hint.AutoSize = false;
                         lbl_hint.Width = 180;
-                        lbl_hint.ForeColor = Color.Gray;
+                        lbl_hint.ForeColor = Color.DarkBlue;
                         lbl_hint.Font = new Font("Segoe UI", 8, FontStyle.Italic);
                         lbl_hint.Margin = new Padding(0, 12, 10, 0);
 
@@ -1205,7 +1233,7 @@ namespace M2GiantGroupSystem
 
         private void btnUpload_Click(object sender, EventArgs e)
         {
-            if (jobRequestID == 0)
+            if (jobRequestID <= 0)
             {
                 MessageBox.Show("Please select a Job Request from the table before uploading a photo.",
                     "No Job Request Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -1289,7 +1317,7 @@ namespace M2GiantGroupSystem
 
         private void btnAddSitePhoto_Click(object sender, EventArgs e)
         {
-            if (jobRequestID == 0)
+            if (jobRequestID <0 )
             {
                 MessageBox.Show("Please select a Job Request from the table before adding photos.",
                     "No Job Request Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -1448,6 +1476,7 @@ namespace M2GiantGroupSystem
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             jobRequestID = 0;
+
             runQuery2(DateTime.Now, "", "");
             runQuery(textBox2, dataGridView1);
             runQuery(textBox1, dgv_clientJoinJobRequest);

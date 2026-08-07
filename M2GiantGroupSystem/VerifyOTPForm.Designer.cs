@@ -42,9 +42,10 @@
             this.btnVerify.BackColor = System.Drawing.Color.DarkGreen;
             this.btnVerify.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVerify.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnVerify.Location = new System.Drawing.Point(530, 159);
+            this.btnVerify.Location = new System.Drawing.Point(471, 127);
+            this.btnVerify.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnVerify.Name = "btnVerify";
-            this.btnVerify.Size = new System.Drawing.Size(126, 56);
+            this.btnVerify.Size = new System.Drawing.Size(112, 45);
             this.btnVerify.TabIndex = 0;
             this.btnVerify.Text = "Verify OTP";
             this.btnVerify.UseVisualStyleBackColor = false;
@@ -54,18 +55,19 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(329, 78);
+            this.label1.Location = new System.Drawing.Point(292, 62);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(327, 28);
+            this.label1.Size = new System.Drawing.Size(275, 23);
             this.label1.TabIndex = 1;
             this.label1.Text = "Enter the OTP sent to your Email:";
             // 
             // txtOTP
             // 
             this.txtOTP.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtOTP.Location = new System.Drawing.Point(382, 119);
+            this.txtOTP.Location = new System.Drawing.Point(340, 95);
+            this.txtOTP.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtOTP.Name = "txtOTP";
-            this.txtOTP.Size = new System.Drawing.Size(202, 34);
+            this.txtOTP.Size = new System.Drawing.Size(180, 30);
             this.txtOTP.TabIndex = 2;
             this.toolTip1.SetToolTip(this.txtOTP, "The OTP expires in 5 minutes. Make sure you enter the correct number and in good " +
         "time!");
@@ -75,9 +77,10 @@
             this.button1.BackColor = System.Drawing.Color.DarkGreen;
             this.button1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(334, 159);
+            this.button1.Location = new System.Drawing.Point(297, 127);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(126, 56);
+            this.button1.Size = new System.Drawing.Size(112, 45);
             this.button1.TabIndex = 3;
             this.button1.Text = "Cancel\r\n";
             this.toolTip1.SetToolTip(this.button1, "Return to the Login screen");
@@ -86,18 +89,20 @@
             // 
             // VerifyOTPForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SeaShell;
-            this.ClientSize = new System.Drawing.Size(953, 347);
+            this.ClientSize = new System.Drawing.Size(847, 278);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.txtOTP);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnVerify);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "VerifyOTPForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "VerifyOTPForm";
+            this.Load += new System.EventHandler(this.VerifyOTPForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

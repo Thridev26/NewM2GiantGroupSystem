@@ -675,5 +675,57 @@ namespace M2GiantGroupSystem
         private void tabPage1_Click(object sender, EventArgs e) { }
         private void tabPage2_Click(object sender, EventArgs e) { }
         private void flpThumbnails_Click(object sender, EventArgs e) { }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            if (selectedPhotoID == 0)
+            {
+                MessageBox.Show("Please click a photo first.",
+                    "No Photo Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DialogResult confirm = MessageBox.Show(
+                "Are you sure you want to delete this photo? This cannot be undone.",
+                "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (confirm != DialogResult.Yes) return;
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connStr))
+                using (SqlCommand cmd = new SqlCommand(
+                    "DELETE FROM SitePhoto WHERE photoID = @id", conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", selectedPhotoID);
+                    conn.Open();
+                    int rows = cmd.ExecuteNonQuery();
+
+                    if (rows == 0)
+                    {
+                        MessageBox.Show("Photo could not be found in the database. It may have already been deleted.",
+                            "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                }
+
+                MessageBox.Show("Photo deleted.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                selectedPhotoID = 0;
+                pbLargeView.Image = LoadDefaultImage();
+                button1.Enabled = false;
+                button2.Enabled = false;
+                LoadPhotos(jobID);
+            }
+            catch (SqlException sqlEx)
+            {
+                MessageBox.Show("Database error while deleting photo:\n" + sqlEx.Message,
+                    "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Unexpected error while deleting photo:\n" + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
