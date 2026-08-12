@@ -30,11 +30,13 @@ namespace M2GiantGroupSystem
         {
             // Shows all jobs so the user can pick which job to add a payment for.
             // Includes client info and the quoted amount so they know what to expect.
-             // Ensure we're on the first tab where the lookup grid is visible
+            // Ensure we're on the first tab where the lookup grid is visible
             try
             {
                 using (SqlConnection conn = new SqlConnection(connStr))
                 {
+                    // NOTE: paymentStatus no longer exists on Payment, so every recorded
+                    // payment row now counts as money received - no status filter needed.
                     string sql = @"
     SELECT
         j.jobID             AS [Job ID],
@@ -47,14 +49,19 @@ namespace M2GiantGroupSystem
             SELECT SUM(p.amountPaid)
             FROM Payment p
             WHERE p.jobID = j.jobID
-              AND p.paymentStatus NOT IN ('Cancelled', 'Pending')
         ), 0)               AS [Total Paid (R)],
         q.amount - ISNULL((
             SELECT SUM(p.amountPaid)
             FROM Payment p
             WHERE p.jobID = j.jobID
-              AND p.paymentStatus NOT IN ('Cancelled', 'Pending')
-        ), 0)               AS [Balance Outstanding (R)]
+        ), 0)               AS [Balance Outstanding (R)],
+        CASE
+            WHEN ISNULL((SELECT SUM(p.amountPaid) FROM Payment p WHERE p.jobID = j.jobID), 0) <= 0
+                THEN 'Not Paid'
+            WHEN ISNULL((SELECT SUM(p.amountPaid) FROM Payment p WHERE p.jobID = j.jobID), 0) >= q.amount
+                THEN 'Paid'
+            ELSE 'Partially Paid'
+        END                 AS [Payment Status]
     FROM Job j
     INNER JOIN Quote q       ON j.quoteID = q.QuoteID
     INNER JOIN JobRequest jr ON q.jobRequestID = jr.jobRequestID
@@ -146,13 +153,13 @@ namespace M2GiantGroupSystem
             if (tabControl1.SelectedIndex == 2)
                 LoadPaymentsView_Edit("");
         }
-    
 
-private void LoadPaymentsView(string search)
+
+        private void LoadPaymentsView(string search)
         {
             // Joins Payment → Job → Quote → JobRequest → Client
             // so the grid shows: PaymentID, Client name, Job status,
-            // amount paid, method, payment status, payment date
+            // amount paid, method, DERIVED payment status, payment date
             try
             {
                 using (SqlConnection conn = new SqlConnection(connStr))
@@ -165,8 +172,15 @@ private void LoadPaymentsView(string search)
                             j.jobStatus         AS [Job Status],
                             p.amountPaid        AS [Amount (R)],
                             p.paymentMethod     AS [Method],
-                            p.paymentStatus     AS [Payment Status],
-                            p.paymentDate       AS [Payment Date]
+                            p.referenceNumber   AS [Reference],
+                            p.paymentDate       AS [Payment Date],
+                            CASE
+                                WHEN ISNULL((SELECT SUM(p2.amountPaid) FROM Payment p2 WHERE p2.jobID = j.jobID), 0) <= 0
+                                    THEN 'Not Paid'
+                                WHEN ISNULL((SELECT SUM(p2.amountPaid) FROM Payment p2 WHERE p2.jobID = j.jobID), 0) >= q.amount
+                                    THEN 'Paid'
+                                ELSE 'Partially Paid'
+                            END                 AS [Payment Status]
                         FROM Payment p
                         INNER JOIN Job j        ON p.jobID = j.jobID
                         INNER JOIN Quote q      ON j.quoteID = q.QuoteID
@@ -212,8 +226,15 @@ private void LoadPaymentsView(string search)
                             j.jobID             AS [Job ID],
                             p.amountPaid        AS [Amount (R)],
                             p.paymentMethod     AS [Method],
-                            p.paymentStatus     AS [Payment Status],
-                            p.paymentDate       AS [Payment Date]
+                            p.referenceNumber   AS [Reference],
+                            p.paymentDate       AS [Payment Date],
+                            CASE
+                                WHEN ISNULL((SELECT SUM(p2.amountPaid) FROM Payment p2 WHERE p2.jobID = j.jobID), 0) <= 0
+                                    THEN 'Not Paid'
+                                WHEN ISNULL((SELECT SUM(p2.amountPaid) FROM Payment p2 WHERE p2.jobID = j.jobID), 0) >= q.amount
+                                    THEN 'Paid'
+                                ELSE 'Partially Paid'
+                            END                 AS [Payment Status]
                         FROM Payment p
                         INNER JOIN Job j        ON p.jobID = j.jobID
                         INNER JOIN Quote q      ON j.quoteID = q.QuoteID
@@ -310,27 +331,25 @@ private void LoadPaymentsView(string search)
                 cmbPaymentMethod.Focus();
                 return;
             }
-            if (cmbPaymentStatus.SelectedIndex == -1)
-            {
-                MessageBox.Show("Please select a payment status.",
-                    "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                cmbPaymentStatus.Focus();
-                return;
-            }
+            // paymentStatus no longer exists on Payment - status is now derived
+            // from SUM(amountPaid) vs Quote.amount, so no status input is needed here.
 
             try
             {
                 using (SqlConnection conn = new SqlConnection(connStr))
                 {
+                    // TODO: if you add a reference-number textbox (e.g. txtReferenceNumber)
+                    // to the designer, swap the DBNull.Value line below for its .Text value
+                    // (or DBNull.Value when left blank, since the column is optional).
                     string sql = @"
-                        INSERT INTO Payment (amountPaid, paymentMethod, paymentStatus, paymentDate, jobID)
-                        VALUES (@amount, @method, @status, @date, @jobID)";
+                        INSERT INTO Payment (amountPaid, paymentMethod, referenceNumber, paymentDate, jobID)
+                        VALUES (@amount, @method, @reference, @date, @jobID)";
 
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
                         cmd.Parameters.AddWithValue("@amount", amount);
                         cmd.Parameters.AddWithValue("@method", cmbPaymentMethod.SelectedItem.ToString());
-                        cmd.Parameters.AddWithValue("@status", cmbPaymentStatus.SelectedItem.ToString());
+                        cmd.Parameters.AddWithValue("@reference", (object)DBNull.Value); // TODO: wire up txtReferenceNumber
                         cmd.Parameters.AddWithValue("@date", DateTime.Now);
                         cmd.Parameters.AddWithValue("@jobID", selectedJobID);
 
@@ -345,11 +364,11 @@ private void LoadPaymentsView(string search)
                 // Reset form
                 txtAmount.Text = "";
                 cmbPaymentMethod.SelectedIndex = -1;
-                cmbPaymentStatus.SelectedIndex = -1;
-               
+
                 selectedJobID = 0;
                 lblSelectedID.Text = "No job selected";
                 LoadJobLookup("");
+                LoadPaymentsView("");
             }
             catch (SqlException sqlEx)
             {
@@ -394,13 +413,12 @@ private void LoadPaymentsView(string search)
                     .Cast<object>()
                     .FirstOrDefault(i => i.ToString() == row.Cells["Method"].Value?.ToString());
 
-                cmbEditStatus.SelectedItem = cmbEditStatus.Items
-                    .Cast<object>()
-                    .FirstOrDefault(i => i.ToString() == row.Cells["Payment Status"].Value?.ToString());
+                // Payment Status is now a derived, read-only column (job-level), so it's
+                // no longer populated into an editable control here.
 
                 if (row.Cells["Payment Date"].Value != null &&
                     row.Cells["Payment Date"].Value != DBNull.Value) ;
-                    //dtpEditDate.Value = Convert.ToDateTime(row.Cells["Payment Date"].Value);
+                //dtpEditDate.Value = Convert.ToDateTime(row.Cells["Payment Date"].Value);
             }
             catch (Exception ex)
             {
@@ -439,13 +457,7 @@ private void LoadPaymentsView(string search)
                 cmbEditMethod.Focus();
                 return;
             }
-            if (cmbEditStatus.SelectedIndex == -1)
-            {
-                MessageBox.Show("Please select a payment status.",
-                    "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                cmbEditStatus.Focus();
-                return;
-            }
+            // paymentStatus no longer exists - nothing to validate here anymore.
 
             DialogResult confirm = MessageBox.Show(
                 "Are you sure you want to save these changes?",
@@ -464,17 +476,14 @@ private void LoadPaymentsView(string search)
                     string sql = @"
                         UPDATE Payment
                         SET amountPaid    = @amount,
-                            paymentMethod = @method,
-                            paymentStatus = @status
-                          
+                            paymentMethod = @method
                         WHERE paymentID   = @paymentID";
 
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
                         cmd.Parameters.AddWithValue("@amount", amount);
                         cmd.Parameters.AddWithValue("@method", cmbEditMethod.SelectedItem.ToString());
-                        cmd.Parameters.AddWithValue("@status", cmbEditStatus.SelectedItem.ToString());
-                       // cmd.Parameters.AddWithValue("@date", dtpEditDate.Value.Date);
+                        // cmd.Parameters.AddWithValue("@date", dtpEditDate.Value.Date);
                         cmd.Parameters.AddWithValue("@paymentID", selectedPaymentID);
 
                         conn.Open();
@@ -545,11 +554,6 @@ private void LoadPaymentsView(string search)
 
         }
 
-        private void cmbEditStatus_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void label8_Click(object sender, EventArgs e)
         {
 
@@ -565,8 +569,5 @@ private void LoadPaymentsView(string search)
 
         }
     }
-    
+
 }
-
-
- 

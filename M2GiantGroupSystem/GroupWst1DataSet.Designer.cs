@@ -4259,6 +4259,8 @@ namespace M2GiantGroupSystem {
             
             private global::System.Data.DataColumn columnjobID;
             
+            private global::System.Data.DataColumn columnreferenceNumber;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public PaymentDataTable() {
@@ -4342,6 +4344,14 @@ namespace M2GiantGroupSystem {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn referenceNumberColumn {
+                get {
+                    return this.columnreferenceNumber;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -4377,7 +4387,7 @@ namespace M2GiantGroupSystem {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public PaymentRow AddPaymentRow(System.DateTime paymentDate, decimal amountPaid, string paymentMethod, string paymentStatus, JobRow parentJobRowByFK_Job_Payment) {
+            public PaymentRow AddPaymentRow(System.DateTime paymentDate, decimal amountPaid, string paymentMethod, string paymentStatus, JobRow parentJobRowByFK_Job_Payment, string referenceNumber) {
                 PaymentRow rowPaymentRow = ((PaymentRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -4385,7 +4395,8 @@ namespace M2GiantGroupSystem {
                         amountPaid,
                         paymentMethod,
                         paymentStatus,
-                        null};
+                        null,
+                        referenceNumber};
                 if ((parentJobRowByFK_Job_Payment != null)) {
                     columnValuesArray[5] = parentJobRowByFK_Job_Payment[0];
                 }
@@ -4424,6 +4435,7 @@ namespace M2GiantGroupSystem {
                 this.columnpaymentMethod = base.Columns["paymentMethod"];
                 this.columnpaymentStatus = base.Columns["paymentStatus"];
                 this.columnjobID = base.Columns["jobID"];
+                this.columnreferenceNumber = base.Columns["referenceNumber"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4441,6 +4453,8 @@ namespace M2GiantGroupSystem {
                 base.Columns.Add(this.columnpaymentStatus);
                 this.columnjobID = new global::System.Data.DataColumn("jobID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnjobID);
+                this.columnreferenceNumber = new global::System.Data.DataColumn("referenceNumber", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnreferenceNumber);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnpaymentID}, true));
                 this.columnpaymentID.AutoIncrement = true;
@@ -4455,6 +4469,7 @@ namespace M2GiantGroupSystem {
                 this.columnpaymentStatus.AllowDBNull = false;
                 this.columnpaymentStatus.MaxLength = 50;
                 this.columnjobID.AllowDBNull = false;
+                this.columnreferenceNumber.MaxLength = 100;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10081,6 +10096,22 @@ namespace M2GiantGroupSystem {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string referenceNumber {
+                get {
+                    try {
+                        return ((string)(this[this.tablePayment.referenceNumberColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'referenceNumber\' in table \'Payment\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePayment.referenceNumberColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public JobRow JobRow {
                 get {
                     return ((JobRow)(this.GetParentRow(this.Table.ParentRelations["FK_Job_Payment"])));
@@ -10100,6 +10131,18 @@ namespace M2GiantGroupSystem {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetpaymentDateNull() {
                 this[this.tablePayment.paymentDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsreferenceNumberNull() {
+                return this.IsNull(this.tablePayment.referenceNumberColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetreferenceNumberNull() {
+                this[this.tablePayment.referenceNumberColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -16706,50 +16749,40 @@ VALUES
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Job] WHERE (([jobID] = @Original_jobID) AND ((@IsNull_startDate = 1 AND [startDate] IS NULL) OR ([startDate] = @Original_startDate)) AND ((@IsNull_endDate = 1 AND [endDate] IS NULL) OR ([endDate] = @Original_endDate)) AND ([jobStatus] = @Original_jobStatus) AND ([totalFuelCost] = @Original_totalFuelCost) AND ([totalLabourCost] = @Original_totalLabourCost) AND ([dumpingCost] = @Original_dumpingCost) AND ([quoteID] = @Original_quoteID))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Job] WHERE (([jobID] = @Original_jobID) AND ((@IsNull_startDate = 1 AND [startDate] IS NULL) OR ([startDate] = @Original_startDate)) AND ([jobStatus] = @Original_jobStatus) AND ([totalFuelCost] = @Original_totalFuelCost) AND ([dumpingCost] = @Original_dumpingCost) AND ([quoteID] = @Original_quoteID))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_jobID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "jobID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_startDate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "startDate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_startDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "startDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_endDate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "endDate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_endDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "endDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_jobStatus", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "jobStatus", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_totalFuelCost", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "totalFuelCost", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_totalLabourCost", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "totalLabourCost", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_dumpingCost", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "dumpingCost", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_quoteID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "quoteID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Job] ([startDate], [endDate], [jobStatus], [totalFuelCost], [totalLabourCost], [dumpingCost], [quoteID]) VALUES (@startDate, @endDate, @jobStatus, @totalFuelCost, @totalLabourCost, @dumpingCost, @quoteID);
-SELECT jobID, startDate, endDate, jobStatus, totalFuelCost, totalLabourCost, dumpingCost, quoteID FROM Job WHERE (jobID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Job] ([startDate], [jobStatus], [totalFuelCost], [dumpingCost], [quoteID]) VALUES (@startDate, @jobStatus, @totalFuelCost, @dumpingCost, @quoteID);
+SELECT jobID, startDate, jobStatus, totalFuelCost, dumpingCost, quoteID FROM Job WHERE (jobID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@startDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "startDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@endDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "endDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@jobStatus", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "jobStatus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@totalFuelCost", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "totalFuelCost", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@totalLabourCost", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "totalLabourCost", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dumpingCost", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "dumpingCost", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@quoteID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "quoteID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [Job] SET [startDate] = @startDate, [endDate] = @endDate, [jobStatus] = @jobStatus, [totalFuelCost] = @totalFuelCost, [totalLabourCost] = @totalLabourCost, [dumpingCost] = @dumpingCost, [quoteID] = @quoteID WHERE (([jobID] = @Original_jobID) AND ((@IsNull_startDate = 1 AND [startDate] IS NULL) OR ([startDate] = @Original_startDate)) AND ((@IsNull_endDate = 1 AND [endDate] IS NULL) OR ([endDate] = @Original_endDate)) AND ([jobStatus] = @Original_jobStatus) AND ([totalFuelCost] = @Original_totalFuelCost) AND ([totalLabourCost] = @Original_totalLabourCost) AND ([dumpingCost] = @Original_dumpingCost) AND ([quoteID] = @Original_quoteID));
-SELECT jobID, startDate, endDate, jobStatus, totalFuelCost, totalLabourCost, dumpingCost, quoteID FROM Job WHERE (jobID = @jobID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Job] SET [startDate] = @startDate, [jobStatus] = @jobStatus, [totalFuelCost] = @totalFuelCost, [dumpingCost] = @dumpingCost, [quoteID] = @quoteID WHERE (([jobID] = @Original_jobID) AND ((@IsNull_startDate = 1 AND [startDate] IS NULL) OR ([startDate] = @Original_startDate)) AND ([jobStatus] = @Original_jobStatus) AND ([totalFuelCost] = @Original_totalFuelCost) AND ([dumpingCost] = @Original_dumpingCost) AND ([quoteID] = @Original_quoteID));
+SELECT jobID, startDate, jobStatus, totalFuelCost, dumpingCost, quoteID FROM Job WHERE (jobID = @jobID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@startDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "startDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@endDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "endDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@jobStatus", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "jobStatus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@totalFuelCost", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "totalFuelCost", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@totalLabourCost", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "totalLabourCost", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dumpingCost", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "dumpingCost", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@quoteID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "quoteID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_jobID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "jobID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_startDate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "startDate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_startDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "startDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_endDate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "endDate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_endDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "endDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_jobStatus", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "jobStatus", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_totalFuelCost", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "totalFuelCost", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_totalLabourCost", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "totalLabourCost", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_dumpingCost", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "dumpingCost", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_quoteID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "quoteID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@jobID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "jobID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -16765,10 +16798,11 @@ SELECT jobID, startDate, endDate, jobStatus, totalFuelCost, totalLabourCost, dum
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[4];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT Job.*\r\nFROM     Job";
+            this._commandCollection[0].CommandText = "SELECT jobID, startDate,jobStatus, totalFuelCost, dumpingCost, quoteID\r\nFROM     " +
+                "Job";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
@@ -16784,18 +16818,18 @@ SELECT jobID, startDate, endDate, jobStatus, totalFuelCost, totalLabourCost, dum
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@quoteID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "quoteID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = @"UPDATE Job
-SET          startDate = @startDate, endDate = @endDate, jobStatus = @jobStatus, totalFuelCost = @totalFuelCost, totalLabourCost = @totalLabourCost, dumpingCost = @dumpingCost
-WHERE  (jobID = @jobID); 
-SELECT jobID, startDate, endDate, jobStatus, totalFuelCost, totalLabourCost, dumpingCost, quoteID FROM Job WHERE (jobID = @jobID)";
+            this._commandCollection[2].CommandText = "UPDATE Job\r\nSET\r\n    startDate = @start,\r\n    jobStatus = @status,\r\n    totalFuel" +
+                "Cost = @fuel,\r\n    dumpingCost =@dumping\r\nWHERE jobID = @id;";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@startDate", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 0, 0, "startDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@endDate", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 0, 0, "endDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@jobStatus", global::System.Data.SqlDbType.VarChar, 30, global::System.Data.ParameterDirection.Input, 0, 0, "jobStatus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@totalFuelCost", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 10, 2, "totalFuelCost", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@totalLabourCost", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 10, 2, "totalLabourCost", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dumpingCost", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 10, 2, "dumpingCost", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@jobID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "jobID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@start", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 0, 0, "startDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@status", global::System.Data.SqlDbType.VarChar, 30, global::System.Data.ParameterDirection.Input, 0, 0, "jobStatus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fuel", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 10, 2, "totalFuelCost", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dumping", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 10, 2, "dumpingCost", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "jobID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[3].Connection = this.Connection;
+            this._commandCollection[3].CommandText = "dbo.UpdateQuery";
+            this._commandCollection[3].CommandType = global::System.Data.CommandType.StoredProcedure;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -16855,7 +16889,7 @@ SELECT jobID, startDate, endDate, jobStatus, totalFuelCost, totalLabourCost, dum
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_jobID, global::System.Nullable<global::System.DateTime> Original_startDate, global::System.Nullable<global::System.DateTime> Original_endDate, string Original_jobStatus, decimal Original_totalFuelCost, decimal Original_totalLabourCost, decimal Original_dumpingCost, int Original_quoteID) {
+        public virtual int Delete(int Original_jobID, global::System.Nullable<global::System.DateTime> Original_startDate, string Original_jobStatus, decimal Original_totalFuelCost, decimal Original_dumpingCost, int Original_quoteID) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_jobID));
             if ((Original_startDate.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
@@ -16865,24 +16899,15 @@ SELECT jobID, startDate, endDate, jobStatus, totalFuelCost, totalLabourCost, dum
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            if ((Original_endDate.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((System.DateTime)(Original_endDate.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
             if ((Original_jobStatus == null)) {
                 throw new global::System.ArgumentNullException("Original_jobStatus");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((string)(Original_jobStatus));
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(Original_jobStatus));
             }
-            this.Adapter.DeleteCommand.Parameters[6].Value = ((decimal)(Original_totalFuelCost));
-            this.Adapter.DeleteCommand.Parameters[7].Value = ((decimal)(Original_totalLabourCost));
-            this.Adapter.DeleteCommand.Parameters[8].Value = ((decimal)(Original_dumpingCost));
-            this.Adapter.DeleteCommand.Parameters[9].Value = ((int)(Original_quoteID));
+            this.Adapter.DeleteCommand.Parameters[4].Value = ((decimal)(Original_totalFuelCost));
+            this.Adapter.DeleteCommand.Parameters[5].Value = ((decimal)(Original_dumpingCost));
+            this.Adapter.DeleteCommand.Parameters[6].Value = ((int)(Original_quoteID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -16903,29 +16928,22 @@ SELECT jobID, startDate, endDate, jobStatus, totalFuelCost, totalLabourCost, dum
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(global::System.Nullable<global::System.DateTime> startDate, global::System.Nullable<global::System.DateTime> endDate, string jobStatus, decimal totalFuelCost, decimal totalLabourCost, decimal dumpingCost, int quoteID) {
+        public virtual int Insert(global::System.Nullable<global::System.DateTime> startDate, string jobStatus, decimal totalFuelCost, decimal dumpingCost, int quoteID) {
             if ((startDate.HasValue == true)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((System.DateTime)(startDate.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
-            if ((endDate.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((System.DateTime)(endDate.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
             if ((jobStatus == null)) {
                 throw new global::System.ArgumentNullException("jobStatus");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(jobStatus));
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(jobStatus));
             }
-            this.Adapter.InsertCommand.Parameters[3].Value = ((decimal)(totalFuelCost));
-            this.Adapter.InsertCommand.Parameters[4].Value = ((decimal)(totalLabourCost));
-            this.Adapter.InsertCommand.Parameters[5].Value = ((decimal)(dumpingCost));
-            this.Adapter.InsertCommand.Parameters[6].Value = ((int)(quoteID));
+            this.Adapter.InsertCommand.Parameters[2].Value = ((decimal)(totalFuelCost));
+            this.Adapter.InsertCommand.Parameters[3].Value = ((decimal)(dumpingCost));
+            this.Adapter.InsertCommand.Parameters[4].Value = ((int)(quoteID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -16946,73 +16964,41 @@ SELECT jobID, startDate, endDate, jobStatus, totalFuelCost, totalLabourCost, dum
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(
-                    global::System.Nullable<global::System.DateTime> startDate, 
-                    global::System.Nullable<global::System.DateTime> endDate, 
-                    string jobStatus, 
-                    decimal totalFuelCost, 
-                    decimal totalLabourCost, 
-                    decimal dumpingCost, 
-                    int quoteID, 
-                    int Original_jobID, 
-                    global::System.Nullable<global::System.DateTime> Original_startDate, 
-                    global::System.Nullable<global::System.DateTime> Original_endDate, 
-                    string Original_jobStatus, 
-                    decimal Original_totalFuelCost, 
-                    decimal Original_totalLabourCost, 
-                    decimal Original_dumpingCost, 
-                    int Original_quoteID, 
-                    int jobID) {
+        public virtual int Update(global::System.Nullable<global::System.DateTime> startDate, string jobStatus, decimal totalFuelCost, decimal dumpingCost, int quoteID, int Original_jobID, global::System.Nullable<global::System.DateTime> Original_startDate, string Original_jobStatus, decimal Original_totalFuelCost, decimal Original_dumpingCost, int Original_quoteID, int jobID) {
             if ((startDate.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = ((System.DateTime)(startDate.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
-            if ((endDate.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((System.DateTime)(endDate.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
             if ((jobStatus == null)) {
                 throw new global::System.ArgumentNullException("jobStatus");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(jobStatus));
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(jobStatus));
             }
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((decimal)(totalFuelCost));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((decimal)(totalLabourCost));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((decimal)(dumpingCost));
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(quoteID));
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_jobID));
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((decimal)(totalFuelCost));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((decimal)(dumpingCost));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(quoteID));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_jobID));
             if ((Original_startDate.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((System.DateTime)(Original_startDate.Value));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((System.DateTime)(Original_startDate.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
-            }
-            if ((Original_endDate.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((System.DateTime)(Original_endDate.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
             if ((Original_jobStatus == null)) {
                 throw new global::System.ArgumentNullException("Original_jobStatus");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_jobStatus));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_jobStatus));
             }
-            this.Adapter.UpdateCommand.Parameters[13].Value = ((decimal)(Original_totalFuelCost));
-            this.Adapter.UpdateCommand.Parameters[14].Value = ((decimal)(Original_totalLabourCost));
-            this.Adapter.UpdateCommand.Parameters[15].Value = ((decimal)(Original_dumpingCost));
-            this.Adapter.UpdateCommand.Parameters[16].Value = ((int)(Original_quoteID));
-            this.Adapter.UpdateCommand.Parameters[17].Value = ((int)(jobID));
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((decimal)(Original_totalFuelCost));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((decimal)(Original_dumpingCost));
+            this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(Original_quoteID));
+            this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(jobID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -17033,8 +17019,8 @@ SELECT jobID, startDate, endDate, jobStatus, totalFuelCost, totalLabourCost, dum
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(global::System.Nullable<global::System.DateTime> startDate, global::System.Nullable<global::System.DateTime> endDate, string jobStatus, decimal totalFuelCost, decimal totalLabourCost, decimal dumpingCost, int quoteID, int Original_jobID, global::System.Nullable<global::System.DateTime> Original_startDate, global::System.Nullable<global::System.DateTime> Original_endDate, string Original_jobStatus, decimal Original_totalFuelCost, decimal Original_totalLabourCost, decimal Original_dumpingCost, int Original_quoteID) {
-            return this.Update(startDate, endDate, jobStatus, totalFuelCost, totalLabourCost, dumpingCost, quoteID, Original_jobID, Original_startDate, Original_endDate, Original_jobStatus, Original_totalFuelCost, Original_totalLabourCost, Original_dumpingCost, Original_quoteID, Original_jobID);
+        public virtual int Update(global::System.Nullable<global::System.DateTime> startDate, string jobStatus, decimal totalFuelCost, decimal dumpingCost, int quoteID, int Original_jobID, global::System.Nullable<global::System.DateTime> Original_startDate, string Original_jobStatus, decimal Original_totalFuelCost, decimal Original_dumpingCost, int Original_quoteID) {
+            return this.Update(startDate, jobStatus, totalFuelCost, dumpingCost, quoteID, Original_jobID, Original_startDate, Original_jobStatus, Original_totalFuelCost, Original_dumpingCost, Original_quoteID, Original_jobID);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -17086,30 +17072,46 @@ SELECT jobID, startDate, endDate, jobStatus, totalFuelCost, totalLabourCost, dum
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
-        public virtual int UpdateJobQuery(string startDate, string endDate, string jobStatus, decimal totalFuelCost, decimal totalLabourCost, decimal dumpingCost, int jobID) {
+        public virtual int UpdateJobQuery(string start, string status, decimal fuel, decimal dumping, int id) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[2];
-            if ((startDate == null)) {
+            if ((start == null)) {
                 command.Parameters[0].Value = global::System.DBNull.Value;
             }
             else {
-                command.Parameters[0].Value = ((string)(startDate));
+                command.Parameters[0].Value = ((string)(start));
             }
-            if ((endDate == null)) {
-                command.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            else {
-                command.Parameters[1].Value = ((string)(endDate));
-            }
-            if ((jobStatus == null)) {
-                throw new global::System.ArgumentNullException("jobStatus");
+            if ((status == null)) {
+                throw new global::System.ArgumentNullException("status");
             }
             else {
-                command.Parameters[2].Value = ((string)(jobStatus));
+                command.Parameters[1].Value = ((string)(status));
             }
-            command.Parameters[3].Value = ((decimal)(totalFuelCost));
-            command.Parameters[4].Value = ((decimal)(totalLabourCost));
-            command.Parameters[5].Value = ((decimal)(dumpingCost));
-            command.Parameters[6].Value = ((int)(jobID));
+            command.Parameters[2].Value = ((decimal)(fuel));
+            command.Parameters[3].Value = ((decimal)(dumping));
+            command.Parameters[4].Value = ((int)(id));
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
+        public virtual int UpdateQuery() {
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[3];
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -17255,45 +17257,48 @@ SELECT jobID, startDate, endDate, jobStatus, totalFuelCost, totalLabourCost, dum
             tableMapping.ColumnMappings.Add("paymentMethod", "paymentMethod");
             tableMapping.ColumnMappings.Add("paymentStatus", "paymentStatus");
             tableMapping.ColumnMappings.Add("jobID", "jobID");
+            tableMapping.ColumnMappings.Add("referenceNumber", "referenceNumber");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Payment] WHERE (([paymentID] = @Original_paymentID) AND ((@IsNull_paymentDate = 1 AND [paymentDate] IS NULL) OR ([paymentDate] = @Original_paymentDate)) AND ([amountPaid] = @Original_amountPaid) AND ([paymentMethod] = @Original_paymentMethod) AND ([paymentStatus] = @Original_paymentStatus) AND ([jobID] = @Original_jobID))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Payment] WHERE (([paymentID] = @Original_paymentID) AND ((@IsNull_paymentDate = 1 AND [paymentDate] IS NULL) OR ([paymentDate] = @Original_paymentDate)) AND ([amountPaid] = @Original_amountPaid) AND ([paymentMethod] = @Original_paymentMethod) AND ([jobID] = @Original_jobID) AND ((@IsNull_referenceNumber = 1 AND [referenceNumber] IS NULL) OR ([referenceNumber] = @Original_referenceNumber)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_paymentID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "paymentID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_paymentDate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "paymentDate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_paymentDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "paymentDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_amountPaid", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "amountPaid", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_paymentMethod", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "paymentMethod", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_paymentStatus", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "paymentStatus", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_jobID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "jobID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_referenceNumber", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "referenceNumber", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_referenceNumber", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "referenceNumber", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Payment] ([paymentDate], [amountPaid], [paymentMethod], [paymentStatus], [jobID]) VALUES (@paymentDate, @amountPaid, @paymentMethod, @paymentStatus, @jobID);
-SELECT paymentID, paymentDate, amountPaid, paymentMethod, paymentStatus, jobID FROM Payment WHERE (paymentID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Payment] ([paymentDate], [amountPaid], [paymentMethod], [jobID], [referenceNumber]) VALUES (@paymentDate, @amountPaid, @paymentMethod, @jobID, @referenceNumber);
+SELECT paymentID, paymentDate, amountPaid, paymentMethod, jobID, referenceNumber FROM Payment WHERE (paymentID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@paymentDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "paymentDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@amountPaid", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "amountPaid", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@paymentMethod", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "paymentMethod", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@paymentStatus", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "paymentStatus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@jobID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "jobID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@referenceNumber", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "referenceNumber", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [Payment] SET [paymentDate] = @paymentDate, [amountPaid] = @amountPaid, [paymentMethod] = @paymentMethod, [paymentStatus] = @paymentStatus, [jobID] = @jobID WHERE (([paymentID] = @Original_paymentID) AND ((@IsNull_paymentDate = 1 AND [paymentDate] IS NULL) OR ([paymentDate] = @Original_paymentDate)) AND ([amountPaid] = @Original_amountPaid) AND ([paymentMethod] = @Original_paymentMethod) AND ([paymentStatus] = @Original_paymentStatus) AND ([jobID] = @Original_jobID));
-SELECT paymentID, paymentDate, amountPaid, paymentMethod, paymentStatus, jobID FROM Payment WHERE (paymentID = @paymentID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Payment] SET [paymentDate] = @paymentDate, [amountPaid] = @amountPaid, [paymentMethod] = @paymentMethod, [jobID] = @jobID, [referenceNumber] = @referenceNumber WHERE (([paymentID] = @Original_paymentID) AND ((@IsNull_paymentDate = 1 AND [paymentDate] IS NULL) OR ([paymentDate] = @Original_paymentDate)) AND ([amountPaid] = @Original_amountPaid) AND ([paymentMethod] = @Original_paymentMethod) AND ([jobID] = @Original_jobID) AND ((@IsNull_referenceNumber = 1 AND [referenceNumber] IS NULL) OR ([referenceNumber] = @Original_referenceNumber)));
+SELECT paymentID, paymentDate, amountPaid, paymentMethod, jobID, referenceNumber FROM Payment WHERE (paymentID = @paymentID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@paymentDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "paymentDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@amountPaid", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "amountPaid", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@paymentMethod", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "paymentMethod", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@paymentStatus", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "paymentStatus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@jobID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "jobID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@referenceNumber", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "referenceNumber", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_paymentID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "paymentID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_paymentDate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "paymentDate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_paymentDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "paymentDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_amountPaid", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "amountPaid", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_paymentMethod", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "paymentMethod", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_paymentStatus", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "paymentStatus", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_jobID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "jobID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_referenceNumber", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "referenceNumber", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_referenceNumber", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "referenceNumber", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@paymentID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "paymentID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -17315,14 +17320,14 @@ SELECT paymentID, paymentDate, amountPaid, paymentMethod, paymentStatus, jobID F
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
             this._commandCollection[1].CommandText = @"INSERT INTO Payment
-                  (paymentDate, amountPaid, paymentMethod, paymentStatus, jobID)
-VALUES (@paymentDate,@amountPaid,@paymentMethod,@paymentStatus,@jobID); 
+                  (paymentDate, amountPaid, paymentMethod, paymentStatus, jobID, referenceNumber)
+VALUES (@paymentDate,@amountPaid,@paymentMethod,@paymentStatus,@jobID,);  
 SELECT paymentID, paymentDate, amountPaid, paymentMethod, paymentStatus, jobID FROM Payment WHERE (paymentID = SCOPE_IDENTITY())";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@paymentDate", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 0, 0, "paymentDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@amountPaid", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 10, 2, "amountPaid", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@paymentMethod", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "paymentMethod", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@paymentStatus", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "paymentStatus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@paymentStatus", global::System.Data.SqlDbType.Variant, 1024, global::System.Data.ParameterDirection.Input, 0, 0, "paymentStatus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@jobID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "jobID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -17383,7 +17388,7 @@ SELECT paymentID, paymentDate, amountPaid, paymentMethod, paymentStatus, jobID F
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_paymentID, global::System.Nullable<global::System.DateTime> Original_paymentDate, decimal Original_amountPaid, string Original_paymentMethod, string Original_paymentStatus, int Original_jobID) {
+        public virtual int Delete(int Original_paymentID, global::System.Nullable<global::System.DateTime> Original_paymentDate, decimal Original_amountPaid, string Original_paymentMethod, int Original_jobID, string Original_referenceNumber) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_paymentID));
             if ((Original_paymentDate.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
@@ -17400,13 +17405,15 @@ SELECT paymentID, paymentDate, amountPaid, paymentMethod, paymentStatus, jobID F
             else {
                 this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_paymentMethod));
             }
-            if ((Original_paymentStatus == null)) {
-                throw new global::System.ArgumentNullException("Original_paymentStatus");
+            this.Adapter.DeleteCommand.Parameters[5].Value = ((int)(Original_jobID));
+            if ((Original_referenceNumber == null)) {
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((string)(Original_paymentStatus));
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((string)(Original_referenceNumber));
             }
-            this.Adapter.DeleteCommand.Parameters[6].Value = ((int)(Original_jobID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -17427,7 +17434,7 @@ SELECT paymentID, paymentDate, amountPaid, paymentMethod, paymentStatus, jobID F
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(global::System.Nullable<global::System.DateTime> paymentDate, decimal amountPaid, string paymentMethod, string paymentStatus, int jobID) {
+        public virtual int Insert(global::System.Nullable<global::System.DateTime> paymentDate, decimal amountPaid, string paymentMethod, int jobID, string referenceNumber) {
             if ((paymentDate.HasValue == true)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((System.DateTime)(paymentDate.Value));
             }
@@ -17441,13 +17448,13 @@ SELECT paymentID, paymentDate, amountPaid, paymentMethod, paymentStatus, jobID F
             else {
                 this.Adapter.InsertCommand.Parameters[2].Value = ((string)(paymentMethod));
             }
-            if ((paymentStatus == null)) {
-                throw new global::System.ArgumentNullException("paymentStatus");
+            this.Adapter.InsertCommand.Parameters[3].Value = ((int)(jobID));
+            if ((referenceNumber == null)) {
+                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(paymentStatus));
+                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(referenceNumber));
             }
-            this.Adapter.InsertCommand.Parameters[4].Value = ((int)(jobID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -17468,7 +17475,7 @@ SELECT paymentID, paymentDate, amountPaid, paymentMethod, paymentStatus, jobID F
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(global::System.Nullable<global::System.DateTime> paymentDate, decimal amountPaid, string paymentMethod, string paymentStatus, int jobID, int Original_paymentID, global::System.Nullable<global::System.DateTime> Original_paymentDate, decimal Original_amountPaid, string Original_paymentMethod, string Original_paymentStatus, int Original_jobID, int paymentID) {
+        public virtual int Update(global::System.Nullable<global::System.DateTime> paymentDate, decimal amountPaid, string paymentMethod, int jobID, string referenceNumber, int Original_paymentID, global::System.Nullable<global::System.DateTime> Original_paymentDate, decimal Original_amountPaid, string Original_paymentMethod, int Original_jobID, string Original_referenceNumber, int paymentID) {
             if ((paymentDate.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = ((System.DateTime)(paymentDate.Value));
             }
@@ -17482,13 +17489,13 @@ SELECT paymentID, paymentDate, amountPaid, paymentMethod, paymentStatus, jobID F
             else {
                 this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(paymentMethod));
             }
-            if ((paymentStatus == null)) {
-                throw new global::System.ArgumentNullException("paymentStatus");
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(jobID));
+            if ((referenceNumber == null)) {
+                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(paymentStatus));
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(referenceNumber));
             }
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(jobID));
             this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_paymentID));
             if ((Original_paymentDate.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
@@ -17505,14 +17512,16 @@ SELECT paymentID, paymentDate, amountPaid, paymentMethod, paymentStatus, jobID F
             else {
                 this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_paymentMethod));
             }
-            if ((Original_paymentStatus == null)) {
-                throw new global::System.ArgumentNullException("Original_paymentStatus");
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_jobID));
+            if ((Original_referenceNumber == null)) {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_paymentStatus));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_referenceNumber));
             }
-            this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(Original_jobID));
-            this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(paymentID));
+            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(paymentID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -17533,15 +17542,15 @@ SELECT paymentID, paymentDate, amountPaid, paymentMethod, paymentStatus, jobID F
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(global::System.Nullable<global::System.DateTime> paymentDate, decimal amountPaid, string paymentMethod, string paymentStatus, int jobID, int Original_paymentID, global::System.Nullable<global::System.DateTime> Original_paymentDate, decimal Original_amountPaid, string Original_paymentMethod, string Original_paymentStatus, int Original_jobID) {
-            return this.Update(paymentDate, amountPaid, paymentMethod, paymentStatus, jobID, Original_paymentID, Original_paymentDate, Original_amountPaid, Original_paymentMethod, Original_paymentStatus, Original_jobID, Original_paymentID);
+        public virtual int Update(global::System.Nullable<global::System.DateTime> paymentDate, decimal amountPaid, string paymentMethod, int jobID, string referenceNumber, int Original_paymentID, global::System.Nullable<global::System.DateTime> Original_paymentDate, decimal Original_amountPaid, string Original_paymentMethod, int Original_jobID, string Original_referenceNumber) {
+            return this.Update(paymentDate, amountPaid, paymentMethod, jobID, referenceNumber, Original_paymentID, Original_paymentDate, Original_amountPaid, Original_paymentMethod, Original_jobID, Original_referenceNumber, Original_paymentID);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
-        public virtual int InsertQuery(string paymentDate, decimal amountPaid, string paymentMethod, string paymentStatus, int jobID) {
+        public virtual int InsertQuery(string paymentDate, decimal amountPaid, string paymentMethod, object paymentStatus, int jobID) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[1];
             if ((paymentDate == null)) {
                 command.Parameters[0].Value = global::System.DBNull.Value;
@@ -17560,7 +17569,7 @@ SELECT paymentID, paymentDate, amountPaid, paymentMethod, paymentStatus, jobID F
                 throw new global::System.ArgumentNullException("paymentStatus");
             }
             else {
-                command.Parameters[3].Value = ((string)(paymentStatus));
+                command.Parameters[3].Value = ((object)(paymentStatus));
             }
             command.Parameters[4].Value = ((int)(jobID));
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;

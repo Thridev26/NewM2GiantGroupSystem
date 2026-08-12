@@ -116,9 +116,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(1114, 16);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(543, 31);
+            this.label4.Size = new System.Drawing.Size(421, 31);
             this.label4.TabIndex = 65;
-            this.label4.Text = "Click on a site photo to allow editng and deleting";
+            this.label4.Text = "Click on a site photo to allow deleting";
             // 
             // pbLargeView
             // 
@@ -283,6 +283,7 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(469, 43);
             this.textBox3.TabIndex = 48;
+            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // dgvJoinPictures
             // 

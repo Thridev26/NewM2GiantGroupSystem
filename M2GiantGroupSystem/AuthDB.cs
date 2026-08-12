@@ -1,14 +1,16 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using SendGrid;
+using SendGrid.Helpers.Mail;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
-using SendGrid;
-using SendGrid.Helpers.Mail;
 
 public static class AuthDB
 {
@@ -106,48 +108,71 @@ public static class AuthDB
 
     public static async Task SendEmail(string toEmail, string otp)
     {
-        // Make sure you have the SendGrid NuGet package installed
-        var client = new SendGridClient("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");
+        // Paste your unique Google Apps Script Web App URL here
+        string googleScriptUrl = "https://script.google.com/macros/s/AKfycbwL0Np-3iI7l8Ad7XJ3ZvFqslweJq--mYz-cWG0vS9od66ZVNO9iMz-O-PZD_MnUv66/exec";
 
-        var from = new EmailAddress("maharajhthridev@gmail.com", "The Giant Group");
-        var to = new EmailAddress(toEmail);
-        var subject = "Your Password Reset Code";
-        var content = $"Your verification code is: {otp}.";
+        var payload = new
+        {
+            email = toEmail,
+            otp = otp
+        };
 
-        // 1. Paste the HTML string here
-        string htmlContent = @"
-        <div style=""font-family: 'Segoe UI', Arial, sans-serif; max-width: 500px; margin: auto; border: 1px solid #e0e0e0; border-radius: 12px; overflow: hidden; background-color: #ffffff;"">
-    
-    <div style=""background-color: #1a73e8; padding: 25px; text-align: center;"">
-        <h1 style=""color: #ffffff; margin: 0; font-size: 24px;"">Security Verification</h1>
-    </div>
+        string jsonPayload = JsonConvert.SerializeObject(payload);
 
-    <div style=""padding: 30px;"">
-        <p style=""color: #333; font-size: 16px;"">Hello,</p>
-        <p style=""color: #555; font-size: 16px; line-height: 1.5;"">
-            We received a request to reset your password. Use the code below to complete the process.
-        </p>
+        using (HttpClient client = new HttpClient())
+        {
+            var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await client.PostAsync(googleScriptUrl, content);
 
-        <div style=""margin: 30px 0; padding: 20px; background-color: #f8f9fa; border: 2px dashed #1a73e8; border-radius: 8px; text-align: center;"">
-            <span style=""font-size: 32px; font-weight: bold; color: #1a73e8; letter-spacing: 8px;"">{otp}</span>
-        </div>
+            if (!response.IsSuccessStatusCode)
+            {
+                string errorResponse = await response.Content.ReadAsStringAsync();
+                throw new Exception($"Cloud Proxy email send failed: {errorResponse}");
+            }
+        }
 
-        <p style=""color: #888; font-size: 14px;"">
-            This code will expire in 5 minutes. If you did not request this change, please ignore this email.
-        </p>
-    </div>
+        //        // Make sure you have the SendGrid NuGet package installed
+        //        var client = new SendGridClient("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");
 
-    <div style=""background-color: #f1f3f4; padding: 15px; text-align: center; color: #777; font-size: 12px;"">
-        The Giant Group Systems © 2026
-    </div>
-</div>";
+        //        var from = new EmailAddress("maharajhthridev@gmail.com", "The Giant Group");
+        //        var to = new EmailAddress(toEmail);
+        //        var subject = "Your Password Reset Code";
+        //        var content = $"Your verification code is: {otp}.";
 
-        // 1. Inject the OTP into your HTML string
-        htmlContent = htmlContent.Replace("{otp}", otp);
-        var msg = MailHelper.CreateSingleEmail(from, to, subject, content, htmlContent);
+        //        // 1. Paste the HTML string here
+        //        string htmlContent = @"
+        //        <div style=""font-family: 'Segoe UI', Arial, sans-serif; max-width: 500px; margin: auto; border: 1px solid #e0e0e0; border-radius: 12px; overflow: hidden; background-color: #ffffff;"">
 
-        // This sends as a web request, bypassing your network blocks
-        await client.SendEmailAsync(msg);
+        //    <div style=""background-color: #1a73e8; padding: 25px; text-align: center;"">
+        //        <h1 style=""color: #ffffff; margin: 0; font-size: 24px;"">Security Verification</h1>
+        //    </div>
+
+        //    <div style=""padding: 30px;"">
+        //        <p style=""color: #333; font-size: 16px;"">Hello,</p>
+        //        <p style=""color: #555; font-size: 16px; line-height: 1.5;"">
+        //            We received a request to reset your password. Use the code below to complete the process.
+        //        </p>
+
+        //        <div style=""margin: 30px 0; padding: 20px; background-color: #f8f9fa; border: 2px dashed #1a73e8; border-radius: 8px; text-align: center;"">
+        //            <span style=""font-size: 32px; font-weight: bold; color: #1a73e8; letter-spacing: 8px;"">{otp}</span>
+        //        </div>
+
+        //        <p style=""color: #888; font-size: 14px;"">
+        //            This code will expire in 5 minutes. If you did not request this change, please ignore this email.
+        //        </p>
+        //    </div>
+
+        //    <div style=""background-color: #f1f3f4; padding: 15px; text-align: center; color: #777; font-size: 12px;"">
+        //        The Giant Group Systems © 2026
+        //    </div>
+        //</div>";
+
+        //        // 1. Inject the OTP into your HTML string
+        //        htmlContent = htmlContent.Replace("{otp}", otp);
+        //        var msg = MailHelper.CreateSingleEmail(from, to, subject, content, htmlContent);
+
+        //        // This sends as a web request, bypassing your network blocks
+        //        await client.SendEmailAsync(msg);
     }
 
     public static void UpdatePassword(string email, string newPassword)

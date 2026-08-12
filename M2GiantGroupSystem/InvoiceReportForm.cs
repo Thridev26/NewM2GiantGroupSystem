@@ -27,44 +27,76 @@ namespace M2GiantGroupSystem
         public void runQuery(TextBox t, DataGridView dgv)
         {
             string connStr = "Data Source=146.230.177.46;Initial Catalog=GroupWst1;Persist Security Info=True;User ID=GroupWst1;Password=dtf39;Encrypt=True;TrustServerCertificate=True";
+
             using (SqlConnection conn = new SqlConnection(connStr))
             {
-                string sql = @"SELECT 
-                        j.jobID,
-                        c.clientName + ' ' + c.clientSurname AS ClientName,
-                        jr.siteAddress,
-                        j.startDate,
-                        j.endDate,
-                        j.jobStatus,
-                        SUM(p.amountPaid) AS TotalPaid,
-                        q.amount AS QuoteAmount
-                    FROM Job j
-                    INNER JOIN Quote q ON j.quoteID = q.QuoteID
-                    INNER JOIN JobRequest jr ON q.jobRequestID = jr.jobRequestID
-                    INNER JOIN Client c ON jr.clientID = c.clientID
-                    LEFT JOIN Payment p ON j.jobID = p.jobID
-                    WHERE j.jobStatus = 'Completed'
-                    AND (c.clientName LIKE '%" + t.Text + @"%'
-                    OR c.clientSurname LIKE '%" + t.Text + @"%'
-                    OR jr.siteAddress LIKE '%" + t.Text + @"%')
-                    GROUP BY j.jobID, c.clientName, c.clientSurname,
-                             jr.siteAddress, j.startDate, j.endDate,
-                             j.jobStatus, q.amount
-                    ORDER BY j.startDate DESC";
+                string sql = @"
+            SELECT 
+                j.jobID AS [Job ID],
+                c.clientName + ' ' + c.clientSurname AS [Client Name],
+                jr.siteAddress AS [Site Address],
+                j.startDate AS [Start Date],
+                j.jobStatus AS [Status],
+                q.amount AS [Quote Amount],
+                ISNULL(SUM(p.amountPaid), 0) AS [Total Paid]
+            FROM Job j
+            INNER JOIN Quote q 
+                ON j.quoteID = q.QuoteID
+            INNER JOIN JobRequest jr 
+                ON q.jobRequestID = jr.jobRequestID
+            INNER JOIN Client c 
+                ON jr.clientID = c.clientID
+            LEFT JOIN Payment p 
+                ON j.jobID = p.jobID
+            WHERE j.jobStatus = 'Completed'
+            AND (
+                c.clientName LIKE @search
+                OR c.clientSurname LIKE @search
+                OR jr.siteAddress LIKE @search
+            )
+            GROUP BY 
+                j.jobID,
+                c.clientName,
+                c.clientSurname,
+                jr.siteAddress,
+                j.startDate,
+                j.jobStatus,
+                q.amount
+            ORDER BY j.startDate DESC";
 
-                SqlDataAdapter da = new SqlDataAdapter(sql, conn);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                dgv.DataSource = dt;
-                dgv.Columns[0].Width = 80;   // jonID
-                dgv.Columns[1].Width = 250;  // Name
-                dgv.Columns[2].Width = 400;  //address
-                dgv.Columns[3].Width = 100;  //sdate
-                dgv.Columns[4].Width = 100;  //edate
-                dgv.Columns[5].Width = 100;  //status
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@search", "%" + t.Text.Trim() + "%");
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    dgv.DataSource = dt;
+
+                    if (dgv.Columns["Job ID"] != null)
+                        dgv.Columns["Job ID"].Width = 80;
+
+                    if (dgv.Columns["Client Name"] != null)
+                        dgv.Columns["Client Name"].Width = 200;
+
+                    if (dgv.Columns["Site Address"] != null)
+                        dgv.Columns["Site Address"].Width = 300;
+
+                    if (dgv.Columns["Start Date"] != null)
+                        dgv.Columns["Start Date"].Width = 100;
+
+                    if (dgv.Columns["Status"] != null)
+                        dgv.Columns["Status"].Width = 100;
+
+                    if (dgv.Columns["Quote Amount"] != null)
+                        dgv.Columns["Quote Amount"].Width = 100;
+
+                    if (dgv.Columns["Total Paid"] != null)
+                        dgv.Columns["Total Paid"].Width = 100;
+                }
             }
         }
-
         private void InvoiceReportForm_Load(object sender, EventArgs e)
         {
             tabControl1.SelectedIndex = index;
@@ -93,8 +125,8 @@ namespace M2GiantGroupSystem
 
         private void jobsReportsDgv_Click(object sender, EventArgs e)
         {
-            label1.Text= "Job ID selected: " + jobsReportsDgv.CurrentRow.Cells["jobID"].Value.ToString();
-            SelectedJobID= Convert.ToInt32(jobsReportsDgv.CurrentRow.Cells["jobID"].Value);
+            label1.Text= "Job ID selected: " + jobsReportsDgv.CurrentRow.Cells["Job ID"].Value.ToString();
+            SelectedJobID= Convert.ToInt32(jobsReportsDgv.CurrentRow.Cells["Job ID"].Value);
             button1.Enabled = true;
             //enable tab page 2
              tabControl1.TabPages[1].Enabled = true;
@@ -176,7 +208,7 @@ namespace M2GiantGroupSystem
                 InvoiceReport1.SetParameterValue("SiteAddress", first["siteAddress"].ToString());
                 InvoiceReport1.SetParameterValue("JobID", SelectedJobID);
                 InvoiceReport1.SetParameterValue("StartDate", Convert.ToDateTime(first["startDate"]).ToString("dd/MM/yyyy"));
-                InvoiceReport1.SetParameterValue("EndDate", Convert.ToDateTime(first["endDate"]).ToString("dd/MM/yyyy"));
+            //    InvoiceReport1.SetParameterValue("EndDate", Convert.ToDateTime(first["endDate"]).ToString("dd/MM/yyyy"));
                 InvoiceReport1.SetParameterValue("QuoteAmount", Convert.ToDecimal(first["QuoteAmount"]));
                 InvoiceReport1.SetParameterValue("TotalReceived", Convert.ToDecimal(first["TotalReceived"]));
                 InvoiceReport1.SetParameterValue("LineItemsSubtotal", Convert.ToDecimal(first["LineItemsSubtotal"]));

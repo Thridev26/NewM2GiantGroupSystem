@@ -31,25 +31,27 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(paymentMain));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.dgvPayment = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
+            this.dgvPayment = new System.Windows.Forms.DataGridView();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label14 = new System.Windows.Forms.Label();
+            this.lblSelectedID = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.btnAddPayment = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dgvJobLookup = new System.Windows.Forms.DataGridView();
             this.txtJobSearch = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.cmbPaymentStatus = new System.Windows.Forms.ComboBox();
             this.cmbPaymentMethod = new System.Windows.Forms.ComboBox();
             this.txtAmount = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label13 = new System.Windows.Forms.Label();
             this.btnSaveEdit = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
@@ -63,10 +65,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.lblSelectedID = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPayment)).BeginInit();
@@ -110,20 +108,6 @@
             this.tabPage1.Text = "View Payments";
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
-            // dgvPayment
-            // 
-            this.dgvPayment.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvPayment.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.dgvPayment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPayment.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.dgvPayment.Location = new System.Drawing.Point(98, 210);
-            this.dgvPayment.Name = "dgvPayment";
-            this.dgvPayment.ReadOnly = true;
-            this.dgvPayment.RowHeadersWidth = 51;
-            this.dgvPayment.RowTemplate.Height = 24;
-            this.dgvPayment.Size = new System.Drawing.Size(1758, 536);
-            this.dgvPayment.TabIndex = 2;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -142,6 +126,19 @@
             this.txtSearch.Size = new System.Drawing.Size(544, 57);
             this.txtSearch.TabIndex = 0;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            // 
+            // dgvPayment
+            // 
+            this.dgvPayment.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvPayment.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.dgvPayment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPayment.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.dgvPayment.Location = new System.Drawing.Point(98, 210);
+            this.dgvPayment.Name = "dgvPayment";
+            this.dgvPayment.RowHeadersWidth = 51;
+            this.dgvPayment.RowTemplate.Height = 24;
+            this.dgvPayment.Size = new System.Drawing.Size(1758, 536);
+            this.dgvPayment.TabIndex = 2;
             // 
             // pictureBox3
             // 
@@ -162,19 +159,49 @@
             this.tabPage2.Controls.Add(this.btnAddPayment);
             this.tabPage2.Controls.Add(this.pictureBox1);
             this.tabPage2.Controls.Add(this.panel1);
-            this.tabPage2.Controls.Add(this.cmbPaymentStatus);
             this.tabPage2.Controls.Add(this.cmbPaymentMethod);
             this.tabPage2.Controls.Add(this.txtAmount);
             this.tabPage2.Controls.Add(this.label6);
             this.tabPage2.Controls.Add(this.label5);
             this.tabPage2.Controls.Add(this.label3);
-            this.tabPage2.Controls.Add(this.label4);
             this.tabPage2.Location = new System.Drawing.Point(4, 37);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(1916, 1014);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Add Payment";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label14.Location = new System.Drawing.Point(1189, 578);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(293, 38);
+            this.label14.TabIndex = 12;
+            this.label14.Text = "date will appear here";
+            // 
+            // lblSelectedID
+            // 
+            this.lblSelectedID.AutoSize = true;
+            this.lblSelectedID.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSelectedID.ForeColor = System.Drawing.Color.Orange;
+            this.lblSelectedID.Location = new System.Drawing.Point(683, 145);
+            this.lblSelectedID.Name = "lblSelectedID";
+            this.lblSelectedID.Size = new System.Drawing.Size(389, 50);
+            this.lblSelectedID.TabIndex = 11;
+            this.lblSelectedID.Text = "No payment selected";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(1261, 112);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(382, 50);
+            this.label12.TabIndex = 10;
+            this.label12.Text = "Add payment details";
             // 
             // btnAddPayment
             // 
@@ -242,21 +269,6 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Search for a job using client name, surname, site address or job ID:";
             // 
-            // cmbPaymentStatus
-            // 
-            this.cmbPaymentStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.cmbPaymentStatus.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbPaymentStatus.FormattingEnabled = true;
-            this.cmbPaymentStatus.Items.AddRange(new object[] {
-            "Pending",
-            "Paid ",
-            "Partially Paid",
-            "Cancelled"});
-            this.cmbPaymentStatus.Location = new System.Drawing.Point(1190, 460);
-            this.cmbPaymentStatus.Name = "cmbPaymentStatus";
-            this.cmbPaymentStatus.Size = new System.Drawing.Size(555, 58);
-            this.cmbPaymentStatus.TabIndex = 7;
-            // 
             // cmbPaymentMethod
             // 
             this.cmbPaymentMethod.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
@@ -311,16 +323,6 @@
             this.label3.TabIndex = 1;
             this.label3.Text = "Payment Date: (set to today\'s date)";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(1183, 409);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(229, 38);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Payment Status:";
-            // 
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.SeaShell;
@@ -341,6 +343,16 @@
             this.tabPage3.Size = new System.Drawing.Size(1916, 1014);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Edit Payment";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(1198, 87);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(378, 50);
+            this.label13.TabIndex = 15;
+            this.label13.Text = "Edit payment details";
             // 
             // btnSaveEdit
             // 
@@ -412,7 +424,7 @@
             this.cmbEditStatus.Name = "cmbEditStatus";
             this.cmbEditStatus.Size = new System.Drawing.Size(504, 58);
             this.cmbEditStatus.TabIndex = 12;
-            this.cmbEditStatus.SelectedIndexChanged += new System.EventHandler(this.cmbEditStatus_SelectedIndexChanged);
+          //  this.cmbEditStatus.SelectedIndexChanged += new System.EventHandler(this.cmbEditStatus_SelectedIndexChanged);
             // 
             // cmbEditMethod
             // 
@@ -496,48 +508,6 @@
             this.label9.Text = "Amount (R):";
             this.label9.Click += new System.EventHandler(this.label9_Click);
             // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(1261, 112);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(382, 50);
-            this.label12.TabIndex = 10;
-            this.label12.Text = "Add payment details";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(1198, 87);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(378, 50);
-            this.label13.TabIndex = 15;
-            this.label13.Text = "Edit payment details";
-            // 
-            // lblSelectedID
-            // 
-            this.lblSelectedID.AutoSize = true;
-            this.lblSelectedID.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSelectedID.ForeColor = System.Drawing.Color.Orange;
-            this.lblSelectedID.Location = new System.Drawing.Point(683, 145);
-            this.lblSelectedID.Name = "lblSelectedID";
-            this.lblSelectedID.Size = new System.Drawing.Size(389, 50);
-            this.lblSelectedID.TabIndex = 11;
-            this.lblSelectedID.Text = "No payment selected";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label14.Location = new System.Drawing.Point(1189, 578);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(293, 38);
-            this.label14.TabIndex = 12;
-            this.label14.Text = "date will appear here";
-            // 
             // paymentMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -584,12 +554,10 @@
         private System.Windows.Forms.TextBox txtJobSearch;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ComboBox cmbPaymentStatus;
         private System.Windows.Forms.ComboBox cmbPaymentMethod;
         private System.Windows.Forms.TextBox txtAmount;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnAddPayment;

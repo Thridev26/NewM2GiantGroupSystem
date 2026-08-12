@@ -13,12 +13,14 @@ namespace M2GiantGroupSystem
 {
     public partial class Form1 : Form
     {
-        public Form1()
+        public Form1(string firstName,string lastName, string accessLevel)
         {
             InitializeComponent();
             ThemeManager.ThemeChanged += ApplyTheme;
             // Explicitly set initial state
             btnExitToMenu.Enabled = false;
+            string fullName = $"{firstName} {lastName}";
+            Loglbl.Text = $"Welcome {fullName}, Your access level is '{accessLevel}'";
         }
 
         private void ApplyPermissions()
@@ -301,11 +303,17 @@ namespace M2GiantGroupSystem
             {
                 // No children open, disable the button
                 btnExitToMenu.Enabled = false;
+                //lblClock.Visible = true;
+                //Loglbl.Visible = true;
+                label1.Visible = true;
             }
             else
             {
                 // A child is open, enable the button
                 btnExitToMenu.Enabled = true;
+                //lblClock.Visible = false;
+                //Loglbl.Visible = false;
+                label1.Visible = false;
             }
         }
 
@@ -317,6 +325,12 @@ namespace M2GiantGroupSystem
         private void trackPaymentsToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             FormSetup(new paymentMain(0));
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            // Updates the label with the current date and time every second
+            lblClock.Text = DateTime.Now.ToString("dd MMMM yyyy HH:mm:ss");
         }
     }
 }

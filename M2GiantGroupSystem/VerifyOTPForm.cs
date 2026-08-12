@@ -63,6 +63,11 @@ namespace M2GiantGroupSystem
         {
             this.Close();
         }
+
+        private void VerifyOTPForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
     
 }

@@ -122,7 +122,7 @@ namespace M2GiantGroupSystem {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_EndDate {
+        public CrystalDecisions.Shared.IParameterField Parameter_QuoteAmount {
             get {
                 return this.DataDefinition.ParameterFields[4];
             }
@@ -130,7 +130,7 @@ namespace M2GiantGroupSystem {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_QuoteAmount {
+        public CrystalDecisions.Shared.IParameterField Parameter_TotalReceived {
             get {
                 return this.DataDefinition.ParameterFields[5];
             }
@@ -138,7 +138,7 @@ namespace M2GiantGroupSystem {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_TotalReceived {
+        public CrystalDecisions.Shared.IParameterField Parameter_LineItemsSubtotal {
             get {
                 return this.DataDefinition.ParameterFields[6];
             }
@@ -146,7 +146,7 @@ namespace M2GiantGroupSystem {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_LineItemsSubtotal {
+        public CrystalDecisions.Shared.IParameterField Parameter_TravelFee {
             get {
                 return this.DataDefinition.ParameterFields[7];
             }
@@ -154,7 +154,7 @@ namespace M2GiantGroupSystem {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_TravelFee {
+        public CrystalDecisions.Shared.IParameterField Parameter_VATAmount {
             get {
                 return this.DataDefinition.ParameterFields[8];
             }
@@ -162,17 +162,9 @@ namespace M2GiantGroupSystem {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_VATAmount {
-            get {
-                return this.DataDefinition.ParameterFields[9];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public CrystalDecisions.Shared.IParameterField Parameter_BalanceOutstanding {
             get {
-                return this.DataDefinition.ParameterFields[10];
+                return this.DataDefinition.ParameterFields[9];
             }
         }
     }

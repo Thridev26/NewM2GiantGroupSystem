@@ -73,6 +73,11 @@
             this.siteEvaluationPhotosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.completedJobPhotosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.Loglbl = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblClock = new System.Windows.Forms.Label();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -97,7 +102,7 @@
             this.toolStripMenuItem10,
             this.btnExitToMenu,
             this.toolStripMenuItem14});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Location = new System.Drawing.Point(0, 24);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(20, 6, 0, 6);
             this.menuStrip1.Size = new System.Drawing.Size(1924, 48);
@@ -466,6 +471,57 @@
             this.completedJobPhotosToolStripMenuItem.Text = "Completed Job Photos";
             this.completedJobPhotosToolStripMenuItem.Click += new System.EventHandler(this.completedJobPhotosToolStripMenuItem_Click);
             // 
+            // Loglbl
+            // 
+            this.Loglbl.AutoSize = true;
+            this.Loglbl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(219)))), ((int)(((byte)(117)))));
+            this.Loglbl.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Loglbl.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Loglbl.Location = new System.Drawing.Point(33, 9);
+            this.Loglbl.Name = "Loglbl";
+            this.Loglbl.Size = new System.Drawing.Size(83, 32);
+            this.Loglbl.TabIndex = 2;
+            this.Loglbl.Text = "label1";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(33, 126);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(293, 140);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Access Level Guide:\r\n6 - Owner\r\n5 - System Manager\r\n4 - Daily Operations Manager\r" +
+    "\n1 - General Workers";
+            // 
+            // lblClock
+            // 
+            this.lblClock.AutoSize = true;
+            this.lblClock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(219)))), ((int)(((byte)(117)))));
+            this.lblClock.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblClock.Location = new System.Drawing.Point(1631, 9);
+            this.lblClock.Name = "lblClock";
+            this.lblClock.Size = new System.Drawing.Size(83, 32);
+            this.lblClock.TabIndex = 5;
+            this.lblClock.Text = "label2";
+            // 
+            // timer2
+            // 
+            this.timer2.Enabled = true;
+            this.timer2.Interval = 1000;
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
+            // menuStrip2
+            // 
+            this.menuStrip2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(219)))), ((int)(((byte)(117)))));
+            this.menuStrip2.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
+            this.menuStrip2.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.menuStrip2.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip2.Name = "menuStrip2";
+            this.menuStrip2.Size = new System.Drawing.Size(1924, 24);
+            this.menuStrip2.TabIndex = 7;
+            this.menuStrip2.Text = "menuStrip2";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
@@ -474,12 +530,17 @@
             this.BackgroundImage = global::M2GiantGroupSystem.Properties.Resources.mainMenuBgWithLogo;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1924, 540);
+            this.Controls.Add(this.lblClock);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.Loglbl);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.menuStrip2);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
+            this.MainMenuStrip = this.menuStrip2;
             this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.Name = "Form1";
             this.Text = "The Giant Group Operations and Asset Management System - Main Menu";
@@ -538,6 +599,11 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem14;
         private System.Windows.Forms.ToolStripMenuItem siteEvaluationPhotosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem completedJobPhotosToolStripMenuItem;
+        private System.Windows.Forms.Label Loglbl;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblClock;
+        private System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.MenuStrip menuStrip2;
     }
 }
 
