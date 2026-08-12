@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;       // M3 IMPROVEMENT: needed to catch SqlException specifically (Point 7 - Reliability)
 using System.Drawing;
+using System.Globalization;        // M3 IMPROVEMENT: needed for CultureInfo.InvariantCulture on decimal parsing (Point 2 - Validation)
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,8 +15,13 @@ namespace M2GiantGroupSystem
 {
     public partial class Maintenance : Form
     {
-        int tabIndex;
-        int selectedLogID = 0;
+        private readonly int tabIndex; // IDE0044 FIX: Marked readonly as assigned only in constructor
+        private int selectedLogID = 0;
+
+        // M3 IMPROVEMENT: remember the default colours so highlighted (invalid) fields can be reset cleanly
+        private Color defaultTextBoxColor;
+        private Color defaultComboBoxColor;
+        private Color defaultRichTextBoxColor;
 
         public Maintenance(int tabIndex)
         {
@@ -38,6 +45,11 @@ namespace M2GiantGroupSystem
             {
                 tabControl1.SelectedIndex = tabIndex;
             }
+
+            // M3 IMPROVEMENT: capture default field colours once controls exist, so ClearHighlights() has something to reset to
+            defaultTextBoxColor = txtRepairCost.BackColor;
+            defaultComboBoxColor = cboAssetSelection.BackColor;
+            defaultRichTextBoxColor = rtbCompletionDetails.BackColor;
 
             ApplyTheme();
         }
@@ -128,10 +140,20 @@ namespace M2GiantGroupSystem
                 dgvMaintenanceHistory.Columns["serviceType"].HeaderText = "Service Type";
 
             if (dgvMaintenanceHistory.Columns["repairCost"] != null)
+            {
                 dgvMaintenanceHistory.Columns["repairCost"].HeaderText = "Repair Cost";
+                // M3 IMPROVEMENT (Point 4 - Enhanced History Display): "format prices properly"
+                dgvMaintenanceHistory.Columns["repairCost"].DefaultCellStyle.Format = "C2";
+                dgvMaintenanceHistory.Columns["repairCost"].DefaultCellStyle.FormatProvider = CultureInfo.CurrentCulture;
+                dgvMaintenanceHistory.Columns["repairCost"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            }
 
             if (dgvMaintenanceHistory.Columns["serviceDate"] != null)
+            {
                 dgvMaintenanceHistory.Columns["serviceDate"].HeaderText = "Service Date";
+                // M3 IMPROVEMENT (Point 4 - Enhanced History Display): consistent, readable date formatting
+                dgvMaintenanceHistory.Columns["serviceDate"].DefaultCellStyle.Format = "yyyy-MM-dd";
+            }
 
             if (dgvMaintenanceHistory.Columns["completionDetails"] != null)
                 dgvMaintenanceHistory.Columns["completionDetails"].HeaderText = "Completion Details";
@@ -146,18 +168,80 @@ namespace M2GiantGroupSystem
             dtpServiceDate.Value = DateTime.Today;
             rtbCompletionDetails.Clear();
             dgvMaintenanceHistory.ClearSelection();
+
+            // M3 IMPROVEMENT (Point 2/5 - Validation & Feedback): clear any red "invalid" highlights on reset
+            ClearValidationHighlights();
+        }
+
+        // --------------------------------------------------------------------------------------------------------
+        // M3 IMPROVEMENT: VALIDATION FEEDBACK HELPERS
+        // --------------------------------------------------------------------------------------------------------
+        private void HighlightInvalid(Control ctrl)
+        {
+            ctrl.BackColor = Color.MistyRose;
+        }
+
+        private void ClearValidationHighlights()
+        {
+            txtRepairCost.BackColor = defaultTextBoxColor;
+            cboAssetSelection.BackColor = defaultComboBoxColor;
+            rtbCompletionDetails.BackColor = defaultRichTextBoxColor;
+        }
+
+        private bool TryValidateRepairCost(out decimal cost)
+        {
+            cost = 0.00m;
+
+            if (string.IsNullOrWhiteSpace(txtRepairCost.Text))
+            {
+                HighlightInvalid(txtRepairCost);
+                MessageBox.Show("Please provide the repair cost. A default or zero value is not permitted as this maintenance has already been completed.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (!decimal.TryParse(txtRepairCost.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out cost))
+            {
+                HighlightInvalid(txtRepairCost);
+                MessageBox.Show("Invalid characters detected in Repair Cost. Please enter a valid numerical amount (e.g., 250.00).", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (cost <= 0.00m)
+            {
+                HighlightInvalid(txtRepairCost);
+                MessageBox.Show("The repair cost must be a value greater than 0.00 since this maintenance task is marked as finalized and paid.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            return true;
+        }
+
+        // CS8370 FIX: C# 7.3 compatible SQL error message mapper
+        private string GetFriendlySqlErrorMessage(SqlException sqlEx)
+        {
+            switch (sqlEx.Number)
+            {
+                case 2:
+                case -2:
+                    return "The database connection timed out. Please check your network/VPN connection and try again.";
+                case 547:
+                    return "This operation conflicts with related records (a foreign key constraint was violated).";
+                case 2627:
+                case 2601:
+                    return "A duplicate record conflict was detected while saving.";
+                default:
+                    return "A database error occurred while saving: " + sqlEx.Message;
+            }
         }
 
         // --------------------------------------------------------------------------------------------------------
         // ACTION CLICK & ROW SELECTION HANDLERS
         // --------------------------------------------------------------------------------------------------------
-       
-        
-        
 
         private void button2_Click(object sender, EventArgs e)
         {
-            // 1. Guard check selection constraints
+            ClearValidationHighlights();
+
             if (selectedLogID == 0)
             {
                 MessageBox.Show("Please select a historical maintenance row entry from the grid first to update.", "Selection Missing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -166,34 +250,37 @@ namespace M2GiantGroupSystem
 
             if (cboAssetSelection.SelectedValue == null)
             {
+                HighlightInvalid(cboAssetSelection);
                 MessageBox.Show("Please ensure an asset is selected.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(rtbCompletionDetails.Text))
             {
+                HighlightInvalid(rtbCompletionDetails);
                 MessageBox.Show("Please provide detailed task notes inside completion details.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            decimal cost;
+            if (!TryValidateRepairCost(out cost))
+            {
                 return;
             }
 
             DialogResult confirm = MessageBox.Show($"Are you sure you want to save modifications to Maintenance Log ID: {selectedLogID}?", "Confirm Update", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (confirm != DialogResult.Yes) return;
 
+            this.Cursor = Cursors.WaitCursor;
+            button2.Enabled = false;
+
             try
             {
-                // 2. Parse field items cleanly
                 string type = cboServiceType.SelectedItem?.ToString() ?? "Inspection";
                 string dateStr = dtpServiceDate.Value.ToString("yyyy-MM-dd");
                 string noteDetails = rtbCompletionDetails.Text.Trim();
                 int assetID = Convert.ToInt32(cboAssetSelection.SelectedValue);
 
-                decimal cost = 0.00m;
-                if (!string.IsNullOrWhiteSpace(txtRepairCost.Text))
-                {
-                    decimal.TryParse(txtRepairCost.Text, out cost);
-                }
-
-                // 3. Execute update statement via your designer-dragged visual TableAdapter query module!
                 this.maintenanceLogTableAdapter1.UpdateQuery(
                     type,
                     cost,
@@ -205,19 +292,27 @@ namespace M2GiantGroupSystem
 
                 MessageBox.Show($"Maintenance Log entry {selectedLogID} successfully updated!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // 4. Force grid updates and reset inputs
                 RefreshMaintenanceGrid();
                 ClearFormLayout();
+            }
+            catch (SqlException sqlEx)
+            {
+                string friendlyMessage = GetFriendlySqlErrorMessage(sqlEx);
+                MessageBox.Show(friendlyMessage, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Failed to save changes onto the database engine: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+                button2.Enabled = true;
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            // Clear all form fields to default values for a new log entry
             ClearFormLayout();
         }
 
@@ -275,27 +370,24 @@ namespace M2GiantGroupSystem
         {
             try
             {
-                // Prevent crash if they click the header row or empty canvas areas
                 if (e.RowIndex < 0 || dgvMaintenanceHistory.Rows[e.RowIndex].Cells["logID"].Value == DBNull.Value || dgvMaintenanceHistory.Rows[e.RowIndex].Cells["logID"].Value == null)
                     return;
 
+                ClearValidationHighlights();
+
                 DataGridViewRow row = dgvMaintenanceHistory.Rows[e.RowIndex];
 
-                // 1. Extract structural tracking IDs
                 selectedLogID = Convert.ToInt32(row.Cells["logID"].Value);
                 int associatedAssetID = Convert.ToInt32(row.Cells["assetID"].Value);
 
-                // 2. Map date parameters safely
                 if (row.Cells["serviceDate"].Value != DBNull.Value && row.Cells["serviceDate"].Value != null)
                 {
                     dtpServiceDate.Value = Convert.ToDateTime(row.Cells["serviceDate"].Value);
                 }
 
-                // 3. THE FIX: Dynamic combobox injection safety net
                 string serviceTypeVal = row.Cells["serviceType"].Value?.ToString();
                 if (!string.IsNullOrWhiteSpace(serviceTypeVal))
                 {
-                    // If the database row contains a service type not currently in the dropdown, add it dynamically!
                     if (!cboServiceType.Items.Contains(serviceTypeVal))
                     {
                         cboServiceType.Items.Add(serviceTypeVal);
@@ -307,14 +399,11 @@ namespace M2GiantGroupSystem
                     cboServiceType.SelectedIndex = -1;
                 }
 
-                // 4. Map selection combo box back using index keys
                 cboAssetSelection.SelectedValue = associatedAssetID;
 
-                // 5. Format costs safely to decimal text ranges
                 decimal cost = row.Cells["repairCost"].Value != DBNull.Value ? Convert.ToDecimal(row.Cells["repairCost"].Value) : 0.00m;
                 txtRepairCost.Text = cost.ToString("F2");
 
-                // 6. Complete description details mapping profiles
                 rtbCompletionDetails.Text = row.Cells["completionDetails"].Value?.ToString() ?? "";
             }
             catch (Exception ex)
@@ -325,69 +414,64 @@ namespace M2GiantGroupSystem
 
         private void btnSaveLog_Click_1(object sender, EventArgs e)
         {
-            // 0. Duplicate Prevention Guard Check
+            ClearValidationHighlights();
+
             if (selectedLogID != 0)
             {
                 MessageBox.Show("You currently have an existing maintenance record selected. \n\nPlease click 'Update' to save changes to this record, or click 'Clear' to start a brand new log.", "Duplicate Prevention", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // 1. Defensive input validation routines
             if (cboAssetSelection.SelectedValue == null)
             {
+                HighlightInvalid(cboAssetSelection);
                 MessageBox.Show("Please select a valid asset being logged.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(rtbCompletionDetails.Text))
             {
+                HighlightInvalid(rtbCompletionDetails);
                 MessageBox.Show("Please fill out description details for the completion log task notes.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // THE FIX: Strict cost checking to enforce that a valid, non-zero amount has already been paid
-            if (string.IsNullOrWhiteSpace(txtRepairCost.Text))
-            {
-                MessageBox.Show("Please provide the repair cost. A default or zero value is not permitted as this maintenance has already been completed.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
             decimal cost;
-            // Attempt to parse the text box entry into a valid decimal value
-            if (!decimal.TryParse(txtRepairCost.Text, out cost))
+            if (!TryValidateRepairCost(out cost))
             {
-                MessageBox.Show("Invalid characters detected in Repair Cost. Please enter a valid numerical amount (e.g., 250.00).", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Enforce that the cost must be strictly greater than zero to pass validation metrics
-            if (cost <= 0.00m)
-            {
-                MessageBox.Show("The repair cost must be a value greater than 0.00 since this maintenance task is marked as finalized and paid.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            this.Cursor = Cursors.WaitCursor;
+            btnSaveLog.Enabled = false;
 
             try
             {
-                // 2. Safely capture input properties from active layout elements
                 int selectedAssetID = Convert.ToInt32(cboAssetSelection.SelectedValue);
                 string serviceType = cboServiceType.SelectedItem.ToString();
                 string serviceDate = dtpServiceDate.Value.ToString("yyyy-MM-dd");
                 string details = rtbCompletionDetails.Text.Trim();
 
-                // 3. Commit new log records directly via Dataset TableAdapter component logic
                 this.maintenanceLogTableAdapter1.InsertQuery(serviceType, cost, serviceDate, details, selectedAssetID);
 
-                // Message box to show that it was inserted
                 MessageBox.Show("New maintenance log entry successfully recorded!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // 4. Force synchronization visual grid state refreshes
                 RefreshMaintenanceGrid();
                 ClearFormLayout();
+            }
+            catch (SqlException sqlEx)
+            {
+                string friendlyMessage = GetFriendlySqlErrorMessage(sqlEx);
+                MessageBox.Show(friendlyMessage, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Failed to record maintenance logs entry mapping profiles: " + ex.Message, "Execution Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+                btnSaveLog.Enabled = true;
             }
         }
     }
