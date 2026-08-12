@@ -345,6 +345,7 @@
     <Compile Include="InvoiceReportForm.Designer.cs">
       <DependentUpon>InvoiceReportForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="jobProfits.cs" />
     <Compile Include="jobRequestMain_A.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -362,6 +363,18 @@
     </Compile>
     <Compile Include="JobSitePhotos.Designer.cs">
       <DependentUpon>JobSitePhotos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JobTypeProfitability.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JobTypeProfitability.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="JobTypeReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JobTypeReportForm.Designer.cs">
+      <DependentUpon>JobTypeReportForm.cs</DependentUpon>
     </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
@@ -485,6 +498,13 @@
     </EmbeddedResource>
     <EmbeddedResource Include="JobSitePhotos.resx">
       <DependentUpon>JobSitePhotos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JobTypeProfitability.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>JobTypeProfitability.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JobTypeReportForm.resx">
+      <DependentUpon>JobTypeReportForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>

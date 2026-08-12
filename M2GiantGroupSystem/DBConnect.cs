@@ -213,5 +213,125 @@ AND (
             da.Fill(ds);
             return ds;
         }
+        //-------------------------------------JobTypeProfitabilityData-------------------------------------------------------------------------
+        public DataSet JobTypeProfitabilityData(DateTime d1, DateTime d2)
+        {
+            string query =
+     @"
+    WITH LabourCosts AS
+    (
+        SELECT
+            jsa.jobID,
+
+            SUM(
+                jsa.hoursWorked *
+                (s.dailyRate / 8.0)
+            ) AS LabourCost
+
+        FROM JobStaffAssignment jsa
+
+        INNER JOIN Staff s
+            ON jsa.staffID = s.staffID
+
+        GROUP BY jsa.jobID
+    ),
+
+    AssetCosts AS
+    (
+        SELECT
+            ja.jobID,
+
+            SUM(
+                CASE
+                    WHEN ja.hiredAssetID IS NOT NULL
+                    THEN ha.hireCost
+                    ELSE 0
+                END
+            ) AS AssetCost
+
+        FROM JobAssetAssignment ja
+
+        LEFT JOIN HiredAsset ha
+            ON ja.hiredAssetID = ha.hiredAssetID
+
+        GROUP BY ja.jobID
+    )
+
+    SELECT
+        jt.jobTypeName AS JobType,
+
+        COUNT(DISTINCT j.jobID)
+            AS NumberOfJobs,
+
+        SUM(q.amount)
+            AS TotalRevenue,
+
+        SUM(
+            ISNULL(lc.LabourCost, 0)
+        ) AS LabourCost,
+
+        SUM(
+            j.totalFuelCost
+        ) AS FuelCost,
+
+        SUM(
+            j.dumpingCost
+        ) AS DumpingCost,
+
+        SUM(
+            ISNULL(ac.AssetCost, 0)
+        ) AS AssetCost
+
+    FROM Job j
+
+    INNER JOIN Quote q
+        ON j.quoteID = q.QuoteID
+
+    INNER JOIN JobRequest jr
+        ON q.jobRequestID = jr.jobRequestID
+
+    INNER JOIN RequestItem ri
+        ON jr.jobRequestID = ri.jobRequestID
+
+    INNER JOIN JobType jt
+        ON ri.jobTypeID = jt.jobTypeID
+
+    LEFT JOIN LabourCosts lc
+        ON j.jobID = lc.jobID
+
+    LEFT JOIN AssetCosts ac
+        ON j.jobID = ac.jobID
+
+    WHERE j.startDate
+        BETWEEN @StartDate AND @EndDate
+
+    AND j.jobStatus = 'Completed'
+
+    GROUP BY jt.jobTypeName
+
+    ORDER BY jt.jobTypeName;
+    ";
+
+            SqlCommand cmd =
+                new SqlCommand(query, con);
+
+            cmd.Parameters.AddWithValue(
+                "@StartDate",
+                d1);
+
+            cmd.Parameters.AddWithValue(
+                "@EndDate",
+                d2);
+
+            SqlDataAdapter da =
+                new SqlDataAdapter(cmd);
+
+            DataSet ds =
+                new DataSet();
+
+            da.Fill(ds);
+
+            return ds;
+        }
     }
 }

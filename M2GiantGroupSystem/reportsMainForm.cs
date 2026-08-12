@@ -47,5 +47,18 @@ namespace M2GiantGroupSystem
         {
 
         }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            Form1 mainMenu = (Form1)Application.OpenForms["Form1"];
+            if (mainMenu != null)
+            {
+                mainMenu.FormSetup(new JobTypeReportForm());
+            } //only works if main menu is open, but main menu should always be open when this form is open so shouldnt be an issue
+            else
+            {
+                MessageBox.Show("Main menu not found.");
+            }
+        }
     }
 }
