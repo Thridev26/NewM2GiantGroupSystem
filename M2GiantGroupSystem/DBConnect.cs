@@ -333,5 +333,88 @@ AND (
 
             return ds;
         }
+
+        public DataSet QuoteConversionData(
+            DateTime startDate,
+            DateTime endDate)
+        {
+            string query =
+            @"SELECT
+        jr.requestSource AS RequestSource,
+
+        COUNT(DISTINCT jr.jobRequestID)
+            AS TotalRequests,
+
+        COUNT(DISTINCT q.QuoteID)
+            AS QuotesGenerated,
+
+        COUNT(DISTINCT CASE
+            WHEN q.quoteStatus IN ('Sent', 'Accepted', 'Rejected')
+            THEN q.QuoteID
+        END) AS QuotesSent,
+
+        COUNT(DISTINCT CASE
+            WHEN q.quoteStatus = 'Accepted'
+            THEN q.QuoteID
+        END) AS QuotesAccepted,
+
+        COUNT(DISTINCT CASE
+            WHEN q.quoteStatus = 'Rejected'
+            THEN q.QuoteID
+        END) AS QuotesRejected,
+
+        COUNT(DISTINCT CASE
+            WHEN jr.status = 'Cancelled'
+            THEN jr.jobRequestID
+        END) AS RequestsCancelled,
+
+        COUNT(DISTINCT j.jobID)
+            AS JobsCreated,
+
+        ISNULL(AVG(q.amount), 0)
+            AS AverageQuotedValue,
+
+        ISNULL(SUM(CASE
+            WHEN q.quoteStatus = 'Accepted'
+            THEN q.amount
+            ELSE 0
+        END), 0) AS AcceptedQuoteRevenue
+
+      FROM JobRequest jr
+
+      LEFT JOIN Quote q
+          ON jr.jobRequestID = q.jobRequestID
+
+      LEFT JOIN Job j
+          ON q.QuoteID = j.quoteID
+
+      WHERE jr.dateRecieved
+            BETWEEN @StartDate AND @EndDate
+
+      GROUP BY jr.requestSource
+
+      ORDER BY jr.requestSource";
+
+            SqlCommand cmd =
+                new SqlCommand(query, con);
+
+            cmd.Parameters.AddWithValue(
+                "@StartDate",
+                startDate);
+
+            cmd.Parameters.AddWithValue(
+                "@EndDate",
+                endDate);
+
+            SqlDataAdapter da =
+                new SqlDataAdapter(cmd);
+
+            DataSet ds =
+                new DataSet();
+
+            da.Fill(ds);
+
+            return ds;
+        }
     }
 }

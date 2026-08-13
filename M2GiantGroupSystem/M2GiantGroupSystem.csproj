@@ -414,6 +414,19 @@
     <Compile Include="Quotation.Designer.cs">
       <DependentUpon>Quotation.cs</DependentUpon>
     </Compile>
+    <Compile Include="QuoteConversionCrystalReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuoteConversionCrystalReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="QuoteConversionDetails.cs" />
+    <Compile Include="QuoteConversionReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QuoteConversionReportForm.Designer.cs">
+      <DependentUpon>QuoteConversionReportForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="reportsMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -533,6 +546,13 @@
     </Compile>
     <EmbeddedResource Include="Quotation.resx">
       <DependentUpon>Quotation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuoteConversionCrystalReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>QuoteConversionCrystalReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuoteConversionReportForm.resx">
+      <DependentUpon>QuoteConversionReportForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="reportsMainForm.resx">
       <DependentUpon>reportsMainForm.cs</DependentUpon>

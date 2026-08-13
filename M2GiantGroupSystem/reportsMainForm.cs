@@ -60,5 +60,18 @@ namespace M2GiantGroupSystem
                 MessageBox.Show("Main menu not found.");
             }
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Form1 mainMenu = (Form1)Application.OpenForms["Form1"];
+            if (mainMenu != null)
+            {
+                mainMenu.FormSetup(new QuoteConversionReportForm());
+            } //only works if main menu is open, but main menu should always be open when this form is open so shouldnt be an issue
+            else
+            {
+                MessageBox.Show("Main menu not found.");
+            }
+        }
     }
 }
