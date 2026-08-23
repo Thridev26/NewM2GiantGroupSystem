@@ -372,5 +372,50 @@ namespace M2GiantGroupSystem
         {
             reportReady = false;
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                if (dt1.Value.Date > dt2.Value.Date)
+                {
+                    MessageBox.Show(
+                        "Start date cannot be after the end date.",
+                        "Invalid Date Range",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    return;
+                }
+
+                if ((dt2.Value.Date - dt1.Value.Date).TotalDays > 365)
+                {
+                    DialogResult confirm = MessageBox.Show(
+                        "The selected date range spans more than a year. Are you sure you want to continue?",
+                        "Large Date Range",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question);
+
+                    if (confirm != DialogResult.Yes)
+                        return;
+                }
+
+                SelectedStartDate = dt1.Value.Date;
+                SelectedEndDate = dt2.Value.Date;
+
+                reportReady = true;
+
+                tabControl1.SelectedIndex = 1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Unexpected error processing date selection:\n" + ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
     }
 }

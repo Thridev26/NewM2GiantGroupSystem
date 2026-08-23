@@ -278,6 +278,19 @@
     <Compile Include="Calendar.Designer.cs">
       <DependentUpon>Calendar.cs</DependentUpon>
     </Compile>
+    <Compile Include="ClientValueCrystalReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ClientValueCrystalReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ClientValueDetails.cs" />
+    <Compile Include="ClientValueReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClientValueReportForm.Designer.cs">
+      <DependentUpon>ClientValueReportForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="client_MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -303,6 +316,13 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ClientValueCrystalReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ClientValueCrystalReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClientValueReportForm.resx">
+      <DependentUpon>ClientValueReportForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ForgotPasswordForm.resx">
       <DependentUpon>ForgotPasswordForm.cs</DependentUpon>
     </EmbeddedResource>
