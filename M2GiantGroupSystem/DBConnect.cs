@@ -416,5 +416,151 @@ AND (
 
             return ds;
         }
+
+        public DataSet ClientValueData(
+    DateTime startDate,
+    DateTime endDate,
+    string clientType)
+        {
+            string query = @"
+        WITH PaymentTotals AS
+        (
+            SELECT
+                jobID,
+                SUM(amountPaid) AS TotalPaid
+            FROM Payment
+            GROUP BY jobID
+        )
+
+        SELECT
+            c.clientID AS ClientID,
+
+            c.clientName + ' ' + c.clientSurname
+                AS Client,
+
+            c.clientType AS ClientType,
+
+            COUNT(DISTINCT jr.jobRequestID)
+                AS NumberOfRequests,
+
+            COUNT(DISTINCT
+                CASE
+                    WHEN j.jobStatus = 'Completed'
+                    THEN j.jobID
+                END
+            ) AS CompletedJobs,
+
+            ISNULL(
+                SUM(DISTINCT q.amount),
+                0
+            ) AS TotalAmountQuoted,
+
+            ISNULL(
+                SUM(
+                    CASE
+                        WHEN j.jobID IS NOT NULL
+                        THEN ISNULL(pt.TotalPaid, 0)
+                        ELSE 0
+                    END
+                ),
+                0
+            ) AS TotalAmountPaid,
+
+            ISNULL(
+                SUM(
+                    CASE
+                        WHEN j.jobStatus = 'Completed'
+                        THEN q.amount
+                        ELSE 0
+                    END
+                ) /
+                NULLIF(
+                    COUNT(
+                        DISTINCT
+                        CASE
+                            WHEN j.jobStatus = 'Completed'
+                            THEN j.jobID
+                        END
+                    ),
+                    0
+                ),
+                0
+            ) AS AverageJobValue,
+
+            COUNT(
+                DISTINCT
+                CASE
+                    WHEN jr.status = 'Cancelled'
+                         OR q.quoteStatus = 'Rejected'
+                    THEN jr.jobRequestID
+                END
+            ) AS CancelledRejectedRequests,
+
+            ISNULL(
+                      MAX(
+                        CASE
+                           WHEN j.jobStatus = 'Completed'
+                               THEN j.startDate
+                          END
+                      ),
+                     '1900-01-01'
+                ) AS LastJobDate
+
+        FROM Client c
+
+        LEFT JOIN JobRequest jr
+            ON c.clientID = jr.clientID
+            AND jr.dateRecieved BETWEEN @StartDate AND @EndDate
+
+        LEFT JOIN Quote q
+            ON jr.jobRequestID = q.jobRequestID
+
+        LEFT JOIN Job j
+            ON q.QuoteID = j.quoteID
+
+        LEFT JOIN PaymentTotals pt
+            ON j.jobID = pt.jobID
+
+        WHERE
+            (@ClientType = 'All'
+             OR c.clientType = @ClientType)
+
+        GROUP BY
+            c.clientID,
+            c.clientName,
+            c.clientSurname,
+            c.clientType
+
+        HAVING
+            COUNT(DISTINCT jr.jobRequestID) > 0
+
+        ORDER BY
+            TotalAmountPaid DESC,
+            TotalAmountQuoted DESC";
+
+            SqlCommand cmd = new SqlCommand(query, con);
+
+            cmd.Parameters.AddWithValue(
+                "@StartDate",
+                startDate);
+
+            cmd.Parameters.AddWithValue(
+                "@EndDate",
+                endDate);
+
+            cmd.Parameters.AddWithValue(
+                "@ClientType",
+                clientType);
+
+            SqlDataAdapter da =
+                new SqlDataAdapter(cmd);
+
+            DataSet ds =
+                new DataSet();
+
+            da.Fill(ds);
+
+            return ds;
+        }
     }
 }
