@@ -217,84 +217,108 @@ AND (
         public DataSet JobTypeProfitabilityData(DateTime d1, DateTime d2)
         {
             string query =
-     @"
-    WITH LabourCosts AS
-    (
-        SELECT
-            jsa.jobID,
-
-            SUM(
-                jsa.hoursWorked *
-                (s.dailyRate / 8.0)
-            ) AS LabourCost
-
-        FROM JobStaffAssignment jsa
-
-        INNER JOIN Staff s
-            ON jsa.staffID = s.staffID
-
-        GROUP BY jsa.jobID
-    ),
-
-    AssetCosts AS
-    (
-        SELECT
-            ja.jobID,
-
-            SUM(
-                CASE
-                    WHEN ja.hiredAssetID IS NOT NULL
-                    THEN ha.hireCost
-                    ELSE 0
-                END
-            ) AS AssetCost
-
-        FROM JobAssetAssignment ja
-
-        LEFT JOIN HiredAsset ha
-            ON ja.hiredAssetID = ha.hiredAssetID
-
-        GROUP BY ja.jobID
-    )
-
+        @"
+WITH LabourCosts AS
+(
     SELECT
+        jsa.jobID,
+
+        SUM(
+            jsa.hoursWorked *
+            (s.dailyRate / 8.0)
+        ) AS LabourCost
+
+    FROM JobStaffAssignment jsa
+
+    INNER JOIN Staff s
+        ON jsa.staffID = s.staffID
+
+    GROUP BY
+        jsa.jobID
+),
+
+AssetCosts AS
+(
+    SELECT
+        ja.jobID,
+
+        SUM(
+            CASE
+                WHEN ja.hiredAssetID IS NOT NULL
+                THEN ha.hireCost
+                ELSE 0
+            END
+        ) AS AssetCost
+
+    FROM JobAssetAssignment ja
+
+    LEFT JOIN HiredAsset ha
+        ON ja.hiredAssetID = ha.hiredAssetID
+
+    GROUP BY
+        ja.jobID
+),
+
+JobTypeData AS
+(
+    SELECT
+
+        jt.jobTypeID,
+
         jt.jobTypeName AS JobType,
 
         COUNT(DISTINCT j.jobID)
             AS NumberOfJobs,
 
-        SUM(q.amount)
-            AS TotalRevenue,
+        ISNULL(
+            SUM(q.amount),
+            0
+        ) AS TotalRevenue,
 
-        SUM(
-            ISNULL(lc.LabourCost, 0)
+        ISNULL(
+            SUM(
+                ISNULL(lc.LabourCost, 0)
+            ),
+            0
         ) AS LabourCost,
 
-        SUM(
-            j.totalFuelCost
+        ISNULL(
+            SUM(
+                ISNULL(j.totalFuelCost, 0)
+            ),
+            0
         ) AS FuelCost,
 
-        SUM(
-            j.dumpingCost
+        ISNULL(
+            SUM(
+                ISNULL(j.dumpingCost, 0)
+            ),
+            0
         ) AS DumpingCost,
 
-        SUM(
-            ISNULL(ac.AssetCost, 0)
+        ISNULL(
+            SUM(
+                ISNULL(ac.AssetCost, 0)
+            ),
+            0
         ) AS AssetCost
 
-    FROM Job j
+    FROM JobType jt
 
-    INNER JOIN Quote q
-        ON j.quoteID = q.QuoteID
+    LEFT JOIN RequestItem ri
+        ON jt.jobTypeID = ri.jobTypeID
 
-    INNER JOIN JobRequest jr
-        ON q.jobRequestID = jr.jobRequestID
+    LEFT JOIN JobRequest jr
+        ON ri.jobRequestID = jr.jobRequestID
 
-    INNER JOIN RequestItem ri
-        ON jr.jobRequestID = ri.jobRequestID
+    LEFT JOIN Quote q
+        ON jr.jobRequestID = q.jobRequestID
 
-    INNER JOIN JobType jt
-        ON ri.jobTypeID = jt.jobTypeID
+    LEFT JOIN Job j
+        ON q.QuoteID = j.quoteID
+        AND j.startDate >= @StartDate
+        AND j.startDate < DATEADD(DAY, 1, @EndDate)
+        AND j.jobStatus = 'Completed'
 
     LEFT JOIN LabourCosts lc
         ON j.jobID = lc.jobID
@@ -302,15 +326,32 @@ AND (
     LEFT JOIN AssetCosts ac
         ON j.jobID = ac.jobID
 
-    WHERE j.startDate
-        BETWEEN @StartDate AND @EndDate
+    GROUP BY
+        jt.jobTypeID,
+        jt.jobTypeName
+)
 
-    AND j.jobStatus = 'Completed'
+SELECT
 
-    GROUP BY jt.jobTypeName
+    JobType,
 
-    ORDER BY jt.jobTypeName;
-    ";
+    NumberOfJobs,
+
+    TotalRevenue,
+
+    LabourCost,
+
+    FuelCost,
+
+    DumpingCost,
+
+    AssetCost
+
+FROM JobTypeData
+
+ORDER BY
+    JobType;
+";
 
             SqlCommand cmd =
                 new SqlCommand(query, con);
@@ -333,7 +374,6 @@ AND (
 
             return ds;
         }
-
         public DataSet QuoteConversionData(
             DateTime startDate,
             DateTime endDate)
