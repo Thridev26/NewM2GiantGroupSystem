@@ -11,10 +11,15 @@ using System.Net.Http;
 using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
 
 public static class AuthDB
 {
-    private static string connString = "Data Source=146.230.177.46;Initial Catalog=GroupWst1;Persist Security Info=True;User ID=GroupWst1;Password=dtf39;Encrypt=True;TrustServerCertificate=True;";
+    // ❌ Remove this:
+    // private static string connString = "Data Source=146.230.177.46;Initial Catalog=GroupWst1;...;Password=dtf39;...";
+
+    // ✅ Use this instead:
+    private static string connString = System.Configuration.ConfigurationManager.ConnectionStrings["GroupWst1ConnString"].ConnectionString;
 
     public static bool RequestPasswordReset(string email)
     {
@@ -52,7 +57,7 @@ public static class AuthDB
             cmd.ExecuteNonQuery();
         }
 
-        SendEmail(email, otp);
+        _ = SendEmail(email, otp);
         return true;
     }
 
@@ -109,7 +114,7 @@ public static class AuthDB
     public static async Task SendEmail(string toEmail, string otp)
     {
         // Paste your unique Google Apps Script Web App URL here
-        string googleScriptUrl = "https://script.google.com/macros/s/AKfycbwL0Np-3iI7l8Ad7XJ3ZvFqslweJq--mYz-cWG0vS9od66ZVNO9iMz-O-PZD_MnUv66/exec";
+        string googleScriptUrl = ConfigurationManager.AppSettings["GoogleScriptUrl"];
 
         var payload = new
         {
@@ -129,50 +134,7 @@ public static class AuthDB
                 string errorResponse = await response.Content.ReadAsStringAsync();
                 throw new Exception($"Cloud Proxy email send failed: {errorResponse}");
             }
-        }
-
-        //        // Make sure you have the SendGrid NuGet package installed
-        //        var client = new SendGridClient("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");
-
-        //        var from = new EmailAddress("maharajhthridev@gmail.com", "The Giant Group");
-        //        var to = new EmailAddress(toEmail);
-        //        var subject = "Your Password Reset Code";
-        //        var content = $"Your verification code is: {otp}.";
-
-        //        // 1. Paste the HTML string here
-        //        string htmlContent = @"
-        //        <div style=""font-family: 'Segoe UI', Arial, sans-serif; max-width: 500px; margin: auto; border: 1px solid #e0e0e0; border-radius: 12px; overflow: hidden; background-color: #ffffff;"">
-
-        //    <div style=""background-color: #1a73e8; padding: 25px; text-align: center;"">
-        //        <h1 style=""color: #ffffff; margin: 0; font-size: 24px;"">Security Verification</h1>
-        //    </div>
-
-        //    <div style=""padding: 30px;"">
-        //        <p style=""color: #333; font-size: 16px;"">Hello,</p>
-        //        <p style=""color: #555; font-size: 16px; line-height: 1.5;"">
-        //            We received a request to reset your password. Use the code below to complete the process.
-        //        </p>
-
-        //        <div style=""margin: 30px 0; padding: 20px; background-color: #f8f9fa; border: 2px dashed #1a73e8; border-radius: 8px; text-align: center;"">
-        //            <span style=""font-size: 32px; font-weight: bold; color: #1a73e8; letter-spacing: 8px;"">{otp}</span>
-        //        </div>
-
-        //        <p style=""color: #888; font-size: 14px;"">
-        //            This code will expire in 5 minutes. If you did not request this change, please ignore this email.
-        //        </p>
-        //    </div>
-
-        //    <div style=""background-color: #f1f3f4; padding: 15px; text-align: center; color: #777; font-size: 12px;"">
-        //        The Giant Group Systems © 2026
-        //    </div>
-        //</div>";
-
-        //        // 1. Inject the OTP into your HTML string
-        //        htmlContent = htmlContent.Replace("{otp}", otp);
-        //        var msg = MailHelper.CreateSingleEmail(from, to, subject, content, htmlContent);
-
-        //        // This sends as a web request, bypassing your network blocks
-        //        await client.SendEmailAsync(msg);
+        }       
     }
 
     public static void UpdatePassword(string email, string newPassword)
