@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace M2GiantGroupSystem
 {
@@ -401,7 +402,8 @@ namespace M2GiantGroupSystem
                                                           "Confirm Unassign", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                             if (confirm == DialogResult.Yes)
                             {
-                                string connStr = "Data Source=146.230.177.46;Initial Catalog=GroupWst1;Persist Security Info=True;User ID=GroupWst1;Password=dtf39;Encrypt=True;TrustServerCertificate=True";
+                                // ✅ Secure approach: pulling from App.config
+                                string connStr = ConfigurationManager.ConnectionStrings["GroupWst1ConnString"].ConnectionString;
 
                                 using (SqlConnection conn = new SqlConnection(connStr))
                                 using (SqlCommand cmd = new SqlCommand(
@@ -459,7 +461,8 @@ namespace M2GiantGroupSystem
 
             try
             {
-                string connStr = "Data Source=146.230.177.46;Initial Catalog=GroupWst1;Persist Security Info=True;User ID=GroupWst1;Password=dtf39;Encrypt=True;TrustServerCertificate=True";
+                // ✅ Secure approach: pulling from App.config
+                string connStr = ConfigurationManager.ConnectionStrings["GroupWst1ConnString"].ConnectionString;
 
                 string staffSQL = @"
             SELECT s.staffID, s.firstName, s.lastName, s.contactNumber, s.dailyRate, s.roleID, r.roleName, j.startDate AS jobStartDate
