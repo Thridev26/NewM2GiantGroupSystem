@@ -30,61 +30,36 @@ namespace M2GiantGroupSystem
 
             try
             {
-                // 1. Capture the result
-                bool isSuccess = AuthDB.RequestPasswordReset(txtForgotEmail.Text);
+                // Keep your exact backend call and boolean check
+                bool isSuccess = AuthDB.RequestPasswordReset(txtForgotEmail.Text.Trim());
 
+                // WE KEEP YOUR WORKING LOGIC: It still branches internally 
+                // so your VerifyOTPForm and database processes run correctly.
                 if (isSuccess)
                 {
-                    // 2. Success path: Email found
+                    // Email was found, OTP was actually sent
                     MessageBox.Show("An OTP has been sent to your email. Please check your inbox.",
                                     "OTP Sent", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    // 3. Move to verification
-                    this.Hide();
-                    VerifyOTPForm verifyForm = new VerifyOTPForm(txtForgotEmail.Text);
-                    verifyForm.ShowDialog();
-                    this.Close();
                 }
                 else
                 {
-                    // 4. Failure path: Email not found
-                    MessageBox.Show("The email address you entered does not exist in our database. Please check your spelling.",
-                                    "Email Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    // Email was NOT found, BUT we show a generic, secure message 
+                    // instead of saying "does not exist in our database" (prevents hackers from guessing emails)
+                    MessageBox.Show("If an account exists with this email, an OTP has been sent. Please check your inbox.",
+                                    "Request Processed", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+
+                // Keep your exact form transition logic
+                this.Hide();
+                VerifyOTPForm verifyForm = new VerifyOTPForm(txtForgotEmail.Text.Trim());
+                verifyForm.ShowDialog();
+                this.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("An error occurred: " + ex.Message, "System Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            //    if (string.IsNullOrWhiteSpace(txtForgotEmail.Text))
-            //    {
-            //        MessageBox.Show("Please enter your email address.");
-            //        return;
-            //    }
-
-            //    try
-            //    {
-            //        // This calls the AuthDB method
-            //        AuthDB.RequestPasswordReset(txtForgotEmail.Text);
-
-            //        // ALWAYS show the same message regardless of whether the email was found
-            //        MessageBox.Show("An OTP has been sent to your email. \nCheck your spam/junk/promotions folder if you don't see it.",
-            //                        "Request Processed", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            //        // Close this form and open the OTP verification form
-            //        this.Hide();
-            //        VerifyOTPForm verifyForm = new VerifyOTPForm(txtForgotEmail.Text);
-            //        verifyForm.ShowDialog();
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        // Full exception details including inner exceptions and stack trace
-            //MessageBox.Show("An error occurred:\n\n" + ex.ToString(),
-            //                "System Error",
-            //                MessageBoxButtons.OK,
-            //                MessageBoxIcon.Error);
-            //    }
+                       
         }
 
         private void button1_Click(object sender, EventArgs e)
