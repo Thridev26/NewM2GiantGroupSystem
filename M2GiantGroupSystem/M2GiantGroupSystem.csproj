@@ -316,6 +316,19 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="profitReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="profitReportForm.Designer.cs">
+      <DependentUpon>profitReportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WeeklyProfitCrystalReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WeeklyProfitCrystalReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WeeklyProfitDetails.cs" />
     <EmbeddedResource Include="ClientValueCrystalReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ClientValueCrystalReport.cs</LastGenOutput>
@@ -554,6 +567,9 @@
     <EmbeddedResource Include="paymentMain.resx">
       <DependentUpon>paymentMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="profitReportForm.resx">
+      <DependentUpon>profitReportForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -592,6 +608,10 @@
     <EmbeddedResource Include="WeeklyExpensesReportForm.resx">
       <DependentUpon>WeeklyExpensesReportForm.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WeeklyProfitCrystalReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>WeeklyProfitCrystalReport.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="GroupWst1DataSet.xsc">
       <DependentUpon>GroupWst1DataSet.xsd</DependentUpon>

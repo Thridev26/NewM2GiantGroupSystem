@@ -187,9 +187,9 @@ namespace M2GiantGroupSystem
                         ? 0
                         : Convert.ToDecimal(dr["totalFuelCost"]);
 
-                    decimal labourCost = dr["totalLabourCost"] == DBNull.Value
-                        ? 0
-                        : Convert.ToDecimal(dr["totalLabourCost"]);
+                   // decimal labourCost = dr["totalLabourCost"] == DBNull.Value
+                        //? 0
+                        //: Convert.ToDecimal(dr["totalLabourCost"]);
 
                     decimal dumpingCost = dr["dumpingCost"] == DBNull.Value
                         ? 0
@@ -200,7 +200,7 @@ namespace M2GiantGroupSystem
                         JobID = jobID,
                         EndDate = startDate,
                         FuelCost = fuelCost,
-                        LabourCost = labourCost,
+                       // LabourCost = labourCost,
                         DumpingCost = dumpingCost
                     });
                 }
@@ -221,7 +221,7 @@ namespace M2GiantGroupSystem
 
                 decimal totalExpense = 0;
                 decimal fuelTotal = 0;
-                decimal labourTotal = 0;
+               // decimal labourTotal = 0;
                 decimal dumpingTotal = 0;
 
                 // Guard: summary could also come back null or empty
@@ -230,7 +230,7 @@ namespace M2GiantGroupSystem
                     DataRow summaryRow = summary.Tables[0].Rows[0];
 
                     if (summaryRow["FuelTotal"] != DBNull.Value) fuelTotal = Convert.ToDecimal(summaryRow["FuelTotal"]);
-                    if (summaryRow["LabourTotal"] != DBNull.Value) labourTotal = Convert.ToDecimal(summaryRow["LabourTotal"]);
+                  //  if (summaryRow["LabourTotal"] != DBNull.Value) labourTotal = Convert.ToDecimal(summaryRow["LabourTotal"]);
                     if (summaryRow["DumpingTotal"] != DBNull.Value) dumpingTotal = Convert.ToDecimal(summaryRow["DumpingTotal"]);
                     if (summaryRow["ExpenseTotal"] != DBNull.Value) totalExpense = Convert.ToDecimal(summaryRow["ExpenseTotal"]);
                 }
@@ -239,7 +239,7 @@ namespace M2GiantGroupSystem
                 expensesReport1.SetParameterValue("WeekStart", SelectedWeekStart.ToString("dd/MM/yyyy"));
                 expensesReport1.SetParameterValue("WeekEnd", SelectedWeekEnd.ToString("dd/MM/yyyy"));
                 expensesReport1.SetParameterValue("FuelTotal", fuelTotal);
-                expensesReport1.SetParameterValue("LabourTotal", labourTotal);
+                //expensesReport1.SetParameterValue("LabourTotal", labourTotal);
                 expensesReport1.SetParameterValue("DumpingTotal", dumpingTotal);
                 expensesReport1.SetParameterValue("ExpenseTotal", totalExpense);
 

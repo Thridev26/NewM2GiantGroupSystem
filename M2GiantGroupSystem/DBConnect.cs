@@ -70,7 +70,7 @@ namespace M2GiantGroupSystem
             jobID,
             startDate,
             ISNULL(totalFuelCost,   0) AS totalFuelCost,
-            ISNULL(totalLabourCost, 0) AS totalLabourCost,
+           
             ISNULL(dumpingCost,     0) AS dumpingCost
           FROM Job
           WHERE startDate >= @StartDate
@@ -89,11 +89,11 @@ namespace M2GiantGroupSystem
             string query =
         @"SELECT
             ISNULL(SUM(totalFuelCost),   0) AS FuelTotal,
-            ISNULL(SUM(totalLabourCost), 0) AS LabourTotal,
+          
             ISNULL(SUM(dumpingCost),     0) AS DumpingTotal,
             ISNULL(SUM(
                 ISNULL(totalFuelCost,   0) +
-                ISNULL(totalLabourCost, 0) +
+           
                 ISNULL(dumpingCost,     0)
             ), 0) AS ExpenseTotal
           FROM Job
@@ -597,6 +597,56 @@ ORDER BY
 
             DataSet ds =
                 new DataSet();
+
+            da.Fill(ds);
+
+            return ds;
+        }
+
+        public DataSet WeeklyProfitData(DateTime d1, DateTime d2)
+        {
+            string query =
+            @"
+    WITH Income AS
+    (
+        SELECT
+            p.jobID,
+            SUM(p.amountPaid) AS Income
+        FROM Payment p
+        WHERE p.paymentDate >= @StartDate
+          AND p.paymentDate < DATEADD(DAY, 1, @EndDate)
+        GROUP BY p.jobID
+    )
+
+    SELECT
+        j.jobID,
+        j.startDate AS JobDate,
+
+        ISNULL(i.Income, 0) AS Income,
+
+        ISNULL(j.totalFuelCost, 0) AS FuelCost,
+
+        ISNULL(j.dumpingCost, 0) AS DumpingCost
+
+    FROM Job j
+
+    LEFT JOIN Income i
+        ON j.jobID = i.jobID
+
+    WHERE j.startDate >= @StartDate
+      AND j.startDate < DATEADD(DAY, 1, @EndDate)
+
+    ORDER BY j.startDate;
+    ";
+
+            SqlCommand cmd = new SqlCommand(query, con);
+
+            cmd.Parameters.AddWithValue("@StartDate", d1.Date);
+            cmd.Parameters.AddWithValue("@EndDate", d2.Date);
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+            DataSet ds = new DataSet();
 
             da.Fill(ds);
 
