@@ -186,6 +186,13 @@ namespace M2GiantGroupSystem
         {
             ApplyTheme();
             SetupGridStyles();
+            lblClientJobName.AutoSize = false;
+            lblClientJobName.Width = 300;
+            lblClientJobName.Height = 45;
+
+            siteaddresslb.AutoSize = false;
+            siteaddresslb.Width = 300;
+            siteaddresslb.Height = 60;
 
             // UI Defaults
             tabControl1.SelectedIndex = tabIndex;
@@ -669,10 +676,15 @@ GROUP BY q.amount";
                 DataGridViewRow row = dgvUpdateJob.Rows[e.RowIndex];
 
                 selectedJobID = Convert.ToInt32(row.Cells["ID"].Value);
+               
                 txtUpdateJobID.Text = selectedJobID.ToString();
 
                 if (row.Cells["Start Date"].Value != DBNull.Value && row.Cells["Start Date"].Value != null)
                     dtpUpdateStartDate.Value = Convert.ToDateTime(row.Cells["Start Date"].Value);
+
+                LoadUpdateTimeSlotsForDate(
+                       dtpUpdateStartDate.Value,
+                         selectedJobID);
 
                 string statusValue = row.Cells["Status"].Value?.ToString();
                 if (cboUpdateJobStatus.Items.Contains(statusValue))
@@ -928,33 +940,299 @@ GROUP BY q.amount";
 
             try
             {
-                // NOTE: UpdateJobQuery's signature will change once GroupWst1DataSet.xsd
-                // is regenerated without endDate/totalLabourCost. Update this call to
-                // match the regenerated TableAdapter method signature.
-                jobTableAdapter1.UpdateJobQuery(
-                    dtpUpdateStartDate.Value.Date.ToString("yyyy-MM-dd"),
-                    cboUpdateJobStatus.SelectedItem.ToString(),
-                    fuel,
-                    dumping,
-                    selectedJobID);
+                using (SqlConnection conn = new SqlConnection(connStr))
+                {
+                    conn.Open();
 
-                MessageBox.Show($"Job ID {selectedJobID} updated successfully!",
-                    "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    using (SqlTransaction transaction = conn.BeginTransaction())
+                    {
+                        try
+                        {
+                            // ------------------------------------------------
+                            // 1. Update Job
+                            // ------------------------------------------------
 
-                string selectedStatus = JobProgressFilter.SelectedItem?.ToString() ?? "All";
+                            string updateJobSql = @"
+                    UPDATE Job
+                    SET startDate = @startDate,
+                        jobStatus = @status,
+                        totalFuelCost = @fuel,
+                        dumpingCost = @dumping
+                    WHERE jobID = @jobID";
+
+                            using (SqlCommand cmd = new SqlCommand(
+                                updateJobSql, conn, transaction))
+                            {
+                                cmd.Parameters.Add("@startDate", SqlDbType.Date)
+                                    .Value = dtpUpdateStartDate.Value.Date;
+
+                                cmd.Parameters.Add("@status", SqlDbType.VarChar)
+                                    .Value = cboUpdateJobStatus.SelectedItem.ToString();
+
+                                cmd.Parameters.Add("@fuel", SqlDbType.Decimal)
+                                    .Value = fuel;
+
+                                cmd.Parameters.Add("@dumping", SqlDbType.Decimal)
+                                    .Value = dumping;
+
+                                cmd.Parameters.Add("@jobID", SqlDbType.Int)
+                                    .Value = selectedJobID;
+
+                                cmd.ExecuteNonQuery();
+                            }
+
+
+                            // ------------------------------------------------
+                            // 2. Remove OLD time slots
+                            // ------------------------------------------------
+
+                            string deleteSlotsSql = @"
+                    DELETE FROM JobTimeSlot
+                    WHERE jobID = @jobID";
+
+                            using (SqlCommand cmd = new SqlCommand(
+                                deleteSlotsSql, conn, transaction))
+                            {
+                                cmd.Parameters.Add("@jobID", SqlDbType.Int)
+                                    .Value = selectedJobID;
+
+                                cmd.ExecuteNonQuery();
+                            }
+
+
+                            // ------------------------------------------------
+                            // 3. Insert NEW time slots
+                            // ------------------------------------------------
+
+                            string insertSlotSql = @"
+                    INSERT INTO JobTimeSlot (jobID, timeSlotID)
+                    VALUES (@jobID, @timeSlotID)";
+
+                            foreach (Control control in pnlUpdateTimeSlots.Controls)
+                            {
+                                if (control is CheckBox cb && cb.Checked)
+                                {
+                                    int slotID = Convert.ToInt32(cb.Tag);
+
+                                    using (SqlCommand cmd = new SqlCommand(
+                                        insertSlotSql, conn, transaction))
+                                    {
+                                        cmd.Parameters.Add("@jobID", SqlDbType.Int)
+                                            .Value = selectedJobID;
+
+                                        cmd.Parameters.Add("@timeSlotID", SqlDbType.Int)
+                                            .Value = slotID;
+
+                                        cmd.ExecuteNonQuery();
+                                    }
+                                }
+                            }
+
+
+                            // ------------------------------------------------
+                            // 4. Everything succeeded
+                            // ------------------------------------------------
+
+                            transaction.Commit();
+                        }
+                        catch
+                        {
+                            transaction.Rollback();
+                            throw;
+                        }
+                    }
+                }
+
+                MessageBox.Show(
+                    $"Job ID {selectedJobID} updated successfully!",
+                    "Success",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+                string selectedStatus =
+                    JobProgressFilter.SelectedItem?.ToString() ?? "All";
+
                 LoadJobs(selectedStatus, txtSearchJobV.Text);
+
                 ClearUpdateFormLayout();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error updating job: " + ex.Message,
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    "Error updating job: " + ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
         private void JobsForm_Shown(object sender, EventArgs e)
         {
             ApplyPermissions();
+        }
+
+        private void LoadUpdateTimeSlotsForDate(DateTime selectedDate, int currentJobID)
+        {
+            pnlUpdateTimeSlots.Controls.Clear();
+            pnlUpdateTimeSlots.AutoScroll = true;
+            pnlUpdateTimeSlots.AutoSize = false;
+
+            var bookedSlots = new HashSet<int>();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connStr))
+                {
+                    conn.Open();
+
+                    string bookedSql = @"
+                SELECT jts.timeSlotID
+                FROM JobTimeSlot jts
+                INNER JOIN Job j ON jts.jobID = j.jobID
+                WHERE CAST(j.startDate AS DATE) = @d
+                AND j.jobID <> @jobID";
+
+                    using (SqlCommand cmd = new SqlCommand(bookedSql, conn))
+                    {
+                        cmd.Parameters.Add("@d", SqlDbType.Date).Value = selectedDate.Date;
+                        cmd.Parameters.Add("@jobID", SqlDbType.Int).Value = currentJobID;
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                bookedSlots.Add(reader.GetInt32(0));
+                            }
+                        }
+                    }
+
+                    string slotsSql = @"
+                SELECT timeSlotID, startTime, endTime
+                FROM TimeSlot
+                ORDER BY startTime";
+
+                    using (SqlCommand cmdSlots = new SqlCommand(slotsSql, conn))
+                    using (SqlDataReader reader = cmdSlots.ExecuteReader())
+                    {
+                        int xPos = 15;
+                        int yPos = 20;
+                        int horizontalGap = 135;
+                        int verticalGap = 35;
+
+                        while (reader.Read())
+                        {
+                            int slotID = reader.GetInt32(
+                                reader.GetOrdinal("timeSlotID"));
+
+                            // Don't display slots occupied by OTHER jobs
+                            if (bookedSlots.Contains(slotID))
+                                continue;
+
+                            TimeSpan start = reader.GetTimeSpan(
+                                reader.GetOrdinal("startTime"));
+
+                            TimeSpan end = reader.GetTimeSpan(
+                                reader.GetOrdinal("endTime"));
+
+                            CheckBox cb = new CheckBox
+                            {
+                                AutoSize = false,
+                                Width = 115,
+                                Height = 25,
+                                Font = new Font("Segoe UI", 10f),
+                                Tag = slotID,
+                                Text = $"{start:hh\\:mm} - {end:hh\\:mm}",
+                                TextAlign = ContentAlignment.MiddleLeft,
+                                Location = new Point(xPos, yPos)
+                            };
+
+                            pnlUpdateTimeSlots.Controls.Add(cb);
+
+                            xPos += horizontalGap;
+
+                            if (xPos + horizontalGap > pnlUpdateTimeSlots.ClientSize.Width)
+                            {
+                                xPos = 15;
+                                yPos += verticalGap;
+                            }
+                        }
+                    }
+                }
+
+                // Check the slots that belong to THIS job
+                LoadExistingJobTimeSlots(currentJobID);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Error loading available time slots: " + ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+        private void LoadExistingJobTimeSlots(int jobID)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connStr))
+                {
+                    conn.Open();
+
+                    string sql = @"
+                SELECT timeSlotID
+                FROM JobTimeSlot
+                WHERE jobID = @jobID";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.Add("@jobID", SqlDbType.Int).Value = jobID;
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            HashSet<int> existingSlots = new HashSet<int>();
+
+                            while (reader.Read())
+                            {
+                                existingSlots.Add(reader.GetInt32(0));
+                            }
+
+                            foreach (Control control in pnlUpdateTimeSlots.Controls)
+                            {
+                                if (control is CheckBox cb &&
+                                    cb.Tag != null)
+                                {
+                                    int slotID = Convert.ToInt32(cb.Tag);
+
+                                    if (existingSlots.Contains(slotID))
+                                    {
+                                        cb.Checked = true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Error loading existing time slots: " + ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+        private void dtpUpdateStartDate_ValueChanged(object sender, EventArgs e)
+        {
+            if (selectedJobID != 0)
+            {
+                LoadUpdateTimeSlotsForDate(
+                    dtpUpdateStartDate.Value,
+                    selectedJobID);
+            }
         }
     }
 }
