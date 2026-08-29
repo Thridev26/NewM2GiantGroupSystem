@@ -59,9 +59,8 @@
             this.lblDetailName = new System.Windows.Forms.Label();
             this.lblDetailID = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label19 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.userTip1 = new System.Windows.Forms.Label();
-            this.userTip = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.lblSearchResults_A = new System.Windows.Forms.Label();
             this.lblSearchBy_A = new System.Windows.Forms.Label();
@@ -100,7 +99,12 @@
             this.tb_surname = new System.Windows.Forms.TextBox();
             this.tb_name = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.label19 = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.toolTip3 = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTip4 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.clientBS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupWst1DataSet1)).BeginInit();
             this.tabPage3.SuspendLayout();
@@ -112,6 +116,8 @@
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // clientBS
@@ -257,6 +263,7 @@
             this.btnDelete.Size = new System.Drawing.Size(275, 78);
             this.btnDelete.TabIndex = 7;
             this.btnDelete.Text = "Archive";
+            this.toolTip3.SetToolTip(this.btnDelete, "Archives the selected client without permanently deleting them.");
             this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
@@ -438,14 +445,13 @@
             // 
             this.tabPage2.AutoScroll = true;
             this.tabPage2.BackColor = System.Drawing.Color.SeaShell;
+            this.tabPage2.Controls.Add(this.panel2);
+            this.tabPage2.Controls.Add(this.panel1);
             this.tabPage2.Controls.Add(this.label19);
             this.tabPage2.Controls.Add(this.pictureBox3);
-            this.tabPage2.Controls.Add(this.userTip1);
-            this.tabPage2.Controls.Add(this.userTip);
             this.tabPage2.Controls.Add(this.label7);
             this.tabPage2.Controls.Add(this.lblSearchResults_A);
             this.tabPage2.Controls.Add(this.lblSearchBy_A);
-            this.tabPage2.Controls.Add(this.tbSearchValue_A);
             this.tabPage2.Controls.Add(this.textBox1);
             this.tabPage2.Controls.Add(this.textBox2);
             this.tabPage2.Controls.Add(this.textBox3);
@@ -454,7 +460,6 @@
             this.tabPage2.Controls.Add(this.lblSelectCriteria_A);
             this.tabPage2.Controls.Add(this.cmbCriteria_A);
             this.tabPage2.Controls.Add(this.lblFindClient_A);
-            this.tabPage2.Controls.Add(this.btnUpdate);
             this.tabPage2.Controls.Add(this.label1);
             this.tabPage2.Controls.Add(this.label2);
             this.tabPage2.Controls.Add(this.label3);
@@ -471,6 +476,17 @@
             this.tabPage2.Text = "Update client";
             this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
             // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.ForeColor = System.Drawing.Color.Blue;
+            this.label19.Location = new System.Drawing.Point(103, 886);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(240, 25);
+            this.label19.TabIndex = 63;
+            this.label19.Text = "select client from here ↑";
+            // 
             // pictureBox3
             // 
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
@@ -480,31 +496,6 @@
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 62;
             this.pictureBox3.TabStop = false;
-            // 
-            // userTip1
-            // 
-            this.userTip1.AutoSize = true;
-            this.userTip1.BackColor = System.Drawing.Color.Transparent;
-            this.userTip1.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.userTip1.ForeColor = System.Drawing.Color.Red;
-            this.userTip1.Location = new System.Drawing.Point(558, 279);
-            this.userTip1.Name = "userTip1";
-            this.userTip1.Size = new System.Drawing.Size(78, 25);
-            this.userTip1.TabIndex = 61;
-            this.userTip1.Text = "User tip";
-            // 
-            // userTip
-            // 
-            this.userTip.AutoSize = true;
-            this.userTip.BackColor = System.Drawing.Color.Transparent;
-            this.userTip.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.userTip.ForeColor = System.Drawing.Color.Red;
-            this.userTip.Location = new System.Drawing.Point(773, 105);
-            this.userTip.Name = "userTip";
-            this.userTip.Size = new System.Drawing.Size(78, 25);
-            this.userTip.TabIndex = 60;
-            this.userTip.Text = "User tip";
-            this.userTip.Click += new System.EventHandler(this.userTip_Click);
             // 
             // label7
             // 
@@ -542,10 +533,11 @@
             this.tbSearchValue_A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.tbSearchValue_A.Enabled = false;
             this.tbSearchValue_A.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbSearchValue_A.Location = new System.Drawing.Point(105, 401);
+            this.tbSearchValue_A.Location = new System.Drawing.Point(13, 10);
             this.tbSearchValue_A.Name = "tbSearchValue_A";
             this.tbSearchValue_A.Size = new System.Drawing.Size(428, 50);
             this.tbSearchValue_A.TabIndex = 56;
+            this.toolTip1.SetToolTip(this.tbSearchValue_A, "Select a criteria before entering a value");
             this.tbSearchValue_A.TextChanged += new System.EventHandler(this.tbSearchValue_A_TextChanged);
             // 
             // textBox1
@@ -557,7 +549,9 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(494, 50);
             this.textBox1.TabIndex = 42;
+            this.toolTip4.SetToolTip(this.textBox1, "Enter a South African phone number, e.g. 0831234567 or +27831234567");
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox1.MouseHover += new System.EventHandler(this.textBox1_MouseHover);
             // 
             // textBox2
             // 
@@ -568,7 +562,9 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(494, 50);
             this.textBox2.TabIndex = 41;
+            this.toolTip4.SetToolTip(this.textBox2, "Enter a valid email address, e.g. name@example.com");
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.textBox2.MouseHover += new System.EventHandler(this.textBox2_MouseHover);
             // 
             // textBox3
             // 
@@ -591,6 +587,7 @@
             this.textBox4.Size = new System.Drawing.Size(494, 50);
             this.textBox4.TabIndex = 39;
             this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
+            this.textBox4.MouseHover += new System.EventHandler(this.textBox4_MouseHover);
             // 
             // lbSearchResults
             // 
@@ -647,13 +644,15 @@
             this.btnUpdate.BackColor = System.Drawing.Color.DarkGreen;
             this.btnUpdate.Font = new System.Drawing.Font("Segoe UI", 19.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
-            this.btnUpdate.Location = new System.Drawing.Point(1176, 788);
+            this.btnUpdate.Location = new System.Drawing.Point(16, 23);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(494, 78);
+            this.btnUpdate.Size = new System.Drawing.Size(476, 78);
             this.btnUpdate.TabIndex = 51;
             this.btnUpdate.Text = "Update client details";
+            this.toolTip2.SetToolTip(this.btnUpdate, "Updating will be disabled until a client is selected from the search results");
             this.btnUpdate.UseVisualStyleBackColor = false;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            this.btnUpdate.MouseHover += new System.EventHandler(this.btnUpdate_MouseHover);
             // 
             // label1
             // 
@@ -921,6 +920,8 @@
             this.tb_phone.Name = "tb_phone";
             this.tb_phone.Size = new System.Drawing.Size(494, 50);
             this.tb_phone.TabIndex = 32;
+            this.toolTip4.SetToolTip(this.tb_phone, "Enter a South African phone number, e.g. 0831234567 or +27831234567");
+            this.tb_phone.MouseHover += new System.EventHandler(this.tb_phone_MouseHover);
             // 
             // tb_email
             // 
@@ -931,6 +932,8 @@
             this.tb_email.Name = "tb_email";
             this.tb_email.Size = new System.Drawing.Size(494, 50);
             this.tb_email.TabIndex = 31;
+            this.toolTip4.SetToolTip(this.tb_email, "Enter a valid email address, e.g. name@example.com");
+            this.tb_email.MouseHover += new System.EventHandler(this.tb_email_MouseHover);
             // 
             // tb_surname
             // 
@@ -966,16 +969,24 @@
             this.tabControl1.TabIndex = 0;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
-            // label19
+            // panel1
             // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.ForeColor = System.Drawing.Color.Blue;
-            this.label19.Location = new System.Drawing.Point(103, 886);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(240, 25);
-            this.label19.TabIndex = 63;
-            this.label19.Text = "select client from here ↑";
+            this.panel1.Controls.Add(this.btnUpdate);
+            this.panel1.Location = new System.Drawing.Point(1160, 781);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(517, 130);
+            this.panel1.TabIndex = 64;
+            this.toolTip2.SetToolTip(this.panel1, "Updating will be disabled until a client is selected from the search results");
+            this.panel1.MouseHover += new System.EventHandler(this.panel1_MouseHover);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.tbSearchValue_A);
+            this.panel2.Location = new System.Drawing.Point(95, 391);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(469, 80);
+            this.panel2.TabIndex = 65;
+            this.panel2.MouseHover += new System.EventHandler(this.panel2_MouseHover);
             // 
             // client_MainForm
             // 
@@ -1001,6 +1012,9 @@
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabControl1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1028,8 +1042,6 @@
         private System.Windows.Forms.Label lblDetailName;
         private System.Windows.Forms.Label lblDetailID;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.Label userTip1;
-        private System.Windows.Forms.Label userTip;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lblSearchResults_A;
         private System.Windows.Forms.Label lblSearchBy_A;
@@ -1077,5 +1089,11 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.ToolTip toolTip2;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.ToolTip toolTip3;
+        private System.Windows.Forms.ToolTip toolTip4;
     }
 }

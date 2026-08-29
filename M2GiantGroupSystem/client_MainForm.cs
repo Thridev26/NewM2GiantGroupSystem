@@ -48,10 +48,10 @@ namespace M2GiantGroupSystem
             try
             {
                 disableInput();
-                userTip.Text = "Updating will be disabled until a \n " +
-                               "client is selected from the results. \n";
+               // userTip.Text = "Updating will be disabled until a \n " +
+                               //"client is selected from the results. \n";
                          
-                userTip1.Text = "Select a criteria  \nbefore entering\n a value.";
+               // userTip1.Text = "Select a criteria  \nbefore entering\n a value.";
 
 
                 cboSearchColumn.Items.AddRange(new string[]
@@ -1229,6 +1229,51 @@ namespace M2GiantGroupSystem
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             LoadClients();
+        }
+
+        private void btnUpdate_MouseHover(object sender, EventArgs e)
+        {
+            toolTip2.SetToolTip(btnUpdate, "Updating will be disabled until a client is selected from the search results");
+        }
+
+        private void panel1_MouseHover(object sender, EventArgs e)
+        {
+            toolTip2.SetToolTip(panel1, "Updating will be disabled until a client is selected from the search results");
+
+        }
+
+        private void panel2_MouseHover(object sender, EventArgs e)
+        {
+            toolTip2.SetToolTip(panel2, "Select a criteria before entering a value");
+
+        }
+
+        private void textBox1_MouseHover(object sender, EventArgs e)
+        {
+            toolTip2.SetToolTip(textBox1, "Enter a South African phone number, e.g. 0831234567 or +27831234567");
+        }
+
+        private void textBox2_MouseHover(object sender, EventArgs e)
+        {
+            toolTip2.SetToolTip(textBox2, "Enter a valid email address, e.g. name@example.com");
+
+        }
+
+        private void tb_phone_MouseHover(object sender, EventArgs e)
+        {
+            toolTip2.SetToolTip(tb_phone, "Enter a South African phone number, e.g. 0831234567 or +27831234567");
+
+        }
+
+        private void tb_email_MouseHover(object sender, EventArgs e)
+        {
+            toolTip2.SetToolTip(tb_email, "Enter a valid email address, e.g. name@example.com");
+
+        }
+
+        private void textBox4_MouseHover(object sender, EventArgs e)
+        {
+           
         }
     }
  }
