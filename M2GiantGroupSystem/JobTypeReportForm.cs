@@ -169,15 +169,14 @@ namespace M2GiantGroupSystem
 
             try
             {
-                List<jobProfits> list =
-    new List<jobProfits>();
+                List<jobProfits> list = new List<jobProfits>();
 
                 DataSet ds =
                     DB1.JobTypeProfitabilityData(
                         SelectedStartDate,
                         SelectedEndDate);
 
-                if (ds == null || ds.Tables.Count == 0)
+                if (ds == null || ds.Tables.Count == 0 || ds.Tables[0].Rows.Count == 0)
                 {
                     MessageBox.Show(
                         "No data was returned from the database. The report cannot be generated.",
@@ -210,12 +209,6 @@ namespace M2GiantGroupSystem
                         jobTypeRevenue =
                             Convert.ToDecimal(dr["TotalRevenue"]);
 
-                    decimal labourCost = 0;
-
-                    if (dr["LabourCost"] != DBNull.Value)
-                        labourCost =
-                            Convert.ToDecimal(dr["LabourCost"]);
-
                     decimal fuelCost = 0;
 
                     if (dr["FuelCost"] != DBNull.Value)
@@ -240,7 +233,6 @@ namespace M2GiantGroupSystem
                             JobType = jobType,
                             NumberOfJobs = numberOfJobs,
                             TotalRevenue = jobTypeRevenue,
-                            LabourCost = labourCost,
                             FuelCost = fuelCost,
                             DumpingCost = dumpingCost,
                             AssetCost = assetCost
@@ -265,23 +257,19 @@ namespace M2GiantGroupSystem
                 decimal totalRevenue =
    list.Sum(x => x.TotalRevenue);
 
-                decimal totalLabour =
-                    list.Sum(x => x.LabourCost);
+                decimal totalLabour = 0, totalFuel = 0, totalDumping = 0, totalAsset = 0;
 
-                decimal totalFuel =
-                    list.Sum(x => x.FuelCost);
+                if (ds.Tables.Count > 1 && ds.Tables[1].Rows.Count > 0)
+                {
+                    DataRow costRow = ds.Tables[1].Rows[0];
+                   // totalLabour = costRow["TotalLabour"] != DBNull.Value ? Convert.ToDecimal(costRow["TotalLabour"]) : 0;
+                    totalFuel = costRow["TotalFuel"] != DBNull.Value ? Convert.ToDecimal(costRow["TotalFuel"]) : 0;
+                    totalDumping = costRow["TotalDumping"] != DBNull.Value ? Convert.ToDecimal(costRow["TotalDumping"]) : 0;
+                    totalAsset = costRow["TotalAsset"] != DBNull.Value ? Convert.ToDecimal(costRow["TotalAsset"]) : 0;
+                }
 
-                decimal totalDumping =
-                    list.Sum(x => x.DumpingCost);
-
-                decimal totalAsset =
-                    list.Sum(x => x.AssetCost);
-
-                decimal totalCost =
-                    list.Sum(x => x.TotalCost);
-
-                decimal totalProfit =
-                    list.Sum(x => x.Profit);
+                decimal totalCost =  totalFuel + totalDumping + totalAsset;
+                decimal totalProfit = totalRevenue - totalCost;
 
                 decimal overallMargin = 0;
 
@@ -319,9 +307,7 @@ namespace M2GiantGroupSystem
                     "TotalRevenue",
                     totalRevenue);
 
-                JobTypeProfitability1.SetParameterValue(
-                    "TotalLabour",
-                    totalLabour);
+               
 
                 JobTypeProfitability1.SetParameterValue(
                     "TotalFuel",
