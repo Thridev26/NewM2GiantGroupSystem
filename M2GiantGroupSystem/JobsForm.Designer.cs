@@ -76,6 +76,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.pnlUpdateTimeSlots = new System.Windows.Forms.Panel();
             this.label13 = new System.Windows.Forms.Label();
             this.txtUpdateDumpingCost = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -102,7 +103,6 @@
             this.jobTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobTableAdapter();
             this.groupWst1DataSet1 = new M2GiantGroupSystem.GroupWst1DataSet();
             this.timeSlotTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.TimeSlotTableAdapter();
-            this.pnlUpdateTimeSlots = new System.Windows.Forms.Panel();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -147,7 +147,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 40);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1595, 831);
+            this.tabPage1.Size = new System.Drawing.Size(1916, 1011);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Add Job Details";
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
@@ -157,9 +157,9 @@
             this.groupBox3.Controls.Add(this.pnlTimeSlots);
             this.groupBox3.Controls.Add(this.lblTimeSlots);
             this.groupBox3.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(752, 76);
+            this.groupBox3.Location = new System.Drawing.Point(803, 85);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(796, 377);
+            this.groupBox3.Size = new System.Drawing.Size(1070, 377);
             this.groupBox3.TabIndex = 81;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Select Available Time Slots";
@@ -169,7 +169,7 @@
             this.pnlTimeSlots.AutoScroll = true;
             this.pnlTimeSlots.Location = new System.Drawing.Point(22, 73);
             this.pnlTimeSlots.Name = "pnlTimeSlots";
-            this.pnlTimeSlots.Size = new System.Drawing.Size(739, 268);
+            this.pnlTimeSlots.Size = new System.Drawing.Size(959, 268);
             this.pnlTimeSlots.TabIndex = 56;
             // 
             // lblTimeSlots
@@ -188,9 +188,9 @@
             this.groupBox2.Controls.Add(this.txtSearchQuote);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(751, 468);
+            this.groupBox2.Location = new System.Drawing.Point(803, 468);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(838, 369);
+            this.groupBox2.Size = new System.Drawing.Size(1070, 397);
             this.groupBox2.TabIndex = 80;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Search by Name, Surname, or Address";
@@ -204,7 +204,7 @@
             this.dgvJoin.ReadOnly = true;
             this.dgvJoin.RowHeadersWidth = 51;
             this.dgvJoin.RowTemplate.Height = 24;
-            this.dgvJoin.Size = new System.Drawing.Size(821, 226);
+            this.dgvJoin.Size = new System.Drawing.Size(1038, 292);
             this.dgvJoin.TabIndex = 58;
             this.dgvJoin.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvJoin_CellClick);
             // 
@@ -212,9 +212,9 @@
             // 
             this.txtSearchQuote.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.txtSearchQuote.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearchQuote.Location = new System.Drawing.Point(91, 50);
+            this.txtSearchQuote.Location = new System.Drawing.Point(11, 50);
             this.txtSearchQuote.Name = "txtSearchQuote";
-            this.txtSearchQuote.Size = new System.Drawing.Size(410, 43);
+            this.txtSearchQuote.Size = new System.Drawing.Size(511, 43);
             this.txtSearchQuote.TabIndex = 63;
             this.txtSearchQuote.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -241,9 +241,9 @@
             this.groupBox1.Controls.Add(this.lblJobStatus);
             this.groupBox1.Controls.Add(this.lblStartDate);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(6, 57);
+            this.groupBox1.Location = new System.Drawing.Point(8, 85);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(727, 765);
+            this.groupBox1.Size = new System.Drawing.Size(727, 780);
             this.groupBox1.TabIndex = 65;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Provide Job Details";
@@ -665,6 +665,14 @@
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Update Job Details";
             // 
+            // pnlUpdateTimeSlots
+            // 
+            this.pnlUpdateTimeSlots.AutoScroll = true;
+            this.pnlUpdateTimeSlots.Location = new System.Drawing.Point(70, 185);
+            this.pnlUpdateTimeSlots.Name = "pnlUpdateTimeSlots";
+            this.pnlUpdateTimeSlots.Size = new System.Drawing.Size(660, 211);
+            this.pnlUpdateTimeSlots.TabIndex = 111;
+            // 
             // label13
             // 
             this.label13.AutoSize = true;
@@ -919,14 +927,6 @@
             // timeSlotTableAdapter1
             // 
             this.timeSlotTableAdapter1.ClearBeforeFill = true;
-            // 
-            // pnlUpdateTimeSlots
-            // 
-            this.pnlUpdateTimeSlots.AutoScroll = true;
-            this.pnlUpdateTimeSlots.Location = new System.Drawing.Point(70, 185);
-            this.pnlUpdateTimeSlots.Name = "pnlUpdateTimeSlots";
-            this.pnlUpdateTimeSlots.Size = new System.Drawing.Size(660, 211);
-            this.pnlUpdateTimeSlots.TabIndex = 111;
             // 
             // JobsForm
             // 
