@@ -218,30 +218,10 @@ AND (
         {
             string query =
         @"
-WITH LabourCosts AS
-(
-    SELECT
-        jsa.jobID,
-
-        SUM(
-            jsa.hoursWorked *
-            (s.dailyRate / 8.0)
-        ) AS LabourCost
-
-    FROM JobStaffAssignment jsa
-
-    INNER JOIN Staff s
-        ON jsa.staffID = s.staffID
-
-    GROUP BY
-        jsa.jobID
-),
-
-AssetCosts AS
+WITH AssetCosts AS
 (
     SELECT
         ja.jobID,
-
         SUM(
             CASE
                 WHEN ja.hiredAssetID IS NOT NULL
@@ -249,82 +229,81 @@ AssetCosts AS
                 ELSE 0
             END
         ) AS AssetCost
-
     FROM JobAssetAssignment ja
-
     LEFT JOIN HiredAsset ha
         ON ja.hiredAssetID = ha.hiredAssetID
-
-    GROUP BY
-        ja.jobID
+    GROUP BY ja.jobID
 ),
 
-JobTypeData AS
+CompletedJobData AS
 (
     SELECT
-
         jt.jobTypeID,
-
         jt.jobTypeName AS JobType,
 
-        COUNT(DISTINCT j.jobID)
-            AS NumberOfJobs,
+        COUNT(DISTINCT j.jobID) AS NumberOfJobs,
 
-        ISNULL(
-            SUM(q.amount),
-            0
+        SUM(
+            CAST(id.detailValue AS DECIMAL(10,2))
+            * jt.jobRate
         ) AS TotalRevenue,
 
-        ISNULL(
-            SUM(
-                ISNULL(lc.LabourCost, 0)
-            ),
-            0
-        ) AS LabourCost,
+        SUM(ISNULL(j.totalFuelCost, 0)) AS FuelCost,
 
-        ISNULL(
-            SUM(
-                ISNULL(j.totalFuelCost, 0)
-            ),
-            0
-        ) AS FuelCost,
+        SUM(ISNULL(j.dumpingCost, 0)) AS DumpingCost,
 
-        ISNULL(
-            SUM(
-                ISNULL(j.dumpingCost, 0)
-            ),
-            0
-        ) AS DumpingCost,
+        SUM(ISNULL(ac.AssetCost, 0)) AS AssetCost
 
-        ISNULL(
-            SUM(
-                ISNULL(ac.AssetCost, 0)
-            ),
-            0
-        ) AS AssetCost
+    FROM Job j
 
-    FROM JobType jt
+    INNER JOIN Quote q
+        ON j.quoteID = q.QuoteID
 
-    LEFT JOIN RequestItem ri
-        ON jt.jobTypeID = ri.jobTypeID
+    INNER JOIN JobRequest jr
+        ON q.jobRequestID = jr.jobRequestID
 
-    LEFT JOIN JobRequest jr
-        ON ri.jobRequestID = jr.jobRequestID
+    INNER JOIN RequestItem ri
+        ON jr.jobRequestID = ri.jobRequestID
 
-    LEFT JOIN Quote q
-        ON jr.jobRequestID = q.jobRequestID
+    INNER JOIN JobType jt
+        ON ri.jobTypeID = jt.jobTypeID
 
-    LEFT JOIN Job j
-        ON q.QuoteID = j.quoteID
-        AND j.startDate >= @StartDate
-        AND j.startDate < DATEADD(DAY, 1, @EndDate)
-        AND j.jobStatus = 'Completed'
-
-    LEFT JOIN LabourCosts lc
-        ON j.jobID = lc.jobID
+    INNER JOIN ItemDetail id
+        ON ri.requestItemID = id.requestItemID
 
     LEFT JOIN AssetCosts ac
         ON j.jobID = ac.jobID
+
+    WHERE j.startDate >= @StartDate
+      AND j.startDate < DATEADD(DAY, 1, @EndDate)
+
+      AND j.jobStatus = 'Completed'
+
+      AND
+      (
+          (jt.jobTypeName = 'Tree Felling'
+              AND id.jobDetailID = 1)
+
+          OR
+
+          (jt.jobTypeName = 'Grass Cutting'
+              AND id.jobDetailID = 6)
+
+          OR
+
+          (jt.jobTypeName = 'Tree Planting'
+              AND id.jobDetailID = 10)
+
+          OR
+
+          (jt.jobTypeName = 'Vegetation Clearance'
+              AND id.jobDetailID = 14)
+
+          OR
+
+          (jt.jobTypeName = 'Hedge Trimming'
+              AND id.jobDetailID = 18)
+      )
 
     GROUP BY
         jt.jobTypeID,
@@ -332,43 +311,46 @@ JobTypeData AS
 )
 
 SELECT
+    jt.jobTypeName AS JobType,
 
-    JobType,
+    ISNULL(cjd.NumberOfJobs, 0) AS NumberOfJobs,
 
-    NumberOfJobs,
+    CASE
+        WHEN cjd.NumberOfJobs IS NULL THEN 0
+        ELSE ISNULL(cjd.TotalRevenue, 0)
+    END AS TotalRevenue,
 
-    TotalRevenue,
+    CASE
+        WHEN cjd.NumberOfJobs IS NULL THEN 0
+        ELSE ISNULL(cjd.FuelCost, 0)
+    END AS FuelCost,
 
-    LabourCost,
+    CASE
+        WHEN cjd.NumberOfJobs IS NULL THEN 0
+        ELSE ISNULL(cjd.DumpingCost, 0)
+    END AS DumpingCost,
 
-    FuelCost,
+    CASE
+        WHEN cjd.NumberOfJobs IS NULL THEN 0
+        ELSE ISNULL(cjd.AssetCost, 0)
+    END AS AssetCost
 
-    DumpingCost,
+FROM JobType jt
 
-    AssetCost
+LEFT JOIN CompletedJobData cjd
+    ON jt.jobTypeID = cjd.jobTypeID
 
-FROM JobTypeData
-
-ORDER BY
-    JobType;
+ORDER BY jt.jobTypeName;
 ";
 
-            SqlCommand cmd =
-                new SqlCommand(query, con);
+            SqlCommand cmd = new SqlCommand(query, con);
 
-            cmd.Parameters.AddWithValue(
-                "@StartDate",
-                d1);
+            cmd.Parameters.AddWithValue("@StartDate", d1);
+            cmd.Parameters.AddWithValue("@EndDate", d2);
 
-            cmd.Parameters.AddWithValue(
-                "@EndDate",
-                d2);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
 
-            SqlDataAdapter da =
-                new SqlDataAdapter(cmd);
-
-            DataSet ds =
-                new DataSet();
+            DataSet ds = new DataSet();
 
             da.Fill(ds);
 

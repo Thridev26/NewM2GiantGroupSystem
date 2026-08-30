@@ -114,7 +114,7 @@ namespace M2GiantGroupSystem {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_TotalLabour {
+        public CrystalDecisions.Shared.IParameterField Parameter_TotalFuel {
             get {
                 return this.DataDefinition.ParameterFields[3];
             }
@@ -122,7 +122,7 @@ namespace M2GiantGroupSystem {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_TotalFuel {
+        public CrystalDecisions.Shared.IParameterField Parameter_TotalDumping {
             get {
                 return this.DataDefinition.ParameterFields[4];
             }
@@ -130,7 +130,7 @@ namespace M2GiantGroupSystem {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_TotalDumping {
+        public CrystalDecisions.Shared.IParameterField Parameter_TotalAsset {
             get {
                 return this.DataDefinition.ParameterFields[5];
             }
@@ -138,7 +138,7 @@ namespace M2GiantGroupSystem {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_TotalAsset {
+        public CrystalDecisions.Shared.IParameterField Parameter_TotalCost {
             get {
                 return this.DataDefinition.ParameterFields[6];
             }
@@ -146,7 +146,7 @@ namespace M2GiantGroupSystem {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_TotalCost {
+        public CrystalDecisions.Shared.IParameterField Parameter_TotalProfit {
             get {
                 return this.DataDefinition.ParameterFields[7];
             }
@@ -154,7 +154,7 @@ namespace M2GiantGroupSystem {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_TotalProfit {
+        public CrystalDecisions.Shared.IParameterField Parameter_OverallMargin {
             get {
                 return this.DataDefinition.ParameterFields[8];
             }
@@ -162,7 +162,7 @@ namespace M2GiantGroupSystem {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_OverallMargin {
+        public CrystalDecisions.Shared.IParameterField Parameter_MostProfitableJobType {
             get {
                 return this.DataDefinition.ParameterFields[9];
             }
@@ -170,17 +170,9 @@ namespace M2GiantGroupSystem {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_MostProfitableJobType {
-            get {
-                return this.DataDefinition.ParameterFields[10];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public CrystalDecisions.Shared.IParameterField Parameter_HighestProfit {
             get {
-                return this.DataDefinition.ParameterFields[11];
+                return this.DataDefinition.ParameterFields[10];
             }
         }
     }

@@ -30,15 +30,15 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.dt2 = new System.Windows.Forms.DateTimePicker();
             this.dt1 = new System.Windows.Forms.DateTimePicker();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.crystalReportViewer1 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.JobTypeProfitability1 = new M2GiantGroupSystem.JobTypeProfitability();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -73,46 +73,19 @@
             this.tabPage1.Text = "Select Dates";
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
-            // dt2
+            // button2
             // 
-            this.dt2.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dt2.Location = new System.Drawing.Point(705, 415);
-            this.dt2.Name = "dt2";
-            this.dt2.Size = new System.Drawing.Size(510, 43);
-            this.dt2.TabIndex = 1;
-            this.dt2.ValueChanged += new System.EventHandler(this.dt2_ValueChanged);
-            // 
-            // dt1
-            // 
-            this.dt1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dt1.Location = new System.Drawing.Point(705, 297);
-            this.dt1.Name = "dt1";
-            this.dt1.Size = new System.Drawing.Size(510, 43);
-            this.dt1.TabIndex = 0;
-            this.dt1.ValueChanged += new System.EventHandler(this.dt1_ValueChanged);
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.BackColor = System.Drawing.Color.SeaShell;
-            this.tabPage2.Controls.Add(this.crystalReportViewer1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1916, 1026);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Report";
-            // 
-            // crystalReportViewer1
-            // 
-            this.crystalReportViewer1.ActiveViewIndex = 0;
-            this.crystalReportViewer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.crystalReportViewer1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.crystalReportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.crystalReportViewer1.Location = new System.Drawing.Point(3, 3);
-            this.crystalReportViewer1.Name = "crystalReportViewer1";
-            this.crystalReportViewer1.ReportSource = this.JobTypeProfitability1;
-            this.crystalReportViewer1.Size = new System.Drawing.Size(1910, 1020);
-            this.crystalReportViewer1.TabIndex = 0;
+            this.button2.BackColor = System.Drawing.Color.DarkGreen;
+            this.button2.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.White;
+            this.button2.Location = new System.Drawing.Point(678, 559);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(561, 151);
+            this.button2.TabIndex = 54;
+            this.button2.Text = "Generate Report";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label2
             // 
@@ -146,19 +119,46 @@
             this.label3.TabIndex = 51;
             this.label3.Text = "Select a date range for the report";
             // 
-            // button2
+            // dt2
             // 
-            this.button2.BackColor = System.Drawing.Color.DarkGreen;
-            this.button2.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(678, 559);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(561, 151);
-            this.button2.TabIndex = 54;
-            this.button2.Text = "Generate Report";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.dt2.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dt2.Location = new System.Drawing.Point(705, 385);
+            this.dt2.Name = "dt2";
+            this.dt2.Size = new System.Drawing.Size(510, 43);
+            this.dt2.TabIndex = 1;
+            this.dt2.ValueChanged += new System.EventHandler(this.dt2_ValueChanged);
+            // 
+            // dt1
+            // 
+            this.dt1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dt1.Location = new System.Drawing.Point(705, 266);
+            this.dt1.Name = "dt1";
+            this.dt1.Size = new System.Drawing.Size(510, 43);
+            this.dt1.TabIndex = 0;
+            this.dt1.ValueChanged += new System.EventHandler(this.dt1_ValueChanged);
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.BackColor = System.Drawing.Color.SeaShell;
+            this.tabPage2.Controls.Add(this.crystalReportViewer1);
+            this.tabPage2.Location = new System.Drawing.Point(4, 40);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1916, 1011);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Report";
+            // 
+            // crystalReportViewer1
+            // 
+            this.crystalReportViewer1.ActiveViewIndex = 0;
+            this.crystalReportViewer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.crystalReportViewer1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.crystalReportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.crystalReportViewer1.Location = new System.Drawing.Point(3, 3);
+            this.crystalReportViewer1.Name = "crystalReportViewer1";
+            this.crystalReportViewer1.ReportSource = this.JobTypeProfitability1;
+            this.crystalReportViewer1.Size = new System.Drawing.Size(1910, 1005);
+            this.crystalReportViewer1.TabIndex = 0;
             // 
             // JobTypeReportForm
             // 

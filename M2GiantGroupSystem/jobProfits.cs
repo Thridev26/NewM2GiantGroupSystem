@@ -15,7 +15,7 @@ namespace M2GiantGroupSystem
 
         public decimal TotalRevenue { get; set; }
 
-        public decimal LabourCost { get; set; }
+       // public decimal LabourCost { get; set; }
 
         public decimal FuelCost { get; set; }
 
@@ -27,8 +27,8 @@ namespace M2GiantGroupSystem
         {
             get
             {
-                return LabourCost
-                     + FuelCost
+                return 
+                     FuelCost
                      + DumpingCost
                      + AssetCost;
             }
