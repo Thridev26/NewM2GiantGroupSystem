@@ -668,6 +668,7 @@
             // pnlUpdateTimeSlots
             // 
             this.pnlUpdateTimeSlots.AutoScroll = true;
+            this.pnlUpdateTimeSlots.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.pnlUpdateTimeSlots.Location = new System.Drawing.Point(70, 185);
             this.pnlUpdateTimeSlots.Name = "pnlUpdateTimeSlots";
             this.pnlUpdateTimeSlots.Size = new System.Drawing.Size(660, 211);
