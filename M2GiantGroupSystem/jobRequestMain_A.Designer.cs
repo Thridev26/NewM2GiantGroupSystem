@@ -56,6 +56,7 @@
             this.groupWst1DataSet1 = new M2GiantGroupSystem.GroupWst1DataSet();
             this.tbName_A = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label19 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.label18 = new System.Windows.Forms.Label();
             this.lblFindClient_A = new System.Windows.Forms.Label();
@@ -136,7 +137,6 @@
             this.requestItemTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.RequestItemTableAdapter();
             this.jobDetailTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobDetailTableAdapter();
             this.itemDetailTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.ItemDetailTableAdapter();
-            this.label19 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -478,6 +478,17 @@
             this.panel1.Size = new System.Drawing.Size(513, 715);
             this.panel1.TabIndex = 53;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.ForeColor = System.Drawing.Color.Blue;
+            this.label19.Location = new System.Drawing.Point(66, 614);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(240, 25);
+            this.label19.TabIndex = 37;
+            this.label19.Text = "select client from here ↑";
             // 
             // button2
             // 
@@ -963,7 +974,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(1027, 200);
+            this.label16.Location = new System.Drawing.Point(1027, 60);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(282, 45);
             this.label16.TabIndex = 13;
@@ -974,7 +985,7 @@
             this.button1.BackColor = System.Drawing.Color.DarkGreen;
             this.button1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(1141, 746);
+            this.button1.Location = new System.Drawing.Point(1144, 869);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(547, 91);
             this.button1.TabIndex = 11;
@@ -987,9 +998,9 @@
             this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.flowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(1035, 290);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(1035, 109);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(783, 308);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(783, 729);
             this.flowLayoutPanel1.TabIndex = 10;
             // 
             // panel3
@@ -1399,21 +1410,11 @@
             // 
             this.itemDetailTableAdapter1.ClearBeforeFill = true;
             // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.ForeColor = System.Drawing.Color.Blue;
-            this.label19.Location = new System.Drawing.Point(66, 614);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(240, 25);
-            this.label19.TabIndex = 37;
-            this.label19.Text = "select client from here ↑";
-            // 
             // jobRequestMain_A
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.BackColor = System.Drawing.Color.SeaShell;
             this.ClientSize = new System.Drawing.Size(1924, 1055);
             this.Controls.Add(this.tabControl1);
             this.Name = "jobRequestMain_A";
