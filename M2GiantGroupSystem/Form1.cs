@@ -36,7 +36,7 @@ namespace M2GiantGroupSystem
             switch (level)
             {
                 case 5: // Admin: Some locks 
-                   //toolStripMenuItem4.Enabled = false;
+                    toolStripMenuItem8.Enabled = false;
                     toolStripMenuItem5.Enabled = false;
                     break;
 
