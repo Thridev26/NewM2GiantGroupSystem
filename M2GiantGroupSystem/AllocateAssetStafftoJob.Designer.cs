@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.tabViewAllocations = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.button7 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -77,8 +79,6 @@
             this.ownedAssetTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.OwnedAssetTableAdapter();
             this.staffTableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.StaffTableAdapter();
             this.dataTable1TableAdapter = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.DataTable1TableAdapter();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.tabViewAllocations.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.jobAssetAssignmentDataGridView)).BeginInit();
@@ -105,11 +105,11 @@
             this.tabViewAllocations.Controls.Add(this.tabPage1);
             this.tabViewAllocations.Controls.Add(this.tabPage2);
             this.tabViewAllocations.Controls.Add(this.tab3);
-            this.tabViewAllocations.Location = new System.Drawing.Point(0, 379);
+            this.tabViewAllocations.Location = new System.Drawing.Point(0, 316);
             this.tabViewAllocations.Margin = new System.Windows.Forms.Padding(2);
             this.tabViewAllocations.Name = "tabViewAllocations";
             this.tabViewAllocations.SelectedIndex = 0;
-            this.tabViewAllocations.Size = new System.Drawing.Size(2111, 642);
+            this.tabViewAllocations.Size = new System.Drawing.Size(1759, 535);
             this.tabViewAllocations.TabIndex = 0;
             this.tabViewAllocations.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tabControl1_MouseClick);
             // 
@@ -125,22 +125,42 @@
             this.tabPage1.Controls.Add(this.jobAssetAssignmentDataGridView);
             this.tabPage1.Controls.Add(this.hiredAssetDataGridView);
             this.tabPage1.Controls.Add(this.ownedAssetDataGridView);
-            this.tabPage1.Location = new System.Drawing.Point(4, 30);
+            this.tabPage1.Location = new System.Drawing.Point(4, 26);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage1.Size = new System.Drawing.Size(2103, 608);
+            this.tabPage1.Size = new System.Drawing.Size(1751, 505);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Assets";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(1123, 8);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(132, 17);
+            this.label6.TabIndex = 7;
+            this.label6.Text = "List of Hired Assets:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(306, 8);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(141, 17);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "List of Owned Assets:";
             // 
             // button7
             // 
             this.button7.BackColor = System.Drawing.Color.DarkGreen;
             this.button7.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button7.Location = new System.Drawing.Point(1402, 263);
+            this.button7.Location = new System.Drawing.Point(1168, 219);
             this.button7.Margin = new System.Windows.Forms.Padding(2);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(150, 76);
+            this.button7.Size = new System.Drawing.Size(125, 63);
             this.button7.TabIndex = 5;
             this.button7.Text = "Assign Hired Asset To Job\r\n↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓    ";
             this.button7.UseVisualStyleBackColor = false;
@@ -150,10 +170,10 @@
             // 
             this.button2.BackColor = System.Drawing.Color.Crimson;
             this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(861, 263);
+            this.button2.Location = new System.Drawing.Point(718, 219);
             this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(150, 83);
+            this.button2.Size = new System.Drawing.Size(125, 69);
             this.button2.TabIndex = 4;
             this.button2.Text = "↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑\r\nRemove from Job\r\n";
             this.button2.UseVisualStyleBackColor = false;
@@ -163,10 +183,10 @@
             // 
             this.button1.BackColor = System.Drawing.Color.DarkGreen;
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(379, 263);
+            this.button1.Location = new System.Drawing.Point(316, 219);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(157, 76);
+            this.button1.Size = new System.Drawing.Size(131, 63);
             this.button1.TabIndex = 3;
             this.button1.Text = "Assign Owned Asset To Job\r\n↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓";
             this.button1.UseVisualStyleBackColor = false;
@@ -179,13 +199,13 @@
             this.jobAssetAssignmentDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.jobAssetAssignmentDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.jobAssetAssignmentDataGridView.GridColor = System.Drawing.Color.DarkGreen;
-            this.jobAssetAssignmentDataGridView.Location = new System.Drawing.Point(12, 363);
+            this.jobAssetAssignmentDataGridView.Location = new System.Drawing.Point(10, 302);
             this.jobAssetAssignmentDataGridView.Margin = new System.Windows.Forms.Padding(2);
             this.jobAssetAssignmentDataGridView.Name = "jobAssetAssignmentDataGridView";
             this.jobAssetAssignmentDataGridView.ReadOnly = true;
             this.jobAssetAssignmentDataGridView.RowHeadersWidth = 62;
             this.jobAssetAssignmentDataGridView.RowTemplate.Height = 28;
-            this.jobAssetAssignmentDataGridView.Size = new System.Drawing.Size(1828, 227);
+            this.jobAssetAssignmentDataGridView.Size = new System.Drawing.Size(1523, 189);
             this.jobAssetAssignmentDataGridView.TabIndex = 2;
             // 
             // hiredAssetDataGridView
@@ -194,13 +214,13 @@
             this.hiredAssetDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.hiredAssetDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.hiredAssetDataGridView.GridColor = System.Drawing.Color.DarkGreen;
-            this.hiredAssetDataGridView.Location = new System.Drawing.Point(954, 32);
+            this.hiredAssetDataGridView.Location = new System.Drawing.Point(795, 27);
             this.hiredAssetDataGridView.Margin = new System.Windows.Forms.Padding(2);
             this.hiredAssetDataGridView.Name = "hiredAssetDataGridView";
             this.hiredAssetDataGridView.ReadOnly = true;
             this.hiredAssetDataGridView.RowHeadersWidth = 62;
             this.hiredAssetDataGridView.RowTemplate.Height = 28;
-            this.hiredAssetDataGridView.Size = new System.Drawing.Size(886, 215);
+            this.hiredAssetDataGridView.Size = new System.Drawing.Size(738, 179);
             this.hiredAssetDataGridView.TabIndex = 1;
             // 
             // ownedAssetDataGridView
@@ -209,13 +229,13 @@
             this.ownedAssetDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.ownedAssetDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ownedAssetDataGridView.GridColor = System.Drawing.Color.DarkGreen;
-            this.ownedAssetDataGridView.Location = new System.Drawing.Point(4, 32);
+            this.ownedAssetDataGridView.Location = new System.Drawing.Point(3, 27);
             this.ownedAssetDataGridView.Margin = new System.Windows.Forms.Padding(2);
             this.ownedAssetDataGridView.Name = "ownedAssetDataGridView";
             this.ownedAssetDataGridView.ReadOnly = true;
             this.ownedAssetDataGridView.RowHeadersWidth = 62;
             this.ownedAssetDataGridView.RowTemplate.Height = 28;
-            this.ownedAssetDataGridView.Size = new System.Drawing.Size(923, 215);
+            this.ownedAssetDataGridView.Size = new System.Drawing.Size(769, 179);
             this.ownedAssetDataGridView.TabIndex = 0;
             // 
             // tabPage2
@@ -225,11 +245,11 @@
             this.tabPage2.Controls.Add(this.jobStaffAssignmentDataGridView);
             this.tabPage2.Controls.Add(this.button3);
             this.tabPage2.Controls.Add(this.staffDataGridView);
-            this.tabPage2.Location = new System.Drawing.Point(4, 30);
+            this.tabPage2.Location = new System.Drawing.Point(4, 26);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage2.Size = new System.Drawing.Size(2103, 608);
+            this.tabPage2.Size = new System.Drawing.Size(1751, 505);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Staff";
             // 
@@ -237,10 +257,10 @@
             // 
             this.button4.BackColor = System.Drawing.Color.Crimson;
             this.button4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button4.Location = new System.Drawing.Point(1148, 262);
+            this.button4.Location = new System.Drawing.Point(957, 218);
             this.button4.Margin = new System.Windows.Forms.Padding(2);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(125, 87);
+            this.button4.Size = new System.Drawing.Size(104, 72);
             this.button4.TabIndex = 3;
             this.button4.Text = "↑↑↑↑↑↑↑↑↑↑↑↑↑\r\nRemove from Job\r\n";
             this.button4.UseVisualStyleBackColor = false;
@@ -252,23 +272,23 @@
             this.jobStaffAssignmentDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.jobStaffAssignmentDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.jobStaffAssignmentDataGridView.GridColor = System.Drawing.Color.DarkGreen;
-            this.jobStaffAssignmentDataGridView.Location = new System.Drawing.Point(377, 376);
+            this.jobStaffAssignmentDataGridView.Location = new System.Drawing.Point(314, 313);
             this.jobStaffAssignmentDataGridView.Margin = new System.Windows.Forms.Padding(2);
             this.jobStaffAssignmentDataGridView.Name = "jobStaffAssignmentDataGridView";
             this.jobStaffAssignmentDataGridView.ReadOnly = true;
             this.jobStaffAssignmentDataGridView.RowHeadersWidth = 62;
             this.jobStaffAssignmentDataGridView.RowTemplate.Height = 28;
-            this.jobStaffAssignmentDataGridView.Size = new System.Drawing.Size(1265, 194);
+            this.jobStaffAssignmentDataGridView.Size = new System.Drawing.Size(1054, 162);
             this.jobStaffAssignmentDataGridView.TabIndex = 2;
             // 
             // button3
             // 
             this.button3.BackColor = System.Drawing.Color.DarkGreen;
             this.button3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button3.Location = new System.Drawing.Point(757, 262);
+            this.button3.Location = new System.Drawing.Point(631, 218);
             this.button3.Margin = new System.Windows.Forms.Padding(2);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(125, 87);
+            this.button3.Size = new System.Drawing.Size(104, 72);
             this.button3.TabIndex = 1;
             this.button3.Text = "Assign to Job\r\n↓↓↓↓↓↓↓↓↓↓↓↓↓";
             this.button3.UseVisualStyleBackColor = false;
@@ -280,13 +300,13 @@
             this.staffDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.staffDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.staffDataGridView.GridColor = System.Drawing.Color.DarkGreen;
-            this.staffDataGridView.Location = new System.Drawing.Point(377, 33);
+            this.staffDataGridView.Location = new System.Drawing.Point(314, 28);
             this.staffDataGridView.Margin = new System.Windows.Forms.Padding(2);
             this.staffDataGridView.Name = "staffDataGridView";
             this.staffDataGridView.ReadOnly = true;
             this.staffDataGridView.RowHeadersWidth = 62;
             this.staffDataGridView.RowTemplate.Height = 28;
-            this.staffDataGridView.Size = new System.Drawing.Size(1265, 194);
+            this.staffDataGridView.Size = new System.Drawing.Size(1054, 162);
             this.staffDataGridView.TabIndex = 0;
             // 
             // tab3
@@ -294,11 +314,11 @@
             this.tab3.BackColor = System.Drawing.Color.SeaShell;
             this.tab3.Controls.Add(this.button5);
             this.tab3.Controls.Add(this.label4);
-            this.tab3.Location = new System.Drawing.Point(4, 30);
+            this.tab3.Location = new System.Drawing.Point(4, 26);
             this.tab3.Margin = new System.Windows.Forms.Padding(2);
             this.tab3.Name = "tab3";
             this.tab3.Padding = new System.Windows.Forms.Padding(2);
-            this.tab3.Size = new System.Drawing.Size(2103, 604);
+            this.tab3.Size = new System.Drawing.Size(1751, 505);
             this.tab3.TabIndex = 2;
             this.tab3.Text = "View All Allocations";
             // 
@@ -306,10 +326,10 @@
             // 
             this.button5.BackColor = System.Drawing.Color.DarkGreen;
             this.button5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button5.Location = new System.Drawing.Point(698, 187);
+            this.button5.Location = new System.Drawing.Point(582, 156);
             this.button5.Margin = new System.Windows.Forms.Padding(2);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(260, 96);
+            this.button5.Size = new System.Drawing.Size(217, 80);
             this.button5.TabIndex = 1;
             this.button5.Text = "View Calendar";
             this.button5.UseVisualStyleBackColor = false;
@@ -318,10 +338,10 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(468, 142);
+            this.label4.Location = new System.Drawing.Point(390, 118);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(728, 21);
+            this.label4.Size = new System.Drawing.Size(595, 17);
             this.label4.TabIndex = 0;
             this.label4.Text = "Click the following button to display a live calendar to see all Jobs that have b" +
     "een assigned to!";
@@ -374,17 +394,17 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(2111, 332);
+            this.groupBox1.Size = new System.Drawing.Size(1759, 277);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Job Information";
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(1430, 32);
+            this.button6.Location = new System.Drawing.Point(1192, 27);
             this.button6.Margin = new System.Windows.Forms.Padding(2);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(305, 35);
+            this.button6.Size = new System.Drawing.Size(254, 29);
             this.button6.TabIndex = 10;
             this.button6.Text = "Load jobs that are \"In progress\"";
             this.button6.UseVisualStyleBackColor = true;
@@ -394,10 +414,10 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(877, 235);
+            this.label3.Location = new System.Drawing.Point(731, 196);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(151, 21);
+            this.label3.Size = new System.Drawing.Size(122, 17);
             this.label3.TabIndex = 9;
             this.label3.Text = "You have selected:";
             this.label3.Click += new System.EventHandler(this.label3_Click);
@@ -406,10 +426,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(304, 63);
+            this.label2.Location = new System.Drawing.Point(253, 52);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(557, 28);
+            this.label2.Size = new System.Drawing.Size(472, 23);
             this.label2.TabIndex = 8;
             this.label2.Text = "Note to User: Double Click a Job to Load it\'s Assignments";
             // 
@@ -427,12 +447,12 @@
             this.jobStatus});
             this.dataGridView1.DataSource = this.dataTable1BindingSource;
             this.dataGridView1.GridColor = System.Drawing.Color.DarkGreen;
-            this.dataGridView1.Location = new System.Drawing.Point(296, 97);
+            this.dataGridView1.Location = new System.Drawing.Point(247, 81);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(1439, 127);
+            this.dataGridView1.Size = new System.Drawing.Size(1199, 106);
             this.dataGridView1.TabIndex = 7;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
@@ -481,63 +501,63 @@
             // 
             this.statusBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.statusBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.statusBox.Location = new System.Drawing.Point(1406, 268);
+            this.statusBox.Location = new System.Drawing.Point(1172, 223);
             this.statusBox.Margin = new System.Windows.Forms.Padding(2);
             this.statusBox.Name = "statusBox";
             this.statusBox.ReadOnly = true;
-            this.statusBox.Size = new System.Drawing.Size(198, 39);
+            this.statusBox.Size = new System.Drawing.Size(166, 34);
             this.statusBox.TabIndex = 6;
             // 
             // clientNameBox
             // 
             this.clientNameBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.clientNameBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clientNameBox.Location = new System.Drawing.Point(593, 268);
+            this.clientNameBox.Location = new System.Drawing.Point(494, 223);
             this.clientNameBox.Margin = new System.Windows.Forms.Padding(2);
             this.clientNameBox.Name = "clientNameBox";
             this.clientNameBox.ReadOnly = true;
-            this.clientNameBox.Size = new System.Drawing.Size(317, 39);
+            this.clientNameBox.Size = new System.Drawing.Size(265, 34);
             this.clientNameBox.TabIndex = 4;
             // 
             // addressBox
             // 
             this.addressBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.addressBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addressBox.Location = new System.Drawing.Point(926, 268);
+            this.addressBox.Location = new System.Drawing.Point(772, 223);
             this.addressBox.Margin = new System.Windows.Forms.Padding(2);
             this.addressBox.Name = "addressBox";
             this.addressBox.ReadOnly = true;
-            this.addressBox.Size = new System.Drawing.Size(465, 39);
+            this.addressBox.Size = new System.Drawing.Size(388, 34);
             this.addressBox.TabIndex = 5;
             // 
             // jobIDBox
             // 
             this.jobIDBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
             this.jobIDBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.jobIDBox.Location = new System.Drawing.Point(383, 268);
+            this.jobIDBox.Location = new System.Drawing.Point(319, 223);
             this.jobIDBox.Margin = new System.Windows.Forms.Padding(2);
             this.jobIDBox.Name = "jobIDBox";
             this.jobIDBox.ReadOnly = true;
-            this.jobIDBox.Size = new System.Drawing.Size(195, 39);
+            this.jobIDBox.Size = new System.Drawing.Size(163, 34);
             this.jobIDBox.TabIndex = 3;
             // 
             // txtSearch
             // 
             this.txtSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
-            this.txtSearch.Location = new System.Drawing.Point(686, 32);
+            this.txtSearch.Location = new System.Drawing.Point(572, 27);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(2);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(245, 28);
+            this.txtSearch.Size = new System.Drawing.Size(205, 25);
             this.txtSearch.TabIndex = 2;
             this.txtSearch.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(304, 32);
+            this.label1.Location = new System.Drawing.Point(253, 27);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(298, 21);
+            this.label1.Size = new System.Drawing.Size(243, 17);
             this.label1.TabIndex = 1;
             this.label1.Text = "Search by Name, Surname or Address:";
             // 
@@ -598,34 +618,14 @@
             // 
             this.dataTable1TableAdapter.ClearBeforeFill = true;
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(367, 9);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(169, 21);
-            this.label5.TabIndex = 6;
-            this.label5.Text = "List of Owned Assets:";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(1348, 9);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(157, 21);
-            this.label6.TabIndex = 7;
-            this.label6.Text = "List of Hired Assets:";
-            // 
             // AllocateAssetStafftoJob
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.SeaShell;
-            this.ClientSize = new System.Drawing.Size(1476, 1046);
+            this.ClientSize = new System.Drawing.Size(1230, 872);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.tabViewAllocations);
             this.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
