@@ -336,12 +336,12 @@ namespace M2GiantGroupSystem
                         SELECT
                             jobID,
                             startDate,
-                            endDate,
+                           
                             jobStatus,
                             quoteID,
                             dumpingCost,
-                            totalFuelCost,
-                            totallabourCost
+                            totalFuelCost
+                           
                         FROM Job
                         WHERE CAST(startDate AS DATE) = @date
                         ORDER BY jobID";
