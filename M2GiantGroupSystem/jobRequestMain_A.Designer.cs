@@ -382,11 +382,13 @@
             "Whatsapp",
             "Phone call",
             "Walk in",
-            "Other"});
+            "Other",
+            "Website"});
             this.cmbRequestSource_A.Location = new System.Drawing.Point(1009, 564);
             this.cmbRequestSource_A.Name = "cmbRequestSource_A";
             this.cmbRequestSource_A.Size = new System.Drawing.Size(532, 45);
             this.cmbRequestSource_A.TabIndex = 40;
+            this.cmbRequestSource_A.SelectedIndexChanged += new System.EventHandler(this.cmbRequestSource_A_SelectedIndexChanged);
             // 
             // lblAddress_A
             // 
@@ -763,7 +765,8 @@
             "Whatsapp",
             "Phone call",
             "Walk in",
-            "Other"});
+            "Other",
+            "Website"});
             this.cmbRS.Location = new System.Drawing.Point(1210, 387);
             this.cmbRS.Name = "cmbRS";
             this.cmbRS.Size = new System.Drawing.Size(459, 45);

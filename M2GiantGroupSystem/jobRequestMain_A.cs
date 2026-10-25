@@ -374,10 +374,12 @@ namespace M2GiantGroupSystem
                 tbAddress_A.Focus();
                 return;
             }
-            if (cmbRequestSource_A.SelectedIndex == -1)
+            MessageBox.Show(cmbRequestSource_A.SelectedItem.ToString());
+
+            if (cmbRequestSource_A.SelectedItem == null)
             {
-                MessageBox.Show("Please select a request source.",
-                    "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please select a request source.", "Validation",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 cmbRequestSource_A.Focus();
                 return;
             }
@@ -1533,6 +1535,11 @@ namespace M2GiantGroupSystem
                     break;
             }
             return null; // valid
+        }
+
+        private void cmbRequestSource_A_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
