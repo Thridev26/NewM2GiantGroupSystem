@@ -137,6 +137,8 @@
             this.requestItemTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.RequestItemTableAdapter();
             this.jobDetailTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobDetailTableAdapter();
             this.itemDetailTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.ItemDetailTableAdapter();
+            this.btnFilterSiteEval = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -861,6 +863,8 @@
             // pnlFind
             // 
             this.pnlFind.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(198)))), ((int)(((byte)(138)))));
+            this.pnlFind.Controls.Add(this.button3);
+            this.pnlFind.Controls.Add(this.btnFilterSiteEval);
             this.pnlFind.Controls.Add(this.label13);
             this.pnlFind.Controls.Add(this.lblSearchCriteria_A);
             this.pnlFind.Controls.Add(this.btnAddSitePhoto);
@@ -869,7 +873,7 @@
             this.pnlFind.Controls.Add(this.textBox1);
             this.pnlFind.Location = new System.Drawing.Point(25, 109);
             this.pnlFind.Name = "pnlFind";
-            this.pnlFind.Size = new System.Drawing.Size(882, 728);
+            this.pnlFind.Size = new System.Drawing.Size(968, 728);
             this.pnlFind.TabIndex = 67;
             // 
             // label13
@@ -922,7 +926,7 @@
             this.dgv_clientJoinJobRequest.ReadOnly = true;
             this.dgv_clientJoinJobRequest.RowHeadersWidth = 51;
             this.dgv_clientJoinJobRequest.RowTemplate.Height = 24;
-            this.dgv_clientJoinJobRequest.Size = new System.Drawing.Size(836, 350);
+            this.dgv_clientJoinJobRequest.Size = new System.Drawing.Size(928, 350);
             this.dgv_clientJoinJobRequest.TabIndex = 46;
             this.dgv_clientJoinJobRequest.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_clientJoinJobRequest_CellClick);
             // 
@@ -1413,6 +1417,28 @@
             // 
             this.itemDetailTableAdapter1.ClearBeforeFill = true;
             // 
+            // btnFilterSiteEval
+            // 
+            this.btnFilterSiteEval.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnFilterSiteEval.Location = new System.Drawing.Point(726, 129);
+            this.btnFilterSiteEval.Name = "btnFilterSiteEval";
+            this.btnFilterSiteEval.Size = new System.Drawing.Size(129, 75);
+            this.btnFilterSiteEval.TabIndex = 69;
+            this.btnFilterSiteEval.Text = "No Evaluation Date";
+            this.btnFilterSiteEval.UseVisualStyleBackColor = false;
+            this.btnFilterSiteEval.Click += new System.EventHandler(this.btnFilterSiteEval_Click);
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.button3.Location = new System.Drawing.Point(564, 129);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(129, 75);
+            this.button3.TabIndex = 70;
+            this.button3.Text = "Undo filter";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // jobRequestMain_A
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -1569,5 +1595,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnFilterSiteEval;
     }
 }

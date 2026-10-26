@@ -1,4 +1,5 @@
-﻿using iText.StyledXmlParser.Jsoup.Select;
+﻿using iText.Layout.Element;
+using iText.StyledXmlParser.Jsoup.Select;
 using M2GiantGroupSystem.GroupWst1DataSetTableAdapters;
 using Org.BouncyCastle.Asn1.Ocsp;
 using System;
@@ -1222,7 +1223,7 @@ namespace M2GiantGroupSystem
                     }
 
                     selectedPhotoPath = ofd.FileName;
-                    pbPreview.Image = Image.FromFile(selectedPhotoPath);
+                    pbPreview.Image = System.Drawing.Image.FromFile(selectedPhotoPath);
                     pbPreview.SizeMode = PictureBoxSizeMode.Zoom;
                 }
             }
@@ -1252,7 +1253,7 @@ namespace M2GiantGroupSystem
                 MessageBox.Show("The selected photo file no longer exists. Please browse and select it again.",
                     "File Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 selectedPhotoPath = null;
-                pbPreview.Image = Image.FromFile(defaultImagePath);
+                pbPreview.Image = System.Drawing.Image.FromFile(defaultImagePath);
                 return;
             }
             if (!rbBefore.Checked && !rbAfter.Checked)
@@ -1296,7 +1297,7 @@ namespace M2GiantGroupSystem
                 MessageBox.Show("Photo uploaded successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 selectedPhotoPath = null;
-                pbPreview.Image = Image.FromFile(defaultImagePath);
+                pbPreview.Image = System.Drawing.Image.FromFile(defaultImagePath);
                 pbPreview.SizeMode = PictureBoxSizeMode.Zoom;
                 rbBefore.Checked = true;
             }
@@ -1540,6 +1541,80 @@ namespace M2GiantGroupSystem
         private void cmbRequestSource_A_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnFilterSiteEval_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connStr))
+                {
+                    string sql = @"
+              SELECT jobRequestID, Client.clientName, Client.clientSurname,
+                     Client.emailAddress, JobRequest.dateRecieved,
+                     JobRequest.siteAddress, JobRequest.siteEvaluationDate
+              FROM Client
+              INNER JOIN JobRequest ON Client.clientID = JobRequest.clientID
+              WHERE siteEvaluationDate is NULL";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@search", "%" + ""+ "%");
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        dgv_clientJoinJobRequest.DataSource = dt;
+                    }
+                }
+            }
+            catch (SqlException sqlEx)
+            {
+                MessageBox.Show("Database error during filter:\n" + sqlEx.Message,
+                    "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Unexpected error during filter:\n" + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connStr))
+                {
+                    string sql = @"
+              SELECT jobRequestID, Client.clientName, Client.clientSurname,
+                     Client.emailAddress, JobRequest.dateRecieved,
+                     JobRequest.siteAddress, JobRequest.siteEvaluationDate
+              FROM Client
+              INNER JOIN JobRequest ON Client.clientID = JobRequest.clientID
+              WHERE clientName    LIKE @search
+                 OR clientSurname LIKE @search
+                 OR siteAddress   LIKE @search";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@search", "%" + "" + "%");
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        dgv_clientJoinJobRequest.DataSource = dt;
+                    }
+                }
+            }
+            catch (SqlException sqlEx)
+            {
+                MessageBox.Show("Database error during search:\n" + sqlEx.Message,
+                    "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Unexpected error during search:\n" + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
