@@ -675,6 +675,15 @@ namespace M2GiantGroupSystem
 
             DateTime selectedDate = dateTimePicker1.Value;
 
+            // Check whether the evaluation date was previously NULL
+            bool evaluationDateWasNull = originalEvaluationDate == null;
+
+            // If the date was previously NULL, automatically update the status
+            if (evaluationDateWasNull)
+            {
+                cmbStatus.SelectedItem = "Evaluation date set";
+            }
+
             bool dateWasChanged = originalEvaluationDate == null
                 || selectedDate.Date != originalEvaluationDate.Value.Date;
 
