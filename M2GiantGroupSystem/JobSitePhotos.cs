@@ -86,7 +86,7 @@ namespace M2GiantGroupSystem
                 {
                     string sql = @"
                         SELECT Job.jobID, Client.clientName, Client.clientSurname,
-                               Client.emailAddress, Job.startDate, Job.endDate,
+                               Client.emailAddress, Job.startDate, 
                                Job.jobStatus, JobRequest.siteAddress
                         FROM Job
                         INNER JOIN Quote      ON Job.quoteID            = Quote.QuoteID

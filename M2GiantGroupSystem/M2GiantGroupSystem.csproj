@@ -325,6 +325,9 @@
     <Compile Include="profitReportForm.Designer.cs">
       <DependentUpon>profitReportForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PublicGalleryManagerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="WeeklyProfitCrystalReport.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
