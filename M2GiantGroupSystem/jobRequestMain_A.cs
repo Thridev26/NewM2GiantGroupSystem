@@ -109,38 +109,47 @@ namespace M2GiantGroupSystem
             {
                 using (SqlConnection conn = new SqlConnection(connStr))
                 {
+
                     string sql = @"
-                        SELECT 
-                            jr.jobRequestID,
-                            jr.siteAddress,
-                            jr.status,
-                            jr.dateRecieved,
-                            c.clientName,
-                            c.clientSurname,
-                            c.emailAddress,
-                            jt.jobTypeName
-                        FROM JobRequest jr
-                        INNER JOIN Client c ON jr.clientID = c.clientID
-                        LEFT JOIN RequestItem ri ON jr.jobRequestID = ri.jobRequestID
-                        LEFT JOIN JobType jt ON ri.jobTypeID = jt.jobTypeID
-                        WHERE 
-                            (@s1 = '' OR jt.jobTypeName = @s1)
-                            OR (@s2 = '' OR jr.status = @s2)
-                            OR (@useDate = 0 OR CAST(jr.dateRecieved AS DATE) = CAST(@d AS DATE))";
+    SELECT
+        jr.jobRequestID,
+        jr.siteAddress,
+        jr.status,
+        jr.dateRecieved,
+        c.clientName,
+        c.clientSurname,
+        c.emailAddress,
+        jt.jobTypeName
+    FROM dbo.JobRequest jr
+    INNER JOIN dbo.Client c
+        ON jr.clientID = c.clientID
+    LEFT JOIN dbo.RequestItem ri
+        ON jr.jobRequestID = ri.jobRequestID
+    LEFT JOIN dbo.JobType jt
+        ON ri.jobTypeID = jt.jobTypeID
+    WHERE (@s1 = '' OR jt.jobTypeName = @s1)
+      AND (@s2 = '' OR jr.status = @s2)
+      AND (@useDate = 0 OR
+           CAST(jr.dateRecieved AS DATE) = @d)
+    ORDER BY jr.dateRecieved DESC;";
 
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
                         cmd.Parameters.AddWithValue("@s1", s1 ?? "");
                         cmd.Parameters.AddWithValue("@s2", s2 ?? "");
-                        cmd.Parameters.AddWithValue("@d", d.Date);
-                        // Only apply the date filter when a specific date is actually being filtered on
-                        cmd.Parameters.AddWithValue("@useDate", (s1 == "" && s2 == "") ? 0 : 0);
+                        cmd.Parameters.Add("@d", SqlDbType.Date).Value = d.Date;
+
+                        // Only apply the date filter when filtering by date.
+                        cmd.Parameters.Add("@useDate", SqlDbType.Bit).Value =
+                            (s1 == "" && s2 == "" &&
+                             d.Date != DateTime.Now.Date);
 
                         SqlDataAdapter da = new SqlDataAdapter(cmd);
                         DataTable dt = new DataTable();
                         da.Fill(dt);
                         dgvJoin.DataSource = dt;
                     }
+
                 }
             }
             catch (SqlException sqlEx)
@@ -154,7 +163,6 @@ namespace M2GiantGroupSystem
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         public void runQuery(System.Windows.Forms.TextBox t, DataGridView dgv)
         {
             try
@@ -1564,7 +1572,7 @@ namespace M2GiantGroupSystem
                      JobRequest.siteAddress, JobRequest.siteEvaluationDate
               FROM Client
               INNER JOIN JobRequest ON Client.clientID = JobRequest.clientID
-              WHERE siteEvaluationDate is NULL";
+              WHERE siteEvaluationDate is NULL  AND JobRequest.status <> 'Cancelled'";
 
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
@@ -1602,7 +1610,8 @@ namespace M2GiantGroupSystem
               INNER JOIN JobRequest ON Client.clientID = JobRequest.clientID
               WHERE clientName    LIKE @search
                  OR clientSurname LIKE @search
-                 OR siteAddress   LIKE @search";
+                 OR siteAddress   LIKE @search
+                 AND JobRequest.status <> 'Cancelled'";
 
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
