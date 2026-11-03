@@ -38,6 +38,54 @@ namespace M2GiantGroupSystem
             return null;
         }
 
+        private Image GetPhotoImage(int photoID)
+        {
+            using (SqlConnection conn = new SqlConnection(connStr))
+            using (SqlCommand cmd = new SqlCommand(@"
+        SELECT sp.filePath, sc.ImageData
+        FROM dbo.SitePhoto sp
+        LEFT JOIN dbo.SitePhotoContent sc
+            ON sp.photoID = sc.photoID
+        WHERE sp.photoID = @photoID", conn))
+            {
+                cmd.Parameters.Add("@photoID", SqlDbType.Int).Value = photoID;
+
+                conn.Open();
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (!reader.Read())
+                        return null;
+
+                    // First try the image stored in SQL Server
+                    if (reader["ImageData"] != DBNull.Value)
+                    {
+                        byte[] imageBytes = (byte[])reader["ImageData"];
+
+                        using (MemoryStream ms = new MemoryStream(imageBytes))
+                        using (Image temp = Image.FromStream(ms))
+                        {
+                            return new Bitmap(temp);
+                        }
+                    }
+
+                    // Otherwise use the original desktop file
+                    string path = Convert.ToString(reader["filePath"]);
+
+                    if (!string.IsNullOrWhiteSpace(path) &&
+                        File.Exists(path))
+                    {
+                        using (Image temp = Image.FromFile(path))
+                        {
+                            return new Bitmap(temp);
+                        }
+                    }
+
+                    return null;
+                }
+            }
+        }
+
         // ─────────────────────────────────────────────
         // FORM LOAD
         // ─────────────────────────────────────────────
@@ -182,133 +230,192 @@ namespace M2GiantGroupSystem
         // ─────────────────────────────────────────────
         // LOAD PHOTO THUMBNAILS
         // ─────────────────────────────────────────────
+
         private void LoadPhotos(int jobRequestID)
         {
             try
             {
+                // Clear previously displayed thumbnails
+                foreach (Control c in flpThumbnails.Controls)
+                {
+                    PictureBox oldPicture = c.Controls
+                        .OfType<PictureBox>()
+                        .FirstOrDefault();
+
+                    if (oldPicture != null)
+                    {
+                        Image oldImage = oldPicture.Image;
+                        oldPicture.Image = null;
+                        if (oldImage != null)
+                            oldImage.Dispose();
+                    }
+                }
+
                 flpThumbnails.Controls.Clear();
+
+                // Reset selected photo
+                selectedPhotoID = 0;
+                button1.Enabled = false;
+                button2.Enabled = false;
+
+                Image previous = pbLargeView.Image;
                 pbLargeView.Image = LoadDefaultImage();
                 pbLargeView.SizeMode = PictureBoxSizeMode.Zoom;
 
+                if (previous != null)
+                    previous.Dispose();
+
+                DataTable photos = new DataTable();
+
                 using (SqlConnection conn = new SqlConnection(connStr))
+                using (SqlCommand cmd = new SqlCommand(@"
+            SELECT photoID, photoType
+            FROM dbo.SitePhoto
+            WHERE jobRequestID = @id
+              AND jobID IS NULL
+            ORDER BY photoID DESC", conn))
                 {
-                    string sql = "SELECT photoID, filePath, photoType FROM SitePhoto WHERE jobRequestID = @id AND jobID IS NULL";
-                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    cmd.Parameters.Add("@id", SqlDbType.Int)
+                        .Value = jobRequestID;
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                     {
-                        cmd.Parameters.AddWithValue("@id", jobRequestID);
-                        conn.Open();
-
-                        using (SqlDataReader reader = cmd.ExecuteReader())
-                        {
-                            bool anyLoaded = false;
-
-                            while (reader.Read())
-                            {
-                                string path = reader["filePath"].ToString();
-                                string type = reader["photoType"].ToString();
-                                int photoID = Convert.ToInt32(reader["photoID"]);
-
-                                if (!File.Exists(path)) continue;
-
-                                anyLoaded = true;
-
-                                Panel card = new Panel();
-                                card.Width = 120;
-                                card.Height = 140;
-                                card.Margin = new Padding(6);
-                                card.Cursor = Cursors.Hand;
-                                card.Tag = path;
-
-                                PictureBox pb = new PictureBox();
-                                pb.Width = 110;
-                                pb.Height = 110;
-                                pb.Left = 5;
-                                pb.Top = 5;
-                                pb.SizeMode = PictureBoxSizeMode.Zoom;
-                                pb.Cursor = Cursors.Hand;
-                                pb.Tag = photoID;
-                                pb.Click += Thumbnail_Click;
-
-                                try
-                                {
-                                    pb.Image = Image.FromFile(path);
-                                }
-                                catch
-                                {
-                                    // File exists but is unreadable — skip this thumbnail
-                                    continue;
-                                }
-
-                                Label lbl = new Label();
-                                lbl.Text = type;
-                                lbl.Left = 5;
-                                lbl.Top = 118;
-                                lbl.Width = 110;
-                                lbl.Height = 18;
-                                lbl.TextAlign = ContentAlignment.MiddleCenter;
-                                lbl.Font = new Font("Segoe UI", 8, FontStyle.Bold);
-                                lbl.ForeColor = type == "BEFORE" ? Color.DarkBlue : Color.DarkGreen;
-
-                                card.Controls.Add(pb);
-                                card.Controls.Add(lbl);
-                                flpThumbnails.Controls.Add(card);
-                            }
-
-                            if (!anyLoaded)
-                            {
-                                Label lbl_empty = new Label();
-                                lbl_empty.Text = "No photos found for this job request.";
-                                lbl_empty.AutoSize = true;
-                                lbl_empty.Margin = new Padding(10);
-                                lbl_empty.ForeColor = Color.Gray;
-                                flpThumbnails.Controls.Add(lbl_empty);
-                            }
-                        }
+                        adapter.Fill(photos);
                     }
                 }
-            }
-            catch (SqlException sqlEx)
-            {
-                MessageBox.Show("Database error while loading photos:\n" + sqlEx.Message,
-                    "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                bool anyLoaded = false;
+
+                foreach (DataRow row in photos.Rows)
+                {
+                    int photoID = Convert.ToInt32(row["photoID"]);
+                    string type = Convert.ToString(row["photoType"]);
+
+                    Image image = null;
+
+                    try
+                    {
+                        image = GetPhotoImage(photoID);
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Diagnostics.Debug.WriteLine(
+                            "Could not load photo " + photoID + ": " + ex.Message);
+                        continue;
+                    }
+
+                    if (image == null)
+                        continue;
+
+                    anyLoaded = true;
+
+                    Panel card = new Panel();
+                    card.Width = 120;
+                    card.Height = 140;
+                    card.Margin = new Padding(6);
+                    card.Cursor = Cursors.Hand;
+
+                    PictureBox pb = new PictureBox();
+                    pb.Width = 110;
+                    pb.Height = 110;
+                    pb.Left = 5;
+                    pb.Top = 5;
+                    pb.SizeMode = PictureBoxSizeMode.Zoom;
+                    pb.Cursor = Cursors.Hand;
+                    pb.Tag = photoID;
+                    pb.Image = image;
+                    pb.Click += Thumbnail_Click;
+
+                    Label lbl = new Label();
+                    lbl.Text = type;
+                    lbl.Left = 5;
+                    lbl.Top = 118;
+                    lbl.Width = 110;
+                    lbl.Height = 18;
+                    lbl.TextAlign = ContentAlignment.MiddleCenter;
+                    lbl.Font = new Font(
+                        "Segoe UI", 8, FontStyle.Bold);
+
+                    lbl.ForeColor = type == "BEFORE"
+                        ? Color.DarkBlue
+                        : Color.DarkGreen;
+
+                    card.Controls.Add(pb);
+                    card.Controls.Add(lbl);
+                    flpThumbnails.Controls.Add(card);
+                }
+
+                if (!anyLoaded)
+                {
+                    Label emptyLabel = new Label();
+                    emptyLabel.Text = "No photos found for this job request.";
+                    emptyLabel.AutoSize = true;
+                    emptyLabel.Margin = new Padding(10);
+                    emptyLabel.ForeColor = Color.Gray;
+
+                    flpThumbnails.Controls.Add(emptyLabel);
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Unexpected error while loading photos:\n" + ex.Message,
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    "Error loading site photos:\n" + ex.Message,
+                    "Photo Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
         // ─────────────────────────────────────────────
         // THUMBNAIL CLICK
         // ─────────────────────────────────────────────
+
         private void Thumbnail_Click(object sender, EventArgs e)
         {
             try
             {
-                PictureBox pb = (PictureBox)sender;
-                selectedPhotoID = Convert.ToInt32(pb.Tag);
+                PictureBox pb = sender as PictureBox;
 
-                string path = pb.Parent?.Tag?.ToString();
-                if (string.IsNullOrEmpty(path) || !File.Exists(path))
+                if (pb == null || pb.Tag == null)
+                    return;
+
+                int photoID = Convert.ToInt32(pb.Tag);
+
+                Image image = GetPhotoImage(photoID);
+
+                if (image == null)
                 {
-                    MessageBox.Show("The photo file could not be found on disk.",
-                        "File Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(
+                        "The selected photo could not be loaded.",
+                        "Photo Not Found",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
                     return;
                 }
 
-                pbLargeView.Image = Image.FromFile(path);
+                Image oldImage = pbLargeView.Image;
+
+                pbLargeView.Image = image;
                 pbLargeView.SizeMode = PictureBoxSizeMode.Zoom;
+
+                if (oldImage != null)
+                    oldImage.Dispose();
+
+                selectedPhotoID = photoID;
 
                 button1.Enabled = true;
                 button2.Enabled = true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error loading photo:\n" + ex.Message,
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    "Error displaying the selected photo:\n" + ex.Message,
+                    "Photo Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
+
 
         // ─────────────────────────────────────────────
         // EDIT PHOTO TYPE

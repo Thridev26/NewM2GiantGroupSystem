@@ -25,6 +25,9 @@ namespace M2GiantGroupSystem
 
         private void ApplyPermissions()
         {
+            notificationsToolStripMenuItem.Visible =
+    UserSession.AccessLevel == 4 ||
+    UserSession.AccessLevel == 5 || UserSession.AccessLevel == 6;
             int level = UserSession.AccessLevel; // The user Session object is global so this will work 
 
             // 1. If Owner (6), they already have full access.  
@@ -331,6 +334,11 @@ namespace M2GiantGroupSystem
         {
             // Updates the label with the current date and time every second
             lblClock.Text = DateTime.Now.ToString("dd MMMM yyyy HH:mm:ss");
+        }
+
+        private void notificationsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormSetup(new CancellationNotificationsForm());
         }
     }
 }
