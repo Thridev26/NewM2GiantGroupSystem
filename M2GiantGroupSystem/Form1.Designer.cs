@@ -78,7 +78,9 @@
             this.lblClock = new System.Windows.Forms.Label();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
+            this.websiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.notificationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manageGalleryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -102,7 +104,7 @@
             this.toolStripMenuItem10,
             this.btnExitToMenu,
             this.toolStripMenuItem14,
-            this.notificationsToolStripMenuItem});
+            this.websiteToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 24);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(17, 5, 0, 5);
@@ -527,12 +529,30 @@
             this.menuStrip2.TabIndex = 7;
             this.menuStrip2.Text = "menuStrip2";
             // 
+            // websiteToolStripMenuItem
+            // 
+            this.websiteToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.notificationsToolStripMenuItem,
+            this.manageGalleryToolStripMenuItem});
+            this.websiteToolStripMenuItem.Name = "websiteToolStripMenuItem";
+            this.websiteToolStripMenuItem.Size = new System.Drawing.Size(102, 32);
+            this.websiteToolStripMenuItem.Text = "Website";
+            // 
             // notificationsToolStripMenuItem
             // 
+            this.notificationsToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(219)))), ((int)(((byte)(117)))));
             this.notificationsToolStripMenuItem.Name = "notificationsToolStripMenuItem";
-            this.notificationsToolStripMenuItem.Size = new System.Drawing.Size(150, 32);
+            this.notificationsToolStripMenuItem.Size = new System.Drawing.Size(248, 32);
             this.notificationsToolStripMenuItem.Text = "Notifications";
-            this.notificationsToolStripMenuItem.Click += new System.EventHandler(this.notificationsToolStripMenuItem_Click);
+            this.notificationsToolStripMenuItem.Click += new System.EventHandler(this.notificationsToolStripMenuItem_Click_1);
+            // 
+            // manageGalleryToolStripMenuItem
+            // 
+            this.manageGalleryToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(219)))), ((int)(((byte)(117)))));
+            this.manageGalleryToolStripMenuItem.Name = "manageGalleryToolStripMenuItem";
+            this.manageGalleryToolStripMenuItem.Size = new System.Drawing.Size(248, 32);
+            this.manageGalleryToolStripMenuItem.Text = "Manage Gallery";
+            this.manageGalleryToolStripMenuItem.Click += new System.EventHandler(this.manageGalleryToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -616,7 +636,9 @@
         private System.Windows.Forms.Label lblClock;
         private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.MenuStrip menuStrip2;
+        private System.Windows.Forms.ToolStripMenuItem websiteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem notificationsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem manageGalleryToolStripMenuItem;
     }
 }
 

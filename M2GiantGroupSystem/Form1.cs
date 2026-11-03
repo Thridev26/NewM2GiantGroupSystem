@@ -340,5 +340,15 @@ namespace M2GiantGroupSystem
         {
             FormSetup(new CancellationNotificationsForm());
         }
+
+        private void notificationsToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            FormSetup(new CancellationNotificationsForm());
+        }
+
+        private void manageGalleryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormSetup(new PublicGalleryManagerForm ());
+        }
     }
 }
