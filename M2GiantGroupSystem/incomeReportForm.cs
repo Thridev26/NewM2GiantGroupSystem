@@ -19,6 +19,11 @@ namespace M2GiantGroupSystem
         public incomeReportForm()
         {
             InitializeComponent();
+            ReportGraphHelper.Attach(
+       tabControl1,
+       "Income",
+       () => DB1.WeeklyIncomeData(dt1.Value.Date, dt2.Value.Date),
+       () => dt1.Value.Date <= dt2.Value.Date);
         }
 
         private void tabPage1_Click(object sender, EventArgs e)

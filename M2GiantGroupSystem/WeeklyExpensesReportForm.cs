@@ -15,6 +15,11 @@ namespace M2GiantGroupSystem
         public WeeklyExpensesReportForm()
         {
             InitializeComponent();
+            ReportGraphHelper.Attach(
+       tabControl1,
+       "Expenses",
+       () => DB1.WeeklyExpenseData(dt1.Value.Date, dt2.Value.Date),
+       () => dt1.Value.Date <= dt2.Value.Date);
         }
 
         DBConnect DB1 = new DBConnect();

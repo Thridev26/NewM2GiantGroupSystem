@@ -15,6 +15,11 @@ namespace M2GiantGroupSystem
         public profitReportForm()
         {
             InitializeComponent();
+            ReportGraphHelper.Attach(
+        tabControl1,
+        "Profits",
+        () => DB1.WeeklyProfitData(dt1.Value.Date, dt2.Value.Date),
+        () => dt1.Value.Date <= dt2.Value.Date);
         }
         DBConnect DB1 = new DBConnect();
 

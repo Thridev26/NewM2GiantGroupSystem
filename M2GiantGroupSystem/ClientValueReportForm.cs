@@ -23,6 +23,15 @@ namespace M2GiantGroupSystem
         public ClientValueReportForm()
         {
             InitializeComponent();
+            ReportGraphHelper.Attach(
+       tabControl1,
+       "Client Value",
+       () => DB1.ClientValueData(
+           dt1.Value.Date,
+           dt2.Value.Date,
+           string.IsNullOrWhiteSpace(cmbClientType.Text)
+               ? "All" : cmbClientType.Text),
+       () => dt1.Value.Date <= dt2.Value.Date);
         }
 
         private void ClientValueReportForm_Load(object sender, EventArgs e)
