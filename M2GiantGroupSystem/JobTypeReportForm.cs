@@ -21,6 +21,12 @@ namespace M2GiantGroupSystem
         public JobTypeReportForm()
         {
             InitializeComponent();
+            ReportGraphHelper.Attach(
+        tabControl1,
+        "Service Profitability",
+        () => DB1.JobTypeProfitabilityData(
+            dt1.Value.Date, dt2.Value.Date),
+        () => dt1.Value.Date <= dt2.Value.Date);
         }
 
 

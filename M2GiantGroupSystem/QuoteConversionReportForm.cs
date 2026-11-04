@@ -23,6 +23,12 @@ namespace M2GiantGroupSystem
         public QuoteConversionReportForm()
         {
             InitializeComponent();
+            ReportGraphHelper.Attach(
+        tabControl1,
+        "Quote Conversion",
+        () => DB1.QuoteConversionData(
+            dt1.Value.Date, dt2.Value.Date),
+        () => dt1.Value.Date <= dt2.Value.Date);
         }
 
 
