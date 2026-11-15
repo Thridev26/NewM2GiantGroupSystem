@@ -25,11 +25,22 @@ namespace M2GiantGroupSystem
         private string selectedPhotoPath = null;
         private string defaultImagePath = @"C:\Users\ashmi\source\repos\NewM2GiantGroupSystem\M2GiantGroupSystem\images1\no image available icon.jpg";
         private DateTime? originalEvaluationDate;
+        private bool evaluationDateSelected = false;
         public jobRequestMain_A(int tab_index)
         {
             InitializeComponent();
+            dateTimePicker1.ValueChanged += dateTimePicker1_ValueChanged;
             tabIndex = tab_index;
+
         }
+
+        private void dateTimePicker1_ValueChanged(
+            object sender, EventArgs e)
+        {
+            dateTimePicker1.CustomFormat = "dd/MM/yyyy";
+            evaluationDateSelected = true;
+        }
+
         // ─────────────────────────────────────────────
         // SHARED VARIABLES
         // ─────────────────────────────────────────────
@@ -583,23 +594,70 @@ namespace M2GiantGroupSystem
                 tbLong.Text = r.IsNull("longitude") ? "" : Convert.ToDecimal(r["longitude"]).ToString("F6");
 
                 // Safely set combos by matching the stored value
-                cmbRS.SelectedItem = cmbRS.Items.Cast<object>()
-                                            .FirstOrDefault(i => i.ToString() == r["requestSource"].ToString());
+                string savedRequestSource =
+     Convert.ToString(r["requestSource"]).Trim();
+
+                cmbRS.SelectedIndex = -1;
+
+                for (int i = 0; i < cmbRS.Items.Count; i++)
+                {
+                    string itemText =
+                        cmbRS.GetItemText(cmbRS.Items[i]).Trim();
+
+                    if (string.Equals(
+                        itemText,
+                        savedRequestSource,
+                        StringComparison.OrdinalIgnoreCase))
+                    {
+                        cmbRS.SelectedIndex = i;
+                        break;
+                    }
+                }
+
+                // If the database value is not in the dropdown,
+                // add it so the existing source is preserved.
+                if (cmbRS.SelectedIndex == -1 &&
+                    !string.IsNullOrWhiteSpace(savedRequestSource))
+                {
+                    if (cmbRS.DataSource == null)
+                    {
+                        cmbRS.Items.Add(savedRequestSource);
+                        cmbRS.SelectedIndex = cmbRS.Items.Count - 1;
+                    }
+                    else
+                    {
+                        MessageBox.Show(
+                            "The saved request source '" +
+                            savedRequestSource +
+                            "' is not available in the dropdown.",
+                            "Request Source Not Found",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
+                    }
+                }
                 cmbUL.SelectedItem = cmbUL.Items.Cast<object>()
                                             .FirstOrDefault(i => i.ToString() == r["urgencyLevel"].ToString());
                 cmbStatus.SelectedItem = cmbStatus.Items.Cast<object>()
                                             .FirstOrDefault(i => i.ToString() == r["status"].ToString());
 
+
                 if (!r.IsNull("siteEvaluationDate"))
                 {
-                    dateTimePicker1.Value = Convert.ToDateTime(r["siteEvaluationDate"]);
-                    originalEvaluationDate = Convert.ToDateTime(r["siteEvaluationDate"]);
+                    DateTime savedDate =
+                        Convert.ToDateTime(r["siteEvaluationDate"]);
+
+                    originalEvaluationDate = savedDate;
+
+                    SetEvaluationDatePicker(savedDate);
                 }
                 else
                 {
-                    dateTimePicker1.Value = DateTime.Now;
                     originalEvaluationDate = null;
+
+                    dateTimePicker1.Value = DateTime.Today;
+                    ClearEvaluationDatePicker();
                 }
+
             }
             catch (Exception ex)
             {
@@ -611,7 +669,17 @@ namespace M2GiantGroupSystem
         private void btnSave_Click_1(object sender, EventArgs e)
         {
             // — Validation —
-           
+            if (!evaluationDateSelected)
+            {
+                MessageBox.Show(
+                    "Please select a site evaluation date before saving.",
+                    "Evaluation Date Required",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                return;
+            }
+
             if (jobRequestID == 0)
             {
                 MessageBox.Show("Please select a job request from the table before saving changes.",
@@ -704,7 +772,11 @@ namespace M2GiantGroupSystem
 
             try
             {
-                jobRequestTableAdapter1.UpdateQuery(
+
+                int savedRequestId = jobRequestID;
+
+                // Save the job request first.
+                int rowsUpdated = jobRequestTableAdapter1.UpdateQuery(
                     tbSiteAddress.Text.Trim(),
                     lng,
                     lat,
@@ -714,8 +786,50 @@ namespace M2GiantGroupSystem
                     selectedDate.ToString(),
                     jobRequestID);
 
-                MessageBox.Show("Changes updated successfully!",
-                    "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (rowsUpdated <= 0)
+                {
+                    MessageBox.Show(
+                        "The job request was not updated.",
+                        "Save Failed",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    return;
+                }
+
+                // Only send an email when the site evaluation
+                // date was newly set or changed.
+                if (dateWasChanged)
+                {
+                    string emailMessage;
+
+                    bool emailSent =
+                        DesktopEvaluationNotifier.TrySend(
+                            savedRequestId,
+                            selectedDate.Date,
+                            out emailMessage);
+
+                    MessageBox.Show(
+                        "Job request updated successfully!\n\n" +
+                        "Email notification: " + emailMessage,
+                        emailSent
+                            ? "Save Successful"
+                            : "Saved - Email Notification Not Sent",
+                        MessageBoxButtons.OK,
+                        emailSent
+                            ? MessageBoxIcon.Information
+                            : MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    MessageBox.Show(
+                        "Job request updated successfully!\n" +
+                        "No evaluation-date email was needed.",
+                        "Save Successful",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+
                 jobRequestID = 0;
                 lbl_ID.Text = "Selected Job Request ID: ";
                 tbSiteAddress.Text = "";
@@ -1634,5 +1748,20 @@ namespace M2GiantGroupSystem
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
+        private void ClearEvaluationDatePicker()
+        {
+            dateTimePicker1.Format = DateTimePickerFormat.Custom;
+            dateTimePicker1.CustomFormat = " ";
+        }
+
+        private void SetEvaluationDatePicker(DateTime date)
+        {
+            dateTimePicker1.Format = DateTimePickerFormat.Custom;
+            dateTimePicker1.CustomFormat = "dd/MM/yyyy";
+            dateTimePicker1.Value = date;
+        }
+
     }
 }
