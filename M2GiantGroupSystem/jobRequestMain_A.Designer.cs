@@ -88,6 +88,8 @@
             this.tbLong = new System.Windows.Forms.TextBox();
             this.tbSiteAddress = new System.Windows.Forms.TextBox();
             this.pnlFind = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
+            this.btnFilterSiteEval = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.lblSearchCriteria_A = new System.Windows.Forms.Label();
             this.btnAddSitePhoto = new System.Windows.Forms.Button();
@@ -137,8 +139,6 @@
             this.requestItemTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.RequestItemTableAdapter();
             this.jobDetailTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.JobDetailTableAdapter();
             this.itemDetailTableAdapter1 = new M2GiantGroupSystem.GroupWst1DataSetTableAdapters.ItemDetailTableAdapter();
-            this.btnFilterSiteEval = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -876,6 +876,28 @@
             this.pnlFind.Size = new System.Drawing.Size(968, 728);
             this.pnlFind.TabIndex = 67;
             // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.button3.Location = new System.Drawing.Point(564, 129);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(129, 75);
+            this.button3.TabIndex = 70;
+            this.button3.Text = "Undo filter";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // btnFilterSiteEval
+            // 
+            this.btnFilterSiteEval.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnFilterSiteEval.Location = new System.Drawing.Point(726, 129);
+            this.btnFilterSiteEval.Name = "btnFilterSiteEval";
+            this.btnFilterSiteEval.Size = new System.Drawing.Size(129, 75);
+            this.btnFilterSiteEval.TabIndex = 69;
+            this.btnFilterSiteEval.Text = "No Evaluation Date";
+            this.btnFilterSiteEval.UseVisualStyleBackColor = false;
+            this.btnFilterSiteEval.Click += new System.EventHandler(this.btnFilterSiteEval_Click);
+            // 
             // label13
             // 
             this.label13.AutoSize = true;
@@ -1416,28 +1438,6 @@
             // itemDetailTableAdapter1
             // 
             this.itemDetailTableAdapter1.ClearBeforeFill = true;
-            // 
-            // btnFilterSiteEval
-            // 
-            this.btnFilterSiteEval.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btnFilterSiteEval.Location = new System.Drawing.Point(726, 129);
-            this.btnFilterSiteEval.Name = "btnFilterSiteEval";
-            this.btnFilterSiteEval.Size = new System.Drawing.Size(129, 75);
-            this.btnFilterSiteEval.TabIndex = 69;
-            this.btnFilterSiteEval.Text = "No Evaluation Date";
-            this.btnFilterSiteEval.UseVisualStyleBackColor = false;
-            this.btnFilterSiteEval.Click += new System.EventHandler(this.btnFilterSiteEval_Click);
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.button3.Location = new System.Drawing.Point(564, 129);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(129, 75);
-            this.button3.TabIndex = 70;
-            this.button3.Text = "Undo filter";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // jobRequestMain_A
             // 
