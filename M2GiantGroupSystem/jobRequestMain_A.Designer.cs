@@ -369,7 +369,7 @@
             "Low",
             "Medium",
             "High",
-            "Not specified"});
+            "Not Specified"});
             this.cmbUrgencyLevel_A.Location = new System.Drawing.Point(1009, 492);
             this.cmbUrgencyLevel_A.Name = "cmbUrgencyLevel_A";
             this.cmbUrgencyLevel_A.Size = new System.Drawing.Size(532, 45);
@@ -751,7 +751,7 @@
             "Low",
             "Medium",
             "High",
-            "Not specified"});
+            "Not Specified"});
             this.cmbUL.Location = new System.Drawing.Point(1210, 462);
             this.cmbUL.Name = "cmbUL";
             this.cmbUL.Size = new System.Drawing.Size(459, 45);
