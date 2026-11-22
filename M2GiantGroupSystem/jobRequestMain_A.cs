@@ -635,8 +635,32 @@ namespace M2GiantGroupSystem
                             MessageBoxIcon.Warning);
                     }
                 }
-                cmbUL.SelectedItem = cmbUL.Items.Cast<object>()
-                                            .FirstOrDefault(i => i.ToString() == r["urgencyLevel"].ToString());
+                string savedUrgency = Convert.ToString(r["urgencyLevel"]).Trim();
+
+                cmbUL.SelectedIndex = -1;
+
+                // Match the saved urgency, ignoring case and extra spaces
+                for (int i = 0; i < cmbUL.Items.Count; i++)
+                {
+                    string itemText = cmbUL.GetItemText(cmbUL.Items[i]).Trim();
+
+                    if (string.Equals(itemText, savedUrgency,
+                        StringComparison.OrdinalIgnoreCase))
+                    {
+                        cmbUL.SelectedIndex = i;
+                        break;
+                    }
+                }
+
+                // Add Not Specified if it is missing from the dropdown
+                if (cmbUL.SelectedIndex == -1 &&
+                    savedUrgency.Equals("Not Specified",
+                        StringComparison.OrdinalIgnoreCase) &&
+                    cmbUL.DataSource == null)
+                {
+                    cmbUL.Items.Add("Not Specified");
+                    cmbUL.SelectedIndex = cmbUL.Items.Count - 1;
+                }
                 cmbStatus.SelectedItem = cmbStatus.Items.Cast<object>()
                                             .FirstOrDefault(i => i.ToString() == r["status"].ToString());
 
